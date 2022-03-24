@@ -5,7 +5,8 @@ if status is-login
     end
 end
 
-set fish_greeting 
+set fish_greeting
+ 
 
 #freshfetch
 #ufetch
