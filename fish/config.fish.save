@@ -4,7 +4,8 @@ if status is-login
         exec startx -- -keeptty
     end
 end
-#starship init fish | source
+
+starship init fish | source
 
 set fish_greeting
  
@@ -18,28 +19,11 @@ set fish_greeting
 #afetch | lolcat
 #free -h
 alias hi='echo "Hello World"'
-alias li='free -h && sudo limpante && free -h'
+alias li='sudo limpante'
 alias discord='flatpak run com.discordapp.Discord'
 alias gte='gnome-text-editor'
 alias update='paru && flatpak update'
-alias f='free -h'
 
 #alias aura="sudo aura"
 export EDITOR=/bin/nano
 export VISUAL=nano
-
-if status is-interactive
-    set -l onedark_options '-b'
-
-    if set -q VIM
-        # Using from vim/neovim.
-        set onedark_options "-256"
-    else if string match -iq "eterm*" $TERM
-        # Using from emacs.
-        function fish_title; true; end
-        set onedark_options "-256"
-    end
-
-    set_onedark $onedark_options
-end
-
