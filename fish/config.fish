@@ -25,6 +25,10 @@ alias gte='gnome-text-editor'
 alias update='paru && flatpak update'
 alias f='free -h'
 alias gogh='bash -c "$(wget -qO- https://git.io/vQgMr)"'
+alias ftam='flatpak --columns=name,size list'
+alias fli='sudo rm -rfv /var/tmp/flatpak-cache-*'
+alias frm='flatpak uninstall --unused'
+alias fup='flatpak update'
 #alias aura="sudo aura"
 export EDITOR=/bin/nano
 export VISUAL=nano
