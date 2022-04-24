@@ -1,0 +1,8 @@
+ATIVE OS REPO RPMFUSION
+
+Google chrome => Gnome software
+Vscode => Site oficial
+Fira Sans => Google fonts
+
+
+

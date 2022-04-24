@@ -1,0 +1,2 @@
+#!/bin/bash
+paru -S flatpak neovim google-chrome discord spotify-adblock steam telegram-desktop fish visual-studio-code-bin neofetch gnome-boxes ttf-fira-code ttf-fira-sans ttf-jetbrains-mono ttf-cascadia-code pacman-contrib pipewire-media-session pipewire-pulse pipewire-alsa gst-plugin-pipewire simplescreenrecorder obs-studio peek timeshift lutris pavucontrol drawing fragments whatsapp-nativefier gimp pitivi
