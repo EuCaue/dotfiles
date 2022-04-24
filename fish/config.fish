@@ -18,9 +18,9 @@ set fish_greeting
 #fastfetch | lolcat
 #afetch | lolcat
 #free -h
+alias cfg='nvim ~/.config/fish/config.fish'
 alias hi='echo "Hello World"'
 alias li='free -h && sudo limpante && free -h'
-alias discord='flatpak run com.discordapp.Discord'
 alias gte='gnome-text-editor'
 alias update='paru && flatpak update'
 alias f='free -h'
