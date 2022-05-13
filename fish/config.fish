@@ -1,3 +1,4 @@
+uwufetch | lolcat
 # Init startship prompt
 starship init fish | source
 # Disable fish greeting
@@ -9,6 +10,10 @@ alias update='paru && flatpak update'
 alias gte='gnome-text-editor'
 alias li='free -h && sudo limpante && free -h'
 alias f='free -h'
+alias npms='npm start'
+alias gcl='cd ~/gitclone && git clone '
+alias sus='paru'
+alias suslol='sudo sh -c "sysctl -w abi.vsyscall32=0"'
 
 # Theme for gnome-terminal
 alias gogh='bash -c "$(wget -qO- https://git.io/vQgMr)"'
@@ -19,14 +24,18 @@ alias frm='flatpak uninstall --unused'
 alias ftam='flatpak --columns=name,size list'
 alias fli='sudo rm -rfv /var/tmp/flatpak-cache-*'
 
+
+set QT_QPA_PLATFORM wayland
+
 # Exporting the default $EDITOR
-export EDITOR=/bin/nano
+export EDITOR=/usr/bin/nvim
 export VISUAL=nano
 
 
 
 # *FETCH'S
 #freshfetch
+#uwufetch
 #ufetch
 #neofetch | lolcat
 #pfetch | lolcat

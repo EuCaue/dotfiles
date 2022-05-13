@@ -27,7 +27,7 @@ Plug 'jiangmiao/auto-pairs' "this will auto close ( [ {
 call plug#end()
 "colorscheme dracula
 "colorscheme materialbox 
-
+colorscheme afterglow
 nnoremap <C-f> :NERDTreeToggle<CR>
 nnoremap <C-s> :w!<CR>
 nnoremap <C-x> :wq!<CR>
