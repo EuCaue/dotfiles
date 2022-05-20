@@ -1,8 +1,7 @@
-uwufetch | lolcat
 # Init startship prompt
 starship init fish | source
 # Disable fish greeting
-set fish_greeting
+set fish_greeting I use arch BTW 
  
  # Alias for commands
 alias cfg='nvim ~/.config/fish/config.fish'
@@ -13,6 +12,7 @@ alias f='free -h'
 alias npms='npm start'
 alias gcl='cd ~/gitclone && git clone '
 alias sus='paru'
+alias susa='paru -Syua'
 alias suslol='sudo sh -c "sysctl -w abi.vsyscall32=0"'
 
 # Theme for gnome-terminal
@@ -25,11 +25,24 @@ alias ftam='flatpak --columns=name,size list'
 alias fli='sudo rm -rfv /var/tmp/flatpak-cache-*'
 
 
+
 set QT_QPA_PLATFORM wayland
+set MOZ_ENABLE_WAYLAND 1
+# Para usar o tema do Qgnomeplatform para QT
+#set QT_QPA_PLATFORMTHEME gnome
+
+# Usando o tema do qt5ct para temas QT
+export QT_QPA_PLATFORMTHEME=qt5ct
+#set QT_STYLE_OVERRIDE kvantum
+
+set QT_SCALE_FACTOR 0.80
+
+#set QT_QPA_PLATFORMTHEME qt5ct
+
 
 # Exporting the default $EDITOR
 export EDITOR=/usr/bin/nvim
-export VISUAL=nano
+export VISUAL=nvim
 
 
 
@@ -39,10 +52,16 @@ export VISUAL=nano
 #ufetch
 #neofetch | lolcat
 #pfetch | lolcat
+pfetch
 #bfetch | lolcat
 #fastfetch | lolcat
 #afetch | lolcat
 #free -h
+
+### PFETCH CONFIG
+export PF_INFO="title os host kernel uptime pkgs memory"
+
+
 
 # Start X at login
 if status is-login

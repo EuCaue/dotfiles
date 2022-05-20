@@ -4,5 +4,7 @@ Google chrome => Gnome software
 Vscode => Site oficial
 Fira Sans => Google fonts
 
-
+Notion => https://github.com/notion-enhancer/notion-repackaged/releases
+heroic => https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases
+bitwarden => https://bitwarden.com/download/
 
