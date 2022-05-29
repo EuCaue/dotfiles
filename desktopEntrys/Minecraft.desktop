@@ -5,4 +5,4 @@ Type=Application
 Terminal=false
 Exec=java -jar /home/caue/Applications/TLauncher-2.841.jar
 Name=Minecraft
-Icon=/home/caue/Pictures/icons/minecraft-1-logo-png-transparent.png
+Icon=/home/caue/Pictures/icons/minecraft.png
