@@ -18,6 +18,7 @@ alias suslol='sudo sh -c "sysctl -w abi.vsyscall32=0"'
 # Remove all the symlink in the folder
 alias rmlinks='find -maxdepth 1 -type l -delete'
 
+alias a='echo "hello world"'
 
 # Theme for gnome-terminal
 alias gogh='bash -c "$(wget -qO- https://git.io/vQgMr)"'
