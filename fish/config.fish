@@ -10,10 +10,14 @@ alias gte='gnome-text-editor'
 alias li='free -h && sudo limpante && free -h'
 alias f='free -h'
 alias npms='npm start'
+alias npmd='npm run dev'
 alias gcl='cd ~/gitclone && git clone '
 alias sus='paru'
 alias susa='paru -Syua'
 alias suslol='sudo sh -c "sysctl -w abi.vsyscall32=0"'
+# Remove all the symlink in the folder
+alias rmlinks='find -maxdepth 1 -type l -delete'
+
 
 # Theme for gnome-terminal
 alias gogh='bash -c "$(wget -qO- https://git.io/vQgMr)"'
@@ -52,14 +56,14 @@ export VISUAL=nvim
 #ufetch
 #neofetch | lolcat
 #pfetch | lolcat
-pfetch
+#pfetch
 #bfetch | lolcat
 #fastfetch | lolcat
 #afetch | lolcat
 #free -h
 
 ### PFETCH CONFIG
-export PF_INFO="title os host kernel uptime pkgs memory"
+#export PF_INFO="title os host kernel uptime pkgs memory"
 
 
 
