@@ -5,6 +5,7 @@ set fish_greeting I use arch BTW
  
  # Alias for commands
 alias cfg='nvim ~/.config/fish/config.fish'
+alias nft='nvim ~/.config/neofetch/config.conf'
 alias update='paru && flatpak update'
 alias gte='gnome-text-editor'
 alias li='free -h && sudo limpante && free -h'
