@@ -8,6 +8,7 @@ export TERM=kitty
  # Alias for commands
 alias cfg='nvim ~/.config/fish/config.fish'
 alias kfg='nvim ~/.config/kitty/kitty.conf'
+alias hfg='nvim ~/.config/hypr/hyprland.conf'
 alias nft='nvim ~/.config/neofetch/config.conf'
 alias update='paru && flatpak update'
 alias gte='gnome-text-editor'

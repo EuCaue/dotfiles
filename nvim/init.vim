@@ -23,11 +23,11 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro Scheme
 Plug 'https://github.com/tpope/vim-fugitive'
 Plug 'jiangmiao/auto-pairs' "this will auto close ( [ {
-
+Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
 call plug#end()
 "colorscheme dracula
 "colorscheme materialbox 
-colorscheme afterglow
+colorscheme gruvbox 
 nnoremap <C-f> :NERDTreeToggle<CR>
 nnoremap <C-s> :w!<CR>
 nnoremap <C-x> :wq!<CR>
