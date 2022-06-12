@@ -1,0 +1,17 @@
+[Default Applications]
+x-scheme-handler/tg=userapp-Telegram Desktop-N6UON1.desktop
+text/plain=nvim.desktop
+image/png=feh.desktop
+inode/directory=pcmanfm.desktop
+image/jpeg=feh.desktop
+application/x-executable=nvim.desktop
+application/x-desktop=nvim.desktop
+
+[Added Associations]
+x-scheme-handler/tg=userapp-Telegram Desktop-N6UON1.desktop;
+text/plain=nvim.desktop;
+image/png=userapp-feh-CDHKN1.desktop;
+application/x-executable=nvim.desktop;
+application/x-desktop=nvim.desktop;
+
+[Removed Associations]
