@@ -20,6 +20,7 @@ alias sus='paru'
 alias susa='paru -Syua'
 alias suslol='sudo sh -c "sysctl -w abi.vsyscall32=0"'
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
+alias mann='read -P -S manpage && man $manpage | nvim'
 
 # Remove all the symlink in the folder
 alias rmlinks='find -maxdepth 1 -type l -delete'
