@@ -8,15 +8,18 @@ neofetch --ascii --source ~/.config/neofetch/anime.txt
 alias cfg='nvim ~/.config/fish/config.fish'
 alias nft='nvim ~/.config/neofetch/config.conf'
 alias update='paru && flatpak update'
+alias updatel='paru -Syu --color=always | tee .update.log && flatpak update | tee -a .update.log && date >> .update.log'
+#alias updatel='sudo pacman -Syu --color=always | tee .update.log && paru -Sua && flatpak update | tee -a .update.log && date >> .update.log'
 alias gte='gnome-text-editor'
 alias li='free -h && sudo limpante && free -h'
 alias f='free -h'
 alias npms='npm start'
 alias npmd='npm run dev'
-alias gcl='cd ~/gitclone && git clone '
+alias gcl='cd ~/gitclone && git clone' 
 alias sus='paru'
 alias susa='paru -Syua'
 alias suslol='sudo sh -c "sysctl -w abi.vsyscall32=0"'
+alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 
 # Remove all the symlink in the folder
 alias rmlinks='find -maxdepth 1 -type l -delete'
@@ -29,10 +32,11 @@ alias fup='flatpak update'
 alias frm='flatpak uninstall --unused'
 alias ftam='flatpak --columns=name,size list'
 alias fli='sudo rm -rfv /var/tmp/flatpak-cache-*'
-
+alias fov='sudo flatpak override --env=GTK_THEME=adw-gtk3-dark'
 
 
 set QT_QPA_PLATFORM wayland
+export MOZ_ENABLE_WAYLAND=1
 set MOZ_ENABLE_WAYLAND 1
 # Para usar o tema do Qgnomeplatform para QT
 set QT_QPA_PLATFORMTHEME gnome
