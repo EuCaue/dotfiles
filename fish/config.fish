@@ -8,7 +8,7 @@ neofetch --ascii --source ~/.config/neofetch/anime.txt
 alias cfg='nvim ~/.config/fish/config.fish'
 alias nft='nvim ~/.config/neofetch/config.conf'
 alias update='paru && flatpak update'
-alias updatel='paru -Syu --color=always | tee .update.log && flatpak update | tee -a .update.log && date >> .update.log'
+alias updatel='paru -Syu --color=always | tee -a .update.log && flatpak update | tee -a .update.log && date >> .update.log && echo "" >> .update.log '
 #alias updatel='sudo pacman -Syu --color=always | tee .update.log && paru -Sua && flatpak update | tee -a .update.log && date >> .update.log'
 alias gte='gnome-text-editor'
 alias li='free -h && sudo limpante && free -h'
@@ -20,7 +20,8 @@ alias sus='paru'
 alias susa='paru -Syua'
 alias suslol='sudo sh -c "sysctl -w abi.vsyscall32=0"'
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
-alias mann='read -P -S manpage && man $manpage | nvim'
+alias mann='read -S -P 'man:' manpage && man $manpage | nvim'
+alias gal='git add . && read -P 'commit:' commit && git commit -m "$commit" && git push' 
 
 # Remove all the symlink in the folder
 alias rmlinks='find -maxdepth 1 -type l -delete'
