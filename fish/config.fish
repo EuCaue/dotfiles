@@ -1,7 +1,7 @@
 # Init startship prompt
 starship init fish | source
 # Disable fish greeting
-set fish_greeting I use arch BTW 
+set fish_greeting  I use arch BTW 
 neofetch --ascii --source ~/.config/neofetch/anime.txt
 
  # Alias for commands
@@ -23,6 +23,8 @@ alias suslol='sudo sh -c "sysctl -w abi.vsyscall32=0"'
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias mann='read -S -P 'man:' manpage && man $manpage | nvim'
 alias gal='git add . && read -P 'commit:' commit && git commit -m "$commit" && git push' 
+alias javajava='la && read -P 'file.java:' filejava -S && java $filejava.java'
+alias javajar='la && read -P 'file.jar:' file -S && java -jar $file.jar'
 
 # Remove all the symlink in the folder
 alias rmlinks='find -maxdepth 1 -type l -delete'
@@ -35,7 +37,7 @@ alias fup='flatpak update'
 alias frm='flatpak uninstall --unused'
 alias ftam='flatpak --columns=name,size list'
 alias fli='sudo rm -rfv /var/tmp/flatpak-cache-*'
-alias fov='sudo flatpak override --env=GTK_THEME=adw-gtk3-dark'
+#alias fov='sudo flatpak override --env=GTK_THEME=adw-gtk3-dark'
 
 
 set QT_QPA_PLATFORM wayland
