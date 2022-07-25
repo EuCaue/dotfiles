@@ -25,6 +25,7 @@ alias mann='read -S -P 'man:' manpage && man $manpage | nvim'
 alias gal='git add . && read -P 'commit:' commit && git commit -m "$commit" && git push' 
 alias javajava='la && read -P 'file.java:' filejava -S && java $filejava.java'
 alias javajar='la && read -P 'file.jar:' file -S && java -jar $file.jar'
+alias clearpkg='sus -Qtdq | sus -Rns -'
 
 # Remove all the symlink in the folder
 alias rmlinks='find -maxdepth 1 -type l -delete'
