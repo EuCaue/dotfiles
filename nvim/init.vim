@@ -37,8 +37,8 @@ nnoremap <C-x> :wq!<CR>
 nnoremap <C-l> :PlugInstall<CR>
 noremap <C-z>  :q!<CR>
 nnoremap <C-a> :TagbarToggle<CR>
-nnoremap <C-b> :!node % 
-
+"nnoremap <C-b> :!node % 
+nnoremap <C-b> :!java %
 
 
 
