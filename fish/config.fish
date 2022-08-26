@@ -26,7 +26,9 @@ alias gal='git add . && read -P 'commit:' commit && git commit -m "$commit" && g
 alias javajava='la && read -P 'file.java:' filejava -S && java $filejava.java'
 alias javajar='la && read -P 'file.jar:' file -S && java -jar $file.jar'
 alias clearpkg='sus -Qtdq | sus -Rns -'
-alias killa='killall '
+alias vited='npx vite --host'
+alias mobile='scrcpy -b 12M -m 1024 --tcpip=192.168.1.154'
+
 
 # Remove all the symlink in the folder
 alias rmlinks='find -maxdepth 1 -type l -delete'
@@ -52,7 +54,7 @@ set QT_QPA_PLATFORMTHEME gnome
 #export QT_QPA_PLATFORMTHEME=qt5ct
 #set QT_STYLE_OVERRIDE kvantum
 
-set QT_SCALE_FACTOR 0.90
+#set QT_SCALE_FACTOR 0.90
 
 
 #set QT_QPA_PLATFORMTHEME qt5ct
