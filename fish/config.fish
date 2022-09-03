@@ -28,6 +28,7 @@ alias javajar='la && read -P 'file.jar:' file -S && java -jar $file.jar'
 alias clearpkg='sus -Qtdq | sus -Rns -'
 alias vited='npx vite --host'
 alias mobile='scrcpy -b 12M -m 1024 --tcpip=192.168.1.154'
+alias fs='flatpak search '
 
 
 # Remove all the symlink in the folder
