@@ -2,10 +2,12 @@
 starship init fish | source
 # Disable fish greeting
 set fish_greeting  I use arch BTW 
-neofetch --ascii --source ~/.config/neofetch/anime.txt
+#neofetch --ascii --source ~/.config/neofetch/anime.txt
+neofetch --chafa --source ~/Pictures/her/IMG-20221002-WA0015.jpg
 
  # Alias for commands
 alias cfg='nvim ~/.config/fish/config.fish'
+alias kfg='nvim ~/.config/kitty/kitty.conf'
 alias nft='nvim ~/.config/neofetch/config.conf'
 alias update='paru && flatpak update'
 alias updatel='paru -Syu --color=always | tee -a .update.log && flatpak update | tee -a .update.log && date >> .update.log && echo "" >> .update.log '
@@ -82,5 +84,5 @@ export VISUAL=nvim
 ### PFETCH CONFIG
 #export PF_INFO="title os host kernel uptime pkgs memory"
 
-#alias kfg='nvim ~/.config/kitty/kitty.conf'
+
 #alias hfg='nvim ~/.config/hypr/hyprland.conf'

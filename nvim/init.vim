@@ -25,20 +25,23 @@ Plug 'https://github.com/tpope/vim-fugitive'
 Plug 'jiangmiao/auto-pairs' "this will auto close ( [ {
 Plug 'dsznajder/vscode-es7-javascript-react-snippets', { 'do': 'yarn install --frozen-lockfile && yarn compile' }
 Plug 'Mofiqul/adwaita.nvim'
+Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 call plug#end()
 
 "colorscheme dracula
 "colorscheme materialbox 
 "colorscheme gruvbox 
 colorscheme adwaita
+"colorscheme rose-pine-dark 
+"colorscheme catppuccin
 nnoremap <C-f> :NERDTreeToggle<CR>
 nnoremap <C-s> :w!<CR>
 nnoremap <C-x> :wq!<CR>
 nnoremap <C-l> :PlugInstall<CR>
 noremap <C-z>  :q!<CR>
 nnoremap <C-a> :TagbarToggle<CR>
-"nnoremap <C-b> :!node % 
-nnoremap <C-b> :!java %
+nnoremap <C-b> :!node % 
+"nnoremap <C-b> :!java %
 
 
 
@@ -71,6 +74,7 @@ else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
+inoremap <silent><expr> <c-space> coc#refresh()
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
