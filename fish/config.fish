@@ -9,6 +9,7 @@ neofetch --chafa --source ~/Pictures/her/IMG-20221002-WA0015.jpg
 alias cfg='nvim ~/.config/fish/config.fish'
 alias kfg='nvim ~/.config/kitty/kitty.conf'
 alias nft='nvim ~/.config/neofetch/config.conf'
+alias icat="kitty +kitten icat"
 alias update='paru && flatpak update'
 alias updatel='paru -Syu --color=always | tee -a .update.log && flatpak update | tee -a .update.log && date >> .update.log && echo "" >> .update.log '
 #alias updatel='sudo pacman -Syu --color=always | tee .update.log && paru -Sua && flatpak update | tee -a .update.log && date >> .update.log'
