@@ -65,7 +65,7 @@ use { "p00f/nvim-ts-rainbow" } -- {} colored
 use {"lewis6991/gitsigns.nvim", tag = "release"} -- Git
 use { "kyazdani42/nvim-tree.lua" }
 use { "akinsho/toggleterm.nvim",}
-use {"Pocco81/auto-save.nvim",}
+-- use {"Pocco81/auto-save.nvim",}
 
 end)
 
