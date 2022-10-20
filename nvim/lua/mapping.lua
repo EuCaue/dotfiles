@@ -6,6 +6,7 @@ local term_opts = { silent = true }
 
 -- Basic keymaps
 keymap('n', '<C-s>', '<cmd>Format<cr> | <cmd>write!<cr>', opts)
+-- keymap('n', '<C-s>', '<cmd>write!<cr>', opts)
 keymap('n', '<C-x>', '<cmd>wq!<cr>', opts)
 keymap('n', '<C-z>', '<cmd>q!<cr>', opts)
 keymap('n', '<C-b>', '<cmd>lua _NODE_TOGGLE()<cr>', opts)

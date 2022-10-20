@@ -1,9 +1,12 @@
 # Init startship prompt
-starship init fish | source
+if status is-interactive
+    # Commands to run in interactive sessions can go here
+    starship init fish | source
+	  set fish_greeting  I use arch BTW 
+    neofetch --chafa --source ~/Pictures/her/IMG-20221002-WA0015.jpg
+end
 # Disable fish greeting
-set fish_greeting  I use arch BTW 
 #neofetch --ascii --source ~/.config/neofetch/anime.txt
-neofetch --chafa --source ~/Pictures/her/IMG-20221002-WA0015.jpg
 
  # Alias for commands
 alias cfg='nvim ~/.config/fish/config.fish'
@@ -32,7 +35,7 @@ alias clearpkg='sus -Qtdq | sus -Rns -'
 alias vited='npx vite --host'
 alias mobile='scrcpy -b 12M -m 1024 --tcpip=192.168.1.154'
 alias fs='flatpak search '
-
+alias ll='exa -l -g --icons'
 
 # Remove all the symlink in the folder
 alias rmlinks='find -maxdepth 1 -type l -delete'
@@ -45,7 +48,6 @@ alias fup='flatpak update'
 alias frm='flatpak uninstall --unused'
 alias ftam='flatpak --columns=name,size list'
 alias fli='sudo rm -rfv /var/tmp/flatpak-cache-*'
-#alias fov='sudo flatpak override --env=GTK_THEME=adw-gtk3-dark'
 
 
 set QT_QPA_PLATFORM wayland
@@ -61,7 +63,6 @@ set QT_QPA_PLATFORMTHEME gnome
 #set QT_SCALE_FACTOR 0.90
 
 
-#set QT_QPA_PLATFORMTHEME qt5ct
 
 
 # Exporting the default $EDITOR

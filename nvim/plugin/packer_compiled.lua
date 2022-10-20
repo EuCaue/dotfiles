@@ -80,6 +80,11 @@ _G.packer_plugins = {
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/Comment.nvim",
     url = "https://github.com/numToStr/Comment.nvim"
   },
+  LuaSnip = {
+    loaded = true,
+    path = "/home/caue/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    url = "https://github.com/L3MON4D3/LuaSnip"
+  },
   ["adwaita.nvim"] = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/adwaita.nvim",
@@ -120,6 +125,11 @@ _G.packer_plugins = {
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
+  ["gruvbox.nvim"] = {
+    loaded = true,
+    path = "/home/caue/.local/share/nvim/site/pack/packer/start/gruvbox.nvim",
+    url = "https://github.com/ellisonleao/gruvbox.nvim"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/lualine.nvim",
@@ -144,11 +154,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/noctis.nvim",
     url = "https://github.com/kartikp10/noctis.nvim"
-  },
-  ["null-ls.nvim"] = {
-    loaded = true,
-    path = "/home/caue/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
-    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
   },
   ["nvim-autopairs"] = {
     loaded = true,
@@ -229,11 +234,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/vim-devicons",
     url = "https://github.com/ryanoasis/vim-devicons"
-  },
-  ["vim-fugitive"] = {
-    loaded = true,
-    path = "/home/caue/.local/share/nvim/site/pack/packer/start/vim-fugitive",
-    url = "https://github.com/tpope/vim-fugitive"
   },
   ["vim-multiple-cursors"] = {
     loaded = true,
