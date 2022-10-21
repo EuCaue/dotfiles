@@ -87,4 +87,4 @@ export VISUAL=nvim
 #export PF_INFO="title os host kernel uptime pkgs memory"
 
 
-#alias hfg='nvim ~/.config/hypr/hyprland.conf'
+alias hfg='nvim ~/.config/hypr/hyprland.conf'

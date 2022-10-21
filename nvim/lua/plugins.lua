@@ -37,6 +37,7 @@ use {'ryanoasis/vim-devicons'} -- Developer Icons
 use {'https://github.com/terryma/vim-multiple-cursors'} -- CTRL + N for multiple cursors
 use {'dracula/vim',  as = 'dracula' } -- ColorScheme
 use {"windwp/nvim-autopairs"}
+use {'rose-pine/neovim', as = 'rose-pine',}
 use {'dsznajder/vscode-es7-javascript-react-snippets',run = 'yarn install --frozen-lockfile && yarn compile'}
 use {'Mofiqul/adwaita.nvim'} -- Adwaita colorScheme
 use {'nvim-lualine/lualine.nvim',requires = { 'kyazdani42/nvim-web-devicons',opt = true }} require('lualine').setup({}) -- status bar 

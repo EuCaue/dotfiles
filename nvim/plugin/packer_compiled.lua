@@ -210,6 +210,11 @@ _G.packer_plugins = {
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
+  ["rose-pine"] = {
+    loaded = true,
+    path = "/home/caue/.local/share/nvim/site/pack/packer/start/rose-pine",
+    url = "https://github.com/rose-pine/neovim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/telescope.nvim",
