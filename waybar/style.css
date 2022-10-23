@@ -9,12 +9,13 @@
 @define-color base #191724;
 @define-color love #eb6f92;
 @define-color pine #31748f;
+@define-color low #21202e;
 
 * {
   border: none;
   border-radius: 0;
-  font-family: "JetBrains Mono", "Material Icons", monospace;
-  font-size: 14px;
+  font-family: "JetBrainsMono Nerd Font", "Material Icons", monospace;
+  font-size: 15px;
   min-height: 0;
 }
 
@@ -24,7 +25,7 @@ window#waybar {
 }
 
 #workspaces button {
-  padding: 0 4px;
+  padding: 0 8px;
   background: transparent;
   color: @text;
   border-bottom: 2px solid transparent;
@@ -48,7 +49,7 @@ window#waybar {
 #custom-disturb_off,
 #custom-mic,
 #mpd {
-  padding: 0 8px;
+  padding: 0 9px;
   margin: 0;
 }
 
@@ -73,7 +74,7 @@ window#waybar {
 }
 
 #idle_inhibitor.activated {
-  background-color: @base;
+  background-color: @low;
   color: @text;
 }
 

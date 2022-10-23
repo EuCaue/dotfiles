@@ -1,4 +1,4 @@
-{
+{ 
     "gtk-layer-shell": true,
     "layer": "top", // Waybar at top layer
 	  "position": "top", // Waybar position (top|bottom|left|right)
@@ -7,24 +7,26 @@
     "spacing": 9, // Gaps between modules (4px)
 
     // Choose the order of the modules
-    "modules-left": ["wlr/workspaces", "custom/media"],
+    "modules-left": ["wlr/workspaces"],
     "modules-center": ["clock", "hyprland/window"],
-    "modules-right": ["idle_inhibitor", "pulseaudio", "cpu", "memory", "temperature", "backlight", "tray"],
-		
+    "modules-right": ["gamemode", "idle_inhibitor", "pulseaudio", "cpu", "memory", "temperature", "backlight", "tray"],
+   
 "hyprland/window": {
-    "format": "👉 {}",
-    "separate-outputs": true
+    "format": " {}",
+    "separate-outputs": false
 },
 
 "wlr/workspaces": {
   "format": "{icon}",
   "on-click": "activate",
   "format-icons": {
-    "1": "1",
-    "2": "2",
-    "3": "3",
-    "4": "4",
-    "5": "5",
+    "1": "",
+    "2": "",
+    "3": "",
+    "4": "",
+    "5": "",
+    "6": "",
+    "7": "",
     "urgent": "",
     "active": "",
     "default": ""
@@ -39,25 +41,30 @@
         }
     },
     "tray": {
-        "icon-size": 31,
+        "icon-size": 22,
         "spacing": 10
     },
+    
     "clock": {
         "timezone": "America/Bahia",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "interval": 1,
+        "format": "{:%H:%M:%S}",
+        "format-alt": "{:%d/%m/%Y}"
     },
+
     "cpu": {
         "format": "{usage}% ",
         "tooltip": true
     },
     "memory": {
         "format": "{}% ",
-        "tooltip": true
-    },
+        "tooltip": true,
+        "on-click": "pkexec limpante"
+},
     "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "thermal-zone": 2,
+        "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
         "critical-threshold": 80,
         "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
@@ -88,6 +95,19 @@
         "on-click": "pavucontrol",
         "on-click-middle": "pactl set-sink-volume @DEFAULT_SINK@ 40%",
         "on-click-right": "pactl set-sink-volume @DEFAULT_SINK@ 40%",
+    },
+    
+    "gamemode": {
+    "format": "{glyph}",
+    "format-alt": "{glyph} {count}",
+    "glyph": "",
+    "hide-not-running": true,
+    "use-icon": true,
+    "icon-name": "input-gaming-symbolic",
+    "icon-spacing": 4,
+    "icon-size": 20,
+    "tooltip": true,
+    "tooltip-format": "Games running: {count}"
     },
 }
 

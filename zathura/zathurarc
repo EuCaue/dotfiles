@@ -1,0 +1,40 @@
+map <C-i> zoom in
+map <C-o> zoom out
+
+set recolor  "true"
+set recolor-keephue "true"
+
+set zoom-center "true"
+
+set adjust-open "width"
+set font "JetBrainsMono Nerd Font 10"
+
+set statusbar-bg                "#191724"
+set statusbar-fg                "#e0def4"
+
+set default-bg                  "#191724"
+
+set inputbar-bg                 "#191724"
+set inputbar-fg                 "#e0def4"
+
+set recolor-darkcolor           "#e0def4"
+set recolor-lightcolor          "#191724"
+
+set completion-bg               "#191724"
+set completion-fg               "#e0def4"
+
+set completion-highlight-bg     "#191724"
+set completion-highlight-fg     "#524f67"
+
+set highlight-color             "#524f67"
+set highlight-fg                "#908caa"
+set highlight-active-color      "#c4a7e7"
+
+set notification-bg             "#191724"
+set notification-fg             "#e0def4"
+
+set notification-error-bg       "#191724"
+set notification-error-fg       "#e0def4"
+
+set notification-warning-bg     "#191724"
+set notification-warning-fg     "#e0def4"

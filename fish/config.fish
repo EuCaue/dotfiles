@@ -36,6 +36,9 @@ alias vited='npx vite --host'
 alias mobile='scrcpy -b 12M -m 1024 --tcpip=192.168.1.154'
 alias fs='flatpak search '
 alias ll='exa -l -g --icons'
+alias vim='nvim'
+alias vi='nvim'
+
 
 # Remove all the symlink in the folder
 alias rmlinks='find -maxdepth 1 -type l -delete'

@@ -1,4 +1,5 @@
 packer = require 'packer'
+
 packer.init {
 	display = {
 		prompt_border = 'double', -- Border style of prompt popups
@@ -10,7 +11,7 @@ packer.init {
 	}
 }
 
-
+-- onSave run PackerSync
 vim.cmd([[
   augroup packer_user_config
     autocmd!
@@ -21,46 +22,64 @@ vim.cmd([[
 local use = packer.use 
 packer.reset()
 packer.startup(function()
+-- PACKER
 use 'wbthomason/packer.nvim' -- Plugin Manager	
 
-use { 'kartikp10/noctis.nvim', requires = { 'rktjmp/lush.nvim' } }
+-- Colorscheme
+use {'rose-pine/neovim', as = 'rose-pine',} -- Colorscheme
 use 'getomni/neovim' -- Omni Colorscheme
 use { "ellisonleao/gruvbox.nvim" } -- Gruvbox colorscheme
-use 'editorconfig/editorconfig-vim' -- Editorconfig
-use 'sheerun/vim-polyglot' -- A lot of syntax Highlight 
 use 'folke/tokyonight.nvim' -- Colorscheme
-use 'preservim/nerdcommenter' -- Comment auto
-use 'https://github.com/neoclide/coc.nvim'  -- Auto Completion
-use {'https://github.com/ap/vim-css-color'} -- CSS Color Preview
-use {'romgrk/barbar.nvim', requires = {'kyazdani42/nvim-web-devicons'}}
-use {'ryanoasis/vim-devicons'} -- Developer Icons
-use {'https://github.com/terryma/vim-multiple-cursors'} -- CTRL + N for multiple cursors
 use {'dracula/vim',  as = 'dracula' } -- ColorScheme
-use {"windwp/nvim-autopairs"}
-use {'rose-pine/neovim', as = 'rose-pine',}
-use {'dsznajder/vscode-es7-javascript-react-snippets',run = 'yarn install --frozen-lockfile && yarn compile'}
-use {'Mofiqul/adwaita.nvim'} -- Adwaita colorScheme
-use {'nvim-lualine/lualine.nvim',requires = { 'kyazdani42/nvim-web-devicons',opt = true }} require('lualine').setup({}) -- status bar 
-use {'numToStr/Comment.nvim',config = function() require('Comment').setup() end} -- Also Comment
-use {'JoosepAlviste/nvim-ts-context-commentstring'} -- Comments
--- Better Syntax Highlight
-use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-use 'styled-components/vim-styled-components'
--- Better Syntax Highlight
-use 'Mofiqul/vscode.nvim'
 use {"lunarvim/colorschemes"} -- a bunch of colorschemes
-use { 'windwp/nvim-ts-autotag' }
-use {"neovim/nvim-lspconfig",}
-use {'rafamadriz/friendly-snippets'}
-use { 'nvim-telescope/telescope.nvim', tag = '0.1.0', requires = { {'nvim-lua/plenary.nvim'} } }
-use { 'nvim-lua/popup.nvim' } -- PopUp API for neovim 
+use {'Mofiqul/adwaita.nvim'} -- Adwaita colorScheme
+use 'Mofiqul/vscode.nvim' -- Colorscheme
+
+-- BetterComment
+use 'preservim/nerdcommenter' -- Comment 
+use {'numToStr/Comment.nvim',config = function() require('Comment').setup() end} -- Also Comment
+use {'JoosepAlviste/nvim-ts-context-commentstring'} -- Better JSX + TSX comment
+
+-- BetterHighlight
+use 'sheerun/vim-polyglot' -- A lot of syntax Highlight 
+use 'styled-components/vim-styled-components' -- highlight for styled-components
+use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- a better highlight for everything
 use { "p00f/nvim-ts-rainbow" } -- {} colored
-use {"lewis6991/gitsigns.nvim", tag = "release"} -- Git
+use {'https://github.com/ap/vim-css-color'} -- CSS Color Preview
+
+
+-- Snippets
+use { "L3MON4D3/LuaSnip"} -- Snippet engine
+use {'rafamadriz/friendly-snippets'} -- a lot of snippets
+use {'dsznajder/vscode-es7-javascript-react-snippets',run = 'yarn install --frozen-lockfile && yarn compile'}
+
+
+-- IDE	
+use 'https://github.com/neoclide/coc.nvim'  -- Auto Completion/Intelisense
+use {'romgrk/barbar.nvim', requires = {'kyazdani42/nvim-web-devicons'}} -- Tab/Buffer Manager
+use {"neovim/nvim-lspconfig",} -- LSP
 use { "kyazdani42/nvim-tree.lua" } -- Tree file
+use 'editorconfig/editorconfig-vim' -- Editorconfig
+use {'https://github.com/terryma/vim-multiple-cursors'} -- CTRL + N for multiple cursors
+use {'ryanoasis/vim-devicons'} -- Developer Icons
+use {"windwp/nvim-autopairs"} -- auto close ({[
+use {'nvim-lualine/lualine.nvim',requires = { 'kyazdani42/nvim-web-devicons',opt = true }} require('lualine').setup({}) -- status bar 
+use { 'windwp/nvim-ts-autotag' } -- <> autoclose tag
+use {"lewis6991/gitsigns.nvim", tag = "release"} -- Git
+
+
+
+
+
+-- Useful
+use { 'nvim-telescope/telescope.nvim', tag = '0.1.0', requires = { {'nvim-lua/plenary.nvim'} } } -- fzf finder
+use { 'nvim-lua/popup.nvim' } -- PopUp API for neovim 
 use { "akinsho/toggleterm.nvim",} -- show a "portable" terminal
-use { "L3MON4D3/LuaSnip"}
+use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim", config = function() require("todo-comments").setup {}end
+} -- TODO: 
 
 
+-- CMP + LSP : 
 -- use 'hrsh7th/cmp-nvim-lsp'
 -- use 'hrsh7th/cmp-nvim-lua'
 -- use 'hrsh7th/cmp-buffer'
