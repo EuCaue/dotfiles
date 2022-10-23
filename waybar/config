@@ -8,7 +8,7 @@
 
     // Choose the order of the modules
     "modules-left": ["wlr/workspaces"],
-    "modules-center": ["clock", "hyprland/window"],
+    "modules-center": ["clock", "custom/notification", "hyprland/window"],
     "modules-right": ["gamemode", "idle_inhibitor", "pulseaudio", "cpu", "memory", "temperature", "backlight", "tray"],
    
 "hyprland/window": {
@@ -73,6 +73,8 @@
     "backlight": {
         "device": "acpi_video1",
         "format": "{percent}% {icon}",
+        "on-scroll-up": "brightnessctl set +10%",
+        "on-scroll-down": "brightnessctl set 10%-",
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
     "pulseaudio": {
@@ -109,5 +111,21 @@
     "tooltip": true,
     "tooltip-format": "Games running: {count}"
     },
-}
+
+ "custom/notification": {
+    "tooltip": false,
+    "format": "{icon} {}",
+    "format-icons": {
+      "notification": "<span foreground='#31748f'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span foreground='#ebbcba'><sup></sup></span>",
+      "dnd-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },}
 

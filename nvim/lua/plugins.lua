@@ -24,7 +24,7 @@ packer.reset()
 packer.startup(function()
 -- PACKER
 use 'wbthomason/packer.nvim' -- Plugin Manager	
-
+	
 -- Colorscheme
 use {'rose-pine/neovim', as = 'rose-pine',} -- Colorscheme
 use 'getomni/neovim' -- Omni Colorscheme
