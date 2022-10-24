@@ -6,14 +6,13 @@ local term_opts = { silent = true }
 
 -- Basic keymaps
 keymap('n', '<C-s>', '<cmd>Format<cr> | <cmd>write!<cr>', opts)
--- keymap('n', '<C-s>', '<cmd>write!<cr>', opts)
 keymap('n', '<C-x>', '<cmd>wq!<cr>', opts)
 keymap('n', '<C-z>', '<cmd>q!<cr>', opts)
-keymap('n', '<C-b>', '<cmd>lua _NODE_TOGGLE()<cr>', opts)
-keymap('x', '<C-S-/>','<cmd>normal gcc<cr>', opts)
+keymap('n', '<C-b>', '<cmd>lua _NODE_TOGGLE()<cr>', opts) -- toggle a terminal with node
+-- Comment
+keymap('x', '<C-/>','<cmd>normal gcc<cr>', opts)
 keymap('n', '<C-/>', '<cmd>normal gcc<cr>', opts)
 keymap('i', '<C-/>', '<cmd>normal gcc<cr>', opts)
-keymap('i', '<leader>z', '<ESC>', opts)
 
 
 -- Telescope
@@ -82,7 +81,6 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 -- NvimTree
 keymap("n", "<leader>r", "<cmd>:NvimTreeToggle<cr>", opts)
-
 
 -- barbar mapping
 -- local map = vim.api.nvim_set_keymap
