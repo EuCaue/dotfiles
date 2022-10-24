@@ -51,6 +51,7 @@ window#waybar {
 #mpd {
   padding: 0 9px;
   margin: 0;
+  border-bottom: 2px solid @pine;
 }
 
 #window {
@@ -70,7 +71,6 @@ window#waybar {
 }
 
 #idle_inhibitor {
-  border-bottom: 2px solid @love;
 }
 
 #idle_inhibitor.activated {

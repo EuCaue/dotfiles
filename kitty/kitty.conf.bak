@@ -1315,6 +1315,6 @@ map ctrl+alt+a send_text all update
 
 
 # BEGIN_KITTY_THEME
-# Catppuccin-Mocha
+# Rosé Pine
 include current-theme.conf
 # END_KITTY_THEME
