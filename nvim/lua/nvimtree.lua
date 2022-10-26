@@ -15,14 +15,21 @@ nvim_tree.setup {
   disable_netrw = true,
   hijack_netrw = true,
   open_on_setup = false,
+  hijack_cursor = true,
   open_on_tab = true,
+  sort_by = "modification_time",
   update_focused_file = {
     enable = true,
     update_cwd = true,
   },
+   hijack_directories = {
+        enable = false,
+        auto_open = true,
+      },
+
   renderer = {
     root_folder_modifier = ":t",
-    icons = {
+     icons = {
       glyphs = {
         default = "",
         symlink = "",
@@ -59,7 +66,20 @@ nvim_tree.setup {
     },
   },
   view = {
+     float = {
+          enable = false,
+          quit_on_focus_loss = true,
+          open_win_config = {
+            relative = "editor",
+            border = "rounded",
+            width = 1000,
+            height = 20,
+            row = 3,
+            col = 1,
+          },
+        },
     width = 30,
+    centralize_selection = true,
     side = "left",
     mappings = {
       list = {

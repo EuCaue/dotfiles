@@ -14,4 +14,7 @@ require('autopairs') -- auto close ([{)
 require('gitsignss') -- git status 
 require('nvimtree') -- tree file manager
 require('termtoggle') -- toggle a terminal inside of neovim
+require('dash') -- dashboard
+require('autocmd') -- autocmd's
 vim.cmd('colorscheme rose-pine') -- colorscheme 
+vim.cmd('let g:netrw_bufsettings = "noma nomod nonu nowrap ro buflisted"')

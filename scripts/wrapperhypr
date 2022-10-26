@@ -1,6 +1,6 @@
 #!/bin/sh
 export _JAVA_AWT_WM_NONREPARENTING=1
-export XCURSOR_SIZE=24
-export XCURSOR_THEME=capitaine-cursors-dark
+export XCURSOR_SIZE=16
+export XCURSOR_THEME=macOS-BigSur
 export dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec Hyprland

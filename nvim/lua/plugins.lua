@@ -77,7 +77,7 @@ use { 'nvim-lua/popup.nvim' } -- PopUp API for neovim
 use { "akinsho/toggleterm.nvim",} -- show a "portable" terminal
 use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim", config = function() require("todo-comments").setup {}end
 } -- TODO: 
-
+use {'glepnir/dashboard-nvim'} -- dashboard
 
 -- CMP + LSP : 
 -- use 'hrsh7th/cmp-nvim-lsp'

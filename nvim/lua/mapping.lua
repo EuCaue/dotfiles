@@ -2,7 +2,19 @@
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
---
+
+--Remap space as leader key
+keymap("", "<Space>", "<Nop>", opts)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+-- Modes
+--   normal_mode = "n",
+--   insert_mode = "i",
+--   visual_mode = "v",
+--   visual_block_mode = "x",
+--   term_mode = "t",
+--   command_mode = "c",
 
 -- Basic keymaps
 keymap('n', '<C-s>', '<cmd>Format<cr> | <cmd>write!<cr>', opts)
@@ -14,27 +26,20 @@ keymap('x', '<C-/>','<cmd>normal gcc<cr>', opts)
 keymap('n', '<C-/>', '<cmd>normal gcc<cr>', opts)
 keymap('i', '<C-/>', '<cmd>normal gcc<cr>', opts)
 
+keymap('n', "<leader>d", "<cmd>e ~/dotfiles/nvim/init.lua<cr>", opts)
+
+
+-- NvimTree
+keymap("n", "<leader>r", "<cmd>:NvimTreeToggle<cr>", opts)
+keymap('n', "<leader>D", "<cmd>cd ~/Dev/ | NvimTreeToggle<cr>", opts)
+keymap('n', "<leader>h", "<cmd>:NvimTreeFocus<cr>", opts)
 
 -- Telescope
-keymap('n', 'fb', "<cmd>lua require'telescope.builtin'.buffers(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", {})
-keymap('n', 'ff', "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", {})
+keymap('n', "<leader>ff", "<cmd>Telescope oldfiles<cr>", opts)
+keymap('n', "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
+keymap('n', "<leader>fw", "<cmd>Telescope file_browser<cr>", opts)
 
 
---Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
-
--- Modes
---   normal_mode = "n",
---   insert_mode = "i",
---   visual_mode = "v",
---   visual_block_mode = "x",
---   term_mode = "t",
---   command_mode = "c",
-
--- Normal --
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
@@ -55,12 +60,10 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
--- Insert --
 -- Press jk fast to exit insert mode 
 keymap("i", "jk", "<ESC>", opts)
 keymap("i", "kj", "<ESC>", opts)
 
--- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
@@ -78,9 +81,6 @@ keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 
-
--- NvimTree
-keymap("n", "<leader>r", "<cmd>:NvimTreeToggle<cr>", opts)
 
 -- barbar mapping
 -- local map = vim.api.nvim_set_keymap

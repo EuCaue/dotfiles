@@ -126,6 +126,14 @@
     "exec": "swaync-client -swb",
     "on-click": "swaync-client -t -sw",
     "on-click-right": "swaync-client -d -sw",
+    "on-click-middle": "swaync-client -C",
     "escape": true
-  },}
+  },
+    "custom/pomo": {
+        "exec": "pomo status",
+        "format": "{}",
+        "interval": 1,
+        }, 
+
+}
 

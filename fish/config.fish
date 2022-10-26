@@ -91,3 +91,4 @@ export VISUAL=nvim
 
 
 alias hfg='nvim ~/.config/hypr/hyprland.conf'
+fish_add_path /home/caue/.spicetify
