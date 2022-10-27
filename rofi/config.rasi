@@ -5,7 +5,7 @@ configuration {
   font: "JetBrainsMono Nerd Font Medium 10";
   modi: "window,run,drun,emoji";
   show-icons: true;
-  icon-theme: "Papirus";
+  icon-theme: "Rose Pine";
   }
 
 
