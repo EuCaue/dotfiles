@@ -17,7 +17,7 @@ vim.g.maplocalleader = " "
 --   command_mode = "c",
 
 -- Basic keymaps
-keymap('n', '<C-s>', '<cmd>Format<cr> | <cmd>write!<cr>', opts)
+keymap('n', '<C-s>', '<cmd>write!<cr>', opts)
 keymap('n', '<C-x>', '<cmd>wq!<cr>', opts)
 keymap('n', '<C-z>', '<cmd>q!<cr>', opts)
 keymap('n', '<C-b>', '<cmd>lua _NODE_TOGGLE()<cr>', opts) -- toggle a terminal with node

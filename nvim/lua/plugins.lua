@@ -24,7 +24,8 @@ packer.reset()
 packer.startup(function()
 -- PACKER
 use 'wbthomason/packer.nvim' -- Plugin Manager	
-	
+use 'theRealCarneiro/hyprland-vim-syntax'	
+
 -- Colorscheme
 use {'rose-pine/neovim', as = 'rose-pine',} -- Colorscheme
 use 'getomni/neovim' -- Omni Colorscheme
@@ -55,7 +56,7 @@ use {'dsznajder/vscode-es7-javascript-react-snippets',run = 'yarn install --froz
 
 
 -- IDE	
-use 'https://github.com/neoclide/coc.nvim'  -- Auto Completion/Intelisense
+-- use 'https://github.com/neoclide/coc.nvim'  -- Auto Completion/Intelisense
 use {'romgrk/barbar.nvim', requires = {'kyazdani42/nvim-web-devicons'}} -- Tab/Buffer Manager
 use {"neovim/nvim-lspconfig",} -- LSP
 use { "kyazdani42/nvim-tree.lua" } -- Tree file
@@ -80,15 +81,15 @@ use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim", config = f
 use {'glepnir/dashboard-nvim'} -- dashboard
 
 -- CMP + LSP : 
--- use 'hrsh7th/cmp-nvim-lsp'
--- use 'hrsh7th/cmp-nvim-lua'
--- use 'hrsh7th/cmp-buffer'
--- use 'hrsh7th/cmp-path'
--- use 'hrsh7th/cmp-cmdline'
--- use 'hrsh7th/nvim-cmp'
--- use { "williamboman/mason.nvim" }
--- use {"saadparwaiz1/cmp_luasnip"}
--- use {"williamboman/mason-lspconfig.nvim"}
+use 'hrsh7th/cmp-nvim-lsp'
+use 'hrsh7th/cmp-nvim-lua'
+use 'hrsh7th/cmp-buffer'
+use 'hrsh7th/cmp-path'
+use 'hrsh7th/cmp-cmdline'
+use 'hrsh7th/nvim-cmp'
+use { "williamboman/mason.nvim" }
+use {"saadparwaiz1/cmp_luasnip"}
+use {"williamboman/mason-lspconfig.nvim"}
 -- use {"jose-elias-alvarez/null-ls.nvim"}
 end)
 

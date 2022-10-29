@@ -4,17 +4,21 @@ require('settings') -- config
 require('Comment').setup {
   pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
 } -- better comment on JSX/TSX
-
-
+require('mmmason')
+require('handlers').setup()
 require('linelua') -- status bar config
 require('telescopefuzzy') -- telescope config
 require('treesitter') -- treesitter config, betterhighlight
-require('coc') -- coc keybinds + autocompletion
+-- require('coc') -- coc keybinds + autocompletion
 require('autopairs') -- auto close ([{)
 require('gitsignss') -- git status 
 require('nvimtree') -- tree file manager
 require('termtoggle') -- toggle a terminal inside of neovim
+require('comp')
 require('dash') -- dashboard
+require('auto')
+require("mason-lspconfig").setup()
+require("mason").setup()
 require('autocmd') -- autocmd's
 vim.cmd('colorscheme rose-pine') -- colorscheme 
 vim.cmd('let g:netrw_bufsettings = "noma nomod nonu nowrap ro buflisted"')

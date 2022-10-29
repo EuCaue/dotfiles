@@ -118,7 +118,7 @@
     "format-icons": {
       "notification": "<span foreground='#31748f'><sup></sup></span>",
       "none": "",
-      "dnd-notification": "<span foreground='#ebbcba'><sup></sup></span>",
+      "dnd-notification": "<span foreground='#31748f'><sup></sup></span>",
       "dnd-none": ""
     },
     "return-type": "json",

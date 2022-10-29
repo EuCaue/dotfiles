@@ -11,6 +11,7 @@ end
  # Alias for commands
 alias cfg='nvim ~/.config/fish/config.fish'
 alias kfg='nvim ~/.config/kitty/kitty.conf'
+alias timepkg='ls -htl /var/lib/pacman/local/ &| less'
 alias nft='nvim ~/.config/neofetch/config.conf'
 alias icat="kitty +kitten icat"
 alias update='paru && flatpak update'
