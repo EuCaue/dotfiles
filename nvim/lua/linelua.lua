@@ -19,22 +19,29 @@ local diagnostics = {
 
 local diff = {
 	"diff",
-	colored = false,
+	colored = true,
 	symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
-  cond = hide_in_width
+	cond = hide_in_width,
 }
 
 local mode = {
 	"mode",
 	fmt = function(str)
-		return "-- " .. str .. " --"
+		return " " .. str .. "  "
 	end,
 }
 
 local filetype = {
 	"filetype",
-	icons_enabled = false,
+	icons_enabled = true,
 	icon = nil,
+}
+
+local filename = {
+	"filename",
+	icons_enabled = true,
+	file_status = false,
+	-- icon = nil,
 }
 
 local branch = {
@@ -67,7 +74,7 @@ lualine.setup({
 		icons_enabled = true,
 		theme = "auto",
 		component_separators = { left = "", right = "" },
-		section_separators = { left = "", right = "" },
+		section_separators = { left = "", right = "" },
 		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
 		always_divide_middle = true,
 	},
@@ -76,9 +83,9 @@ lualine.setup({
 		lualine_b = { mode },
 		lualine_c = {},
 		-- lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_x = { diff, spaces, "encoding", filetype },
-		lualine_y = { location },
-		lualine_z = { progress },
+		lualine_x = {},
+		lualine_y = { diff, "encoding", "filetype", filename },
+		lualine_z = { location },
 	},
 	inactive_sections = {
 		lualine_a = {},
@@ -89,5 +96,5 @@ lualine.setup({
 		lualine_z = {},
 	},
 	tabline = {},
-	extensions = {},
+	extensions = { "nvim-tree" },
 })
