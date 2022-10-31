@@ -59,11 +59,12 @@ set QT_QPA_PLATFORM wayland
 export MOZ_ENABLE_WAYLAND=1
 set MOZ_ENABLE_WAYLAND 1
 # Para usar o tema do Qgnomeplatform para QT
-set QT_QPA_PLATFORMTHEME gnome
+# set QT_QPA_PLATFORMTHEME gnome
 
 # Usando o tema do qt5ct para temas QT
-#export QT_QPA_PLATFORMTHEME=qt5ct
-#set QT_STYLE_OVERRIDE kvantum
+export QT_QPA_PLATFORMTHEME=qt5ct
+# set QT_STYLE_OVERRIDE kvantum
+set QT_QPA_PLATFORMTHEME qt5ct
 
 #set QT_SCALE_FACTOR 0.90
 

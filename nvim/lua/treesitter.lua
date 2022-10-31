@@ -1,6 +1,9 @@
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
   ensure_installed = "all",
+  autotag = {
+    enable = true,
+  },
 
   -- Comments in jsx and js  
 	context_commentstring = {
