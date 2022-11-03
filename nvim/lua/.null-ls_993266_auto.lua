@@ -32,6 +32,7 @@ local on_attach = function(client, bufnr) -- Enable completion triggered by <c-x
 		vim.lsp.buf.format({ async = true })
 	end, bufopts)
 end
+-- NOTE: end of the keybind section for the LSP
 
 local lsp_flags = {
 	-- This is the default in Nvim 0.7+

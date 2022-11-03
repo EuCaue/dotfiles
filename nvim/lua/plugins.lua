@@ -84,7 +84,10 @@ packer.startup(function()
 		end,
 	}) -- TODO:
 	use({ "glepnir/dashboard-nvim" }) -- dashboard
-	use({ "RRethy/vim-illuminate" }) --
+	use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+})
 
 	-- CMP + LSP :
 	use("hrsh7th/cmp-nvim-lsp")
@@ -97,5 +100,4 @@ packer.startup(function()
 	use({ "saadparwaiz1/cmp_luasnip" })
 	use({ "williamboman/mason-lspconfig.nvim" })
 	use({ "jose-elias-alvarez/null-ls.nvim" })
-	use({ "onsails/lspkind.nvim" })
 end)

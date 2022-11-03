@@ -37,10 +37,11 @@ alias clearpkg='sus -Qtdq | sus -Rns -'
 alias vited='npx vite --host'
 alias mobile='scrcpy -b 12M -m 1024 --tcpip=192.168.1.154'
 alias fs='flatpak search '
-alias ll='exa -l -g --icons'
+alias ls='exa -l -g --icons'
+alias la='exa -l -a -g --icons'
 alias vim='nvim'
 alias vi='nvim'
-
+alias vercelp='npx vercel --prod'
 
 # Remove all the symlink in the folder
 alias rmlinks='find -maxdepth 1 -type l -delete'

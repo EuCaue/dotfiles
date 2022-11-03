@@ -8,8 +8,8 @@
 
     // Choose the order of the modules
     "modules-left": ["wlr/workspaces"],
-    "modules-center": ["clock", "custom/notification", "hyprland/window"],
-    "modules-right": ["gamemode", "idle_inhibitor", "pulseaudio", "cpu", "memory", "temperature", "backlight", "tray"],
+    "modules-center": ["clock", "custom/notification" ],
+    "modules-right": ["gamemode", "pulseaudio", "cpu", "memory", "temperature", "backlight", "tray"],
    
 "hyprland/window": {
     "format": " {}",
@@ -136,4 +136,3 @@
         }, 
 
 }
-
