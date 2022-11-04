@@ -16,7 +16,7 @@ return {
 	colors = colors,
 	window_frame = window_frame,
 	font = wezterm.font("JetBrains Mono ", { weight = "Medium", italic = false, blink = "Slow" }),
-	font_size = 15.0,
+	font_size = 13.0,
 	scrollback_lines = 2500,
 
 	-- NOTE: cursor section

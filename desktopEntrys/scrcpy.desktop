@@ -1,8 +1,0 @@
-[Desktop Entry]
-Encoding=UTF-8
-Version=1.0
-Type=Application
-Terminal=false
-Exec=/home/caue/dotfiles/scripts/mobile.sh
-Name=Scrcpy Mobile
-Icon=/home/caue/Pictures/icons/scrcpy.png

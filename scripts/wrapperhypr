@@ -2,7 +2,8 @@
 export _JAVA_AWT_WM_NONREPARENTING=1
 eval $(/usr/bin/gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
-export XCURSOR_SIZE=16
-export XCURSOR_THEME=Win-8.1-S
+export XCURSOR_SIZE=22
+export QT_QPA_PLATFORMTHEME=gnome
+export XCURSOR_THEME=macOS-BigSur
 export dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec Hyprland

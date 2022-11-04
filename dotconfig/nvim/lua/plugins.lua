@@ -25,7 +25,6 @@ packer.startup(function()
 	-- PACKER
 	use("wbthomason/packer.nvim") -- Plugin Manager
 
-
 	-- Colorscheme
 	use({ "rose-pine/neovim", as = "rose-pine" }) -- Colorscheme
 	use("getomni/neovim") -- Omni Colorscheme
@@ -52,7 +51,7 @@ packer.startup(function()
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- a better highlight for everything
 	use({ "p00f/nvim-ts-rainbow" }) -- {} colored
 	use({ "https://github.com/ap/vim-css-color" }) -- CSS Color Preview
-	use("theRealCarneiro/hyprland-vim-syntax") -- Better syntax highlight in hyprland.conf 
+	use("theRealCarneiro/hyprland-vim-syntax") -- Better syntax highlight in hyprland.conf
 
 	-- Snippets
 	use({ "L3MON4D3/LuaSnip" }) -- Snippet engine
@@ -85,9 +84,23 @@ packer.startup(function()
 	}) -- TODO:
 	use({ "glepnir/dashboard-nvim" }) -- dashboard
 	use({
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
-})
+		"iamcco/markdown-preview.nvim",
+		run = function()
+			vim.fn["mkdp#util#install"]()
+		end,
+	})
+	use({
+		"folke/zen-mode.nvim",
+		config = function()
+			require("zen-mode").setup({
+				window = {
+					width = 0.85,
+					backdrop = 0.85,
+					height = 80,
+				},
+			})
+		end,
+	})
 
 	-- CMP + LSP :
 	use("hrsh7th/cmp-nvim-lsp")

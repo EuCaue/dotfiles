@@ -55,6 +55,7 @@
 
     "cpu": {
         "format": "{usage}% ",
+        "on-click": "",
         "tooltip": true
     },
     "memory": {
@@ -64,6 +65,7 @@
 },
     "temperature": {
         "thermal-zone": 2,
+        "on-click": "",
         "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
         "critical-threshold": 80,
         "format-critical": "{temperatureC}°C {icon}",
@@ -74,6 +76,8 @@
         "device": "acpi_video1",
         "format": "{percent}% {icon}",
         "on-scroll-up": "brightnessctl set +10%",
+        "on-click": "brightnessctl set +10%",
+        "on-click-right": "brightnessctl set 10%-",
         "on-scroll-down": "brightnessctl set 10%-",
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },

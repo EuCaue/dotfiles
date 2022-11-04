@@ -66,8 +66,8 @@ nvim_tree.setup({
 	},
 	view = {
 		float = {
-			enable = true,
-			quit_on_focus_loss = true,
+			enable = false,
+			quit_on_focus_loss = false,
 			open_win_config = {
 				relative = "editor",
 				border = "rounded",
@@ -79,7 +79,7 @@ nvim_tree.setup({
 		},
 		width = 25,
 		centralize_selection = true,
-		side = "right",
+		side = "left",
 		mappings = {
 			list = {
 				{ key = { "l", "<CR>", "o" }, cb = tree_cb("edit") },

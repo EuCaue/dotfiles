@@ -2,7 +2,7 @@ configuration {
   display-drun: "Applications:";
   display-window: "Windows:";
   drun-display-format: "{icon} {name}";
-  font: "JetBrainsMono Nerd Font Medium 10";
+  font: "JetBrainsMono Nerd Font Bold 10";
   modi: "window,run,drun,emoji";
   show-icons: true;
   icon-theme: "Rose Pine";
@@ -38,7 +38,7 @@ configuration {
 #window {
     background-color: @background;
     border:           3;
-    border-radius: 6;
+    border-radius: 12;
     border-color: @bordercolor;
     padding:          5;
 }
@@ -142,4 +142,3 @@ configuration {
     margin:     0px 0.3em 0em 0em ;
     text-color: @grn;
 }
-

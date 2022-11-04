@@ -17,28 +17,26 @@ vim.g.maplocalleader = " "
 --   command_mode = "c",
 
 -- Basic keymaps
-keymap('n', '<C-s>', '<cmd>write!<cr>', opts)
-keymap('n', '<C-x>', '<cmd>wq!<cr>', opts)
-keymap('n', '<C-z>', '<cmd>q!<cr>', opts)
-keymap('n', '<C-b>', '<cmd>lua _NODE_TOGGLE()<cr>', opts) -- toggle a terminal with node
+keymap("n", "<C-s>", "<cmd>write!<cr>", opts)
+keymap("n", "<C-x>", "<cmd>wq!<cr>", opts)
+keymap("n", "<C-z>", "<cmd>q!<cr>", opts)
+keymap("n", "<C-b>", "<cmd>lua _NODE_TOGGLE()<cr>", opts) -- toggle a terminal with node
 -- Comment
-keymap('x', '<C-/>','<cmd>normal gcc<cr>', opts)
-keymap('n', '<C-/>', '<cmd>normal gcc<cr>', opts)
-keymap('i', '<C-/>', '<cmd>normal gcc<cr>', opts)
+keymap("x", "<C-/>", "<cmd>normal gcc<cr>", opts)
+keymap("n", "<C-/>", "<cmd>normal gcc<cr>", opts)
+keymap("i", "<C-/>", "<cmd>normal gcc<cr>", opts)
 
-keymap('n', "<leader>d", "<cmd>e ~/dotfiles/nvim/init.lua<cr>", opts)
-
+keymap("n", "<leader>d", "<cmd>e ~/dotfiles/nvim/init.lua<cr>", opts)
 
 -- NvimTree
-keymap("n", "<leader>r", "<cmd>:NvimTreeToggle<cr>", opts)
-keymap('n', "<leader>D", "<cmd>cd ~/Dev/ | NvimTreeToggle<cr>", opts)
-keymap('n', "<leader>h", "<cmd>:NvimTreeFocus<cr>", opts)
+keymap("n", "<leader>g", "<cmd>:NvimTreeToggle<cr>", opts)
+keymap("n", "<leader>h", "<cmd>:NvimTreeFocus<cr>", opts)
+keymap("n", "<leader>D", "<cmd>cd ~/Dev/ | NvimTreeToggle<cr>", opts)
 
 -- Telescope
-keymap('n', "<leader>ff", "<cmd>Telescope oldfiles<cr>", opts)
-keymap('n', "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
-keymap('n', "<leader>fw", "<cmd>Telescope file_browser<cr>", opts)
-
+-- keymap("n", "<leader>hh", "<cmd>Telescope oldfiles<cr>", opts)
+keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
+keymap("n", "<leader>fw", "<cmd>Telescope file_browser<cr>", opts)
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -60,7 +58,7 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
--- Press jk fast to exit insert mode 
+-- Press jk fast to exit insert mode
 keymap("i", "jk", "<ESC>", opts)
 keymap("i", "kj", "<ESC>", opts)
 
@@ -80,33 +78,31 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
-
-
 -- barbar mapping
 -- local map = vim.api.nvim_set_keymap
 -- local opts = { noremap = true, silent = true }
 
 -- Move to previous/next
-keymap('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
-keymap('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
+keymap("n", "<A-,>", "<Cmd>BufferPrevious<CR>", opts)
+keymap("n", "<A-.>", "<Cmd>BufferNext<CR>", opts)
 -- Re-order to previous/next
-keymap('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
-keymap('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opts)
+keymap("n", "<A-<>", "<Cmd>BufferMovePrevious<CR>", opts)
+keymap("n", "<A->>", "<Cmd>BufferMoveNext<CR>", opts)
 -- Goto buffer in position...
-keymap('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', opts)
-keymap('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', opts)
-keymap('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', opts)
-keymap('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', opts)
-keymap('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', opts)
-keymap('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', opts)
-keymap('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', opts)
-keymap('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', opts)
-keymap('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', opts)
-keymap('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
+keymap("n", "<A-1>", "<Cmd>BufferGoto 1<CR>", opts)
+keymap("n", "<A-2>", "<Cmd>BufferGoto 2<CR>", opts)
+keymap("n", "<A-3>", "<Cmd>BufferGoto 3<CR>", opts)
+keymap("n", "<A-4>", "<Cmd>BufferGoto 4<CR>", opts)
+keymap("n", "<A-5>", "<Cmd>BufferGoto 5<CR>", opts)
+keymap("n", "<A-6>", "<Cmd>BufferGoto 6<CR>", opts)
+keymap("n", "<A-7>", "<Cmd>BufferGoto 7<CR>", opts)
+keymap("n", "<A-8>", "<Cmd>BufferGoto 8<CR>", opts)
+keymap("n", "<A-9>", "<Cmd>BufferGoto 9<CR>", opts)
+keymap("n", "<A-0>", "<Cmd>BufferLast<CR>", opts)
 -- Pin/unpin buffer
-keymap('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
+keymap("n", "<A-p>", "<Cmd>BufferPin<CR>", opts)
 -- Close buffer
-keymap('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
+keymap("n", "<A-c>", "<Cmd>BufferClose<CR>", opts)
 -- Wipeout buffer
 --                 :BufferWipeout
 -- Close commands
@@ -116,10 +112,9 @@ keymap('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
 --                 :BufferCloseBuffersLeft
 --                 :BufferCloseBuffersRight
 -- Magic buffer-picking mode
-keymap('n', '<C-p>', '<Cmd>BufferPick<CR>', opts)
+keymap("n", "<C-p>", "<Cmd>BufferPick<CR>", opts)
 -- Sort automatically by...
-keymap('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', opts)
-keymap('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', opts)
-keymap('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', opts)
-keymap('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)
-
+keymap("n", "<Space>bb", "<Cmd>BufferOrderByBufferNumber<CR>", opts)
+keymap("n", "<Space>bd", "<Cmd>BufferOrderByDirectory<CR>", opts)
+keymap("n", "<Space>bl", "<Cmd>BufferOrderByLanguage<CR>", opts)
+keymap("n", "<Space>bw", "<Cmd>BufferOrderByWindowNumber<CR>", opts)
