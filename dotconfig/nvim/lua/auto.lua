@@ -52,6 +52,7 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 require("lspconfig").cssls.setup({
 	capabilities = capabilities,
+	on_attach = on_attach,
 	filetypes = {
 		"css",
 		"scss",
@@ -77,7 +78,10 @@ require("lspconfig").cssls.setup({
 		-- jsx = { validate = true},
 	},
 })
-require("lspconfig").cssmodules_ls.setup({})
+require("lspconfig").cssmodules_ls.setup({
+	
+	on_attach = on_attach,
+})
 
 require("lspconfig").html.setup({
 	on_attach = on_attach,
@@ -91,3 +95,26 @@ require("lspconfig").jsonls.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 })
+require'lspconfig'.sumneko_lua.setup {
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+}
+

@@ -13,16 +13,18 @@ require("nvimtree") -- tree file manager
 require("termtoggle") -- toggle a terminal inside of neovim
 require("dash") -- dashboard
 require("autocmd") -- autocmd's
-
+require("wkey")
+require('neogit').setup{}
+-- require("mmmason") -- some config for meson
+-- require('handlers').setup()
 -- CMP + LSP
 require("comp") -- CMP
 require("auto") -- LSP
 require("mason").setup() -- Mason
 require("mason-lspconfig").setup() -- Mason LSP Pluggin
--- require('mmmason') -- some config for meson
--- require('handlers').setup()
-require("ls-null") -- global linter
 
+require("ls-null") -- global linter
+require('neoscroll').setup()
 -- VIM
 vim.cmd("colorscheme rose-pine") -- colorscheme
 vim.cmd('let g:netrw_bufsettings = "noma nomod nonu nowrap ro buflisted"')

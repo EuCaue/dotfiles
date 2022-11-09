@@ -105,6 +105,14 @@ _G.packer_plugins = {
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
     url = "https://github.com/hrsh7th/cmp-cmdline"
   },
+  ["cmp-fish"] = {
+    after_files = { "/home/caue/.local/share/nvim/site/pack/packer/opt/cmp-fish/after/plugin/cmp_fish.lua" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/caue/.local/share/nvim/site/pack/packer/opt/cmp-fish",
+    url = "https://github.com/mtoohey31/cmp-fish"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
@@ -185,6 +193,16 @@ _G.packer_plugins = {
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  neogit = {
+    loaded = true,
+    path = "/home/caue/.local/share/nvim/site/pack/packer/start/neogit",
+    url = "https://github.com/TimUntersberger/neogit"
+  },
+  ["neoscroll.nvim"] = {
+    loaded = true,
+    path = "/home/caue/.local/share/nvim/site/pack/packer/start/neoscroll.nvim",
+    url = "https://github.com/karb94/neoscroll.nvim"
+  },
   neovim = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/neovim",
@@ -209,6 +227,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-cmp-fonts"] = {
+    loaded = true,
+    path = "/home/caue/.local/share/nvim/site/pack/packer/start/nvim-cmp-fonts",
+    url = "https://github.com/amarakon/nvim-cmp-fonts"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -321,8 +344,13 @@ _G.packer_plugins = {
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/vscode.nvim",
     url = "https://github.com/Mofiqul/vscode.nvim"
   },
+  ["which-key.nvim"] = {
+    loaded = true,
+    path = "/home/caue/.local/share/nvim/site/pack/packer/start/which-key.nvim",
+    url = "https://github.com/folke/which-key.nvim"
+  },
   ["zen-mode.nvim"] = {
-    config = { "\27LJ\2\n}\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\vwindow\1\0\0\1\0\3\nwidth\4³æÌ™\3³æ¬ÿ\3\rbackdrop\4³æÌ™\3³æ¬ÿ\3\vheight\3P\nsetup\rzen-mode\frequire\0" },
+    config = { "\27LJ\2\n}\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\vwindow\1\0\0\1\0\3\vheight\3P\rbackdrop\4³æÌ™\3³æ¬ÿ\3\nwidth\4³æÌ™\3³æ¬ÿ\3\nsetup\rzen-mode\frequire\0" },
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/zen-mode.nvim",
     url = "https://github.com/folke/zen-mode.nvim"
@@ -330,18 +358,25 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: Comment.nvim
+time([[Config for Comment.nvim]], true)
+try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
+time([[Config for Comment.nvim]], false)
 -- Config for: todo-comments.nvim
 time([[Config for todo-comments.nvim]], true)
 try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18todo-comments\frequire\0", "config", "todo-comments.nvim")
 time([[Config for todo-comments.nvim]], false)
 -- Config for: zen-mode.nvim
 time([[Config for zen-mode.nvim]], true)
-try_loadstring("\27LJ\2\n}\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\vwindow\1\0\0\1\0\3\nwidth\4³æÌ™\3³æ¬ÿ\3\rbackdrop\4³æÌ™\3³æ¬ÿ\3\vheight\3P\nsetup\rzen-mode\frequire\0", "config", "zen-mode.nvim")
+try_loadstring("\27LJ\2\n}\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\vwindow\1\0\0\1\0\3\vheight\3P\rbackdrop\4³æÌ™\3³æ¬ÿ\3\nwidth\4³æÌ™\3³æ¬ÿ\3\nsetup\rzen-mode\frequire\0", "config", "zen-mode.nvim")
 time([[Config for zen-mode.nvim]], false)
--- Config for: Comment.nvim
-time([[Config for Comment.nvim]], true)
-try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
-time([[Config for Comment.nvim]], false)
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Filetype lazy-loads
+time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType fish ++once lua require("packer.load")({'cmp-fish'}, { ft = "fish" }, _G.packer_plugins)]]
+time([[Defining lazy-load filetype autocommands]], false)
+vim.cmd("augroup END")
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

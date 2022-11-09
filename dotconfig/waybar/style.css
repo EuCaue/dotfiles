@@ -13,9 +13,10 @@
 
 * {
   border: none;
-  /* border-radius: 0; */
-  font-family: "JetBrainsMono Nerd Font", "Material Icons", monospace;
+  border-radius: 0;
+  font-family: "JetBrains Mono Nerd Font", "Material Icons", monospace;
   font-size: 15px;
+  font-weight: 400;
   /* min-height: 0; */
 }
 
@@ -50,7 +51,7 @@ window#waybar {
   background-color: @base;
   padding: 0 10px;
   min-height: 35px;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   margin: 0;
   margin-top: 5px;
   border-bottom: 2px solid @pine;
@@ -58,7 +59,7 @@ window#waybar {
 
 
 #workspaces {
-  margin-left: 20px;
+  margin-left: 15.5px;
 }
 
 #workspaces button {
@@ -70,7 +71,7 @@ window#waybar {
 }
 
 #tray {
-  margin-right: 20px;
+  margin-right: 15.5px;
 }
 
 #window {

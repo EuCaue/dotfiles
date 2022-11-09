@@ -2,7 +2,7 @@ configuration {
   display-drun: "Applications:";
   display-window: "Windows:";
   drun-display-format: "{icon} {name}";
-  font: "JetBrainsMono Nerd Font Bold 10";
+  font: "JetBrainsMono Nerd Font Regular 11";
   modi: "window,run,drun,emoji";
   show-icons: true;
   icon-theme: "Rose Pine";
@@ -21,7 +21,6 @@ configuration {
     red: #eb6f92;
     yel: #f6c177;
 
-    font: "Cartograph CF 12";
 
     foreground: @fgd;
     background: @bg;

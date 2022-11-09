@@ -101,7 +101,10 @@ packer.startup(function()
 			})
 		end,
 	})
-
+	use("karb94/neoscroll.nvim")
+	use({ "mtoohey31/cmp-fish", ft = "fish" })
+	use("folke/which-key.nvim")
+use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 	-- CMP + LSP :
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-nvim-lua")
@@ -109,6 +112,7 @@ packer.startup(function()
 	use("hrsh7th/cmp-path")
 	use("hrsh7th/cmp-cmdline")
 	use("hrsh7th/nvim-cmp")
+	use("amarakon/nvim-cmp-fonts")
 	use({ "williamboman/mason.nvim" })
 	use({ "saadparwaiz1/cmp_luasnip" })
 	use({ "williamboman/mason-lspconfig.nvim" })

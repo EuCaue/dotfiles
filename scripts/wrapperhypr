@@ -4,6 +4,6 @@ eval $(/usr/bin/gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
 export XCURSOR_SIZE=22
 export QT_QPA_PLATFORMTHEME=gnome
-export XCURSOR_THEME=macOS-BigSur
+export XCURSOR_THEME=Adwaita
 export dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec Hyprland
