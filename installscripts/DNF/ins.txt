@@ -1,10 +1,7 @@
-ATIVE OS REPO RPMFUSION
-
 Google chrome => Gnome software
-Vscode => Site oficial
+Vscode => flatpak .rpm 
 Fira Sans => Google fonts
 
 Notion => https://github.com/notion-enhancer/notion-repackaged/releases
 heroic => https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases
 bitwarden => https://bitwarden.com/download/
-

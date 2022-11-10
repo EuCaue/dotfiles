@@ -1,7 +1,7 @@
-discord => Site oficial ou Flatpak
-Steam => Site oficial ou Flatpak
-ttf-fira-code ttf-fira-sans ttf-jetbrains-mono ttf-cascadia-code  => Baixar dos sites oficiais porque não tem no Repo
-Lutris => Site oficial baixar .deb
+discord => .deb or flatpak 
+Steam => .deb or flatpak  
+ttf-fira-code ttf-fira-sans ttf-jetbrains-mono ttf-cascadia-code  => github 
+Lutris => .deb
 
 ## PipeWire
 sudo add-apt-repository ppa:pipewire-debian/pipewire-upstream

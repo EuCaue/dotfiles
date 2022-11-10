@@ -1,5 +1,5 @@
 # the syntax for this file: 
-# set --local namewhatischange color # name of the color in the rosepine palllete
+# set --local namewhatischange color # name of the color in the rose-pine palette
 
 # if you have any suggestions, make a PR. 😃
 
