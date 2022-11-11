@@ -1,6 +1,7 @@
 #!/bin/fish
 
 gsettings set org.gnome.desktop.interface font-name "JetBrainsMono Nerd Font" &&
+gsettings set org.gnome.desktop.interface document-font-name "JetBrainsMono Nerd Font" &&
 gsettings set org.gnome.desktop.interface monospace-font-name "JetBrainsMono Nerd Font" &&
 gsettings set org.gnome.desktop.interface cursor-theme Adwaita &&
 gsettings set org.gnome.desktop.interface icon-theme Rose-Pine &&

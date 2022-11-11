@@ -14,7 +14,7 @@ require("termtoggle") -- toggle a terminal inside of neovim
 require("dash") -- dashboard
 require("autocmd") -- autocmd's
 require("wkey")
-require('neogit').setup{}
+
 -- require("mmmason") -- some config for meson
 -- require('handlers').setup()
 -- CMP + LSP

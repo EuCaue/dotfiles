@@ -104,7 +104,6 @@ packer.startup(function()
 	use("karb94/neoscroll.nvim")
 	use({ "mtoohey31/cmp-fish", ft = "fish" })
 	use("folke/which-key.nvim")
-use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 	-- CMP + LSP :
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-nvim-lua")

@@ -36,7 +36,10 @@ keymap("n", "<leader>D", "<cmd>cd ~/Dev/ | NvimTreeToggle<cr>", opts)
 -- Telescope
 keymap("n", "<leader>ff", "<cmd>Telescope oldfiles<cr>", opts)
 -- keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
-keymap("n", "<leader>fw", "<cmd>Telescope file_browser<cr>", opts)
+-- keymap("n", "<leader>fw", "<cmd>Telescope file_browser<cr>", opts)
+
+-- Neogit
+keymap("n", "<leader>n", "<cmd>Neogit commit<cr>", opts)
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
