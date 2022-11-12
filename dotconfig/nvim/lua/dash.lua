@@ -18,25 +18,25 @@ db.preview_file_width = 70
 db.custom_center = {
 	{
 		icon = "  ",
-		desc = "Recently files                       ",
+		desc = "Recently files                             ",
 		action = "Telescope oldfiles",
 		shortcut = "  SPC f f",
 	},
 	{
 		icon = "  ",
-		desc = "File Browser                         ",
+		desc = "File Browser                               ",
 		action = "NvimTreeToggle",
 		shortcut = "  SPC g  ",
 	},
 	{
 		icon = "  ",
-		desc = "Config                                 ",
+		desc = "Config                                       ",
 		action = "e ~/dotfiles/nvim/init.lua",
-		shortcut = "SPC d  ",
+		shortcut = "SPC d ",
 	},
 	{
 		icon = "  ",
-		desc = "Dev                                    ",
+		desc = "Dev                                          ",
 		action = ":NvimTreeToggle ~/Dev",
 		shortcut = "SPC D  ",
 	},

@@ -24,7 +24,7 @@ require("mason").setup() -- Mason
 require("mason-lspconfig").setup() -- Mason LSP Pluggin
 
 require("ls-null") -- global linter
-require('neoscroll').setup()
+require('nscroll') 
 -- VIM
 vim.cmd("colorscheme rose-pine") -- colorscheme
 vim.cmd('let g:netrw_bufsettings = "noma nomod nonu nowrap ro buflisted"')
