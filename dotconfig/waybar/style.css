@@ -20,6 +20,9 @@
   /* min-height: 0; */
 }
 
+
+
+
 window#waybar {
   background: transparent;
   color: @text;
@@ -62,20 +65,30 @@ window#waybar {
   margin-left: 15.5px;
 }
 
+#window {
+    min-width: 250px;
+    margin-right: 100px;
+    margin-left: 100px;
+    border-left: none;
+}
+
 #workspaces button {
   margin: 0;
   padding: 0 8px;
   background: @base;
   color: @text;
   border-bottom: 2px solid transparent;
-}
 
+}
+#workspaces button:hover {
+  background-color: @low;
+}
 #tray {
   margin-right: 15.5px;
 }
 
 #window {
-  border-left: 2px solid @text;
+  /* border-left: 2px solid @text; */
 }
 
 #clock {
