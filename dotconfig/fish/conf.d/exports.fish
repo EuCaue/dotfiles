@@ -7,7 +7,7 @@ export QT_QPA_PLATFORMTHEME=gnome
 
 # Exporting the default $EDITOR
 export EDITOR=/usr/bin/nvim
-export VISUAL=n vim
+export VISUAL=nvim
 
 # Add paths
 export PATH="$HOME/.local/bin:$PATH"

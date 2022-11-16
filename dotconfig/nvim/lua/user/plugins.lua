@@ -40,7 +40,9 @@ packer.startup(function()
 	use({
 		"numToStr/Comment.nvim",
 		config = function()
-			require("Comment").setup()
+			require("Comment").setup({
+				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+			}) -- better comment on JSX/TSX
 		end,
 	}) -- Also Comment
 	use({ "JoosepAlviste/nvim-ts-context-commentstring" }) -- Better JSX + TSX comment
@@ -54,7 +56,7 @@ packer.startup(function()
 	use("theRealCarneiro/hyprland-vim-syntax") -- Better syntax highlight in hyprland.conf
 
 	-- Snippets
-	use({ "L3MON4D3/LuaSnip" }) -- Snippet engine
+	use({ "L3MON4D3/LuaSnip" })
 	use({ "rafamadriz/friendly-snippets" }) -- a lot of snippets
 	use({ "dsznajder/vscode-es7-javascript-react-snippets", run = "yarn install --frozen-lockfile && yarn compile" })
 
@@ -104,6 +106,10 @@ packer.startup(function()
 	use("karb94/neoscroll.nvim")
 	use({ "mtoohey31/cmp-fish", ft = "fish" })
 	use("folke/which-key.nvim")
+	use("petertriho/nvim-scrollbar")
+	use({ "kevinhwang91/nvim-hlslens" })
+
+	--
 	-- CMP + LSP :
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-nvim-lua")

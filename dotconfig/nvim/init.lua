@@ -1,30 +1,26 @@
-require("plugins") -- all plugins
-require("mapping") -- keybinds
-require("settings") -- config
-require("Comment").setup({
-	pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-}) -- better comment on JSX/TSX
-require("linelua") -- status bar config
-require("telescopefuzzy") -- telescope config
-require("treesitter") -- treesitter config, betterhighlight
-require("autopairs") -- auto close ([{)
-require("gitsignss") -- git status
-require("nvimtree") -- tree file manager
-require("termtoggle") -- toggle a terminal inside of neovim
-require("dash") -- dashboard
-require("autocmd") -- autocmd's
-require("wkey")
+require("user.plugins") -- all plugins
+require("user.mapping") -- keybinds
+require("user.settings") -- config
+require("user.lualine") -- status bar config
+require("user.telescope") -- telescope config
+require("user.treesitter") -- treesitter config, betterhighlight
+require("user.autopairs") -- auto close ([{)
+require("user.gitsigns") -- git status
+require("user.nvimtree") -- tree file manager
+require("user.toggleterm") -- toggle a terminal inside of neovim
+require("user.dashboard") -- dashboard
+require("user.autocmd") -- autocmd's
+require("user.whichkey")
+require "user.scrollbar"
 
--- require("mmmason") -- some config for meson
--- require('handlers').setup()
 -- CMP + LSP
-require("comp") -- CMP
-require("auto") -- LSP
+require("user.cmp") -- CMP
+require("user.lsp") -- LSP
 require("mason").setup() -- Mason
 require("mason-lspconfig").setup() -- Mason LSP Pluggin
 
-require("ls-null") -- global linter
-require('nscroll') 
+require("user.null-ls") -- global linter
+require("user.neoscroll")
 -- VIM
 vim.cmd("colorscheme rose-pine") -- colorscheme
 vim.cmd('let g:netrw_bufsettings = "noma nomod nonu nowrap ro buflisted"')

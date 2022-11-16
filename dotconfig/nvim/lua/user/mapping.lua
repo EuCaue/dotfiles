@@ -20,7 +20,6 @@ vim.g.maplocalleader = " "
 keymap("n", "<C-s>", "<cmd>write!<cr>", opts)
 keymap("n", "<C-x>", "<cmd>wq!<cr>", opts)
 keymap("n", "<C-z>", "<cmd>q!<cr>", opts)
--- keymap("n", "<C-b>", "<cmd>lua _NODE_TOGGLE()<cr>", opts) -- toggle a terminal with node
 -- Comment
 keymap("x", "<C-/>", "<cmd>normal gcc<cr>", opts)
 keymap("n", "<C-/>", "<cmd>normal gcc<cr>", opts)
@@ -36,7 +35,7 @@ keymap("n", "<leader>D", "<cmd>cd ~/Dev/ | NvimTreeToggle<cr>", opts)
 -- Telescope
 keymap("n", "<leader>ff", "<cmd>Telescope oldfiles<cr>", opts)
 -- keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
--- keymap("n", "<leader>fw", "<cmd>Telescope file_browser<cr>", opts)
+keymap("n", "<leader>fw", "<cmd>Telescope live_grep<cr>", opts)
 
 -- Neogit
 keymap("n", "<leader>n", "<cmd>Neogit commit<cr>", opts)
