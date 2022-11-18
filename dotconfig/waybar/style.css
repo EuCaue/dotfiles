@@ -13,7 +13,7 @@
 
 * {
   border: none;
-  border-radius: 0;
+  /* border-radius: 0; */
   font-family: "JetBrains Mono Nerd Font", "Material Icons", monospace;
   font-size: 15px;
   font-weight: 400;
@@ -54,7 +54,7 @@ window#waybar {
   background-color: @base;
   padding: 0 10px;
   min-height: 35px;
-  /* border-radius: 5px; */
+  border-radius: 1px;
   margin: 0;
   margin-top: 5px;
   border-bottom: 2px solid @pine;
@@ -69,7 +69,8 @@ window#waybar {
     /* min-width: 0; */
     margin-right: 100px;
     margin-left: 100px;
-    border-left: none;
+    /* border-left: none; */
+    /* border: none; */
 }
 
 #workspaces button {
@@ -80,33 +81,14 @@ window#waybar {
   border-bottom: 2px solid transparent;
 
 }
-#workspaces button:hover {
+
+#window {
+  /* border-left: 2px solid @text; */
+}#workspaces button:hover {
   background-color: @low;
 }
+
 #tray {
   margin-right: 15.5px;
 }
 
-#window {
-  /* border-left: 2px solid @text; */
-}
-
-#clock {
-  /* background-color: #2a273f ; */
-}
-
-#network {
-  border-bottom: 2px solid #b16286;
-}
-
-#pulseaudio {
-  border-bottom: 2px solid @pine;
-}
-
-#idle_inhibitor {
-}
-
-#idle_inhibitor.activated {
-  background-color: @low;
-  color: @text;
-}

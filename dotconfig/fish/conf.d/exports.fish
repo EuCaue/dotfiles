@@ -11,3 +11,4 @@ export VISUAL=nvim
 
 # Add paths
 export PATH="$HOME/.local/bin:$PATH"
+fish_add_path "$HOME/dotfiles/scripts/"

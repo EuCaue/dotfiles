@@ -7,13 +7,13 @@
     "spacing": 9, // Gaps between modules (4px)
 
     // Choose the order of the modules
-    "modules-left": ["wlr/workspaces", "hyprland/window"],
-    "modules-center": ["clock", "custom/notification" ],
+    "modules-left": ["wlr/workspaces"],
+    "modules-center": [ "clock", "custom/notification" ],
     "modules-right": ["gamemode", "pulseaudio", "cpu", "memory", "temperature", "backlight", "tray"],
 
 "hyprland/window": {
     "format": "{}",
-    "separate-outputs": false 
+    "separate-outputs": true
 },
 
 "wlr/workspaces": {

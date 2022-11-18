@@ -1,11 +1,18 @@
 configuration {
-  display-drun: "Applications:";
-  display-window: "Windows:";
   drun-display-format: "{icon} {name}";
-  font: "JetBrainsMono Nerd Font Regular 11";
-  modi: "window,run,drun,emoji";
+  font: "JetBrainsMono Nerd Font Regular 13";
+  modi: "window,run,drun,emoji,calc,";
   show-icons: true;
   icon-theme: "Rose Pine";
+  hide-scrollbar: true;
+  terminal: "kitty";
+  display-drun: "   Apps ";
+  display-run: "   Run ";
+  display-window: " 﩯  Window";
+  display-Network: " 󰤨  Network";
+  display-emoji: "  Emoji  ";
+  display-calc: "  Calc";
+  sidebar-mode: true;
   }
 
 

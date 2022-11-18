@@ -3,10 +3,10 @@
 gsettings set org.gnome.desktop.interface font-name "JetBrainsMono Nerd Font" &&
 gsettings set org.gnome.desktop.interface document-font-name "JetBrainsMono Nerd Font" &&
 gsettings set org.gnome.desktop.interface monospace-font-name "JetBrainsMono Nerd Font" &&
-gsettings set org.gnome.desktop.interface cursor-theme Mocu-Black-Right &&
+gsettings set org.gnome.desktop.interface cursor-theme macOS-BigSur &&
 gsettings set org.gnome.desktop.interface icon-theme Rose-Pine &&
 gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-dark &&
-gsettings set org.gnome.desktop.interface cursor-size 22 &&
-hyprctl setcursor Mocu-Black-Right 22 &&
-export XCURSOR_THEME=Mocu-Black-Right &&
-export XCURSOR_SIZE=22
+gsettings set org.gnome.desktop.interface cursor-size 24 &&
+hyprctl setcursor macOS-BigSur 24 &&
+export XCURSOR_THEME=macOS-BigSur &&
+export XCURSOR_SIZE=24

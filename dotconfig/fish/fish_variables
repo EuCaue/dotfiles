@@ -53,6 +53,6 @@ SETUVAR fish_pager_color_selected_background:\x1d
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/home/caue/\x2espicetify
+SETUVAR fish_user_paths:/home/caue/dotfiles/scripts\x1e/home/caue/\x2espicetify
 SETUVAR nvm_data:/home/caue/\x2elocal/share/nvm
 SETUVAR nvm_mirror:https\x3a//nodejs\x2eorg/dist

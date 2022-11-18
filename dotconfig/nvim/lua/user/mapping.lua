@@ -25,7 +25,7 @@ keymap("x", "<C-/>", "<cmd>normal gcc<cr>", opts)
 keymap("n", "<C-/>", "<cmd>normal gcc<cr>", opts)
 keymap("i", "<C-/>", "<cmd>normal gcc<cr>", opts)
 
-keymap("n", "<leader>d", "<cmd>e ~/dotfiles/dotconfig/nvim/init.lua<cr>", opts)
+keymap("n", "<leader>x", "<cmd>e ~/dotfiles/dotconfig/nvim/init.lua<cr>", opts)
 
 -- NvimTree
 keymap("n", "<leader>g", "<cmd>:NvimTreeToggle<cr>", opts)
@@ -35,6 +35,7 @@ keymap("n", "<leader>D", "<cmd>cd ~/Dev/ | NvimTreeToggle<cr>", opts)
 -- Telescope
 keymap("n", "<leader>ff", "<cmd>Telescope oldfiles<cr>", opts)
 -- keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
+keymap("n", "<leader>d", "<cmd>Telescope diagnostics<cr>", opts)
 keymap("n", "<leader>fw", "<cmd>Telescope live_grep<cr>", opts)
 
 -- Neogit

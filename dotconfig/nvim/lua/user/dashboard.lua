@@ -32,7 +32,7 @@ db.custom_center = {
 		icon = "  ",
 		desc = "Config                                       ",
 		action = "e ~/dotfiles/nvim/init.lua",
-		shortcut = "SPC d ",
+		shortcut = "SPC x ",
 	},
 	{
 		icon = "  ",

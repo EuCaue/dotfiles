@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbel version="1.0"
+      xmlns:bookmark="http://www.freedesktop.org/standards/desktop-bookmarks"
+      xmlns:mime="http://www.freedesktop.org/standards/shared-mime-info"
+>
+  <bookmark href="ftp://192.168.1.154:51119/" added="2022-06-22T18:26:16.042567Z" modified="2022-06-22T18:26:16.042570Z" visited="2022-06-22T18:26:16.042569Z">
+    <title>/ on 192.168.1.154:51119</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2022-06-22T18:26:16.042569Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="ftp://192.168.1.154:15936/" added="2022-06-22T19:11:14.561476Z" modified="2022-06-22T19:11:14.561480Z" visited="2022-06-22T19:11:14.561477Z">
+    <title>/ on 192.168.1.154:15936</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2022-06-22T19:11:14.561478Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="ftp://192.168.1.154:16962/" added="2022-06-22T21:09:08.724943Z" modified="2022-06-22T21:09:08.724950Z" visited="2022-06-22T21:09:08.724945Z">
+    <title>/ on 192.168.1.154:16962</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2022-06-22T21:09:08.724947Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="ftp://192.168.1.154:45626/" added="2022-06-23T12:06:28.962730Z" modified="2022-06-23T12:06:28.962733Z" visited="2022-06-23T12:06:28.962731Z">
+    <title>/ on 192.168.1.154:45626</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2022-06-23T12:06:28.962732Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="ftp://192.168.1.154:1231/" added="2022-06-23T14:16:22.922303Z" modified="2022-06-23T14:16:22.922306Z" visited="2022-06-23T14:16:22.922304Z">
+    <title>/ on 192.168.1.154:1231</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2022-06-23T14:16:22.922304Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+  <bookmark href="ftp://192.168.1.154:43508/" added="2022-06-23T15:06:03.493325Z" modified="2022-06-23T15:06:03.493331Z" visited="2022-06-23T15:06:03.493326Z">
+    <title>/ on 192.168.1.154:43508</title>
+    <info>
+      <metadata owner="http://freedesktop.org">
+        <bookmark:applications>
+          <bookmark:application name="org.gnome.Nautilus" exec="&apos;org.gnome.Nautilus %u&apos;" modified="2022-06-23T15:06:03.493328Z" count="1"/>
+        </bookmark:applications>
+      </metadata>
+    </info>
+  </bookmark>
+</xbel>
