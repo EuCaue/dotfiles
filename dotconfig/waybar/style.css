@@ -54,7 +54,7 @@ window#waybar {
   background-color: @base;
   padding: 0 10px;
   min-height: 35px;
-  border-radius: 1px;
+  border-radius: 5px;
   margin: 0;
   margin-top: 5px;
   border-bottom: 2px solid @pine;
@@ -91,4 +91,3 @@ window#waybar {
 #tray {
   margin-right: 15.5px;
 }
-
