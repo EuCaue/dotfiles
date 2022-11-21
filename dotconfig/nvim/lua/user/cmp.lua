@@ -76,7 +76,7 @@ cmp.setup({
 			luasnip.lsp_expand(args.body) -- For `luasnip` users.
 		end,
 	},
-	-- Mapppings
+	-- Mappings
 	mapping = {
 		["<C-k>"] = cmp.mapping.select_prev_item(),
 		["<C-j>"] = cmp.mapping.select_next_item(),
@@ -167,11 +167,23 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lspconfig = require("lspconfig")
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers =
-	{ "tsserver", "rome", "sumneko_lua", "emmet_ls", "html", "quick_lint_js", "cssls", "cssmodules_ls", "jsonls" }
+local servers = {
+	"tsserver",
+	"rome",
+	"bashls",
+	"sumneko_lua",
+	"emmet_ls",
+	"eslint",
+	"marksman",
+	"html",
+	"cssls",
+	"cssmodules_ls",
+	"jsonls",
+}
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
 		-- on_attach = my_custom_on_attach,
 		capabilities = capabilities,
 	})
 end
+

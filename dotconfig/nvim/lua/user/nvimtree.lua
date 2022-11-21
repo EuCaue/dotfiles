@@ -77,8 +77,8 @@ nvim_tree.setup({
 				col = 1,
 			},
 		},
-		width = 25,
-		centralize_selection = true,
+		width = 30,
+		centralize_selection = false,
 		side = "left",
 		mappings = {
 			list = {

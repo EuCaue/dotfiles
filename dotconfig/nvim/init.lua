@@ -10,17 +10,16 @@ require("user.nvimtree") -- tree file manager
 require("user.toggleterm") -- toggle a terminal inside of neovim
 require("user.dashboard") -- dashboard
 require("user.autocmd") -- autocmd's
-require("user.whichkey")
-require "user.scrollbar"
+require("user.whichkey") -- whichkey
+require("user.scrollbar") -- scrollbar
 
 -- CMP + LSP
 require("user.cmp") -- CMP
 require("user.lsp") -- LSP
-require("mason").setup() -- Mason
-require("mason-lspconfig").setup() -- Mason LSP Pluggin
+require("user.mason") -- Mason
 
-require("user.null-ls") -- global linter
-require("user.neoscroll")
+require("user.null-ls") -- Global linter
+require("user.neoscroll") -- Neoscroll
 -- VIM
 vim.cmd("colorscheme rose-pine") -- colorscheme
 vim.cmd('let g:netrw_bufsettings = "noma nomod nonu nowrap ro buflisted"')

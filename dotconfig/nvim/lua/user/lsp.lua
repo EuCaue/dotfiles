@@ -1,3 +1,6 @@
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
@@ -34,7 +37,6 @@ local on_attach = function(client, bufnr) -- Enable completion triggered by <c-x
 end
 
 local lsp_flags = {
-	-- This is the default in Nvim 0.7+
 	debounce_text_changes = 150,
 }
 
@@ -42,13 +44,11 @@ require("lspconfig").tsserver.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 })
+
 require("lspconfig").rome.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 })
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 require("lspconfig").cssls.setup({
 	capabilities = capabilities,
@@ -68,18 +68,9 @@ require("lspconfig").cssls.setup({
 		css = { validate = true },
 		scss = { validate = true },
 		less = { validate = true },
-		-- typescript = { validate = true},
-		-- typescriptreact = { validate = true},
-		-- javascript = { validate = true},
-		-- javascirptreact = { validate = true},
-		-- js = { validate = true},
-		-- ts = { validate = true},
-		-- tsx = { validate = true},
-		-- jsx = { validate = true},
 	},
 })
 require("lspconfig").cssmodules_ls.setup({
-	
 	on_attach = on_attach,
 })
 
@@ -95,26 +86,26 @@ require("lspconfig").jsonls.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 })
-require'lspconfig'.sumneko_lua.setup {
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
-}
 
+require("lspconfig").sumneko_lua.setup({
+	settings = {
+		Lua = {
+			runtime = {
+				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+				version = "LuaJIT",
+			},
+			diagnostics = {
+				-- Get the language server to recognize the `vim` global
+				globals = { "vim" },
+			},
+			workspace = {
+				-- Make the server aware of Neovim runtime files
+				library = vim.api.nvim_get_runtime_file("", true),
+			},
+			-- Do not send telemetry data containing a randomized but unique identifier
+			telemetry = {
+				enable = false,
+			},
+		},
+	},
+})
