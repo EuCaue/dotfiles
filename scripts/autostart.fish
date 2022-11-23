@@ -8,5 +8,5 @@ redshift -O 5500K &
 ~/dotfiles/scripts/rofi-clipboard.fish &
 xdman &
 swaync &
-~/dotfiles/scripts/rofi-beats-linux.py &
+# ~/dotfiles/scripts/rofi-beats-linux.py &
 kitty --class=special 

@@ -12,14 +12,12 @@ require("user.dashboard") -- dashboard
 require("user.autocmd") -- autocmd's
 require("user.whichkey") -- whichkey
 require("user.scrollbar") -- scrollbar
-
--- CMP + LSP
 require("user.cmp") -- CMP
 require("user.lsp") -- LSP
 require("user.mason") -- Mason
-
 require("user.null-ls") -- Global linter
 require("user.neoscroll") -- Neoscroll
+
 -- VIM
 vim.cmd("colorscheme rose-pine") -- colorscheme
 vim.cmd('let g:netrw_bufsettings = "noma nomod nonu nowrap ro buflisted"')

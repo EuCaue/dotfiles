@@ -7,6 +7,7 @@ require("null-ls").setup({
 		require("null-ls").builtins.formatting.codespell,
 		require("null-ls").builtins.formatting.fish_indent,
 		require("null-ls").builtins.formatting.tidy,
+		require("null-ls").builtins.formatting.black,
 		require("null-ls").builtins.formatting.eslint_d,
 		require("null-ls").builtins.formatting.markdownlint,
 		require("null-ls").builtins.formatting.prettierd.with({
@@ -22,7 +23,8 @@ require("null-ls").setup({
 		require("null-ls").builtins.diagnostics.markdownlint,
 		require("null-ls").builtins.diagnostics.jsonlint,
 		require("null-ls").builtins.diagnostics.tidy,
-		require("null-ls").builtins.diagnostics.todo_comments,
+		require("null-ls").builtins.diagnostics.mypy,
+		-- require("null-ls").builtins.diagnostics.todo_comments,
 		require("null-ls").builtins.diagnostics.ltrs,
 
 		-- NOTE: completion

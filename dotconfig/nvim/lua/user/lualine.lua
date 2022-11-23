@@ -20,7 +20,7 @@ local diagnostics = {
 local diff = {
 	"diff",
 	colored = true,
-	symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
+	symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
 	cond = hide_in_width,
 }
 
@@ -85,7 +85,7 @@ lualine.setup({
 		lualine_c = {},
 		-- lualine_x = { "encoding", "fileformat", "filetype" },
 		lualine_x = {},
-		lualine_y = { diff, "encoding", "filetype", filename },
+		lualine_y = { diff, "encoding", "filetype" },
 		lualine_z = { location },
 	},
 	inactive_sections = {

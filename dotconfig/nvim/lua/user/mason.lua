@@ -7,7 +7,7 @@ local servers = {
 	"eslint",
 	"html",
 	"tsserver",
-	"rome",
+	-- "rome",
 	"bashls",
 	"jsonls",
 	-- "yamlls",

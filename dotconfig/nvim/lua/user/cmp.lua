@@ -169,9 +169,11 @@ local lspconfig = require("lspconfig")
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 local servers = {
 	"tsserver",
-	"rome",
+	-- "rome",
 	"bashls",
 	"sumneko_lua",
+	"pylsp",
+	"pyright",
 	"emmet_ls",
 	"eslint",
 	"marksman",
@@ -186,4 +188,3 @@ for _, lsp in ipairs(servers) do
 		capabilities = capabilities,
 	})
 end
-
