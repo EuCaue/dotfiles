@@ -18,8 +18,8 @@ vim.g.maplocalleader = " "
 
 -- Basic keymaps
 keymap("n", "<C-s>", "<cmd>write!<cr>", opts)
-keymap("n", "<C-x>", "<cmd>wq!<cr>", opts)
-keymap("n", "<C-z>", "<cmd>q!<cr>", opts)
+keymap("n", "<C-z>", "<cmd>wq!<cr>", opts)
+keymap("n", "<C-x>", "<cmd>q!<cr>", opts)
 -- Comment
 keymap("x", "<C-/>", "<cmd>normal gcc<cr>", opts)
 keymap("n", "<C-/>", "<cmd>normal gcc<cr>", opts)

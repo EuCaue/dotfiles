@@ -3,7 +3,7 @@
 waybar & 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 ~/dotfiles/scripts/gsettings.fish &
-redshift -O 5500K & 
+# redshift -O 5500K & 
 ~/dotfiles/scripts/suspend.sh &
 ~/dotfiles/scripts/rofi-clipboard.fish &
 xdman &

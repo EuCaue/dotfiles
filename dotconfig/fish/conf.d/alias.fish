@@ -6,15 +6,13 @@ alias nft='nvim ~/.config/neofetch/config.conf'
 alias nfg='nvim ~/.config/nvim/init.lua'
 alias sus='paru'
 # alias gal='git add . && read -P 'commit:' commit && git commit -m "$commit" && git push' 
-function gal
-    set a $(git add .) &&
-        echo $a &&
-        git status
+function gal --description "alias git add commit push"
+    git add .
+    git status
     read -P 'commit:' commit
     git commit -m "$commit"
     git push
 end
-
 alias ls='exa -l -g --icons'
 alias la='exa -l -a -g --icons'
 alias vim='nvim'

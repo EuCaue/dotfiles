@@ -1,6 +1,8 @@
 #!/bin/sh
 export _JAVA_AWT_WM_NONREPARENTING=1
 eval $(/usr/bin/gnome-keyring-daemon --start)
+redshift -m drm -PO 3000
+# gammastep -m drm -PO 3000
 export SSH_AUTH_SOCK
 export QT_QPA_PLATFORMTHEME=gnome
 export dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
