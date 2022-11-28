@@ -1,4 +1,4 @@
-#!/bin/fish
+#!/usr/bin/fish
 
 gsettings set org.gnome.desktop.interface font-name "JetBrainsMono Nerd Font" &&
     gsettings set org.gnome.desktop.interface document-font-name "JetBrainsMono Nerd Font" &&

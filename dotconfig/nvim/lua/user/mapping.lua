@@ -30,16 +30,16 @@ keymap("n", "<leader>x", "<cmd>e ~/dotfiles/dotconfig/nvim/init.lua<cr>", opts)
 -- NvimTree
 keymap("n", "<leader>g", "<cmd>:NvimTreeToggle<cr>", opts)
 keymap("n", "<leader>h", "<cmd>:NvimTreeFocus<cr>", opts)
+keymap("n", "<leader>o", "<cmd>:NvimTreeCollapse<cr>", opts)
 keymap("n", "<leader>D", "<cmd>cd ~/Dev/ | NvimTreeToggle<cr>", opts)
 
 -- Telescope
-keymap("n", "<leader>ff", "<cmd>Telescope oldfiles<cr>", opts)
--- keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", opts)
-keymap("n", "<leader>d", "<cmd>Telescope diagnostics<cr>", opts)
-keymap("n", "<leader>fw", "<cmd>Telescope live_grep<cr>", opts)
-
--- Neogit
-keymap("n", "<leader>n", "<cmd>Neogit commit<cr>", opts)
+keymap("n", "<leader>to", "<cmd>Telescope oldfiles<cr>", opts)
+keymap("n", "<leader>td", "<cmd>Telescope diagnostics<cr>", opts)
+keymap("n", "<leader>tl", "<cmd>Telescope live_grep<cr>", opts)
+keymap("n", "<leader>tp", "<cmd>Telescope project<cr>", opts)
+keymap("n", "<leader>tc", "<cmd>Telescope colorscheme<cr>", opts)
+keymap("n", "<leader>tg", "<cmd>Telescope git_status<cr>", opts)
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)

@@ -36,8 +36,6 @@
   border-radius: 2px;
 }
 
-
-
 .normal {
   background: #403d52;
   border-radius: 2px;
@@ -118,9 +116,6 @@
   border-right: 1px solid @noti-border-color;
 }
 
-.image {
-}
-
 .body-image {
   margin-top: 6px;
   background-color: @text;
@@ -150,6 +145,7 @@
   background: transparent;
   color: @text;
   text-shadow: none;
+
 }
 
 /* The "Notifications" and "Do Not Disturb" text widget */
@@ -160,6 +156,7 @@
 
 .control-center {
   background: @cc-bg;
+  border-radius: 15px;
 }
 
 .control-center-list {
@@ -192,7 +189,7 @@
   border-radius: 12px;
 }
 .widget-title > button:hover {
-  background: @noti-bg-hover;
+  background: @noti-bg-focus;
 }
 
 /* DND widget */

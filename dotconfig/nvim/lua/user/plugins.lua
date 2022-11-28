@@ -108,7 +108,8 @@ packer.startup(function()
 	use("folke/which-key.nvim")
 	use("petertriho/nvim-scrollbar")
 	use({ "kevinhwang91/nvim-hlslens" })
-	use { "catppuccin/nvim", as = "catppuccin" }
+	use({ "nvim-telescope/telescope-project.nvim" })
+	use({"mbbill/undotree"})
 	--
 	-- CMP + LSP :
 	use("hrsh7th/cmp-nvim-lsp")

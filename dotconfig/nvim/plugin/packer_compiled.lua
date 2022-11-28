@@ -95,11 +95,6 @@ _G.packer_plugins = {
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/barbar.nvim",
     url = "https://github.com/romgrk/barbar.nvim"
   },
-  catppuccin = {
-    loaded = true,
-    path = "/home/caue/.local/share/nvim/site/pack/packer/start/catppuccin",
-    url = "https://github.com/catppuccin/nvim"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -298,6 +293,11 @@ _G.packer_plugins = {
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/rose-pine",
     url = "https://github.com/rose-pine/neovim"
   },
+  ["telescope-project.nvim"] = {
+    loaded = true,
+    path = "/home/caue/.local/share/nvim/site/pack/packer/start/telescope-project.nvim",
+    url = "https://github.com/nvim-telescope/telescope-project.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -318,6 +318,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
+  },
+  undotree = {
+    loaded = true,
+    path = "/home/caue/.local/share/nvim/site/pack/packer/start/undotree",
+    url = "https://github.com/mbbill/undotree"
   },
   ["vim-css-color"] = {
     loaded = true,
@@ -360,7 +365,7 @@ _G.packer_plugins = {
     url = "https://github.com/folke/which-key.nvim"
   },
   ["zen-mode.nvim"] = {
-    config = { "\27LJ\2\n}\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\vwindow\1\0\0\1\0\3\vheight\3P\rbackdrop\4³æÌ™\3³æ¬ÿ\3\nwidth\4³æÌ™\3³æ¬ÿ\3\nsetup\rzen-mode\frequire\0" },
+    config = { "\27LJ\2\n}\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\vwindow\1\0\0\1\0\3\nwidth\4³æÌ™\3³æ¬ÿ\3\vheight\3P\rbackdrop\4³æÌ™\3³æ¬ÿ\3\nsetup\rzen-mode\frequire\0" },
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/zen-mode.nvim",
     url = "https://github.com/folke/zen-mode.nvim"
@@ -378,7 +383,7 @@ try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B
 time([[Config for todo-comments.nvim]], false)
 -- Config for: zen-mode.nvim
 time([[Config for zen-mode.nvim]], true)
-try_loadstring("\27LJ\2\n}\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\vwindow\1\0\0\1\0\3\vheight\3P\rbackdrop\4³æÌ™\3³æ¬ÿ\3\nwidth\4³æÌ™\3³æ¬ÿ\3\nsetup\rzen-mode\frequire\0", "config", "zen-mode.nvim")
+try_loadstring("\27LJ\2\n}\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\vwindow\1\0\0\1\0\3\nwidth\4³æÌ™\3³æ¬ÿ\3\vheight\3P\rbackdrop\4³æÌ™\3³æ¬ÿ\3\nsetup\rzen-mode\frequire\0", "config", "zen-mode.nvim")
 time([[Config for zen-mode.nvim]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]

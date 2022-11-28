@@ -20,7 +20,13 @@ db.custom_center = {
 		icon = "  ",
 		desc = "Recently files                             ",
 		action = "Telescope oldfiles",
-		shortcut = "  SPC f f",
+		shortcut = "  SPC t o",
+	},
+	{
+		icon = "  ",
+		desc = "Projects                                   ",
+		action = "Telescope project",
+		shortcut = "  SPC t p",
 	},
 	{
 		icon = "  ",

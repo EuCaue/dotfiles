@@ -15,7 +15,7 @@
   border: none;
   /* border-radius: 0; */
   font-family: "JetBrains Mono Nerd Font", "Material Icons", monospace;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 400;
   /* min-height: 0; */
 }
@@ -50,7 +50,9 @@ window#waybar {
 #custom-mic,
 #custom-notification,
 #mpd,
-#workspaces{
+#workspaces,
+#gamemode,
+#gamemode.running{
   background-color: @base;
   padding: 0 10px;
   min-height: 35px;
@@ -84,7 +86,9 @@ window#waybar {
 
 #window {
   /* border-left: 2px solid @text; */
-}#workspaces button:hover {
+}
+
+#workspaces button:hover {
   background-color: @low;
 }
 

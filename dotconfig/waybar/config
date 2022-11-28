@@ -2,67 +2,121 @@
     "gtk-layer-shell": true,
     "layer": "top", // Waybar at top layer
 	  "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 33, // Waybar height (to be removed for auto height)
+    "height": 23, // Waybar height (to be removed for auto height)
 //  "width": 1280, // Waybar width
     "spacing": 9, // Gaps between modules (4px)
 
     // Choose the order of the modules
     "modules-left": ["wlr/workspaces"],
-    "modules-center": [ "clock", "custom/notification" ],
+    "modules-center": ["clock", "custom/notification"],
     "modules-right": ["gamemode", "pulseaudio", "cpu", "memory", "temperature", "backlight", "tray"],
 
-"hyprland/window": {
-    "format": "{}",
-    "separate-outputs": true
-},
-
-"wlr/workspaces": {
-  "format": "{icon}",
-  "on-click": "activate",
-  "format-icons": {
-    "1": "",
-    "2": "",
-    "3": "",
-    "4": "",
-    "5": "",
-    "6": "",
-    "7": "",
-    "urgent": "",
-    "active": "",
-    "default": ""
-  },
-},
-
-    "idle_inhibitor": {
+    "wlr/workspaces": {
         "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
+         "on-click": "activate",
+         "format-icons": {
+         "1": "",
+         "2": "",
+         "3": "",
+         "4": "",
+         "5": "",
+         "6": "",
+         "7": "",
+         "urgent": "",
+         "active": "",
+         "default": ""
     },
-    "tray": {
-        "icon-size": 22,
-        "spacing": 10
-    },
-    
+},
+
     "clock": {
         "timezone": "America/Bahia",
+        "today-format": "<span color='#31748f'><b>{}</b></span>",
+        "format-calendar": "<span color='#e0def4'><b>{}</b></span>",
+        "format-calendar-weeks": "<span color='#1f1d2e'><b>W{:%V}</b></span>",
+        "format-calendar-weekdays": "<span color='#26233a'><b>{}</b></span>",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "interval": 1,
-        "format": "{:%H:%M:%S}",
-        "format-alt": "{:%d/%m/%Y}"
-    },
+        "format": " {:%H:%M:%S}",
+        "format-alt": "{:  %e %b}"
+},
+    
+    "gamemode": {
+        "format": "{glyph}",
+        "format-alt": "{glyph} {count}",
+        "glyph": " ",
+        "hide-not-running": true,
+        "use-icon": true,
+        "icon-name": "input-gaming-symbolic",
+        "icon-spacing": 0,
+        "icon-size": 20,
+        "tooltip": true,
+        "tooltip-format": "Games running: {count}"
+},
+
+"custom/notification": {
+    "tooltip": false,
+    "format": "{icon} {}",
+    "format-icons": {
+      "notification": "<span foreground='#31748f'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span foreground='#31748f'><sup></sup></span>",
+      "dnd-none": ""
+},
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "on-click-middle": "swaync-client -C",
+    "escape": true
+},
+
+    "pulseaudio": {
+        "scroll-step": 5,
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon}  {format_source}",
+        "format-bluetooth-muted": " {icon}  {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": " ",
+        "format-icons": {
+            "headphone": " ",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [" ", " ", " "],
+        },
+        "on-click": "pavucontrol",
+        "on-click-middle": "pactl set-sink-volume @DEFAULT_SINK@ 40%",
+        "on-click-right": "pactl set-sink-volume @DEFAULT_SINK@ 40%",
+},
 
     "cpu": {
         "format": "{usage}% ",
-        "on-click": "",
+        "on-click": "kitty -e vtop",
         "tooltip": true
-    },
+},
+
     "memory": {
         "format": "{}% ",
         "tooltip": true,
         "on-click": "pkexec limpante"
 },
+
+
+    "network": {
+        "format": "{ifname}",
+        "format-wifi": "{essid}  ",
+        "format-disconnected": "", //An empty format will hide the module.
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)  ",
+        "tooltip-format-disconnected": "Disconnected",
+        "interval": 800,
+        "on-click": "kitty -e nmtui",
+        "max-length": 90
+},
+
     "temperature": {
         "thermal-zone": 2,
         "on-click": "",
@@ -71,72 +125,23 @@
         "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
         "format-icons": ["", "", ""]
-    },
+},
+
+
     "backlight": {
         "device": "acpi_video1",
         "format": "{percent}% {icon}",
         "on-scroll-up": "brightnessctl set +10%",
         "on-click": "brightnessctl set +10%",
         "on-click-right": "brightnessctl set 10%-",
+        "on-click-middle": "brightnessctl set 70%",
         "on-scroll-down": "brightnessctl set 10%-",
         "format-icons": ["", "", "", "", "", "", "", "", ""]
-    },
-    "pulseaudio": {
-        "scroll-step": 5,
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""],
-        },
-        "on-click": "pavucontrol",
-        "on-click-middle": "pactl set-sink-volume @DEFAULT_SINK@ 40%",
-        "on-click-right": "pactl set-sink-volume @DEFAULT_SINK@ 40%",
-    },
-    
-    "gamemode": {
-    "format": "{glyph}",
-    "format-alt": "{glyph} {count}",
-    "glyph": "",
-    "hide-not-running": true,
-    "use-icon": true,
-    "icon-name": "input-gaming-symbolic",
-    "icon-spacing": 4,
-    "icon-size": 20,
-    "tooltip": true,
-    "tooltip-format": "Games running: {count}"
-    },
+},
 
- "custom/notification": {
-    "tooltip": false,
-    "format": "{icon} {}",
-    "format-icons": {
-      "notification": "<span foreground='#31748f'><sup></sup></span>",
-      "none": "",
-      "dnd-notification": "<span foreground='#31748f'><sup></sup></span>",
-      "dnd-none": ""
-    },
-    "return-type": "json",
-    "exec-if": "which swaync-client",
-    "exec": "swaync-client -swb",
-    "on-click": "swaync-client -t -sw",
-    "on-click-right": "swaync-client -d -sw",
-    "on-click-middle": "swaync-client -C",
-    "escape": true
-  },
-    "custom/pomo": {
-        "exec": "pomo status",
-        "format": "{}",
-        "interval": 1,
-        }, 
+    "tray": {
+        "icon-size": 22,
+        "spacing": 10
+}
 
 }

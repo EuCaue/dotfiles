@@ -13,6 +13,7 @@ function gal --description "alias git add commit push"
     git commit -m "$commit"
     git push
 end
+alias bat='bat --theme=base16'
 alias ls='exa -l -g --icons'
 alias la='exa -l -a -g --icons'
 alias vim='nvim'
