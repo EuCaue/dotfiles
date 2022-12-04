@@ -19,7 +19,9 @@ alias la='exa -l -a -g --icons'
 alias vim='nvim'
 alias vi='nvim'
 alias clearpkg='sus -Qtdq | sus -Rns -'
+alias dumpkgs='sus -Qq > $HOME/dotfiles/pkgs.txt'
 alias gcl='cd ~/gitclone && git clone'
+alias gcld='cd ~/Dev && git clone'
 
 # just make Interactive
 alias mv='mv -i'

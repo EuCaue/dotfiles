@@ -32,7 +32,6 @@ autoconf
 automake
 avahi
 awesome-terminal-fonts
-ayatana-ido
 babl
 base
 bash
@@ -72,16 +71,16 @@ chrono-date
 cifs-utils
 cinnamon-desktop
 clapper
+cliphist-bin
 clipman
 clucene
 cmus
+codespell
 coreutils
+cracklib
 cronie
-crypto++
 cryptsetup
 ctags
-cups
-cups-filters
 curl
 cython
 dav1d
@@ -97,7 +96,6 @@ dhcp
 dhcpcd
 dialog
 diffutils
-diodon
 djvulibre
 dmidecode
 dmraid
@@ -146,7 +144,6 @@ fluidsynth
 fmt
 font-manager
 fontconfig
-fragments
 freeglut
 freeimage
 freetype2
@@ -172,8 +169,6 @@ gdu
 geforcenow-electron
 gegl
 geoclue
-geocode-glib-2
-geocode-glib-common
 gettext
 ghostscript
 giflib
@@ -190,9 +185,7 @@ glslang
 glu
 gmp
 gnome-calculator
-gnome-clocks
-gnome-desktop-4
-gnome-desktop-common
+gnome-disk-utility
 gnome-icon-theme-extras
 gnome-keyring
 gnome-themes-extra
@@ -290,6 +283,7 @@ js102
 json-c
 json-glib
 jsoncpp
+jstest-gtk-git
 jxrlib
 kbd
 keyutils
@@ -297,7 +291,6 @@ kitty
 kitty-shell-integration
 kitty-terminfo
 kmod
-kooha
 krb5
 kvantum
 kwindowsystem
@@ -481,10 +474,7 @@ libatomic_ops
 libavc1394
 libavif
 libavtp
-libayatana-appindicator
-libayatana-indicator
 libb2
-libb64
 libblockdev
 libbluray
 libbpf
@@ -544,7 +534,6 @@ libgpg-error
 libgphoto2
 libgsf
 libgudev
-libgweather-4
 libhandy
 libheif
 libical
@@ -593,7 +582,6 @@ libmspub
 libmtp
 libmwaw
 libmypaint
-libnatpmp
 libndp
 libnet
 libnetfilter_conntrack
@@ -618,7 +606,6 @@ libpagemaker
 libpaper
 libpcap
 libpciaccess
-libpdfium-nojs
 libpeas
 libpgm
 libpipeline
@@ -632,6 +619,7 @@ libportal-qt5
 libproxy
 libpsl
 libpulse
+libpwquality
 libqalculate
 libqxp
 libraqm
@@ -694,6 +682,7 @@ libvpx
 libvterm
 libwacom
 libwebp
+libwireplumber
 libwmf
 libwnck3
 libwpd
@@ -759,12 +748,14 @@ lpsolve
 lsb-release
 lsof
 lua
+lua-argparse
+lua-filesystem
+lua-language-server
+luacheck
 luajit
-luit
 lutris
 lv2
 lvm2
-lxappearance
 lz4
 lzo
 m4
@@ -779,13 +770,12 @@ mcmojave-cursors
 md4c
 mdadm
 mediainfo
-megasync
+megasync-bin
 mesa
 mesa-utils
 min
 minecraft-launcher
 minecraft-technic-launcher
-miniupnpc
 minizip
 mjpegtools
 mkinitcpio
@@ -799,6 +789,7 @@ mtdev
 mtools
 mujs
 mypaint-brushes1
+mypy
 nano
 ncdu
 ncmpcpp
@@ -812,6 +803,7 @@ neon
 neovim
 nerd-fonts-cascadia-code
 nerd-fonts-jetbrains-mono
+nerd-fonts-monoid
 net-snmp
 netpbm
 nettle
@@ -819,7 +811,6 @@ networkmanager
 networkmanager-openvpn
 node-gyp
 nodejs
-nodejs-nativefier
 nodejs-nopt
 notify-osd
 npm
@@ -864,6 +855,7 @@ pavucontrol
 pciutils
 pcre
 pcre2
+peaclock
 peco
 perl
 perl-error
@@ -907,6 +899,7 @@ python-attrs
 python-autocommand
 python-bcrypt
 python-beautifulsoup4
+python-black
 python-cairo
 python-certifi
 python-cffi
@@ -945,11 +938,14 @@ python-markupsafe
 python-material-color-utilities
 python-matplotlib
 python-more-itertools
+python-mypy_extensions
 python-numpy
 python-ordered-set
 python-packaging
+python-pathspec
 python-pillow
 python-pip
+python-platformdirs
 python-pluggy
 python-ply
 python-proton-client
@@ -991,12 +987,12 @@ python-zipp
 qgnomeplatform-qt5
 qgnomeplatform-qt6
 qhull
-qpdf
 qrencode
 qt5-base
 qt5-declarative
 qt5-quickcontrols
 qt5-svg
+qt5-tools
 qt5-translations
 qt5-wayland
 qt5-x11extras
@@ -1049,7 +1045,6 @@ smbclient
 snappy
 sndio
 socat
-solanum
 sord
 sound-theme-freedesktop
 soundtouch
@@ -1089,10 +1084,10 @@ tar
 tcl
 tdb
 telegram-desktop
-telepathy-glib
 tevent
 texinfo
 thin-provisioning-tools
+tidy
 timeshift-bin
 tinyxml2
 tk
@@ -1101,7 +1096,6 @@ tmux
 todoist-appimage
 tpm2-tss
 tracker3
-transmission-cli
 tre
 tree-sitter
 tslib
@@ -1120,7 +1114,6 @@ ttf-nerd-fonts-symbols-common
 ttf-opensans
 ttf-roboto
 ttf-roboto-slab
-tty-clock-git
 twolame
 tzdata
 uchardet
@@ -1160,7 +1153,6 @@ wavpack
 waybar-hyprland
 wayland
 wayland-protocols
-wdisplays
 webcord-bin
 webkit2gtk
 webkit2gtk-4.1
@@ -1181,9 +1173,7 @@ wpa_supplicant
 wpebackend-fdo
 x264
 x265
-xapian-core
 xapp
-xbitmaps
 xcb-proto
 xcb-util
 xcb-util-cursor
@@ -1210,7 +1200,6 @@ xmlsec
 xorg-fonts-encodings
 xorg-server
 xorg-server-common
-xorg-server-xvfb
 xorg-setxkbmap
 xorg-xauth
 xorg-xdpyinfo
@@ -1226,7 +1215,6 @@ xorg-xwayland
 xorg-xwininfo
 xorgproto
 xsel
-xterm
 xvidcore
 xxhash
 xz
@@ -1238,7 +1226,6 @@ zathura-djvu
 zathura-pdf-mupdf
 zathura-ps
 zbar
-zeitgeist
 zenity
 zeromq
 zimg

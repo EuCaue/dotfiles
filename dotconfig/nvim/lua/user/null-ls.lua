@@ -25,7 +25,7 @@ require("null-ls").setup({
 		require("null-ls").builtins.diagnostics.tidy,
 		require("null-ls").builtins.diagnostics.mypy,
 		-- require("null-ls").builtins.diagnostics.todo_comments,
-		require("null-ls").builtins.diagnostics.ltrs,
+		-- require("null-ls").builtins.diagnostics.ltrs,
 
 		-- NOTE: completion
 		require("null-ls").builtins.completion.spell,
