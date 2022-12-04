@@ -27,6 +27,10 @@ keymap("i", "<C-/>", "<cmd>normal gcc<cr>", opts)
 
 keymap("n", "<leader>x", "<cmd>e ~/dotfiles/dotconfig/nvim/init.lua<cr>", opts)
 
+-- LazyGit && ToggleTerm
+keymap("n", "<leader>lg", "<cmd>LazyGit<cr>", opts)
+keymap("n", "<leader>qq", "<cmd>ToggleTerm<cr>", opts)
+
 -- NvimTree
 keymap("n", "<leader>g", "<cmd>:NvimTreeToggle<cr>", opts)
 keymap("n", "<leader>h", "<cmd>:NvimTreeFocus<cr>", opts)
