@@ -95,6 +95,11 @@ _G.packer_plugins = {
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/barbar.nvim",
     url = "https://github.com/romgrk/barbar.nvim"
   },
+  catppuccin = {
+    loaded = true,
+    path = "/home/caue/.local/share/nvim/site/pack/packer/start/catppuccin",
+    url = "https://github.com/catppuccin/nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -172,6 +177,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/hyprland-vim-syntax",
     url = "https://github.com/theRealCarneiro/hyprland-vim-syntax"
+  },
+  ["lazygit.nvim"] = {
+    loaded = true,
+    path = "/home/caue/.local/share/nvim/site/pack/packer/start/lazygit.nvim",
+    url = "https://github.com/kdheepak/lazygit.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,

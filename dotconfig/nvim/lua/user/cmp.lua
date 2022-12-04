@@ -13,6 +13,7 @@ local check_backspace = function()
 	local col = vim.fn.col(".") - 1
 	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
+
 local cmp_kinds = {
 	Text = "  ",
 	Method = "  ",
@@ -125,7 +126,7 @@ cmp.setup({
 		format = function(entry, vim_item)
 			-- Kind icons
 			-- vim_item.kind = string.format("%s", cmp_kinds[vim_item.kind])
-			vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+			vim_item.kind = string.format("%s %s", cmp_kinds[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
 			vim_item.menu = ({
 				nvim_lsp = "[LSP]",
 				path = "[Path]",
@@ -152,7 +153,7 @@ cmp.setup({
 		documentation = {
 			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
 			cmp.config.window.bordered(),
-			max_width = 10,
+			-- max_width = 10,
 		},
 		completion = cmp.config.window.bordered(),
 	},

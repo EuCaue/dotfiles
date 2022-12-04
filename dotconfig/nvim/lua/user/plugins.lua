@@ -109,9 +109,11 @@ packer.startup(function()
 	use("petertriho/nvim-scrollbar")
 	use({ "kevinhwang91/nvim-hlslens" })
 	use({ "nvim-telescope/telescope-project.nvim" })
-	use({"mbbill/undotree"})
+	use({ "mbbill/undotree" })
+	use({'kdheepak/lazygit.nvim'})
 	--
 	-- CMP + LSP :
+	use { "catppuccin/nvim", as = "catppuccin" }
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-nvim-lua")
 	use("hrsh7th/cmp-buffer")

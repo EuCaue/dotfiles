@@ -8,8 +8,8 @@
 
     // Choose the order of the modules
     "modules-left": ["wlr/workspaces"],
-    "modules-center": ["gamemode", "clock", "custom/notification"],
-    "modules-right": ["pulseaudio", "cpu", "memory", "temperature", "battery", "backlight", "tray"],
+    "modules-center": ["gamemode", "tray", "clock", "custom/notification"],
+    "modules-right": ["pulseaudio", "cpu", "memory", "temperature", "battery", "backlight"],
 
     "wlr/workspaces": {
         "format": "{icon}",
