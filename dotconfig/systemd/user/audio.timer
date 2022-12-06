@@ -1,0 +1,11 @@
+[Unit]
+Description=Set the audio for 40%
+
+[Timer]
+Unit=audio.service
+OnBootSec=1m
+OnUnitActiveSec=30m
+Persistent=true
+
+[Install]
+WantedBy=timers.target
