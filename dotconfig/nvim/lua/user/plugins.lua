@@ -111,6 +111,12 @@ packer.startup(function()
 	use({ "nvim-telescope/telescope-project.nvim" })
 	use({ "mbbill/undotree" })
 	use({'kdheepak/lazygit.nvim'})
+	use({
+  "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+  config = function()
+    require("lsp_lines").setup()
+  end,
+})
 	--
 	-- CMP + LSP :
 	use { "catppuccin/nvim", as = "catppuccin" }

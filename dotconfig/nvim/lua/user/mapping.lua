@@ -110,6 +110,7 @@ keymap("n", "<A-0>", "<Cmd>BufferLast<CR>", opts)
 keymap("n", "<A-p>", "<Cmd>BufferPin<CR>", opts)
 -- Close buffer
 keymap("n", "<A-c>", "<Cmd>BufferClose<CR>", opts)
+keymap("n", "<leader>bc", "<Cmd>BufferCloseAllButCurrent<CR>", opts)
 -- Wipeout buffer
 --                 :BufferWipeout
 -- Close commands
@@ -119,7 +120,7 @@ keymap("n", "<A-c>", "<Cmd>BufferClose<CR>", opts)
 --                 :BufferCloseBuffersLeft
 --                 :BufferCloseBuffersRight
 -- Magic buffer-picking mode
-keymap("n", "<C-p>", "<Cmd>BufferPick<CR>", opts)
+keymap("n", "<leader>bp", "<Cmd>BufferPick<CR>", opts)
 -- Sort automatically by...
 keymap("n", "<Space>bb", "<Cmd>BufferOrderByBufferNumber<CR>", opts)
 keymap("n", "<Space>bd", "<Cmd>BufferOrderByDirectory<CR>", opts)

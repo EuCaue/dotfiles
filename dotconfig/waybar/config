@@ -89,8 +89,8 @@
             "default": [" ", " ", " "],
         },
         "on-click": "pavucontrol",
-        "on-click-middle": "pactl set-sink-volume @DEFAULT_SINK@ 40%",
-        "on-click-right": "pactl set-sink-volume @DEFAULT_SINK@ 40%",
+        "on-click-middle": "pactl set-sink-volume @DEFAULT_SINK@ 50%",
+        "on-click-right": "pactl set-sink-volume @DEFAULT_SINK@ 50%",
 },
 
     "cpu": {
