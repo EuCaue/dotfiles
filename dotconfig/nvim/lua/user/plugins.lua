@@ -110,16 +110,17 @@ packer.startup(function()
 	use({ "kevinhwang91/nvim-hlslens" })
 	use({ "nvim-telescope/telescope-project.nvim" })
 	use({ "mbbill/undotree" })
-	use({'kdheepak/lazygit.nvim'})
+	use({ "kdheepak/lazygit.nvim" })
 	use({
-  "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-  config = function()
-    require("lsp_lines").setup()
-  end,
-})
+		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+		config = function()
+			require("lsp_lines").setup()
+		end,
+	})
+	use("nyarthan/telescope-code-actions.nvim")
 	--
 	-- CMP + LSP :
-	use { "catppuccin/nvim", as = "catppuccin" }
+	use({ "catppuccin/nvim", as = "catppuccin" })
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-nvim-lua")
 	use("hrsh7th/cmp-buffer")

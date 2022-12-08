@@ -1,7 +1,6 @@
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
-local term_opts = { silent = true }
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
@@ -44,6 +43,8 @@ keymap("n", "<leader>tl", "<cmd>Telescope live_grep<cr>", opts)
 keymap("n", "<leader>tp", "<cmd>Telescope project<cr>", opts)
 keymap("n", "<leader>tc", "<cmd>Telescope colorscheme<cr>", opts)
 keymap("n", "<leader>tg", "<cmd>Telescope git_status<cr>", opts)
+keymap("n", "<leader>ca", "<cmd>Telescope code_actions<cr>", opts)
+-- vim.keymap.set("n", "<space>ta", "<cmd>Telescope code_actions<cr>", { remap = true })
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)

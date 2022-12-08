@@ -5,6 +5,7 @@ accountsservice
 acl
 acorn
 adw-gtk3
+adwaita-cursors
 adwaita-icon-theme
 adwaita-qt5
 adwaita-qt6
@@ -81,6 +82,8 @@ cracklib
 cronie
 cryptsetup
 ctags
+cups
+cups-filters
 curl
 cython
 dav1d
@@ -90,6 +93,7 @@ dbus-glib
 dbus-python
 dconf
 dconf-editor
+default-cursors
 desktop-file-utils
 device-mapper
 dhcp
@@ -185,6 +189,8 @@ glslang
 glu
 gmp
 gnome-calculator
+gnome-desktop
+gnome-desktop-common
 gnome-disk-utility
 gnome-icon-theme-extras
 gnome-keyring
@@ -254,6 +260,7 @@ hwdata
 hwloc
 hyphen
 hyprland-bin
+hyprpicker-git
 iana-etc
 icu
 ijs
@@ -297,6 +304,7 @@ kwindowsystem
 l-smash
 lame
 lapack
+lazygit
 lcms2
 ldb
 ldns
@@ -475,6 +483,7 @@ libavc1394
 libavif
 libavtp
 libb2
+libb64
 libblockdev
 libbluray
 libbpf
@@ -582,6 +591,7 @@ libmspub
 libmtp
 libmwaw
 libmypaint
+libnatpmp
 libndp
 libnet
 libnetfilter_conntrack
@@ -776,6 +786,7 @@ mesa-utils
 min
 minecraft-launcher
 minecraft-technic-launcher
+miniupnpc
 minizip
 mjpegtools
 mkinitcpio
@@ -987,6 +998,7 @@ python-zipp
 qgnomeplatform-qt5
 qgnomeplatform-qt6
 qhull
+qpdf
 qrencode
 qt5-base
 qt5-declarative
@@ -1015,6 +1027,7 @@ re2
 readline
 redland
 redshift-wayland-git
+responsively-bin
 ripgrep
 rnnoise
 rofi-calc
@@ -1096,6 +1109,7 @@ tmux
 todoist-appimage
 tpm2-tss
 tracker3
+transmission-gtk
 tre
 tree-sitter
 tslib
@@ -1184,6 +1198,8 @@ xcb-util-renderutil
 xcb-util-wm
 xcb-util-xrm
 xcursor-neutral++-white
+xcursor-vanilla-dmz
+xcursor-vanilla-dmz-aa
 xdg-dbus-proxy
 xdg-desktop-portal
 xdg-desktop-portal-wlr

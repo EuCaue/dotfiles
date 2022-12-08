@@ -7,6 +7,7 @@ local actions = require("telescope.actions")
 
 require("telescope").load_extension("project")
 require("telescope").load_extension("lazygit")
+require("telescope").load_extension("code_actions")
 
 telescope.setup({
 	defaults = {
@@ -87,8 +88,8 @@ telescope.setup({
 		--   ...
 		-- }
 		old_files = {
-		theme = "dropdown",
-		}
+			theme = "dropdown",
+		},
 	},
 	extensions = {
 		file_browser = {
@@ -103,6 +104,8 @@ telescope.setup({
 				},
 			},
 		},
+
+		telescope_code_actions = {},
 
 		project = {
 			base_dirs = {
