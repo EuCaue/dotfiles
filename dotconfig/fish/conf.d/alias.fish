@@ -25,6 +25,7 @@ alias gcld='cd ~/Dev && git clone'
 alias c='cursor.fish'
 alias v='nvim'
 alias r='ranger'
+alias g='lazygit'
 
 # just make Interactive
 alias mv='mv -i'

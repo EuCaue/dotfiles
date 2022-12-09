@@ -5,4 +5,5 @@ redshift -m drm -PO 3000
 export SSH_AUTH_SOCK
 export QT_QPA_PLATFORMTHEME=gnome
 export dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+export ZDOTDIR="$HOME/.config/zsh/.zshrc"
 exec Hyprland
