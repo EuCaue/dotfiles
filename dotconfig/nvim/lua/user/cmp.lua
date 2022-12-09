@@ -126,10 +126,10 @@ cmp.setup({
 		format = function(entry, vim_item)
 			-- Kind icons
 			-- vim_item.kind = string.format("%s", cmp_kinds[vim_item.kind])
-			vim_item.kind = string.format("%s %s", cmp_kinds[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+			vim_item.kind = string.format("%s %s", cmp_kinds[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
 			vim_item.menu = ({
-				nvim_lsp = "[LSP]",
 				path = "[Path]",
+				nvim_lsp = "[LSP]",
 				luasnip = "[Snippet]",
 				buffer = "[Buffer]",
 				fonts = "[Fonts]",
@@ -138,12 +138,15 @@ cmp.setup({
 		end,
 	},
 	sources = {
-		{ name = "nvim_lsp" },
-		{ name = "luasnip" },
-		{ name = "buffer" },
 		{ name = "path" },
+		{ name = "nvim_lsp" },
+		{ name = "buffer" },
+		{ name = "luasnip", option = { use_show_condition = false, show_autosnippets = true } },
 		{ name = "fish" },
 		{ name = "fonts", option = { space_filter = "-" } },
+		{ name = "markdown-link" },
+		{ name = "emmet_vim" },
+		{ name = "treesitter" },
 	},
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
@@ -153,7 +156,6 @@ cmp.setup({
 		documentation = {
 			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
 			cmp.config.window.bordered(),
-			-- max_width = 10,
 		},
 		completion = cmp.config.window.bordered(),
 	},
@@ -196,7 +198,6 @@ local lspconfig = require("lspconfig")
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 local servers = {
 	"tsserver",
-	-- "rome",
 	"bashls",
 	"sumneko_lua",
 	"pylsp",

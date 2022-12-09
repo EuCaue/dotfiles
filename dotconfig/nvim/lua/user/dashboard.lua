@@ -13,8 +13,11 @@ db.default_banner = {
 	"",
 }
 
+db.preview_command = "cat | lolcat -t -F 0.3"
+db.preview_file_path = "/home/caue/assss.txt"
+
 db.preview_file_height = 11
-db.preview_file_width = 70
+db.preview_file_width = 90
 db.custom_center = {
 	{
 		icon = "  ",
@@ -33,6 +36,12 @@ db.custom_center = {
 		desc = "File Browser                               ",
 		action = "NvimTreeToggle",
 		shortcut = "  SPC g  ",
+	},
+	{
+		icon = "  ",
+		desc = "Dotfiles                                     ",
+		action = ":NvimTreeToggle ~/dotfiles/",
+		shortcut = "SPC X  ",
 	},
 	{
 		icon = "  ",

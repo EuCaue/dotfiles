@@ -3,7 +3,6 @@ aalib
 abseil-cpp
 accountsservice
 acl
-acorn
 adw-gtk3
 adwaita-cursors
 adwaita-icon-theme
@@ -71,7 +70,6 @@ chromaprint
 chrono-date
 cifs-utils
 cinnamon-desktop
-clapper
 cliphist-bin
 clipman
 clucene
@@ -120,7 +118,6 @@ element-desktop
 element-web
 elinks
 enchant
-eslint
 exa
 exempi
 exiv2
@@ -179,7 +176,6 @@ giflib
 gimp
 girara
 git
-gjs
 glib-networking
 glib2
 glibc
@@ -188,7 +184,6 @@ glibmm-2.68
 glslang
 glu
 gmp
-gnome-calculator
 gnome-desktop
 gnome-desktop-common
 gnome-disk-utility
@@ -239,7 +234,6 @@ gtk2
 gtk3
 gtk4
 gtkmm3
-gtksourceview5
 gts
 guile
 gumbo-parser
@@ -281,16 +275,13 @@ java-runtime-common
 jbig2dec
 jdk-openjdk
 jemalloc
-joplin-appimage
 jre-openjdk
 jre-openjdk-headless
 jre8-openjdk
 jre8-openjdk-headless
-js102
 json-c
 json-glib
 jsoncpp
-jstest-gtk-git
 jxrlib
 kbd
 keyutils
@@ -299,8 +290,6 @@ kitty-shell-integration
 kitty-terminfo
 kmod
 krb5
-kvantum
-kwindowsystem
 l-smash
 lame
 lapack
@@ -1162,7 +1151,6 @@ vulkan-intel
 vulkan-mesa-layers
 vulkan-validation-layers
 w3m
-waterfox-g4-bin
 wavpack
 waybar-hyprland
 wayland
@@ -1172,7 +1160,6 @@ webkit2gtk
 webkit2gtk-4.1
 webp-pixbuf-loader
 webrtc-audio-processing
-wezterm
 wf-recorder
 wget
 which
