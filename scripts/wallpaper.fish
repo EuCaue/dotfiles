@@ -2,7 +2,7 @@
 
 set wall
 set walltest false
-set -x WAYLAND_DISPLAY wayland-0
+set -x WAYLAND_DISPLAY wayland-1
 set -x DISPLAY :1
 set -x XDG_RUNTIME_DIR /run/user/1000
 

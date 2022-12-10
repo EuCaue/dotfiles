@@ -5,14 +5,6 @@ alias hfg='nvim ~/.config/hypr/hyprland.conf'
 alias nft='nvim ~/.config/neofetch/config.conf'
 alias nfg='nvim ~/.config/nvim/init.lua'
 alias sus='paru'
-# alias gal='git add . && read -P 'commit:' commit && git commit -m "$commit" && git push' 
-# function gal --description "alias git add commit push"
-#     git add .
-#     git status
-#     read -P 'commit:' commit
-#     git commit -m "$commit"
-#     git push
-# end
 gal() {
   git add . 
   git status
@@ -20,7 +12,6 @@ gal() {
   git commit -m "$commit"
   git push
 }
-
 alias bat='bat --theme=base16'
 alias ls='exa -l -g --icons'
 alias ll='exa -l -g --icons'

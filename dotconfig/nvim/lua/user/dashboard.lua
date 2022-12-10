@@ -13,7 +13,7 @@ db.default_banner = {
 	"",
 }
 
-db.preview_command = "cat | lolcat -t -F 0.3"
+db.preview_command = "cat"
 db.preview_file_path = "/home/caue/assss.txt"
 
 db.preview_file_height = 11

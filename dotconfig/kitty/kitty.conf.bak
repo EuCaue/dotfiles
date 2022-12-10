@@ -23,7 +23,7 @@ bold_italic_font JetBrains Mono Bold Italic Nerd Font Complete
 #:     italic_font      Operator Mono Book Italic
 #:     bold_italic_font Operator Mono Medium Italic
 
-font_size 14
+font_size 13
 
 #: Font size (in pts)
 
@@ -897,12 +897,12 @@ tab_switch_strategy previous
 #: can change the number of cells used by adding/removing entries to
 #: this list.
 
-tab_separator " ┇"
+tab_separator " "
 
 #: The separator between tabs in the tab bar when using separator as
 #: the tab_bar_style.
 
-tab_powerline_style angled 
+tab_powerline_style slanted 
 
 #: The powerline separator style between tabs in the tab bar when
 #: using powerline as the tab_bar_style, can be one of: angled,
@@ -1005,12 +1005,12 @@ tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title
 #: this option when reloading the config will only work if
 #: dynamic_background_opacity was enabled in the original config.
 
-#background_image ~/Pictures/her/IMG-20220923-WA0002.png
+# background_image ~/Pictures/wallpapers/ascii.png
 
 
 #: Path to a background image. Must be in PNG format.
 
-background_image_layout scaled
+background_image_layout scaled 
 
 #: Whether to tile, scale or clamp the background image. The value can
 #: be one of tiled, mirror-tiled, scaled, clamped or centered.

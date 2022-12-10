@@ -65,6 +65,35 @@ local progress = function()
 	return chars[index]
 end
 
+local lsp_progress = {
+	"lsp_progress",
+
+	display_components = { "lsp_client_name", { "title", "percentage", "message" } },
+	-- With spinner
+	-- display_components = { "lsp_client_name", "spinner", { "title", "percentage", "message" } },
+	separators = {
+		component = " ",
+		progress = " | ",
+		message = { pre = "(", post = ")" },
+		percentage = { pre = "", post = "%% " },
+		title = { pre = "", post = ": " },
+		lsp_client_name = { pre = "[", post = "]" },
+		spinner = { pre = "", post = "" },
+		message = { commenced = "In Progress", completed = "Completed" },
+	},
+	-- display_components = { "lsp_client_name", "spinner", { "title", "percentage", "message" } },
+	timer = { progress_enddelay = 500, spinner = 1000, lsp_client_name_enddelay = -1 },
+	spinner_symbols = { "🌑 ", "🌒 ", "🌓 ", "🌔 ", "🌕 ", "🌖 ", "🌗 ", "🌘 " },
+}
+
+local function lsp_client_names()
+	local client_names = {}
+	for _, client in ipairs(vim.lsp.get_active_clients()) do
+		table.insert(client_names, client.name)
+	end
+	return table.concat(client_names, " ")
+end
+
 local spaces = function()
 	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
@@ -73,15 +102,15 @@ lualine.setup({
 	options = {
 		icons_enabled = true,
 
-		theme = "auto",
+		theme = "rose-pine",
 		component_separators = { left = "", right = "" },
-		section_separators = { left = "", right = "" },
+		section_separators = { left = "", right = "" },
 		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
 		always_divide_middle = true,
 	},
 	sections = {
 		lualine_a = { branch, diagnostics },
-		lualine_b = { mode },
+		lualine_b = { mode, lsp_client_names },
 		lualine_c = {},
 		-- lualine_x = { "encoding", "fileformat", "filetype" },
 		lualine_x = {},
