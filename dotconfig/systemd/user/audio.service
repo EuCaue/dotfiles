@@ -1,5 +1,5 @@
 [Unit]
-Description=Set audio for 40%
+Description=Set audio for 50%
 
 [Service]
 Type=simple

@@ -1,10 +1,10 @@
 [Unit]
-Description=Set the audio for 40%
+Description=Set the audio for 50%
 
 [Timer]
 Unit=audio.service
 OnBootSec=1m
-OnUnitActiveSec=30m
+OnUnitActiveSec=10m
 Persistent=true
 
 [Install]
