@@ -72,7 +72,7 @@ packer.startup(function()
 	require("lualine").setup({}) -- status bar
 	use({ "windwp/nvim-ts-autotag" }) -- <> autoclose tag
 	use({ "lewis6991/gitsigns.nvim", tag = "release" }) -- Git
-	use({"arkav/lualine-lsp-progress"}) -- lsp on statusline
+	use({ "arkav/lualine-lsp-progress" }) -- lsp on statusline
 
 	-- Useful
 	use({ "nvim-telescope/telescope.nvim", tag = "0.1.0", requires = { { "nvim-lua/plenary.nvim" } } }) -- fzf finder
@@ -118,9 +118,9 @@ packer.startup(function()
 			require("lsp_lines").setup()
 		end,
 	})
-	use({"glepnir/lspsaga.nvim"})
+	use({ "glepnir/lspsaga.nvim" })
 	use("nyarthan/telescope-code-actions.nvim")
-use('rcarriga/nvim-notify')
+	use("rcarriga/nvim-notify")
 	--
 	-- CMP + LSP :
 	use("dcampos/cmp-emmet-vim")

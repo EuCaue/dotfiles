@@ -10,7 +10,7 @@ end
 local diagnostics = {
 	"diagnostics",
 	sources = { "nvim_diagnostic" },
-	sections = { "error", "warn" },
+	sections = { "error", "warn", "info", "hint" },
 	symbols = { error = " ", warn = " ", info = " ", hint = " " },
 	colored = true,
 	update_in_insert = false,
@@ -34,14 +34,14 @@ local mode = {
 local filetype = {
 	"filetype",
 	icons_enabled = true,
-	icon = nil,
+	icon_only = true,
 }
 
 local filename = {
 	"filename",
 	icons_enabled = true,
 	file_status = false,
-	-- icon = nil,
+	-- path = 1,
 }
 
 local branch = {
@@ -55,6 +55,19 @@ local location = {
 	padding = 0,
 }
 
+local lsp = function()
+	local lsp = vim.lsp.util.get_progress_messages()[1]
+	if lsp then
+		local name = lsp.name or ""
+		local msg = lsp.message or ""
+		local percentage = lsp.percentage or 0
+		local title = lsp.title or ""
+		return string.format(" %%<%s: %s %s (%s%%%%) ", name, title, msg, percentage)
+	end
+
+	return ""
+end
+
 -- cool function for progress
 local progress = function()
 	local current_line = vim.fn.line(".")
@@ -65,8 +78,17 @@ local progress = function()
 	return chars[index]
 end
 
-local spaces = function()
-	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
+local function lsp_client_names()
+	local client_names = {}
+	for _, client in ipairs(vim.lsp.get_active_clients()) do
+		table.insert(client_names, client.name)
+	end
+	return table.concat(client_names, "")
+end
+
+local function client_names()
+	local client = vim.lsp.get_active_clients()[1]
+	return string.format("[%s]", client.name)
 end
 
 lualine.setup({
@@ -82,8 +104,8 @@ lualine.setup({
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { branch, diff, diagnostics },
-		lualine_c = { filename },
-		lualine_x = { "encoding", "fileformat", "filetype" },
+		lualine_c = { filetype, filename },
+		lualine_x = { filetype, client_names, "encoding", "fileformat" },
 		lualine_y = { "progress" },
 		lualine_z = { location },
 	},

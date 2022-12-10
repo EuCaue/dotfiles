@@ -23,5 +23,3 @@ require("user.barbar") -- barbar
 -- VIM
 vim.cmd("colorscheme rose-pine") -- colorscheme
 vim.cmd('let g:netrw_bufsettings = "noma nomod nonu nowrap ro buflisted"')
-vim.diagnostic.config({ virtual_text = false })
-vim.diagnostic.config({ virtual_lines = { only_current_line = true } })

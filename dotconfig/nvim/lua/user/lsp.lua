@@ -1,5 +1,7 @@
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+vim.diagnostic.config({ virtual_text = false })
+vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -19,11 +21,9 @@ local on_attach = function(client, bufnr) -- Enable completion triggered by <c-x
 
 	-- Mappings.
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
-	local bufopts = { noremap = true, silent = true, buffer = bufnr }
-	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-	vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-	vim.keymap.set("n", "F", "<cmd>Lspsaga lsp_finder<CR>", bufopts)
-	vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+	-- VIM
+	vim.cmd("colorscheme rose-pine") -- colorscheme
+	vim.cmd('let g:netrw_bufsettings = "noma nomod nonu nowrap ro buflisted"')
 	vim.keymap.set("n", "<space>o", "<cmd>LSoutlineToggle<CR>", bufopts)
 	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
 	vim.keymap.set("n", "<C-l>", vim.lsp.buf.signature_help, bufopts)
@@ -42,74 +42,74 @@ local on_attach = function(client, bufnr) -- Enable completion triggered by <c-x
 	end, bufopts)
 end
 
-local lsp_flags = {
-	debounce_text_changes = 150,
-}
-
-require("lspconfig").tsserver.setup({
-	on_attach = on_attach,
-	flags = lsp_flags,
-})
-
-require("lspconfig").cssls.setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-	filetypes = {
-		"css",
-		"scss",
-		"less",
-		"typescript",
-		"ts",
-		"typescriptreact",
-		"javascript",
-		"javascirptreact",
-		"js",
-	},
-	settings = {
-		css = { validate = true },
-		scss = { validate = true },
-		less = { validate = true },
-	},
-})
-require("lspconfig").cssmodules_ls.setup({
-	on_attach = on_attach,
-})
-
-require("lspconfig").html.setup({
-	on_attach = on_attach,
-	flags = lsp_flags,
-})
-require("lspconfig").quick_lint_js.setup({
-	on_attach = on_attach,
-	flags = lsp_flags,
-})
-require("lspconfig").jsonls.setup({
-	on_attach = on_attach,
-	flags = lsp_flags,
-})
-
-require("lspconfig").sumneko_lua.setup({
-	settings = {
-		Lua = {
-			runtime = {
-				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-				version = "LuaJIT",
-			},
-			diagnostics = {
-				-- Get the language server to recognize the `vim` global
-				globals = { "vim" },
-			},
-			workspace = {
-				-- Make the server aware of Neovim runtime files
-				library = vim.api.nvim_get_runtime_file("", true),
-			},
-			-- Do not send telemetry data containing a randomized but unique identifier
-			telemetry = {
-				enable = false,
-			},
-		},
-	},
-})
+-- local lsp_flags = {
+-- 	debounce_text_changes = 150,
+-- }
+--
+-- require("lspconfig").tsserver.setup({
+-- 	on_attach = on_attach,
+-- 	flags = lsp_flags,
+-- })
+--
+-- require("lspconfig").cssls.setup({
+-- 	capabilities = capabilities,
+-- 	on_attach = on_attach,
+-- 	filetypes = {
+-- 		"css",
+-- 		"scss",
+-- 		"less",
+-- 		"typescript",
+-- 		"ts",
+-- 		"typescriptreact",
+-- 		"javascript",
+-- 		"javascirptreact",
+-- 		"js",
+-- 	},
+-- 	settings = {
+-- 		css = { validate = true },
+-- 		scss = { validate = true },
+-- 		less = { validate = true },
+-- 	},
+-- })
+-- require("lspconfig").cssmodules_ls.setup({
+-- 	on_attach = on_attach,
+-- })
+--
+-- require("lspconfig").html.setup({
+-- 	on_attach = on_attach,
+-- 	flags = lsp_flags,
+-- })
+-- require("lspconfig").quick_lint_js.setup({
+-- 	on_attach = on_attach,
+-- 	flags = lsp_flags,
+-- })
+-- require("lspconfig").jsonls.setup({
+-- 	on_attach = on_attach,
+-- 	flags = lsp_flags,
+-- })
+--
+-- require("lspconfig").sumneko_lua.setup({
+-- 	settings = {
+-- 		Lua = {
+-- 			runtime = {
+-- 				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+-- 				version = "LuaJIT",
+-- 			},
+-- 			diagnostics = {
+-- 				-- Get the language server to recognize the `vim` global
+-- 				globals = { "vim" },
+-- 			},
+-- 			workspace = {
+-- 				-- Make the server aware of Neovim runtime files
+-- 				library = vim.api.nvim_get_runtime_file("", true),
+-- 			},
+-- 			-- Do not send telemetry data containing a randomized but unique identifier
+-- 			telemetry = {
+-- 				enable = false,
+-- 			},
+-- 		},
+-- 	},
+-- })
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 

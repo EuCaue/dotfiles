@@ -200,7 +200,6 @@ local servers = {
 	"tsserver",
 	"bashls",
 	"sumneko_lua",
-	"pylsp",
 	"pyright",
 	"emmet_ls",
 	"eslint",
