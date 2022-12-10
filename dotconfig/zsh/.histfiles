@@ -1,0 +1,18 @@
+gcl git@github.com:jverhoelen/fish-history-to-zsh.git
+cd fish-history-to-zsh
+npm i
+ls ~/.config/zsh/
+ls ~/.config/zsh/.histfile
+ls ~/.config/zsh/.
+ls ~/.config/zsh/.histfile
+node index.js > ~/.config/zsh/.histfile
+nvvm
+nvm
+node index.js > ~/.zsh_history
+cd
+python3 -c "$(curl -fsSL https://raw.github.com/marverix/fish-history-to-zsh-history/master/fish-history-to-zsh-history.py)"
+bat .zsh_history
+rm -rf .zsh_history
+python3 -c "$(curl -fsSL https://raw.github.com/marverix/fish-history-to-zsh-history/master/fish-history-to-zsh-history.py)"
+fish
+vi
