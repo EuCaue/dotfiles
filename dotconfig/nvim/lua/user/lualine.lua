@@ -11,16 +11,16 @@ local diagnostics = {
 	"diagnostics",
 	sources = { "nvim_diagnostic" },
 	sections = { "error", "warn" },
-	symbols = { error = " ", warn = " " },
-	colored = false,
+	symbols = { error = " ", warn = " ", info = " ", hint = " " },
+	colored = true,
 	update_in_insert = false,
-	always_visible = true,
+	always_visible = false,
 }
 
 local diff = {
 	"diff",
 	colored = true,
-	symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
+	symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
 	cond = hide_in_width,
 }
 
@@ -65,35 +65,6 @@ local progress = function()
 	return chars[index]
 end
 
-local lsp_progress = {
-	"lsp_progress",
-
-	display_components = { "lsp_client_name", { "title", "percentage", "message" } },
-	-- With spinner
-	-- display_components = { "lsp_client_name", "spinner", { "title", "percentage", "message" } },
-	separators = {
-		component = " ",
-		progress = " | ",
-		message = { pre = "(", post = ")" },
-		percentage = { pre = "", post = "%% " },
-		title = { pre = "", post = ": " },
-		lsp_client_name = { pre = "[", post = "]" },
-		spinner = { pre = "", post = "" },
-		message = { commenced = "In Progress", completed = "Completed" },
-	},
-	-- display_components = { "lsp_client_name", "spinner", { "title", "percentage", "message" } },
-	timer = { progress_enddelay = 500, spinner = 1000, lsp_client_name_enddelay = -1 },
-	spinner_symbols = { "🌑 ", "🌒 ", "🌓 ", "🌔 ", "🌕 ", "🌖 ", "🌗 ", "🌘 " },
-}
-
-local function lsp_client_names()
-	local client_names = {}
-	for _, client in ipairs(vim.lsp.get_active_clients()) do
-		table.insert(client_names, client.name)
-	end
-	return table.concat(client_names, " ")
-end
-
 local spaces = function()
 	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
@@ -109,19 +80,18 @@ lualine.setup({
 		always_divide_middle = true,
 	},
 	sections = {
-		lualine_a = { branch, diagnostics },
-		lualine_b = { mode, lsp_client_names },
-		lualine_c = {},
-		-- lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_x = {},
-		lualine_y = { diff, "encoding", "filetype" },
+		lualine_a = { "mode" },
+		lualine_b = { branch, diff, diagnostics },
+		lualine_c = { filename },
+		lualine_x = { "encoding", "fileformat", "filetype" },
+		lualine_y = { "progress" },
 		lualine_z = { location },
 	},
 	inactive_sections = {
 		lualine_a = {},
 		lualine_b = {},
-		lualine_c = { "filename" },
-		lualine_x = { "location" },
+		lualine_c = {},
+		lualine_x = {},
 		lualine_y = {},
 		lualine_z = {},
 	},
