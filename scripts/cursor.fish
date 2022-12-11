@@ -1,6 +1,8 @@
 #!/bin/env fish
 
-set -x CURSOR $argv[1]
+ls /usr/share/icons/ &&
+    read -P "Cursor theme:" CURSORTHEME
+set -Ux CURSOR $CURSORTHEME
 echo $CURSOR
 echo "[Icon Theme]"\n"Inherits=$CURSOR" >~/.icons/default/index.theme
 ~/dotfiles/scripts/gsettings.fish

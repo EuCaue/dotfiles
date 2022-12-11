@@ -27,13 +27,6 @@ packer.startup(function()
 
 	-- Colorscheme
 	use({ "rose-pine/neovim", as = "rose-pine" }) -- Colorscheme
-	use("getomni/neovim") -- Omni Colorscheme
-	use({ "ellisonleao/gruvbox.nvim" }) -- Gruvbox colorscheme
-	use("folke/tokyonight.nvim") -- Colorscheme
-	use({ "dracula/vim", as = "dracula" }) -- ColorScheme
-	use({ "lunarvim/colorschemes" }) -- a bunch of colorschemes
-	use({ "Mofiqul/adwaita.nvim" }) -- Adwaita colorScheme
-	use("Mofiqul/vscode.nvim") -- Colorscheme
 
 	-- BetterComment
 	use("preservim/nerdcommenter") -- Comment
@@ -42,7 +35,7 @@ packer.startup(function()
 		config = function()
 			require("Comment").setup({
 				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-			}) -- better comment on JSX/TSX
+			})
 		end,
 	}) -- Also Comment
 	use({ "JoosepAlviste/nvim-ts-context-commentstring" }) -- Better JSX + TSX comment
@@ -63,7 +56,15 @@ packer.startup(function()
 	-- IDE
 	use({ "romgrk/barbar.nvim", requires = { "kyazdani42/nvim-web-devicons" } }) -- Tab/Buffer Manager
 	use({ "neovim/nvim-lspconfig" }) -- LSP
+	use({ "glepnir/lspsaga.nvim" }) -- a better lsp status
+	use({
+		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+		config = function()
+			require("lsp_lines").setup()
+		end,
+	}) -- lsp diagnostics in line
 	use({ "kyazdani42/nvim-tree.lua" }) -- Tree file
+	use("mattn/emmet-vim") -- emmet
 	use("editorconfig/editorconfig-vim") -- Editorconfig
 	use({ "https://github.com/terryma/vim-multiple-cursors" }) -- CTRL + N for multiple cursors
 	use({ "ryanoasis/vim-devicons" }) -- Developer Icons
@@ -72,10 +73,15 @@ packer.startup(function()
 	require("lualine").setup({}) -- status bar
 	use({ "windwp/nvim-ts-autotag" }) -- <> autoclose tag
 	use({ "lewis6991/gitsigns.nvim", tag = "release" }) -- Git
-	use({ "arkav/lualine-lsp-progress" }) -- lsp on statusline
+	use({ "nvim-telescope/telescope.nvim", tag = "0.1.0", requires = { { "nvim-lua/plenary.nvim" } } }) -- fzf finder
+	use("karb94/neoscroll.nvim") -- better scroll
+	use("folke/which-key.nvim") -- which key
+	use("petertriho/nvim-scrollbar") -- scrollbar 
+	use({ "nvim-telescope/telescope-project.nvim" }) -- find projects 
+	use("rcarriga/nvim-notify") -- notify
+	use({ "glepnir/dashboard-nvim" }) -- dashboard
 
 	-- Useful
-	use({ "nvim-telescope/telescope.nvim", tag = "0.1.0", requires = { { "nvim-lua/plenary.nvim" } } }) -- fzf finder
 	use({ "nvim-lua/popup.nvim" }) -- PopUp API for neovim
 	use({ "akinsho/toggleterm.nvim" }) -- show a "portable" terminal
 	use({
@@ -85,49 +91,28 @@ packer.startup(function()
 			require("todo-comments").setup({})
 		end,
 	}) -- TODO:
-	use({ "glepnir/dashboard-nvim" }) -- dashboard
+
 	use({
 		"iamcco/markdown-preview.nvim",
 		run = function()
 			vim.fn["mkdp#util#install"]()
 		end,
-	})
+	}) -- preview markdown files on browser 
 	use({
 		"folke/zen-mode.nvim",
 		config = function()
-			require("zen-mode").setup({
-				window = {
-					width = 0.85,
-					backdrop = 0.85,
-					height = 80,
-				},
-			})
+			require("zen-mode").setup({ window = { width = 0.85, backdrop = 0.85, height = 80 } })
 		end,
-	})
-	use("karb94/neoscroll.nvim")
-	use({ "mtoohey31/cmp-fish", ft = "fish" })
-	use("folke/which-key.nvim")
-	use("petertriho/nvim-scrollbar")
-	use({ "kevinhwang91/nvim-hlslens" })
-	use({ "nvim-telescope/telescope-project.nvim" })
-	use({ "mbbill/undotree" })
-	use({ "kdheepak/lazygit.nvim" })
-	use({
-		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-		config = function()
-			require("lsp_lines").setup()
-		end,
-	})
-	use({ "glepnir/lspsaga.nvim" })
-	use("nyarthan/telescope-code-actions.nvim")
-	use("rcarriga/nvim-notify")
-	--
-	-- CMP + LSP :
-	use("dcampos/cmp-emmet-vim")
-	use("mattn/emmet-vim")
-	use({ "catppuccin/nvim", as = "catppuccin" })
+	}) -- zenmode 
+
+	use({ "mbbill/undotree" }) -- undo tree
+	use({ "kdheepak/lazygit.nvim" }) -- lazygit inside nvim 
+
+	-- CMP :
+	use("dcampos/cmp-emmet-vim") 
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-nvim-lua")
+	use({ "mtoohey31/cmp-fish", ft = "fish" })
 	use("hrsh7th/cmp-buffer")
 	use("dburian/cmp-markdown-link")
 	use("hrsh7th/cmp-path")
