@@ -207,6 +207,7 @@ local servers = {
 	"html",
 	"cssls",
 	"cssmodules_ls",
+	"clangd",
 	"jsonls",
 }
 for _, lsp in ipairs(servers) do

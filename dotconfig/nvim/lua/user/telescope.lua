@@ -9,8 +9,10 @@ require("telescope").load_extension("project")
 require("telescope").load_extension("lazygit")
 
 telescope.setup({
-	defaults = {
-		layout_strategy = "vertical",
+
+	defaults = require("telescope.themes").get_dropdown({}),
+	{
+		layout_strategy = "center",
 
 		prompt_prefix = " ",
 		selection_caret = " ",
@@ -86,8 +88,8 @@ telescope.setup({
 		--   picker_config_key = value,
 		--   ...
 		-- }
-		old_files = {
-			theme = "dropdown",
+		oldfiles = {
+			-- theme = "dropdown",
 		},
 	},
 	extensions = {
