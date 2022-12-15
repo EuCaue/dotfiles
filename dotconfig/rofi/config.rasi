@@ -13,7 +13,9 @@ configuration {
   display-emoji: "  Emoji  ";
   display-calc: "  Calc";
   sidebar-mode: true;
+  hover-select: true;
   }
+
 
 
 * {

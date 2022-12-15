@@ -13,8 +13,8 @@ db.default_banner = {
 	"",
 }
 
-db.preview_command = "cat"
-db.preview_file_path = "/home/caue/assss.txt"
+-- db.preview_command = "cat"
+-- db.preview_file_path = "/home/caue/assss.txt"
 
 db.preview_file_height = 11
 db.preview_file_width = 90

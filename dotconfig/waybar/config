@@ -1,6 +1,6 @@
 { 
     "gtk-layer-shell": true,
-    // "layer": "top", // Waybar at top layer
+    "layer": "top", // Waybar at top layer
 	  "position": "top", // Waybar position (top|bottom|left|right)
     "height": 23, // Waybar height (to be removed for auto height)
 //  "width": 1280, // Waybar width

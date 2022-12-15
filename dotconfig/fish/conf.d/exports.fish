@@ -8,4 +8,5 @@ set -x EDITOR /usr/bin/nvim
 set -x VISUAL nvim
 
 # Add paths
-export PATH="$HOME/.local/bin:$HOME/dotfiles/scripts/:$PATH"
+fish_add_path "$HOME/.local/bin:$PATH"
+fish_add_path "$HOME/dotfiles/scripts/"

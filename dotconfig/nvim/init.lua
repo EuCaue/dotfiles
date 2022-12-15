@@ -13,12 +13,13 @@ require("user.autocmd") -- autocmd's
 require("user.whichkey") -- whichkey
 require("user.scrollbar") -- scrollbar
 require("user.cmp") -- CMP
-require("user.lspsaga") -- LSP SAGA
 require("user.lsp") -- LSP
+require("user.lspsaga") -- LSP SAGA
 require("user.mason") -- Mason
 require("user.null-ls") -- Global linter
 require("user.neoscroll") -- Neoscroll
 require("user.barbar") -- barbar
+require("user.navic")
 
 -- VIM
 vim.cmd("colorscheme rose-pine") -- colorscheme

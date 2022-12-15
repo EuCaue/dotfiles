@@ -58,11 +58,16 @@ packer.startup(function()
 	use({ "neovim/nvim-lspconfig" }) -- LSP
 	use({ "glepnir/lspsaga.nvim" }) -- a better lsp status
 	use({
-		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-		config = function()
-			require("lsp_lines").setup()
-		end,
-	}) -- lsp diagnostics in line
+		"SmiteshP/nvim-navic",
+		requires = "neovim/nvim-lspconfig",
+	})
+	use { 'fgheng/winbar.nvim' }
+	-- use({
+	-- 	"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+	-- 	config = function()
+	-- 		require("lsp_lines").setup()
+	-- 	end,
+	-- }) -- lsp diagnostics in line
 	use({ "kyazdani42/nvim-tree.lua" }) -- Tree file
 	use("mattn/emmet-vim") -- emmet
 	use("editorconfig/editorconfig-vim") -- Editorconfig
@@ -76,8 +81,8 @@ packer.startup(function()
 	use({ "nvim-telescope/telescope.nvim", tag = "0.1.0", requires = { { "nvim-lua/plenary.nvim" } } }) -- fzf finder
 	use("karb94/neoscroll.nvim") -- better scroll
 	use("folke/which-key.nvim") -- which key
-	use("petertriho/nvim-scrollbar") -- scrollbar 
-	use({ "nvim-telescope/telescope-project.nvim" }) -- find projects 
+	use("petertriho/nvim-scrollbar") -- scrollbar
+	use({ "nvim-telescope/telescope-project.nvim" }) -- find projects
 	use("rcarriga/nvim-notify") -- notify
 	use({ "glepnir/dashboard-nvim" }) -- dashboard
 
@@ -97,19 +102,19 @@ packer.startup(function()
 		run = function()
 			vim.fn["mkdp#util#install"]()
 		end,
-	}) -- preview markdown files on browser 
+	}) -- preview markdown files on browser
 	use({
 		"folke/zen-mode.nvim",
 		config = function()
 			require("zen-mode").setup({ window = { width = 0.85, backdrop = 0.85, height = 80 } })
 		end,
-	}) -- zenmode 
+	}) -- zenmode
 
 	use({ "mbbill/undotree" }) -- undo tree
-	use({ "kdheepak/lazygit.nvim" }) -- lazygit inside nvim 
+	use({ "kdheepak/lazygit.nvim" }) -- lazygit inside nvim
 
 	-- CMP :
-	use("dcampos/cmp-emmet-vim") 
+	use("dcampos/cmp-emmet-vim")
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-nvim-lua")
 	use({ "mtoohey31/cmp-fish", ft = "fish" })

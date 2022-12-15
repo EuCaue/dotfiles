@@ -4,7 +4,8 @@ if status is-interactive
     set fish_greeting  I use arch BTW
     # neofetch --kitty ~/dotfiles/dotconfig/neofetch/wallhaven-47wrlo.jpg
     # neofetch --kitty ~/Pictures/wallpapers/wallhaven-o59gvl.jpg
-    neofetch --kitty ~/Pictures/wallpapers\ mobile/wallhaven-9m9dqk.jpg
+    # neofetch --kitty ~/Pictures/wallpapers\ mobile/wallhaven-9m9dqk.jpg
 end
 
 fish_add_path /home/caue/.spicetify
+fish_add_path /home/caue/.local/share/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/cfg

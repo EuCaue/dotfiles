@@ -1,8 +1,13 @@
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-vim.diagnostic.config({ virtual_text = false })
-vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
 
+-- Add additional capabilities supported by nvim-cmp
+local navic = require("nvim-navic")
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local lspconfig = require("lspconfig")
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- vim.diagnostic.config({ virtual_text = false })
+-- vim.diagnostic.config({ virtual_lines = { only_current_line = true } })
+--
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
@@ -40,76 +45,32 @@ local on_attach = function(client, bufnr) -- Enable completion triggered by <c-x
 	vim.keymap.set("n", "<space>f", function()
 		vim.lsp.buf.format({ async = true })
 	end, bufopts)
+	if client.server_capabilities.documentSymbolProvider then
+		navic.attach(client, bufnr)
+	end
 end
 
--- local lsp_flags = {
--- 	debounce_text_changes = 150,
--- }
---
--- require("lspconfig").tsserver.setup({
--- 	on_attach = on_attach,
--- 	flags = lsp_flags,
--- })
---
--- require("lspconfig").cssls.setup({
--- 	capabilities = capabilities,
--- 	on_attach = on_attach,
--- 	filetypes = {
--- 		"css",
--- 		"scss",
--- 		"less",
--- 		"typescript",
--- 		"ts",
--- 		"typescriptreact",
--- 		"javascript",
--- 		"javascirptreact",
--- 		"js",
--- 	},
--- 	settings = {
--- 		css = { validate = true },
--- 		scss = { validate = true },
--- 		less = { validate = true },
--- 	},
--- })
--- require("lspconfig").cssmodules_ls.setup({
--- 	on_attach = on_attach,
--- })
---
--- require("lspconfig").html.setup({
--- 	on_attach = on_attach,
--- 	flags = lsp_flags,
--- })
--- require("lspconfig").quick_lint_js.setup({
--- 	on_attach = on_attach,
--- 	flags = lsp_flags,
--- })
--- require("lspconfig").jsonls.setup({
--- 	on_attach = on_attach,
--- 	flags = lsp_flags,
--- })
---
--- require("lspconfig").sumneko_lua.setup({
--- 	settings = {
--- 		Lua = {
--- 			runtime = {
--- 				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
--- 				version = "LuaJIT",
--- 			},
--- 			diagnostics = {
--- 				-- Get the language server to recognize the `vim` global
--- 				globals = { "vim" },
--- 			},
--- 			workspace = {
--- 				-- Make the server aware of Neovim runtime files
--- 				library = vim.api.nvim_get_runtime_file("", true),
--- 			},
--- 			-- Do not send telemetry data containing a randomized but unique identifier
--- 			telemetry = {
--- 				enable = false,
--- 			},
--- 		},
--- 	},
--- })
+-- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+local servers = {
+	"tsserver",
+	"bashls",
+	"sumneko_lua",
+	"pyright",
+	"emmet_ls",
+	"eslint",
+	"marksman",
+	"html",
+	"cssls",
+	"cssmodules_ls",
+	"clangd",
+	"jsonls",
+}
+for _, lsp in ipairs(servers) do
+	lspconfig[lsp].setup({
+		on_attach = on_attach,
+		capabilities = capabilities,
+	})
+end
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 
