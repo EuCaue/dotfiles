@@ -1,6 +1,6 @@
 configuration {
   drun-display-format: "{icon} {name}";
-  font: "JetBrainsMono Nerd Font Regular 13";
+  font: "SF Mono regular 15";
   modi: "window,run,drun,emoji,calc,";
   show-icons: true;
   icon-theme: "Rose Pine";

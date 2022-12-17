@@ -1,5 +1,6 @@
 require("null-ls").setup({
 	diagnostics_format = "[#{c}] #{m} (#{s})",
+	temp_dir = "/home/caue/nothing/",
 
 	sources = {
 		-- NOTE: FORMATTING

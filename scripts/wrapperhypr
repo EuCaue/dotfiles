@@ -4,6 +4,6 @@ eval $(/usr/bin/gnome-keyring-daemon --start)
 redshift -m drm -PO 3000
 export SSH_AUTH_SOCK
 export QT_QPA_PLATFORMTHEME=gnome
-export dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+export dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=Hyprland
 export ZDOTDIR="$HOME/.config/zsh/"
 exec Hyprland

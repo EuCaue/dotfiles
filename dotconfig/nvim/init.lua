@@ -8,9 +8,9 @@ require("user.autopairs") -- auto close ([{)
 require("user.gitsigns") -- git status
 require("user.nvimtree") -- tree file manager
 require("user.toggleterm") -- toggle a terminal inside of neovim
-require("user.dashboard") -- dashboard
-require("user.autocmd") -- autocmd's
-require("user.whichkey") -- whichkey
+require("user.dashboard") -- dashboard 
+require("user.autocmd") -- autocmd's 
+require("user.whichkey") -- whichkey 
 require("user.scrollbar") -- scrollbar
 require("user.cmp") -- CMP
 require("user.lsp") -- LSP
@@ -24,3 +24,5 @@ require("user.navic")
 -- VIM
 vim.cmd("colorscheme rose-pine") -- colorscheme
 vim.cmd('let g:netrw_bufsettings = "noma nomod nonu nowrap ro buflisted"')
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1

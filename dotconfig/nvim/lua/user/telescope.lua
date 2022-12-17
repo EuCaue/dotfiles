@@ -91,6 +91,10 @@ telescope.setup({
 		oldfiles = {
 			-- theme = "dropdown",
 		},
+
+		live_grep = {
+			only_sort_text = true,
+		},
 	},
 	extensions = {
 		file_browser = {

@@ -31,12 +31,14 @@ keymap("n", "<leader>lg", "<cmd>LazyGit<cr>", opts)
 keymap("n", "<leader>qq", "<cmd>ToggleTerm<cr>", opts)
 
 -- NvimTree
-keymap("n", "<leader>g", "<cmd>:NvimTreeToggle<cr>", opts)
-keymap("n", "<leader>h", "<cmd>:NvimTreeFocus<cr>", opts)
--- keymap("n", "<leader>o", "<cmd>:NvimTreeCollapse<cr>", opts)
+keymap("n", "<leader>g", "<cmd>NvimTreeToggle<cr>", opts)
+keymap("n", "<leader>h", "<cmd>NvimTreeFocus<cr>", opts)
+keymap("n", "<leader>no", "<cmd>NvimTreeCollapse<cr>", opts)
 keymap("n", "<leader>D", "<cmd>cd ~/Dev/ | NvimTreeToggle<cr>", opts)
 keymap("n", "<leader>z", "<cmd>cd ~/dotfiles/ | NvimTreeToggle<cr>", opts)
 
+-- UndoTree 
+keymap("n", "<leader>u", "<cmd>UndotreeToggle<cr>", opts)
 
 -- Telescope
 keymap("n", "<leader>to", "<cmd>Telescope oldfiles<cr>", opts)

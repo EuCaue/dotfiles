@@ -1,7 +1,8 @@
 {
     "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
     "Lua.diagnostics.globals": [
-        "lsp_keymaps"
+        "lsp_keymaps",
+        "HOME"
     ],
     "Lua.workspace.library": [
         "/home/caue/.config/nvim",
