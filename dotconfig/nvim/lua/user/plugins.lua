@@ -75,12 +75,6 @@ packer.startup(function()
 		requires = "neovim/nvim-lspconfig",
 	})
 	use({ "fgheng/winbar.nvim" })
-	-- use({
-	-- 	"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-	-- 	config = function()
-	-- 		require("lsp_lines").setup()
-	-- 	end,
-	-- }) -- lsp diagnostics in line
 	use({ "kyazdani42/nvim-tree.lua" }) -- Tree file
 	use("mattn/emmet-vim") -- emmet
 	use("editorconfig/editorconfig-vim") -- Editorconfig
@@ -98,6 +92,8 @@ packer.startup(function()
 	use({ "nvim-telescope/telescope-project.nvim" }) -- find projects
 	use("rcarriga/nvim-notify") -- notify
 	use({ "glepnir/dashboard-nvim" }) -- dashboard
+	use({ "debugloop/telescope-undo.nvim" })
+	use({ "shortcuts/no-neck-pain.nvim" })
 
 	-- Useful
 	use({ "nvim-lua/popup.nvim" }) -- PopUp API for neovim

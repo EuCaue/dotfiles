@@ -24,7 +24,7 @@ keymap("x", "<C-/>", "<cmd>normal gcc<cr>", opts)
 keymap("n", "<C-/>", "<cmd>normal gcc<cr>", opts)
 keymap("i", "<C-/>", "<cmd>normal gcc<cr>", opts)
 
-keymap("n", "<leader>x", "<cmd>e ~/dotfiles/dotconfig/nvim/init.lua<cr>", opts)
+keymap("n", "<leader>x", "<cmd>cd ~/dotfiles/dotconfig/nvim/ | e ~/dotfiles/dotconfig/nvim/init.lua<cr>", opts)
 
 -- LazyGit && ToggleTerm
 keymap("n", "<leader>lg", "<cmd>LazyGit<cr>", opts)
@@ -37,8 +37,8 @@ keymap("n", "<leader>no", "<cmd>NvimTreeCollapse<cr>", opts)
 keymap("n", "<leader>D", "<cmd>cd ~/Dev/ | NvimTreeToggle<cr>", opts)
 keymap("n", "<leader>z", "<cmd>cd ~/dotfiles/ | NvimTreeToggle<cr>", opts)
 
--- UndoTree 
-keymap("n", "<leader>u", "<cmd>UndotreeToggle<cr>", opts)
+keymap("n", "<leader>nc", "<cmd>NoNeckPain<cr>", opts)
+keymap("n", "<leader>nz", "<cmd>ZenMode<cr>", opts)
 
 -- Telescope
 keymap("n", "<leader>to", "<cmd>Telescope oldfiles<cr>", opts)
@@ -48,7 +48,9 @@ keymap("n", "<leader>tp", "<cmd>Telescope project<cr>", opts)
 keymap("n", "<leader>tc", "<cmd>Telescope colorscheme<cr>", opts)
 keymap("n", "<leader>tg", "<cmd>Telescope git_status<cr>", opts)
 keymap("n", "<leader>ca", "<cmd>Telescope code_actions<cr>", opts)
--- vim.keymap.set("n", "<space>ta", "<cmd>Telescope code_actions<cr>", { remap = true })
+keymap("n", "<leader>u", "<cmd>Telescope undo<cr>", opts)
+keymap("n", "<leader>tk", "<cmd>Telescope keymaps<cr>", opts)
+
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)

@@ -22,7 +22,7 @@ local on_attach = function(client, bufnr) -- Enable completion triggered by <c-x
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
 	vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", bufopts)
-	vim.keymap.set("n", "F", "<cmd>Lspsaga lsp_finder<CR>", bufopts)
+	vim.keymap.set("n", "<space>F", "<cmd>Lspsaga lsp_finder<CR>", bufopts)
 	vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", bufopts)
 	vim.keymap.set("n", "<space>o", "<cmd>Lspsaga outline<CR>", bufopts)
 	vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", bufopts)
@@ -72,3 +72,7 @@ for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
+
+vim.diagnostic.config {
+  virtual_text = false,
+}

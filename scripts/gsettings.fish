@@ -1,6 +1,6 @@
 #!/usr/bin/fish
 
-set FONT "Liga SFMonoNerdFont"
+set FONT "BitstreamVeraSansMono Nerd Font"
 
 gsettings set org.gnome.desktop.interface font-name $FONT &&
     gsettings set org.gnome.desktop.interface document-font-name $FONT &&
