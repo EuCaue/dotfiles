@@ -1,6 +1,7 @@
 #!/bin/sh 
  
 format_disk() {
+  loadkeys br-abnt2
   lsblk 
   read -p "Select the disk: " -r DISK &&
   cfdisk "/dev/$DISK"
@@ -59,10 +60,10 @@ post_install() {
   reboot
 }
 
-format_disk
-make_filesystem
-mount_fs
-pacstrap_pkgs
-config_system
-grub_install
-post_install
+format_disk &&
+make_filesystem &&
+mount_fs &&
+pacstrap_pkgs &&
+config_system &&
+grub_install &&
+post_install &&
