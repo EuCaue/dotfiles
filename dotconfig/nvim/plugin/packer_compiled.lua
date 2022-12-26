@@ -74,6 +74,11 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  Colorschemes = {
+    loaded = true,
+    path = "/home/caue/.local/share/nvim/site/pack/packer/start/Colorschemes",
+    url = "https://github.com/LunarVim/Colorschemes"
+  },
   ["Comment.nvim"] = {
     config = { "\27LJ\2\n \1\0\0\6\0\a\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\5\0006\3\0\0'\5\3\0B\3\2\0029\3\4\3B\3\1\2=\3\6\2B\0\2\1K\0\1\0\rpre_hook\1\0\0\20create_pre_hook7ts_context_commentstring.integrations.comment_nvim\nsetup\fComment\frequire\0" },
     loaded = true,
@@ -85,10 +90,15 @@ _G.packer_plugins = {
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
-  ["barbar.nvim"] = {
+  ["alpha-nvim"] = {
     loaded = true,
-    path = "/home/caue/.local/share/nvim/site/pack/packer/start/barbar.nvim",
-    url = "https://github.com/romgrk/barbar.nvim"
+    path = "/home/caue/.local/share/nvim/site/pack/packer/start/alpha-nvim",
+    url = "https://github.com/goolord/alpha-nvim"
+  },
+  ["bufferline.nvim"] = {
+    loaded = true,
+    path = "/home/caue/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
+    url = "https://github.com/akinsho/bufferline.nvim"
   },
   ["cmp-buffer"] = {
     loaded = true,
@@ -143,11 +153,6 @@ _G.packer_plugins = {
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
-  ["dashboard-nvim"] = {
-    loaded = true,
-    path = "/home/caue/.local/share/nvim/site/pack/packer/start/dashboard-nvim",
-    url = "https://github.com/glepnir/dashboard-nvim"
-  },
   ["editorconfig-vim"] = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/editorconfig-vim",
@@ -173,10 +178,20 @@ _G.packer_plugins = {
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/hyprland-vim-syntax",
     url = "https://github.com/theRealCarneiro/hyprland-vim-syntax"
   },
+  ["indent-blankline.nvim"] = {
+    loaded = true,
+    path = "/home/caue/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
+    url = "https://github.com/lukas-reineke/indent-blankline.nvim"
+  },
   ["lazygit.nvim"] = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/lazygit.nvim",
     url = "https://github.com/kdheepak/lazygit.nvim"
+  },
+  ["lir.nvim"] = {
+    loaded = true,
+    path = "/home/caue/.local/share/nvim/site/pack/packer/start/lir.nvim",
+    url = "https://github.com/tamago324/lir.nvim"
   },
   ["lspsaga.nvim"] = {
     loaded = true,
@@ -354,20 +369,10 @@ _G.packer_plugins = {
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/vim-multiple-cursors",
     url = "https://github.com/terryma/vim-multiple-cursors"
   },
-  ["vim-polyglot"] = {
-    loaded = true,
-    path = "/home/caue/.local/share/nvim/site/pack/packer/start/vim-polyglot",
-    url = "https://github.com/sheerun/vim-polyglot"
-  },
   ["vim-styled-components"] = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/vim-styled-components",
     url = "https://github.com/styled-components/vim-styled-components"
-  },
-  ["vscode-es7-javascript-react-snippets"] = {
-    loaded = true,
-    path = "/home/caue/.local/share/nvim/site/pack/packer/start/vscode-es7-javascript-react-snippets",
-    url = "https://github.com/dsznajder/vscode-es7-javascript-react-snippets"
   },
   ["which-key.nvim"] = {
     loaded = true,

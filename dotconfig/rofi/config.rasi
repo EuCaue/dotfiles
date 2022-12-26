@@ -1,6 +1,6 @@
 configuration {
   drun-display-format: "{icon} {name}";
-  font: "BitstreamVeraSansMono Nerd Font 15";
+  font: "CaskaydiaCove Nerd Font 14";
   modi: "window,run,drun,emoji,calc,";
   show-icons: true;
   icon-theme: "Rose Pine";

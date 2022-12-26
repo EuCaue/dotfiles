@@ -91,6 +91,7 @@
         "on-click": "pavucontrol",
         "on-click-middle": "pactl set-sink-volume @DEFAULT_SINK@ 50%",
         "on-click-right": "pactl set-sink-volume @DEFAULT_SINK@ 50%",
+        "max-volume": 150
 },
 
     "cpu": {
@@ -144,11 +145,6 @@
     "backlight": {
         "device": "acpi_video1",
         "format": "{percent}% {icon}",
-        "on-scroll-up": "brightnessctl set +10%",
-        "on-click": "brightnessctl set +10%",
-        "on-click-right": "brightnessctl set 10%-",
-        "on-click-middle": "brightnessctl set 70%",
-        "on-scroll-down": "brightnessctl set 10%-",
         "format-icons": ["", "", "", "", "", "", "", "", ""]
 },
 

@@ -1,6 +1,7 @@
-#!/usr/bin/fish
+#!/usr/bin/env fish
 
-set FONT "BitstreamVeraSansMono Nerd Font"
+set FONT "CaskaydiaCove Nerd Font"
+
 
 gsettings set org.gnome.desktop.interface font-name $FONT &&
     gsettings set org.gnome.desktop.interface document-font-name $FONT &&

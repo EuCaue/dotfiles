@@ -7,7 +7,7 @@ set recolor-keephue "true"
 set zoom-center "true"
 
 set adjust-open "width"
-set font "BitstreamVeraSansMono Nerd Font 10"
+set font "CaskaydiaCove Nerd Font 10"
 
 set statusbar-bg                "#191724"
 set statusbar-fg                "#e0def4"

@@ -1,6 +1,7 @@
 # NOTE: most used
 alias cfg='nvim ~/.config/fish/config.fish'
 alias kfg='nvim ~/.config/kitty/kitty.conf'
+alias wfg="nvim ~/.config/wezterm/wezterm.lua"
 alias hfg='nvim ~/.config/hypr/hyprland.conf'
 alias nft='nvim ~/.config/neofetch/config.conf'
 alias nfg='nvim ~/.config/nvim/init.lua'
@@ -26,6 +27,8 @@ alias c='cursor.fish'
 alias v='nvim'
 alias r='ranger'
 alias g='lazygit'
+alias :wq="exit"
+alias :q="exit"
 
 # just make Interactive
 alias mv='mv -i'

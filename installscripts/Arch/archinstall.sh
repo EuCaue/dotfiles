@@ -3,7 +3,7 @@
   loadkeys br-abnt2 &&
   lsblk &&
   read -p "Select the disk: " -r DISK &&
-  cfdisk "/dev/$DISK"
+  cfdisk "/dev/$DISK" &&
 
   lsblk &&
   read -p "Root partition: " -r ROOT &&
