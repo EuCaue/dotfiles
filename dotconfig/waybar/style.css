@@ -14,7 +14,7 @@
 * {
   border: none;
   /* border-radius: 0; */
-  font-family: "CaskaydiaCove Nerd Font", "Material Icons", monospace;
+  font-family: "JetBrainsMono Nerd Font", "Material Icons", monospace;
   font-size: 14px;
   font-weight: 500;
   /* min-height: 0; */
@@ -98,3 +98,4 @@ window#waybar {
 #tray {
   /* margin-right: 15.5px; */
 }
+

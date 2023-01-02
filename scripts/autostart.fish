@@ -5,7 +5,8 @@ waybar &
 ~/dotfiles/scripts/gsettings.fish &
 ~/dotfiles/scripts/suspend.sh &
 ~/dotfiles/scripts/rofi-clipboard.fish &
-xdman &
+/opt/xdman/xdm-app &
+redshift -O 5500K &
 swaync &
 sleep 1
 killall xdg-desktop-portal-hyprland

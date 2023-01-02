@@ -17,9 +17,10 @@ table.insert(mykeys, {
 
 return {
 	colors = colors,
+	default_cwd = "pwd",
 	window_frame = window_frame,
-	font = wezterm.font("CaskaydiaCove Nerd Font", { weight = "Regular", italic = true }),
-	font_size = 15.0,
+	font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Regular", italic = true }),
+	font_size = 13.0,
 	scrollback_lines = 2500,
 	cursor_blink_ease_in = "EaseOut",
 	cursor_blink_rate = 450,

@@ -23,3 +23,5 @@ require("user.navic") --
 require("user.indent-blankline") --
 require("user.alpha")
 require("user.lir")
+
+require("chafa").setup({})

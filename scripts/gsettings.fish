@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-set FONT "CaskaydiaCove Nerd Font"
+set FONT "JetBrainsMono Nerd Font 10"
 
 
 gsettings set org.gnome.desktop.interface font-name $FONT &&
