@@ -1,7 +1,8 @@
 vim.cmd("colorscheme rose-pine") -- colorscheme
-require("user.plugins") -- all plugins
 require("user.mapping") -- keybinds require("user.settings") -- config
 require("user.settings") -- configs
+require("user.plugins") -- all plugins
+-- require("user.lazy")
 require("user.lualine") -- status bar config
 require("user.telescope") -- telescope config
 require("user.treesitter") -- treesitter config, betterhighlight
@@ -23,5 +24,4 @@ require("user.navic") --
 require("user.indent-blankline") --
 require("user.alpha")
 require("user.lir")
-
 require("chafa").setup({})

@@ -51,6 +51,16 @@ local location = {
 
 local function client_names()
 	local client = vim.lsp.get_active_clients()[1]
+	local clients = 0
+
+	for k, v in pairs(vim.lsp.get_active_clients()) do
+		clients = clients + 1
+	end
+
+	if clients == 1 then
+		return string.format("[%s]", "LSP Inactive")
+	end
+
 	return string.format("[%s]", client.name)
 end
 

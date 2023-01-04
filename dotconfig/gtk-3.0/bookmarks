@@ -9,5 +9,5 @@ file:///home/caue/.config/nvim nvim
 file:///home/caue/.local .local
 file:///home/caue/.local/share/nvim nvim
 file:///home/caue/.cache .cache
-file:///home/caue/minecraft .minecraft
 file:///home/caue/Music/OnTheSpot OnTheSpot
+file:///home/caue/.minecraft .minecraft
