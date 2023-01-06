@@ -74,11 +74,6 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  Colorschemes = {
-    loaded = true,
-    path = "/home/caue/.local/share/nvim/site/pack/packer/start/Colorschemes",
-    url = "https://github.com/LunarVim/Colorschemes"
-  },
   ["Comment.nvim"] = {
     config = { "\27LJ\2\n \1\0\0\6\0\a\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\5\0006\3\0\0'\5\3\0B\3\2\0029\3\4\3B\3\1\2=\3\6\2B\0\2\1K\0\1\0\rpre_hook\1\0\0\20create_pre_hook7ts_context_commentstring.integrations.comment_nvim\nsetup\fComment\frequire\0" },
     loaded = true,
@@ -90,25 +85,20 @@ _G.packer_plugins = {
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["adwaita.nvim"] = {
+    loaded = true,
+    path = "/home/caue/.local/share/nvim/site/pack/packer/start/adwaita.nvim",
+    url = "https://github.com/Mofiqul/adwaita.nvim"
+  },
   ["alpha-nvim"] = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/alpha-nvim",
     url = "https://github.com/goolord/alpha-nvim"
   },
-  ["baleia.nvim"] = {
-    loaded = true,
-    path = "/home/caue/.local/share/nvim/site/pack/packer/start/baleia.nvim",
-    url = "https://github.com/m00qek/baleia.nvim"
-  },
   ["bufferline.nvim"] = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
     url = "https://github.com/akinsho/bufferline.nvim"
-  },
-  ["chafa.nvim"] = {
-    loaded = true,
-    path = "/home/caue/.local/share/nvim/site/pack/packer/start/chafa.nvim",
-    url = "https://github.com/princejoogie/chafa.nvim"
   },
   ["cmp-buffer"] = {
     loaded = true,
@@ -163,6 +153,11 @@ _G.packer_plugins = {
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["darkplus.nvim"] = {
+    loaded = true,
+    path = "/home/caue/.local/share/nvim/site/pack/packer/start/darkplus.nvim",
+    url = "https://github.com/LunarVim/darkplus.nvim"
+  },
   ["editorconfig-vim"] = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/editorconfig-vim",
@@ -173,10 +168,10 @@ _G.packer_plugins = {
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/emmet-vim",
     url = "https://github.com/mattn/emmet-vim"
   },
-  ["friendly-snippets"] = {
+  ["fidget.nvim"] = {
     loaded = true,
-    path = "/home/caue/.local/share/nvim/site/pack/packer/start/friendly-snippets",
-    url = "https://github.com/rafamadriz/friendly-snippets"
+    path = "/home/caue/.local/share/nvim/site/pack/packer/start/fidget.nvim",
+    url = "https://github.com/j-hui/fidget.nvim"
   },
   ["gitsigns.nvim"] = {
     loaded = true,
@@ -243,6 +238,11 @@ _G.packer_plugins = {
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/no-neck-pain.nvim",
     url = "https://github.com/shortcuts/no-neck-pain.nvim"
   },
+  ["nui.nvim"] = {
+    loaded = true,
+    path = "/home/caue/.local/share/nvim/site/pack/packer/start/nui.nvim",
+    url = "https://github.com/MunifTanjim/nui.nvim"
+  },
   ["null-ls.nvim"] = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
@@ -262,6 +262,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/nvim-cmp-fonts",
     url = "https://github.com/amarakon/nvim-cmp-fonts"
+  },
+  ["nvim-colorizer.lua"] = {
+    loaded = true,
+    path = "/home/caue/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
+    url = "https://github.com/NvChad/nvim-colorizer.lua"
+  },
+  ["nvim-cursorline"] = {
+    loaded = true,
+    path = "/home/caue/.local/share/nvim/site/pack/packer/start/nvim-cursorline",
+    url = "https://github.com/yamatsum/nvim-cursorline"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -306,7 +316,7 @@ _G.packer_plugins = {
   ["nvim-ts-rainbow"] = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow",
-    url = "https://github.com/p00f/nvim-ts-rainbow"
+    url = "https://github.com/mrjones2014/nvim-ts-rainbow"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
@@ -364,16 +374,6 @@ _G.packer_plugins = {
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
   },
-  ["vim-css-color"] = {
-    loaded = true,
-    path = "/home/caue/.local/share/nvim/site/pack/packer/start/vim-css-color",
-    url = "https://github.com/ap/vim-css-color"
-  },
-  ["vim-devicons"] = {
-    loaded = true,
-    path = "/home/caue/.local/share/nvim/site/pack/packer/start/vim-devicons",
-    url = "https://github.com/ryanoasis/vim-devicons"
-  },
   ["vim-multiple-cursors"] = {
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/vim-multiple-cursors",
@@ -395,7 +395,7 @@ _G.packer_plugins = {
     url = "https://github.com/fgheng/winbar.nvim"
   },
   ["zen-mode.nvim"] = {
-    config = { "\27LJ\2\n}\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\vwindow\1\0\0\1\0\3\vheight\3P\rbackdrop\4³æÌ™\3³æ¬ÿ\3\nwidth\4³æÌ™\3³æ¬ÿ\3\nsetup\rzen-mode\frequire\0" },
+    config = { "\27LJ\2\n}\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\vwindow\1\0\0\1\0\3\rbackdrop\4³æÌ™\3³æ¬ÿ\3\nwidth\4³æÌ™\3³æ¬ÿ\3\vheight\3P\nsetup\rzen-mode\frequire\0" },
     loaded = true,
     path = "/home/caue/.local/share/nvim/site/pack/packer/start/zen-mode.nvim",
     url = "https://github.com/folke/zen-mode.nvim"
@@ -403,18 +403,18 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: todo-comments.nvim
-time([[Config for todo-comments.nvim]], true)
-try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18todo-comments\frequire\0", "config", "todo-comments.nvim")
-time([[Config for todo-comments.nvim]], false)
 -- Config for: zen-mode.nvim
 time([[Config for zen-mode.nvim]], true)
-try_loadstring("\27LJ\2\n}\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\vwindow\1\0\0\1\0\3\vheight\3P\rbackdrop\4³æÌ™\3³æ¬ÿ\3\nwidth\4³æÌ™\3³æ¬ÿ\3\nsetup\rzen-mode\frequire\0", "config", "zen-mode.nvim")
+try_loadstring("\27LJ\2\n}\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\vwindow\1\0\0\1\0\3\rbackdrop\4³æÌ™\3³æ¬ÿ\3\nwidth\4³æÌ™\3³æ¬ÿ\3\vheight\3P\nsetup\rzen-mode\frequire\0", "config", "zen-mode.nvim")
 time([[Config for zen-mode.nvim]], false)
 -- Config for: Comment.nvim
 time([[Config for Comment.nvim]], true)
 try_loadstring("\27LJ\2\n \1\0\0\6\0\a\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\5\0006\3\0\0'\5\3\0B\3\2\0029\3\4\3B\3\1\2=\3\6\2B\0\2\1K\0\1\0\rpre_hook\1\0\0\20create_pre_hook7ts_context_commentstring.integrations.comment_nvim\nsetup\fComment\frequire\0", "config", "Comment.nvim")
 time([[Config for Comment.nvim]], false)
+-- Config for: todo-comments.nvim
+time([[Config for todo-comments.nvim]], true)
+try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\18todo-comments\frequire\0", "config", "todo-comments.nvim")
+time([[Config for todo-comments.nvim]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads

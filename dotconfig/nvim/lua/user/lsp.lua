@@ -1,10 +1,28 @@
--- Add additional capabilities supported by nvim-cmp
 local navic = require("nvim-navic")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lspconfig = require("lspconfig")
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
--- Mappings.
+local border = {
+	{ "🭽", "FloatBorder" },
+	{ "▔", "FloatBorder" },
+	{ "🭾", "FloatBorder" },
+	{ "▕", "FloatBorder" },
+	{ "🭿", "FloatBorder" },
+	{ "▁", "FloatBorder" },
+	{ "🭼", "FloatBorder" },
+	{ "▏", "FloatBorder" },
+}
+
+-- vim.o.updatetime = 250
+-- vim.cmd([[autocmd! CursorHold,CursorHoldI * Lspsaga show_cursor_diagnostics]])
+
+-- LSP settings (for overriding per client)
+local handlers = {
+	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+}
+
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
 -- vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
@@ -17,8 +35,6 @@ vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
 local on_attach = function(client, bufnr) -- Enable completion triggered by <c-x><c-o>
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-	-- Mappings.
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
 	vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", bufopts)
@@ -63,16 +79,24 @@ for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
 		on_attach = on_attach,
 		capabilities = capabilities,
+		handlers = handlers,
 	})
 end
 
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+require("lspconfig").bashls.setup({
+	filetypes = { "sh", "zsh", "fish" },
+})
 
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
-vim.diagnostic.config {
-  virtual_text = false,
-}
+vim.diagnostic.config({
+	virtual_text = false,
+	signs = true,
+	underline = true,
+	update_in_insert = false,
+	severity_sort = false,
+})

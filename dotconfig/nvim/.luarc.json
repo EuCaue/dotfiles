@@ -4,7 +4,8 @@
         "lsp_keymaps",
         "HOME",
         "vim",
-        "use"
+        "use",
+        "client"
     ],
     "Lua.workspace.library": [
         "/home/caue/.config/nvim",

@@ -28,13 +28,14 @@ keymap("n", "<leader>x", "<cmd>cd ~/dotfiles/dotconfig/nvim/ | e ~/dotfiles/dotc
 
 -- LazyGit && ToggleTerm
 keymap("n", "<leader>lg", "<cmd>LazyGit<cr>", opts)
-keymap("n", "<leader>qq", "<cmd>ToggleTermToggleAll<cr>", opts)
+keymap("n", "<leader>qq", "<cmd>ToggleTerm<cr>", opts)
 
 -- NvimTree
 keymap("n", "<leader>g", "<cmd>NvimTreeToggle<cr>", opts)
 keymap("n", "<leader>h", "<cmd>NvimTreeFocus<cr>", opts)
 keymap("n", "<leader>no", "<cmd>NvimTreeCollapse<cr>", opts)
 keymap("n", "<leader>d", "<cmd>cd ~/dotfiles/ | NvimTreeToggle<cr>", opts)
+
 
 keymap("n", "<leader>nc", "<cmd>NoNeckPain<cr>", opts)
 keymap("n", "<leader>nz", "<cmd>ZenMode<cr>", opts)

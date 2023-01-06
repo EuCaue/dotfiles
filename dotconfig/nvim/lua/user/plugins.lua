@@ -40,6 +40,8 @@ packer.startup(function()
 
 	-- Colorscheme
 	use({ "rose-pine/neovim", as = "rose-pine" }) -- Colorscheme
+	use({ "Mofiqul/adwaita.nvim" })
+	use({ "LunarVim/darkplus.nvim" })
 
 	-- BetterComment
 	use("preservim/nerdcommenter") -- Comment
@@ -56,13 +58,13 @@ packer.startup(function()
 	-- BetterHighlight
 	use("styled-components/vim-styled-components") -- highlight for styled-components
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- a better highlight for everything
-	use({ "p00f/nvim-ts-rainbow" }) -- {} colored
-	use({ "https://github.com/ap/vim-css-color" }) -- CSS Color Preview
+	use({ "mrjones2014/nvim-ts-rainbow" }) -- {} colored
+	-- use({ "https://github.com/ap/vim-css-color" }) -- CSS Color Preview
 	use("theRealCarneiro/hyprland-vim-syntax") -- Better syntax highlight in hyprland.conf
 
 	-- Snippets
 	use({ "L3MON4D3/LuaSnip" })
-	use({ "rafamadriz/friendly-snippets" }) -- a lot of snippets
+	-- use({ "rafamadriz/friendly-snippets" }) -- a lot of snippets
 
 	-- IDE
 	use({ "kyazdani42/nvim-web-devicons" })
@@ -78,7 +80,6 @@ packer.startup(function()
 	use({ "akinsho/bufferline.nvim", tag = "v3.*", requires = "nvim-tree/nvim-web-devicons" })
 	use("editorconfig/editorconfig-vim") -- Editorconfig
 	use({ "https://github.com/terryma/vim-multiple-cursors" }) -- CTRL + N for multiple cursors
-	use({ "ryanoasis/vim-devicons" }) -- Developer Icons
 	use({ "windwp/nvim-autopairs" }) -- auto close ({[
 	use({ "nvim-lualine/lualine.nvim" }) -- status bar
 	use({ "windwp/nvim-ts-autotag" }) -- <> autoclose tag
@@ -90,10 +91,15 @@ packer.startup(function()
 	use("petertriho/nvim-scrollbar") -- scrollbar
 	use({ "nvim-telescope/telescope-project.nvim" }) -- find projects
 	use("rcarriga/nvim-notify") -- notify
-	use({ "debugloop/telescope-undo.nvim" })
+	use({ "debugloop/telescope-undo.nvim" }) -- undo tree with telescope
 	use({ "shortcuts/no-neck-pain.nvim" })
 	use({ "goolord/alpha-nvim" }) -- title screen
-	use({ "LunarVim/Colorschemes" })
+	use({ "j-hui/fidget.nvim" })
+	use({ "yamatsum/nvim-cursorline" })
+	use({ "NvChad/nvim-colorizer.lua" })
+	use({ "MunifTanjim/nui.nvim" })
+
+	--
 	-- Useful
 	use({ "nvim-lua/popup.nvim" }) -- PopUp API for neovim
 	use({ "akinsho/toggleterm.nvim" }) -- show a "portable" terminal
@@ -104,8 +110,6 @@ packer.startup(function()
 		end,
 	}) -- TODO:
 	use({ "tamago324/lir.nvim" })
-	use({ "princejoogie/chafa.nvim" })
-	use({ "m00qek/baleia.nvim" })
 
 	use({
 		"iamcco/markdown-preview.nvim",

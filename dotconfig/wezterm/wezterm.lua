@@ -15,10 +15,12 @@ table.insert(mykeys, {
 	action = wezterm.action.ActivateTabRelative(1),
 })
 
+local pwd = io.popen("cd"):read()
+
 return {
 	colors = colors,
-	default_cwd = "pwd",
 	window_frame = window_frame,
+	default_cwd = pwd,
 	font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Regular", italic = true }),
 	font_size = 13.0,
 	scrollback_lines = 2500,

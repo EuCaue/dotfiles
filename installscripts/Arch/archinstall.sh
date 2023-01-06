@@ -1,29 +1,31 @@
+# HACK: WIP 
+
 #!/bin/sh 
  
 format_disk() {
   echo "Keyboard layout: " &&
-  read -r kb-layout &&
-  loadkeys $kb-layout &&
+  read -r kb &&
+  loadkeys $kb &&
   lsblk &&
-  read -p "Select the disk: " -r DISK &&
-  cfdisk "/dev/$DISK" &&
+  read -p "Select the disk (e.g sda): " -r DISK &&
+  cfdisk "/dev/$DISK" 
 }
 
 make_filesystem() {
   lsblk &&
-  read -p "Root partition: " -r ROOT &&
-  read -p "Boot Partition: " -r BOOT && 
-  mkfs.ext4 $ROOT &&
-  mkfs.fat -F 32 $BOOT &&
+  read -p "Root partition: (e.g: sda1) " -r ROOT &&
+  read -p "Boot Partition: (e.g: sda2)" -r BOOT && 
+  mkfs.ext4 "/dev/$DISK/$ROOT" &&
+  mkfs.fat -F 32 "/dev/$DISK/$BOOT" 
 }
 
 mount_fs() {
-  mount $ROOT /mnt &&
-  mount --mkdir $BOOT /mnt/boot &&
+  mount /dev/$DISK/$ROOT /mnt &&
+  mount --mkdir /dev/$DISK/$BOOT /mnt/boot 
 } 
 
 pacstrap_pkgs() {
-  pacstrap -K /mnt base linux linux-firmware linux-headers linun-zen linux-zen-headers fish networkmanager nvim grub efibootmgr base-devel git curl &&
+  pacstrap -K /mnt base linux linux-firmware linux-headers linun-zen linux-zen-headers fish networkmanager nvim grub efibootmgr base-devel git curl 
 }
 
 config_system() {
@@ -42,7 +44,7 @@ config_system() {
    read -p "Username (UNIX): " -r username &&
    useradd -mG $username wheel&& 
    mkinitcpio -P &&
-   passwd $username && 
+   passwd $username  
 }
 
 grub_install() {

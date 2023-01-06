@@ -43,6 +43,8 @@ local cmp_kinds = {
 }
 --   פּ ﯟ   some other good icons
 local kind_icons = {
+	Array = "",
+	Boolean = "",
 	Text = "",
 	Method = "",
 	Function = "",
@@ -52,12 +54,15 @@ local kind_icons = {
 	Class = "ﴯ",
 	Interface = "",
 	Module = "",
+	Null = "ﳠ",
 	Property = "ﰠ",
 	Unit = "",
 	Value = "",
 	Enum = "",
+	Key = "",
 	Keyword = "",
 	Snippet = "",
+	Package = "",
 	Color = "",
 	File = "",
 	Reference = "",
@@ -65,9 +70,47 @@ local kind_icons = {
 	EnumMember = "",
 	Constant = "",
 	Struct = "",
+	Object = "",
 	Event = "",
 	Operator = "",
 	TypeParameter = "",
+}
+
+local lvim_kind = {
+	Array = "",
+	Boolean = "",
+	Class = "",
+	Color = "",
+	Constant = "",
+	Constructor = "",
+	Enum = "",
+	EnumMember = "",
+	Event = "",
+	Field = "",
+	File = "",
+	Folder = "",
+	Function = "",
+	Interface = "",
+	Key = "",
+	Keyword = "",
+	Method = "",
+	Module = "",
+	Namespace = "",
+	Null = "ﳠ",
+	Number = "",
+	Object = "",
+	Operator = "",
+	Package = "",
+	Property = "",
+	Reference = "",
+	Snippet = "",
+	String = "",
+	Struct = "",
+	Text = "",
+	TypeParameter = "",
+	Unit = "",
+	Value = "",
+	Variable = "",
 }
 
 cmp.setup({
@@ -126,10 +169,10 @@ cmp.setup({
 		format = function(entry, vim_item)
 			-- Kind icons
 			-- vim_item.kind = string.format("%s", cmp_kinds[vim_item.kind])
-			vim_item.kind = string.format("%s %s", cmp_kinds[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
+			vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
 			vim_item.menu = ({
-				path = "[Path]",
 				nvim_lsp = "[LSP]",
+				path = "[Path]",
 				luasnip = "[Snippet]",
 				buffer = "[Buffer]",
 				fonts = "[Fonts]",
@@ -138,10 +181,10 @@ cmp.setup({
 		end,
 	},
 	sources = {
-		{ name = "path" },
 		{ name = "nvim_lsp" },
+		{ name = "path" },
 		{ name = "buffer" },
-		{ name = "luasnip", option = { use_show_condition = false, show_autosnippets = true } },
+		{ name = "luasnip", max_item_count = 3, option = { use_show_condition = false, show_autosnippets = false } },
 		{ name = "fish" },
 		{ name = "fonts", option = { space_filter = "-" } },
 		{ name = "markdown-link" },

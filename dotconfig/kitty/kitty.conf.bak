@@ -5,10 +5,10 @@
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-font_family      JetBrains Mono Light Nerd Font Complete  
-bold_font        JetBrains Mono Bold Nerd Font Complete 
-italic_font      JetBrains Mono Italic Nerd Font Complete
-bold_italic_font JetBrains Mono Bold Italic Nerd Font Complete
+font_family          JetBrainsMono Nerd Font 
+# bold_font          JetBrains Mono Bold Nerd Font Complete 
+# italic_font        JetBrains Mono Italic Nerd Font Complete
+# bold_italic_font   JetBrains Mono Bold Italic Nerd Font Complete
 
 #: You can specify different fonts for the bold/italic/bold-italic
 #: variants. To get a full list of supported fonts use the `kitty
@@ -23,7 +23,7 @@ bold_italic_font JetBrains Mono Bold Italic Nerd Font Complete
 #:     italic_font      Operator Mono Book Italic
 #:     bold_italic_font Operator Mono Medium Italic
 
-font_size 13
+font_size 12.5
 
 #: Font size (in pts)
 
@@ -163,9 +163,9 @@ font_features all
 #: font glyph is rendered and the baseline at which the glyph is
 #: placed in the cell. For example::
 
-     # modify_font cell_width 80%
-     modify_font cell_height -2px
-     modify_font baseline 3
+     modify_font cell_width 0%
+     modify_font cell_height 0px
+     modify_font baseline 1
 
 #: Note that modifying the baseline will automatically adjust the
 #: underline and strikethrough positions by the same amount.
@@ -264,7 +264,7 @@ scrollback_pager_history_size 0
 #: the scrollback buffer with pager. This separate buffer is not
 #: available for interactive scrolling but will be piped to the pager
 #: program when viewing scrollback buffer in a separate window. The
-#: current implementation stores the data in UTF-8, so approximatively
+#: current implementation stores the data in UTF-8, so approximately
 #: 10000 lines per megabyte at 100 chars per line, for pure ASCII,
 #: unformatted text. A value of zero or less disables this feature.
 #: The maximum allowed size is 4GB. Note that on config reload if this
@@ -440,7 +440,7 @@ pointer_shape_when_dragging beam
 #: buttons on a mouse.
 
 #: event-type is one of press, release, doublepress, triplepress,
-#: click, doubleclick. modes indicates whether the action is performed
+#: click, double-click. modes indicates whether the action is performed
 #: when the mouse is grabbed by the program running in the terminal,
 #: or not. The values are grabbed or ungrabbed or a comma separated
 #: combination of them. grabbed refers to when the program running in
@@ -687,7 +687,7 @@ window_resize_step_lines 3
 #: start_resizing_window. The cells value is used for horizontal
 #: resizing, and the lines value is used for vertical resizing.
 
-window_border_width 0.5pt
+window_border_width 1 
 
 #: The width of window borders. Can be either in pixels (px) or pts
 #: (pt). Values in pts will be rounded to the nearest number of pixels
@@ -702,14 +702,14 @@ draw_minimal_borders yes
 #: drawn. Note that setting a non-zero window_margin_width overrides
 #: this and causes all borders to be drawn.
 
-window_margin_width 0
+window_margin_width 0 
 
 #: The window margin (in pts) (blank area outside the border). A
 #: single value sets all four sides. Two values set the vertical and
 #: horizontal sides. Three values set top, horizontal and bottom. Four
 #: values set top, right, bottom and left.
 
-single_window_margin_width -1
+single_window_margin_width 0 
 
 #: The window margin to use when only a single window is visible (in
 #: pts). Negative values will cause the value of window_margin_width
@@ -717,7 +717,7 @@ single_window_margin_width -1
 #: set the vertical and horizontal sides. Three values set top,
 #: horizontal and bottom. Four values set top, right, bottom and left.
 
-window_padding_width 0
+window_padding_width 0 10 0 10 
 
 #: The window padding (in pts) (blank area between the text and the
 #: window border). A single value sets all four sides. Two values set
@@ -750,7 +750,7 @@ inactive_text_alpha 1.0
 #: Fade the text in inactive windows by the specified amount (a number
 #: between zero and one, with zero being fully faded).
 
-hide_window_decorations yes
+hide_window_decorations  yes 
 
 #: Hide the window decorations (title-bar and window borders) with
 #: yes. On macOS, titlebar-only can be used to only hide the titlebar.
@@ -758,7 +758,7 @@ hide_window_decorations yes
 #: window manager/operating system. Note that the effects of changing
 #: this option when reloading config are undefined.
 
-# window_logo_path none
+window_logo_path none
 
 #: Path to a logo image. Must be in PNG format. Relative paths are
 #: interpreted relative to the kitty config directory. The logo is
@@ -768,13 +768,13 @@ hide_window_decorations yes
 #: or the remote control <https://sw.kovidgoyal.net/kitty/remote-
 #: control/> facility.
 
-# window_logo_position bottom-right
+window_logo_position bottom-right
 
 #: Where to position the window logo in the window. The value can be
 #: one of: top-left, top, top-right, left, center, right, bottom-left,
 #: bottom, bottom-right.
 
-# window_logo_alpha 0.5
+window_logo_alpha 0.5
 
 #: The amount the logo should be faded into the background. With zero
 #: being fully faded and one being fully opaque.
@@ -829,22 +829,22 @@ confirm_os_window_close 3
 
 #: Tab bar {{{
 
-tab_bar_edge bottom 
+tab_bar_edge top 
 
 #: The edge to show the tab bar on, top or bottom.
 
-tab_bar_margin_width 2.0
+tab_bar_margin_width 10 
 
 #: The margin to the left and right of the tab bar (in pts).
 
-# tab_bar_margin_height 0.0 0.0
+tab_bar_margin_height 0 0 
 
 #: The margin above and below the tab bar (in pts). The first number
 #: is the margin between the edge of the OS Window and the tab bar.
 #: The second number is the margin between the tab bar and the
 #: contents of the current tab.
 
-tab_bar_style powerline 
+tab_bar_style slant 
 
 #: The tab bar style, can be one of:
 
@@ -928,7 +928,7 @@ tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title
 #: title
 #:     The current tab title.
 #: index
-#:     The tab index useable with goto_tab N goto_tab shortcuts.
+#:     The tab index usable with goto_tab N goto_tab shortcuts.
 #: layout_name
 #:     The current layout name.
 #: num_windows
@@ -1754,6 +1754,7 @@ map kitty_mod+z scroll_to_prompt -1
 
 #: New window
 
+map kitty_mod+t new_tab_with_cwd
 map kitty_mod+enter new_window
 # map cmd+enter       new_window
 
@@ -2234,6 +2235,6 @@ map kitty_mod+f5 load_config_file
 
 
 # BEGIN_KITTY_THEME
-# Catppuccin-Mocha
+# VSCode_Dark
 include current-theme.conf
 # END_KITTY_THEME

@@ -367,6 +367,8 @@ _comps=(
 'fold' '_fold'
 'folder' '_mh'
 'folders' '_mh'
+'foot' '_foot'
+'footclient' '_footclient'
 'fortune' '_fortune'
 'forw' '_mh'
 'fprev' '_mh'
@@ -1116,8 +1118,6 @@ _comps=(
 'schedtool' '_schedtool'
 'scons' '_scons'
 'scp' '_ssh'
-'scrcpy' '_scrcpy'
-'scrcpy.exe' '_scrcpy'
 'screen' '_screen'
 'script' '_script'
 'scriptreplay' '_script'
@@ -1438,7 +1438,6 @@ _comps=(
 'watch' '_watch'
 'watcher' '_openstack'
 'wc' '_wc'
-'wezterm' '_wezterm'
 'wget' '_wget'
 'what' '_sccs'
 'whatis' '_man'
@@ -1525,7 +1524,6 @@ _comps=(
 'ypwhich' '_yp'
 'ypxfr' '_yp'
 'ytalk' '_other_accounts'
-'zap' '_zap'
 'zargs' '_zargs'
 'zathura' '_zathura'
 'zcalc' '_zcalc'
@@ -1688,20 +1686,20 @@ bindkey '^[,' _history-complete-newer
 bindkey '^[/' _history-complete-older
 bindkey '^[~' _bash_complete-word
 
-autoload -Uz _zap _bat _black _blackd _bluetoothctl \
-            _bootctl _busctl _bwrap _checkupdates _cmus \
-            _code _coredumpctl _curl _downgrade _exa \
-            _fd _highlight _hostnamectl _journalctl _kernel-install \
-            _kitty _libinput _localectl _loginctl _machinectl \
-            _mkinitcpio _mpv _networkctl _oomctl _paccache \
-            _pacdiff _pacignore _paclist _paclog-pkglist _pacman \
-            _pacscripts _pacsearch _pacsort _pactree _paru \
-            _playerctl _pulseaudio _qpdf _rankmirrors _resolvectl \
-            _rg _sd_hosts_or_user_at_host _sd_machines _sd_outputmodes _sd_unit_files \
-            _starship _swayidle _swaylock _swaync _swaync-client \
-            _systemctl _systemd _systemd-analyze _systemd-delta _systemd-inhibit \
-            _systemd-nspawn _systemd-path _systemd-run _systemd-tmpfiles _timedatectl \
-            _udevadm _updpkgsums _wezterm _wl-copy _wl-paste \
+autoload -Uz _bat _black _blackd _bluetoothctl _bootctl \
+            _busctl _bwrap _checkupdates _cmus _code \
+            _coredumpctl _curl _downgrade _exa _fd \
+            _foot _footclient _highlight _hostnamectl _journalctl \
+            _kernel-install _kitty _libinput _localectl _loginctl \
+            _machinectl _mkinitcpio _mpv _networkctl _oomctl \
+            _paccache _pacdiff _pacignore _paclist _paclog-pkglist \
+            _pacman _pacscripts _pacsearch _pacsort _pactree \
+            _paru _playerctl _pulseaudio _qpdf _rankmirrors \
+            _resolvectl _rg _sd_hosts_or_user_at_host _sd_machines _sd_outputmodes \
+            _sd_unit_files _starship _swayidle _swaylock _swaync \
+            _swaync-client _systemctl _systemd _systemd-analyze _systemd-delta \
+            _systemd-inhibit _systemd-nspawn _systemd-path _systemd-run _systemd-tmpfiles \
+            _timedatectl _udevadm _updpkgsums _wl-copy _wl-paste \
             _youtube-dl _zathura _cdr _all_labels _all_matches \
             _alternative _approximate _arg_compile _arguments _bash_completions \
             _cache_invalid _call_function _combination _complete _complete_debug \

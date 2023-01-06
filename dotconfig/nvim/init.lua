@@ -1,3 +1,4 @@
+require("user.rosepine")
 vim.cmd("colorscheme rose-pine") -- colorscheme
 require("user.mapping") -- keybinds require("user.settings") -- config
 require("user.settings") -- configs
@@ -24,4 +25,6 @@ require("user.navic") --
 require("user.indent-blankline") --
 require("user.alpha")
 require("user.lir")
-require("chafa").setup({})
+require("user.cursorline")
+require("colorizer").setup({})
+require("fidget").setup({})
