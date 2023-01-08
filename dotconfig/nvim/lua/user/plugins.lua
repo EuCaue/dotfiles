@@ -141,6 +141,7 @@ packer.startup(function()
 	use({ "williamboman/mason-lspconfig.nvim" })
 	use({ "jose-elias-alvarez/null-ls.nvim" })
 
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end

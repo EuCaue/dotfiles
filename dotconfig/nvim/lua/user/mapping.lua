@@ -36,12 +36,14 @@ keymap("n", "<leader>h", "<cmd>NvimTreeFocus<cr>", opts)
 keymap("n", "<leader>no", "<cmd>NvimTreeCollapse<cr>", opts)
 keymap("n", "<leader>d", "<cmd>cd ~/dotfiles/ | NvimTreeToggle<cr>", opts)
 
+keymap("v", "p", '"_dP', opts)
 
 keymap("n", "<leader>nc", "<cmd>NoNeckPain<cr>", opts)
 keymap("n", "<leader>nz", "<cmd>ZenMode<cr>", opts)
 
 -- Telescope
 keymap("n", "<leader>to", "<cmd>Telescope oldfiles<cr>", opts)
+keymap("n", "<leader>tf", "<cmd>Telescope find_files<cr>", opts)
 keymap("n", "<leader>td", "<cmd>Telescope diagnostics<cr>", opts)
 keymap("n", "<leader>tl", "<cmd>Telescope live_grep<cr>", opts)
 keymap("n", "<leader>tp", "<cmd>Telescope project<cr>", opts)

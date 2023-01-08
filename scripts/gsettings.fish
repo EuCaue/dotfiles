@@ -2,6 +2,10 @@
 
 set FONT "JetBrainsMono Nerd Font 10"
 
+if test -z $CURSOR
+    set CURSOR $XCURSOR_THEME
+end
+
 
 gsettings set org.gnome.desktop.interface font-name $FONT &&
     gsettings set org.gnome.desktop.interface document-font-name $FONT &&
@@ -12,4 +16,4 @@ gsettings set org.gnome.desktop.interface font-name $FONT &&
     gsettings set org.gnome.desktop.interface cursor-size 22 &&
     hyprctl setcursor $CURSOR 22 &&
     set -x XCURSOR_THEME $CURSOR &&
-    set -x XCURSOR_SIZE 22 
+    set -x XCURSOR_SIZE 22

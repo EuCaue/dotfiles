@@ -21,6 +21,7 @@ require("null-ls").setup({
 		require("null-ls").builtins.diagnostics.fish,
 		require("null-ls").builtins.diagnostics.luacheck.with({ extra_args = { "-g vim" } }),
 		require("null-ls").builtins.diagnostics.proselint,
+		-- require("null-ls").builtins.diagnostics.shellcheck,
 		require("null-ls").builtins.diagnostics.markdownlint,
 		require("null-ls").builtins.diagnostics.jsonlint,
 		require("null-ls").builtins.diagnostics.tidy,
@@ -35,6 +36,7 @@ require("null-ls").setup({
 
 		-- NOTE: code_actions
 		require("null-ls").builtins.code_actions.eslint_d,
+		-- require("null-ls").builtins.code_actions.shellcheck,
 		require("null-ls").builtins.code_actions.proselint,
 
 		require("null-ls").builtins.hover.dictionary,

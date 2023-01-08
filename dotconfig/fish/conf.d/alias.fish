@@ -1,7 +1,7 @@
 # NOTE: most used
 alias cfg='nvim ~/.config/fish/config.fish'
 alias kfg='nvim ~/.config/kitty/kitty.conf'
-alias wfg="nvim ~/.config/wezterm/wezterm.lua"
+alias ffg="nvim ~/.config/foot/foot.ini"
 alias hfg='nvim ~/.config/hypr/hyprland.conf'
 alias nft='nvim ~/.config/neofetch/config.conf'
 alias nfg='nvim ~/.config/nvim/init.lua'
