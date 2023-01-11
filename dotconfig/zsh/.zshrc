@@ -1,6 +1,5 @@
 #!/bin/sh
 
-neofetch --kitty ~/Pictures/wallpapers\ mobile/wallhaven-9m9dqk.jpg
 export PATH="$HOME/.local/bin:$PATH"
 ZSH_AUTOSUGGEST_STRATEGY=(history)
 HISTFILE=~/.config/zsh/.histfile
@@ -23,6 +22,8 @@ plug "zsh-users/zsh-syntax-highlighting"
 plug "hlissner/zsh-autopair"
 plug "zap-zsh/vim"
 plug "skywind3000/z.lua"
+plug "joshskidmore/zsh-fzf-history-search"
+
 
 source ~/.config/zsh/alias.zsh
 source ~/.config/zsh/exports.zsh

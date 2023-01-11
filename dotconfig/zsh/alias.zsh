@@ -1,6 +1,7 @@
 # NOTE: most used
 alias cfg='nvim ~/.zshrc'
 alias kfg='nvim ~/.config/kitty/kitty.conf'
+alias ffg="nvim ~/.config/foot/foot.ini"
 alias hfg='nvim ~/.config/hypr/hyprland.conf'
 alias nft='nvim ~/.config/neofetch/config.conf'
 alias nfg='nvim ~/.config/nvim/init.lua'
@@ -26,6 +27,8 @@ alias c='cursor.fish'
 alias v='nvim'
 alias r='ranger'
 alias g='lazygit'
+alias :wq="exit"
+alias :q="exit"
 
 # just make Interactive
 alias mv='mv -i'
@@ -50,6 +53,8 @@ alias f='free -h'
 alias rmlinks='find -maxdepth 1 -type l -delete'
 
 # NOTE: Random 
+alias csgoc='sed -i -e "/kb_options/s/^#*/#/" dotfiles/dotconfig/hypr/hyprland.conf'
+alias csgocc='sed -i -e "/kb_options/s/^#//" dotfiles/dotconfig/hypr/hyprland.conf'
 alias susa='paru -Syua'
 alias suslol='sudo sh -c "sysctl -w abi.vsyscall32=0"'
 alias mobile='scrcpy -b 12M -m 1024 --tcpip=192.168.1.154'

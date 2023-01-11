@@ -6,5 +6,6 @@ if status is-interactive
   "
 end
 
+
 fish_add_path /home/caue/.spicetify
 fish_add_path /home/caue/.local/share/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/cfg

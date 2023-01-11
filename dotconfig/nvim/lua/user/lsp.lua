@@ -52,7 +52,7 @@ local on_attach = function(client, bufnr) -- Enable completion triggered by <c-x
 	vim.keymap.set("n", "<space>rn", "<cmd>Lspsaga rename<CR>", bufopts)
 	vim.keymap.set("n", "<space>ca", "<cmd>Lspsaga code_action<cr>", bufopts)
 	vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", bufopts)
-	vim.keymap.set("n", "<space>f", function()
+	vim.keymap.set("n", "<space>sf", function()
 		vim.lsp.buf.format({ async = true })
 	end, bufopts)
 	if client.server_capabilities.documentSymbolProvider then

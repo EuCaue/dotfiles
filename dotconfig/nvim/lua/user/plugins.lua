@@ -101,6 +101,7 @@ packer.startup(function()
 
 	--
 	-- Useful
+  use({"asiryk/auto-hlsearch.nvim"})
 	use({ "nvim-lua/popup.nvim" }) -- PopUp API for neovim
 	use({ "akinsho/toggleterm.nvim" }) -- show a "portable" terminal
 	use({
@@ -123,6 +124,7 @@ packer.startup(function()
 			require("zen-mode").setup({ window = { width = 0.85, backdrop = 0.85, height = 80 } })
 		end,
 	}) -- zenmode
+use { "nvim-telescope/telescope-file-browser.nvim" }
 
 	-- CMP :
 	use("dcampos/cmp-emmet-vim")

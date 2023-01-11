@@ -8,7 +8,7 @@ local actions = require("telescope.actions")
 require("telescope").load_extension("project")
 require("telescope").load_extension("lazygit")
 require("telescope").load_extension("undo")
-
+require("telescope").load_extension("file_browser")
 telescope.setup({
 
 	defaults = require("telescope.themes").get_dropdown({}),

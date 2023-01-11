@@ -204,6 +204,7 @@ cmp.setup({
 				luasnip = "[Snippet]",
 				buffer = "[Buffer]",
 				fonts = "[Fonts]",
+				fish = "[Fish]",
 			})[entry.source.name]
 			return vim_item
 		end,

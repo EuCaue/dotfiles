@@ -27,6 +27,8 @@ require("user.alpha")
 require("user.lir")
 require("user.cursorline")
 require("colorizer").setup({})
+require("auto-hlsearch").setup()
 require("fidget").setup({})
 require("notify").setup({})
 require("nvim-cursorline").setup({})
+

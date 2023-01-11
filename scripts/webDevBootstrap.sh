@@ -1,98 +1,106 @@
-#!/usr/bin/env fish
-# TODO: fix the babel/react for JSX 
+#!/bin/sh
+read -p "Folder name: " -r FOLDER
+read -p "JSX OR TSX (optional, leave empty if you don't want): " -r TSX
+TSX=${TSX,,}
+read -p "styled-components (y/N): " -r STYLED
+STYLED=${STYLED,,}
+read -p "npm (default) OR yarn? " -r PKG
 
-read -P "Folder name: " FOLDER
-read -P "JSX OR TSX (optional, leave empty if you don't want): " TSX
-set TSX (string lower $TSX)
-read -P "styled-components (y/N): " STYLED
-set STYLED (string lower $STYLED)
-read -P "npm(default) OR yarn? " PKG
-
-if test $PKG != npm; and test $PKG != yarn
-    set PKG npm
+if  [ "$PKG" != "npm" ] && [ "$PKG" != "yarn" ]; then
+    PKG="npm"
     echo ""
     echo "None package manager passed, using npm by default..."
     echo ""
-end
-set PKG (string lower $PKG)
+fi
+PKG=${PKG,,}
 
-read -P "Create the folder in the current directory? (Y/n): " DIR
-set DIR (string lower $DIR)
-if test $DIR = n
-    read -S -P "Path for directory: " DIRPATH &&
-        cd $DIRPATH
-end
+read -p "Create the folder in the current directory? (Y/n): " -r DIR
+DIR=${DIR,,}
 
-set INSTALL i
-if test $PKG = yarn
-    set INSTALL add
-end
+if [ "$DIR" = "n" ]; then
+    read -p "Path for directory: " -r DIRPATH &&
+      cd $DIRPATH
+      echo $DIRPATH 
+fi
 
-if test -z $STYLED
-    set STYLED n
-end
+INSTALL=i
+if [ "$PKG" = "yarn" ]; then
+  INSTALL=add
+fi
 
-if test -z $TSX
-    set TSX none
-    read -P "TS OR JS: " TS
-    set TS (string lower $TS)
+if [ -z "$TSX" ] || [ "$TSX" = " " ]; then
+  TSX=undefined
+  read -p "TS OR JS: " -r TS 
+  TS=${TS,,}
 
-    if test -z $TS
-        set TS js
-        echo "None value passed for (TS OR JS), using JS by default"
-    end
-end
+    if [ -z "$TS" ] || [ "$TS" = " " ]; then
+    TS=js
+    echo "None value passed for (TS OR JS), using JS by default"
+    fi
 
+fi
+
+if [ -z "$STYLED" ] || [ "$STYLED" = " " ]; then
+    STYLED=undefined
+fi
 
 echo "Folder Name:" $FOLDER
 echo "JSX/TSX:" $TSX
-echo "TS OR JS:" $TS
+
+if [ -z "$TSX" ] || [ "$TSX" = " " ]; then
+  echo "TS OR JS:" $TS 
+fi
+
 echo "styled-components:" $STYLED
 echo "Package Manager:" $PKG
-echo "Path for directory:" $DIRPATH
-sleep 1
+if [ -z "$DIRPATH" ] || [ "$DIRPATH" = " " ]; then
+    echo "Path For directory: " $PWD 
+else 
+    echo "Path for directory:" $DIRPATH
+fi
 
-read -P "Continue?: (Y/n) " CONTINUE
-if test (string lower $CONTINUE = n)
-    return 1
-end
+
+read -p "Continue?: (Y/n) " -r CONTINUE
+CONTINUE=${CONTINUE,,}
+
+if [ "$CONTINUE" = "n" ]; then 
+    echo "SCRIPT ENDED"
+    exit 0 
+fi
 
 $PKG create vite ./$FOLDER/ &&
     cd $FOLDER/
-if test (string lower $PKG = yarn)
+
+if  [ "$PKG" = "yarn" ]; then
     $PKG add -D eslint
     $PKG run eslint --init
 else
     $PKG init @eslint/config
-end
-
-
+fi
 
 $PKG $INSTALL -D prettier &&
     $PKG $INSTALL eslint-config-airbnb &&
+if [ "$TS" = "ts" ]; then 
+      $PKG $INSTALL eslint-config-airbnb-typescript
+      exit 1
+fi 
 
-    if test (string lower $TS = ts)
-        $PKG $INSTALL eslint-config-airbnb-typescript
-        return 1
-    end
-
-if test (string lower $STYLED = y)
+if  [ "$STYLED" = "y" ]; then
     $PKG $INSTALL -D typescript-styled-plugin
     $PKG $INSTALL -D @types/styled-components
     $PKG $INSTALL styled-components
-end
+    exit 1
+fi
 
-
-if test (string lower $TSX = jsx)
+if [ "$TSX" = "jsx" ]; then
     $PKG $INSTALL prop-types &&
         $PKG $INSTALL eslint-config-airbnb &&
         $PKG $INSTALL -D @babel/eslint-plugin eslint-plugin-react eslint-plugin-react-hooks prettier eslint-config-prettier eslint-plugin-prettier @babel/eslint-parser
     cp $HOME/Dev/reactBoilerPlate/jsx/.* ./
-    return 1
-end
+    exit 1
+fi
 
-
-if test (string lower $TSX = tsx)
+if ["$TSX" = "tsx" ]; then
     $PKG $INSTALL -D prettier eslint-config-prettier eslint-plugin-prettier
     $PKG $INSTALL -D @typescript-eslint/eslint-plugin @typescript-eslint/parser
     $PKG $INSTALL -D eslint-config-airbnb-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser
@@ -100,20 +108,24 @@ if test (string lower $TSX = tsx)
     $PKG $INSTALL -D @typescript-eslint/eslint-plugin @typescript-eslint/parser
     $PKG $INSTALL -D @babel/eslint-plugin eslint-plugin-react eslint-plugin-react-hooks prettier eslint-config-prettier eslint-plugin-prettier @babel/eslint-parser
     cp $HOME/Dev/reactBoilerPlate/tsx/.* ./
-    return 1
-end
+    exit 1
+fi
 
 echo -----------------------------------------------------
 echo "              Project BootStrap done.                "
 echo -----------------------------------------------------
 
-read -P "Do you want to install any additional packages? (y/N) " OPTPKGS
-if test (string lower $OPTPKGS = y)
-    read -a -P "Packages: (separated by space): " PKGS
+
+read -p "Do you want to install any additional packages? (y/N) " -r OPTPKGS
+OPTPKGS=${OPTPKGS,,}
+
+
+if [ "$OPTPKGS" = "y" ]; then
+    read -a -p "Packages: (separated by space): " -r PKGS
     #TODO: make a for in pkgs, for prevent not install pkgs 
     $PKG $INSTALL $PKGS
-    return 1
-end
+    exit 1
+fi 
 
 echo $DIRPATH$FOLDER
-return 1
+exit 1
