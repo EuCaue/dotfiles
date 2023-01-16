@@ -122,10 +122,11 @@ local function client_names()
 	return string.format("[%s]", client.name)
 end
 
+local entries = require("barbecue.ui.state").get_entries(winnr)
 local winbar = {
 	lualine_a = {},
 	lualine_b = {},
-	-- lualine_c = { { navic.get_location, cond = navic.is_available } },
+	lualine_c = { { navic.get_location, cond = navic.is_available } },
 	lualine_x = {},
 	lualine_y = {},
 	lualine_z = {},
@@ -141,7 +142,7 @@ lualine.setup({
 		always_divide_middle = true,
 	},
 	sections = {
-		lualine_a = { mode },
+		lualine_a = { mode, entries },
 		lualine_b = { branch },
 		lualine_c = { diff, filetype },
 		lualine_x = { diagnostics, lsp },

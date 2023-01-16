@@ -9,14 +9,14 @@ require("null-ls").setup({
 		require("null-ls").builtins.formatting.fish_indent,
 		require("null-ls").builtins.formatting.tidy,
 		require("null-ls").builtins.formatting.black,
-		require("null-ls").builtins.formatting.eslint_d,
+		-- require("null-ls").builtins.formatting.eslint_d,
 		require("null-ls").builtins.formatting.markdownlint,
-		require("null-ls").builtins.formatting.prettierd.with({
-			extra_args = { "semi", "--single-quote", "--jsx-single-quote" },
-		}),
+		-- require("null-ls").builtins.formatting.prettierd.with({
+		-- 	extra_args = { "semi", "--single-quote", "--jsx-single-quote" },
+		-- }),
 
 		-- NOTE: diagnostics
-		require("null-ls").builtins.diagnostics.eslint_d,
+		-- require("null-ls").builtins.diagnostics.eslint_d,
 		require("null-ls").builtins.diagnostics.codespell,
 		require("null-ls").builtins.diagnostics.fish,
 		require("null-ls").builtins.diagnostics.luacheck.with({ extra_args = { "-g vim" } }),
@@ -35,7 +35,7 @@ require("null-ls").setup({
 		require("null-ls").builtins.completion.luasnip,
 
 		-- NOTE: code_actions
-		require("null-ls").builtins.code_actions.eslint_d,
+		-- require("null-ls").builtins.code_actions.eslint_d,
 		-- require("null-ls").builtins.code_actions.shellcheck,
 		require("null-ls").builtins.code_actions.proselint,
 

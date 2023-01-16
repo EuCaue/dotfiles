@@ -2,7 +2,7 @@
 
 local options = {
 	backup = false, -- creates a backup file
-	clipboard = "unnamedplus", -- allows neovim to access the system clipboard
+	clipboard = "", -- allows neovim to access the system clipboard
 	cmdheight = 1, -- more space in the neovim command line for displaying messages
 	completeopt = { "menuone", "noselect" }, -- mostly just for cmp
 	conceallevel = 0, -- so that `` is visible in markdown files
@@ -24,7 +24,7 @@ local options = {
 	termguicolors = true, -- set term gui colors (most terminals support this)
 	timeoutlen = 300, -- time to wait for a mapped sequence to complete (in milliseconds)
 	undofile = true, -- enable persistent undo
-	updatetime = 300, -- faster completion (4000ms default)
+	updatetime = 100, -- faster completion (4000ms default)
 	writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 	expandtab = true, -- convert tabs to spaces
 	shiftwidth = 2, -- the number of spaces inserted for each indentation
@@ -38,7 +38,7 @@ local options = {
 	linebreak = true, -- companion to wrap, don't split words
 	scrolloff = 8, -- minimal number of screen lines to keep above and below the cursor
 	sidescrolloff = 8, -- minimal number of screen columns either side of cursor if wrap is `false`
-	wrap = true, -- wrap
+	wrap = false, -- wrap
 	-- guifont = "Fira Code:h17", -- the font used in graphical neovim applications
 }
 

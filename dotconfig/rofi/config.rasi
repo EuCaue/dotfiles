@@ -4,6 +4,9 @@ configuration {
   modi: "window,run,drun,emoji,calc,";
   show-icons: true;
   icon-theme: "Rose Pine";
+  sort: true;
+  case-sensitivity: false; 
+  sorting-method: "fzf";
   hide-scrollbar: true;
   terminal: "kitty";
   display-drun: "   Apps ";

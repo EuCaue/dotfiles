@@ -36,10 +36,18 @@ keymap("n", "<leader>qq", "<cmd>ToggleTerm direction=horizontal size=5<cr>", opt
 keymap("n", "<leader>g", "<cmd>NvimTreeToggle<cr>", opts)
 keymap("n", "<leader>h", "<cmd>NvimTreeFocus<cr>", opts)
 keymap("n", "<leader>no", "<cmd>NvimTreeCollapse<cr>", opts)
-keymap("n", "<leader>d", "<cmd>cd ~/dotfiles/ | NvimTreeToggle<cr>", opts)
+keymap("n", "<leader>dt", "<cmd>cd ~/dotfiles/ | NvimTreeToggle<cr>", opts)
 
-keymap("v", "p", '"_dP', opts)
+-- keymap("v", "p", '"_dP', opts)
+keymap("v", "<leader>y", '"+y', opts)
+keymap("n", "<leader>y", '"+y', opts)
+
+keymap("v", "<leader>d", '"_d', opts)
+keymap("n", "<leader>d", '"_d', opts)
+
 keymap("n", "<leader>re", ":%s//<Left>", opts)
+keymap("n", "<leader>s", "<cmd>!chmod +x %<CR>", opts)
+vim.keymap.set("n", "<leader>rr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 keymap("n", "<leader>nc", "<cmd>NoNeckPain<cr>", opts)
 keymap("n", "<leader>nz", "<cmd>ZenMode<cr>", opts)

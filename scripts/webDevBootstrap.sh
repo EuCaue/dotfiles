@@ -1,9 +1,12 @@
 #!/bin/sh
+
 read -p "Folder name: " -r FOLDER
 read -p "JSX OR TSX (optional, leave empty if you don't want): " -r TSX
 TSX=${TSX,,}
 read -p "styled-components (y/N): " -r STYLED
 STYLED=${STYLED,,}
+read -p "tailwind-css (y/N): " -r TW
+TW=${TW,,}
 read -p "npm (default) OR yarn? " -r PKG
 
 if  [ "$PKG" != "npm" ] && [ "$PKG" != "yarn" ]; then
@@ -40,25 +43,34 @@ if [ -z "$TSX" ] || [ "$TSX" = " " ]; then
 
 fi
 
-if [ -z "$STYLED" ] || [ "$STYLED" = " " ]; then
-    STYLED=undefined
-fi
-
 echo "Folder Name:" $FOLDER
 echo "JSX/TSX:" $TSX
-
 if [ -z "$TSX" ] || [ "$TSX" = " " ]; then
   echo "TS OR JS:" $TS 
 fi
 
-echo "styled-components:" $STYLED
+if [ -z "$TW" ] || [ "$TW" = " " ]; then
+    TW="undefined"
+    echo "tailwind-css:" $TW
+    exit 1
+else 
+    echo "tailwind-css:" $TW
+fi
+
+if [ -z "$STYLED" ] || [ "$STYLED" = " " ]; then
+    STYLED="undefined"
+    echo "styled-components:" $STYLED
+    exit 1
+else 
+    echo "styled-components:" $STYLED
+fi
 echo "Package Manager:" $PKG
 if [ -z "$DIRPATH" ] || [ "$DIRPATH" = " " ]; then
     echo "Path For directory: " $PWD 
+    exit 1
 else 
     echo "Path for directory:" $DIRPATH
 fi
-
 
 read -p "Continue?: (Y/n) " -r CONTINUE
 CONTINUE=${CONTINUE,,}
@@ -92,6 +104,13 @@ if  [ "$STYLED" = "y" ]; then
     exit 1
 fi
 
+if  [ "$TW" = "y" ]; then
+    $PKG $INSTALL -D tailwindcss postcss autoprefixer 
+    npx tailwindcss init -p
+    echo "Add yours sources folder in tailwind.config.cjs in content section."
+    exit 1
+fi
+
 if [ "$TSX" = "jsx" ]; then
     $PKG $INSTALL prop-types &&
         $PKG $INSTALL eslint-config-airbnb &&
@@ -119,11 +138,11 @@ echo -----------------------------------------------------
 read -p "Do you want to install any additional packages? (y/N) " -r OPTPKGS
 OPTPKGS=${OPTPKGS,,}
 
-
 if [ "$OPTPKGS" = "y" ]; then
     read -a -p "Packages: (separated by space): " -r PKGS
-    #TODO: make a for in pkgs, for prevent not install pkgs 
-    $PKG $INSTALL $PKGS
+    for OPTPKG in $PKGS; do
+      $PKG $INSTALL $OPTPKG
+    done
     exit 1
 fi 
 

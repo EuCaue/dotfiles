@@ -1,5 +1,6 @@
 #!/usr/bin/env fish 
 
+swaybg -i $WALLPAPER -m fill &
 waybar &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 ~/dotfiles/scripts/gsettings.fish &

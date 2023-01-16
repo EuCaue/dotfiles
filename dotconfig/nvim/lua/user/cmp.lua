@@ -199,21 +199,35 @@ cmp.setup({
 			vim_item.kind = string.format("%s", codicons[vim_item.kind])
 			-- vim_item.kind = string.format("%s %s", codicons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
 			vim_item.menu = ({
-				nvim_lsp = "[LSP]",
-				path = "[Path]",
-				luasnip = "[Snippet]",
-				buffer = "[Buffer]",
-				fonts = "[Fonts]",
-				fish = "[Fish]",
+				nvim_lsp = "(LSP)",
+				nvim_lua = "(LUA)",
+				luasnip = "(Snippet)",
+				emmet_vim = "(Emeet)",
+				path = "(Path)",
+				buffer = "(Buffer)",
+				fonts = "(Fonts)",
+				fish = "(Fish)",
 			})[entry.source.name]
 			return vim_item
 		end,
+		-- format = lspkind.cmp_format({ with_text = true, maxwidth = 50 })
 	},
 	sources = {
-		{ name = "nvim_lsp" },
+		{
+			name = "nvim_lsp",
+			entry_filter = function(entry, ctx)
+				-- HACK: little hack for not showning any snippet in LSP, since they doesn't work
+				if entry:get_kind() == 15 then
+					return false
+				end
+				return true
+			end,
+		},
+		{ name = "nvim_lua" },
 		{ name = "path" },
-		{ name = "buffer" },
-		{ name = "luasnip", max_item_count = 3, option = { use_show_condition = false, show_autosnippets = false } },
+		{ name = "luasnip" },
+		{ name = "buffer", keyword_length = 5 },
+		{ name = "cmp-tw2css" },
 		{ name = "fish" },
 		{ name = "fonts", option = { space_filter = "-" } },
 		{ name = "markdown-link" },

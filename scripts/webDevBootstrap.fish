@@ -6,7 +6,11 @@ read -P "JSX OR TSX (optional, leave empty if you don't want): " TSX
 set TSX (string lower $TSX)
 read -P "styled-components (y/N): " STYLED
 set STYLED (string lower $STYLED)
+read -p "tailwind-css (y/N): " -r TW
+set TW (string lower $TW)
 read -P "npm(default) OR yarn? " PKG
+
+
 
 if test $PKG != npm; and test $PKG != yarn
     set PKG npm
@@ -28,12 +32,8 @@ if test $PKG = yarn
     set INSTALL add
 end
 
-if test -z $STYLED
-    set STYLED n
-end
-
 if test -z $TSX
-    set TSX none
+    set TSX undefined
     read -P "TS OR JS: " TS
     set TS (string lower $TS)
 
@@ -46,15 +46,41 @@ end
 
 echo "Folder Name:" $FOLDER
 echo "JSX/TSX:" $TSX
-echo "TS OR JS:" $TS
-echo "styled-components:" $STYLED
+if test -z $TSX; or test $TSX == " "
+    echo "TS OR JS:" $TS
+    return 1
+end
+
+if test -z $TW; or test $TW == " "
+    set TW undefined
+    echo "tailwind-css:" $TW
+    return 1
+else
+    echo "tailwind-css:" $TW
+end
+
+if test -z $STYLED; or test $STYLED == " "
+    set STYLED undefined
+    echo "styled-components:" $STYLED
+    return 1
+else
+    echo "styled-components:" $STYLED
+end
+
 echo "Package Manager:" $PKG
-echo "Path for directory:" $DIRPATH
+
+if test -z $DIRPATH; or $DIRPATH = " "
+    echo "Path For directory: " $PWD
+    return 1
+else
+    echo "Path for directory:" $DIRPATH
+    return 1
+end
 sleep 1
 
 read -P "Continue?: (Y/n) " CONTINUE
 if test (string lower $CONTINUE = n)
-    return 1
+    return 0
 end
 
 $PKG create vite ./$FOLDER/ &&
@@ -62,8 +88,10 @@ $PKG create vite ./$FOLDER/ &&
 if test (string lower $PKG = yarn)
     $PKG add -D eslint
     $PKG run eslint --init
+    return 1
 else
     $PKG init @eslint/config
+    return 1
 end
 
 
@@ -80,8 +108,15 @@ if test (string lower $STYLED = y)
     $PKG $INSTALL -D typescript-styled-plugin
     $PKG $INSTALL -D @types/styled-components
     $PKG $INSTALL styled-components
+    return 1
 end
 
+if test (string lower $TW = y)
+    $PKG $INSTALL -D tailwindcss postcss autoprefixer
+    npx tailwindcss init -p
+    echo "Add yours sources folder in tailwind.config.cjs in content section."
+    return 1
+end
 
 if test (string lower $TSX = jsx)
     $PKG $INSTALL prop-types &&
@@ -110,8 +145,9 @@ echo -----------------------------------------------------
 read -P "Do you want to install any additional packages? (y/N) " OPTPKGS
 if test (string lower $OPTPKGS = y)
     read -a -P "Packages: (separated by space): " PKGS
-    #TODO: make a for in pkgs, for prevent not install pkgs 
-    $PKG $INSTALL $PKGS
+    for OPTPKG in $PKGS
+        $PKG $INSTALL $OPTPKG
+    end
     return 1
 end
 
