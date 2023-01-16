@@ -26,7 +26,14 @@ return {
 	{ "theRealCarneiro/hyprland-vim-syntax" }, -- Better syntax highlight in hyprland.conf
 
 	-- Snippets
-	{ "l3mon4d3/luasnip" },
+	{
+		--  Snippet Engine
+		"l3mon4d3/luasnip",
+		config = function()
+			require("luasnip").filetype_extend("typescript", { "css" })
+		end,
+	},
+	-- a bunch of snippets
 	{ "rafamadriz/friendly-snippets" },
 	{
 		"dsznajder/vscode-es7-javascript-react-snippets",
@@ -34,9 +41,9 @@ return {
 	},
 
 	-- IDE
-	{ "kyazdani42/nvim-web-devicons" },
+	{ "kyazdani42/nvim-web-devicons" }, -- icons
 	{ "neovim/nvim-lspconfig", event = "BufReadPre" }, -- LSP
-	{ "SmiteshP/nvim-navic" },
+	{ "SmiteshP/nvim-navic" }, -- better location
 	{ "fgheng/winbar.nvim" },
 	{ "simrat39/symbols-outline.nvim" },
 	{ "kyazdani42/nvim-tree.lua" }, -- Tree file
@@ -54,30 +61,40 @@ return {
 	{ "nvim-telescope/telescope.nvim", version = "0.1.0" }, -- fzf finder
 	{ "nvim-lua/plenary.nvim" },
 	{ "karb94/neoscroll.nvim" }, -- better scroll
-	{ "folke/which-key.nvim" }, -- which key
+	{ "folke/which-key.nvim", lazy = true }, -- which key
 	{ "petertriho/nvim-scrollbar" }, -- scrollbar
 	{ "nvim-telescope/telescope-project.nvim" }, -- find projects
-	{ "rcarriga/nvim-notify" }, -- notify
-	{ "debugloop/telescope-undo.nvim" },
+	{
+		"rcarriga/nvim-notify",
+		config = function()
+			-- vim.notify = require("notify")
+			require("notify").setup({
+				timeout = 1000,
+				render = "minimal",
+			})
+		end,
+	}, -- notify
+	{ "debugloop/telescope-undo.nvim" }, -- telescope for undo tree
 	{ "shortcuts/no-neck-pain.nvim" },
 	{ "goolord/alpha-nvim" }, -- title screen
-	{ "LunarVim/Colorschemes" },
-	{ "yamatsum/nvim-cursorline" },
-	{ "j-hui/fidget.nvim" },
-	{ "yamatsum/nvim-cursorline" },
-	{ "antoinemadec/FixCursorHold.nvim" },
-	{ "MunifTanjim/nui.nvim" },
-	{ "asiryk/auto-hlsearch.nvim" },
+	-- lsp status
+	{
+		"j-hui/fidget.nvim",
+		config = function()
+			require("fidget").setup({})
+		end,
+	},
+	{ "yamatsum/nvim-cursorline" }, -- highlight cursor on things
+	{ "antoinemadec/FixCursorHold.nvim" }, -- depen
+	{ "asiryk/auto-hlsearch.nvim" }, -- better search
 	{ "tamago324/lir.nvim" },
 	{ "nvim-telescope/telescope-file-browser.nvim" },
-	{ "utilyre/barbecue.nvim" },
-	{ "kosayoda/nvim-lightbulb" },
+	{ "kosayoda/nvim-lightbulb" }, --  show code actions
 	{ "akinsho/toggleterm.nvim" }, -- show a "portable" terminal
 
 	-- Useful
-
 	{
-		"antonk52/markdowny.nvim",
+		"antonk52/markdowny.nvim", -- nice keybinds for md
 		config = function()
 			require("markdowny").setup()
 		end,
@@ -90,8 +107,6 @@ return {
 			require("todo-comments").setup({})
 		end,
 	}, -- TODO:
-	{ "princejoogie/chafa.nvim" },
-	{ "m00qek/baleia.nvim" },
 
 	{
 		"iamcco/markdown-preview.nvim",

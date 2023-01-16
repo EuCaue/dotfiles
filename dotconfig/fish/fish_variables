@@ -2,7 +2,7 @@
 # VERSION: 3.0
 SETUVAR --export CURSOR:Simp1e\x2dRose\x2dPine\x2dDawn
 SETUVAR --export CURSORSIZE:16
-SETUVAR --export WALLPAPER:/home/caue/Pictures/wallpapers/wallhaven\x2dymmdeg\x2epng
+SETUVAR --export WALLPAPER:/home/caue/Pictures/wallpapers/wallhaven\x2dwyqkdx_1920x1080\x2epng
 SETUVAR ZO_CMD:zo
 SETUVAR Z_CMD:z
 SETUVAR Z_DATA:/home/caue/\x2elocal/share/z/data

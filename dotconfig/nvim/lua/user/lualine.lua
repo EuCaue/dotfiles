@@ -122,7 +122,6 @@ local function client_names()
 	return string.format("[%s]", client.name)
 end
 
-local entries = require("barbecue.ui.state").get_entries(winnr)
 local winbar = {
 	lualine_a = {},
 	lualine_b = {},

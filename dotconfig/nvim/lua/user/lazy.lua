@@ -10,5 +10,9 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
-
-require("lazy").setup("user.plugins")
+local configs = {
+	{
+		install = { colorscheme = "rose-pine" },
+	},
+}
+require("lazy").setup("user.plugins", configs)

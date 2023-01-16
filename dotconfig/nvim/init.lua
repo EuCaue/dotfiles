@@ -19,22 +19,12 @@ require("user.mason") -- Mason
 require("user.null-ls") -- Global linter
 require("user.neoscroll") -- Neoscroll
 require("user.bufferline") -- tabs
-require("user.navic") --
-require("user.indent-blankline") --
-require("user.alpha")
-require("user.lir")
-require("user.cursorline")
-require("user.lightbulb")
--- require("user.barbecue")
-require("user.colorizer")
-require("user.auto-hlsearch")
-require("user.nvim-cursorline")
-require("user.symbols-outline")
-
-require("fidget").setup({})
--- vim.notify = require("notify")
-require("notify").setup({
-	timeout = 1000,
-	render = "minimal",
-})
-require("luasnip").filetype_extend("typescript", { "css" })
+require("user.navic") -- nice location
+require("user.indent-blankline") -- fancy spaces and blankline
+require("user.alpha") -- dashboard better
+require("user.lir") -- explorer
+require("user.nvim-cursorline") -- highlight the word on the cursor
+require("user.lightbulb") -- show when codeactions is available
+require("user.colorizer") -- colorizer
+require("user.auto-hlsearch") -- better search
+require("user.symbols-outline") -- outline symbols
