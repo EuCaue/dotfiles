@@ -7,6 +7,7 @@ return {
 		priority = 1000,
 		config = function()
 			vim.cmd([[colorscheme rose-pine]])
+			require("user.rosepine") -- colorscheme
 		end,
 	}, -- colorscheme
 
@@ -29,9 +30,10 @@ return {
 	{
 		--  Snippet Engine
 		"l3mon4d3/luasnip",
-		config = function()
-			require("luasnip").filetype_extend("typescript", { "css" })
-		end,
+		--  FIX: make this work
+		-- config = function()
+		-- 	require("luasnip").filetype_extend("ts", { "css" })
+		-- end,
 	},
 	-- a bunch of snippets
 	{ "rafamadriz/friendly-snippets" },
@@ -42,6 +44,13 @@ return {
 
 	-- IDE
 	{ "kyazdani42/nvim-web-devicons" }, -- icons
+	{
+		"ray-x/lsp_signature.nvim",
+		event = "BufRead",
+		config = function()
+			require("lsp_signature").setup({ hint_enable = false })
+		end,
+	},
 	{ "neovim/nvim-lspconfig", event = "BufReadPre" }, -- LSP
 	{ "SmiteshP/nvim-navic" }, -- better location
 	{ "fgheng/winbar.nvim" },
@@ -99,6 +108,15 @@ return {
 			require("markdowny").setup()
 		end,
 	},
+	{
+		"phaazon/hop.nvim",
+		event = "BufRead",
+		config = function()
+			require("hop").setup()
+			vim.api.nvim_set_keymap("n", "<leader>H", ":HopChar2<cr>", { silent = true })
+			vim.api.nvim_set_keymap("n", "<leader>h", ":HopWord<cr>", { silent = true })
+		end,
+	},
 
 	{ "nvim-lua/popup.nvim" }, -- PopUp API for neovim
 	{
@@ -132,6 +150,7 @@ return {
 			"dburian/cmp-markdown-link",
 			"hrsh7th/cmp-buffer",
 			"jcha0713/cmp-tw2css",
+			{ "tzachar/cmp-tabnine", build = "./install.sh" },
 			{ "mtoohey31/cmp-fish", ft = "fish" },
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-nvim-lsp",
@@ -144,7 +163,6 @@ return {
 			require("user.cmp")
 		end,
 	},
-
 	{ "williamboman/mason.nvim" },
 	{ "williamboman/mason-lspconfig.nvim" },
 	{ "jose-elias-alvarez/null-ls.nvim" },

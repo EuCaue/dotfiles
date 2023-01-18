@@ -23,7 +23,8 @@ menu(){
 	printf "7. Radio Spinner\n"
 	printf "8. SmoothChill\n"
   printf "9. Lofi TokyoGhoul\n"
-  printf "10. Lofi TokyoGhoul Alt"
+  printf "10. Lofi TokyoGhoul Alt\n"
+  printf "11. Lofi TokyoGhoul Playlist"
 }
 
 main() {
@@ -78,6 +79,11 @@ main() {
     10)
 			notification "Lofi TokyoGhoul Alt ☕️🎶";
             URL="https://youtu.be/8ukM4E7Fs2o"
+			break
+			;;
+    11)
+			notification "Lofi TokyoGhoul Playlist ☕️🎶";
+            URL="https://youtube.com/playlist?list=PL3Xsq8k7CYjMPh-F15n0ClL14jEBr6S37"
 			break
 			;;
 	esac

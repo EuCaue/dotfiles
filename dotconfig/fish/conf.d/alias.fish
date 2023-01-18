@@ -37,10 +37,10 @@ alias cp='cp -i'
 
 
 # NOTE: WebDev
-alias vited='npx vite --host'
-alias npms='npm start'
-alias npmd='npm run dev'
-alias vercelp='npx vercel --prod'
+alias vited='yarn vite --host'
+alias yarns='yarn start'
+alias yarnd='yarn run dev'
+alias vercelp='yarn vercel --prod'
 # ----------------------------------
 
 

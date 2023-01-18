@@ -34,7 +34,7 @@ keymap("n", "<leader>qq", "<cmd>ToggleTerm direction=horizontal size=5<cr>", opt
 
 -- NvimTree
 keymap("n", "<leader>g", "<cmd>NvimTreeToggle<cr>", opts)
-keymap("n", "<leader>h", "<cmd>NvimTreeFocus<cr>", opts)
+keymap("n", "<leader>nf", "<cmd>NvimTreeFocus<cr>", opts)
 keymap("n", "<leader>no", "<cmd>NvimTreeCollapse<cr>", opts)
 keymap("n", "<leader>dt", "<cmd>cd ~/dotfiles/ | NvimTreeToggle<cr>", opts)
 

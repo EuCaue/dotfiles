@@ -59,7 +59,9 @@ ca-certificates-utils
 cabextract
 cairo
 cairomm
+calcure
 cantarell-fonts
+capitaine-cursors
 cava
 cblas
 cdparanoia
@@ -75,6 +77,7 @@ clucene
 cmus
 codespell
 coreutils
+cpio
 cracklib
 cronie
 cryptsetup
@@ -84,13 +87,13 @@ cups-filters
 curl
 cython
 dav1d
-db
 db5.3
 dbus
 dbus-glib
 dbus-python
 dconf
 dconf-editor
+ddgr
 default-cursors
 desktop-file-utils
 device-mapper
@@ -99,7 +102,6 @@ dhcpcd
 dialog
 diffutils
 djvulibre
-dkms
 dmidecode
 dmraid
 dnssec-anchors
@@ -114,8 +116,8 @@ e2fsprogs
 efibootmgr
 efivar
 electron
-electron18
 electron19
+electron21
 element-desktop
 element-web
 elinks
@@ -134,6 +136,7 @@ ffmpeg
 ffmpeg4.4
 ffmpegthumbnailer
 fftw
+figlet
 file
 file-roller
 filesystem
@@ -152,7 +155,6 @@ foot
 freeglut
 freeimage
 freetype2
-frei0r-plugins
 fribidi
 fuse-common
 fuse2
@@ -160,7 +162,6 @@ fuse3
 fzf
 gamemode
 gamescope
-gavl
 gawk
 gc
 gcc
@@ -189,6 +190,7 @@ glow
 glslang
 glu
 gmp
+gnome-chess
 gnome-desktop
 gnome-desktop-common
 gnome-disk-utility
@@ -268,9 +270,11 @@ ijs
 imagemagick
 imath
 imlib2
+imv
 iniparser
 intel-gmmlib
 intel-media-driver
+intel-ucode
 iproute2
 iptables
 iputils
@@ -284,6 +288,7 @@ jdk-openjdk
 jdk17-openjdk
 jdk8-openjdk
 jemalloc
+jq
 jre-openjdk
 jre-openjdk-headless
 jre11-openjdk
@@ -487,7 +492,6 @@ libavc1394
 libavif
 libavtp
 libb2
-libb64
 libblockdev
 libbluray
 libbpf
@@ -597,7 +601,6 @@ libmpeg2
 libmspub
 libmwaw
 libmypaint
-libnatpmp
 libndp
 libnet
 libnetfilter_conntrack
@@ -609,6 +612,7 @@ libnice
 libnl
 libnm
 libnotify
+libnsgif
 libnsl
 libnss_nis
 libnumbertext
@@ -797,7 +801,6 @@ mesa-utils
 min
 minecraft-launcher
 minecraft-technic-launcher
-miniupnpc
 minizip
 mjpegtools
 mkinitcpio
@@ -850,7 +853,6 @@ ocl-icd
 ocs-url
 odt2txt
 oniguruma
-onlyoffice-bin
 openal
 opencore-amr
 openexr
@@ -935,6 +937,7 @@ python-certifi
 python-cffi
 python-chardet
 python-click
+python-clickgen
 python-colorama
 python-contourpy
 python-cryptography
@@ -985,16 +988,12 @@ python-pycparser
 python-pydantic
 python-pyopenssl
 python-pyparsing
-python-pyqt6
-python-pyqt6-sip
-python-pyqt6-webengine
 python-pythondialog
 python-pyxdg
 python-regex
 python-reportlab
 python-requests
 python-secretstorage
-python-send2trash
 python-setuptools
 python-shtab
 python-six
@@ -1003,16 +1002,15 @@ python-svglib
 python-systemd
 python-termcolor
 python-tinycss2
+python-toml
 python-tomli
 python-trove-classifiers
 python-typing_extensions
-python-uni-curses
 python-unidecode
 python-urllib3
 python-validate-pyproject
 python-webencodings
 python-wheel
-python-x256
 python-xlib
 python-yaml
 python-yapsy
@@ -1038,12 +1036,9 @@ qt6-5compat
 qt6-base
 qt6-declarative
 qt6-imageformats
-qt6-positioning
 qt6-svg
 qt6-translations
 qt6-wayland
-qt6-webchannel
-qt6-webengine
 ranger
 raptor
 rasqal
@@ -1052,7 +1047,6 @@ re2
 readline
 redland
 redshift-wayland-git
-responsively-bin
 ripgrep
 rnnoise
 rofi-calc
@@ -1124,6 +1118,7 @@ ruby-tmpdir
 ruby-uri
 rubygems
 run-parts
+rustup
 samba
 sane
 sbc
@@ -1163,15 +1158,17 @@ srt
 starship
 startup-notification
 steam
+stockfish
 stylua
 sudo
 suitesparse
+sunity-cursors-git
 svt-av1
 svt-hevc
 swappy
 swaybg
 swayidle
-swaylock
+swaylock-effects
 swaync
 sysfsutils
 systemd
@@ -1193,12 +1190,10 @@ tmux
 todoist-appimage
 tpm2-tss
 tracker3
-transmission-gtk
 tre
 tree-sitter
 tslib
 ttf-apple-emoji
-ttf-carlito
 ttf-dejavu
 ttf-fira-sans
 ttf-jetbrains-mono
@@ -1209,7 +1204,6 @@ ttf-nerd-fonts-symbols-common
 ttf-opensans
 ttf-roboto
 ttf-roboto-slab
-tuifimanager
 twolame
 tzdata
 uchardet
@@ -1230,7 +1224,6 @@ uwufetch
 v4l-utils
 ventoy-bin
 vid.stab
-vimiv
 virtualbox
 virtualbox-host-modules-arch
 visual-studio-code-bin
@@ -1258,6 +1251,7 @@ webkit2gtk
 webkit2gtk-4.1
 webp-pixbuf-loader
 webrtc-audio-processing
+wev
 wf-recorder
 wget
 which
@@ -1307,6 +1301,7 @@ xorg-fonts-encodings
 xorg-server-common
 xorg-setxkbmap
 xorg-xauth
+xorg-xcursorgen
 xorg-xdpyinfo
 xorg-xhost
 xorg-xinput
@@ -1325,7 +1320,6 @@ xxhash
 xz
 yarn
 youtube-dl
-zapzap
 zathura
 zathura-cb
 zathura-djvu

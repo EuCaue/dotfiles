@@ -56,10 +56,10 @@ window#waybar {
   background-color: @base;
   padding: 0 10px;
   min-height: 35px;
-  border-radius: 5px;
+  /* border-radius: 0px; */
   margin-top: 5px;
   margin-bottom: 10px;
-  border-bottom: 2px solid @pine;
+  border-bottom: 2.3px solid @pine;
 }
 
 #backlight {

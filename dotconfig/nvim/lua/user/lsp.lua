@@ -65,6 +65,7 @@ local servers = {
 	"bashls",
 	"sumneko_lua",
 	"pyright",
+	"gopls",
 	"emmet_ls",
 	-- "tailwindcss",
 	"eslint",

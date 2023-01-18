@@ -1,7 +1,6 @@
 require("user.mapping") -- keybinds
 require("user.settings") -- config
 require("user.lazy") -- lazy
-require("user.rosepine") -- colorscheme
 require("user.lualine") -- status bar config
 require("user.telescope") -- telescope config
 require("user.treesitter") -- treesitter config, betterhighlight
@@ -28,3 +27,4 @@ require("user.lightbulb") -- show when codeactions is available
 require("user.colorizer") -- colorizer
 require("user.auto-hlsearch") -- better search
 require("user.symbols-outline") -- outline symbols
+require("luasnip").filetype_extend("typescript", { "css" })
