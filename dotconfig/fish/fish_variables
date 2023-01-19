@@ -1,7 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR --export CURSOR:Simp1e\x2dRose\x2dPine
-SETUVAR --export CURSORSIZE:16
+SETUVAR --export CURSORSIZE:\x1d
 SETUVAR --export WALLPAPER:/home/caue/Pictures/wallpapers/wallhaven\x2d2e1kv6\x2epng
 SETUVAR ZO_CMD:zo
 SETUVAR Z_CMD:z
