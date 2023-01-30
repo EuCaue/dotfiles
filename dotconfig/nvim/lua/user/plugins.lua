@@ -11,9 +11,10 @@ return {
 		end,
 	}, -- colorscheme
 
+	{ "catppuccin/nvim" },
+	{ "folke/tokyonight.nvim" },
 	{ "Mofiqul/adwaita.nvim" },
 	{ "LunarVim/darkplus.nvim" },
-
 	-- BetterComment
 	{ "numToStr/Comment.nvim" },
 	{ "JoosepAlviste/nvim-ts-context-commentstring" }, -- Better JSX + TSX comment
@@ -30,10 +31,10 @@ return {
 	{
 		--  Snippet Engine
 		"l3mon4d3/luasnip",
-		--  FIX: make this work
-		-- config = function()
-		-- 	require("luasnip").filetype_extend("ts", { "css" })
-		-- end,
+		priority = 100,
+		config = function()
+			require("luasnip").filetype_extend("typescript", { "css" })
+		end,
 	},
 	-- a bunch of snippets
 	{ "rafamadriz/friendly-snippets" },
@@ -44,13 +45,6 @@ return {
 
 	-- IDE
 	{ "kyazdani42/nvim-web-devicons" }, -- icons
-	{
-		"ray-x/lsp_signature.nvim",
-		event = "BufRead",
-		config = function()
-			require("lsp_signature").setup({ hint_enable = false })
-		end,
-	},
 	{ "neovim/nvim-lspconfig", event = "BufReadPre" }, -- LSP
 	{ "SmiteshP/nvim-navic" }, -- better location
 	{ "fgheng/winbar.nvim" },
@@ -66,19 +60,28 @@ return {
 	{ "windwp/nvim-autopairs" }, -- auto close ({[
 	{ "nvim-lualine/lualine.nvim" }, -- status bar
 	{ "windwp/nvim-ts-autotag" }, -- <> autoclose tag
-	{ "lewis6991/gitsigns.nvim", version = "release" }, -- Git
+	{ "lewis6991/gitsigns.nvim" }, -- Git
 	{ "nvim-telescope/telescope.nvim", version = "0.1.0" }, -- fzf finder
 	{ "nvim-lua/plenary.nvim" },
 	{ "karb94/neoscroll.nvim" }, -- better scroll
 	{ "folke/which-key.nvim", lazy = true }, -- which key
 	{ "petertriho/nvim-scrollbar" }, -- scrollbar
 	{ "nvim-telescope/telescope-project.nvim" }, -- find projects
+	-- { "Exafunction/codeium.vim" }, -  ia like copilot
+	{
+		"utilyre/barbecue.nvim",
+		version = "*",
+		config = function()
+			require("barbecue").setup()
+		end,
+	},
+
 	{
 		"rcarriga/nvim-notify",
 		config = function()
-			-- vim.notify = require("notify")
+			vim.notify = require("notify")
 			require("notify").setup({
-				timeout = 1000,
+				timeout = 500,
 				render = "minimal",
 			})
 		end,
@@ -108,6 +111,12 @@ return {
 			require("markdowny").setup()
 		end,
 	},
+	{
+		"ellisonleao/glow.nvim",
+		config = function()
+			require("glow").setup({})
+		end,
+	}, -- preview markdow
 	{
 		"phaazon/hop.nvim",
 		event = "BufRead",
@@ -150,7 +159,7 @@ return {
 			"dburian/cmp-markdown-link",
 			"hrsh7th/cmp-buffer",
 			"jcha0713/cmp-tw2css",
-			{ "tzachar/cmp-tabnine", build = "./install.sh" },
+			-- { "tzachar/cmp-tabnine", build = "./install.sh" },
 			{ "mtoohey31/cmp-fish", ft = "fish" },
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-nvim-lsp",
@@ -163,6 +172,7 @@ return {
 			require("user.cmp")
 		end,
 	},
+
 	{ "williamboman/mason.nvim" },
 	{ "williamboman/mason-lspconfig.nvim" },
 	{ "jose-elias-alvarez/null-ls.nvim" },

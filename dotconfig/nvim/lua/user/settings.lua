@@ -1,4 +1,8 @@
 -- NOTE: put alll options here for the loop 😀
+--
+-- Feature for 0.9
+-- vim.o.statuscolumn = '%s%=%l %C%#Yellow#%{v:relnum == 0 ? ">" : ""}%#IndentBlankLineChar#%{v:relnum == 0 ? "" : "│"} '
+-- signcolumn:yes:2
 
 local options = {
 	backup = false, -- creates a backup file
@@ -12,9 +16,11 @@ local options = {
 	mouse = "a", -- allow the mouse to be used in neovim
 	pumheight = 10, -- pop up menu height
 	showmode = false, -- we don't need to see things like -- INSERT -- anymore
-	-- foldmethod = "syntax",
-	foldnestmax = 10,
-	foldlevel = 2,
+	foldmethod = "expr",
+	foldexpr = "nvim_treesitter#foldexpr()",
+	foldenable = false,
+	foldlevel = 99,
+	showcmd = false,
 	showtabline = 2, -- always show tabs
 	smartcase = true, -- smart case
 	smartindent = true, -- make indenting smarter again
@@ -24,7 +30,7 @@ local options = {
 	termguicolors = true, -- set term gui colors (most terminals support this)
 	timeoutlen = 300, -- time to wait for a mapped sequence to complete (in milliseconds)
 	undofile = true, -- enable persistent undo
-	updatetime = 100, -- faster completion (4000ms default)
+	updatetime = 1000, -- faster completion (4000ms default)
 	writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 	expandtab = true, -- convert tabs to spaces
 	shiftwidth = 2, -- the number of spaces inserted for each indentation

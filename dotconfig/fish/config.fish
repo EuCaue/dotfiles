@@ -5,6 +5,7 @@ if status is-interactive
  I use arch BTW ඞ
   "
 end
+alias wezterm='/usr/bin/wezterm start --cwd .'
 
 
 fish_add_path /home/caue/.spicetify

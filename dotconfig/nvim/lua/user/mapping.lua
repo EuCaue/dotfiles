@@ -17,8 +17,11 @@ vim.g.maplocalleader = " "
 
 -- Basic keymaps
 keymap("n", "<C-s>", "<cmd>write!<cr>", opts)
+keymap("i", "<C-s>", "<cmd>write!<cr>", opts)
 keymap("n", "<C-z>", "<cmd>wq!<cr>", opts)
 keymap("n", "<C-x>", "<cmd>q!<cr>", opts)
+keymap("n", "<C-a>", "gg<S-v>G", opts)
+
 -- Comment
 keymap("x", "<C-/>", "<cmd>normal gcc<cr>", opts)
 keymap("n", "<C-/>", "<cmd>normal gcc<cr>", opts)
@@ -28,8 +31,8 @@ keymap("n", "<leader>x", "<cmd>cd ~/dotfiles/dotconfig/nvim/ | e ~/dotfiles/dotc
 
 -- LazyGit && ToggleTerm
 keymap("n", "<leader>l", "<cmd>LazyGit<cr>", opts)
-keymap("n", "<leader>tb", "<cmd>ToggleTerm direction=tab<cr>", opts)
-keymap("n", "<leader>tt", "<cmd>ToggleTerm<cr>", opts)
+-- keymap("n", "<C-t>T", "<cmd>ToggleTerm direction=tab<cr>", opts)
+keymap("n", "<C-t>", "<cmd>ToggleTerm<cr>", opts)
 keymap("n", "<leader>qq", "<cmd>ToggleTerm direction=horizontal size=5<cr>", opts)
 
 -- NvimTree
@@ -61,12 +64,16 @@ keymap("n", "<leader>tp", "<cmd>Telescope project<cr>", opts)
 keymap("n", "<leader>tc", "<cmd>Telescope colorscheme<cr>", opts)
 keymap("n", "<leader>tg", "<cmd>Telescope git_status<cr>", opts)
 keymap("n", "<leader>tk", "<cmd>Telescope keymaps<cr>", opts)
-keymap("n", "<leader>u", "<cmd>Telescope undo<cr>", opts)
+keymap("n", "<leader>tu", "<cmd>Telescope undo<cr>", opts)
+keymap("n", "<leader>tv", "<cmd>cd ~/Documents/my vault/Personal/ | Telescope file_browser<cr>", opts)
+
+keymap("n", "<leader>sv", "<C-w>v", opts) -- split window vertically
+keymap("n", "<leader>se", "<C-w>=", opts) -- make split windows equal width & height
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
+-- keymap("n", "<C-j>", "<C-w>j", opts)
+-- keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Resize with arrows

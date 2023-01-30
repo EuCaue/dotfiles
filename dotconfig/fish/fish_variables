@@ -1,8 +1,8 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR --export CURSOR:Simp1e\x2dRose\x2dPine
-SETUVAR --export CURSORSIZE:\x1d
-SETUVAR --export WALLPAPER:/home/caue/Pictures/wallpapers/wallhaven\x2d2e1kv6\x2epng
+SETUVAR --export CURSOR:macOS\x2dMonterey\x2dRose\x2dPine
+SETUVAR --export CURSORSIZE:28
+SETUVAR --export WALLPAPER:/home/caue/Pictures/wallpapers/wallhaven\x2dm9zy7k\x2epng
 SETUVAR ZO_CMD:zo
 SETUVAR Z_CMD:z
 SETUVAR Z_DATA:/home/caue/\x2elocal/share/z/data

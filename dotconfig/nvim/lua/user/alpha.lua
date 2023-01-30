@@ -8,7 +8,11 @@ dashboard.section.buttons.val = {
 	dashboard.button("SPC g", "  File browser", "<cmd>Telescope file_browser<CR>"),
 	dashboard.button("SPC t p", "  Projects", "<cmd>Telescope project<cr>"),
 	dashboard.button("SPC d", "  Dotfiles", "<cmd>cd ~/dotfiles/ | NvimTreeToggle<cr>"),
-	dashboard.button("SPC x", "  Neovim config"),
+	dashboard.button(
+		"c",
+		"  Neovim config",
+		"<cmd>cd ~/dotfiles/dotconfig/nvim/ | e ~/dotfiles/dotconfig/nvim/init.lua<cr>"
+	),
 	dashboard.button("q", "  Quit NVIM", ":qa<CR>"),
 }
 

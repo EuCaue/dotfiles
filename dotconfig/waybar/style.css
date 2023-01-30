@@ -10,11 +10,12 @@
 @define-color love #eb6f92;
 @define-color pine #31748f;
 @define-color low #21202e;
+@define-color gold #f6c177;
 
 * {
   border: none;
   border-radius: 0;
-  font-family: "JetBrainsMono Nerd Font", "Material Icons", monospace;
+  font-family: "Hack Nerd Font";
   font-size: 14px;
   font-weight: 500;
   /* min-height: 0; */
@@ -56,10 +57,10 @@ window#waybar {
   background-color: @base;
   padding: 0 10px;
   min-height: 35px;
-  /* border-radius: 0px; */
+  /* border-radius: 10px; */
   margin-top: 5px;
   margin-bottom: 10px;
-  border-bottom: 2.3px solid @pine;
+  border: 2px solid @pine;
 }
 
 #backlight {
@@ -70,25 +71,13 @@ window#waybar {
   margin-left: 20px;
 }
 
-#window {
-    /* min-width: 0; */
-    margin-right: 100px;
-    margin-left: 100px;
-    /* border-left: none; */
-    /* border: none; */
-}
-
 #workspaces button {
   margin: 0;
   padding: 0 8px;
   background: @base;
   color: @text;
-  border-bottom: 2px solid transparent;
+  /* border-bottom: 2px solid transparent; */
 
-}
-
-#window {
-  /* border-left: 2px solid @text; */
 }
 
 #workspaces button:hover {

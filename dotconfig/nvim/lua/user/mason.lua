@@ -3,7 +3,6 @@ local servers = {
 	"bashls",
 	"sumneko_lua",
 	"pyright",
-	"emmet_ls",
 	"eslint",
 	"marksman",
 	"html",

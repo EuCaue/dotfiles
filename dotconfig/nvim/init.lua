@@ -27,4 +27,3 @@ require("user.lightbulb") -- show when codeactions is available
 require("user.colorizer") -- colorizer
 require("user.auto-hlsearch") -- better search
 require("user.symbols-outline") -- outline symbols
-require("luasnip").filetype_extend("typescript", { "css" })

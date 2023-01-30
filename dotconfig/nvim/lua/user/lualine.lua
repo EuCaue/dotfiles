@@ -156,7 +156,7 @@ lualine.setup({
 		lualine_y = {},
 		lualine_z = {},
 	},
-	winbar = winbar,
+	-- winbar = winbar,
 	tabline = {},
 	extensions = { "nvim-tree" },
 })

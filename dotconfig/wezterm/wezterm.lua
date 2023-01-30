@@ -21,7 +21,7 @@ return {
 	colors = colors,
 	window_frame = window_frame,
 	default_cwd = pwd,
-	font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Regular", italic = true }),
+	font = wezterm.font("JetBrainsMono Nerd Font"),
 	font_size = 13.0,
 	scrollback_lines = 2500,
 	cursor_blink_ease_in = "EaseOut",
@@ -33,7 +33,7 @@ return {
 	enable_wayland = true,
 	window_close_confirmation = "NeverPrompt",
 	window_padding = {
-		left = "17px",
+		left = "30px",
 		right = "0px",
 		top = "0px",
 		bottom = "1px",

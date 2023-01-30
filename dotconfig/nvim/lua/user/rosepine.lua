@@ -4,7 +4,7 @@ require("rose-pine").setup({
 	bold_vert_split = false,
 	dim_nc_background = false,
 	disable_background = false,
-	disable_float_background = true,
+	disable_float_background = false,
 	disable_italics = false,
 
 	--- @usage string hex value or named color from rosepinetheme.com/palette
@@ -36,5 +36,9 @@ require("rose-pine").setup({
 	-- Change specific vim highlight groups
 	highlight_groups = {
 		ColorColumn = { bg = "rose" },
+		DiagnosticVirtualTextError = { bg = "overlay", fg = "love" },
+		DiagnosticVirtualTextHint = { bg = "overlay", fg = "iris" },
+		DiagnosticVirtualTextInfo = { bg = "overlay", fg = "foam" },
+		DiagnosticVirtualTextWarn = { bg = "overlay", fg = "gold" },
 	},
 })

@@ -3,15 +3,12 @@ set -e -U $CURSOR
 set -e -U $CURSORSIZE
 
 ls /usr/share/icons/ &&
-    cd /usr/share/icons/ &&
-    # read -S -P "Cursor theme: " CURSORTHEME
-    set CURSORTHEME $(find -maxdepth 1 -type d | cut -d '/' -f 2 | sort | tail -n +2 | rofi -dmenu -i -p "Cursor theme" )
-# read -Ux -P "Cursosr Size: " CURSORSIZE
+    set CURSORTHEME $(find /usr/share/icons -maxdepth 1 -type d | cut -d '/' -f 5 | sort | tail -n +2 | rofi -dmenu -i -p "Cursor theme" )
 set -Ux CURSORSIZE $(rofi -dmenu -p "Cursor Size")
 set -Ux CURSOR $CURSORTHEME
 
-echo $CURSOR
-echo $CURSORSIZE
+# notify-send $CURSOR
+# echo $CURSORSIZE
 
 if test -z "$CURSOR"; or test "$CURSOR" = " "
     set CURSOR $XCURSOR_THEME

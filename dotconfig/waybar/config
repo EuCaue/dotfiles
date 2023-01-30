@@ -27,7 +27,10 @@
          "default": ""
     },
 },
-
+    "tray": {
+        "icon-size": 22,
+        "spacing": 5
+},
     "clock": {
         "timezone": "America/Bahia",
         "today-format": "<span color='#31748f'><b>{}</b></span>",
@@ -89,14 +92,14 @@
             "default": [" ", " ", " "],
         },
         "on-click": "pavucontrol",
-        "on-click-middle": "pactl set-sink-volume @DEFAULT_SINK@ 50%",
-        "on-click-right": "pactl set-sink-volume @DEFAULT_SINK@ 50%",
-        "max-volume": 150
+        "on-click-middle": "pactl set-sink-volume @DEFAULT_SINK@ 60%",
+        "on-click-right": "pactl set-sink-volume @DEFAULT_SINK@ 60%",
+        "max-volume": 60
 },
 
     "cpu": {
         "format": "{usage}% ",
-        "on-click": "kitty -e vtop",
+        "on-click": "foot -e vtop",
         "tooltip": true
 },
 
@@ -114,7 +117,7 @@
         "tooltip-format-wifi": "{essid} ({signalStrength}%)  ",
         "tooltip-format-disconnected": "Disconnected",
         "interval": 800,
-        "on-click": "kitty -e nmtui",
+        "on-click": "foot -e nmtui",
         "max-length": 90
 },
 
@@ -146,11 +149,8 @@
         "device": "acpi_video1",
         "format": "{percent}% {icon}",
         "format-icons": ["", "", "", "", "", "", "", "", ""]
-},
-
-    "tray": {
-        "icon-size": 22,
-        "spacing": 5
 }
+
+
 
 }

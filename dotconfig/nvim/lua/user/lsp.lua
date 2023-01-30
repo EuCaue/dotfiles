@@ -41,7 +41,7 @@ local on_attach = function(client, bufnr) -- Enable completion triggered by <c-x
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
 	vim.keymap.set("n", "<space>o", "<cmd>SymbolsOutline<CR>", bufopts)
 	vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", bufopts)
-	vim.keymap.set("n", "<C-l>", vim.lsp.buf.signature_help, bufopts)
+	vim.keymap.set("n", "<space>L", vim.lsp.buf.signature_help, bufopts)
 	vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
 	vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
 	vim.keymap.set("n", "<space>wl", function()
@@ -66,7 +66,6 @@ local servers = {
 	"sumneko_lua",
 	"pyright",
 	"gopls",
-	"emmet_ls",
 	-- "tailwindcss",
 	"eslint",
 	"marksman",
@@ -99,9 +98,9 @@ for type, icon in pairs(signs) do
 end
 
 vim.diagnostic.config({
-	virtual_text = false,
+	virtual_text = true,
 	signs = true,
-	underline = true,
+	underline = false,
 	update_in_insert = false,
 	severity_sort = false,
 })

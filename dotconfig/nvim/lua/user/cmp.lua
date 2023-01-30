@@ -201,7 +201,6 @@ cmp.setup({
 			vim_item.menu = ({
 				nvim_lsp = "(LSP)",
 				nvim_lua = "(LUA)",
-				cmp_tabnine = "(Tabine)",
 				luasnip = "(Snippet)",
 				emmet_vim = "(Emeet)",
 				path = "(Path)",
@@ -209,13 +208,8 @@ cmp.setup({
 				fonts = "(Fonts)",
 				fish = "(Fish)",
 			})[entry.source.name]
-			if entry.source.name == "cmp_tabnine" then
-				vim_item.kind = "ﮧ"
-				vim_item.kind_hl_group = "CmpItemKindTabnine"
-			end
 			return vim_item
 		end,
-		-- format = lspkind.cmp_format({ with_text = true, maxwidth = 50 })
 	},
 	sources = {
 		{
@@ -228,7 +222,6 @@ cmp.setup({
 				return true
 			end,
 		},
-		{ name = "cmp_tabnine" },
 		{ name = "nvim_lua" },
 		{ name = "path" },
 		{ name = "luasnip" },

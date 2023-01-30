@@ -23,7 +23,7 @@ font_family          JetBrainsMono Nerd Font
 #:     italic_font      Operator Mono Book Italic
 #:     bold_italic_font Operator Mono Medium Italic
 
-font_size 12.5
+font_size 13 
 
 #: Font size (in pts)
 
@@ -2235,6 +2235,6 @@ map kitty_mod+f5 load_config_file
 
 
 # BEGIN_KITTY_THEME
-# VSCode_Dark
+# Catppuccin-Mocha
 include current-theme.conf
 # END_KITTY_THEME

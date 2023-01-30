@@ -1,7 +1,7 @@
 [Unit]
-Description=Set audio for 50%
+Description=Set audio for 60%
 
 [Service]
 Type=simple
 Restart=Always
-ExecStart=pactl set-sink-volume @DEFAULT_SINK@ 50%
+ExecStart=pactl set-sink-volume @DEFAULT_SINK@ 60%

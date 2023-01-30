@@ -37,10 +37,10 @@ alias cp='cp -i'
 
 
 # NOTE: WebDev
-alias vited='npx vite --host'
-alias npms='npm start'
-alias npmd='npm run dev'
-alias vercelp='npx vercel --prod'
+alias vited='yarn vite --host'
+alias yarns='yarn start'
+alias yarnd='yarn run dev'
+alias vercelp='yarn vercel --prod'
 # ----------------------------------
 
 
@@ -57,5 +57,4 @@ alias csgoc='sed -i -e "/kb_options/s/^#*/#/" dotfiles/dotconfig/hypr/hyprland.c
 alias csgocc='sed -i -e "/kb_options/s/^#//" dotfiles/dotconfig/hypr/hyprland.conf'
 alias susa='paru -Syua'
 alias suslol='sudo sh -c "sysctl -w abi.vsyscall32=0"'
-alias mobile='scrcpy -b 12M -m 1024 --tcpip=192.168.1.154'
 alias mann='read -S -P 'man:' manpage && man $manpage | nvim'

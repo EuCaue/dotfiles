@@ -1,9 +1,10 @@
 configuration {
   drun-display-format: "{icon} {name}";
-  font: "JetBrainsMono Nerd Font Bold 13";
+  font: "Hack Nerd Font 14";
   modi: "window,run,drun,emoji,calc,";
   show-icons: true;
   icon-theme: "Rose Pine";
+  eh: 1;
   sort: true;
   case-sensitivity: false; 
   sorting-method: "fzf";
@@ -44,6 +45,7 @@ configuration {
     selected-active-background: @active-background;
     separatorcolor: @active-background;
     bordercolor: @ora;
+  
 }
 
 #window {
@@ -52,6 +54,7 @@ configuration {
     border-radius: 12;
     border-color: @bordercolor;
     padding:          5;
+  /* width: 750px; */
 }
 #mainbox {
     border:  0;

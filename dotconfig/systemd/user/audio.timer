@@ -1,5 +1,5 @@
 [Unit]
-Description=Set the audio for 50%
+Description=Set the audio for 60%
 
 [Timer]
 Unit=audio.service
