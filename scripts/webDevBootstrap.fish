@@ -105,7 +105,7 @@ $PKG $INSTALL -D prettier &&
     end
 
 if test (string lower $STYLED = y)
-    $PKG $INSTALL -D typescript-styled-plugin
+    $PKG $INSTALL -D @styled/typescript-styled-plugin
     $PKG $INSTALL -D @types/styled-components
     $PKG $INSTALL styled-components
     return 1

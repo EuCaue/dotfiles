@@ -1,14 +1,12 @@
 local servers = {
 	"tsserver",
 	"bashls",
-	"sumneko_lua",
-	"pyright",
+	"lua_ls",
 	"eslint",
 	"marksman",
 	"html",
 	"cssls",
 	"cssmodules_ls",
-	"clangd",
 	"jsonls",
 }
 

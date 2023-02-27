@@ -4,12 +4,12 @@
 	  "position": "top", // Waybar position (top|bottom|left|right)
     "height": 23, // Waybar height (to be removed for auto height)
 //  "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
+    "spacing": 5, // Gaps between modules (4px)
 
     // Choose the order of the modules
     "modules-left": ["wlr/workspaces"],
     "modules-center": ["gamemode", "tray", "clock", "custom/notification"],
-    "modules-right": ["pulseaudio", "cpu", "memory", "temperature", "battery", "backlight"],
+    "modules-right": ["pulseaudio","backlight", "battery"],
 
     "wlr/workspaces": {
         "format": "{icon}",

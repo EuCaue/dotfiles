@@ -8,138 +8,15 @@ if not snip_status_ok then
 end
 
 require("luasnip/loaders/from_vscode").lazy_load()
+require("luasnip").log.set_loglevel("debug")
+local icons = require("user.icons")
+local lspkind = require("lspkind")
 
-local check_backspace = function()
-	local col = vim.fn.col(".") - 1
-	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+local has_words_before = function()
+	unpack = unpack or table.unpack
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
-
-local cmp_kinds = {
-	Text = "  ",
-	Method = "  ",
-	Function = "  ",
-	Constructor = "  ",
-	Field = "  ",
-	Variable = "  ",
-	Class = "  ",
-	Interface = "  ",
-	Module = "  ",
-	Property = "  ",
-	Unit = "  ",
-	Value = "  ",
-	Enum = "  ",
-	Keyword = "  ",
-	Snippet = "  ",
-	Color = "  ",
-	File = "  ",
-	Reference = "  ",
-	Folder = "  ",
-	EnumMember = "  ",
-	Constant = "  ",
-	Struct = "  ",
-	Event = "  ",
-	Operator = "  ",
-	TypeParameter = "  ",
-}
---   פּ ﯟ   some other good icons
-local kind_icons = {
-	Array = "",
-	Boolean = "",
-	Text = "",
-	Method = "",
-	Function = "",
-	Constructor = "",
-	Field = "",
-	Variable = "",
-	Class = "ﴯ",
-	Interface = "",
-	Module = "",
-	Null = "ﳠ",
-	Property = "ﰠ",
-	Unit = "",
-	Value = "",
-	Enum = "",
-	Key = "",
-	Keyword = "",
-	Snippet = "",
-	Package = "",
-	Color = "",
-	File = "",
-	Reference = "",
-	Folder = "",
-	EnumMember = "",
-	Constant = "",
-	Struct = "",
-	Object = "",
-	Event = "",
-	Operator = "",
-	TypeParameter = "",
-}
-
-local lvim_kind = {
-	Array = "",
-	Boolean = "",
-	Class = "",
-	Color = "",
-	Constant = "",
-	Constructor = "",
-	Enum = "",
-	EnumMember = "",
-	Event = "",
-	Field = "",
-	File = "",
-	Folder = "",
-	Function = "",
-	Interface = "",
-	Key = "",
-	Keyword = "",
-	Method = "",
-	Module = "",
-	Namespace = "",
-	Null = "ﳠ",
-	Number = "",
-	Object = "",
-	Operator = "",
-	Package = "",
-	Property = "",
-	Reference = "",
-	Snippet = "",
-	String = "",
-	Struct = "",
-	Text = "",
-	TypeParameter = "",
-	Unit = "",
-	Value = "",
-	Variable = "",
-}
-
-local codicons = {
-	Text = "",
-	Method = "",
-	Function = "",
-	Constructor = "",
-	Field = "",
-	Variable = "",
-	Class = "",
-	Interface = "",
-	Module = "",
-	Property = "",
-	Unit = "",
-	Value = "",
-	Enum = "",
-	Keyword = "",
-	Snippet = "",
-	Color = "",
-	File = "",
-	Reference = "",
-	Folder = "",
-	EnumMember = "",
-	Constant = "",
-	Struct = "",
-	Event = "",
-	Operator = "",
-	TypeParameter = "",
-}
 
 cmp.setup({
 	-- Snippet
@@ -166,19 +43,17 @@ cmp.setup({
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
-			elseif luasnip.expandable() then
-				luasnip.expand()
+			-- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+			-- they way you will only jump inside the snippet region
 			elseif luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
-			elseif check_backspace() then
-				fallback()
+			elseif has_words_before() then
+				cmp.complete()
 			else
 				fallback()
 			end
-		end, {
-			"i",
-			"s",
-		}),
+		end, { "i", "s" }),
+
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
@@ -195,32 +70,35 @@ cmp.setup({
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
-			-- Kind icons
-			vim_item.kind = string.format("%s", codicons[vim_item.kind])
-			-- vim_item.kind = string.format("%s %s", codicons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
+			vim_item.kind = string.format("%s", icons[vim_item.kind])
+			-- 	-- vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
+			-- 	-- vim_item.kind = string.format("%s %s", vim_item.kind, icons[vim_item.kind]) -- This concatenates the icons with the name of the item kind
 			vim_item.menu = ({
-				nvim_lsp = "(LSP)",
-				nvim_lua = "(LUA)",
-				luasnip = "(Snippet)",
-				emmet_vim = "(Emeet)",
-				path = "(Path)",
-				buffer = "(Buffer)",
-				fonts = "(Fonts)",
-				fish = "(Fish)",
+				nvim_lsp = "LSP",
+				nvim_lua = "LUA",
+				luasnip = "Snippet",
+				emmet_vim = "Emeet",
+				path = "Path",
+				buffer = "Text",
+				fonts = "Fonts",
+				fish = "Fish",
 			})[entry.source.name]
+			-- vim_item.menu = vim_item.kind
+			-- vim_item.kind = kind_icons[vim_item.kind]
+
 			return vim_item
 		end,
 	},
 	sources = {
 		{
 			name = "nvim_lsp",
-			entry_filter = function(entry, ctx)
-				-- HACK: little hack for not showning any snippet in LSP, since they doesn't work
-				if entry:get_kind() == 15 then
-					return false
-				end
-				return true
-			end,
+			-- entry_filter = function(entry, ctx)
+			-- 	-- HACK: little hack for not showning any snippet in LSP, since they doesn't work
+			-- 	if entry:get_kind() == 15 then
+			-- 		return false
+			-- 	end
+			-- 	return true
+			-- end,
 		},
 		{ name = "nvim_lua" },
 		{ name = "path" },

@@ -1,4 +1,6 @@
 require("rose-pine").setup({
+	--- @usage 'auto'|'main'|'moon'|'dawn'
+	variant = "auto",
 	--- @usage 'main' | 'moon'
 	dark_variant = "main",
 	bold_vert_split = false,
@@ -6,7 +8,6 @@ require("rose-pine").setup({
 	disable_background = false,
 	disable_float_background = false,
 	disable_italics = false,
-
 	--- @usage string hex value or named color from rosepinetheme.com/palette
 	groups = {
 		background = "base",
@@ -32,7 +33,6 @@ require("rose-pine").setup({
 		-- or set all headings at once
 		-- headings = 'subtle'
 	},
-
 	-- Change specific vim highlight groups
 	highlight_groups = {
 		ColorColumn = { bg = "rose" },

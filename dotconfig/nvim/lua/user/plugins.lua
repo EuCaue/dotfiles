@@ -11,17 +11,29 @@ return {
 		end,
 	}, -- colorscheme
 
-	{ "catppuccin/nvim" },
-	{ "folke/tokyonight.nvim" },
-	{ "Mofiqul/adwaita.nvim" },
-	{ "LunarVim/darkplus.nvim" },
+	{
+		"catppuccin/nvim",
+	},
+	{
+		"folke/tokyonight.nvim",
+	},
+	{
+		"Mofiqul/adwaita.nvim",
+	},
+	{ "marko-cerovac/material.nvim" },
+	{ "maxmx03/solarized.nvim" },
+	{
+		"LunarVim/darkplus.nvim",
+		name = "darkplus",
+	},
+	-- { "Abstract-IDE/Abstract-cs" },
 	-- BetterComment
 	{ "numToStr/Comment.nvim" },
 	{ "JoosepAlviste/nvim-ts-context-commentstring" }, -- Better JSX + TSX comment
 
 	--  BetterHighlight
-	-- { "styled-components/vim-styled-components" }, -- highlight for styled-components
-	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }, -- a better highlight for everything
+	{ "styled-components/vim-styled-components" }, -- highlight for styled-components
+	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", event = "BufReadPost" }, -- a better highlight for everything
 	{ "nvim-treesitter/nvim-treesitter-textobjects" },
 	{ "NvChad/nvim-colorizer.lua" }, -- CSS COLORS
 	{ "p00f/nvim-ts-rainbow" }, -- {} colored
@@ -30,26 +42,25 @@ return {
 	-- Snippets
 	{
 		--  Snippet Engine
-		"l3mon4d3/luasnip",
-		priority = 100,
+		"L3MON4D3/LuaSnip",
+		build = "make install_jsregexp",
 		config = function()
 			require("luasnip").filetype_extend("typescript", { "css" })
 		end,
 	},
-	-- a bunch of snippets
-	{ "rafamadriz/friendly-snippets" },
+	{ "rafamadriz/friendly-snippets", priority = 51 }, -- a bunch of snippets
 	{
 		"dsznajder/vscode-es7-javascript-react-snippets",
 		build = "yarn install --frozen-lockfile && yarn compile",
+		priority = 51,
 	},
 
 	-- IDE
 	{ "kyazdani42/nvim-web-devicons" }, -- icons
 	{ "neovim/nvim-lspconfig", event = "BufReadPre" }, -- LSP
 	{ "SmiteshP/nvim-navic" }, -- better location
-	{ "fgheng/winbar.nvim" },
 	{ "simrat39/symbols-outline.nvim" },
-	{ "kyazdani42/nvim-tree.lua" }, -- Tree file
+	-- { "kyazdani42/nvim-tree.lua" }, -- Tree file
 	{ "mattn/emmet-vim" }, -- emmet
 	{ "mbbill/undotree" }, -- undo tree
 	{ "kdheepak/lazygit.nvim" }, -- lazygit inside nvim
@@ -65,16 +76,53 @@ return {
 	{ "nvim-lua/plenary.nvim" },
 	{ "karb94/neoscroll.nvim" }, -- better scroll
 	{ "folke/which-key.nvim", lazy = true }, -- which key
+	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = false },
 	{ "petertriho/nvim-scrollbar" }, -- scrollbar
 	{ "nvim-telescope/telescope-project.nvim" }, -- find projects
+	{ "onsails/lspkind.nvim" },
 	-- { "Exafunction/codeium.vim" }, -  ia like copilot
+	{
+		"barrett-ruth/live-server.nvim",
+		build = "yarn global add live-server",
+		config = true,
+	},
+	{
+		"echasnovski/mini.surround",
+		version = "*",
+		config = function()
+			require("mini.surround").setup({})
+		end,
+	},
+
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		cmd = "Neotree",
+		version = "*",
+		dependencies = { "MunifTanjim/nui.nvim", lazy = true },
+	},
+
+	{
+		"folke/persistence.nvim",
+		event = "BufReadPre",
+		opts = { options = { "buffers", "curdir", "tabpages", "winsize", "help" } },
+    -- stylua: ignore
+    keys = {
+      { "<leader>qs", function() require("persistence").load() end,                desc = "Restore Session" },
+      { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
+      { "<leader>qd", function() require("persistence").stop() end,                desc = "Don't Save Current Session" },
+    },
+	},
+
 	{
 		"utilyre/barbecue.nvim",
 		version = "*",
 		config = function()
-			require("barbecue").setup()
+			local icons = require("user.icons")
+			require("barbecue").setup({
+				kinds = icons,
+			})
 		end,
-	},
+	}, -- winbar + navic
 
 	{
 		"rcarriga/nvim-notify",
@@ -83,19 +131,24 @@ return {
 			require("notify").setup({
 				timeout = 500,
 				render = "minimal",
+				background_colour = "#00000000",
 			})
 		end,
 	}, -- notify
 	{ "debugloop/telescope-undo.nvim" }, -- telescope for undo tree
-	{ "shortcuts/no-neck-pain.nvim" },
+	{ "shortcuts/no-neck-pain.nvim" }, -- center neovim
 	{ "goolord/alpha-nvim" }, -- title screen
-	-- lsp status
 	{
 		"j-hui/fidget.nvim",
 		config = function()
-			require("fidget").setup({})
+			require("fidget").setup({
+				window = {
+					relative = "editor", -- where to anchor, either "win" or "editor"
+					blend = 0, -- &winblend for the window
+				},
+			})
 		end,
-	},
+	}, -- lsp status
 	{ "yamatsum/nvim-cursorline" }, -- highlight cursor on things
 	{ "antoinemadec/FixCursorHold.nvim" }, -- depen
 	{ "asiryk/auto-hlsearch.nvim" }, -- better search
@@ -111,12 +164,7 @@ return {
 			require("markdowny").setup()
 		end,
 	},
-	{
-		"ellisonleao/glow.nvim",
-		config = function()
-			require("glow").setup({})
-		end,
-	}, -- preview markdow
+	{ "ellisonleao/glow.nvim", config = true, cmd = "Glow" }, -- preview markdow
 	{
 		"phaazon/hop.nvim",
 		event = "BufRead",

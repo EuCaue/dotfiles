@@ -9,28 +9,28 @@
 @define-color base #191724;
 @define-color love #eb6f92;
 @define-color pine #31748f;
-@define-color low #21202e;
+@define-color low  #21202e;
 @define-color gold #f6c177;
+
+/* @define-color text #cccccc; */
+/* @define-color base #1e1e1e; */
+/* @define-color love #eb6f92; */
+/* @define-color pine #3A81D0; */
+/* @define-color low #21202e; */
 
 * {
   border: none;
   border-radius: 0;
-  font-family: "Hack Nerd Font";
+  font-family: "Lilex Nerd Font";
   font-size: 14px;
   font-weight: 500;
   /* min-height: 0; */
 }
 
-
-
-
 window#waybar {
   background: transparent;
   color: @text;
 }
-
-
-
 
 #window,
 #clock,
@@ -53,22 +53,22 @@ window#waybar {
 #mpd,
 #workspaces,
 #gamemode,
-#gamemode.running{
+#gamemode.running {
   background-color: @base;
   padding: 0 10px;
   min-height: 35px;
-  /* border-radius: 10px; */
+  border-radius: 5px;
   margin-top: 5px;
   margin-bottom: 10px;
-  border: 2px solid @pine;
+  border-bottom: 2px solid @pine;
 }
 
-#backlight {
-    margin-right: 20px;
+#battery {
+  margin-right: 15px;
 }
 
 #workspaces {
-  margin-left: 20px;
+  margin-left: 15px;
 }
 
 #workspaces button {
@@ -77,7 +77,6 @@ window#waybar {
   background: @base;
   color: @text;
   /* border-bottom: 2px solid transparent; */
-
 }
 
 #workspaces button:hover {

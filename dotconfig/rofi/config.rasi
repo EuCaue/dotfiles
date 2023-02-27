@@ -1,6 +1,6 @@
 configuration {
   drun-display-format: "{icon} {name}";
-  font: "Hack Nerd Font 14";
+  font: "Lilex Nerd Font 14";
   modi: "window,run,drun,emoji,calc,";
   show-icons: true;
   icon-theme: "Rose Pine";
@@ -9,7 +9,7 @@ configuration {
   case-sensitivity: false; 
   sorting-method: "fzf";
   hide-scrollbar: true;
-  terminal: "kitty";
+  terminal: "foot";
   display-drun: "   Apps ";
   display-run: "   Run ";
   display-window: " 﩯  Window";

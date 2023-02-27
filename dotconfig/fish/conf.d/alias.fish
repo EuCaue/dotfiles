@@ -17,6 +17,7 @@ end
 alias bat='bat --theme=base16'
 alias ls='exa -l -g --icons'
 alias la='exa -l -a -g --icons'
+alias lll='exa -l -a -g --icons'
 alias vim='nvim'
 alias vi='nvim'
 alias clearpkg='sus -Qtdq | sus -Rns -'
@@ -25,11 +26,14 @@ alias gcl='cd ~/gitclone && git clone'
 alias gcld='cd ~/Dev && git clone'
 alias c='cursor.fish'
 alias v='nvim'
+alias vf='ls | set file $(fzf) & vi $file'
 alias r='ranger'
 alias g='lazygit'
 alias gw='glow'
 alias :wq="exit"
 alias :q="exit"
+alias cr="cargo run"
+alias wf='wfetch'
 
 # just make Interactive
 alias mv='mv -i'
@@ -38,7 +42,14 @@ alias cp='cp -i'
 
 
 # NOTE: WebDev
-alias vited='yarn vite --host'
+# alias vited='firefox-developer-edition & disown & yarn vite --host'
+function vited --description "alias vite and firefox"
+    if not pgrep -f firefox-developer-edition >/dev/null
+        firefox-developer-edition >/dev/null 2>&1 & disown
+    end
+    yarn vite --host
+end
+
 alias yarns='yarn start'
 alias yarnd='yarn run dev'
 alias vercelp='yarn vercel --prod'

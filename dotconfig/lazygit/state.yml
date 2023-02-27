@@ -2,10 +2,13 @@ lastupdatecheck: 0
 recentrepos:
 - /home/caue/dotfiles
 - /home/caue/Dev/yaTODO
+- /home/caue/Dev/rust/wfetch
+- /home/caue/Dev/portfolio
+- /home/caue/Dev/webdev/password-generator
+- /home/caue/Dev/rust
 - /home/caue/Dev/cursors
 - /home/caue/Dev/fish
-- /home/caue/Dev/portfolio
-- /home/caue/gitclone/EuCaue
 startuppopupversion: 5
-customcommandshistory: []
+customcommandshistory:
+- ""
 hidecommandlog: false

@@ -15,7 +15,7 @@ local border = {
 }
 
 -- vim.o.updatetime = 250
--- vim.cmd([[autocmd! CursorHold,CursorHoldI * Lspsaga show_cursor_diagnostics]])
+-- vim.cmd([[autocmd! CursorHold,CursorHoldI * :lua vim.lsp.buf.signature_help()]])
 
 -- LSP settings (for overriding per client)
 local handlers = {
@@ -24,36 +24,41 @@ local handlers = {
 }
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap = true, silent = true }
-vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
--- vim.keymap.set("n", "<space>e", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
--- vim.keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
--- vim.keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
+-- local opts = { noremap = true, silent = true }
+local function get_opts(desc)
+	return { noremap = true, silent = true, desc = desc }
+end
+
+vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, get_opts("Line diagnostic"))
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, get_opts("Jump to prev diagnostic"))
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, get_opts("Jump to next diagnostic"))
+vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, get_opts("Diagnostics loclist"))
 
 local on_attach = function(client, bufnr) -- Enable completion triggered by <c-x><c-o>
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
-	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-	vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", bufopts)
-	vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-	vim.keymap.set("n", "<space>o", "<cmd>SymbolsOutline<CR>", bufopts)
-	vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", bufopts)
-	vim.keymap.set("n", "<space>L", vim.lsp.buf.signature_help, bufopts)
-	vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
-	vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
+	local function get_bufopts(desc)
+		return { noremap = true, silent = true, buffer = bufnr, desc = desc }
+	end
+
+	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, get_bufopts("Go to declaration"))
+	vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", get_bufopts("Go to definitions"))
+	vim.keymap.set("n", "K", vim.lsp.buf.hover, get_bufopts("Hover documentation"))
+	vim.keymap.set("n", "<space>o", "<cmd>SymbolsOutline<CR>", get_bufopts("Outline Icons"))
+	vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", get_bufopts("Go to implementations"))
+	vim.keymap.set("n", "<space>l", vim.lsp.buf.signature_help, get_bufopts("Signature help"))
+	vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, get_bufopts("Add workspace folder"))
+	vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, get_bufopts("Remove workspace folder"))
 	vim.keymap.set("n", "<space>wl", function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, bufopts)
-	vim.keymap.set("n", "D", "<cmd>Telescope lsp_type_definitions<CR>", bufopts)
-	vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
-	vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
-	vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", bufopts)
+	end, get_bufopts("List workspace folders"))
+	vim.keymap.set("n", "D", "<cmd>Telescope lsp_type_definitions<CR>", get_bufopts("Go to type definition"))
+	vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, get_bufopts("LSP Rename"))
+	vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, get_bufopts("Code action"))
+	vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", get_bufopts("References"))
 	vim.keymap.set("n", "<space>f", function()
 		vim.lsp.buf.format({ async = true })
-	end, bufopts)
+	end, get_bufopts("LSP Format"))
 	if client.server_capabilities.documentSymbolProvider then
 		navic.attach(client, bufnr)
 	end
@@ -63,7 +68,7 @@ end
 local servers = {
 	"tsserver",
 	"bashls",
-	"sumneko_lua",
+	"lua_ls",
 	"pyright",
 	"gopls",
 	-- "tailwindcss",
@@ -98,6 +103,14 @@ for type, icon in pairs(signs) do
 end
 
 vim.diagnostic.config({
+	float = {
+		border = "single",
+		focusable = true,
+		style = "minimal",
+		source = "always",
+		header = "",
+		prefix = "",
+	},
 	virtual_text = true,
 	signs = true,
 	underline = false,

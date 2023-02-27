@@ -98,7 +98,7 @@ if [ "$TS" = "ts" ]; then
 fi 
 
 if  [ "$STYLED" = "y" ]; then
-    $PKG $INSTALL -D typescript-styled-plugin
+    $PKG $INSTALL -D @styled/typescript-styled-plugin
     $PKG $INSTALL -D @types/styled-components
     $PKG $INSTALL styled-components
     exit 1

@@ -5,8 +5,10 @@ if status is-interactive
  I use arch BTW ඞ
   "
 end
-alias wezterm='/usr/bin/wezterm start --cwd .'
 
 
 fish_add_path /home/caue/.spicetify
+fish_add_path /home/caue/.local/bin/
+
+# set -e /home/caue/.yarn/bin/
 fish_add_path /home/caue/.local/share/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/cfg

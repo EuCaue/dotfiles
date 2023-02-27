@@ -1,13 +1,13 @@
 #!/usr/bin/env fish 
 
+~/dotfiles/scripts/gsettings.fish &
 swaybg -i $WALLPAPER -m fill &
 waybar &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-~/dotfiles/scripts/gsettings.fish &
 ~/dotfiles/scripts/suspend.sh &
 ~/dotfiles/scripts/rofi-clipboard.fish &
-/opt/xdman/xdm-app &
-redshift -O 5500K &
+# /opt/xdman/xdm-app &
+redshift -O 5000K &
 swaync &
 sleep 1
 killall xdg-desktop-portal-hyprland

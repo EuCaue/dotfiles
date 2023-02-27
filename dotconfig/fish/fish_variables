@@ -1,8 +1,8 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR --export CURSOR:macOS\x2dMonterey\x2dRose\x2dPine
-SETUVAR --export CURSORSIZE:28
-SETUVAR --export WALLPAPER:/home/caue/Pictures/wallpapers/wallhaven\x2dm9zy7k\x2epng
+SETUVAR --export CURSOR:Simp1e\x2dRose\x2dPine
+SETUVAR --export CURSORSIZE:24
+SETUVAR --export WALLPAPER:/home/caue/Pictures/wallpapers/touka\x2ejpg
 SETUVAR ZO_CMD:zo
 SETUVAR Z_CMD:z
 SETUVAR Z_DATA:/home/caue/\x2elocal/share/z/data
@@ -42,7 +42,7 @@ SETUVAR fish_color_selection:\x2d\x2dbackground\x3d313244
 SETUVAR fish_color_status:red
 SETUVAR fish_color_user:94e2d5
 SETUVAR fish_color_valid_path:\x2d\x2dunderline
-SETUVAR fish_key_bindings:fish_vi_key_bindings
+SETUVAR fish_key_bindings:fish_default_key_bindings
 SETUVAR fish_pager_color_background:\x1d
 SETUVAR fish_pager_color_completion:cdd6f4
 SETUVAR fish_pager_color_description:6c7086
@@ -56,6 +56,6 @@ SETUVAR fish_pager_color_selected_background:\x1d
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/home/caue/dotfiles/scripts\x1e/home/caue/\x2espicetify
+SETUVAR fish_user_paths:/home/caue/\x2elocal/bin\x1e/home/caue/dotfiles/scripts\x1e/home/caue/\x2espicetify
 SETUVAR nvm_data:/home/caue/\x2elocal/share/nvm
 SETUVAR nvm_mirror:https\x3a//nodejs\x2eorg/dist

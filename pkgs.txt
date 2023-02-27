@@ -33,6 +33,7 @@ avahi
 awesome-terminal-fonts
 babl
 base
+base-devel
 bash
 bat
 bc
@@ -59,13 +60,11 @@ ca-certificates-utils
 cabextract
 cairo
 cairomm
-calcure
 cantarell-fonts
 capitaine-cursors
 cava
 cblas
 cdparanoia
-cfitsio
 chafa
 check
 chromaprint
@@ -94,6 +93,7 @@ dbus-python
 dconf
 dconf-editor
 ddgr
+debugedit
 default-cursors
 desktop-file-utils
 device-mapper
@@ -129,7 +129,6 @@ expat
 faac
 faad2
 fakeroot
-faudio
 fcft
 fd
 ffmpeg
@@ -191,8 +190,6 @@ glslang
 glu
 gmp
 gnome-chess
-gnome-desktop
-gnome-desktop-common
 gnome-disk-utility
 gnome-icon-theme-extras
 gnome-keyring
@@ -200,8 +197,10 @@ gnome-themes-extra
 gnu-free-fonts
 gnupg
 gnutls
+go
 gobject-introspection
 gobject-introspection-runtime
+gperftools
 gpgme
 gpm
 gptfdisk
@@ -256,6 +255,7 @@ heroic-games-launcher-bin
 hicolor-icon-theme
 hidapi
 highlight
+highway
 htop
 http-parser
 hunspell
@@ -284,8 +284,6 @@ jasper
 java-environment-common
 java-runtime-common
 jbig2dec
-jdk-openjdk
-jdk17-openjdk
 jdk8-openjdk
 jemalloc
 jq
@@ -301,6 +299,7 @@ json-c
 json-glib
 jsoncpp
 jxrlib
+karchive
 kbd
 keyutils
 kitty
@@ -332,7 +331,6 @@ lib32-curl
 lib32-dbus
 lib32-e2fsprogs
 lib32-expat
-lib32-faudio
 lib32-flac
 lib32-fontconfig
 lib32-freetype2
@@ -345,7 +343,6 @@ lib32-giflib
 lib32-glib-networking
 lib32-glib2
 lib32-glibc
-lib32-glu
 lib32-gmp
 lib32-gnutls
 lib32-gpm
@@ -388,6 +385,7 @@ lib32-libnl
 lib32-libogg
 lib32-libpcap
 lib32-libpciaccess
+lib32-libpipewire
 lib32-libpng
 lib32-libproxy
 lib32-libpsl
@@ -436,7 +434,6 @@ lib32-libxv
 lib32-libxxf86vm
 lib32-llvm-libs
 lib32-lm_sensors
-lib32-mangohud
 lib32-mesa
 lib32-mpg123
 lib32-ncurses
@@ -506,7 +503,6 @@ libcap-ng
 libcdio
 libcdio-paranoia
 libcdr
-libcgif
 libcloudproviders
 libcolord
 libcups
@@ -550,7 +546,6 @@ libgme
 libgnomekbd
 libgpg-error
 libgphoto2
-libgsf
 libgudev
 libhandy
 libheif
@@ -572,6 +567,7 @@ libisl
 libixion
 libjpeg-turbo
 libjpeg6-turbo
+libjxl
 libkate
 libksba
 liblangtag
@@ -583,7 +579,6 @@ liblqr
 liblrdf
 libltc
 libluv
-liblzf
 libmanette
 libmd
 libmediainfo
@@ -601,6 +596,7 @@ libmpeg2
 libmspub
 libmwaw
 libmypaint
+libmysofa
 libndp
 libnet
 libnetfilter_conntrack
@@ -629,6 +625,7 @@ libpciaccess
 libpeas
 libpgm
 libpipeline
+libpipewire
 libplacebo
 libplist
 libpng
@@ -683,7 +680,6 @@ libtiff
 libtirpc
 libtommath
 libtool
-libtpms
 libunistring
 libunwind
 liburcu
@@ -697,7 +693,6 @@ libva
 libvdpau
 libvdpau-va-gl
 libverto
-libvips
 libvisio
 libvisual
 libvorbis
@@ -787,8 +782,6 @@ m4
 mailcap
 make
 man-db
-mangohud
-mangohud-common
 mariadb-libs
 mbedtls
 mcmojave-cursors
@@ -806,7 +799,6 @@ mjpegtools
 mkinitcpio
 mkinitcpio-busybox
 mobile-broadband-provider-info
-moderndeck-bin
 mpfr
 mpg123
 mpv
@@ -827,16 +819,14 @@ nemo-image-converter
 neofetch
 neon
 neovim
-neovim-nvim-treesitter
-nerd-fonts-cascadia-code
-nerd-fonts-jetbrains-mono
-nerd-fonts-profont
-nerd-fonts-sf-mono-ligatures
 net-snmp
 netpbm
 nettle
 networkmanager
 networkmanager-openvpn
+nextcloud
+nextcloud-app-notes
+nextcloud-client
 node-gyp
 nodejs
 nodejs-nopt
@@ -866,6 +856,7 @@ openvpn
 opus
 orc
 otf-comic-shanns-v2
+otf-hasklig-nerd
 otf-monocraft
 p11-kit
 p7zip
@@ -895,6 +886,8 @@ perl-mailtools
 perl-parse-yapp
 perl-timedate
 phinger-cursors
+php-legacy
+php-legacy-gd
 pinentry
 pipes.sh
 pipewire
@@ -909,7 +902,6 @@ pkgconf
 playerctl
 polkit
 polkit-gnome
-pomo
 poppler
 poppler-data
 poppler-glib
@@ -926,7 +918,6 @@ protonvpn-gui
 psmisc
 python
 python-anyascii
-python-appdirs
 python-attrs
 python-autocommand
 python-bcrypt
@@ -938,7 +929,6 @@ python-cffi
 python-chardet
 python-click
 python-clickgen
-python-colorama
 python-contourpy
 python-cryptography
 python-cssselect2
@@ -949,6 +939,7 @@ python-distro
 python-dnspython
 python-docopt
 python-evdev
+python-fastjsonschema
 python-fonttools
 python-gnupg
 python-gobject
@@ -988,6 +979,9 @@ python-pycparser
 python-pydantic
 python-pyopenssl
 python-pyparsing
+python-pyqt5
+python-pyqt5-sip
+python-pyqt5-webengine
 python-pythondialog
 python-pyxdg
 python-regex
@@ -995,12 +989,10 @@ python-reportlab
 python-requests
 python-secretstorage
 python-setuptools
-python-shtab
 python-six
 python-soupsieve
 python-svglib
 python-systemd
-python-termcolor
 python-tinycss2
 python-toml
 python-tomli
@@ -1022,14 +1014,17 @@ qpdf
 qrencode
 qt5-base
 qt5-declarative
+qt5-graphicaleffects
 qt5-location
 qt5-quickcontrols
+qt5-quickcontrols2
 qt5-svg
 qt5-tools
 qt5-translations
 qt5-wayland
 qt5-webchannel
 qt5-webengine
+qt5-websockets
 qt5-x11extras
 qt5ct
 qt6-5compat
@@ -1039,6 +1034,8 @@ qt6-imageformats
 qt6-svg
 qt6-translations
 qt6-wayland
+qtkeychain-qt5
+qutebrowser
 ranger
 raptor
 rasqal
@@ -1131,8 +1128,6 @@ serd
 shaderc
 shadow
 shared-mime-info
-signal-desktop
-simplenote-electron-bin
 slang
 slurp
 smbclient
@@ -1168,7 +1163,7 @@ svt-hevc
 swappy
 swaybg
 swayidle
-swaylock-effects
+swaylock-effects-git
 swaync
 sysfsutils
 systemd
@@ -1184,8 +1179,8 @@ texinfo
 thin-provisioning-tools
 tidy
 timeshift-bin
+tinycompress
 tinyxml2
-tldr
 tmux
 todoist-appimage
 tpm2-tss
@@ -1196,9 +1191,13 @@ tslib
 ttf-apple-emoji
 ttf-dejavu
 ttf-fira-sans
+ttf-hack-nerd
 ttf-jetbrains-mono
+ttf-jetbrains-mono-nerd
 ttf-liberation
+ttf-lilex-nerd
 ttf-minecrafter
+ttf-monofur-nerd
 ttf-nerd-fonts-symbols-1000-em-mono
 ttf-nerd-fonts-symbols-common
 ttf-opensans
@@ -1215,7 +1214,6 @@ unixodbc
 unrar
 unzip
 upower
-upscayl-bin
 usbmuxd
 usbutils
 util-linux
@@ -1224,9 +1222,6 @@ uwufetch
 v4l-utils
 ventoy-bin
 vid.stab
-virtualbox
-virtualbox-host-modules-arch
-visual-studio-code-bin
 vkbasalt
 vkd3d
 vmaf
@@ -1245,13 +1240,12 @@ wavpack
 waybar-hyprland
 wayland
 wayland-protocols
-wdisplays
 webcord-bin
 webkit2gtk
-webkit2gtk-4.1
 webp-pixbuf-loader
 webrtc-audio-processing
 wev
+wezterm
 wf-recorder
 wget
 which
@@ -1287,11 +1281,10 @@ xdelta3
 xdg-dbus-proxy
 xdg-desktop-portal
 xdg-desktop-portal-hyprland-git
-xdg-desktop-portal-wlr
 xdg-user-dirs
 xdg-user-dirs-gtk
 xdg-utils
-xdman8-beta-git
+xdman8
 xdotool
 xf86-video-intel
 xfsprogs
@@ -1320,6 +1313,7 @@ xxhash
 xz
 yarn
 youtube-dl
+yt-dlp
 zathura
 zathura-cb
 zathura-djvu

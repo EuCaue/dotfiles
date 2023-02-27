@@ -16,8 +16,9 @@ local options = {
 	mouse = "a", -- allow the mouse to be used in neovim
 	pumheight = 10, -- pop up menu height
 	showmode = false, -- we don't need to see things like -- INSERT -- anymore
-	foldmethod = "expr",
-	foldexpr = "nvim_treesitter#foldexpr()",
+	foldmethod = "indent",
+	-- foldexpr = "nvim_treesitter#foldexpr()",
+	fillchars = { fold = " " },
 	foldenable = false,
 	foldlevel = 99,
 	showcmd = false,
@@ -45,7 +46,7 @@ local options = {
 	scrolloff = 8, -- minimal number of screen lines to keep above and below the cursor
 	sidescrolloff = 8, -- minimal number of screen columns either side of cursor if wrap is `false`
 	wrap = false, -- wrap
-	-- guifont = "Fira Code:h17", -- the font used in graphical neovim applications
+	guifont = "Lilex Nerd Font:h12", -- the font used in graphical neovim applications
 }
 
 vim.opt.shortmess:append("c")

@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-set FONT "Hack Nerd Font 10"
+set FONT "Lilex Nerd Font 10"
 
 if test -z "$CURSOR"; or test "$CURSOR" = " "
     set CURSOR $XCURSOR_THEME

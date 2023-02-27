@@ -1,0 +1,29 @@
+# -*- conf -*-
+# fail 
+ 
+[cursor]
+color=101010 f0f0f0
+
+[colors]
+background=101010
+foreground=f0f0f0
+
+# Normal/regular colors (color palette 0-7)
+regular0=262626 # black
+regular1=ac8a8c # red
+regular2=8aac8b # green
+regular3=aca98a # yellow
+regular4=8f8aac # blue
+regular5=575757 # magenta
+regular6=575757 # cyan
+regular7=f0f0f0 # white 
+
+# Bright colors (color palette 8-15)
+bright0=4c4c4c # black
+bright1=c49ea0 # red
+bright2=9ec49f # green
+bright3=c4c19e # yellow
+bright4=a39ec4 # blue
+bright5=575757 # magenta
+bright6=575757 # cyan
+bright7=f0f0f0 # white

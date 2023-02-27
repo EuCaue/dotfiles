@@ -7,11 +7,9 @@ local hide_in_width = function()
 	return vim.fn.winwidth(0) > 80
 end
 
-local navic = require("nvim-navic")
-
 local lsp = {
 	function(msg)
-		clients = 0
+		local clients = 0
 		msg = msg or "[LSP Inactive]"
 		local buf_clients = vim.lsp.buf_get_clients()
 		if next(buf_clients) == nil then
@@ -106,31 +104,6 @@ local progress = {
 	color = {},
 }
 
-local function client_names()
-	-- TODO: make works with 3 lsp_clients
-	local client = vim.lsp.get_active_clients()[1]
-	local clients = 0
-
-	for k, v in pairs(vim.lsp.get_active_clients()) do
-		clients = clients + 1
-	end
-
-	if clients == 1 then
-		return string.format("[%s]", "LSP Inactive")
-	end
-
-	return string.format("[%s]", client.name)
-end
-
-local winbar = {
-	lualine_a = {},
-	lualine_b = {},
-	lualine_c = { { navic.get_location, cond = navic.is_available } },
-	lualine_x = {},
-	lualine_y = {},
-	lualine_z = {},
-}
-
 lualine.setup({
 	options = {
 		icons_enabled = true,
@@ -141,7 +114,7 @@ lualine.setup({
 		always_divide_middle = true,
 	},
 	sections = {
-		lualine_a = { mode, entries },
+		lualine_a = { mode },
 		lualine_b = { branch },
 		lualine_c = { diff, filetype },
 		lualine_x = { diagnostics, lsp },
@@ -158,5 +131,5 @@ lualine.setup({
 	},
 	-- winbar = winbar,
 	tabline = {},
-	extensions = { "nvim-tree" },
+	extensions = { "nvim-tree", "neo-tree" },
 })
