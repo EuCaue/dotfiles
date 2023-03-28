@@ -9,6 +9,4 @@ end
 
 fish_add_path /home/caue/.spicetify
 fish_add_path /home/caue/.local/bin/
-
-# set -e /home/caue/.yarn/bin/
 fish_add_path /home/caue/.local/share/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/cfg

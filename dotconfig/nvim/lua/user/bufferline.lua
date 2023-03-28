@@ -1,7 +1,4 @@
-local highlights = require("rose-pine.plugins.bufferline")
-
 require("bufferline").setup({
-
 	options = {
 		mode = "buffers", -- set to "tabs" to only show tabpages instead
 		numbers = "ordinal",
@@ -10,7 +7,7 @@ require("bufferline").setup({
 		left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
 		middle_mouse_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
 		indicator = {
-			icon = "▎", -- this should be omitted if indicator style is not 'icon'
+			icon = "  ", -- this should be omitted if indicator style is not 'icon'
 			style = "icon",
 		},
 		buffer_close_icon = "",
@@ -21,14 +18,13 @@ require("bufferline").setup({
 		max_name_length = 18,
 		max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
 		truncate_names = true, -- whether or not tab names should be truncated
-		tab_size = 18,
+		tab_size = 5,
 		diagnostics = "nvim_lsp",
 		diagnostics_update_in_insert = false,
 		diagnostics_indicator = function(count, level, diagnostics_dict, context)
 			local icon = level:match("error") and "  " or "  "
 			return "" .. count .. icon
 		end,
-		-- NOTE: this will be called a lot so don't do any heavy processing here
 		offsets = {
 			{
 				filetype = "NvimTree",
@@ -55,7 +51,7 @@ require("bufferline").setup({
 		persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
 		-- can also be a table containing 2 custom separators
 		-- [focused and unfocused]. eg: { '|', '|' }
-		separator_style = "thin",
+		separator_style = "thick",
 		enforce_regular_tabs = false,
 		always_show_bufferline = true,
 		hover = {

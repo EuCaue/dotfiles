@@ -9,32 +9,32 @@ set zoom-center "true"
 set adjust-open "width"
 set font "Lilex Nerd Font 10"
 
-set statusbar-bg                "#191724"
-set statusbar-fg                "#e0def4"
+set statusbar-bg                "#000000"
+set statusbar-fg                "#f8f8f2"
 
-set default-bg                  "#191724"
+set default-bg                  "#000000"
 
-set inputbar-bg                 "#191724"
-set inputbar-fg                 "#e0def4"
+set inputbar-bg                 "#000000"
+set inputbar-fg                 "#f8f8f2"
 
-set recolor-darkcolor           "#e0def4"
-set recolor-lightcolor          "#191724"
+set recolor-darkcolor           "#f8f8f2"
+set recolor-lightcolor          "#000000"
 
-set completion-bg               "#191724"
-set completion-fg               "#e0def4"
+set completion-bg               "#000000"
+set completion-fg               "#f8f8f2"
 
-set completion-highlight-bg     "#191724"
-set completion-highlight-fg     "#524f67"
+set completion-highlight-bg     "#000000"
+set completion-highlight-fg     "#1a5fb4"
 
-set highlight-color             "#524f67"
+set highlight-color             "#1a5fb4"
 set highlight-fg                "#908caa"
 set highlight-active-color      "#c4a7e7"
 
-set notification-bg             "#191724"
-set notification-fg             "#e0def4"
+set notification-bg             "#000000"
+set notification-fg             "#f8f8f2"
 
-set notification-error-bg       "#191724"
-set notification-error-fg       "#e0def4"
+set notification-error-bg       "#000000"
+set notification-error-fg       "#f8f8f2"
 
-set notification-warning-bg     "#191724"
-set notification-warning-fg     "#e0def4"
+set notification-warning-bg     "#000000"
+set notification-warning-fg     "#f8f8f2"

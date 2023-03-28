@@ -35,20 +35,17 @@ keymap("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'gj']], get_opts("Jump 
 keymap("n", "k", [[(v:count > 1 ? "m'" . v:count : '') . 'gk']], get_opts("Jump list relative line jump", true))
 
 keymap("n", "vv", "viw", get_opts("Select word under cursor"))
-
--- keymap("n", "<leader>x", "<cmd>e $MYVIMRC | cd %:p:h<cr>", get_opts("Open init.lua"))
+keymap("n", "<leader>m", "<cmd>Glow<cr>", get_opts("Open glow in the current file"))
+keymap("v", "<leader>m", "<cmd>Glow<cr>", get_opts("Open glow in the current file"))
 
 -- LazyGit && ToggleTerm
 keymap("n", "<leader>tl", "<cmd>LazyGit<cr>", get_opts("LazyGit"))
--- keymap("n", "<C-t>T", "<cmd>ToggleTerm direction=tab<cr>", opts)
 keymap("n", "<C-t>", "<cmd>ToggleTerm<cr>", get_opts("ToggleTerm float"))
 keymap("n", "<leader>qq", "<cmd>ToggleTerm direction=horizontal size=5<cr>", get_opts("ToggleTerm"))
 
--- NvimTree
--- keymap("n", "<leader>g", "<cmd>NvimTreeToggle<cr>", get_opts("NvimTree toggle"))
+-- Neotree
 keymap("n", "<leader>g", "<cmd>Neotree toggle<cr>", get_opts("Neotree toggle"))
 keymap("n", "<leader>nf", "<cmd>Neotree focus<cr>", get_opts("Neotree focus"))
--- keymap("n", "<leader>no", "<cmd>NvimTreeCollapse<cr>", get_opts("Collapse all folders"))
 keymap("n", "<leader>dt", "<cmd>cd ~/dotfiles/ | Neotree toggle<cr>", get_opts("Go to dotfiles"))
 
 keymap(
@@ -57,8 +54,6 @@ keymap(
 	"<cmd>lua require('notify').dismiss({ silent = true, pending = true })<cr>",
 	get_opts("Close all notifications")
 )
-
--- keymap("v", "p", '"_dP', opts)
 
 keymap("v", "<leader>y", '"+y', get_opts("Copy to system clipboard"))
 keymap("n", "<leader>y", '"+y', get_opts("Copy to system clipboard"))
@@ -99,16 +94,11 @@ keymap("n", "<leader>fv", "<cmd>cd ~/Documents/my vault/Personal/ | Telescope fi
 keymap("n", "<leader>ft", "<cmd>TodoTelescope<cr>", get_opts("Todos"))
 
 -- Git
-
 keymap("n", "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", get_opts("Preview Git Hunk"))
 keymap("n", "<leader>gb", "<cmd>Gitsigns blame_line<cr>", get_opts("Blame Line"))
 
 keymap("n", "<leader>sv", "<C-w>v", get_opts("Split window vertically"))
 keymap("n", "<leader>se", "<C-w>=", get_opts("Make split windows equal width & height"))
-
--- maybe one day
--- keymap("n", "j", "gj", opts)
--- keymap("n", "k", "gk", opts)
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", get_opts("Move to left window"))

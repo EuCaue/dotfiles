@@ -1,70 +1,77 @@
-{ 
-    "gtk-layer-shell": true,
-    "layer": "top", // Waybar at top layer
-	  "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 23, // Waybar height (to be removed for auto height)
-//  "width": 1280, // Waybar width
-    "spacing": 5, // Gaps between modules (4px)
-
-    // Choose the order of the modules
-    "modules-left": ["wlr/workspaces"],
-    "modules-center": ["gamemode", "tray", "clock", "custom/notification"],
-    "modules-right": ["pulseaudio","backlight", "battery"],
-
-    "wlr/workspaces": {
-        "format": "{icon}",
-         "on-click": "activate",
-         "format-icons": {
-         "1": "",
-         "2": "",
-         "3": "",
-         "4": "",
-         "5": "",
-         "6": "",
-         "7": "",
-         "urgent": "",
-         "active": "",
-         "default": ""
-    },
-},
-    "tray": {
-        "icon-size": 22,
-        "spacing": 5
-},
-    "clock": {
-        "timezone": "America/Bahia",
-        "today-format": "<span color='#31748f'><b>{}</b></span>",
-        "format-calendar": "<span color='#e0def4'><b>{}</b></span>",
-        "format-calendar-weeks": "<span color='#1f1d2e'><b>W{:%V}</b></span>",
-        "format-calendar-weekdays": "<span color='#26233a'><b>{}</b></span>",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "interval": 1,
-        "format": " {:%H:%M:%S}",
-        "format-alt": "{: %e %b}"
-},
-    
-    "gamemode": {
-        "format": "{glyph}",
-        "format-alt": "{glyph} {count}",
-        "glyph": " ",
-        "hide-not-running": true,
-        "use-icon": true,
-        "icon-name": "input-gaming-symbolic",
-        "icon-spacing": 0,
-        "icon-size": 20,
-        "tooltip": true,
-        "tooltip-format": "Games running: {count}"
-},
-
-"custom/notification": {
+// vim: set ft=jsonc :
+{
+  "gtk-layer-shell": true,
+  "layer": "top", // Waybar at top layer
+  "position": "top", // Waybar position (top|bottom|left|right)
+  // "height": 23, // Waybar height (to be removed for auto height)
+  //  "width": 1280, // Waybar width
+  "spacing": 9, // Gaps between modules 
+  // Choose the order of the modules
+  "modules-left": [
+    // "gamemode",
+    // "custom/notification",
+    "clock",
+    "tray"
+  ],
+  "modules-center": [
+    "wlr/workspaces"
+  ],
+  "modules-right": [
+    // "clock",
+    // "backlight",
+    "battery",
+    // "hyprland/window"
+    "pulseaudio"
+    // "tray"
+  ],
+  "wlr/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "format-icons": {
+      "1": "1:",
+      "2": "2:",
+      "3": "3:",
+      "4": "4:",
+      "5": "5:",
+      "6": "6:",
+      "7": "7:"
+    }
+  },
+  "tray": {
+    "icon-size": 22,
+    "spacing": 5
+  },
+  "clock": {
+    "timezone": "America/Bahia",
+    "today-format": "<span color='#1161cb'><b>{}</b></span>",
+    "format-calendar": "<span color='#ffffff'><b>{}</b></span>",
+    "format-calendar-weekdays": "<span color='#fff'><b>{}</b></span>",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "interval": 1,
+    "format": " {:%H:%M:%S}",
+    "format-alt": "{: %e %b}"
+  },
+  "gamemode": {
+    "format": "{glyph}",
+    "format-alt": "{glyph} {count}",
+    "glyph": " ",
+    "hide-not-running": true,
+    "use-icon": true,
+    "icon-name": "input-gaming-symbolic",
+    "icon-spacing": 0,
+    "icon-size": 20,
+    "tooltip": true,
+    "tooltip-format": "Games running: {count}"
+  },
+  "custom/notification": {
     "tooltip": false,
     "format": "{icon} {}",
     "format-icons": {
-      "notification": "<span foreground='#31748f'><sup></sup></span>",
+      "notification": "<span foreground='#1161cb'><sup></sup></span>",
       "none": "",
-      "dnd-notification": "<span foreground='#31748f'><sup></sup></span>",
+      "dnd-notification": "<span foreground='#1161cb'><sup></sup></span>",
       "dnd-none": ""
-},
+    },
     "return-type": "json",
     "exec-if": "which swaync-client",
     "exec": "swaync-client -swb",
@@ -72,85 +79,103 @@
     "on-click-right": "swaync-client -d -sw",
     "on-click-middle": "swaync-client -C",
     "escape": true
-},
-
-    "pulseaudio": {
-        "scroll-step": 5,
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon}  {format_source}",
-        "format-bluetooth-muted": " {icon}  {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": " ",
-        "format-icons": {
-            "headphone": " ",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": [" ", " ", " "],
-        },
-        "on-click": "pavucontrol",
-        "on-click-middle": "pactl set-sink-volume @DEFAULT_SINK@ 60%",
-        "on-click-right": "pactl set-sink-volume @DEFAULT_SINK@ 60%",
-        "max-volume": 60
-},
-
-    "cpu": {
-        "format": "{usage}% ",
-        "on-click": "foot -e vtop",
-        "tooltip": true
-},
-
-    "memory": {
-        "format": "{}% ",
-        "tooltip": true,
-        "on-click": "pkexec limpante"
-},
-
-
-    "network": {
-        "format": "{ifname}",
-        "format-wifi": "{essid}  ",
-        "format-disconnected": "", //An empty format will hide the module.
-        "tooltip-format-wifi": "{essid} ({signalStrength}%)  ",
-        "tooltip-format-disconnected": "Disconnected",
-        "interval": 800,
-        "on-click": "foot -e nmtui",
-        "max-length": 90
-},
-
-    "temperature": {
-        "thermal-zone": 2,
-        "on-click": "",
-        "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
-        "critical-threshold": 80,
-        "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
-},
-
-    "battery": {
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% 󰂰 {format_source}",
+    "format-bluetooth-muted": " 󰂰 {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "  ",
+    "format-icons": {
+      "headphone": " ",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        " ",
+        " ",
+        " "
+      ]
+    },
+    "on-click": "pavucontrol",
+    "on-click-middle": "pactl set-sink-volume @DEFAULT_SINK@ 60%",
+    "on-click-right": "pactl set-sink-volume @DEFAULT_SINK@ 60%",
+    "scroll-step": 5,
+    "max-volume": 60
+  },
+  "cpu": {
+    "interval": 1,
+    "format": " {usage}%",
+    "max-length": 100,
+    "on-click": "foot -e vtop"
+  },
+  "memory": {
+    "interval": 30,
+    "format": " {}%",
+    "format-alt": " {used:0.1f}G",
+    "max-length": 10
+  },
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": "{essid}  ",
+    "format-disconnected": "", //An empty format will hide the module.
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)  ",
+    "tooltip-format-disconnected": "Disconnected",
+    "interval": 800,
+    "on-click": "foot -e nmtui",
+    "max-length": 90
+  },
+  "temperature": {
+    "thermal-zone": 2,
+    "on-click": "",
+    "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+    "critical-threshold": 80,
+    "format-critical": "{temperatureC}°C {icon}",
+    "format": "{temperatureC}°C {icon}",
+    "format-icons": [
+      "",
+      "",
+      ""
+    ]
+  },
+  "hyprland/window": {
+    "format": " {}",
+    "separate-outputs": true
+  },
+  "battery": {
     "interval": 60,
     "states": {
-        "warning": 30,
-        "critical": 15
+      "warning": 30,
+      "critical": 15
     },
     "format": "{icon}",
-    "format-icons": [" ", " ", " ", " ", " "],
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ],
     "max-length": 25,
     "tooltip": true,
     "tooltip-format": "{capacity}%, {timeTo}",
-},
-
-
-    "backlight": {
-        "device": "acpi_video1",
-        "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
-}
-
-
-
+  },
+  "backlight": {
+    "device": "acpi_video1",
+    "format": "{percent}% {icon}",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  }
 }

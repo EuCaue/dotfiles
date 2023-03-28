@@ -3,7 +3,6 @@ configuration {
   font: "Lilex Nerd Font 14";
   modi: "window,run,drun,emoji,calc,";
   show-icons: true;
-  icon-theme: "Rose Pine";
   eh: 1;
   sort: true;
   case-sensitivity: false; 
@@ -23,16 +22,16 @@ configuration {
 
 
 * {
-    bg: #191724;
-    cur: #26233a;
-    fgd: #e0def4;
-    cmt: #6e6a86;
-    cya: #9ccfd8;
-    grn: #31748f;
-    ora: #31748f;
-    pur: #c4a7e7;
-    red: #eb6f92;
-    yel: #f6c177;
+    bg:  #000000;
+    cur: #99c1f1;
+    fgd: #ffffff;
+    cmt: #5e5c64;
+    cya: #ffffff;
+    grn: #1a5fb4;
+    ora: #1a5fb4;
+    pur: #dc8add;
+    red: #a51d2d;
+    yel: #e5a50a;
 
 
     foreground: @fgd;
@@ -54,7 +53,6 @@ configuration {
     border-radius: 12;
     border-color: @bordercolor;
     padding:          5;
-  /* width: 750px; */
 }
 #mainbox {
     border:  0;

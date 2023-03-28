@@ -19,6 +19,7 @@ alias ls='exa -l -g --icons'
 alias la='exa -l -a -g --icons'
 alias lll='exa -l -a -g --icons'
 alias vim='nvim'
+alias lwaybar='killall waybar && waybar & disown'
 alias vi='nvim'
 alias clearpkg='sus -Qtdq | sus -Rns -'
 alias dumpkgs='sus -Qq > $HOME/dotfiles/pkgs.txt'
@@ -34,6 +35,7 @@ alias :wq="exit"
 alias :q="exit"
 alias cr="cargo run"
 alias wf='wfetch'
+alias remirror='sudo reflector -c BR -f 2 -l 20 -n 10 --save /etc/pacman.d/mirrorlist'
 
 # just make Interactive
 alias mv='mv -i'
@@ -42,7 +44,6 @@ alias cp='cp -i'
 
 
 # NOTE: WebDev
-# alias vited='firefox-developer-edition & disown & yarn vite --host'
 function vited --description "alias vite and firefox"
     if not pgrep -f firefox-developer-edition >/dev/null
         firefox-developer-edition >/dev/null 2>&1 & disown

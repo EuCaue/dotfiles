@@ -2239,6 +2239,6 @@ map kitty_mod+f5 load_config_file
 
 
 # BEGIN_KITTY_THEME
-# Catppuccin-Mocha
+# Harper
 include current-theme.conf
 # END_KITTY_THEME

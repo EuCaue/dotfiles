@@ -24,7 +24,6 @@ _comps=(
 'add-zle-hook-widget' '_add-zle-hook-widget'
 'add-zsh-hook' '_add-zsh-hook'
 'admin' '_sccs'
-'alacritty' '_alacritty'
 'ali' '_mh'
 'alias' '_alias'
 'amaya' '_webbrowser'
@@ -759,6 +758,7 @@ _comps=(
 'mencal' '_mencal'
 'mere' '_mere'
 'merge' '_rcs'
+'meson' '_meson'
 'metaflac' '_flac'
 'mformat' '_mtools'
 'mgv' '_pspdf'
@@ -851,6 +851,7 @@ _comps=(
 'nginx' '_nginx'
 'ngrep' '_ngrep'
 'nice' '_nice'
+'ninja' '_ninja'
 'nkf' '_nkf'
 'nl' '_nl'
 'nm' '_nm'
@@ -1691,13 +1692,13 @@ bindkey '^[,' _history-complete-newer
 bindkey '^[/' _history-complete-older
 bindkey '^[~' _bash_complete-word
 
-autoload -Uz _alacritty _bat _black _blackd _bluetoothctl \
-            _bootctl _busctl _bwrap _cargo _checkupdates \
-            _cmus _code _coredumpctl _curl _ddgr \
-            _downgrade _exa _fd _foot _footclient \
-            _highlight _hostnamectl _journalctl _kernel-install _libinput \
-            _localectl _loginctl _machinectl _mkinitcpio _mpv \
-            _networkctl _oomctl _paccache _pacdiff _pacignore \
+autoload -Uz _bat _black _blackd _bluetoothctl _bootctl \
+            _busctl _bwrap _cargo _checkupdates _cmus \
+            _coredumpctl _curl _ddgr _downgrade _exa \
+            _fd _foot _footclient _highlight _hostnamectl \
+            _journalctl _kernel-install _libinput _localectl _loginctl \
+            _machinectl _meson _mkinitcpio _mpv _networkctl \
+            _ninja _oomctl _paccache _pacdiff _pacignore \
             _paclist _paclog-pkglist _pacman _pacscripts _pacsearch \
             _pacsort _pactree _paru _playerctl _pulseaudio \
             _qpdf _rankmirrors _resolvectl _rg _rustup \

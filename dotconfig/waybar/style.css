@@ -1,35 +1,17 @@
-/* :root { */
-/*   --text: #e0def4; */
-/*   --base: #191724; */
-/*   --love: #eb6f92; */
-/*   --pine: #31748f; */
-/* } */
-/**/
-@define-color text #e0def4;
-@define-color base #191724;
-@define-color love #eb6f92;
-@define-color pine #31748f;
-@define-color low  #21202e;
-@define-color gold #f6c177;
-
-/* @define-color text #cccccc; */
-/* @define-color base #1e1e1e; */
-/* @define-color love #eb6f92; */
-/* @define-color pine #3A81D0; */
-/* @define-color low #21202e; */
+/* ft=gtkcss*/
 
 * {
   border: none;
   border-radius: 0;
   font-family: "Lilex Nerd Font";
-  font-size: 14px;
-  font-weight: 500;
-  /* min-height: 0; */
+  font-size: 13px;
+  font-weight: bold;
+  transition-duration: 0.2s;
 }
 
 window#waybar {
   background: transparent;
-  color: @text;
+  color: @theme_text_color;
 }
 
 #window,
@@ -54,35 +36,51 @@ window#waybar {
 #workspaces,
 #gamemode,
 #gamemode.running {
-  background-color: @base;
+  background-color: @theme_base_color;
   padding: 0 10px;
-  min-height: 35px;
   border-radius: 5px;
   margin-top: 5px;
-  margin-bottom: 10px;
-  border-bottom: 2px solid @pine;
+  margin-bottom: 5px;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 1);
 }
 
 #battery {
   margin-right: 15px;
+  background-color: transparent;
+  color: transparent;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0);
 }
 
-#workspaces {
+#clock {
   margin-left: 15px;
 }
 
+#battery.critical {
+  color: @error_bg_color;
+}
+
 #workspaces button {
-  margin: 0;
-  padding: 0 8px;
-  background: @base;
-  color: @text;
-  /* border-bottom: 2px solid transparent; */
+  background: @theme_base_color;
+  font-size: 15px;
+  color: @theme_text_color;
 }
 
 #workspaces button:hover {
-  background-color: @low;
+  background-color: @popover_bg_color;
+  color: @accent_color;
+  transition-duration: unset;
+  border-radius: 5px;
 }
 
-#tray {
-  /* margin-right: 15.5px; */
+#window {
+  min-width: 10rem;
+}
+
+#pulseaudio {
+  margin-right: 15px;
+}
+
+#workspaces button.active {
+  color: @accent_color;
+  transition-duration: 0;
 }

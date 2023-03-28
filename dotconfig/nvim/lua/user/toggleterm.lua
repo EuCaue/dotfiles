@@ -2,7 +2,6 @@ local status_ok, toggleterm = pcall(require, "toggleterm")
 if not status_ok then
 	return
 end
-local highlights = require("rose-pine.plugins.toggleterm")
 local keymap = vim.api.nvim_set_keymap
 
 toggleterm.setup({
@@ -21,7 +20,6 @@ toggleterm.setup({
 	float_opts = {
 		border = "curved",
 		winblend = 3,
-		highlights = highlights,
 	},
 })
 

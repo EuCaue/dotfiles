@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # add more args here according to preference
-ARGS="--volume=100"
+ARGS="--volume=53"
 
 notification(){
 # change the icon to whatever you want. Make sure your notification server 
@@ -24,7 +24,8 @@ menu(){
 	printf "8. SmoothChill\n"
   printf "9. Lofi TokyoGhoul\n"
   printf "10. Lofi TokyoGhoul Alt\n"
-  printf "11. Lofi TokyoGhoul Playlist"
+  printf "11. Lofi TokyoGhoul Playlist\n"
+  printf "12. Cloudy Sakura"
 }
 
 main() {
@@ -84,6 +85,11 @@ main() {
     11)
 			notification "Lofi TokyoGhoul Playlist ☕️🎶";
             URL="https://youtube.com/playlist?list=PL3Xsq8k7CYjMPh-F15n0ClL14jEBr6S37"
+			break
+			;;
+    12)
+			notification "Lofi Cloudy Sakura ☕️🎶";
+            URL="https://www.youtube.com/watch?v=IjMESxJdWkg"
 			break
 			;;
 	esac

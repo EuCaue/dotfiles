@@ -1,32 +1,35 @@
 return {
 	-- Colorscheme
+	{ "Abstract-IDE/Abstract-cs" },
 	{
-		"rose-pine/neovim",
-		name = "rose-pine",
+		"RRethy/nvim-base16",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			require("user.rosepine") -- colorscheme
-			vim.cmd([[colorscheme rose-pine]])
+			vim.g.colors_name = "base16-da-one-black"
+			require("base16-colorscheme").setup({
+				base00 = "#000000",
+				base01 = "#000000",
+				base02 = "#202020",
+				base03 = "#888888",
+				base04 = "#c8c8c8",
+				base05 = "#ffffff",
+				base06 = "#ffffff",
+				base07 = "#ffffff",
+				base08 = "#fa7883",
+				base09 = "#ffc387",
+				base0A = "#ff9470",
+				base0B = "#98c379",
+				base0C = "#8af5ff",
+				base0D = "#6bb8ff",
+				base0E = "#e799ff",
+				base0F = "#b3684f",
+			})
+			-- vim.cmd([[colorscheme elflord]])
 		end,
-	}, -- colorscheme
+	},
 
-	{
-		"catppuccin/nvim",
-	},
-	{
-		"folke/tokyonight.nvim",
-	},
-	{
-		"Mofiqul/adwaita.nvim",
-	},
-	{ "marko-cerovac/material.nvim" },
-	{ "maxmx03/solarized.nvim" },
-	{
-		"LunarVim/darkplus.nvim",
-		name = "darkplus",
-	},
-	-- { "Abstract-IDE/Abstract-cs" },
+	--
 	-- BetterComment
 	{ "numToStr/Comment.nvim" },
 	{ "JoosepAlviste/nvim-ts-context-commentstring" }, -- Better JSX + TSX comment
@@ -60,7 +63,6 @@ return {
 	{ "neovim/nvim-lspconfig", event = "BufReadPre" }, -- LSP
 	{ "SmiteshP/nvim-navic" }, -- better location
 	{ "simrat39/symbols-outline.nvim" },
-	-- { "kyazdani42/nvim-tree.lua" }, -- Tree file
 	{ "mattn/emmet-vim" }, -- emmet
 	{ "mbbill/undotree" }, -- undo tree
 	{ "kdheepak/lazygit.nvim" }, -- lazygit inside nvim
@@ -214,7 +216,7 @@ return {
 			"amarakon/nvim-cmp-fonts",
 			"saadparwaiz1/cmp_luasnip",
 			"dcampos/cmp-emmet-vim",
-			{ "ray-x/cmp-treesitter" },
+			"ray-x/cmp-treesitter",
 		},
 		config = function()
 			require("user.cmp")

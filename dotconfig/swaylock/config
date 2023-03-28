@@ -1,44 +1,42 @@
-indicator
 indicator-caps-lock
 indicator-radius=125
 indicator-thickness=10
 clock
 font=Lilex Nerd Font
-font-size=35px
+font-size=40px
 ignore-empty-password
-effect-blur=7x5
+effect-blur=3x5
 effect-vignette=0.5:0.5
-fade-in=0.4
 disable-caps-lock-text
-image=/home/caue/Pictures/wallpapers/ascii.png
+image=/home/caue/Pictures/wallpapers/wallhaven-8o5q3y.png
 
-color=#191724
-ring-color=#191724
-key-hl-color=#31748f
-line-color=#31748f
-inside-color=#191724
-bs-hl-color=#eb6f92
-separator-color=#31748f
-text-color=#e0def4
+color=#000000
+ring-color=#000000
+key-hl-color=#1a5fb4
+line-color=#1a5fb4
+inside-color=#000000
+bs-hl-color=#a51d2d
+separator-color=#1a5fb4
+text-color=#ffffff
 
-text-caps-lock-color=#c4a7e7
-caps-lock-bs-hl-color=#eb6f92
-caps-lock-key-hl-color=#31748f
-line-caps-lock-color=#31748f
-ring-caps-lock-color=#191724
-inside-caps-lock-color=#191724
+text-caps-lock-color=#c0bfbc
+caps-lock-bs-hl-color=#a51d2d
+caps-lock-key-hl-color=#1a5fb4
+line-caps-lock-color=#1a5fb4
+ring-caps-lock-color=#000000
+inside-caps-lock-color=#000000
 
-inside-clear-color=#191724
-text-clear-color=#e0def4
-ring-clear-color=#31748f
-line-clear-color=#31748f
+inside-clear-color=#000000
+text-clear-color=#ffffff
+ring-clear-color=#1a5fb4
+line-clear-color=#1a5fb4
 
-inside-ver-color=#21202e
-text-ver-color=#e0def4
-line-ver-color=#f6c177
-ring-ver-color=#f6c177
+inside-ver-color=#000000
+text-ver-color=#ffffff
+line-ver-color=#ffbe6f
+ring-ver-color=#ffbe6f
 
-inside-wrong-color=#1f1d2e
-text-wrong-color=#e0def4
-ring-wrong-color=#eb6f92
-line-wrong-color=#eb6f92
+inside-wrong-color=#000000
+text-wrong-color=#ffffff
+ring-wrong-color=#a51d2d
+line-wrong-color=#a51d2d

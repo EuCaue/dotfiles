@@ -2,16 +2,15 @@
  * vim: ft=less
  */
 
-@define-color cc-bg RGBA(25, 23, 36, 0.9);
-
-@define-color noti-border-color #524f67;
-@define-color noti-bg #191724;
-@define-color noti-bg-hover #21202e;
-@define-color noti-bg-focus #31748f;
-@define-color noti-close-bg-hover #eb6f92;
-@define-color noti-close-bg rgba(235, 111, 146, 0.9);
-@define-color text #e0def4;
-@define-color bg-selected #31748f;
+@define-color cc-bg #000000;
+@define-color noti-border-color #1161cb;
+@define-color noti-bg #000000;
+@define-color noti-bg-hover #000000;
+@define-color noti-bg-focus #1161cb;
+@define-color noti-close-bg-hover #c01c28;
+@define-color noti-close-bg #000000;
+@define-color text #ffffff;
+@define-color bg-selected #1161cb;
 
 .notification-row {
   outline: none;
@@ -23,7 +22,7 @@
 }
 
 .notification {
-  border-radius: 12px;
+  border-radius: 5px;
   margin: 6px 12px;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.7),
     0 2px 6px 2px rgba(0, 0, 0, 0.3);
@@ -33,24 +32,24 @@
 /* 
 .low {
   background: #21202e;
-  border-radius: 2px;
+  border-radius: 5px;
 }
 
 .normal {
   background: #403d52;
-  border-radius: 2px;
+  border-radius: 5px;
 }
 
 .critical {
   background: #524f67;
-  border-radius: 2px;
+  border-radius: 5px;
 }
  */
 
 .notification-content {
   background: transparent;
   padding: 6px;
-  border-radius: 12px;
+  border-radius: 5px;
 }
 
 .close-button {
@@ -119,7 +118,7 @@
 .body-image {
   margin-top: 6px;
   background-color: @text;
-  border-radius: 12px;
+  border-radius: 5px;
 }
 
 .summary {
@@ -145,7 +144,6 @@
   background: transparent;
   color: @text;
   text-shadow: none;
-
 }
 
 /* The "Notifications" and "Do Not Disturb" text widget */
@@ -156,7 +154,7 @@
 
 .control-center {
   background: @cc-bg;
-  border-radius: 15px;
+  border-radius: 5px;
 }
 
 .control-center-list {
@@ -186,7 +184,7 @@
   background: @noti-bg;
   border: 1px solid @noti-border-color;
   box-shadow: none;
-  border-radius: 12px;
+  border-radius: 5px;
 }
 .widget-title > button:hover {
   background: @noti-bg-focus;
@@ -199,7 +197,7 @@
 }
 .widget-dnd > switch {
   font-size: initial;
-  border-radius: 12px;
+  border-radius: 5px;
   background: @noti-bg;
   border: 1px solid @noti-border-color;
   box-shadow: none;
@@ -209,7 +207,7 @@
 }
 .widget-dnd > switch slider {
   background: @noti-bg-hover;
-  border-radius: 12px;
+  border-radius: 5px;
 }
 
 /* Label widget */

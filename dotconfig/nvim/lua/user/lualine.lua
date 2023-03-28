@@ -13,7 +13,6 @@ local lsp = {
 		msg = msg or "[LSP Inactive]"
 		local buf_clients = vim.lsp.buf_get_clients()
 		if next(buf_clients) == nil then
-			-- TODO: clean up this if statement
 			if type(msg) == "boolean" or #msg == 0 then
 				return "[LSP Inactive]"
 			end
@@ -107,7 +106,6 @@ local progress = {
 lualine.setup({
 	options = {
 		icons_enabled = true,
-		-- theme = "rose-pine",
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },
 		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
