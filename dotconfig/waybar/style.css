@@ -3,7 +3,7 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: "Lilex Nerd Font";
+  font-family: "MesloLGL Nerd Font";
   font-size: 13px;
   font-weight: bold;
   transition-duration: 0.2s;
@@ -37,11 +37,11 @@ window#waybar {
 #gamemode,
 #gamemode.running {
   background-color: @theme_base_color;
-  padding: 0 10px;
+  padding: 0 15px;
   border-radius: 5px;
   margin-top: 5px;
-  margin-bottom: 5px;
-  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 1);
+  /* margin-bottom: 5px; */
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.8);
 }
 
 #battery {
@@ -81,6 +81,7 @@ window#waybar {
 }
 
 #workspaces button.active {
+  background-color: @popover_bg_color;
   color: @accent_color;
   transition-duration: 0;
 }

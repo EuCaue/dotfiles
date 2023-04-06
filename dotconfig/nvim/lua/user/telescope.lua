@@ -4,6 +4,7 @@ if not status_ok then
 end
 
 local actions = require("telescope.actions")
+local grep_args = { "--hidden", "--glob", "!**/.git/*" }
 
 require("telescope").load_extension("project")
 require("telescope").load_extension("lazygit")
@@ -12,14 +13,21 @@ require("telescope").load_extension("file_browser")
 require("telescope").load_extension("fzf")
 
 telescope.setup({
-
 	defaults = require("telescope.themes").get_dropdown({}),
 	{
-
+		vimgrep_arguments = {
+			"rg",
+			"--color=never",
+			"--no-heading",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case",
+			"--hidden",
+		},
 		prompt_prefix = " ",
 		selection_caret = " ",
 		path_display = { "smart" },
-
 		mappings = {
 			i = {
 				["<C-n>"] = actions.cycle_history_next,
@@ -86,6 +94,7 @@ telescope.setup({
 		},
 	},
 	pickers = {
+		-- hidden_files = true,
 		-- picker_name = {
 		--   picker_config_key = value,
 		--   ...
@@ -94,15 +103,31 @@ telescope.setup({
 			-- theme = "dropdown",
 		},
 
+		find_files = {
+			find_command = { "fd", "--type", "f", "--hidden", "--follow", "--exclude", ".git" },
+		},
+
 		live_grep = {
 			only_sort_text = true,
+			additional_args = function(opts)
+				return grep_args
+			end,
 		},
+
+		grep_string = {
+			additional_args = function(opts)
+				return grep_args
+			end,
+		},
+
 		keymaps = {
 			theme = "ivy",
 		},
 	},
 	extensions = {
 		file_browser = {
+			cwd_to_path = true,
+			select_buffer = true,
 			-- disables netrw and use telescope-file-browser in its place
 			hijack_netrw = true,
 			mappings = {
@@ -127,13 +152,12 @@ telescope.setup({
 
 		project = {
 			base_dirs = {
-
 				{ "~/Dev/" },
 			},
-			hidden_files = false, -- default: false
+			hidden_files = true, -- default: false
 			theme = "dropdown",
 			order_by = "asc",
-			sync_with_nvim_tree = true, -- default false
+			sync_with_nvim_tree = false, -- default false
 		},
 	},
 })

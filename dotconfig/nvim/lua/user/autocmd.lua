@@ -24,6 +24,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = { "*.tsx", "*.ts", "*.jsx", "*.js" },
 	callback = function()
-		vim.cmd("EslintFixAll")
+		local eslint_config_exists = os.execute("test -f .eslint.cjs")
+		if eslint_config_exists == 0 then
+			vim.cmd("EslintFixAll")
+		end
 	end,
 })

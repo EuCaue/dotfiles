@@ -1,4 +1,5 @@
 local navic = require("nvim-navic")
+local navbuddy = require("nvim-navbuddy")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lspconfig = require("lspconfig")
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -44,7 +45,7 @@ local on_attach = function(client, bufnr) -- Enable completion triggered by <c-x
 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, get_bufopts("Go to declaration"))
 	vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", get_bufopts("Go to definitions"))
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, get_bufopts("Hover documentation"))
-	vim.keymap.set("n", "<space>o", "<cmd>SymbolsOutline<CR>", get_bufopts("Outline Icons"))
+	vim.keymap.set("n", "<space>o", "<cmd>Navbuddy<CR>", get_bufopts("Outline Icons"))
 	vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", get_bufopts("Go to implementations"))
 	vim.keymap.set("n", "<space>l", vim.lsp.buf.signature_help, get_bufopts("Signature help"))
 	vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, get_bufopts("Add workspace folder"))
@@ -61,6 +62,7 @@ local on_attach = function(client, bufnr) -- Enable completion triggered by <c-x
 	end, get_bufopts("LSP Format"))
 	if client.server_capabilities.documentSymbolProvider then
 		navic.attach(client, bufnr)
+		navbuddy.attach(client, bufnr)
 	end
 end
 

@@ -8,11 +8,11 @@ mpv --volume="53" --title="radio-mpv" "https://www.youtube.com/watch?v=IjMESxJdW
 ~/dotfiles/scripts/suspend.sh &
 ~/dotfiles/scripts/rofi-clipboard.fish &
 redshift -O 5000K &
-swaync &
+dunst &
 sleep 1
 killall xdg-desktop-portal-hyprland
 killall xdg-desktop-portal-wlr
 killall xdg-desktop-portal
-/usr/libexec/xdg-desktop-portal-hyprland &
+/usr/lib/xdg-desktop-portal-hyprland &
 sleep 2
 /usr/lib/xdg-desktop-portal &

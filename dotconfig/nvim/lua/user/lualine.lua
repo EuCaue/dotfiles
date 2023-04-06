@@ -103,6 +103,13 @@ local progress = {
 	color = {},
 }
 
+local time = {
+	"datetime",
+	fmt = function()
+		return os.date("%H:%M:%S")
+	end,
+}
+
 lualine.setup({
 	options = {
 		icons_enabled = true,
@@ -115,7 +122,7 @@ lualine.setup({
 		lualine_a = { mode },
 		lualine_b = { branch },
 		lualine_c = { diff, filetype },
-		lualine_x = { diagnostics, lsp },
+		lualine_x = { time, diagnostics, lsp },
 		lualine_y = { location },
 		lualine_z = { progress },
 	},

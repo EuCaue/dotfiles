@@ -1,34 +1,88 @@
+local icons = require("user.icons")
 return {
 	-- Colorscheme
-	{ "Abstract-IDE/Abstract-cs" },
+
 	{
 		"RRethy/nvim-base16",
 		lazy = false,
 		priority = 1000,
 		config = function()
 			vim.g.colors_name = "base16-da-one-black"
+			-- require("base16-colorscheme").setup({
+			-- 	base00 = "#000000",
+			-- 	base01 = "#000000",
+			-- 	base02 = "#202020",
+			-- 	base03 = "#888888",
+			-- 	base04 = "#c8c8c8",
+			-- 	base05 = "#ffffff",
+			-- 	base06 = "#ffffff",
+			-- 	base07 = "#ffffff",
+			-- 	base08 = "#fa7883",
+			-- 	base09 = "#ffc387",
+			-- 	base0A = "#ff9470",
+			-- 	base0B = "#98c379",
+			-- 	base0C = "#8af5ff",
+			-- 	base0D = "#6bb8ff",
+			-- 	base0E = "#e799ff",
+			-- 	base0F = "#b3684f",
+			-- })
+			-- require("base16-colorscheme").setup({
+			-- 	base00 = "#000000",
+			-- 	base01 = "#000000",
+			-- 	base02 = "#202020",
+			-- 	base03 = "#6c6c66",
+			-- 	base04 = "#918f88",
+			-- 	base05 = "#b5b3aa",
+			-- 	base06 = "#d9d7cc",
+			-- 	base07 = "#fdfbee",
+			-- 	base08 = "#ff6c60",
+			-- 	base09 = "#e9c062",
+			-- 	base0A = "#ffffb6",
+			-- 	base0B = "#a8ff60",
+			-- 	base0C = "#c6c5fe",
+			-- 	base0D = "#96cbfe",
+			-- 	base0E = "#ff73fd",
+			-- 	base0F = "#b18a3d",
+			-- })
 			require("base16-colorscheme").setup({
 				base00 = "#000000",
 				base01 = "#000000",
 				base02 = "#202020",
-				base03 = "#888888",
-				base04 = "#c8c8c8",
-				base05 = "#ffffff",
-				base06 = "#ffffff",
-				base07 = "#ffffff",
-				base08 = "#fa7883",
-				base09 = "#ffc387",
-				base0A = "#ff9470",
-				base0B = "#98c379",
-				base0C = "#8af5ff",
-				base0D = "#6bb8ff",
-				base0E = "#e799ff",
-				base0F = "#b3684f",
+				base03 = "#545454",
+				base04 = "#7e7e7e",
+				base05 = "#a8a8a8",
+				base06 = "#d2d2d2",
+				base07 = "#fcfcfc",
+				base08 = "#fc5454",
+				base09 = "#a85400",
+				base0A = "#fcfc54",
+				base0B = "#54fc54",
+				base0C = "#54fcfc",
+				base0D = "#5454fc",
+				base0E = "#fc54fc",
+				base0F = "#00a800",
 			})
-			-- vim.cmd([[colorscheme elflord]])
+			-- 	-- vim.cmd([[colorscheme elflord]])
 		end,
 	},
 
+	{
+		"bluz71/vim-moonfly-colors",
+		-- 	lazy = false,
+		-- 	priority = 1000,
+		-- 	config = function()
+		-- 		vim.cmd([[colorscheme moonfly]])
+		-- 		vim.api.nvim_command("highlight Normal guibg=#000000")
+		-- 	end,
+	},
+	{
+		"olimorris/onedarkpro.nvim",
+		-- lazy = false,
+		-- priority = 1000,
+		-- config = function()
+		-- 	vim.cmd([[colorscheme onedark_dark]])
+		-- end,
+	},
 	--
 	-- BetterComment
 	{ "numToStr/Comment.nvim" },
@@ -62,6 +116,15 @@ return {
 	{ "kyazdani42/nvim-web-devicons" }, -- icons
 	{ "neovim/nvim-lspconfig", event = "BufReadPre" }, -- LSP
 	{ "SmiteshP/nvim-navic" }, -- better location
+	{
+		"SmiteshP/nvim-navbuddy",
+		event = "LspAttach",
+		config = function()
+			require("nvim-navbuddy").setup({
+				icons = icons,
+			})
+		end,
+	},
 	{ "simrat39/symbols-outline.nvim" },
 	{ "mattn/emmet-vim" }, -- emmet
 	{ "mbbill/undotree" }, -- undo tree
@@ -74,7 +137,7 @@ return {
 	{ "nvim-lualine/lualine.nvim" }, -- status bar
 	{ "windwp/nvim-ts-autotag" }, -- <> autoclose tag
 	{ "lewis6991/gitsigns.nvim" }, -- Git
-	{ "nvim-telescope/telescope.nvim", version = "0.1.0" }, -- fzf finder
+	{ "nvim-telescope/telescope.nvim", version = "0.1.x" }, -- fzf finder
 	{ "nvim-lua/plenary.nvim" },
 	{ "karb94/neoscroll.nvim" }, -- better scroll
 	{ "folke/which-key.nvim", lazy = true }, -- which key
@@ -82,6 +145,13 @@ return {
 	{ "petertriho/nvim-scrollbar" }, -- scrollbar
 	{ "nvim-telescope/telescope-project.nvim" }, -- find projects
 	{ "onsails/lspkind.nvim" },
+	{
+		"kevinhwang91/nvim-ufo",
+		dependencies = "kevinhwang91/promise-async",
+		config = function()
+			require("ufo").setup({})
+		end,
+	},
 	-- { "Exafunction/codeium.vim" }, -  ia like copilot
 	{
 		"barrett-ruth/live-server.nvim",
@@ -184,6 +254,13 @@ return {
 			require("todo-comments").setup({})
 		end,
 	}, -- TODO:
+	{
+		"JellyApple102/flote.nvim",
+		config = function()
+			require("flote").setup({})
+		end,
+		cmd = "Flote",
+	},
 
 	{
 		"iamcco/markdown-preview.nvim",

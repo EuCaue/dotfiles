@@ -1,6 +1,7 @@
 map <C-i> zoom in
 map <C-o> zoom out
 
+set selection-clipboard clipboard
 set recolor  "true"
 set recolor-keephue "true"
 

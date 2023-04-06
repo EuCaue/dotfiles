@@ -1,6 +1,6 @@
 configuration {
   drun-display-format: "{icon} {name}";
-  font: "Lilex Nerd Font 14";
+  font: "MesloLGL Nerd Font 13";
   modi: "window,run,drun,emoji,calc,";
   show-icons: true;
   eh: 1;

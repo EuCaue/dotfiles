@@ -92,13 +92,6 @@ cmp.setup({
 	sources = {
 		{
 			name = "nvim_lsp",
-			-- entry_filter = function(entry, ctx)
-			-- 	-- HACK: little hack for not showning any snippet in LSP, since they doesn't work
-			-- 	if entry:get_kind() == 15 then
-			-- 		return false
-			-- 	end
-			-- 	return true
-			-- end,
 		},
 		{ name = "nvim_lua" },
 		{ name = "path" },

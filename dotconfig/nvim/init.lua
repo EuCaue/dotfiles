@@ -6,7 +6,6 @@ require("user.telescope") -- telescope config
 require("user.treesitter") -- treesitter config, betterhighlight
 require("user.autopairs") -- auto close ([{)
 require("user.gitsigns") -- git status
--- require("user.nvimtree") -- tree file manager
 require("user.neotree") -- tree file manager
 require("user.toggleterm") -- toggle a terminal inside of neovim
 require("user.autocmd") -- autocmd's
@@ -28,7 +27,3 @@ require("user.lightbulb") -- show when codeactions is available
 require("user.colorizer") -- colorizer
 require("user.auto-hlsearch") -- better search
 require("user.symbols-outline") -- outline symbols
-
--- vim.cmd("highlight Normal ctermbg=none guibg=#00000080")
--- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
--- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
