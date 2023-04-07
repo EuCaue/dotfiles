@@ -36,6 +36,7 @@ alias :q="exit"
 alias cr="cargo run"
 alias wf='wfetch'
 alias remirror='sudo reflector -c BR -f 2 -l 20 -n 10 --save /etc/pacman.d/mirrorlist'
+alias img='img2sixel'
 
 # just make Interactive
 alias mv='mv -i'

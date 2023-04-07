@@ -7,7 +7,7 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.g.colors_name = "base16-da-one-black"
+			-- vim.g.colors_name = "base16-da-one-black"
 			-- require("base16-colorscheme").setup({
 			-- 	base00 = "#000000",
 			-- 	base01 = "#000000",
@@ -189,7 +189,6 @@ return {
 		"utilyre/barbecue.nvim",
 		version = "*",
 		config = function()
-			local icons = require("user.icons")
 			require("barbecue").setup({
 				kinds = icons,
 			})

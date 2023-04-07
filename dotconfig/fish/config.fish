@@ -6,8 +6,3 @@ if status is-interactive
   "
     neofetch --sixel --source $WALLPAPER
 end
-
-set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
-fish_add_path /home/caue/.spicetify
-fish_add_path /home/caue/.local/bin/
-fish_add_path /home/caue/.local/share/Steam/steamapps/common/Counter-Strike Global Offensive/csgo/cfg

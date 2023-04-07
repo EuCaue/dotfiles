@@ -1,21 +1,23 @@
 # dotfiles
 
-*WM:* **[hyprland](https://github.com/hyprwm/Hyprland)**
+_WM:_ **[hyprland](https://github.com/hyprwm/Hyprland)**
 
-*statusBar:* **[waybar](https://github.com/Alexays/Waybar/wiki)**
+_statusBar:_ **[waybar](https://github.com/Alexays/Waybar/wiki)**
 
-*terminal:* **[kitty](https://github.com/kovidgoyal/kitty)**
+_terminal:_ **[foot](https://codeberg.org/dnkl/foot)**
 
-*shell:* **[fish](https://github.com/fish-shell/fish-shell)**
+_shell:_ **[fish](https://github.com/fish-shell/fish-shell)**
 
-*fetch:* **[neofetch](https://github.com/dylanaraps/neofetch)**
+_fetch:_ **[neofetch](https://github.com/dylanaraps/neofetch)**
 
-*code/text editor:* **[neovim](https://github.com/neovim/neovim)**
+_code/text editor:_ **[neovim](https://github.com/neovim/neovim)**
 
-*app launcher:* **[rofi](https://aur.archlinux.org/packages/rofi-lbonn-wayland-git)**
+_app launcher:_ **[rofi](https://aur.archlinux.org/packages/rofi-lbonn-wayland-git)**
 
-*notifications:* **[swaync](https://github.com/ErikReider/SwayNotificationCenter)**
+_notifications:_ **[dunst](https://github.com/dunst-project/dunst)**
 
-*PDF reader:* **[zathura](https://github.com/pwmt/zathura)**
+_pdf reader:_ **[zathura](https://github.com/pwmt/zathura)**
+
+_font:_ **[MesloLG Nerd Font](https://www.nerdfonts.com/font-downloads)**
 
 ![rice](./rice.png)
