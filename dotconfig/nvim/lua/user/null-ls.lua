@@ -10,7 +10,7 @@ require("null-ls").setup({
 		require("null-ls").builtins.formatting.black,
 		-- require("null-ls").builtins.formatting.eslint_d,
 		require("null-ls").builtins.formatting.markdownlint,
-		require("null-ls").builtins.formatting.prettier,
+		-- require("null-ls").builtins.formatting.prettier,
 
 		-- NOTE: diagnostics
 		-- require("null-ls").builtins.diagnostics.eslint_d,
@@ -38,5 +38,7 @@ require("null-ls").setup({
 		-- NOTE: hover
 		require("null-ls").builtins.hover.dictionary,
 		require("null-ls").builtins.hover.printenv,
+
+require("typescript.extensions.null-ls.code-actions")
 	},
 })

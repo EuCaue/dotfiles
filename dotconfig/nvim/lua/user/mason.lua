@@ -2,6 +2,7 @@ local servers = {
 	"tsserver",
 	"bashls",
 	"lua_ls",
+	"svelte",
 	"eslint",
 	"marksman",
 	"html",

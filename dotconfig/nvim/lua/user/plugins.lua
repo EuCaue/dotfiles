@@ -1,89 +1,8 @@
 local icons = require("user.icons")
+local theme = require("user.theme")
 return {
 	-- Colorscheme
-
-	{
-		"RRethy/nvim-base16",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			-- vim.g.colors_name = "base16-da-one-black"
-			-- require("base16-colorscheme").setup({
-			-- 	base00 = "#000000",
-			-- 	base01 = "#000000",
-			-- 	base02 = "#202020",
-			-- 	base03 = "#888888",
-			-- 	base04 = "#c8c8c8",
-			-- 	base05 = "#ffffff",
-			-- 	base06 = "#ffffff",
-			-- 	base07 = "#ffffff",
-			-- 	base08 = "#fa7883",
-			-- 	base09 = "#ffc387",
-			-- 	base0A = "#ff9470",
-			-- 	base0B = "#98c379",
-			-- 	base0C = "#8af5ff",
-			-- 	base0D = "#6bb8ff",
-			-- 	base0E = "#e799ff",
-			-- 	base0F = "#b3684f",
-			-- })
-			-- require("base16-colorscheme").setup({
-			-- 	base00 = "#000000",
-			-- 	base01 = "#000000",
-			-- 	base02 = "#202020",
-			-- 	base03 = "#6c6c66",
-			-- 	base04 = "#918f88",
-			-- 	base05 = "#b5b3aa",
-			-- 	base06 = "#d9d7cc",
-			-- 	base07 = "#fdfbee",
-			-- 	base08 = "#ff6c60",
-			-- 	base09 = "#e9c062",
-			-- 	base0A = "#ffffb6",
-			-- 	base0B = "#a8ff60",
-			-- 	base0C = "#c6c5fe",
-			-- 	base0D = "#96cbfe",
-			-- 	base0E = "#ff73fd",
-			-- 	base0F = "#b18a3d",
-			-- })
-			require("base16-colorscheme").setup({
-				base00 = "#000000",
-				base01 = "#000000",
-				base02 = "#202020",
-				base03 = "#545454",
-				base04 = "#7e7e7e",
-				base05 = "#a8a8a8",
-				base06 = "#d2d2d2",
-				base07 = "#fcfcfc",
-				base08 = "#fc5454",
-				base09 = "#a85400",
-				base0A = "#fcfc54",
-				base0B = "#54fc54",
-				base0C = "#54fcfc",
-				base0D = "#5454fc",
-				base0E = "#fc54fc",
-				base0F = "#00a800",
-			})
-			-- 	-- vim.cmd([[colorscheme elflord]])
-		end,
-	},
-
-	{
-		"bluz71/vim-moonfly-colors",
-		-- 	lazy = false,
-		-- 	priority = 1000,
-		-- 	config = function()
-		-- 		vim.cmd([[colorscheme moonfly]])
-		-- 		vim.api.nvim_command("highlight Normal guibg=#000000")
-		-- 	end,
-	},
-	{
-		"olimorris/onedarkpro.nvim",
-		-- lazy = false,
-		-- priority = 1000,
-		-- config = function()
-		-- 	vim.cmd([[colorscheme onedark_dark]])
-		-- end,
-	},
-	--
+	theme,
 	-- BetterComment
 	{ "numToStr/Comment.nvim" },
 	{ "JoosepAlviste/nvim-ts-context-commentstring" }, -- Better JSX + TSX comment
@@ -144,6 +63,17 @@ return {
 	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = false },
 	{ "petertriho/nvim-scrollbar" }, -- scrollbar
 	{ "nvim-telescope/telescope-project.nvim" }, -- find projects
+	{ "nvim-telescope/telescope-ui-select.nvim" },
+	{ "simrat39/rust-tools.nvim" },
+	{
+		"Saecki/crates.nvim",
+		version = "v0.3.*",
+		config = function()
+			require("crates").setup({})
+			require("crates").show()
+		end,
+	},
+	{ "jose-elias-alvarez/typescript.nvim" },
 	{ "onsails/lspkind.nvim" },
 	{
 		"kevinhwang91/nvim-ufo",
@@ -174,15 +104,26 @@ return {
 	},
 
 	{
-		"folke/persistence.nvim",
-		event = "BufReadPre",
-		opts = { options = { "buffers", "curdir", "tabpages", "winsize", "help" } },
-    -- stylua: ignore
-    keys = {
-      { "<leader>qs", function() require("persistence").load() end,                desc = "Restore Session" },
-      { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
-      { "<leader>qd", function() require("persistence").stop() end,                desc = "Don't Save Current Session" },
-    },
+		"Shatur/neovim-session-manager",
+		config = function()
+			local Path = require("plenary.path")
+			require("session_manager").setup({
+				sessions_dir = Path:new(vim.fn.stdpath("data"), "sessions"), -- The directory where the session files will be saved.
+				path_replacer = "__", -- The character to which the path separator will be replaced for session files.
+				colon_replacer = "++", -- The character to which the colon symbol will be replaced for session files.
+				autoload_mode = require("session_manager.config").AutoloadMode.Disabled, -- Define what to do when Neovim is started without arguments. Possible values: Disabled, CurrentDir, LastSession
+				autosave_last_session = true, -- Automatically save last session on exit and on session switch.
+				autosave_ignore_not_normal = true, -- Plugin will not save a session when no buffers are opened, or all of them aren't writable or listed.
+				autosave_ignore_dirs = {}, -- A list of directories where the session will not be autosaved.
+				autosave_ignore_filetypes = { -- All buffers of these file types will be closed before the session is saved.
+					"alpha",
+					"gitcommit",
+				},
+				autosave_ignore_buftypes = {}, -- All buffers of these buffer types will be closed before the session is saved.
+				autosave_only_in_session = false, -- Always autosaves session. If true, only autosaves after a session is active.
+				max_path_length = 80, -- Shorten the display path if length exceeds this threshold. Use 0 if don't want to shorten the path at all.
+			})
+		end,
 	},
 
 	{
@@ -236,6 +177,7 @@ return {
 		end,
 	},
 	{ "ellisonleao/glow.nvim", config = true, cmd = "Glow" }, -- preview markdow
+
 	{
 		"phaazon/hop.nvim",
 		event = "BufRead",
@@ -246,6 +188,7 @@ return {
 		end,
 	},
 
+	{ "ThePrimeagen/harpoon" },
 	{ "nvim-lua/popup.nvim" }, -- PopUp API for neovim
 	{
 		"folke/todo-comments.nvim",
@@ -263,6 +206,7 @@ return {
 
 	{
 		"iamcco/markdown-preview.nvim",
+		ft = "markdown",
 		build = function()
 			vim.fn["mkdp#util#install"]()
 		end,
@@ -277,6 +221,7 @@ return {
 	-- CMP :
 	{
 		"hrsh7th/nvim-cmp",
+		event = { "InsertEnter", "CmdlineEnter" },
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-cmdline",
@@ -285,7 +230,6 @@ return {
 			"dburian/cmp-markdown-link",
 			"hrsh7th/cmp-buffer",
 			"jcha0713/cmp-tw2css",
-			-- { "tzachar/cmp-tabnine", build = "./install.sh" },
 			{ "mtoohey31/cmp-fish", ft = "fish" },
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-nvim-lsp",
@@ -299,7 +243,7 @@ return {
 		end,
 	},
 
-	{ "williamboman/mason.nvim" },
+	{ "williamboman/mason.nvim", build = ":MasonUpdate", cmd = "Mason" },
 	{ "williamboman/mason-lspconfig.nvim" },
 	{ "jose-elias-alvarez/null-ls.nvim" },
 }

@@ -2,6 +2,7 @@ local cmp_status_ok, cmp = pcall(require, "cmp")
 if not cmp_status_ok then
 	return
 end
+
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
 	return
@@ -53,7 +54,6 @@ cmp.setup({
 				fallback()
 			end
 		end, { "i", "s" }),
-
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
@@ -82,9 +82,15 @@ cmp.setup({
 				buffer = "Text",
 				fonts = "Fonts",
 				fish = "Fish",
+				treesitter = "TS",
+				crates = "Crates",
 			})[entry.source.name]
+			if entry.source.name == "treesitter" then
+				print(entry.source.name)
+				vim_item.kind = ""
+			end
 			-- vim_item.menu = vim_item.kind
-			-- vim_item.kind = kind_icons[vim_item.kind]
+			-- vim_item.kind = icons[vim_item.kind]
 
 			return vim_item
 		end,
@@ -117,9 +123,9 @@ cmp.setup({
 	},
 	experimental = {
 		ghost_text = true,
-		native_menu = false,
 	},
 })
+
 -- Set configuration for specific filetype.
 cmp.setup.filetype("gitcommit", {
 	sources = cmp.config.sources({

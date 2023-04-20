@@ -12,7 +12,7 @@ require("user.autocmd") -- autocmd's
 require("user.comment") -- comment
 require("user.whichkey") -- whichkey
 require("user.scrollbar") -- scrollbar
-require("user.cmp") -- CMP
+-- require("user.cmp") -- CMP
 require("user.lsp") -- LSP
 require("user.mason") -- Mason
 require("user.null-ls") -- Global linter
@@ -26,4 +26,6 @@ require("user.nvim-cursorline") -- highlight the word on the cursor
 require("user.lightbulb") -- show when codeactions is available
 require("user.colorizer") -- colorizer
 require("user.auto-hlsearch") -- better search
-require("user.symbols-outline") -- outline symbols
+require("user.lsp-commands")
+vim.g.editorconfig_end_of_line = "lf"
+vim.g.editorconfig_insert_final_newline = "true"

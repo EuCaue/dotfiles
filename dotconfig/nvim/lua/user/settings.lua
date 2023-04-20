@@ -1,8 +1,8 @@
 -- NOTE: put alll options here for the loop 😀
---
--- Feature for 0.9
--- vim.o.statuscolumn = '%s%=%l %C%#Yellow#%{v:relnum == 0 ? ">" : ""}%#IndentBlankLineChar#%{v:relnum == 0 ? "" : "│"} '
--- signcolumn:yes:2
+
+-- HACK: one day i'll figure out what is this, but works nice. :)
+-- vim.opt.statuscolumn =
+-- 	"%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum < 10 ? v:lnum . '  ' : v:lnum) : ''}%=%{v:relnum == 0 ? ' ' : ''}"
 
 local options = {
 	backup = false, -- creates a backup file
@@ -44,7 +44,7 @@ local options = {
 	number = true, -- set numbered lines
 	relativenumber = true, -- set relative numbered lines
 	numberwidth = 4, -- set number column width to 2 {default 4}
-	signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
+	-- signcolumn = "yes", -- always show the sign column, otherwise it would shift the text each time
 	linebreak = true, -- companion to wrap, don't split words
 	scrolloff = 8, -- minimal number of screen lines to keep above and below the cursor
 	sidescrolloff = 8, -- minimal number of screen columns either side of cursor if wrap is `false`
@@ -53,7 +53,6 @@ local options = {
 }
 
 vim.opt.shortmess:append("c")
-
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end

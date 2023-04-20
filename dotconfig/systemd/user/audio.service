@@ -1,7 +1,7 @@
 [Unit]
-Description=Set audio for 60%
+Description=Set Audio Volume
 
 [Service]
 Type=simple
 Restart=Always
-ExecStart=pactl set-sink-volume @DEFAULT_SINK@ 60%
+ExecStart=/home/caue/dotfiles/scripts/audio.fish

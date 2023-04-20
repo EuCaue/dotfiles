@@ -4,7 +4,6 @@ require("nvim-treesitter.configs").setup({
 	autotag = {
 		enable = true,
 	},
-
 	-- Comments in jsx and js
 	context_commentstring = {
 		enable = true,
@@ -19,7 +18,6 @@ require("nvim-treesitter.configs").setup({
 			},
 		},
 	},
-
 	-- Install parsers synchronously (only applied to `ensure_installed`)
 	sync_install = false,
 	-- Automatically install missing parsers when entering buffer
@@ -31,7 +29,6 @@ require("nvim-treesitter.configs").setup({
 	},
 	-- indent
 	indent = { enable = true },
-
 	-- rainbom {}
 	rainbow = {
 		enable = false,
@@ -41,7 +38,6 @@ require("nvim-treesitter.configs").setup({
 		-- colors = {}, -- table of hex strings
 		-- termcolors = {} -- table of colour name strings
 	},
-
 	autopairs = {
 		enable = true,
 	},
@@ -51,10 +47,8 @@ require("nvim-treesitter.configs").setup({
 	textobjects = {
 		select = {
 			enable = true,
-
 			-- Automatically jump forward to textobj, similar to targets.vim
 			lookahead = true,
-
 			keymaps = {
 				-- You can use the capture groups defined in textobjects.scm
 				["af"] = "@function.outer",
@@ -87,7 +81,6 @@ require("nvim-treesitter.configs").setup({
 			-- and should return true of false
 			include_surrounding_whitespace = true,
 		},
-
 		swap = {
 			enable = true,
 			swap_next = {
@@ -97,7 +90,6 @@ require("nvim-treesitter.configs").setup({
 				["<leader>A"] = "@parameter.inner",
 			},
 		},
-
 		move = {
 			enable = true,
 			set_jumps = true, -- whether to set jumps in the jumplist
@@ -118,7 +110,6 @@ require("nvim-treesitter.configs").setup({
 				["[]"] = "@class.outer",
 			},
 		},
-
 		lsp_interop = {
 			enable = true,
 			border = "none",

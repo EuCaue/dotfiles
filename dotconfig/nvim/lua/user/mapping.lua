@@ -25,6 +25,8 @@ map("i", "<C-s>", "<cmd>write!<cr>", get_opts("Write"))
 map("n", "<C-z>", "<cmd>wq!<cr>", get_opts("Write and Quit"))
 map("n", "<C-x>", "<cmd>q!<cr>", get_opts("Quit"))
 map("n", "<C-a>", "gg<S-v>G", get_opts("Select all"))
+map("n", "<C-S-t>", "<cmd>e#<cr>", get_opts("Reopen the last closed buffer"))
+map("n", "E", "$", get_opts("Go to end of the line"))
 
 -- Comment
 map("x", "<C-/>", "<cmd>normal gcc<cr>", get_opts("Comment"))
@@ -39,7 +41,7 @@ map("n", "<leader>m", "<cmd>Glow<cr>", get_opts("Open glow in the current file")
 map("v", "<leader>m", "<cmd>Glow<cr>", get_opts("Open glow in the current file"))
 
 -- LazyGit && ToggleTerm
-map("n", "<leader>tl", "<cmd>LazyGit<cr>", get_opts("LazyGit"))
+-- map("n", "<leader>tl", "<cmd>LazyGit<cr>", get_opts("LazyGit"))
 map("n", "<C-t>", "<cmd>ToggleTerm<cr>", get_opts("ToggleTerm float"))
 map("n", "<leader>qq", "<cmd>ToggleTerm direction=horizontal size=5<cr>", get_opts("ToggleTerm"))
 
@@ -55,6 +57,8 @@ map(
 	get_opts("Close all notifications")
 )
 
+map("n", "<leader><leader>f", "<cmd>Flote<cr>", get_opts("Open Flote"))
+
 map("v", "<leader>y", '"+y', get_opts("Copy to system clipboard"))
 map("n", "<leader>y", '"+y', get_opts("Copy to system clipboard"))
 
@@ -68,6 +72,7 @@ map("v", "<leader>d", '"_d', get_opts("Delete for the void register"))
 map("n", "<leader>d", '"_d', get_opts("Delete for the void register"))
 
 map("n", "<leader>re", ":%s//<Left>", get_opts("Rename with substitute command"))
+map("n", "<leader><leader>l", "<cmd>Lazy<cr>", get_opts("Open Lazy"))
 
 vim.keymap.set(
 	"n",
@@ -76,6 +81,7 @@ vim.keymap.set(
 	get_opts("Rename with substitute command based on current text")
 )
 map("n", "<leader>x", "<cmd>!chmod +x %<CR>", get_opts("Make the current file executable"))
+map("n", "<leader><leader>x", "<cmd>!chmod -x %<CR>", get_opts("Make the current file executable"))
 
 map("n", "<leader>nc", "<cmd>NoNeckPain<cr>", get_opts("Center the screen"))
 map("n", "<leader>nz", "<cmd>ZenMode<cr>", get_opts("ZenMode"))
@@ -95,6 +101,23 @@ map("n", "<leader>fk", "<cmd>Telescope keymaps<cr>", get_opts("Keymaps"))
 map("n", "<leader>fu", "<cmd>Telescope undo<cr>", get_opts("Undo Tree"))
 map("n", "<leader>fv", "<cmd>cd ~/Documents/my vault/Personal/ | Telescope file_browser<cr>", get_opts("Markdown"))
 map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", get_opts("Todos"))
+map("n", "<leader>fh", "<cmd>Telescope harpoon marks<cr>", get_opts("See harpoon marks"))
+
+-- Session Manager
+map("n", "<leader>sl", "<cmd>SessionManager load_session<cr>", get_opts("Sessions "))
+map("n", "<leader>sd", "<cmd>SessionManager delete_session<cr>", get_opts("Delete Sessions"))
+map("n", "<leader>sc", "<cmd>SessionManager save_current_session<cr>", get_opts("Save Current Session"))
+map("n" , "<leader>ss", "<cmd>SessionManager load_last_session<cr>", get_opts("Load Last Session"))
+
+
+-- Harpoon
+
+map(
+	"n",
+	"<leader>ah",
+	"<cmd>:lua require('harpoon.mark').add_file(vim.fn.expand('%')) vim.notify('File add to harpoon: ' .. vim.fn.expand('%:t'))<CR>",
+	get_opts("Add a file to harpoon")
+)
 
 -- Git
 map("n", "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", get_opts("Preview Git Hunk"))

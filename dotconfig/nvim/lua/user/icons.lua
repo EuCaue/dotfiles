@@ -177,6 +177,7 @@ local icons = {
 	Constant = " ",
 	Struct = "פּ ",
 	Event = " ",
+	treesitter = "",
 	Operator = " ",
 	TypeParameter = "",
 }

@@ -4,7 +4,7 @@ set options exit hyprland\nreboot\npoweroff
 
 set option $(echo $options | rofi -dmenu -p "Select:") &&
     echo $option &
-
+set seconds 5
 
 switch $option
     case 'exit hyprland'
@@ -12,12 +12,12 @@ switch $option
             hyprctl dispatch exit
 
     case poweroff
-        notify-send "Poweroff Menu" "powering off in 2s." &&
+        notify-send "Poweroff Menu" "powering off in $seconds\s." &&
             sleep 2 &&
             shutdown now
 
     case reboot
-        notify-send "Poweroff Menu" "reboting in 2s" &&
+        notify-send "Poweroff Menu" "reboting in $seconds\s" &&
             sleep 2 &&
             reboot
 end

@@ -1,4 +1,37 @@
 require("neo-tree").setup({
+	source_selector = {
+		winbar = true, -- toggle to show selector on winbar
+		statusline = false, -- toggle to show selector on statusline
+		show_scrolled_off_parent_node = false, -- boolean
+		sources = { -- table
+			{
+				source = "filesystem", -- string
+				display_name = "  Files ", -- string | nil
+			},
+			{
+				source = "buffers", -- string
+				display_name = "  Buffers", -- string | nil
+			},
+			{
+				source = "git_status", -- string
+				display_name = "  Git ", -- string | nil
+			},
+		},
+		content_layout = "center", -- string
+		tabs_layout = "equal", -- string
+		truncation_character = "…", -- string
+		tabs_min_width = nil, -- int | nil
+		tabs_max_width = nil, -- int | nil
+		padding = 0, -- int | { left: int, right: int }
+		separator = { left = "▏", right = "▕" }, -- string | { left: string, right: string, override: string | nil }
+		separator_active = nil, -- string | { left: string, right: string, override: string | nil } | nil
+		show_separator_on_edge = false, -- boolean
+		highlight_tab = "NeoTreeTabInactive", -- string
+		highlight_tab_active = "NeoTreeTabActive", -- string
+		highlight_background = "NeoTreeTabInactive", -- string
+		highlight_separator = "NeoTreeTabSeparatorInactive", -- string
+		highlight_separator_active = "NeoTreeTabSeparatorActive", -- string
+	},
 	close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
 	popup_border_style = "rounded",
 	enable_git_status = true,
@@ -40,7 +73,7 @@ require("neo-tree").setup({
 			highlight = "NeoTreeFileIcon",
 		},
 		modified = {
-			symbol = "[+]",
+			symbol = "",
 			highlight = "NeoTreeModified",
 		},
 		name = {
@@ -51,8 +84,8 @@ require("neo-tree").setup({
 		git_status = {
 			symbols = {
 				-- Change type
-				added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
-				modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
+				added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
+				modified = "M", -- or "", but this is redundant info if you use git_status_colors on the name
 				deleted = "", -- this can only be used in the git_status source
 				renamed = "➜", -- this can only be used in the git_status source
 				-- Status type
@@ -66,9 +99,9 @@ require("neo-tree").setup({
 	},
 	window = {
 		position = "left",
-		width = 30,
+		width = 40,
 		mapping_options = {
-			noremap = true,
+			noremap = false,
 			nowait = true,
 		},
 		mappings = {
@@ -93,7 +126,7 @@ require("neo-tree").setup({
 			--["P"] = "toggle_preview", -- enter preview mode, which shows the current node without focusing
 			["h"] = "close_node",
 			["z"] = "close_all_nodes",
-			--["Z"] = "expand_all_nodes",
+			["Z"] = "expand_all_nodes",
 			["a"] = {
 				"add",
 				-- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
@@ -163,12 +196,21 @@ require("neo-tree").setup({
 				["<bs>"] = "navigate_up",
 				["."] = "set_root",
 				["H"] = "toggle_hidden",
-				["/"] = "fuzzy_finder",
+				["f"] = "fuzzy_finder",
 				["D"] = "fuzzy_finder_directory",
-				["f"] = "filter_on_submit",
-				["<c-x>"] = "clear_filter",
+				["#"] = "fuzzy_sorter", -- fuzzy sorting using the fzy algorithm
+				-- ["D"] = "fuzzy_sorter_directory",
+				["/"] = "filter_on_submit",
+				["q"] = "clear_filter",
 				["[g"] = "prev_git_modified",
 				["]g"] = "next_git_modified",
+			},
+			fuzzy_finder_mappings = {
+				-- define keymaps for filter popup window in fuzzy_finder_mode
+				["<down>"] = "move_cursor_down",
+				["<C-j>"] = "move_cursor_down",
+				["<up>"] = "move_cursor_up",
+				["<C-k>"] = "move_cursor_up",
 			},
 		},
 	},

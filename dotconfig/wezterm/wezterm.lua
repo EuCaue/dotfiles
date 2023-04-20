@@ -1,6 +1,4 @@
 local wezterm = require("wezterm")
--- local colors = require("lua/rose-pine").colors()
--- local window_frame = require("lua/rose-pine").window_frame()
 
 local mykeys = {}
 table.insert(mykeys, {
@@ -15,13 +13,8 @@ table.insert(mykeys, {
 	action = wezterm.action.ActivateTabRelative(1),
 })
 
-local pwd = io.popen("cd"):read()
-
 return {
-	-- colors = colors,
-	-- window_frame = window_frame,
-	default_cwd = pwd,
-	font = wezterm.font("Lilex Nerd Font", { weight = "Regular", italic = false }),
+	font = wezterm.font("MesloLGL Nerd Font"),
 	font_size = 12.0,
 	scrollback_lines = 2500,
 	cursor_blink_ease_in = "EaseOut",
@@ -35,7 +28,7 @@ return {
 		left = "30px",
 		right = "0px",
 		top = "0px",
-		bottom = "1px",
+		bottom = "0px",
 	},
 	keys = mykeys,
 }

@@ -18,7 +18,6 @@ local lsp = {
 			end
 			return msg
 		end
-		local buf_ft = vim.bo.filetype
 		local buf_client_names = {}
 
 		-- add client
@@ -38,6 +37,7 @@ local lsp = {
 		return language_servers
 	end,
 	color = { gui = "bold" },
+	component_separators = { right = "", left = " " },
 	cond = hide_in_width,
 }
 
@@ -50,6 +50,8 @@ local diagnostics = {
 	color = { gui = "bold" },
 	update_in_insert = false,
 	always_visible = false,
+	component_separators = { right = "", left = " " },
+	section_separators = { right = "", left = " " },
 }
 
 local mode = {
@@ -74,6 +76,8 @@ local filetype = {
 	icons_enabled = true,
 	icon_only = false,
 	padding = { left = 1, right = 1 },
+	section_separators = { right = " ", left = " " },
+	component_separators = { right = " ", left = " " },
 }
 
 local filename = {
@@ -105,6 +109,7 @@ local progress = {
 
 local time = {
 	"datetime",
+	component_separators = { right = "", left = " " },
 	fmt = function()
 		return os.date("%H:%M:%S")
 	end,
@@ -113,8 +118,8 @@ local time = {
 lualine.setup({
 	options = {
 		icons_enabled = true,
-		component_separators = { left = "", right = "" },
-		section_separators = { left = "", right = "" },
+		component_separators = { right = "", left = " " },
+		section_separators = { right = "", left = " " },
 		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
 		always_divide_middle = true,
 	},

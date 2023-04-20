@@ -14,18 +14,21 @@ function gal --description "alias git add commit push"
     git commit -m "$commit"
     git push
 end
+
 alias bat='bat --theme=base16'
 alias ls='exa -l -g --icons'
 alias la='exa -l -a -g --icons'
 alias lll='exa -l -a -g --icons'
+alias rf='rm -rf'
 alias vim='nvim'
 alias lwaybar='killall waybar && waybar & disown'
 alias vi='nvim'
 alias clearpkg='sus -Qtdq | sus -Rns -'
 alias dumpkgs='sus -Qq > $HOME/dotfiles/pkgs.txt'
-alias gcl='cd ~/gitclone && git clone'
+function gcl --description "Clone to gitclone folder and cd"
+    cd ~/gitclone; and git clone $argv[1] && cd (basename $argv[1] .git)
+end
 alias gcld='cd ~/Dev && git clone'
-alias c='cursor.fish'
 alias v='nvim'
 alias vf='ls | set file $(fzf) & vi $file'
 alias r='ranger'
@@ -36,7 +39,26 @@ alias :q="exit"
 alias cr="cargo run"
 alias wf='wfetch'
 alias remirror='sudo reflector -c BR -f 2 -l 20 -n 10 --save /etc/pacman.d/mirrorlist'
-alias img='img2sixel'
+alias img='img2sixel --width=800 --height=600'
+function imgall --description "display all images in the current folder"
+    for file in ./*.{jpg, png}
+        img $file
+    end
+end
+
+function mvcur --description "Move cursor to icons folder"
+    if test -z $argv[1]
+        echo "Provide a cursor folder/path"
+        return 0
+    end
+    if test -d $argv[1]
+        sudo mv $argv[1] /usr/share/icons/
+        return 1
+    else
+        echo "Provide a folder"
+        return 0
+    end
+end
 
 # just make Interactive
 alias mv='mv -i'
