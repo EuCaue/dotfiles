@@ -1,6 +1,7 @@
 # NOTE: most used
 alias cfg='nvim ~/.config/fish/config.fish'
 alias kfg='nvim ~/.config/kitty/kitty.conf'
+alias afg='nvim ~/.config/alacritty/alacritty.yml'
 alias ffg="nvim ~/.config/foot/foot.ini"
 alias hfg='nvim ~/.config/hypr/hyprland.conf'
 alias nft='nvim ~/.config/neofetch/config.conf'
@@ -13,12 +14,20 @@ function gal --description "alias git add commit push"
     read -P 'commit:' commit
     git commit -m "$commit"
     git push
+    return 0
 end
-
 alias bat='bat --theme=base16'
 alias ls='exa -l -g --icons'
 alias la='exa -l -a -g --icons'
 alias lll='exa -l -a -g --icons'
+function lr --description "Show a tree file"
+    if test -z $argv[1]
+        exa -l -a -g --icons --tree --level=2
+    else
+        exa -l -a -g --icons --tree --level=$argv[1]
+    end
+    return 0
+end
 alias rf='rm -rf'
 alias vim='nvim'
 alias lwaybar='killall waybar && waybar & disown'
@@ -27,10 +36,21 @@ alias clearpkg='sus -Qtdq | sus -Rns -'
 alias dumpkgs='sus -Qq > $HOME/dotfiles/pkgs.txt'
 function gcl --description "Clone to gitclone folder and cd"
     cd ~/gitclone; and git clone $argv[1] && cd (basename $argv[1] .git)
+    return 0
 end
+
 alias gcld='cd ~/Dev && git clone'
 alias v='nvim'
-alias vf='ls | set file $(fzf) & vi $file'
+# alias vf='ls | set file $(fzf) && vi $file'
+function vf --description "open in nvim with fzf "
+    ls | set file $(fzf)
+    if test -z $file
+        echo "Select a file!"
+        return 1
+    end
+    vi $file
+    return 0
+end
 alias r='ranger'
 alias g='lazygit'
 alias gw='glow'
@@ -44,19 +64,20 @@ function imgall --description "display all images in the current folder"
     for file in ./*.{jpg, png}
         img $file
     end
+    return 0
 end
 
 function mvcur --description "Move cursor to icons folder"
     if test -z $argv[1]
         echo "Provide a cursor folder/path"
-        return 0
+        return 1
     end
     if test -d $argv[1]
         sudo mv $argv[1] /usr/share/icons/
-        return 1
+        return 0
     else
         echo "Provide a folder"
-        return 0
+        return 1
     end
 end
 
@@ -72,6 +93,7 @@ function vited --description "alias vite and firefox"
         firefox-developer-edition >/dev/null 2>&1 & disown
     end
     yarn vite --host
+    return 0
 end
 
 alias yarns='yarn start'

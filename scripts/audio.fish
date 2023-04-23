@@ -10,5 +10,3 @@ if test -n "$is_connected"
 else
     $command_to_run
 end
-killall mpv &&
-mpv --volume="60" --title="radio-mpv" "https://www.youtube.com/watch?v=IjMESxJdWkg" --idle="yes" --input-ipc-server=/tmp/mpvsocket --no-video

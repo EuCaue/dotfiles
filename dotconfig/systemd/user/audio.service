@@ -3,5 +3,5 @@ Description=Set Audio Volume
 
 [Service]
 Type=simple
-Restart=Always
 ExecStart=/home/caue/dotfiles/scripts/audio.fish
+Restart=Always
