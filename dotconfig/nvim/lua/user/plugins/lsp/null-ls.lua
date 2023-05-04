@@ -10,7 +10,7 @@ null_ls.setup({
   sources = {
     -- NOTE: FORMATTING
     require("null-ls").builtins.formatting.stylua,
-    require("null-ls").builtins.formatting.codespell,
+    -- require("null-ls").builtins.formatting.codespell,
     require("null-ls").builtins.formatting.fish_indent,
     -- require("null-ls").builtins.formatting.tidy,
     require("null-ls").builtins.formatting.black,
@@ -45,6 +45,6 @@ null_ls.setup({
     require("null-ls").builtins.hover.dictionary,
     require("null-ls").builtins.hover.printenv,
 
-    require("typescript.extensions.null-ls.code-actions"),
+    -- require("typescript.extensions.null-ls.code-actions"),
   },
 })

@@ -7,13 +7,16 @@ if status is-interactive
 
     if test "$TERM" = foot
         neofetch --sixel --source $WALLPAPER
+        echo $( hyprctl splash )
         return
     end
 
     if test "$TERM" = xterm-kitty
         neofetch --kitty --source $WALLPAPER
+        echo $( hyprctl splash )
         return
     end
 
     neofetch --ascii --source ~/dotfiles/dotconfig/neofetch/ascii.txt
+        echo $( hyprctl splash )
 end

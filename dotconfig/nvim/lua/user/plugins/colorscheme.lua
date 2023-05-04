@@ -48,6 +48,7 @@ local gruvbox = {
 			overrides = {
 				Normal = { bg = "#000000" },
 			},
+			-- transparent_mode = true,
 		})
 		vim.cmd("colorscheme gruvbox")
 	end,
@@ -112,13 +113,14 @@ local gruvbox_baby = {
 		}
 		vim.g.gruvbox_baby_color_overrides = {
 			background = "#000000",
-			-- dark_gray = "#202020",
+			dark_gray = "#202020",
 			background_light = "#202020",
 			medium_gray = "#202020",
 		}
 		vim.cmd([[colorscheme gruvbox-baby]])
 		vim.cmd([[hi LineNr guifg=#504945]])
 		vim.cmd([[hi TelescopeMatching guifg=Gray]])
+		-- vim.g.gruvbox_baby_transparent_mode = 1
 
 		local links = {
 			["@lsp.type.namespace"] = "@namespace",
@@ -147,7 +149,6 @@ local onedark = {
 	priority = 1000,
 	config = function()
 		require("onedark").setup({
-			-- Main options --
 			transparent = true,
 			style = "warmer", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
 			-- Custom Highlights --
@@ -160,57 +161,30 @@ local onedark = {
 			},
 		})
 		vim.cmd([[colorscheme onedark]])
-
-		local links = {
-			["@lsp.type.namespace"] = "@namespace",
-			["@lsp.type.type"] = "@type",
-			["@lsp.type.class"] = "@type",
-			["@lsp.type.enum"] = "@type",
-			["@lsp.type.interface"] = "@type",
-			["@lsp.type.struct"] = "@structure",
-			["@lsp.type.parameter"] = "@parameter",
-			["@lsp.type.variable"] = "@variable",
-			["@lsp.type.property"] = "@property",
-			["@lsp.type.enumMember"] = "@constant",
-			["@lsp.type.function"] = "@function",
-			["@lsp.type.method"] = "@method",
-			["@lsp.type.macro"] = "@macro",
-			["@lsp.type.decorator"] = "@function",
-		}
-		for newgroup, oldgroup in pairs(links) do
-			vim.api.nvim_set_hl(0, newgroup, { link = oldgroup, default = true })
-		end
 	end,
 }
-local darkrose = {
-	"water-sucks/darkrose.nvim",
+
+local vscode = {
+	"Mofiqul/vscode.nvim",
 	lazy = false,
 	priority = 1000,
 	config = function()
-		vim.cmd([[colorscheme darkrose]])
-
-		local links = {
-			["@lsp.type.namespace"] = "@namespace",
-			["@lsp.type.type"] = "@type",
-			["@lsp.type.class"] = "@type",
-			["@lsp.type.enum"] = "@type",
-			["@lsp.type.interface"] = "@type",
-			["@lsp.type.struct"] = "@structure",
-			["@lsp.type.parameter"] = "@parameter",
-			["@lsp.type.variable"] = "@variable",
-			["@lsp.type.property"] = "@property",
-			["@lsp.type.enumMember"] = "@constant",
-			["@lsp.type.function"] = "@function",
-			["@lsp.type.method"] = "@method",
-			["@lsp.type.macro"] = "@macro",
-			["@lsp.type.decorator"] = "@function",
-		}
-		for newgroup, oldgroup in pairs(links) do
-			vim.api.nvim_set_hl(0, newgroup, { link = oldgroup, default = true })
-		end
+		vim.o.background = "dark"
+		require("vscode").setup({
+			transparent = false,
+			italic_comments = true,
+			color_overrides = {
+				vscBack = "#000000",
+				vscTabOutside = "#000000",
+				vscPopupBack = "#000000",
+				vscTabOther = "#000000",
+				vscTabCurrent = "#000000",
+			},
+		})
+		require("vscode").load()
 	end,
 }
 
 return {
-	onedark,
+	vscode,
 }

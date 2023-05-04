@@ -6,36 +6,35 @@
   // "height": 23, // Waybar height (to be removed for auto height)
   //  "width": 1280, // Waybar width
   "spacing": 9, // Gaps between modules 
-  // Choose the order of the modules
   "modules-left": [
-    // "gamemode",
-    // "custom/notification",
     "clock",
     "tray"
   ],
   "modules-center": [
-    "wlr/workspaces"
+    "wlr/workspaces",
+    "hyprland/submap"
   ],
   "modules-right": [
-    // "clock",
-    // "backlight",
     "battery",
-    // "hyprland/window"
+    "hyprland/window",
     "pulseaudio"
-    // "tray"
   ],
   "wlr/workspaces": {
     "format": "{icon}",
     "on-click": "activate",
     "format-icons": {
-      "1": "1:",
-      "2": "2:",
-      "3": "3:",
-      "4": "4:",
-      "5": "5:",
-      "6": "6:",
-      "7": "7:"
+      "1": "1  ",
+      "2": "2  ",
+      "3": "3  ",
+      "4": "4  ",
+      "5": "5  ",
+      "6": "6  ",
+      "7": "7 "
     }
+  },
+  "hyprland/submap": {
+    "format": "<span style=\"italic\">submap: {}</span>",
+    "tooltip": false
   },
   "tray": {
     "icon-size": 22,
@@ -142,8 +141,9 @@
     ]
   },
   "hyprland/window": {
-    "format": " {}",
-    "separate-outputs": true
+    "format": "{}",
+    "separate-outputs": true,
+    "max-length": 30
   },
   "battery": {
     "interval": 60,

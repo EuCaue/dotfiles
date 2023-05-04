@@ -4,7 +4,7 @@
   border: none;
   border-radius: 0;
   font-family: "MesloLGL Nerd Font";
-  font-size: 13px;
+  font-size: 14px;
   font-weight: bold;
   transition-duration: 0.2s;
 }
@@ -27,10 +27,6 @@ window#waybar {
 #mode,
 #idle_inhibitor,
 #language,
-#custom-arch,
-#custom-disturb_on,
-#custom-disturb_off,
-#custom-mic,
 #custom-notification,
 #mpd,
 #workspaces,
@@ -40,7 +36,6 @@ window#waybar {
   padding: 0 15px;
   border-radius: 5px;
   margin-top: 5px;
-  /* margin-bottom: 5px; */
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.8);
 }
 
@@ -70,10 +65,6 @@ window#waybar {
   color: @accent_color;
   transition-duration: unset;
   border-radius: 5px;
-}
-
-#window {
-  min-width: 10rem;
 }
 
 #pulseaudio {

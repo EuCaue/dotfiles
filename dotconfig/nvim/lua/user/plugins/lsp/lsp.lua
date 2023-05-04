@@ -14,23 +14,12 @@ local ts = require("typescript")
 require("user.plugins.lsp.lsp-commands")
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-local border = {
-  { "🭽", "FloatBorder" },
-  { "▔",  "FloatBorder" },
-  { "🭾", "FloatBorder" },
-  { "▕",  "FloatBorder" },
-  { "🭿", "FloatBorder" },
-  { "▁",  "FloatBorder" },
-  { "🭼", "FloatBorder" },
-  { "▏",  "FloatBorder" },
-}
-
 -- vim.o.updatetime = 250
 -- vim.cmd([[autocmd! CursorHold,CursorHoldI * :lua vim.lsp.buf.signature_help()]])
 
 local handlers = {
-  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
-  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "none" }),
+  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "none" }),
 }
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -169,29 +158,29 @@ rt.setup({
 })
 
 ts.setup({
-  disable_commands = false, -- prevent the plugin from creating Vim commands
-  debug = false,           -- enable debug logging for commands
-  go_to_source_definition = {
-    fallback = true,       -- fall back to standard LSP definition on failure
-  },
-  server = {
-    -- pass options to lspconfig's setup method
-    on_attach = function(client, bufnr)
-      navic.attach(client, bufnr)
-      navbuddy.attach(client, bufnr)
-      vim.keymap.set(
-        "n",
-        "<leader>tmi",
-        ts.actions.addMissingImports,
-        get_opts("Typescript Add Missing Imports ")
-      )
-      vim.keymap.set("n", "<leader>toi", ts.actions.organizeImports, get_opts("Typescript Organize Imports"))
-      vim.keymap.set("n", "<leader>tru", ts.actions.removeUnused, get_opts("Typescript Remove Unused"))
-      vim.keymap.set("n", "<leader>tfa", ts.actions.fixAll, get_opts("Typescript Fix All"))
-      vim.keymap.set("n", "<leader>trf", "<cmd>TypescriptRenameFile<cr>", get_opts("Typescript Rename File"))
-      vim.keymap.set("n", "gd", ts.goToSourceDefinition, get_opts("Typescript Go To Source definition"))
-    end,
-  },
+	disable_commands = false, -- prevent the plugin from creating Vim commands
+	debug = false, -- enable debug logging for commands
+	go_to_source_definition = {
+		fallback = true, -- fall back to standard LSP definition on failure
+	},
+	server = {
+		-- pass options to lspconfig's setup method
+		on_attach = function(client, bufnr)
+			navic.attach(client, bufnr)
+			navbuddy.attach(client, bufnr)
+			vim.keymap.set(
+				"n",
+				"<leader>tmi",
+				ts.actions.addMissingImports,
+				get_opts("Typescript Add Missing Imports ")
+			)
+			vim.keymap.set("n", "<leader>toi", ts.actions.organizeImports, get_opts("Typescript Organize Imports"))
+			vim.keymap.set("n", "<leader>tru", ts.actions.removeUnused, get_opts("Typescript Remove Unused"))
+			vim.keymap.set("n", "<leader>tfa", ts.actions.fixAll, get_opts("Typescript Fix All"))
+			vim.keymap.set("n", "<leader>trf", "<cmd>TypescriptRenameFile<cr>", get_opts("Typescript Rename File"))
+			vim.keymap.set("n", "gd", ts.goToSourceDefinition, get_opts("Typescript Go To Source definition"))
+		end,
+	},
 })
 
 local signs =
@@ -203,7 +192,7 @@ end
 
 vim.diagnostic.config({
   float = {
-    border = border,
+    border = "none",
     focusable = true,
     style = "minimal",
     source = "always",

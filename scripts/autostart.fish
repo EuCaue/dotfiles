@@ -3,7 +3,6 @@
 ~/dotfiles/scripts/gsettings.fish &
 swaybg -i $WALLPAPER -m fill &
 waybar &
-mpv --volume="53" --title="radio-mpv" "https://www.youtube.com/watch?v=IjMESxJdWkg" --idle="yes" --input-ipc-server=/tmp/mpvsocket --no-video &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 ~/dotfiles/scripts/suspend.sh &
 ~/dotfiles/scripts/rofi-clipboard.fish &

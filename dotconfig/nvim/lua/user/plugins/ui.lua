@@ -27,6 +27,7 @@ return {
 			})
 		end,
 	}, -- better vim.notify
+
 	{
 		"stevearc/dressing.nvim",
 		lazy = true,
@@ -37,9 +38,21 @@ return {
 
 	{
 		"folke/noice.nvim",
+		-- event = "BufRead",
+
 		config = function()
 			require("noice").setup({
+				popupmenu = {
+					backend = "cmp",
+				},
 				lsp = {
+               documentation = {
+        enabled = false,
+      },
+					progress = {
+
+						enabled = false,
+					},
 					override = {
 						["vim.lsp.util.convert_input_to_markdown_lines"] = true,
 						["vim.lsp.util.stylize_markdown"] = true,
@@ -49,19 +62,27 @@ return {
 				presets = {
 					long_message_to_split = true, -- long messages will be sent to a split
 					inc_rename = false, -- enables an input dialog for inc-rename.nvim
-					lsp_doc_border = true, -- add a border to hover docs and signature help
+					lsp_doc_border = false, -- add a border to hover docs and signature help
 				},
 			})
 		end,
 	}, -- better ui's
 
 	{
-		"akinsho/bufferline.nvim",
-		version = "v3.*",
-		config = function()
-			require("user.plugins.settings.bufferline")
+		"romgrk/barbar.nvim",
+		event = "BufRead",
+		init = function()
+			require("user.plugins.settings.barbar")
 		end,
-	}, -- Tabs
+
+		version = "^1.0.0", -- optional: only update when a new 1.x version is released
+	},
+	{
+		"tiagovla/scope.nvim",
+		config = function()
+			require("scope").setup()
+		end,
+	},
 
 	{
 		"lukas-reineke/indent-blankline.nvim",
@@ -131,8 +152,27 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		version = "*",
 		config = function()
+			-- triggers CursorHold event faster
+			vim.opt.updatetime = 200
+
 			require("barbecue").setup({
+				create_autocmd = false, -- prevent barbecue from updating itself automatically
 				kinds = icons.kinds.icons,
+			})
+
+			vim.api.nvim_create_autocmd({
+				"WinScrolled", -- or WinResized on NVIM-v0.9 and higher
+				"BufWinEnter",
+				"CursorHold",
+				"InsertLeave",
+
+				-- include this if you have set `show_modified` to `true`
+				"BufModifiedSet",
+			}, {
+				group = vim.api.nvim_create_augroup("barbecue.updater", {}),
+				callback = function()
+					require("barbecue.ui").update()
+				end,
 			})
 		end,
 	}, -- winbar + navic

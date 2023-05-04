@@ -20,7 +20,45 @@ local has_words_before = function()
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+local function format(entry, item)
+	-- Utils.
+	local MAX_LABEL_WIDTH = 50
+	local function whitespace(max, len)
+		return (" "):rep(max - len)
+	end
+
+	-- Limit content width.
+	local content = item.abbr
+	if #content > MAX_LABEL_WIDTH then
+		item.abbr = vim.fn.strcharpart(content, 0, MAX_LABEL_WIDTH) .. "…"
+	else
+		item.abbr = content .. whitespace(MAX_LABEL_WIDTH, #content)
+	end
+
+	-- Replace kind with icons.
+	item.kind = (icons.kinds.icons[item.kind] or icons.kinds.icons.treesitter) .. "│"
+
+	item.menu = ({
+		nvim_lsp = "LSP",
+		nvim_lua = "LUA",
+		luasnip = "Snippet",
+		emmet_vim = "Emeet",
+		path = "Path",
+		buffer = "Text",
+		fonts = "Fonts",
+		fish = "Fish",
+		treesitter = "TS",
+		crates = "Crates",
+	})[entry.source.name]
+	-- if entry.source.name == "treesitter" then
+	-- 	item.kind = ""
+	-- end
+
+	return item
+end
+
 cmp.setup({
+	--
 	-- Snippet
 	snippet = {
 		expand = function(args)
@@ -70,54 +108,64 @@ cmp.setup({
 	},
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
-		format = function(entry, vim_item)
-			vim_item.kind = string.format("%s", icons.kinds.icons[vim_item.kind])
-			-- 	-- vim_item.kind = string.format("%s %s", icons.kinds.icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
-			-- 	-- vim_item.kind = string.format("%s %s", vim_item.kind, icons.kinds.icons[vim_item.kind]) -- This concatenates the icons with the name of the item kind
-			vim_item.menu = ({
-				nvim_lsp = "LSP",
-				nvim_lua = "LUA",
-				luasnip = "Snippet",
-				emmet_vim = "Emeet",
-				path = "Path",
-				buffer = "Text",
-				fonts = "Fonts",
-				fish = "Fish",
-				treesitter = "TS",
-				crates = "Crates",
-			})[entry.source.name]
-			if entry.source.name == "treesitter" then
-				vim_item.kind = ""
-			end
-			-- vim_item.menu = vim_item.kind
-			-- vim_item.kind = icons.kinds.icons[vim_item.kind]
-
-			return vim_item
-		end,
+		format = format,
+		-- format = function(entry, vim_item)
+		-- vim_item.kind = string.format("%s", icons.kinds.icons[vim_item.kind])
+		-- vim_item.kind = string.format("%s %s", icons.kinds.icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
+		-- 	-- 	-- vim_item.kind = string.format("%s %s", vim_item.kind, icons.kinds.icons[vim_item.kind]) -- This concatenates the icons with the name of the item kind
+		-- 	vim_item.menu = ({
+		-- 		nvim_lsp = "LSP",
+		-- 		nvim_lua = "LUA",
+		-- 		luasnip = "Snippet",
+		-- 		emmet_vim = "Emeet",
+		-- 		path = "Path",
+		-- 		buffer = "Text",
+		-- 		fonts = "Fonts",
+		-- 		fish = "Fish",
+		-- 		treesitter = "TS",
+		-- 		crates = "Crates",
+		-- 	})[entry.source.name]
+		-- 	if entry.source.name == "treesitter" then
+		-- 		vim_item.kind = ""
+		-- 	end
+		-- 	-- vim_item.menu = vim_item.kind
+		-- 	-- vim_item.kind = icons.kinds.icons[vim_item.kind]
+		--
+		-- 	return vim_item
+		-- end,
 	},
 	sources = {
-		{name = "nvim_lsp"},
+		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
 		{ name = "path" },
 		{ name = "luasnip" },
-		{ name = "buffer", keyword_length = 5 },
-		{ name = "cmp-tw2css" },
+		{ name = "buffer", keyword_length = 3 },
+		-- { name = "cmp-tw2css" },
 		{ name = "fish" },
 		{ name = "fonts", option = { space_filter = "-" } },
 		{ name = "markdown-link" },
 		{ name = "emmet_vim" },
-		{ name = "treesitter" },
+		-- { name = "treesitter" },
 	},
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
 		select = false,
 	},
 	window = {
-		documentation = {
-			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-			cmp.config.window.bordered(),
-		},
-		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered({
+			border = "none",
+			col_offset = -3,
+			side_padding = 1,
+			scrollbar = true,
+			winhighlight = "Normal:Pmenu,FloatBorder:PmenuDocBorder,CursorLine:PmenuSel,Search:None",
+		}),
+		completion = cmp.config.window.bordered({
+			scrollbar = true,
+			winhighlight = "Normal:Pmenu,FloatBorder:PmenuDocBorder,CursorLine:PmenuSel,Search:None",
+			col_offset = -3,
+			side_padding = 1,
+			border = "none",
+		}),
 	},
 	experimental = {
 		ghost_text = true,

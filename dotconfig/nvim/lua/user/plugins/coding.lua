@@ -14,6 +14,11 @@ return {
 	{
 		"L3MON4D3/LuaSnip",
 		event = { "BufReadPre", "BufNewFile" },
+		opts = {
+			history = true,
+			region_check_events = "InsertEnter",
+			delete_check_events = "TextChanged,InsertLeave",
+		},
 		build = "make install_jsregexp",
 		config = function()
 			require("luasnip").filetype_extend("typescript", { "css" })
@@ -41,7 +46,11 @@ return {
 		"barrett-ruth/live-server.nvim",
 		event = { "BufReadPost", "BufNewFile" },
 		build = "yarn global add live-server",
-		config = true,
+		config = function()
+			require("live-server").setup({
+				args = { "--port=3000", "--browser=firefox-developer-edition" },
+			})
+		end,
 		cmd = { "LiveServerStart", "LiveServerStop" },
 	}, -- LiveServer
 
@@ -65,6 +74,7 @@ return {
 			require("user.plugins.lsp.null-ls")
 		end,
 	}, -- LSP
+
 	{
 		"hrsh7th/nvim-cmp",
 		event = { "InsertEnter", "CmdlineEnter" },
@@ -140,5 +150,5 @@ return {
 	{ "windwp/nvim-ts-autotag", event = "BufReadPre" }, -- <> autoclose tag
 	{ "mattn/emmet-vim", event = { "BufReadPre", "BufNewFile" } }, -- emmet
 	{ "styled-components/vim-styled-components" }, -- highlight for styled-components
-	{ "JoosepAlviste/nvim-ts-context-commentstring", lazy = true }, -- Better JSX + TSX comment
+	{ "JoosepAlviste/nvim-ts-context-commentstring", event = "BufRead" }, -- Better JSX + TSX comment
 }

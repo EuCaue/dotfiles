@@ -1,23 +1,17 @@
 local status_ok, telescope = pcall(require, "telescope")
 if not status_ok then
-  vim.notify("Plugin telescope not found", "error")
-  return
+	vim.notify("Plugin telescope not found", "error")
+	return
 end
 
 local icons = require("user.utils").icons
 local actions = require("telescope.actions")
+local fb_actions = require("telescope._extensions.file_browser.actions")
 local grep_args = { "--hidden", "--glob", "!**/.git/*" }
-
-require("telescope").load_extension("project")
-require("telescope").load_extension("harpoon")
-require("telescope").load_extension("lazygit")
-require("telescope").load_extension("undo")
-require("telescope").load_extension("file_browser")
-require("telescope").load_extension("fzf")
-require("telescope").load_extension("ui-select")
 
 telescope.setup({
 	defaults = {
+		initial_mode = "normal",
 		sorting_strategy = "ascending",
 		layout_strategy = "center",
 		results_title = false,
@@ -28,9 +22,12 @@ telescope.setup({
 		},
 		border = true,
 		borderchars = {
-			prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
-			results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
-			preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+			-- prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
+			-- results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
+			-- preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+			prompt = { "", "", "", "", "", "", "", "" },
+			results = { "", "", "", "", "", "", "", "" },
+			preview = { "", "", "", "", "", "", "", "" },
 		},
 		vimgrep_arguments = {
 			"rg",
@@ -71,6 +68,7 @@ telescope.setup({
 			},
 			n = {
 				["<esc>"] = actions.close,
+				["l"] = actions.select_default,
 				["<CR>"] = actions.select_default,
 				["<C-x>"] = actions.select_horizontal,
 				["<C-v>"] = actions.select_vertical,
@@ -97,32 +95,21 @@ telescope.setup({
 		},
 	},
 	pickers = {
-		-- hidden_files = true,
-		-- picker_name = {
-		--   picker_config_key = value,
-		--   ...
-		-- }
-		oldfiles = {
-			-- theme = "dropdown",
-		},
+		oldfiles = {},
 		colorscheme = {
-			-- theme = "dropdown",
 			enable_preview = true,
 		},
 		find_files = {
-			-- theme = "dropdown",
 			find_command = { "fd", "--type", "f", "--hidden", "--follow", "--exclude", ".git" },
 		},
 		live_grep = {
-			-- theme = "dropdown",
 			only_sort_text = true,
-			additional_args = function(opts)
+			additional_args = function()
 				return grep_args
 			end,
 		},
 		grep_string = {
-			-- theme = "dropdown",
-			additional_args = function(opts)
+			additional_args = function()
 				return grep_args
 			end,
 		},
@@ -132,27 +119,23 @@ telescope.setup({
 	},
 	extensions = {
 		file_browser = {
-			-- theme = "dropdown",
-			cwd_to_path = true,
+			cwd_to_path = false,
 			select_buffer = true,
-			-- disables netrw and use telescope-file-browser in its place
-			hijack_netrw = true,
+			hijack_netrw = false,
 			mappings = {
 				["i"] = {
-					-- your custom insert mode mappings
+					["<bs>"] = false,
 				},
 				["n"] = {
-					-- your custom normal mode mappings
+					["h"] = fb_actions.backspace,
 				},
 			},
 		},
 		fzf = {
-			-- theme = "dropdown",
 			fuzzy = true, -- false will only do exact matching
 			override_generic_sorter = true, -- override the generic sorter
 			override_file_sorter = true, -- override the file sorter
 			case_mode = "smart_case", -- or "ignore_case" or "respect_case"
-			-- the default case_mode is "smart_case"
 		},
 		telescope_code_actions = {},
 		project = {
@@ -160,28 +143,20 @@ telescope.setup({
 				{ "~/Dev/" },
 			},
 			hidden_files = true, -- default: false
-			-- theme = "dropdown",
 			order_by = "asc",
-			sync_with_nvim_tree = false, -- default false
 		},
 	},
 	["ui-select"] = {
 		require("telescope.themes").get_dropdown({
 			-- even more opts
 		}),
-
-		-- pseudo code / specification for writing custom displays, like the one
-		-- for "codeactions"
-		-- specific_opts = {
-		--   [kind] = {
-		--     make_indexed = function(items) -> indexed_items, width,
-		--     make_displayer = function(widths) -> displayer
-		--     make_display = function(displayer) -> function(e)
-		--     make_ordinal = function(e) -> string
-		--   },
-		--   -- for example to disable the custom builtin "codeactions" display
-		--      do the following
-		--   codeactions = false,
-		-- }
 	},
 })
+
+require("telescope").load_extension("project")
+require("telescope").load_extension("harpoon")
+require("telescope").load_extension("lazygit")
+require("telescope").load_extension("undo")
+require("telescope").load_extension("file_browser")
+require("telescope").load_extension("fzf")
+require("telescope").load_extension("ui-select")

@@ -36,6 +36,7 @@ map("n", "<C-x>", "<cmd>q!<cr>", get_opts("Quit"))
 map("n", "<C-a>", "gg<S-v>G", get_opts("Select all"))
 map("n", "<C-S-t>", "<cmd>e#<cr>", get_opts("Reopen the last closed buffer"))
 map("n", "E", "$", get_opts("Go to end of the line"))
+map({ "n", "v" }, "<leader><leader>o", "<cmd>normal gx<cr>", get_opts("Open link under cursor"))
 
 -- Comment
 map({ "n", "i", "x" }, "<C-_>", "<cmd>normal gcc<cr>", get_opts("Comment"))
@@ -61,7 +62,6 @@ map({ "n", "v" }, "<leader>mt", "<cmd>MurenToggle<cr>", get_opts("Toggle Muren")
 map({ "n", "v" }, "<leader>mf", "<cmd>MurenFresh<cr>", get_opts("Toggle Muren Fresh"))
 
 -- Hop
-
 map("n", "<leader>H", ":HopChar2<cr>", get_opts("Hop to Char"))
 map("n", "<leader>h", ":HopWord<cr>", get_opts("Hop to Word"))
 
@@ -88,8 +88,8 @@ map(
 	get_opts("Rename with substitute command based on current text")
 )
 
-map("n", "<leader>x", "<cmd>!chmod +x %<CR>", get_opts("Make the current file executable"))
-map("n", "<leader><leader>x", "<cmd>!chmod -x %<CR>", get_opts("Make the current file not executable"))
+map("n", "<leader>x", "<cmd>!chmod +x %<cr>", get_opts("Make the current file executable"))
+map("n", "<leader><leader>x", "<cmd>!chmod -x %<cr>", get_opts("Make the current file not executable"))
 
 map("n", "<leader>nc", "<cmd>NoNeckPain<cr>", get_opts("Center the screen"))
 map("n", "<leader>nz", "<cmd>ZenMode<cr>", get_opts("ZenMode"))
@@ -98,6 +98,7 @@ map("n", "<leader>nz", "<cmd>ZenMode<cr>", get_opts("ZenMode"))
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", get_opts("Recent Files"))
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", get_opts("Find Files"))
 map("n", "<leader>fb", "<cmd>Telescope file_browser<cr>", get_opts("File Browser"))
+map("n", "<leader>tb", "<cmd>Telescope buffers<cr>", get_opts("Find Buffers"))
 map("n", "<leader>fr", "<cmd>Telescope current_buffer_fuzzy_find<cr>", get_opts("Fuzzy Find in Buffer"))
 map("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", get_opts("See diagnostics"))
 map("n", "<leader>fl", "<cmd>Telescope live_grep<cr>", get_opts("Find Words"))
@@ -123,7 +124,7 @@ map("n", "<leader>ss", "<cmd>SessionManager load_last_session<cr>", get_opts("Lo
 map(
 	{ "n", "v" },
 	"<leader>ah",
-	"<cmd>:lua require('harpoon.mark').add_file(vim.fn.expand('%')) vim.notify('File add to harpoon: ' .. vim.fn.expand('%:t'))<CR>",
+	"<cmd>:lua require('harpoon.mark').add_file(vim.fn.expand('%')) vim.notify('File add to harpoon: ' .. vim.fn.expand('%:t'))<cr>",
 	get_opts("Add a file to harpoon")
 )
 
@@ -141,54 +142,59 @@ map("n", "<C-h>", "<C-w>h", get_opts("Move to left window"))
 map("n", "<C-l>", "<C-w>l", get_opts("Move to right window"))
 
 -- Resize with arrows
-map("n", "<C-Up>", ":resize -2<CR>", get_opts("Resize Up"))
-map("n", "<C-Down>", ":resize +2<CR>", get_opts("Resize Down"))
-map("n", "<C-Left>", ":vertical resize -2<CR>", get_opts("Resize Left"))
-map("n", "<C-Right>", ":vertical resize +2<CR>", get_opts("Resize Right"))
+map("n", "<C-Up>", ":resize -2<cr>", get_opts("Resize Up"))
+map("n", "<C-Down>", ":resize +2<cr>", get_opts("Resize Down"))
+map("n", "<C-Left>", ":vertical resize -2<cr>", get_opts("Resize Left"))
+map("n", "<C-Right>", ":vertical resize +2<cr>", get_opts("Resize Right"))
 
 -- Navigate buffers
-map("n", "<S-l>", ":bnext<CR>", get_opts("Prev Buffer"))
-map("n", "<S-h>", ":bprevious<CR>", get_opts("Next Buffer"))
+map("n", "<S-l>", "<cmd>BufferNext<cr>", get_opts("Prev Buffer"))
+map("n", "<S-h>", "<cmd>BufferPrevious<cr>", get_opts("Next Buffer"))
 
 -- Stay in indent mode
 map("v", "<", "<gv", get_opts("Left indent"))
 map("v", ">", ">gv", get_opts("Right indent"))
 
 -- Move text up and down
-map("v", "<A-j>", ":m .+1<CR>==", get_opts("Move text up"))
-map("v", "<A-k>", ":m .-2<CR>==", get_opts("Move text down"))
-map("n", "<A-j>", "<Esc>:m .+1<CR>==gi", get_opts("Move line down"))
-map("n", "<A-k>", "<Esc>:m .-2<CR>==gi", get_opts("Move line up"))
-map("x", "<A-j>", ":move '>+1<CR>gv-gv", get_opts("Move line down"))
-map("x", "<A-k>", ":move '<-2<CR>gv-gv", get_opts("Move text up"))
+map("v", "<A-j>", ":m .+1<cr>==", get_opts("Move text up"))
+map("v", "<A-k>", ":m .-2<cr>==", get_opts("Move text down"))
+map("n", "<A-j>", "<Esc>:m .+1<cr>==gi", get_opts("Move line down"))
+map("n", "<A-k>", "<Esc>:m .-2<cr>==gi", get_opts("Move line up"))
+map("x", "<A-j>", ":move '>+1<cr>gv-gv", get_opts("Move line down"))
+map("x", "<A-k>", ":move '<-2<cr>gv-gv", get_opts("Move text up"))
 map("i", "<A-j>", "<Esc>:m .+1<cr>==gi", get_opts("Move line down"))
 map("i", "<A-k>", "<Esc>:m .-2<cr>==gi", get_opts("Move line up"))
 
--- buffer line
+map("n", "<leader>tn", "<cmd>tabnew<cr>", get_opts("Create a new tab"))
+map("n", "<A-,>", "<cmd>tabprevious<cr>", get_opts("Previous tab"))
+map("n", "<A-.>", "<cmd>tabnext<cr>", get_opts("Next tab"))
+map("n", "<leader>tc", "<cmd>tabclose<cr>", get_opts("Close Tab"))
+
+-- buffer
+
 -- Move to previous/next
-map("n", "<A-,>", "<Cmd>BufferLineCyclePrev<CR>", get_opts("Prev buffer"))
-map("n", "<A-.>", "<Cmd>BufferLineCycleNext<CR>", get_opts("Next buffer"))
+map("n", "<A-[>", "<cmd>bprevious<cr>", get_opts("Prev buffer"))
+map("n", "<A-]>", "<cmd>bnext<cr>", get_opts("Next buffer"))
 -- Re-order to previous/next
-map("n", "<A-<>", "<Cmd>BufferLineMovePrev<CR>", get_opts("Move buffer prev "))
-map("n", "<A->>", "<Cmd>BufferLineMoveNext<CR>", get_opts("Move buffer next"))
 -- Goto buffer in position...
-map("n", "<A-1>", "<Cmd>BufferLineGoToBuffer 1<CR>", get_opts("Go to buffer 1"))
-map("n", "<A-2>", "<Cmd>BufferLineGoToBuffer 2<CR>", get_opts("Go to buffer 2"))
-map("n", "<A-3>", "<Cmd>BufferLineGoToBuffer 3<CR>", get_opts("Go to buffer 3"))
-map("n", "<A-4>", "<Cmd>BufferLineGoToBuffer 4<CR>", get_opts("Go to buffer 4"))
-map("n", "<A-5>", "<Cmd>BufferLineGoToBuffer 5<CR>", get_opts("Go to buffer 5"))
-map("n", "<A-6>", "<Cmd>BufferLineGoToBuffer 6<CR>", get_opts("Go to buffer 6"))
-map("n", "<A-7>", "<Cmd>BufferLineGoToBuffer 7<CR>", get_opts("Go to buffer 7"))
-map("n", "<A-8>", "<Cmd>BufferLineGoToBuffer 8<CR>", get_opts("Go to buffer 8"))
-map("n", "<A-9>", "<Cmd>BufferLineGoToBuffer 9<CR>", get_opts("Go to buffer 9"))
+map("n", "<A-1>", "<cmd>BufferGoto 1<cr>", get_opts("Go to buffer 1"))
+map("n", "<A-2>", "<cmd>BufferGoto 2<cr>", get_opts("Go to buffer 2"))
+map("n", "<A-3>", "<cmd>BufferGoto 3<cr>", get_opts("Go to buffer 3"))
+map("n", "<A-4>", "<cmd>BufferGoto 4<cr>", get_opts("Go to buffer 4"))
+map("n", "<A-5>", "<cmd>BufferGoto 5<cr>", get_opts("Go to buffer 5"))
+map("n", "<A-6>", "<cmd>BufferGoto 6<cr>", get_opts("Go to buffer 6"))
+map("n", "<A-7>", "<cmd>BufferGoto 7<cr>", get_opts("Go to buffer 7"))
+map("n", "<A-8>", "<cmd>BufferGoto 8<cr>", get_opts("Go to buffer 8"))
+map("n", "<A-9>", "<cmd>BufferGoto 9<cr>", get_opts("Go to buffer 9"))
+map("n", "<A-0>", "<Cmd>BufferLast<CR>", get_opts("Go to last buffer"))
 -- Pin/unpin buffer
-map("n", "<A-p>", "<Cmd>BufferLineTogglePin<CR>", get_opts("Pin current buffer"))
+map("n", "<A-p>", "<cmd>BufferPin<cr>", get_opts("Pin current buffer"))
 -- Close buffer
-map("n", "<A-c>", "<Cmd>bdelete!<CR>", get_opts("Close current buffer"))
-map("n", "<leader>bp", "<Cmd>BufferLinePick<CR>", get_opts("Choose a buffer"))
+map("n", "<A-c>", "<cmd>BufferClose<cr>", get_opts("Close current buffer"))
+map("n", "<leader>bp", "<cmd>BufferPick<cr>", get_opts("Choose a buffer"))
 
 -- Sort automatically by...
-map("n", "<Space>bb", "<Cmd>BufferLineSortByTabs<CR>", get_opts("Sort buffer by tabs"))
-map("n", "<Space>bd", "<Cmd>BufferLineSortByDirectory<CR>", get_opts("Sort buffer by directory"))
-map("n", "<Space>be", "<Cmd>BufferLineSortByLanguage<CR>", get_opts("Sort buffer by language"))
-map("n", "<Space>br", "<Cmd>BufferLineSortByRelativeDirectory<CR>", get_opts("Sort buffer by relative directory "))
+map("n", "<Space>bb", "<cmd>BufferOrderByBufferNumber<cr>", get_opts("Sort buffer by buffer number"))
+map("n", "<Space>bd", "<cmd>BufferOrderByDirectory<cr>", get_opts("Sort buffer by directory"))
+map("n", "<Space>bl", "<cmd>BufferOrderByLanguag<cr>", get_opts("Sort buffer by language"))
+map("n", "<Space>bu", "<cmd>BufferOrderByWindowNumbe<cr>", get_opts("Sort buffer by window number "))

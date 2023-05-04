@@ -1,7 +1,7 @@
-local status_ok, lualine  = pcall(require, "lualine")
+local status_ok, lualine = pcall(require, "lualine")
 if not status_ok then
-  vim.notify("Plugin lualine not found", "error")
-  return
+	vim.notify("Plugin lualine not found", "error")
+	return
 end
 local icons = require("user.utils").icons
 local hide_in_width = function()
@@ -114,6 +114,28 @@ local time = {
 	end,
 }
 
+local tabs = {
+	"tabs",
+	mode = 2,
+	use_mode_colors = true,
+	component_separators = { right = "", left = " " },
+	section_separators = { right = "", left = " " },
+	-- tabs_color = {
+	-- 	-- Same values as the general color option can be used here.
+	-- 	active = "lualine_{section}_normal", -- Color for active tab.
+	-- 	inactive = "lualine_{section}_inactive", -- Color for inactive tab.
+	-- },
+	fmt = function(name, context)
+		-- Show + if buffer is modified in tab
+		local buflist = vim.fn.tabpagebuflist(context.tabnr)
+		local winnr = vim.fn.tabpagewinnr(context.tabnr)
+		local bufnr = buflist[winnr]
+		local mod = vim.fn.getbufvar(bufnr, "&mod")
+
+		return name .. (mod == 1 and " +" or "")
+	end,
+}
+
 lualine.setup({
 	options = {
 		icons_enabled = true,
@@ -139,6 +161,11 @@ lualine.setup({
 		lualine_z = {},
 	},
 	-- winbar = winbar,
-	tabline = {},
+	tabline = {
+		-- lualine_a = { "buffers" },
+		-- lualine_z = {
+		-- 	tabs,
+		-- },
+	},
 	extensions = { "nvim-tree", "neo-tree" },
 })

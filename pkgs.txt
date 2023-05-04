@@ -3,11 +3,14 @@ aalib
 abseil-cpp
 accountsservice
 acl
+adobe-source-code-pro-fonts
+adw-gtk-theme
 adw-gtk3
 adwaita-cursors
 adwaita-icon-theme
 adwaita-qt5
 adwaita-qt6
+alacritty
 albion-online-launcher-bin
 alsa-card-profiles
 alsa-lib
@@ -15,6 +18,7 @@ alsa-plugins
 alsa-topology-conf
 alsa-ucm-conf
 amberol
+anydesk-bin
 aom
 appimagelauncher
 apple-fonts
@@ -24,6 +28,7 @@ argon2
 at-spi2-core
 atkmm
 atool
+atop
 attr
 audit
 authy
@@ -32,6 +37,7 @@ automake
 avahi
 awesome-terminal-fonts
 babl
+balena-etcher-appimage
 base
 base-devel
 bash
@@ -48,6 +54,7 @@ bluez-utils
 bonsai.sh-git
 boost-libs
 box2d
+bpytop
 brightnessctl
 brotli
 btrfs-progs
@@ -71,20 +78,19 @@ chromaprint
 chrono-date
 cifs-utils
 cinnamon-desktop
-cliphist-bin
+cliphist
 clucene
+cmake
 cmus
 codespell
 coreutils
 cpio
+cpu-x
 cracklib
 cronie
 cryptsetup
 ctags
-cups
-cups-filters
 curl
-cython
 dav1d
 db5.3
 dbus
@@ -151,6 +157,7 @@ fmt
 font-manager
 fontconfig
 foot
+foot-terminfo
 freeglut
 freeimage
 freetype2
@@ -160,7 +167,6 @@ fuse2
 fuse3
 fzf
 gamemode
-gamescope
 gawk
 gc
 gcc
@@ -180,6 +186,7 @@ giflib
 gimp
 girara
 git
+glfw-wayland
 glib-networking
 glib2
 glibc
@@ -200,16 +207,18 @@ gnutls
 go
 gobject-introspection
 gobject-introspection-runtime
+googledot-cursor-theme
 gperftools
 gpgme
 gpm
 gptfdisk
-gradience
+gradience-git
 grapejuice
 graphene
 graphite
 graphviz
 greetd
+greetd-agreety
 greetd-tuigreet-bin
 grep
 grim
@@ -222,7 +231,6 @@ gsm
 gsound
 gssdp
 gst-editing-services
-gst-libav
 gst-plugin-gtk
 gst-plugin-pipewire
 gst-plugin-va
@@ -241,6 +249,7 @@ gtk-update-icon-cache
 gtk2
 gtk3
 gtk4
+gtkglext
 gtkmm3
 gts
 guile
@@ -262,7 +271,7 @@ hunspell
 hwdata
 hwloc
 hyphen
-hyprland-bin
+hyprland
 hyprpicker-git
 iana-etc
 icu
@@ -275,6 +284,7 @@ iniparser
 intel-gmmlib
 intel-media-driver
 intel-ucode
+inter-font
 iproute2
 iptables
 iputils
@@ -299,7 +309,6 @@ json-c
 json-glib
 jsoncpp
 jxrlib
-karchive
 kbd
 keyutils
 kitty
@@ -343,6 +352,7 @@ lib32-giflib
 lib32-glib-networking
 lib32-glib2
 lib32-glibc
+lib32-glu
 lib32-gmp
 lib32-gnutls
 lib32-gpm
@@ -373,7 +383,6 @@ lib32-libgcrypt
 lib32-libglvnd
 lib32-libgpg-error
 lib32-libgudev
-lib32-libice
 lib32-libidn2
 lib32-libiec61883
 lib32-libjpeg-turbo
@@ -393,7 +402,6 @@ lib32-libpulse
 lib32-libraw1394
 lib32-librsvg
 lib32-libshout
-lib32-libsm
 lib32-libsndfile
 lib32-libsoup3
 lib32-libssh2
@@ -453,6 +461,7 @@ lib32-pipewire
 lib32-pipewire-jack
 lib32-pixman
 lib32-popt
+lib32-sdl12-compat
 lib32-sdl2
 lib32-speex
 lib32-sqlite
@@ -497,6 +506,7 @@ libbsd
 libbytesize
 libcaca
 libcamera
+libcamera-ipa
 libcanberra
 libcap
 libcap-ng
@@ -505,6 +515,7 @@ libcdio-paranoia
 libcdr
 libcloudproviders
 libcolord
+libcpuid
 libcups
 libcurl-gnutls
 libdaemon
@@ -515,8 +526,10 @@ libdbusmenu-gtk3
 libdc1394
 libdca
 libde265
+libdecor
 libdiscid
 libdispatch
+libdisplay-info
 libdrm
 libdv
 libdvdnav
@@ -540,6 +553,7 @@ libfreehand
 libgcrypt
 libgee
 libgexiv2
+libgirepository
 libgit2
 libglvnd
 libgme
@@ -655,6 +669,7 @@ libshout
 libsidplay
 libsigc++
 libsigc++-3.0
+libsixel
 libsm
 libsndfile
 libsodium
@@ -680,6 +695,8 @@ libtiff
 libtirpc
 libtommath
 libtool
+libtraceevent
+libtracefs
 libunistring
 libunwind
 liburcu
@@ -690,6 +707,7 @@ libutempter
 libutf8proc
 libuv
 libva
+libva-intel-driver
 libvdpau
 libvdpau-va-gl
 libverto
@@ -770,12 +788,13 @@ lsof
 lua
 lua-argparse
 lua-filesystem
+lua51
+lua51-lpeg
 luacheck
 luajit
 lutris
 lv2
 lvm2
-ly
 lz4
 lzo
 m4
@@ -791,6 +810,7 @@ mediainfo
 megasync-bin
 mesa
 mesa-utils
+meson
 min
 minecraft-launcher
 minecraft-technic-launcher
@@ -805,6 +825,7 @@ mpv
 msgpack-c
 mtdev
 mujs
+mupdf
 mypaint-brushes1
 mypy
 nano
@@ -818,7 +839,7 @@ nemo-fileroller
 nemo-image-converter
 neofetch
 neon
-neovim
+neovim-git
 net-snmp
 netpbm
 nettle
@@ -826,7 +847,7 @@ networkmanager
 networkmanager-openvpn
 nextcloud
 nextcloud-app-notes
-nextcloud-client
+ninja
 node-gyp
 nodejs
 nodejs-nopt
@@ -836,6 +857,7 @@ npth
 nspr
 nss
 ntfs-3g
+ntp
 nwg-look-bin
 obs-studio
 obsidian
@@ -855,9 +877,12 @@ openssl-1.1
 openvpn
 opus
 orc
+otf-aurulent-nerd
 otf-comic-shanns-v2
+otf-firamono-nerd
 otf-hasklig-nerd
 otf-monocraft
+otf-overpass-nerd
 p11-kit
 p7zip
 pacman
@@ -883,11 +908,11 @@ perl
 perl-error
 perl-image-exiftool
 perl-mailtools
-perl-parse-yapp
 perl-timedate
 phinger-cursors
+php
+php-gd
 php-legacy
-php-legacy-gd
 pinentry
 pipes.sh
 pipewire
@@ -918,6 +943,7 @@ protonvpn-gui
 psmisc
 python
 python-anyascii
+python-appdirs
 python-attrs
 python-autocommand
 python-bcrypt
@@ -972,6 +998,7 @@ python-pip
 python-platformdirs
 python-pluggy
 python-ply
+python-pooch
 python-proton-client
 python-protonvpn-nm-lib
 python-psutil
@@ -987,8 +1014,10 @@ python-pyxdg
 python-regex
 python-reportlab
 python-requests
+python-scipy
 python-secretstorage
 python-setuptools
+python-shiboken2
 python-six
 python-soupsieve
 python-svglib
@@ -1003,28 +1032,23 @@ python-urllib3
 python-validate-pyproject
 python-webencodings
 python-wheel
-python-xlib
 python-yaml
 python-yapsy
 python-zipp
 qgnomeplatform-qt5
 qgnomeplatform-qt6
 qhull
-qpdf
 qrencode
 qt5-base
 qt5-declarative
-qt5-graphicaleffects
 qt5-location
 qt5-quickcontrols
-qt5-quickcontrols2
 qt5-svg
 qt5-tools
 qt5-translations
 qt5-wayland
 qt5-webchannel
 qt5-webengine
-qt5-websockets
 qt5-x11extras
 qt5ct
 qt6-5compat
@@ -1034,7 +1058,7 @@ qt6-imageformats
 qt6-svg
 qt6-translations
 qt6-wayland
-qtkeychain-qt5
+quintom-cursor-theme-git
 qutebrowser
 ranger
 raptor
@@ -1044,6 +1068,8 @@ re2
 readline
 redland
 redshift-wayland-git
+reflector
+rhash
 ripgrep
 rnnoise
 rofi-calc
@@ -1107,6 +1133,7 @@ ruby-rspec-support
 ruby-ruby2_keywords
 ruby-stdlib
 ruby-stringio
+ruby-sync
 ruby-term-ansicolor
 ruby-test-unit
 ruby-time
@@ -1119,6 +1146,7 @@ rustup
 samba
 sane
 sbc
+sd
 sdl12-compat
 sdl2
 seatd
@@ -1177,7 +1205,6 @@ telegram-desktop
 tevent
 texinfo
 thin-provisioning-tools
-tidy
 timeshift-bin
 tinycompress
 tinyxml2
@@ -1189,6 +1216,7 @@ tre
 tree-sitter
 tslib
 ttf-apple-emoji
+ttf-cascadia-code-nerd
 ttf-dejavu
 ttf-fira-sans
 ttf-hack-nerd
@@ -1196,10 +1224,10 @@ ttf-jetbrains-mono
 ttf-jetbrains-mono-nerd
 ttf-liberation
 ttf-lilex-nerd
-ttf-minecrafter
-ttf-monofur-nerd
-ttf-nerd-fonts-symbols-1000-em-mono
+ttf-meslo-nerd
+ttf-mononoki-nerd
 ttf-nerd-fonts-symbols-common
+ttf-nerd-fonts-symbols-mono
 ttf-opensans
 ttf-roboto
 ttf-roboto-slab
@@ -1218,8 +1246,8 @@ usbmuxd
 usbutils
 util-linux
 util-linux-libs
-uwufetch
 v4l-utils
+veloren-bin
 ventoy-bin
 vid.stab
 vkbasalt
@@ -1246,6 +1274,8 @@ webp-pixbuf-loader
 webrtc-audio-processing
 wev
 wezterm
+wezterm-shell-integration
+wezterm-terminfo
 wf-recorder
 wget
 which
@@ -1255,7 +1285,6 @@ wine
 winetricks
 wireplumber
 wl-clipboard
-wlroots
 woff2
 wofi
 wpa_supplicant
@@ -1273,8 +1302,11 @@ xcb-util-renderutil
 xcb-util-wm
 xcb-util-xrm
 xcur2png
+xcursor-hackneyed-dark
+xcursor-neutral
 xcursor-neutral++
 xcursor-neutral++-white
+xcursor-retrosmart
 xcursor-vanilla-dmz
 xcursor-vanilla-dmz-aa
 xdelta3
@@ -1288,10 +1320,12 @@ xdman8
 xdotool
 xf86-video-intel
 xfsprogs
+xh
 xkeyboard-config
 xmlsec
 xorg-fonts-encodings
 xorg-server-common
+xorg-server-xvfb
 xorg-setxkbmap
 xorg-xauth
 xorg-xcursorgen
@@ -1312,7 +1346,6 @@ xvidcore
 xxhash
 xz
 yarn
-youtube-dl
 yt-dlp
 zathura
 zathura-cb

@@ -19,13 +19,11 @@ return {
 	}, --  git status on file
 
 	{
-		"echasnovski/mini.surround",
-		version = "*",
-		event = { "BufRead", "BufNewFile" },
-		config = function()
-			require("mini.surround").setup({})
-		end,
-	}, -- surround things
+		"kylechui/nvim-surround",
+		version = "*", -- Use for stability; omit to use `main` branch for the latest features
+		event = "VeryLazy",
+    config = true
+	},
 
 	{
 		"Shatur/neovim-session-manager",
@@ -82,7 +80,7 @@ return {
 	{
 		"JellyApple102/flote.nvim",
 		opts = {
-			window_title = false,
+			window_title = true,
 		},
 		cmd = "Flote",
 	}, -- Quick notes for projects
@@ -92,6 +90,9 @@ return {
 		ft = "markdown",
 		build = function()
 			vim.fn["mkdp#util#install"]()
+		end,
+		config = function()
+			vim.g.mkdp_browser = "min"
 		end,
 		cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle" },
 	}, -- preview markdown files on browser
@@ -106,6 +107,7 @@ return {
 	{
 		"nvim-telescope/telescope.nvim",
 		-- version = "0.1.*",
+		cmd = { "Telescope" },
 		config = function()
 			require("user.plugins.settings.telescope")
 		end,
@@ -170,6 +172,7 @@ return {
 			require("user.plugins.settings.nvim-autopairs")
 		end,
 	}, -- auto close ({[
+
 	{ "terryma/vim-multiple-cursors", event = { "BufReadPre", "BufNewFile" } }, -- CTRL + N for multiple cursors
 	{ "theRealCarneiro/hyprland-vim-syntax" }, -- Better syntax highlight in hyprland.conf
 	{ "kdheepak/lazygit.nvim", cmd = "LazyGit" }, -- lazygit inside nvim
