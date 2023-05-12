@@ -1,8 +1,8 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR --export CURSOR:Adwaita
+SETUVAR --export CURSOR:Vanilla\x2dDMZ
 SETUVAR --export CURSORSIZE:24
-SETUVAR --export WALLPAPER:/home/caue/Pictures/wallpapers/wp4653147\x2daesthetic\x2dlaptop\x2d2022\x2dwallpapers\x2epng
+SETUVAR --export WALLPAPER:/home/caue/Pictures/wallpapers/wallhaven\x2d5wzp23_1920x1080\x2epng
 SETUVAR ZO_CMD:zo
 SETUVAR Z_CMD:z
 SETUVAR Z_DATA:/home/caue/\x2elocal/share/z/data

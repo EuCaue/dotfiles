@@ -2,7 +2,7 @@
 -- vim.opt.statuscolumn =
 -- 	"%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum < 10 ? v:lnum . '  ' : v:lnum) : ''}%=%{v:relnum == 0 ? ' ' : ''}"
 
-opt = vim.opt
+local opt = vim.opt
 
 opt.backup = false -- creates a backup file
 opt.clipboard = "" -- allows neovim to access the system clipboard
@@ -22,14 +22,14 @@ opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrea
 opt.foldlevelstart = 99
 opt.foldenable = true
 opt.showcmd = false
-opt.showtabline = 2 -- always show tabs
+opt.showtabline = 1 -- always show tabs
 opt.smartcase = true -- smart case
 opt.smartindent = true -- make indenting smarter again
 opt.splitbelow = true -- force all horizontal splits to go below current window
 opt.splitright = true -- force all vertical splits to go to the right of current window
 opt.swapfile = false -- creates a swapfile
--- opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
-opt.guicursor = "n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50"
+opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
+-- opt.guicursor = "n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50"
 opt.termguicolors = true -- set term gui colors (most terminals support this)
 opt.timeoutlen = 300 -- time to wait for a mapped sequence to complete (in milliseconds)
 opt.undofile = true -- enable persistent undo
@@ -38,6 +38,7 @@ opt.writebackup = false -- if a file is being edited by another program (or was 
 opt.expandtab = true -- convert tabs to spaces
 opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
 opt.tabstop = 2 -- insert 2 spaces for a tab
+opt.incsearch = true
 opt.softtabstop = 2 -- insert 2 spaces for a tab
 opt.cursorline = true -- highlight the current line
 opt.number = true -- set numbered lines

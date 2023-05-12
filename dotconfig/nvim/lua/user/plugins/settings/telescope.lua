@@ -5,6 +5,7 @@ if not status_ok then
 end
 
 local icons = require("user.utils").icons
+local utils = require("user.utils")
 local actions = require("telescope.actions")
 local fb_actions = require("telescope._extensions.file_browser.actions")
 local grep_args = { "--hidden", "--glob", "!**/.git/*" }
@@ -12,23 +13,36 @@ local grep_args = { "--hidden", "--glob", "!**/.git/*" }
 telescope.setup({
 	defaults = {
 		initial_mode = "normal",
-		sorting_strategy = "ascending",
-		layout_strategy = "center",
-		results_title = false,
-		layout_config = {
-			preview_cutoff = 1, -- Preview should always show (unless previewer = false)
-			height = 0.30,
-			width = 0.55,
-		},
 		border = true,
-		borderchars = {
-			-- prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
-			-- results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
-			-- preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-			prompt = { "", "", "", "", "", "", "", "" },
-			results = { "", "", "", "", "", "", "", "" },
-			preview = { "", "", "", "", "", "", "", "" },
-		},
+		-- results_title = false,
+		-- sorting_strategy = "descending",
+		-- layout_strategy = "vertical",
+		-- layout_config = {
+		-- 	preview_cutoff = 1, -- Preview should always show (unless previewer = false)
+		-- 	width = function(_, max_columns, _)
+		-- 		return math.min(max_columns, 145)
+		-- 	end,
+		-- 	height = function(_, _, max_lines)
+		-- 		return math.min(max_lines, 30)
+		-- 	end,
+		-- },
+
+		-- selection_strategy = "reset",
+		-- sorting_strategy = "descending",
+		-- layout_strategy = "horizontal",
+		-- layout_config = {
+		--   horizontal = {
+		--     prompt_position = "bottom",
+		--     preview_width = 0.55,
+		--     results_width = 0.6,
+		--   },
+		--   vertical = { mirror = false },
+		--   width = 0.8,
+		--   height = 0.80,
+		--   preview_cutoff = 120,
+		-- },
+		--
+
 		vimgrep_arguments = {
 			"rg",
 			"--color=never",

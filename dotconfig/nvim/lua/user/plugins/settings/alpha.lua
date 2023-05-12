@@ -31,7 +31,7 @@ local num_plugins_loaded = #vim.fn.globpath(vim.fn.stdpath("data") .. "/lazy", "
 
 local footer = {
 	type = "text",
-	val = { num_plugins_loaded .. " plugins ﮣ installed" },
+	val = { num_plugins_loaded .. " plugins 󰚥 installed" },
 	opts = { position = "center", hl = "Comment" },
 }
 

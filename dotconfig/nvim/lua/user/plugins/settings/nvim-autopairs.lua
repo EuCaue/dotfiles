@@ -6,13 +6,14 @@ end
 
 npairs.setup({
 	check_ts = true,
-	map_cr = false,
+	-- map_cr = false,
 
 	ts_config = {
 		lua = { "string", "source" },
 		javascript = { "string", "template_string" },
 		java = false,
 	},
+
 	disable_filetype = { "TelescopePrompt", "spectre_panel" },
 	fast_wrap = {
 		map = "<M-e>",
@@ -26,4 +27,3 @@ npairs.setup({
 		highlight_grey = "LineNr",
 	},
 })
-

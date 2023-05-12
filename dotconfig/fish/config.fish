@@ -4,6 +4,9 @@ if status is-interactive
     set fish_greeting "
  I use arch BTW ඞ
   "
+    # if test -z "$TMUX"
+    #     tmux attach -d || tmux
+    # end
 
     if test "$TERM" = foot
         neofetch --sixel --source $WALLPAPER
@@ -18,5 +21,10 @@ if status is-interactive
     end
 
     neofetch --ascii --source ~/dotfiles/dotconfig/neofetch/ascii.txt
-        echo $( hyprctl splash )
+    echo $( hyprctl splash )
 end
+
+bind yy fish_clipboard_copy
+bind Y fish_clipboard_copy
+bind p fish_clipboard_paste
+# bind \cf ~/.cargo/bin/tms

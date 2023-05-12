@@ -66,7 +66,7 @@ require("barbar").setup({
     -- Configure the icons on the bufferline when modified or pinned.
     -- Supports all the base icon options.
     modified = { button = icons.ui.modified_buffer },
-    pinned = { button = "車", filename = true, separator = { right = "" } },
+    pinned = { button = "󰐃", filename = true, separator = { right = "" } },
 
     -- Configure the icons on the bufferline based on the visibility of a buffer.
     -- Supports all the base icon options, plus `modified` and `pinned`.
@@ -82,10 +82,10 @@ require("barbar").setup({
   insert_at_start = false,
 
   -- Sets the maximum padding width with which to surround each tab
-  maximum_padding = 1,
+  maximum_padding = 3,
 
   -- Sets the minimum padding width with which to surround each tab
-  minimum_padding = 1,
+  minimum_padding = 3,
 
   -- Sets the maximum buffer name length.
   maximum_length = 35,

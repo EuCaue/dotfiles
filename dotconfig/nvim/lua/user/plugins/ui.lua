@@ -46,9 +46,9 @@ return {
 					backend = "cmp",
 				},
 				lsp = {
-               documentation = {
-        enabled = false,
-      },
+					documentation = {
+						enabled = false,
+					},
 					progress = {
 
 						enabled = false,
@@ -77,6 +77,7 @@ return {
 
 		version = "^1.0.0", -- optional: only update when a new 1.x version is released
 	},
+
 	{
 		"tiagovla/scope.nvim",
 		config = function()

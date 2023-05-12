@@ -11,6 +11,7 @@ return {
 			require("user.plugins.settings.treesitter")
 		end,
 	}, -- a better highlight for everything
+
 	{
 		"L3MON4D3/LuaSnip",
 		event = { "BufReadPre", "BufNewFile" },
@@ -77,6 +78,7 @@ return {
 
 	{
 		"hrsh7th/nvim-cmp",
+		commit = "1cad30fcffa282c0a9199c524c821eadc24bf939",
 		event = { "InsertEnter", "CmdlineEnter" },
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
@@ -89,7 +91,7 @@ return {
 			{ "hrsh7th/cmp-nvim-lua", ft = "lua" },
 			"amarakon/nvim-cmp-fonts",
 			"saadparwaiz1/cmp_luasnip",
-			"dcampos/cmp-emmet-vim",
+			-- "dcampos/cmp-emmet-vim",
 			"ray-x/cmp-treesitter",
 		},
 		config = function()
@@ -148,7 +150,7 @@ return {
 
 	{ "jose-elias-alvarez/typescript.nvim" }, -- typescript lsp plugin
 	{ "windwp/nvim-ts-autotag", event = "BufReadPre" }, -- <> autoclose tag
-	{ "mattn/emmet-vim", event = { "BufReadPre", "BufNewFile" } }, -- emmet
+	-- { "mattn/emmet-vim", event = { "BufReadPre", "BufNewFile" } }, -- emmet
 	{ "styled-components/vim-styled-components" }, -- highlight for styled-components
 	{ "JoosepAlviste/nvim-ts-context-commentstring", event = "BufRead" }, -- Better JSX + TSX comment
 }

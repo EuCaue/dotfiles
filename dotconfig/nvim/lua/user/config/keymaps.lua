@@ -5,15 +5,7 @@ local function get_opts(desc, expr)
 end
 
 local map = function(modes, key, cmd, opts)
-	if type(modes) == "table" then
-		for _, mode in ipairs(modes) do
-			vim.api.nvim_set_keymap(mode, key, cmd, opts)
-		end
-	elseif type(modes) == "string" then
-		vim.api.nvim_set_keymap(modes, key, cmd, opts)
-	else
-		error("Invalid mode type: " .. type(modes))
-	end
+	vim.keymap.set(modes, key, cmd, opts)
 end
 
 --Remap space as leader key
@@ -37,6 +29,7 @@ map("n", "<C-a>", "gg<S-v>G", get_opts("Select all"))
 map("n", "<C-S-t>", "<cmd>e#<cr>", get_opts("Reopen the last closed buffer"))
 map("n", "E", "$", get_opts("Go to end of the line"))
 map({ "n", "v" }, "<leader><leader>o", "<cmd>normal gx<cr>", get_opts("Open link under cursor"))
+map({ "v", "x" }, "p", '"_dP', get_opts("greatest remap ever"))
 
 -- Comment
 map({ "n", "i", "x" }, "<C-_>", "<cmd>normal gcc<cr>", get_opts("Comment"))
@@ -98,7 +91,7 @@ map("n", "<leader>nz", "<cmd>ZenMode<cr>", get_opts("ZenMode"))
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", get_opts("Recent Files"))
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", get_opts("Find Files"))
 map("n", "<leader>fb", "<cmd>Telescope file_browser<cr>", get_opts("File Browser"))
-map("n", "<leader>tb", "<cmd>Telescope buffers<cr>", get_opts("Find Buffers"))
+map("n", "<leader><leader>", "<cmd>Telescope buffers<cr>", get_opts("Find Buffers"))
 map("n", "<leader>fr", "<cmd>Telescope current_buffer_fuzzy_find<cr>", get_opts("Fuzzy Find in Buffer"))
 map("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", get_opts("See diagnostics"))
 map("n", "<leader>fl", "<cmd>Telescope live_grep<cr>", get_opts("Find Words"))
@@ -132,7 +125,7 @@ map(
 map({ "n", "v" }, "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", get_opts("Preview Git Hunk"))
 map({ "n", "v" }, "<leader>gb", "<cmd>Gitsigns blame_line<cr>", get_opts("Blame Line"))
 
-map("n", "<leader>sv", "<C-w>v", get_opts("Split window vertically"))
+map("n", "<leader>sv", "<cmd>vnew<cr>", get_opts("Split window vertically"))
 map("n", "<leader>se", "<C-w>=", get_opts("Make split windows equal width & height"))
 
 -- Better window navigation

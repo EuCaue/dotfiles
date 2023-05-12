@@ -1,4 +1,5 @@
 local status_ok, which_key = pcall(require, "which-key")
+local utils = require("user.utils")
 if not status_ok then
 	vim.notify("Plugin which-key not found", "error")
 	return
@@ -45,7 +46,7 @@ which_key.setup({
 		scroll_up = "<c-u>", -- binding to scroll up inside the popup
 	},
 	window = {
-		border = "single", -- none, single, double, shadow
+		border = utils.border_status, -- none, single, double, shadow
 		position = "bottom", -- bottom, top
 		margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
 		padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]

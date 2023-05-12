@@ -20,9 +20,10 @@ return {
 
 	{
 		"kylechui/nvim-surround",
+		event = { "BufReadPre", "BufNewFile" },
 		version = "*", -- Use for stability; omit to use `main` branch for the latest features
 		event = "VeryLazy",
-    config = true
+		config = true,
 	},
 
 	{
@@ -111,6 +112,12 @@ return {
 		config = function()
 			require("user.plugins.settings.telescope")
 		end,
+		dependencies = {
+			{ "debugloop/telescope-undo.nvim" }, -- telescope for undo tree
+			{ "nvim-telescope/telescope-file-browser.nvim" },
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = false },
+			{ "nvim-telescope/telescope-project.nvim" }, -- find projects
+		},
 	}, -- Telescope
 
 	{
@@ -177,11 +184,7 @@ return {
 	{ "theRealCarneiro/hyprland-vim-syntax" }, -- Better syntax highlight in hyprland.conf
 	{ "kdheepak/lazygit.nvim", cmd = "LazyGit" }, -- lazygit inside nvim
 	{ "editorconfig/editorconfig-vim" }, -- Editorconfig
-	{ "debugloop/telescope-undo.nvim" }, -- telescope for undo tree
-	{ "nvim-telescope/telescope-file-browser.nvim" },
-	{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = false },
-	{ "nvim-telescope/telescope-project.nvim" }, -- find projects
-	{ "mbbill/undotree" }, -- undo tree
+	{ "mbbill/undotree", cmd = { "UndotreeToggle", "UndotreeFocus" } }, -- undo tree
 	{ "antoinemadec/FixCursorHold.nvim" }, -- depen
 	{ "ThePrimeagen/harpoon" }, -- harpoon
 }

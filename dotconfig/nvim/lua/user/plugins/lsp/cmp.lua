@@ -1,4 +1,5 @@
 local cmp_status_ok, cmp = pcall(require, "cmp")
+local utils = require("user.utils")
 if not cmp_status_ok then
 	vim.notify("Plugin nvim-cmp not found", "error")
 	return
@@ -22,7 +23,7 @@ end
 
 local function format(entry, item)
 	-- Utils.
-	local MAX_LABEL_WIDTH = 50
+	local MAX_LABEL_WIDTH = 30
 	local function whitespace(max, len)
 		return (" "):rep(max - len)
 	end
@@ -37,12 +38,14 @@ local function format(entry, item)
 
 	-- Replace kind with icons.
 	item.kind = (icons.kinds.icons[item.kind] or icons.kinds.icons.treesitter) .. "│"
+	-- item.kind = string.format("%s %s", icons.kinds.icons[item.kind], item.kind) -- This concatenates the icons with the name of the item kind
+	-- item.kind = string.format("%s", icons.kinds.icons[item.kind])
 
 	item.menu = ({
 		nvim_lsp = "LSP",
 		nvim_lua = "LUA",
 		luasnip = "Snippet",
-		emmet_vim = "Emeet",
+		-- emmet_vim = "Emeet",
 		path = "Path",
 		buffer = "Text",
 		fonts = "Fonts",
@@ -50,9 +53,10 @@ local function format(entry, item)
 		treesitter = "TS",
 		crates = "Crates",
 	})[entry.source.name]
-	-- if entry.source.name == "treesitter" then
-	-- 	item.kind = ""
-	-- end
+
+	if entry.source.name == "fonts" then
+		item.kind = " " .. "│"
+	end
 
 	return item
 end
@@ -107,32 +111,46 @@ cmp.setup({
 		}),
 	},
 	formatting = {
-		fields = { "kind", "abbr", "menu" },
+		fields = { "abbr", "kind", "menu" },
 		format = format,
-		-- format = function(entry, vim_item)
-		-- vim_item.kind = string.format("%s", icons.kinds.icons[vim_item.kind])
-		-- vim_item.kind = string.format("%s %s", icons.kinds.icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
-		-- 	-- 	-- vim_item.kind = string.format("%s %s", vim_item.kind, icons.kinds.icons[vim_item.kind]) -- This concatenates the icons with the name of the item kind
-		-- 	vim_item.menu = ({
-		-- 		nvim_lsp = "LSP",
-		-- 		nvim_lua = "LUA",
-		-- 		luasnip = "Snippet",
-		-- 		emmet_vim = "Emeet",
-		-- 		path = "Path",
-		-- 		buffer = "Text",
-		-- 		fonts = "Fonts",
-		-- 		fish = "Fish",
-		-- 		treesitter = "TS",
-		-- 		crates = "Crates",
-		-- 	})[entry.source.name]
-		-- 	if entry.source.name == "treesitter" then
-		-- 		vim_item.kind = ""
-		-- 	end
-		-- 	-- vim_item.menu = vim_item.kind
-		-- 	-- vim_item.kind = icons.kinds.icons[vim_item.kind]
+		-- 	format = function(entry, item)
+		-- 		local MAX_LABEL_WIDTH = 50
+		-- 		local function whitespace(max, len)
+		-- 			return (" "):rep(max - len)
+		-- 		end
 		--
-		-- 	return vim_item
-		-- end,
+		-- 		-- Limit content width.
+		-- 		-- local content = item.abbr
+		-- 		-- if #content > MAX_LABEL_WIDTH then
+		-- 		-- 	item.abbr = vim.fn.strcharpart(content, 0, MAX_LABEL_WIDTH) .. "…"
+		-- 		-- else
+		-- 		-- 	item.abbr = content .. whitespace(MAX_LABEL_WIDTH, #content)
+		-- 		-- end
+		--
+		-- 		-- item.kind = string.format("%s %s", icons.kinds.icons[item.kind], item.kind) -- This concatenates the icons with the name of the item kind
+		-- 		-- item.kind = string.format("%s %s", item.kind, icons.kinds.icons[item.kind]) -- This concatenates the icons with the name of the item kind
+		--
+		-- 		item.menu = ({
+		-- 			nvim_lsp = "LSP",
+		-- 			nvim_lua = "LUA",
+		-- 			luasnip = "Snippet",
+		-- 			emmet_vim = "Emeet",
+		-- 			path = "Path",
+		-- 			buffer = "Text",
+		-- 			fonts = "Fonts",
+		-- 			fish = "Fish",
+		-- 			treesitter = "TS",
+		-- 			crates = "Crates",
+		-- 		})[entry.source.name]
+		-- 		if entry.source.name == "treesitter" then
+		-- 			item.kind = ""
+		-- 		end
+		-- 		item.kind = string.format("%s", icons.kinds.icons[item.kind])
+		-- 		-- item.menu = item.kind
+		-- 		-- item.kind = icons.kinds.icons[item.kind]
+		--
+		-- 		return item
+		-- 	end,
 	},
 	sources = {
 		{ name = "nvim_lsp" },
@@ -144,7 +162,7 @@ cmp.setup({
 		{ name = "fish" },
 		{ name = "fonts", option = { space_filter = "-" } },
 		{ name = "markdown-link" },
-		{ name = "emmet_vim" },
+		-- { name = "emmet_vim" },
 		-- { name = "treesitter" },
 	},
 	confirm_opts = {
@@ -153,7 +171,7 @@ cmp.setup({
 	},
 	window = {
 		documentation = cmp.config.window.bordered({
-			border = "none",
+			border = utils.border_status,
 			col_offset = -3,
 			side_padding = 1,
 			scrollbar = true,
@@ -164,7 +182,7 @@ cmp.setup({
 			winhighlight = "Normal:Pmenu,FloatBorder:PmenuDocBorder,CursorLine:PmenuSel,Search:None",
 			col_offset = -3,
 			side_padding = 1,
-			border = "none",
+			border = utils.border_status,
 		}),
 	},
 	experimental = {
