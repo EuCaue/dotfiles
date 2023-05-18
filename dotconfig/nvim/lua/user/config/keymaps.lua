@@ -1,11 +1,11 @@
 -- Shorten function name
 
 local function get_opts(desc, expr)
-	return { noremap = true, silent = true, desc = desc, expr = expr or false }
+  return { noremap = true, silent = true, desc = desc, expr = expr or false }
 end
 
 local map = function(modes, key, cmd, opts)
-	vim.keymap.set(modes, key, cmd, opts)
+  vim.keymap.set(modes, key, cmd, opts)
 end
 
 --Remap space as leader key
@@ -59,10 +59,10 @@ map("n", "<leader>H", ":HopChar2<cr>", get_opts("Hop to Char"))
 map("n", "<leader>h", ":HopWord<cr>", get_opts("Hop to Word"))
 
 map(
-	{ "n", "v" },
-	"<leader>cn",
-	"<cmd>lua require('notify').dismiss({ silent = true, pending = true })<cr>",
-	get_opts("Close all notifications")
+  { "n", "v" },
+  "<leader>cn",
+  "<cmd>lua require('notify').dismiss({ silent = true, pending = true })<cr>",
+  get_opts("Close all notifications")
 )
 
 map("n", "<leader><leader>f", "<cmd>Flote<cr>", get_opts("Open Flote"))
@@ -75,10 +75,10 @@ map("n", "<leader>re", ":%s//<Left>", get_opts("Rename with substitute command")
 map({ "n", "v" }, "<leader><leader>l", "<cmd>Lazy<cr>", get_opts("Open Lazy"))
 
 map(
-	{ "n", "v" },
-	"<leader>rr",
-	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-	get_opts("Rename with substitute command based on current text")
+  { "n", "v" },
+  "<leader>rr",
+  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  get_opts("Rename with substitute command based on current text")
 )
 
 map("n", "<leader>x", "<cmd>!chmod +x %<cr>", get_opts("Make the current file executable"))
@@ -115,10 +115,10 @@ map("n", "<leader>ss", "<cmd>SessionManager load_last_session<cr>", get_opts("Lo
 -- Harpoon
 
 map(
-	{ "n", "v" },
-	"<leader>ah",
-	"<cmd>:lua require('harpoon.mark').add_file(vim.fn.expand('%')) vim.notify('File add to harpoon: ' .. vim.fn.expand('%:t'))<cr>",
-	get_opts("Add a file to harpoon")
+  { "n", "v" },
+  "<leader>ah",
+  "<cmd>:lua require('harpoon.mark').add_file(vim.fn.expand('%')) vim.notify('File add to harpoon: ' .. vim.fn.expand('%:t'))<cr>",
+  get_opts("Add a file to harpoon")
 )
 
 -- Git

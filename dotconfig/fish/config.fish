@@ -14,6 +14,12 @@ if status is-interactive
         return
     end
 
+    if test "$TERM" = wezterm
+        neofetch --sixel --source $WALLPAPER
+        echo $(hyprctl splash)
+        return
+    end
+
     if test "$TERM" = xterm-kitty
         neofetch --kitty --source $WALLPAPER
         echo $( hyprctl splash )

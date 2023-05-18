@@ -15,7 +15,7 @@
     "hyprland/submap"
   ],
   "modules-right": [
-    "battery",
+    // "battery",
     "hyprland/window",
     "pulseaudio"
   ],
@@ -143,7 +143,7 @@
   "hyprland/window": {
     "format": "{}",
     "separate-outputs": true,
-    "max-length": 30
+    "max-length": 30,
   },
   "battery": {
     "interval": 60,

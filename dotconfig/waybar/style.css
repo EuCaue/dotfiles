@@ -3,7 +3,7 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: "MesloLGL Nerd Font";
+  font-family: "iMWritingMono Nerd Font";
   font-size: 14px;
   font-weight: bold;
   transition-duration: 0.2s;
@@ -40,9 +40,8 @@ window#waybar {
 }
 
 #battery {
-  margin-right: 15px;
+  padding: 0 5px;
   background-color: transparent;
-  color: transparent;
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0);
 }
 
@@ -58,13 +57,11 @@ window#waybar {
   background: @theme_base_color;
   font-size: 15px;
   color: @theme_text_color;
+  opacity: 0.8;
 }
 
 #workspaces button:hover {
   background-color: @popover_bg_color;
-  color: @accent_color;
-  transition-duration: unset;
-  border-radius: 5px;
 }
 
 #pulseaudio {
@@ -72,7 +69,6 @@ window#waybar {
 }
 
 #workspaces button.active {
-  background-color: @popover_bg_color;
   color: @accent_color;
-  transition-duration: 0;
+  opacity: 1;
 }

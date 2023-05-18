@@ -1,11 +1,12 @@
 # NOTE: most used
-alias cfg='nvim ~/.config/fish/config.fish'
+alias cfg='cd ~/.config/fish/ && nvim ~/.config/fish/config.fish && cd'
 alias kfg='nvim ~/.config/kitty/kitty.conf'
 alias afg='nvim ~/.config/alacritty/alacritty.yml'
 alias ffg="nvim ~/.config/foot/foot.ini"
 alias hfg='nvim ~/.config/hypr/hyprland.conf'
 alias nft='nvim ~/.config/neofetch/config.conf'
-alias nfg='nvim ~/.config/nvim/init.lua'
+alias nfg='cd ~/.config/nvim/ && nvim ~/.config/nvim/init.lua && cd'
+alias wfg='cd ~/.config/wezterm/ && nvim ~/.config/wezterm/wezterm.lua && cd'
 alias sus='paru'
 function gal --description "alias git add commit push"
     git add .
@@ -27,7 +28,9 @@ function lr --description "Show a tree file"
     end
     return 0
 end
-alias rf='rm -rf'
+alias rm='rmtrash -i'
+alias rf='rmtrash -r -I'
+
 alias vim='nvim'
 alias vi='nvim'
 alias v='nvim'
@@ -38,14 +41,13 @@ function gcl --description "Clone to gitclone folder and cd"
     return 0
 end
 
-alias gcld='cd ~/Dev && git clone'
 function vf --description "open in nvim with fzf "
     ls | set file $(fzf)
     if test -z $file
         echo "Select a file!"
         return 1
     end
-    vi $file
+    v $file
     return 0
 end
 alias r='ranger'
@@ -83,7 +85,7 @@ end
 
 # just make Interactive
 alias mv='mv -i'
-alias rm='rm -i'
+# alias rm='rm -i'
 alias cp='cp -i'
 
 
@@ -117,6 +119,6 @@ alias mann='read -S -P 'man:' manpage && man $manpage | nvim'
 
 
 
-    bind yy fish_clipboard_copy
-    bind Y fish_clipboard_copy
-    bind p fish_clipboard_paste
+bind yy fish_clipboard_copy
+bind Y fish_clipboard_copy
+bind p fish_clipboard_paste

@@ -1,6 +1,6 @@
 -- HACK: one day i'll figure out what is this but works nice. :)
 -- vim.opt.statuscolumn =
--- 	"%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum < 10 ? v:lnum . '  ' : v:lnum) : ''}%=%{v:relnum == 0 ? ' ' : ''}"
+-- "%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum < 10 ? v:lnum . '  ' : v:lnum) : ''}%=%{v:relnum == 0 ? ' ' : ''}"
 
 local opt = vim.opt
 
@@ -8,7 +8,7 @@ opt.backup = false -- creates a backup file
 opt.clipboard = "" -- allows neovim to access the system clipboard
 opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
 opt.completeopt = { "menu", "menuone", "noselect" } -- mostly just for cmp
-opt.conceallevel = 0 -- so that `` is visible in markdown files
+opt.conceallevel = 2 -- so that `` is visible in markdown files
 opt.fileencoding = "utf-8" -- the encoding written to a file
 opt.hlsearch = true -- highlight all matches on previous search pattern
 opt.ignorecase = true -- ignore case in search patterns
@@ -16,7 +16,7 @@ opt.mouse = "a" -- allow the mouse to be used in neovim
 opt.pumheight = 10 -- pop up menu height
 opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
 opt.foldmethod = "indent"
-opt.fillchars = { fold = " " }
+opt.fillchars = { fold = " ", eob = " " }
 opt.foldcolumn = "0" -- '0' is not bad
 opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 opt.foldlevelstart = 99
@@ -49,9 +49,6 @@ opt.linebreak = true -- companion to wrap, don't split words
 opt.scrolloff = 8 -- minimal number of screen lines to keep above and below the cursor
 opt.sidescrolloff = 8 -- minimal number of screen columns either side of cursor if wrap is `false`
 opt.wrap = false -- wrap
-opt.guifont = "MesloLGL Nerd Font" -- the font used in graphical neovim applications
-
-if vim.fn.has("nvim-0.9.0") == 1 then
-	vim.opt.splitkeep = "screen"
-	vim.opt.shortmess:append({ C = true })
-end
+opt.guifont = "iMWritingMono Nerd Font" -- the font used in graphical neovim applications
+opt.splitkeep = "screen"
+opt.shortmess:append({ C = true })

@@ -1,16 +1,18 @@
-map <C-i> zoom in
-map <C-o> zoom out
 set sandbox none
-set statusbar-h-padding 0
-set statusbar-v-padding 0
-set page-padding 1
-
-set selection-clipboard clipboard
+set statusbar-h-padding 10
+set statusbar-v-padding 10
+set page-padding 20
+set scroll-step 120
+set show-recent 25
+set incremental-search "true"
+set window-title-home-tilde "true"
+set statusbar-home-tilde "true"
 set recolor  "true"
 set recolor-keephue "true"
 set zoom-center "true"
+set selection-clipboard clipboard
 set adjust-open "width"
-set font "MesloLGL Nerd Font 12"
+set font "iMWritingMono Nerd Font 12"
 
 set statusbar-bg                "#000000"
 set statusbar-fg                "#f8f8f2"
