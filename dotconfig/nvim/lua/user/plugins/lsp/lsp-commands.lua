@@ -46,8 +46,47 @@ vim.api.nvim_create_user_command("LspCommands", function()
     end,
   })
 
+  local menu_lsp = Menu({
+    position = "50%",
+    size = {
+      width = 25,
+      height = 5,
+    },
+    border = {
+      style = "single",
+      text = {
+        top = "Start LSP Server? ",
+        top_align = "center",
+      },
+    },
+    win_options = {
+      winhighlight = "Normal:Normal,FloatBorder:Normal",
+    },
+  }, {
+    lines = {
+      Menu.item("Yes"),
+      Menu.item("No"),
+    },
+    max_width = 20,
+    keymap = {
+      focus_next = { "j", "<Down>", "<Tab>" },
+      focus_prev = { "k", "<Up>", "<S-Tab>" },
+      close = { "<Esc>", "<C-c>" },
+      submit = { "<CR>", "<Space>", "l" },
+    },
+    on_close = function()
+      print("Menu Closed!")
+    end,
+    on_submit = function(item)
+      if item.text == "Yes" then
+        vim.cmd([[LspStart]])
+        vim.notify("Lsp's Started")
+      end
+    end,
+  })
+
   if #vim.lsp.buf_get_clients() == 0 then
-    vim.notify("No LSP client active in buffer", vim.log.levels.WARN)
+    menu_lsp:mount()
   else
     menu:mount()
   end

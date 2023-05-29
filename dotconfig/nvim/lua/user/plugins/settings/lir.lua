@@ -16,10 +16,12 @@ lir.setup({
   },
   mappings = {
     ["l"] = actions.edit,
+    ["<CR>"] = actions.edit,
     ["<C-s>"] = actions.split,
     ["<C-v>"] = actions.vsplit,
     ["<C-t>"] = actions.tabedit,
     ["h"] = actions.up,
+    ["<BACKSPACE>"] = actions.up,
     ["q"] = actions.quit,
     ["A"] = actions.mkdir,
     ["N"] = actions.newfile,

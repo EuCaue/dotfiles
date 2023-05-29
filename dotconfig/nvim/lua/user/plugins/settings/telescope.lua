@@ -14,18 +14,18 @@ telescope.setup({
   defaults = {
     initial_mode = "normal",
     border = utils.border_status ~= "none",
-    -- results_title = false,
-    -- sorting_strategy = "descending",
-    -- layout_strategy = "vertical",
-    -- layout_config = {
-    -- 	preview_cutoff = 1, -- Preview should always show (unless previewer = false)
-    -- 	width = function(_, max_columns, _)
-    -- 		return math.min(max_columns, 145)
-    -- 	end,
-    -- 	height = function(_, _, max_lines)
-    -- 		return math.min(max_lines, 30)
-    -- 	end,
-    -- },
+    results_title = false,
+    sorting_strategy = "descending",
+    layout_strategy = "vertical",
+    layout_config = {
+      preview_cutoff = 1, -- Preview should always show (unless previewer = false)
+      width = function(_, max_columns, _)
+        return math.min(max_columns, 145)
+      end,
+      height = function(_, _, max_lines)
+        return math.min(max_lines, 30)
+      end,
+    },
 
     -- selection_strategy = "reset",
     -- sorting_strategy = "descending",
@@ -146,10 +146,10 @@ telescope.setup({
       },
     },
     fzf = {
-      fuzzy = true,                -- false will only do exact matching
+      fuzzy = true,                   -- false will only do exact matching
       override_generic_sorter = true, -- override the generic sorter
-      override_file_sorter = true, -- override the file sorter
-      case_mode = "smart_case",    -- or "ignore_case" or "respect_case"
+      override_file_sorter = true,    -- override the file sorter
+      case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
     },
     telescope_code_actions = {},
     project = {

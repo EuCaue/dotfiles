@@ -1,4 +1,4 @@
-local icons = require("user.utils").icons
+local icons = require("user.utils").icons_selected
 return {
   {
     "nvim-lualine/lualine.nvim",
@@ -61,29 +61,31 @@ return {
         },
         presets = {
           long_message_to_split = true, -- long messages will be sent to a split
-          inc_rename = false,      -- enables an input dialog for inc-rename.nvim
-          lsp_doc_border = false,  -- add a border to hover docs and signature help
+          inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = false,       -- add a border to hover docs and signature help
         },
       })
     end,
   }, -- better ui's
 
-  {
-    "romgrk/barbar.nvim",
-    event = "BufRead",
-    init = function()
-      require("user.plugins.settings.barbar")
-    end,
+  -- {
+  -- 	"romgrk/barbar.nvim",
+  -- 	event = "BufRead",
+  -- 	init = function()
+  -- 		require("user.plugins.settings.barbar")
+  -- 	end,
+  --
+  -- 	version = "^1.0.0", -- optional: only update when a new 1.x version is released
+  -- },
 
-    version = "^1.0.0", -- optional: only update when a new 1.x version is released
-  },
+  { "j-morano/buffer_manager.nvim",           opts = {} },
 
-  {
-    "tiagovla/scope.nvim",
-    config = function()
-      require("scope").setup()
-    end,
-  },
+  -- {
+  --   "tiagovla/scope.nvim",
+  --   config = function()
+  --     require("scope").setup()
+  --   end,
+  -- },
 
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -118,7 +120,7 @@ return {
     event = "LspAttach",
     config = function()
       return {
-        icons = icons.kinds.icons,
+        icons = icons,
         highlight = false,
         separator = "  ",
         depth_limit = 0,
@@ -133,7 +135,7 @@ return {
     event = "LspAttach",
     config = function()
       require("nvim-navbuddy").setup({
-        icons = icons.kinds.icons,
+        icons = icons,
       })
     end,
     cmd = "Navbuddy",
@@ -158,7 +160,7 @@ return {
 
       require("barbecue").setup({
         create_autocmd = false, -- prevent barbecue from updating itself automatically
-        kinds = icons.kinds.icons,
+        kinds = icons,
       })
 
       vim.api.nvim_create_autocmd({
@@ -201,5 +203,5 @@ return {
   { "MunifTanjim/nui.nvim",                   lazy = true },
   { "nvim-lua/plenary.nvim",                  lazy = true },
   { "nvim-lua/popup.nvim",                    lazy = true }, -- PopUp API for neovim
-  { "nvim-telescope/telescope-ui-select.nvim" }, -- wrap vim.ui()
+  { "nvim-telescope/telescope-ui-select.nvim" },             -- wrap vim.ui()
 }

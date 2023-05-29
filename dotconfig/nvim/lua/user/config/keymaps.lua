@@ -32,8 +32,8 @@ map({ "n", "v" }, "<leader><leader>o", "<cmd>normal gx<cr>", get_opts("Open link
 map({ "v", "x" }, "p", '"_dP', get_opts("greatest remap ever"))
 
 -- Comment
-map({ "n", "i", "x" }, "<C-_>", "<cmd>normal gcc<cr>", get_opts("Comment"))
-map({ "n", "i", "x" }, "<C-/>", "<cmd>normal gcc<cr>", get_opts("Comment"))
+map({ "n", "i", "x" }, "<C-_>", "<cmd>normal gcA<cr>", get_opts("Comment"))
+map({ "n", "i", "x" }, "<C-/>", "<cmd>normal gcA<cr>", get_opts("Comment"))
 
 map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'gj']], get_opts("Jump list relative line jump", true))
 map("n", "k", [[(v:count > 1 ? "m'" . v:count : '') . 'gk']], get_opts("Jump list relative line jump", true))
@@ -141,8 +141,8 @@ map("n", "<C-Left>", ":vertical resize -2<cr>", get_opts("Resize Left"))
 map("n", "<C-Right>", ":vertical resize +2<cr>", get_opts("Resize Right"))
 
 -- Navigate buffers
-map("n", "<S-l>", "<cmd>BufferNext<cr>", get_opts("Prev Buffer"))
-map("n", "<S-h>", "<cmd>BufferPrevious<cr>", get_opts("Next Buffer"))
+map("n", "<S-l>", "<cmd>bnext<cr>", get_opts("Prev Buffer"))
+map("n", "<S-h>", "<cmd>bprevious<cr>", get_opts("Next Buffer"))
 
 -- Stay in indent mode
 map("v", "<", "<gv", get_opts("Left indent"))
@@ -165,29 +165,41 @@ map("n", "<leader>tc", "<cmd>tabclose<cr>", get_opts("Close Tab"))
 
 -- buffer
 
+map(
+  { "v", "n" },
+  "<leader>b",
+  "<cmd>lua require('buffer_manager.ui').toggle_quick_menu()<cr>",
+  get_opts("List Buffers")
+)
+
 -- Move to previous/next
 map("n", "<A-[>", "<cmd>bprevious<cr>", get_opts("Prev buffer"))
 map("n", "<A-]>", "<cmd>bnext<cr>", get_opts("Next buffer"))
 -- Re-order to previous/next
 -- Goto buffer in position...
-map("n", "<A-1>", "<cmd>BufferGoto 1<cr>", get_opts("Go to buffer 1"))
-map("n", "<A-2>", "<cmd>BufferGoto 2<cr>", get_opts("Go to buffer 2"))
-map("n", "<A-3>", "<cmd>BufferGoto 3<cr>", get_opts("Go to buffer 3"))
-map("n", "<A-4>", "<cmd>BufferGoto 4<cr>", get_opts("Go to buffer 4"))
-map("n", "<A-5>", "<cmd>BufferGoto 5<cr>", get_opts("Go to buffer 5"))
-map("n", "<A-6>", "<cmd>BufferGoto 6<cr>", get_opts("Go to buffer 6"))
-map("n", "<A-7>", "<cmd>BufferGoto 7<cr>", get_opts("Go to buffer 7"))
-map("n", "<A-8>", "<cmd>BufferGoto 8<cr>", get_opts("Go to buffer 8"))
-map("n", "<A-9>", "<cmd>BufferGoto 9<cr>", get_opts("Go to buffer 9"))
-map("n", "<A-0>", "<Cmd>BufferLast<CR>", get_opts("Go to last buffer"))
+-- map("n", "<A-1>", "<cmd>BufferGoto 1<cr>", get_opts("Go to buffer 1"))
+-- map("n", "<A-2>", "<cmd>BufferGoto 2<cr>", get_opts("Go to buffer 2"))
+-- map("n", "<A-3>", "<cmd>BufferGoto 3<cr>", get_opts("Go to buffer 3"))
+-- map("n", "<A-4>", "<cmd>BufferGoto 4<cr>", get_opts("Go to buffer 4"))
+-- map("n", "<A-5>", "<cmd>BufferGoto 5<cr>", get_opts("Go to buffer 5"))
+-- map("n", "<A-6>", "<cmd>BufferGoto 6<cr>", get_opts("Go to buffer 6"))
+-- map("n", "<A-7>", "<cmd>BufferGoto 7<cr>", get_opts("Go to buffer 7"))
+-- map("n", "<A-8>", "<cmd>BufferGoto 8<cr>", get_opts("Go to buffer 8"))
+-- map("n", "<A-9>", "<cmd>BufferGoto 9<cr>", get_opts("Go to buffer 9"))
+-- map("n", "<A-0>", "<Cmd>BufferLast<CR>", get_opts("Go to last buffer"))
 -- Pin/unpin buffer
-map("n", "<A-p>", "<cmd>BufferPin<cr>", get_opts("Pin current buffer"))
+-- map("n", "<A-p>", "<cmd>BufferPin<cr>", get_opts("Pin current buffer"))
 -- Close buffer
-map("n", "<A-c>", "<cmd>BufferClose<cr>", get_opts("Close current buffer"))
-map("n", "<leader>bp", "<cmd>BufferPick<cr>", get_opts("Choose a buffer"))
+map("n", "<A-c>", "<cmd>bp | sp | bn | bd<cr>", get_opts("Close current buffer"))
+-- map("n", "<leader>bp", "<cmd>BufferPick<cr>", get_opts("Choose a buffer"))
 
 -- Sort automatically by...
-map("n", "<Space>bb", "<cmd>BufferOrderByBufferNumber<cr>", get_opts("Sort buffer by buffer number"))
-map("n", "<Space>bd", "<cmd>BufferOrderByDirectory<cr>", get_opts("Sort buffer by directory"))
-map("n", "<Space>bl", "<cmd>BufferOrderByLanguag<cr>", get_opts("Sort buffer by language"))
-map("n", "<Space>bu", "<cmd>BufferOrderByWindowNumbe<cr>", get_opts("Sort buffer by window number "))
+-- map("n", "<Space>bb", "<cmd>BufferOrderByBufferNumber<cr>", get_opts("Sort buffer by buffer number"))
+-- map("n", "<Space>bd", "<cmd>BufferOrderByDirectory<cr>", get_opts("Sort buffer by directory"))
+-- map("n", "<Space>bl", "<cmd>BufferOrderByLanguag<cr>", get_opts("Sort buffer by language"))
+-- map("n", "<Space>bu", "<cmd>BufferOrderByWindowNumbe<cr>", get_opts("Sort buffer by window number "))
+-- Sort automatically by...
+-- map("n", "<Space>bb", "<cmd>BufferOrderByBufferNumber<cr>", get_opts("Sort buffer by buffer number"))
+-- map("n", "<Space>bd", "<cmd>BufferOrderByDirectory<cr>", get_opts("Sort buffer by directory"))
+-- map("n", "<Space>bl", "<cmd>BufferOrderByLanguag<cr>", get_opts("Sort buffer by language"))
+-- map("n", "<Space>bu", "<cmd>BufferOrderByWindowNumbe<cr>", get_opts("Sort buffer by window number "))

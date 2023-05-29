@@ -153,9 +153,9 @@ rt.setup({
 
 ts.setup({
   disable_commands = false, -- prevent the plugin from creating Vim commands
-  debug = false,           -- enable debug logging for commands
+  debug = false,            -- enable debug logging for commands
   go_to_source_definition = {
-    fallback = true,       -- fall back to standard LSP definition on failure
+    fallback = true,        -- fall back to standard LSP definition on failure
   },
   server = {
     on_attach = function(client, bufnr)
@@ -214,14 +214,16 @@ vim.diagnostic.config({
   float = {
     border = utils.border_status,
     focusable = true,
-    style = "minimal",
+    -- style = "minimal",
     source = "always",
     header = "",
-    prefix = "",
+    prefix = "  ",
   },
-  virtual_text = true,
+  virtual_text = {
+    prefix = "󱨇 ",
+  },
   signs = true,
   underline = false,
-  update_in_insert = false,
+  update_in_insert = true,
   severity_sort = false,
 })
