@@ -1,6 +1,6 @@
 configuration {
   drun-display-format: "{icon} {name}";
-  font: "iMWritingMono Nerd Font 15";
+  font: "IosevkaTerm Nerd Font 15";
   modi: "window,run,drun,emoji,calc,";
   show-icons: true;
   eh: 1;

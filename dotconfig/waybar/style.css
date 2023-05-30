@@ -3,9 +3,9 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: "iMWritingMono Nerd Font";
+  font-family: "IosevkaTerm Nerd Font";
   font-size: 14px;
-  font-weight: bold;
+  font-weight: normal;
   transition-duration: 0.2s;
 }
 
@@ -33,9 +33,9 @@ window#waybar {
 #gamemode,
 #gamemode.running {
   background-color: @theme_base_color;
+  color: @theme_text_color;
   padding: 0 15px;
   border-radius: 5px;
-  margin-top: 5px;
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.8);
 }
 
@@ -43,10 +43,6 @@ window#waybar {
   padding: 0 5px;
   background-color: transparent;
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0);
-}
-
-#clock {
-  margin-left: 15px;
 }
 
 #battery.critical {
@@ -62,10 +58,6 @@ window#waybar {
 
 #workspaces button:hover {
   background-color: @popover_bg_color;
-}
-
-#pulseaudio {
-  margin-right: 15px;
 }
 
 #workspaces button.active {

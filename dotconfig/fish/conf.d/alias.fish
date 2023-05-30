@@ -58,7 +58,24 @@ alias :q="exit"
 alias cr="cargo run"
 alias wf='wfetch'
 alias remirror='sudo reflector -c BR -f 2 -l 20 -n 10 --save /etc/pacman.d/mirrorlist'
-alias img='img2sixel'
+function img --description "Display image"
+    if test "$TERM" = foot
+        img2sixel $argv
+        return
+    end
+
+    if test "$TERM" = wezterm
+        wezterm imgcat $argv
+        return
+    end
+
+    if test "$TERM" = xterm-kitty
+        kitty +kitten icat $argv
+        return
+    end
+    echo "Terminal not supported"
+end
+
 function imgall --description "display all images in the current folder"
     for file in ./*.{jpg, png}
         img $file
@@ -106,7 +123,6 @@ alias vercelp='yarn vercel --prod'
 
 # NOTE: System
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
-alias icat="kitty +kitten icat"
 alias li='free -h && sudo limpante && free -h'
 alias f='free -h'
 

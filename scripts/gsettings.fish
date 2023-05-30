@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-set FONT "iMWritingMono Nerd Font 12"
+set FONT "IosevkaTerm Nerd Font 12"
 
 if test -z "$CURSOR"; or test "$CURSOR" = " "
     set CURSOR $XCURSOR_THEME

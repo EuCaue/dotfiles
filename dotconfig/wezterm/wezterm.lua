@@ -5,28 +5,22 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
+local italic = false
+
 local fonts = {
-  { family = "iMWritingMono Nerd Font", italic = true },
-  { family = "MesloLGL Nerd Font",      italic = false },
+  { family = "iMWritingMono Nerd Font", italic = italic },
+  { family = "MesloLGL Nerd Font",      italic = italic },
   { family = "Agave Nerd Font" },
+  { family = "JetBrainsMono Nerd Font", italic = italic },
+  { family = "SauceCodePro Nerd Font",  italic = italic },
+  { family = "Hasklug Nerd Font",       italic = italic },
+  { family = "Hack Nerd Font",          italic = italic },
+  { family = "IosevkaTerm Nerd Font",   ititac = italic }
 }
 
 local emoji_font = { "Apple Color Emoji" }
 
-local mykeys = {}
-table.insert(mykeys, {
-  key = "LeftArrow",
-  mods = "CTRL|SHIFT",
-  action = wezterm.action.ActivateTabRelative(-1),
-})
-
-table.insert(mykeys, {
-  key = "RightArrow",
-  mods = "CTRL|SHIFT",
-  action = wezterm.action.ActivateTabRelative(1),
-})
-
-config.font = wezterm.font_with_fallback({ fonts[2], emoji_font[1] })
+config.font = wezterm.font_with_fallback({ fonts[8], emoji_font[1] })
 config.enable_scroll_bar = false
 config.font_size = 14
 config.enable_tab_bar = true
@@ -34,7 +28,6 @@ config.hide_tab_bar_if_only_one_tab = false
 config.show_new_tab_button_in_tab_bar = false
 config.default_cursor_style = "BlinkingBlock"
 config.use_fancy_tab_bar = true
-config.keys = mykeys
 config.window_close_confirmation = "NeverPrompt"
 config.enable_tab_bar = true
 config.scrollback_lines = 2500

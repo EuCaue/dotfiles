@@ -1,4 +1,6 @@
 local icons = require("user.utils").icons_selected
+local utils = require("user.utils")
+
 return {
   {
     "nvim-lualine/lualine.nvim",
@@ -61,8 +63,8 @@ return {
         },
         presets = {
           long_message_to_split = true, -- long messages will be sent to a split
-          inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-          lsp_doc_border = false,       -- add a border to hover docs and signature help
+          inc_rename = false,      -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = false,  -- add a border to hover docs and signature help
         },
       })
     end,
@@ -150,35 +152,57 @@ return {
     end,
   }, -- scrollbar
 
+  -- {
+  --   "utilyre/barbecue.nvim",
+  --   event = { "BufReadPre", "BufNewFile" },
+  --   version = "*",
+  --   config = function()
+  --     -- triggers CursorHold event faster
+  --     vim.opt.updatetime = 200
+  --
+  --     require("barbecue").setup({
+  --       create_autocmd = false, -- prevent barbecue from updating itself automatically
+  --       kinds = icons,
+  --     })
+  --
+  --     vim.api.nvim_create_autocmd({
+  --       "WinScrolled", -- or WinResized on NVIM-v0.9 and higher
+  --       "BufWinEnter",
+  --       "CursorHold",
+  --       "InsertLeave",
+  --
+  --       -- include this if you have set `show_modified` to `true`
+  --       "BufModifiedSet",
+  --     }, {
+  --       group = vim.api.nvim_create_augroup("barbecue.updater", {}),
+  --       callback = function()
+  --         require("barbecue.ui").update()
+  --       end,
+  --     })
+  --   end,
+  -- }, -- winbar + navic
+
   {
-    "utilyre/barbecue.nvim",
+    "Bekaboo/dropbar.nvim",
     event = { "BufReadPre", "BufNewFile" },
-    version = "*",
-    config = function()
-      -- triggers CursorHold event faster
-      vim.opt.updatetime = 200
-
-      require("barbecue").setup({
-        create_autocmd = false, -- prevent barbecue from updating itself automatically
-        kinds = icons,
-      })
-
-      vim.api.nvim_create_autocmd({
-        "WinScrolled", -- or WinResized on NVIM-v0.9 and higher
-        "BufWinEnter",
-        "CursorHold",
-        "InsertLeave",
-
-        -- include this if you have set `show_modified` to `true`
-        "BufModifiedSet",
-      }, {
-        group = vim.api.nvim_create_augroup("barbecue.updater", {}),
-        callback = function()
-          require("barbecue.ui").update()
-        end,
-      })
-    end,
-  }, -- winbar + navic
+    opts = {
+      icons = {
+        kinds = {
+          symbols = icons,
+        },
+        ui = {
+          bar = {
+            separator = "  ",
+          },
+        },
+      },
+      menu = {
+        win_confings = {
+          border = utils.border_status,
+        },
+      },
+    },
+  },
 
   {
     "folke/zen-mode.nvim",
@@ -203,5 +227,5 @@ return {
   { "MunifTanjim/nui.nvim",                   lazy = true },
   { "nvim-lua/plenary.nvim",                  lazy = true },
   { "nvim-lua/popup.nvim",                    lazy = true }, -- PopUp API for neovim
-  { "nvim-telescope/telescope-ui-select.nvim" },             -- wrap vim.ui()
+  { "nvim-telescope/telescope-ui-select.nvim" }, -- wrap vim.ui()
 }

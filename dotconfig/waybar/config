@@ -4,8 +4,11 @@
   "layer": "top", // Waybar at top layer
   "position": "top", // Waybar position (top|bottom|left|right)
   // "height": 23, // Waybar height (to be removed for auto height)
-  //  "width": 1280, // Waybar width
+   // "width": 1820, // Waybar width
   "spacing": 9, // Gaps between modules 
+  "margin-top": 5,
+  "margin-left": 15,
+  "margin-right": 15,
   "modules-left": [
     "clock",
     "tray"
@@ -15,7 +18,7 @@
     "hyprland/submap"
   ],
   "modules-right": [
-    // "battery",
+    "battery",
     "hyprland/window",
     "pulseaudio"
   ],
