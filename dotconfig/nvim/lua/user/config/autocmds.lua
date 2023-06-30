@@ -9,6 +9,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		"help",
 		"spectre_panel",
 		"lspinfo",
+		"oil",
 		"man",
 		"notify",
 		"qf",
@@ -84,3 +85,14 @@ vim.api.nvim_create_autocmd("WinLeave", {
 		end
 	end,
 })
+
+local function toggle_transparency()
+	local colorscheme = vim.g.colors_name
+	vim.cmd([[highlight LspInlayHint ctermbg=none guibg=none]])
+	if colorscheme == "onedark" then
+		require("onedark").setup({ transparent = not vim.g.onedark_config.transparent })
+		require("onedark").load()
+	end
+end
+
+vim.api.nvim_create_user_command("BG", toggle_transparency, {})

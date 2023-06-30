@@ -135,7 +135,7 @@ telescope.setup({
     file_browser = {
       cwd_to_path = false,
       select_buffer = true,
-      hijack_netrw = false,
+      hijack_netrw = true,
       mappings = {
         ["i"] = {
           ["<bs>"] = false,

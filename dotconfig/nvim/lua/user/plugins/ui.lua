@@ -52,8 +52,8 @@ return {
             enabled = false,
           },
           progress = {
-
             enabled = false,
+            throttle = 8000 / 10, -- frequency to update lsp progress message
           },
           override = {
             ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -63,8 +63,8 @@ return {
         },
         presets = {
           long_message_to_split = true, -- long messages will be sent to a split
-          inc_rename = false,      -- enables an input dialog for inc-rename.nvim
-          lsp_doc_border = false,  -- add a border to hover docs and signature help
+          inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = false,       -- add a border to hover docs and signature help
         },
       })
     end,
@@ -184,7 +184,7 @@ return {
 
   {
     "Bekaboo/dropbar.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    -- event = { "BufReadPre", "BufNewFile" },
     opts = {
       icons = {
         kinds = {
@@ -227,5 +227,5 @@ return {
   { "MunifTanjim/nui.nvim",                   lazy = true },
   { "nvim-lua/plenary.nvim",                  lazy = true },
   { "nvim-lua/popup.nvim",                    lazy = true }, -- PopUp API for neovim
-  { "nvim-telescope/telescope-ui-select.nvim" }, -- wrap vim.ui()
+  { "nvim-telescope/telescope-ui-select.nvim" },             -- wrap vim.ui()
 }

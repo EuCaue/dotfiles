@@ -220,7 +220,8 @@ vim.diagnostic.config({
     prefix = "  ",
   },
   virtual_text = {
-    prefix = "󱨇 ",
+    -- prefix = "󱨇 ",
+    prefix = " ",
   },
   signs = true,
   underline = false,

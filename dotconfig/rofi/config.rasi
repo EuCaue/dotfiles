@@ -1,6 +1,6 @@
 configuration {
   drun-display-format: "{icon} {name}";
-  font: "IosevkaTerm Nerd Font 15";
+  font: "MesloLGL Nerd Font 13";
   modi: "window,run,drun,emoji,calc,";
   show-icons: true;
   eh: 1;
@@ -49,11 +49,12 @@ configuration {
 
 #window {
     background-color: @background;
-    border:           2;
-    border-radius: 12;
+    border: 0;
+    border-radius: 5;
     border-color: @bordercolor;
-    padding:          5;
+    padding: 5;
 }
+
 #mainbox {
     border:  0;
     padding: 5;

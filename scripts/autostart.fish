@@ -9,6 +9,7 @@ waybar &
 ~/dotfiles/scripts/rofi-clipboard.fish &
 redshift -O 5000K &
 swaync &
+~/dotfiles/scripts/rofi-lofi.fish &
 sleep 1
 killall xdg-desktop-portal-hyprland
 killall xdg-desktop-portal-wlr

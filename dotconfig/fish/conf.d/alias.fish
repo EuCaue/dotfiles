@@ -75,7 +75,6 @@ function img --description "Display image"
     end
     echo "Terminal not supported"
 end
-
 function imgall --description "display all images in the current folder"
     for file in ./*.{jpg, png}
         img $file
@@ -132,9 +131,3 @@ alias csgocc='sed -i -e "/kb_options/s/^#//" dotfiles/dotconfig/hypr/hyprland.co
 alias susa='paru -Syua'
 alias suslol='sudo sh -c "sysctl -w abi.vsyscall32=0"'
 alias mann='read -S -P 'man:' manpage && man $manpage | nvim'
-
-
-
-bind yy fish_clipboard_copy
-bind Y fish_clipboard_copy
-bind p fish_clipboard_paste

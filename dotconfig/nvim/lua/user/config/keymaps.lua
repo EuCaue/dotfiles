@@ -23,13 +23,16 @@ vim.g.maplocalleader = " "
 
 -- Basic keymaps
 map({ "n", "i" }, "<C-s>", "<cmd>write!<cr>", get_opts("Write"))
-map("n", "<C-z>", "<cmd>wq!<cr>", get_opts("Write and Quit"))
+-- map("n", "<C-z>", "<cmd>wq!<cr>", get_opts("Write and Quit"))
 map("n", "<C-x>", "<cmd>q!<cr>", get_opts("Quit"))
 map("n", "<C-a>", "gg<S-v>G", get_opts("Select all"))
 map("n", "<C-S-t>", "<cmd>e#<cr>", get_opts("Reopen the last closed buffer"))
 map("n", "E", "$", get_opts("Go to end of the line"))
-map({ "n", "v" }, "<leader><leader>o", "<cmd>normal gx<cr>", get_opts("Open link under cursor"))
 map({ "v", "x" }, "p", '"_dP', get_opts("greatest remap ever"))
+map("n", "<Tab>", "<C-W>w", get_opts("Cycle through windows"))
+-- TODO: make a functioon for toggle max-widht on buffer
+map("n", "<leader>/", "<C-w>|", get_opts("S"))
+map("n", "<CR>", "ciw", get_opts("Cut the word"))
 
 -- Comment
 map({ "n", "i", "x" }, "<C-_>", "<cmd>normal gcA<cr>", get_opts("Comment"))
@@ -49,7 +52,8 @@ map("n", "<leader>qq", "<cmd>ToggleTerm direction=horizontal size=5<cr>", get_op
 map("n", "<leader>n", "<cmd>Neotree toggle<cr>", get_opts("Neotree toggle"))
 map("n", "<leader>nf", "<cmd>Neotree focus<cr>", get_opts("Neotree focus"))
 map("n", "<leader>dt", "<cmd>cd ~/dotfiles/ | Neotree toggle<cr>", get_opts("Go to dotfiles"))
-
+map("n", "<leader><leader>o", "<cmd>edit " .. vim.fn.getcwd() .. "<cr>", get_opts("Open Lir"))
+--
 -- Muren
 map({ "n", "v" }, "<leader>mt", "<cmd>MurenToggle<cr>", get_opts("Toggle Muren"))
 map({ "n", "v" }, "<leader>mf", "<cmd>MurenFresh<cr>", get_opts("Toggle Muren Fresh"))
@@ -175,31 +179,5 @@ map(
 -- Move to previous/next
 map("n", "<A-[>", "<cmd>bprevious<cr>", get_opts("Prev buffer"))
 map("n", "<A-]>", "<cmd>bnext<cr>", get_opts("Next buffer"))
--- Re-order to previous/next
--- Goto buffer in position...
--- map("n", "<A-1>", "<cmd>BufferGoto 1<cr>", get_opts("Go to buffer 1"))
--- map("n", "<A-2>", "<cmd>BufferGoto 2<cr>", get_opts("Go to buffer 2"))
--- map("n", "<A-3>", "<cmd>BufferGoto 3<cr>", get_opts("Go to buffer 3"))
--- map("n", "<A-4>", "<cmd>BufferGoto 4<cr>", get_opts("Go to buffer 4"))
--- map("n", "<A-5>", "<cmd>BufferGoto 5<cr>", get_opts("Go to buffer 5"))
--- map("n", "<A-6>", "<cmd>BufferGoto 6<cr>", get_opts("Go to buffer 6"))
--- map("n", "<A-7>", "<cmd>BufferGoto 7<cr>", get_opts("Go to buffer 7"))
--- map("n", "<A-8>", "<cmd>BufferGoto 8<cr>", get_opts("Go to buffer 8"))
--- map("n", "<A-9>", "<cmd>BufferGoto 9<cr>", get_opts("Go to buffer 9"))
--- map("n", "<A-0>", "<Cmd>BufferLast<CR>", get_opts("Go to last buffer"))
--- Pin/unpin buffer
--- map("n", "<A-p>", "<cmd>BufferPin<cr>", get_opts("Pin current buffer"))
 -- Close buffer
 map("n", "<A-c>", "<cmd>bp | sp | bn | bd<cr>", get_opts("Close current buffer"))
--- map("n", "<leader>bp", "<cmd>BufferPick<cr>", get_opts("Choose a buffer"))
-
--- Sort automatically by...
--- map("n", "<Space>bb", "<cmd>BufferOrderByBufferNumber<cr>", get_opts("Sort buffer by buffer number"))
--- map("n", "<Space>bd", "<cmd>BufferOrderByDirectory<cr>", get_opts("Sort buffer by directory"))
--- map("n", "<Space>bl", "<cmd>BufferOrderByLanguag<cr>", get_opts("Sort buffer by language"))
--- map("n", "<Space>bu", "<cmd>BufferOrderByWindowNumbe<cr>", get_opts("Sort buffer by window number "))
--- Sort automatically by...
--- map("n", "<Space>bb", "<cmd>BufferOrderByBufferNumber<cr>", get_opts("Sort buffer by buffer number"))
--- map("n", "<Space>bd", "<cmd>BufferOrderByDirectory<cr>", get_opts("Sort buffer by directory"))
--- map("n", "<Space>bl", "<cmd>BufferOrderByLanguag<cr>", get_opts("Sort buffer by language"))
--- map("n", "<Space>bu", "<cmd>BufferOrderByWindowNumbe<cr>", get_opts("Sort buffer by window number "))

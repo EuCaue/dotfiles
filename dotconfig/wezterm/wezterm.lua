@@ -2,25 +2,26 @@ local wezterm = require("wezterm")
 local config = {}
 
 if wezterm.config_builder then
-  config = wezterm.config_builder()
+	config = wezterm.config_builder()
 end
 
 local italic = false
 
 local fonts = {
-  { family = "iMWritingMono Nerd Font", italic = italic },
-  { family = "MesloLGL Nerd Font",      italic = italic },
-  { family = "Agave Nerd Font" },
-  { family = "JetBrainsMono Nerd Font", italic = italic },
-  { family = "SauceCodePro Nerd Font",  italic = italic },
-  { family = "Hasklug Nerd Font",       italic = italic },
-  { family = "Hack Nerd Font",          italic = italic },
-  { family = "IosevkaTerm Nerd Font",   ititac = italic }
+	{ family = "iMWritingMono Nerd Font", italic = italic },
+	{ family = "MesloLGL Nerd Font", italic = italic },
+	{ family = "Agave Nerd Font" },
+	{ family = "JetBrainsMono Nerd Font", italic = italic },
+	{ family = "SauceCodePro Nerd Font", italic = italic },
+	{ family = "Hasklug Nerd Font", italic = italic },
+	{ family = "Hack Nerd Font", italic = italic },
+	{ family = "IosevkaTerm Nerd Font", italic = italic },
+	{ family = "M+CodeLat Nerd Font", italic = italic },
 }
 
 local emoji_font = { "Apple Color Emoji" }
 
-config.font = wezterm.font_with_fallback({ fonts[8], emoji_font[1] })
+config.font = wezterm.font_with_fallback({ fonts[9], emoji_font[1] })
 config.enable_scroll_bar = false
 config.font_size = 14
 config.enable_tab_bar = true
@@ -37,10 +38,10 @@ config.default_cwd = "os.getenv('PWD')"
 config.color_scheme = "Dark Pastel"
 
 config.window_padding = {
-  left = 30,
-  right = 0,
-  top = 0,
-  bottom = 0,
+	left = 30,
+	right = 0,
+	top = 0,
+	bottom = 0,
 }
 
 return config

@@ -1,6 +1,8 @@
 lastupdatecheck: 0
 recentrepos:
 - /home/caue/dotfiles
+- /home/caue/Dev/webdev/portfolio-new
+- /home/caue/Dev/go/cron-alarm
 - /home/caue/Dev/webdev/portfolio
 - /home/caue/Dev/webdev/rating-component
 - /home/caue/Dev/webdev/yaTODO
@@ -12,8 +14,6 @@ recentrepos:
 - /home/caue/Dev/rust/wfetch
 - /home/caue/Dev/webdev/password-generator
 - /home/caue/Dev/rust
-- /home/caue/Dev/cursors
-- /home/caue/Dev/fish
 startuppopupversion: 5
 customcommandshistory:
 - ""

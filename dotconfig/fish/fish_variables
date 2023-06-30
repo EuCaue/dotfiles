@@ -1,8 +1,9 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR --export CURSOR:gbDMZ
-SETUVAR --export CURSORSIZE:24
-SETUVAR --export WALLPAPER:/home/caue/Pictures/wallpapers/wallhaven\x2ddgeqoj\x2ejpg
+SETUVAR --export CURSOR:GoogleDot\x2dBlack
+SETUVAR --export CURSORSIZE:16
+SETUVAR --export FONT_NAME:MesloLGL\x20Nerd\x20Font
+SETUVAR --export WALLPAPER:/home/caue/Pictures/wallpapers/wallhaven\x2d8xe57j_1920x1080\x2epng
 SETUVAR ZO_CMD:zo
 SETUVAR Z_CMD:z
 SETUVAR Z_DATA:/home/caue/\x2elocal/share/z/data
@@ -57,5 +58,3 @@ SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
 SETUVAR fish_user_paths:/home/caue/\x2elocal/share/Steam/steamapps/common/Counter\x2dStrike\x20Global\x20Offensive/csgo/cfg\x1e/home/caue/\x2elocal/bin\x1e/home/caue/dotfiles/scripts\x1e/home/caue/\x2espicetify
-SETUVAR nvm_data:/home/caue/\x2elocal/share/nvm
-SETUVAR nvm_mirror:https\x3a//nodejs\x2eorg/dist
