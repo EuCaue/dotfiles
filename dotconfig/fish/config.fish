@@ -1,11 +1,12 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
     starship init fish | source
+    zoxide init fish | source
     set fish_greeting "
  I use arch BTW ඞ
   "
     # if test -z "$TMUX"
-    #     tmux attach -d || tmux
+    #     tmux attach || tmux
     # end
 
     if test "$TERM" = foot
@@ -34,4 +35,3 @@ end
 bind yy fish_clipboard_copy
 bind Y fish_clipboard_copy
 bind p fish_clipboard_paste
-# bind \cf ~/.cargo/bin/tms

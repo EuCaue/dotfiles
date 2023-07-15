@@ -40,16 +40,15 @@ null_ls.setup({
 	diagnostics_format = "[#{c}] #{m} (#{s})",
 	temp_dir = "/home/caue/nothing/",
 	on_attach = function(client, bufnr)
-		if client.supports_method("textDocument/formatting") then
-			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-			vim.api.nvim_create_autocmd("BufWritePost", {
-				group = augroup,
-				buffer = bufnr,
-				callback = function()
-					async_formatting(bufnr)
-				end,
-			})
-		end
+		-- vim.notify(client)
+		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+		vim.api.nvim_create_autocmd("BufWritePost", {
+			group = augroup,
+			buffer = bufnr,
+			callback = function()
+				async_formatting(bufnr)
+			end,
+		})
 	end,
 	sources = {
 		-- NOTE: FORMATTING

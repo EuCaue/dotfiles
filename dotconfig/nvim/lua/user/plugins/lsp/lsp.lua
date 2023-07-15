@@ -17,6 +17,10 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- vim.o.updatetime = 250
 -- vim.cmd([[autocmd! CursorHold,CursorHoldI * :lua vim.lsp.buf.signature_help()]])
+local handlers = {
+  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = utils.border_status }),
+  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = utils.border_status }),
+}
 
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local function get_opts(desc)
@@ -71,6 +75,7 @@ end
 for _, lsp in ipairs(utils.servers) do
   lspconfig[lsp].setup({
     on_attach = on_attach,
+    handlers = handlers,
     capabilities = capabilities,
     completions = {
       completeFunctionCalls = true,
@@ -80,6 +85,7 @@ end
 
 lspconfig.bashls.setup({
   on_attach = on_attach,
+  handlers = handlers,
   capabilities = capabilities,
   completions = {
     completeFunctionCalls = true,
@@ -89,6 +95,7 @@ lspconfig.bashls.setup({
 
 lspconfig.tailwindcss.setup({
   on_attach = on_attach,
+  handlers = handlers,
   capabilities = capabilities,
   completions = {
     completeFunctionCalls = true,
@@ -105,6 +112,7 @@ lspconfig.tailwindcss.setup({
 
 lspconfig.rust_analyzer.setup({
   on_attach = on_attach,
+  handlers = handlers,
   capabilities = capabilities,
   completions = {
     completeFunctionCalls = true,
@@ -153,9 +161,9 @@ rt.setup({
 
 ts.setup({
   disable_commands = false, -- prevent the plugin from creating Vim commands
-  debug = false,            -- enable debug logging for commands
+  debug = false,           -- enable debug logging for commands
   go_to_source_definition = {
-    fallback = true,        -- fall back to standard LSP definition on failure
+    fallback = true,       -- fall back to standard LSP definition on failure
   },
   server = {
     on_attach = function(client, bufnr)
@@ -212,9 +220,10 @@ end
 
 vim.diagnostic.config({
   float = {
-    border = utils.border_status,
+    -- border = utils.border_status,
+    border = "rounded",
     focusable = true,
-    -- style = "minimal",
+    style = "minimal",
     source = "always",
     header = "",
     prefix = "  ",

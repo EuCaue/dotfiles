@@ -1,9 +1,11 @@
 lastupdatecheck: 0
 recentrepos:
 - /home/caue/dotfiles
+- /home/caue/gitclone/frontend
 - /home/caue/Dev/webdev/portfolio-new
-- /home/caue/Dev/go/cron-alarm
+- /home/caue/Dev/webdev/markright
 - /home/caue/Dev/webdev/portfolio
+- /home/caue/Dev/go/cron-alarm
 - /home/caue/Dev/webdev/rating-component
 - /home/caue/Dev/webdev/yaTODO
 - /home/caue/Dev/webdev/url-shortening-api

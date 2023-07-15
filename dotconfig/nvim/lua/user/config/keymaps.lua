@@ -30,13 +30,19 @@ map("n", "<C-S-t>", "<cmd>e#<cr>", get_opts("Reopen the last closed buffer"))
 map("n", "E", "$", get_opts("Go to end of the line"))
 map({ "v", "x" }, "p", '"_dP', get_opts("greatest remap ever"))
 map("n", "<Tab>", "<C-W>w", get_opts("Cycle through windows"))
--- TODO: make a functioon for toggle max-widht on buffer
-map("n", "<leader>/", "<C-w>|", get_opts("S"))
-map("n", "<CR>", "ciw", get_opts("Cut the word"))
+map("n", "<F2>", "<C-w>|", get_opts("Max the current window"))
+map("n", "<F3>", "<C-w>=", get_opts("Equal widhts between windows"))
+map("n", "<CR>", "ciw", get_opts("Cut the inner word"))
 
 -- Comment
 map({ "n", "i", "x" }, "<C-_>", "<cmd>normal gcA<cr>", get_opts("Comment"))
 map({ "n", "i", "x" }, "<C-/>", "<cmd>normal gcA<cr>", get_opts("Comment"))
+vim.api.nvim_set_keymap(
+  "n",
+  "gcmt",
+  "gcO TODO:<ESC><Right>",
+  { silent = true, noremap = false, desc = "Create a todo comment" }
+)
 
 map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'gj']], get_opts("Jump list relative line jump", true))
 map("n", "k", [[(v:count > 1 ? "m'" . v:count : '') . 'gk']], get_opts("Jump list relative line jump", true))
@@ -53,7 +59,8 @@ map("n", "<leader>n", "<cmd>Neotree toggle<cr>", get_opts("Neotree toggle"))
 map("n", "<leader>nf", "<cmd>Neotree focus<cr>", get_opts("Neotree focus"))
 map("n", "<leader>dt", "<cmd>cd ~/dotfiles/ | Neotree toggle<cr>", get_opts("Go to dotfiles"))
 map("n", "<leader><leader>o", "<cmd>edit " .. vim.fn.getcwd() .. "<cr>", get_opts("Open Lir"))
---
+map("n", "<leader>vf", "<cmd>lua MiniFiles.open()<cr>", get_opts("Open MiniFiles"))
+
 -- Muren
 map({ "n", "v" }, "<leader>mt", "<cmd>MurenToggle<cr>", get_opts("Toggle Muren"))
 map({ "n", "v" }, "<leader>mf", "<cmd>MurenFresh<cr>", get_opts("Toggle Muren Fresh"))

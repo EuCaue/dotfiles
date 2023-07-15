@@ -7,6 +7,7 @@ alias hfg='nvim ~/.config/hypr/hyprland.conf'
 alias nft='nvim ~/.config/neofetch/config.conf'
 alias nfg='cd ~/.config/nvim/ && nvim ~/.config/nvim/init.lua && cd'
 alias wfg='cd ~/.config/wezterm/ && nvim ~/.config/wezterm/wezterm.lua && cd'
+alias tfg='cd ~/.config/tmux/ && nvim ~/.config/tmux/tmux.conf'
 alias sus='paru'
 function gal --description "alias git add commit push"
     git add .
@@ -30,6 +31,7 @@ function lr --description "Show a tree file"
 end
 alias rm='rmtrash -i'
 alias rf='rmtrash -r -I'
+alias z="zoxide"
 
 alias vim='nvim'
 alias vi='nvim'

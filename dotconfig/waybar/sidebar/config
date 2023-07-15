@@ -2,13 +2,14 @@
 {
   "gtk-layer-shell": true,
   "layer": "top", // Waybar at top layer
-  "position": "top", // Waybar position (top|bottom|left|right)
+  "position": "right", // Waybar position (top|bottom|left|right)
   // "height": 23, // Waybar height (to be removed for auto height)
    // "width": 1820, // Waybar width
   "spacing": 9, // Gaps between modules 
   "start_hidden": true,
-  "margin-top": 5,
-  "margin-left": 15,
+  "margin-top": 10,
+  "margin-bottom": 10,
+  "margin-left": 0,
   "margin-right": 15,
   "modules-left": [
     "clock",

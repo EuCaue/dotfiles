@@ -5,7 +5,8 @@ if test $TERM = linux
     set -Ux FONT_NAME $(fc-list --format="%{family}\n" | cut -d , -f 1 | sort | uniq | rofi -dmenu)
 else
     if test -z $argv[1]
-        set -Ux FONT_NAME "MesloLGL Nerd Font"
+        # set -Ux FONT_NAME "MesloLGL Nerd Font"
+        set -Ux FONT_NAME "SpaceMono Nerd Font"
     else
         set -Ux FONT_NAME $argv[1]
     end

@@ -7,12 +7,12 @@ set show-recent 25
 set incremental-search "true"
 set window-title-home-tilde "true"
 set statusbar-home-tilde "true"
-set recolor  "true"
+set recolor  "false"
 set recolor-keephue "true"
 set zoom-center "true"
 set selection-clipboard clipboard
 set adjust-open "width"
-set font "MesloLGL Nerd Font 12"
+set font "Cousine Nerd Font 12"
 
 set statusbar-bg                "#000000"
 set statusbar-fg                "#f8f8f2"

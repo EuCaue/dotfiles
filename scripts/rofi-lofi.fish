@@ -24,6 +24,8 @@ function menu
     echo "11. Rain Sounds"
     echo "12. Nature Sounds"
     echo "13. Code Lofi"
+    echo "14. Aesthetic Lofi"
+    echo "15. Forest Sounds"
 end
 
 function menu_pause
@@ -42,15 +44,18 @@ function menu_running
     echo "5. Change Radio"
 end
 
-function is_running
+function is_running -a choice
     set mpv_socket /tmp/mpvsocket
     set pause_status (echo '{ "command": ["get_property", "pause"] }' | socat - $mpv_socket)
-
-
+    if string match -r '^[0-9]+\..' (cat /tmp/radio_choice_temp)
+        set actual_radio $(cat /tmp/radio_choice_temp | cut -c 4-)
+    else
+        set actual_radio "Custom Radio"
+    end
     if pgrep -f radio-mpv
         echo "is running"
         if string match -q -r true (echo $pause_status)
-            set choice_menu_pause $(menu_pause | rofi -dmenu -p "Paused, Return/Stop/Nothing?" | cut -d. -f1)
+            set choice_menu_pause $(menu_pause | rofi -dmenu -p "$actual_radio Paused, Return/Stop/Nothing?" | cut -d. -f1)
             switch $choice_menu_pause
                 case 1
                     echo '{ "command": ["cycle", "pause"] }' | socat - $mpv_socket
@@ -63,11 +68,12 @@ function is_running
                     echo ":)"
                 case 5
                     pkill -f radio-mpv &&
-                        main
+                        sleep 2
+                    main
 
             end
         else
-            set choice_menu_running $(menu_running | rofi -dmenu -p "Playing, Stop/Pause/Nothing" | cut -d. -f1)
+            set choice_menu_running $(menu_running | rofi -dmenu -p "Playing $actual_radio, Stop/Pause/Nothing" | cut -d. -f1)
             switch $choice_menu_running
                 case 1
                     echo '{ "command": ["cycle", "pause"] }' | socat - $mpv_socket
@@ -80,7 +86,8 @@ function is_running
                     echo ":)"
                 case 5
                     pkill -f radio-mpv &&
-                        main
+                        sleep 2
+                    main
             end
         end
         return 0
@@ -88,18 +95,27 @@ function is_running
     return 1
 end
 
-
 function main
     is_running
     if test $status -eq 0
         return 1
     end
 
-    set choice $(menu | rofi -dmenu -p "Station" | cut -d. -f1)
+    set choice $(menu | rofi -dmenu -p "Station" > /tmp/radio_choice_temp; cat /tmp/radio_choice_temp)
+
+    if string match -r '^[0-9]+\..' $choice
+        set choice (echo $choice | cut -d. -f1)
+    end
+
     if test -z $choice
         return 1
     end
+
     set volume $(rofi -dmenu -p "Volume")
+
+    if test -z $volume
+        return 1
+    end
 
     switch $choice
         case 1
@@ -141,6 +157,15 @@ function main
         case 13
             notification "Code Lofi ☕️🎶"
             set URL "https://www.youtube.com/watch?v=SigIbCVMTzU"
+        case 14
+            notification "Aesthetic Lofi ☕️🎶"
+            set URL "https://www.youtube.com/watch?v=cbuZfY2S2UQ"
+        case 15
+            notification "Forest Sounds ☕️🎶"
+            set URL "https://www.youtube.com/watch?v=xNN7iTA57jM"
+        case '*'
+            notification "Custom Radio ☕️🎶"
+            set URL $choice
     end
     mpv --volume=$volume --title="radio-mpv" $URL --input-ipc-server=/tmp/mpvsocket --no-video
 end

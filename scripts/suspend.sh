@@ -1,6 +1,6 @@
 #!/bin/bash 
 swayidle -w \
-      timeout 240 " fish -c 'gtklock -b $WALLPAPER ' " \
+      timeout 120 ' swaylock ' \
       timeout 400 ' hyprctl dispatch dpms off' \
               resume ' hyprctl dispatch dpms on'  \
-      # before-sleep " fish -c 'gtklock -b $WALLPAPER ' "
+      before-sleep 'swaylock'

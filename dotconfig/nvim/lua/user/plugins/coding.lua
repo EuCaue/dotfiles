@@ -13,10 +13,13 @@ return {
       require("user.plugins.settings.treesitter")
     end,
   }, -- a better highlight for everything
-
+  { "folke/neodev.nvim",                opts = {} },
   {
     "L3MON4D3/LuaSnip",
     event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      { "rafamadriz/friendly-snippets" }, -- a bunch of snippets
+    },
     opts = {
       history = true,
       region_check_events = "InsertEnter",
@@ -25,10 +28,10 @@ return {
     build = "make install_jsregexp",
     config = function()
       require("luasnip").filetype_extend("typescript", { "css" })
+      require("luasnip").filetype_extend("text", { "license" })
+      require("luasnip").filetype_extend("markdown", { "license" })
     end,
-  },                                                --  Snippet Engine
-
-  { "rafamadriz/friendly-snippets",     priority = 51 }, -- a bunch of snippets
+  }, --  Snippet Engine
 
   {
     "akinsho/toggleterm.nvim",
@@ -86,14 +89,12 @@ return {
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
-      "amarakon/nvim-cmp-buffer-lines",
       "dburian/cmp-markdown-link",
       "jcha0713/cmp-tw2css",
       { "mtoohey31/cmp-fish",   ft = "fish" },
       { "hrsh7th/cmp-nvim-lua", ft = "lua" },
       "amarakon/nvim-cmp-fonts",
       "saadparwaiz1/cmp_luasnip",
-      -- "dcampos/cmp-emmet-vim",
       "ray-x/cmp-treesitter",
     },
     config = function()
@@ -119,6 +120,11 @@ return {
       require("crates").show()
     end,
   }, -- Better rust tools
+  -- {
+  --   'laytan/tailwind-sorter.nvim',
+  --   build = 'cd formatter && npm i && npm run build',
+  --   config = {},
+  -- },
   {
     "kevinhwang91/nvim-ufo",
     event = { "BufRead", "BufNewFile" },
