@@ -32,6 +32,7 @@ window#waybar {
 #workspaces,
 #gamemode,
 #gamemode.running {
+  border: 1px solid #5e5c64;
   background-color: @theme_base_color;
   color: @theme_text_color;
   padding: 0 15px;
@@ -40,6 +41,7 @@ window#waybar {
 }
 
 #battery {
+  border: none;
   padding: 0 5px;
   background-color: transparent;
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0);

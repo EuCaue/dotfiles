@@ -6,7 +6,7 @@ if test $TERM = linux
 else
     if test -z $argv[1]
         # set -Ux FONT_NAME "MesloLGL Nerd Font"
-        set -Ux FONT_NAME "SpaceMono Nerd Font"
+        set -Ux FONT_NAME "Cousine Nerd Font"
     else
         set -Ux FONT_NAME $argv[1]
     end

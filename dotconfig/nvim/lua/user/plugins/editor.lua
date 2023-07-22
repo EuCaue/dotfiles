@@ -9,16 +9,29 @@ return {
     cmd = "Neotree",
   }, -- tree file manager
   {
+    "BoaPi/task-toggler.nvim",
+    config = true,
+    ft = "md",
+    keys = {
+      {
+        "<leader><leader>m",
+        mode = { "n" },
+        "<cmd>TaskTogglerCheck<cr>",
+        desc = "Markdown Task Toggle",
+      },
+    },
+  },
+  {
     "echasnovski/mini.files",
     config = function()
       require("mini.files").setup({
         mappings = {
-          go_in_plus  = '<CR>',
-          go_out_plus = '<BS>',
-        }
+          go_in_plus = "<CR>",
+          go_out_plus = "<BS>",
+        },
       })
     end,
-    version = false
+    version = false,
   },
 
   {
@@ -79,20 +92,20 @@ return {
     config = function()
       local Path = require("plenary.path")
       require("session_manager").setup({
-        sessions_dir = Path:new(vim.fn.stdpath("data"), "sessions"),             -- The directory where the session files will be saved.
-        path_replacer = "__",                                                    -- The character to which the path separator will be replaced for session files.
-        colon_replacer = "++",                                                   -- The character to which the colon symbol will be replaced for session files.
+        sessions_dir = Path:new(vim.fn.stdpath("data"), "sessions"),         -- The directory where the session files will be saved.
+        path_replacer = "__",                                                -- The character to which the path separator will be replaced for session files.
+        colon_replacer = "++",                                               -- The character to which the colon symbol will be replaced for session files.
         autoload_mode = require("session_manager.config").AutoloadMode.Disabled, -- Define what to do when Neovim is started without arguments. Possible values: Disabled, CurrentDir, LastSession
-        autosave_last_session = true,                                            -- Automatically save last session on exit and on session switch.
-        autosave_ignore_not_normal = true,                                       -- Plugin will not save a session when no buffers are opened, or all of them aren't writable or listed.
-        autosave_ignore_dirs = {},                                               -- A list of directories where the session will not be autosaved.
-        autosave_ignore_filetypes = {                                            -- All buffers of these file types will be closed before the session is saved.
+        autosave_last_session = true,                                        -- Automatically save last session on exit and on session switch.
+        autosave_ignore_not_normal = true,                                   -- Plugin will not save a session when no buffers are opened, or all of them aren't writable or listed.
+        autosave_ignore_dirs = {},                                           -- A list of directories where the session will not be autosaved.
+        autosave_ignore_filetypes = {                                        -- All buffers of these file types will be closed before the session is saved.
           "alpha",
           "gitcommit",
         },
-        autosave_ignore_buftypes = {},    -- All buffers of these buffer types will be closed before the session is saved.
+        autosave_ignore_buftypes = {}, -- All buffers of these buffer types will be closed before the session is saved.
         autosave_only_in_session = false, -- Always autosaves session. If true, only autosaves after a session is active.
-        max_path_length = 130,            -- Shorten the display path if length exceeds this threshold. Use 0 if don't want to shorten the path at all.
+        max_path_length = 130,        -- Shorten the display path if length exceeds this threshold. Use 0 if don't want to shorten the path at all.
       })
     end,
   }, -- Session Manager
@@ -129,8 +142,7 @@ return {
       vim.fn["mkdp#util#install"]()
     end,
     config = function()
-      vim.api.nvim_set_keymap("n", "<leader><leader>m", ":s/\\[\\zs \\ze\\]/x/g", { noremap = true })
-      vim.g.mkdp_browser = "firefox-developer-edition"
+      vim.g.mkdp_browser = "min"
     end,
     cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle" },
   }, -- preview markdown files on browser
@@ -155,7 +167,7 @@ return {
       { "nvim-telescope/telescope-fzf-native.nvim",  build = "make", lazy = false },
       { "nvim-telescope/telescope-project.nvim" }, -- find projects
     },
-  },                                               -- Telescope
+  },                                            -- Telescope
 
   {
     "AckslD/muren.nvim",
@@ -219,13 +231,13 @@ return {
     config = function()
       require("user.plugins.settings.nvim-autopairs")
     end,
-  },                                                                                     -- auto close ({[
+  },                                                                         -- auto close ({[
 
-  { "terryma/vim-multiple-cursors",       event = { "BufReadPre", "BufNewFile" } },      -- CTRL + N for multiple cursors
-  { "theRealCarneiro/hyprland-vim-syntax" },                                             -- Better syntax highlight in hyprland.conf
-  { "kdheepak/lazygit.nvim",              cmd = "LazyGit" },                             -- lazygit inside nvim
-  { "editorconfig/editorconfig-vim" },                                                   -- Editorconfig
+  { "terryma/vim-multiple-cursors",       event = { "BufReadPre", "BufNewFile" } }, -- CTRL + N for multiple cursors
+  { "theRealCarneiro/hyprland-vim-syntax" },                                 -- Better syntax highlight in hyprland.conf
+  { "kdheepak/lazygit.nvim",              cmd = "LazyGit" },                 -- lazygit inside nvim
+  { "editorconfig/editorconfig-vim" },                                       -- Editorconfig
   { "mbbill/undotree",                    cmd = { "UndotreeToggle", "UndotreeFocus" } }, -- undo tree
-  { "antoinemadec/FixCursorHold.nvim" },                                                 -- depen
-  { "ThePrimeagen/harpoon" },                                                            -- harpoon
+  { "antoinemadec/FixCursorHold.nvim" },                                     -- depen
+  { "ThePrimeagen/harpoon" },                                                -- harpoon
 }

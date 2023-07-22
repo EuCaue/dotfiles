@@ -1,2 +1,2 @@
 require("user.config") --
-require("user.lazy") -- lazy
+require("user.lazy")   -- lazy

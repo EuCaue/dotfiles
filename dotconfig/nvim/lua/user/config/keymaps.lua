@@ -24,8 +24,8 @@ vim.g.maplocalleader = " "
 -- Basic keymaps
 map({ "n", "i" }, "<C-s>", "<cmd>write!<cr>", get_opts("Write"))
 -- map("n", "<C-z>", "<cmd>wq!<cr>", get_opts("Write and Quit"))
-map("n", "<C-x>", "<cmd>q!<cr>", get_opts("Quit"))
-map("n", "<C-a>", "gg<S-v>G", get_opts("Select all"))
+map("n", "<leader>q", "<cmd>q!<cr>", get_opts("Quit"))
+map("n", "<leader>a", "gg<S-v>G", get_opts("Select all"))
 map("n", "<C-S-t>", "<cmd>e#<cr>", get_opts("Reopen the last closed buffer"))
 map("n", "E", "$", get_opts("Go to end of the line"))
 map({ "v", "x" }, "p", '"_dP', get_opts("greatest remap ever"))
@@ -52,7 +52,7 @@ map({ "n", "v" }, "<leader>m", "<cmd>Glow<cr>", get_opts("Open glow in the curre
 
 -- ToggleTerm
 map("n", "<C-t>", "<cmd>ToggleTerm<cr>", get_opts("ToggleTerm float"))
-map("n", "<leader>qq", "<cmd>ToggleTerm direction=horizontal size=5<cr>", get_opts("ToggleTerm"))
+map("n", "<leader><leader>t", "<cmd>ToggleTerm direction=horizontal size=5<cr>", get_opts("ToggleTerm"))
 
 -- Neotree
 map("n", "<leader>n", "<cmd>Neotree toggle<cr>", get_opts("Neotree toggle"))

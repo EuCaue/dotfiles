@@ -29,7 +29,6 @@ local async_formatting = function(bufnr)
 				vim.lsp.util.apply_text_edits(res, bufnr, client and client.offset_encoding or "utf-16")
 				vim.api.nvim_buf_call(bufnr, function()
 					vim.cmd("silent noautocmd update")
-					-- vim.cmd("EslintFixAll")
 				end)
 			end
 		end
