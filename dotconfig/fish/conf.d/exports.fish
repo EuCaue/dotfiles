@@ -6,7 +6,7 @@ set -x QT_QPA_PLATFORMTHEME gnome
 # Exporting the default $EDITOR
 set -x EDITOR /usr/bin/nvim
 set -x VISUAL nvim
-set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
+# set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
 # Add paths
 fish_add_path "$HOME/.local/bin:$PATH"

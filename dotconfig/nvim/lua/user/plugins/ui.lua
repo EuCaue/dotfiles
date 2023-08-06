@@ -80,61 +80,101 @@ return {
   -- 	version = "^1.0.0", -- optional: only update when a new 1.x version is released
   -- },
 
-  { "j-morano/buffer_manager.nvim",           opts = {} },
+  { "j-morano/buffer_manager.nvim", opts = {} },
+  { 'matbme/JABS.nvim',             config = true },
 
   -- {
-  --   "tiagovla/scope.nvim",
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   event = { "BufReadPost", "BufNewFile" },
   --   config = function()
-  --     require("scope").setup()
+  --     vim.opt.list = true
+  --     vim.opt.listchars:append("eol:↴")
+  --     require("indent_blankline").setup({
+  --       indentLine_enabled = 1,
+  --       filetype_exclude = {
+  --         "help",
+  --         "terminal",
+  --         "alpha",
+  --         "lazy",
+  --         "lspinfo",
+  --         "TelescopePrompt",
+  --         "TelescopeResults",
+  --         "mason",
+  --         "",
+  --       },
+  --       buftype_exclude = { "terminal" },
+  --       show_trailing_blankline_indent = false,
+  --       show_first_indent_level = true,
+  --       show_current_context = true,
+  --       show_current_context_start = true,
+  --     })
   --   end,
-  -- },
+  -- }, -- indent blankline
 
   {
-    "lukas-reineke/indent-blankline.nvim",
-    event = { "BufReadPost", "BufNewFile" },
+    "shellRaining/hlchunk.nvim",
+    event = { "UIEnter" },
     config = function()
-      vim.opt.list = true
-      vim.opt.listchars:append("eol:↴")
-      require("indent_blankline").setup({
-        indentLine_enabled = 1,
-        filetype_exclude = {
-          "help",
-          "terminal",
-          "alpha",
-          "lazy",
-          "lspinfo",
-          "TelescopePrompt",
-          "TelescopeResults",
-          "mason",
-          "",
+      require("hlchunk").setup({
+        chunk = {
+          enable = true,
+          use_treesitter = true,
+          notify = true, -- notify if some situation(like disable chunk mod double time)
+          exclude_filetypes = {
+            aerial = true,
+            dashboard = true,
+          },
+          support_filetypes = {
+            "*.*",
+          },
+          chars = {
+            horizontal_line = "─",
+            vertical_line = "│",
+            left_top = "╭",
+            left_bottom = "╰",
+            right_arrow = ">",
+          },
+          style = {
+            { fg = "#41a7fc" },
+          },
         },
-        buftype_exclude = { "terminal" },
-        show_trailing_blankline_indent = false,
-        show_first_indent_level = true,
-        show_current_context = true,
-        show_current_context_start = true,
-      })
-    end,
-  }, -- indent blankline
 
-  {
-    "SmiteshP/nvim-navic",
-    event = "LspAttach",
-    config = function()
-      return {
-        icons = icons,
-        highlight = false,
-        separator = "  ",
-        depth_limit = 0,
-        depth_limit_indicator = "..",
-        safe_output = true,
-      }
-    end,
-  }, -- better location
+        indent = {
+          enable = true,
+          use_treesitter = false,
+          chars = {
+            "│",
+          },
+          style = {
+            { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")), "fg", "gui") }
+          },
+        },
+
+        line_num = {
+          enable = true,
+          use_treesitter = false,
+          style = "#41a7fc",
+        },
+
+        blank = {
+          enable = true,
+          chars = {
+            "․",
+          },
+          style = {
+            vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")), "fg", "gui"),
+          },
+        },
+      })
+    end
+  },
 
   {
     "SmiteshP/nvim-navbuddy",
     event = "LspAttach",
+    dependencies = {
+      "SmiteshP/nvim-navic",
+    },
     config = function()
       require("nvim-navbuddy").setup({
         icons = icons,
@@ -152,39 +192,9 @@ return {
     end,
   }, -- scrollbar
 
-  -- {
-  --   "utilyre/barbecue.nvim",
-  --   event = { "BufReadPre", "BufNewFile" },
-  --   version = "*",
-  --   config = function()
-  --     -- triggers CursorHold event faster
-  --     vim.opt.updatetime = 200
-  --
-  --     require("barbecue").setup({
-  --       create_autocmd = false, -- prevent barbecue from updating itself automatically
-  --       kinds = icons,
-  --     })
-  --
-  --     vim.api.nvim_create_autocmd({
-  --       "WinScrolled", -- or WinResized on NVIM-v0.9 and higher
-  --       "BufWinEnter",
-  --       "CursorHold",
-  --       "InsertLeave",
-  --
-  --       -- include this if you have set `show_modified` to `true`
-  --       "BufModifiedSet",
-  --     }, {
-  --       group = vim.api.nvim_create_augroup("barbecue.updater", {}),
-  --       callback = function()
-  --         require("barbecue.ui").update()
-  --       end,
-  --     })
-  --   end,
-  -- }, -- winbar + navic
-
   {
     "Bekaboo/dropbar.nvim",
-    -- event = { "BufReadPre", "BufNewFile" },
+    event = { "LspAttach" },
     opts = {
       icons = {
         kinds = {
@@ -196,6 +206,15 @@ return {
           },
         },
       },
+      sources = {
+        path = {
+          relative_to = function(_)
+            local current_directory = vim.fn.expand('%:p:h')
+            local parent_directory = vim.fn.fnamemodify(current_directory, ':h')
+            return parent_directory
+          end
+        }
+      },
       menu = {
         win_confings = {
           border = utils.border_status,
@@ -204,20 +223,20 @@ return {
     },
   },
 
-  {
-    "folke/zen-mode.nvim",
-    event = { "BufReadPost", "BufNewFile" },
-    config = function()
-      require("zen-mode").setup({ window = { width = 0.85, backdrop = 0.85, height = 80 } })
-    end,
-    cmd = "ZenMode",
-  }, -- zenmode
-
-  {
-    "shortcuts/no-neck-pain.nvim",
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = "NoNeckPain",
-  }, -- center neovim
+  -- {
+  --   "folke/zen-mode.nvim",
+  --   event = { "BufReadPost", "BufNewFile" },
+  --   config = function()
+  --     require("zen-mode").setup({ window = { width = 0.85, backdrop = 0.85, height = 80 } })
+  --   end,
+  --   cmd = "ZenMode",
+  -- }, -- zenmode
+  --
+  -- {
+  --   "shortcuts/no-neck-pain.nvim",
+  --   event = { "BufReadPost", "BufNewFile" },
+  --   cmd = "NoNeckPain",
+  -- }, -- center neovim
 
   {
     "nvim-tree/nvim-web-devicons",

@@ -1,4 +1,5 @@
 return {
+  { dir = "~/Dev/lua/markvim.nvim",       config = true },
   {
     "nvim-neo-tree/neo-tree.nvim",
     version = "*",
@@ -8,10 +9,11 @@ return {
     end,
     cmd = "Neotree",
   }, -- tree file manager
+
   {
     "BoaPi/task-toggler.nvim",
     config = true,
-    ft = "md",
+    ft = "markdown",
     keys = {
       {
         "<leader><leader>m",
@@ -21,6 +23,7 @@ return {
       },
     },
   },
+
   {
     "echasnovski/mini.files",
     config = function()
@@ -92,20 +95,20 @@ return {
     config = function()
       local Path = require("plenary.path")
       require("session_manager").setup({
-        sessions_dir = Path:new(vim.fn.stdpath("data"), "sessions"),         -- The directory where the session files will be saved.
-        path_replacer = "__",                                                -- The character to which the path separator will be replaced for session files.
-        colon_replacer = "++",                                               -- The character to which the colon symbol will be replaced for session files.
+        sessions_dir = Path:new(vim.fn.stdpath("data"), "sessions"),             -- The directory where the session files will be saved.
+        path_replacer = "__",                                                    -- The character to which the path separator will be replaced for session files.
+        colon_replacer = "++",                                                   -- The character to which the colon symbol will be replaced for session files.
         autoload_mode = require("session_manager.config").AutoloadMode.Disabled, -- Define what to do when Neovim is started without arguments. Possible values: Disabled, CurrentDir, LastSession
-        autosave_last_session = true,                                        -- Automatically save last session on exit and on session switch.
-        autosave_ignore_not_normal = true,                                   -- Plugin will not save a session when no buffers are opened, or all of them aren't writable or listed.
-        autosave_ignore_dirs = {},                                           -- A list of directories where the session will not be autosaved.
-        autosave_ignore_filetypes = {                                        -- All buffers of these file types will be closed before the session is saved.
+        autosave_last_session = true,                                            -- Automatically save last session on exit and on session switch.
+        autosave_ignore_not_normal = true,                                       -- Plugin will not save a session when no buffers are opened, or all of them aren't writable or listed.
+        autosave_ignore_dirs = {},                                               -- A list of directories where the session will not be autosaved.
+        autosave_ignore_filetypes = {                                            -- All buffers of these file types will be closed before the session is saved.
           "alpha",
           "gitcommit",
         },
-        autosave_ignore_buftypes = {}, -- All buffers of these buffer types will be closed before the session is saved.
+        autosave_ignore_buftypes = {},    -- All buffers of these buffer types will be closed before the session is saved.
         autosave_only_in_session = false, -- Always autosaves session. If true, only autosaves after a session is active.
-        max_path_length = 130,        -- Shorten the display path if length exceeds this threshold. Use 0 if don't want to shorten the path at all.
+        max_path_length = 130,            -- Shorten the display path if length exceeds this threshold. Use 0 if don't want to shorten the path at all.
       })
     end,
   }, -- Session Manager
@@ -143,20 +146,85 @@ return {
     end,
     config = function()
       vim.g.mkdp_browser = "min"
+      vim.g.mkdp_open_ip = "127.0.0.1"
+      vim.g.mkdp_port = 8080
     end,
     cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle" },
   }, -- preview markdown files on browser
 
+  -- {
+  --   "folke/which-key.nvim",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require("user.plugins.settings.whichkey")
+  --   end,
+  -- }, -- which key
   {
-    "folke/which-key.nvim",
+    'echasnovski/mini.clue',
+    version = false,
     config = function()
-      require("user.plugins.settings.whichkey")
-    end,
-  }, -- which key
+      local miniclue = require('mini.clue')
+      miniclue.setup({
+        triggers = {
+          -- Leader triggers
+          { mode = 'n', keys = '<Leader>' },
+          { mode = 'x', keys = '<Leader>' },
+
+          -- Built-in completion
+          { mode = 'i', keys = '<C-x>' },
+
+          -- `g` key
+          { mode = 'n', keys = 'g' },
+          { mode = 'x', keys = 'g' },
+
+          -- Marks
+          { mode = 'n', keys = "'" },
+          { mode = 'n', keys = '`' },
+          { mode = 'x', keys = "'" },
+          { mode = 'x', keys = '`' },
+
+          -- Registers
+          { mode = 'n', keys = '"' },
+          { mode = 'x', keys = '"' },
+          { mode = 'i', keys = '<C-r>' },
+          { mode = 'c', keys = '<C-r>' },
+
+          -- Window commands
+          { mode = 'n', keys = '<C-w>' },
+
+          -- `z` key
+          { mode = 'n', keys = 'z' },
+          { mode = 'x', keys = 'z' },
+        },
+
+        clues = {
+          -- Enhance this by adding descriptions for <Leader> mapping groups
+          miniclue.gen_clues.builtin_completion(),
+          miniclue.gen_clues.g(),
+          miniclue.gen_clues.marks(),
+          miniclue.gen_clues.registers(),
+          miniclue.gen_clues.windows(),
+          miniclue.gen_clues.z(),
+        },
+
+        window = {
+
+          delay = 200,
+          config = {
+            width = 400,
+            height = 10,
+            anchor = "SW",
+            row = "auto",
+            col = "auto"
+
+          }
+        }
+      })
+    end
+  },
 
   {
     "nvim-telescope/telescope.nvim",
-    -- version = "0.1.*",
     cmd = { "Telescope" },
     config = function()
       require("user.plugins.settings.telescope")
@@ -167,7 +235,7 @@ return {
       { "nvim-telescope/telescope-fzf-native.nvim",  build = "make", lazy = false },
       { "nvim-telescope/telescope-project.nvim" }, -- find projects
     },
-  },                                            -- Telescope
+  },                                               -- Telescope
 
   {
     "AckslD/muren.nvim",
@@ -205,13 +273,6 @@ return {
     config = true,
   }, -- highlight cursor on things
 
-  -- {
-  --   "tamago324/lir.nvim",
-  --   config = function()
-  --     require("user.plugins.settings.lir")
-  --   end,
-  -- },
-
   {
     "karb94/neoscroll.nvim",
     config = function()
@@ -231,13 +292,49 @@ return {
     config = function()
       require("user.plugins.settings.nvim-autopairs")
     end,
-  },                                                                         -- auto close ({[
+  },                                         -- auto close ({[
 
-  { "terryma/vim-multiple-cursors",       event = { "BufReadPre", "BufNewFile" } }, -- CTRL + N for multiple cursors
-  { "theRealCarneiro/hyprland-vim-syntax" },                                 -- Better syntax highlight in hyprland.conf
-  { "kdheepak/lazygit.nvim",              cmd = "LazyGit" },                 -- lazygit inside nvim
-  { "editorconfig/editorconfig-vim" },                                       -- Editorconfig
-  { "mbbill/undotree",                    cmd = { "UndotreeToggle", "UndotreeFocus" } }, -- undo tree
-  { "antoinemadec/FixCursorHold.nvim" },                                     -- depen
-  { "ThePrimeagen/harpoon" },                                                -- harpoon
+  { "theRealCarneiro/hyprland-vim-syntax" }, -- Better syntax highlight in hyprland.conf
+  {
+    "smoka7/multicursors.nvim",
+    event = "VeryLazy",
+    commit = "ebf8c2ff6c27d110d3bb7e6e3b4813fb8fd5c7b2",
+    dependencies = {
+      "smoka7/hydra.nvim",
+    },
+    opts = function()
+      local N = require("multicursors.normal_mode")
+      local I = require("multicursors.insert_mode")
+      return {
+        normal_keys = {
+          -- to change default lhs of key mapping change the key
+          ["b"] = {
+            -- assigning nil to method exits from multi cursor mode
+            method = N.clear_others,
+            -- description to show in hint window
+            desc = "Clear others",
+          },
+        },
+        insert_keys = {
+          -- to change default lhs of key mapping change the key
+          ["<CR>"] = {
+            -- assigning nil to method exits from multi cursor mode
+            method = I.Cr_method,
+            -- description to show in hint window
+            desc = "new line",
+          },
+        },
+      }
+    end,
+    keys = {
+      {
+        "<Leader><leader>c",
+        "<cmd>MCstart<cr>",
+        desc = "Create a selection for word under the cursor",
+      },
+    },
+  },
+  { "editorconfig/editorconfig-vim" },                                             -- Editorconfig
+  { "mbbill/undotree",              cmd = { "UndotreeToggle", "UndotreeFocus" } }, -- undo tree
+  { "ThePrimeagen/harpoon" },                                                      -- harpoon
 }

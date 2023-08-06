@@ -1,3 +1,6 @@
+require("neodev").setup({
+  -- add any options here, or leave empty to use the default settings
+})
 local status_ok, lspconfig = pcall(require, "lspconfig")
 if not status_ok then
   vim.notify("Plugin nvim-lspconfig not found", "error")
@@ -12,7 +15,6 @@ local icons = utils.icons
 local rt = require("rust-tools")
 local cr = require("crates")
 local ts = require("typescript")
-require("user.plugins.lsp.lsp-commands")
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- vim.o.updatetime = 250
@@ -34,7 +36,6 @@ vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, get_opts("Diagnostics
 
 local on_attach = function(client, bufnr) -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  require("lsp-inlayhints").on_attach(client, bufnr)
   local function get_bufopts(desc)
     return { noremap = true, silent = true, buffer = bufnr, desc = desc }
   end
@@ -56,6 +57,7 @@ local on_attach = function(client, bufnr) -- Enable completion triggered by <c-x
   vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, get_bufopts("LSP Rename"))
   vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, get_bufopts("Code action"))
   vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", get_bufopts("References"))
+  vim.keymap.set("n", "<space>l", function() vim.lsp.inlay_hint(bufnr) end, get_bufopts("Toggle LSP Inlay Hint"))
   vim.keymap.set("n", "<space>f", function()
     vim.lsp.buf.format({ async = true })
   end, get_bufopts("LSP Format"))
@@ -65,9 +67,15 @@ local on_attach = function(client, bufnr) -- Enable completion triggered by <c-x
     navbuddy.attach(client, bufnr)
   end
 
+  if client.server_capabilities.inlayHintProvider then
+    vim.lsp.inlay_hint(bufnr, true)
+  end
+
   if client.name == "eslint" then
     client.server_capabilities.documentFormattingProvider = true
   elseif client.name == "tsserver" then
+    client.server_capabilities.documentFormattingProvider = false
+  elseif client.name == "html" then
     client.server_capabilities.documentFormattingProvider = false
   end
 end
@@ -92,13 +100,6 @@ lspconfig.bashls.setup({
   },
   filetypes = { "sh", "zsh", "fish" },
 })
-
-require 'lspconfig'.cssmodules_ls.setup {
-  on_attach = function(client, bufnr)
-    client.server_capabilities.definitionProvider = false
-    on_attach(client, bufnr)
-  end,
-}
 
 lspconfig.tailwindcss.setup({
   on_attach = on_attach,
@@ -175,7 +176,6 @@ ts.setup({
   server = {
     on_attach = function(client, bufnr)
       on_attach(client, bufnr)
-      -- require("lsp-inlayhints").on_attach(client, bufnr)
       vim.keymap.set(
         "n",
         "<leader>tmi",

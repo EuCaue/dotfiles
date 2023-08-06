@@ -1,6 +1,6 @@
 configuration {
   drun-display-format: "{icon} {name}";
-  font: "Cousine Nerd Font 13";
+  font: "CommitMono Nerd Font 13";
   modi: "window,run,drun,emoji,calc,";
   show-icons: true;
   eh: 1;

@@ -1,4 +1,5 @@
 local cmp_status_ok, cmp = pcall(require, "cmp")
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local utils = require("user.utils")
 if not cmp_status_ok then
   vim.notify("Plugin nvim-cmp not found", "error")
@@ -61,8 +62,12 @@ local function format(entry, item)
   return item
 end
 
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
 cmp.setup({
-  --
+  preselect = "item",
   -- Snippet
   snippet = {
     expand = function(args)
@@ -111,7 +116,7 @@ cmp.setup({
     }),
   },
   formatting = {
-    fields = { "abbr", "kind", "menu" },
+    fields = { "kind", "abbr", "menu" },
     format = format,
     -- 	format = function(entry, item)
     -- 		local MAX_LABEL_WIDTH = 50
@@ -155,12 +160,12 @@ cmp.setup({
   sources = {
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
+    { name = 'bootstrap' },
     { name = "path" },
     { name = "luasnip" },
-    { name = "buffer",  keyword_length = 3 },
-    -- { name = "cmp-tw2css" },
+    { name = "buffer",   keyword_length = 3 },
     { name = "fish" },
-    { name = "fonts",   option = { space_filter = "-" } },
+    { name = "fonts",    option = { space_filter = "-" } },
   },
 
   sorting = {

@@ -49,7 +49,7 @@
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "interval": 1,
     "format": "<span font='13'>󰥔</span> {:%H:%M:%S}",
-    "format-alt": "{: %e %b}"
+    "format-alt": "{:<span font='13'>󰃮</span> %e %b}"
   },
   "gamemode": {
     "format": "{glyph}",
@@ -81,12 +81,12 @@
     "escape": true
   },
   "pulseaudio": {
-    "format": "{volume}% {icon} {format_source}",
+    "format": "{volume}% {icon}{format_source}",
     "format-bluetooth": "{volume}% 󰂰 {format_source}",
     "format-bluetooth-muted": "󰆪 󰂰 {format_source}",
     "format-muted": "󰆪 {format_source}",
-    "format-source": "{volume}% <span font='14'>󰍬</span>",
-    "format-source-muted": " <span font='14'>󰍭</span>",
+    "format-source": " {volume}% <span font='14'>󰍬</span>",
+    "format-source-muted": " <span font='14'>󰍭</span>" ,
     "format-icons": {
       "headphone": "<span font='14'>󰋋</span> " ,
       "hands-free": "󰂑",

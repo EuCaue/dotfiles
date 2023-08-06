@@ -29,13 +29,18 @@ function lr --description "Show a tree file"
     end
     return 0
 end
-alias rm='rmtrash -i'
-alias rf='rmtrash -r -I'
-alias z="zoxide"
+
+alias rn="mv"
+alias rm='trash put'
+alias rl='trash list'
+alias tree="exa --tree"
+abbr -a -g please sudo # Polite way to sudo
+abbr -a -g fucking sudo
 
 alias vim='nvim'
 alias vi='nvim'
 alias v='nvim'
+alias vv="nvim ."
 alias clearpkg='sus -Qtdq | sus -Rns -'
 alias dumpkgs='sus -Qq > $HOME/dotfiles/pkgs.txt'
 function gcl --description "Clone to gitclone folder and cd"
@@ -72,7 +77,7 @@ function img --description "Display image"
     end
 
     if test "$TERM" = xterm-kitty
-        kitty +kitten icat $argv
+        kitty +kitten icat --align=left $argv
         return
     end
     echo "Terminal not supported"

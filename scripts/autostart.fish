@@ -1,19 +1,16 @@
 #!/usr/bin/env fish 
 
 ~/dotfiles/scripts/gsettings.fish &
-swaybg -i $WALLPAPER -m fill &
+hyprctl plugin load /home/caue/gitclone/hyprland-plugins/hyprbars/hyprbars.so &
+swww init &
+sleep 1 &&
+    swww img $WALLPAPER --transition-type grow --transition-pos "$(hyprctl cursorpos)" --transition-duration 1
 waybar &
-/opt/xdman/xdm-app &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 ~/dotfiles/scripts/suspend.sh &
 ~/dotfiles/scripts/rofi-clipboard.fish &
-redshift -O 5000K &
+redshift -O 3500K &
 swaync &
 ~/dotfiles/scripts/rofi-lofi.fish &
-sleep 1
-killall xdg-desktop-portal-hyprland
-killall xdg-desktop-portal-wlr
-killall xdg-desktop-portal
-/usr/lib/xdg-desktop-portal-hyprland &
-sleep 2
-/usr/lib/xdg-desktop-portal &
+/opt/xdman/xdm-app &
+syncthing -no-browser

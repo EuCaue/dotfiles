@@ -3,9 +3,9 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: "Cousine Nerd Font";
+  font-family: "CommitMono Nerd Font";
   font-size: 14px;
-  font-weight: normal;
+  font-weight: bold;
   transition-duration: 0.2s;
 }
 
@@ -17,34 +17,19 @@ window#waybar {
 #window,
 #clock,
 #battery,
-#cpu,
-#memory,
-#temperature,
-#backlight,
-#network,
 #pulseaudio,
 #tray,
-#mode,
-#idle_inhibitor,
-#language,
-#custom-notification,
-#mpd,
-#workspaces,
-#gamemode,
-#gamemode.running {
-  border: 1px solid #5e5c64;
+#workspaces {
   background-color: @theme_base_color;
   color: @theme_text_color;
   padding: 0 15px;
-  border-radius: 5px;
-  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.8);
+  border-radius: 20px;
 }
 
 #battery {
   border: none;
   padding: 0 5px;
   background-color: transparent;
-  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0);
 }
 
 #battery.critical {
@@ -53,9 +38,9 @@ window#waybar {
 
 #workspaces button {
   background: @theme_base_color;
-  font-size: 15px;
   color: @theme_text_color;
   opacity: 0.8;
+  border-radius: 20px;
 }
 
 #workspaces button:hover {

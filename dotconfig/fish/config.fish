@@ -32,6 +32,7 @@ if status is-interactive
     echo $( hyprctl splash )
 end
 
+set --global fish_color_error brred --bold
 bind yy fish_clipboard_copy
 bind Y fish_clipboard_copy
 bind p fish_clipboard_paste

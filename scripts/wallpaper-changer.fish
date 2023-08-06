@@ -10,7 +10,7 @@ end
 if test -z "$WALLPAPER"
     set -Ux WALLPAPER $(list_wps | shuf | rofi -i -dmenu -p "Wallpaper" -theme-str '#entry { placeholder: "Wallpaper to apply.."; }') &
     swaybg -i $WALLPAPER -m fill
-    echo $WALLPAPER > ~/.config/wallpaper.txt
+    echo $WALLPAPER >~/.config/wallpaper.txt
     return 0
 end
 
@@ -20,11 +20,10 @@ set -Ux WALLPAPER $(list_wps | shuf | rofi -i -dmenu -p "Wallpaper" -theme-str '
 
 if test -z "$WALLPAPER"
     set -Ux WALLPAPER $WALLPAPERBAK
-    echo $WALLPAPER > ~/.config/wallpaper.txt
+    echo $WALLPAPER >~/.config/wallpaper.txt
     return 0
 end
 
-killall swaybg
-swaybg -i $WALLPAPER -m fill
-echo $WALLPAPER > ~/.config/wallpaper.txt
+swww img $WALLPAPER --transition-type grow --transition-pos "$(hyprctl cursorpos)" --transition-duration 3
+echo $WALLPAPER >~/.config/wallpaper.txt
 return 1

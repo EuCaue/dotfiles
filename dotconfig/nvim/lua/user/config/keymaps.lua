@@ -24,8 +24,8 @@ vim.g.maplocalleader = " "
 -- Basic keymaps
 map({ "n", "i" }, "<C-s>", "<cmd>write!<cr>", get_opts("Write"))
 -- map("n", "<C-z>", "<cmd>wq!<cr>", get_opts("Write and Quit"))
-map("n", "<leader>q", "<cmd>q!<cr>", get_opts("Quit"))
-map("n", "<leader>a", "gg<S-v>G", get_opts("Select all"))
+map("n", "<leader>qq", "<cmd>qa!<cr>", get_opts("Quit"))
+map("n", "<leader>aa", "gg<S-v>G", get_opts("Select all"))
 map("n", "<C-S-t>", "<cmd>e#<cr>", get_opts("Reopen the last closed buffer"))
 map("n", "E", "$", get_opts("Go to end of the line"))
 map({ "v", "x" }, "p", '"_dP', get_opts("greatest remap ever"))
@@ -33,6 +33,8 @@ map("n", "<Tab>", "<C-W>w", get_opts("Cycle through windows"))
 map("n", "<F2>", "<C-w>|", get_opts("Max the current window"))
 map("n", "<F3>", "<C-w>=", get_opts("Equal widhts between windows"))
 map("n", "<CR>", "ciw", get_opts("Cut the inner word"))
+map("n", "<leader>u", "gu", get_opts("t"))
+map("n", "<leader>U", "gU", get_opts("t"))
 
 -- Comment
 map({ "n", "i", "x" }, "<C-_>", "<cmd>normal gcA<cr>", get_opts("Comment"))
@@ -52,7 +54,7 @@ map({ "n", "v" }, "<leader>m", "<cmd>Glow<cr>", get_opts("Open glow in the curre
 
 -- ToggleTerm
 map("n", "<C-t>", "<cmd>ToggleTerm<cr>", get_opts("ToggleTerm float"))
-map("n", "<leader><leader>t", "<cmd>ToggleTerm direction=horizontal size=5<cr>", get_opts("ToggleTerm"))
+map("n", "<leader><leader><leader>t", "<cmd>ToggleTerm direction=horizontal size=5<cr>", get_opts("ToggleTerm"))
 
 -- Neotree
 map("n", "<leader>n", "<cmd>Neotree toggle<cr>", get_opts("Neotree toggle"))
@@ -116,6 +118,7 @@ map("n", "<leader>fv", "<cmd>cd ~/Documents/my vault/Personal/ | Telescope file_
 map("n", "<leader>ft", "<cmd>TodoTelescope<cr>", get_opts("Todos"))
 map("n", "<leader>fh", "<cmd>Telescope harpoon marks<cr>", get_opts("See harpoon marks"))
 map("n", "<leader>fj", "<cmd>Telescope jumplist<cr>", get_opts("Telescope Jumplist"))
+map("n", "<leader><leader>t", "<cmd>Telescope<cr>", get_opts("Open Telescope Builtins Options"))
 
 -- Session Manager
 map("n", "<leader>sl", "<cmd>SessionManager load_session<cr>", get_opts("Sessions "))

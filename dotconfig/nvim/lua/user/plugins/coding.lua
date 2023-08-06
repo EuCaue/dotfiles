@@ -1,5 +1,11 @@
 return {
   {
+    "folke/neodev.nvim",
+    ft = "lua",
+    opts = {},
+  },
+  { 'rafcamlet/nvim-luapad' },
+  {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     lazy = false,
@@ -7,13 +13,12 @@ return {
     dependencies = {
       { "nvim-treesitter/nvim-treesitter-textobjects" },
       { "windwp/nvim-ts-autotag",                      event = "BufReadPre", opts = {} }, -- <> autoclose tag
-      { "JoosepAlviste/nvim-ts-context-commentstring", event = "BufRead" }, -- Better JSX + TSX comment
+      { "JoosepAlviste/nvim-ts-context-commentstring", event = "BufRead" },               -- Better JSX + TSX comment
     },
     config = function()
       require("user.plugins.settings.treesitter")
     end,
   }, -- a better highlight for everything
-  { "folke/neodev.nvim",                opts = {} },
   {
     "L3MON4D3/LuaSnip",
     event = { "BufReadPre", "BufNewFile" },
@@ -50,11 +55,11 @@ return {
 
   {
     "barrett-ruth/live-server.nvim",
-    event = { "BufReadPost", "BufNewFile" },
+    ft = "html",
     build = "yarn global add live-server",
     config = function()
       require("live-server").setup({
-        args = { "--port=3000", "--browser=firefox-developer-edition" },
+        args = { "--port=3000", "--browser=min" },
       })
     end,
     cmd = { "LiveServerStart", "LiveServerStop" },
@@ -85,14 +90,15 @@ return {
     "hrsh7th/nvim-cmp",
     event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
+      { "Jezda1337/cmp_bootstrap", ft = "html" },
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "dburian/cmp-markdown-link",
       "jcha0713/cmp-tw2css",
-      { "mtoohey31/cmp-fish",   ft = "fish" },
-      { "hrsh7th/cmp-nvim-lua", ft = "lua" },
+      { "mtoohey31/cmp-fish",      ft = "fish" },
+      { "hrsh7th/cmp-nvim-lua",    ft = "lua" },
       "amarakon/nvim-cmp-fonts",
       "saadparwaiz1/cmp_luasnip",
       "ray-x/cmp-treesitter",
@@ -106,9 +112,9 @@ return {
     "williamboman/mason.nvim",
     -- build = ":MasonUpdate",
     cmd = "Mason",
-  },                                          -- LSP Package Manager
+  },                                                   -- LSP Package Manager
   { "williamboman/mason-lspconfig.nvim" },
-  { "jose-elias-alvarez/null-ls.nvim" },      -- Global Formatter
+  { "jose-elias-alvarez/null-ls.nvim" },               -- Global Formatter
   { "simrat39/rust-tools.nvim",         ft = "rust" }, -- Better rust tools
 
   {
@@ -154,16 +160,8 @@ return {
         },
       })
     end,
-  }, --  show code actions
+  },                                             --  show code actions
 
-  {
-    "lvimuser/lsp-inlayhints.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      require("lsp-inlayhints").setup({})
-      vim.cmd([[highlight LspInlayHint ctermbg=none guibg=none]])
-    end,
-  },
-  { "jose-elias-alvarez/typescript.nvim" },     -- typescript lsp plugin
+  { "jose-elias-alvarez/typescript.nvim" },      -- typescript lsp plugin
   { "styled-components/vim-styled-components" }, -- highlight for styled-components
 }
