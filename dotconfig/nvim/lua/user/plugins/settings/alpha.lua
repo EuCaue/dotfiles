@@ -21,7 +21,7 @@ dashboard.section.buttons.val = {
   dashboard.button("q", icons.ui.close .. "  Quit NVIM", ":qa<CR>"),
 }
 
-local datetime = os.date(" %H:%M. ")
+  local datetime = os.date(" %H:%M. ")
 local num_plugins_loaded = #vim.fn.globpath(vim.fn.stdpath("data") .. "/lazy", "*", 0, 1)
 
 local footer = {

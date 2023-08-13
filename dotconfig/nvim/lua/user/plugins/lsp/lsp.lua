@@ -14,7 +14,7 @@ local utils = require("user.utils")
 local icons = utils.icons
 local rt = require("rust-tools")
 local cr = require("crates")
-local ts = require("typescript")
+local ts = require("typescript-tools")
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- vim.o.updatetime = 250
@@ -32,7 +32,7 @@ end
 vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, get_opts("Line diagnostic"))
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, get_opts("Jump to prev diagnostic"))
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, get_opts("Jump to next diagnostic"))
-vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, get_opts("Diagnostics loclist"))
+vim.keymap.set("n", "<space>lc", vim.diagnostic.setloclist, get_opts("Set Diagnostics to loclist"))
 
 local on_attach = function(client, bufnr) -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -41,7 +41,6 @@ local on_attach = function(client, bufnr) -- Enable completion triggered by <c-x
   end
 
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, get_bufopts("Go to declaration"))
-  vim.keymap.set("n", "<leader><leader><leader>l", "<cmd>LspCommands<cr>", get_opts("Open Lsp Commands"))
   vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", get_bufopts("Go to definitions"))
   vim.keymap.set("n", "K", vim.lsp.buf.hover, get_bufopts("Hover documentation"))
   vim.keymap.set("n", "<leader><leader>r", "<cmd>LspRestart<cr>", get_bufopts("Restart LSP"))
@@ -57,8 +56,11 @@ local on_attach = function(client, bufnr) -- Enable completion triggered by <c-x
   vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, get_bufopts("LSP Rename"))
   vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, get_bufopts("Code action"))
   vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", get_bufopts("References"))
-  vim.keymap.set("n", "<space>l", function() vim.lsp.inlay_hint(bufnr) end, get_bufopts("Toggle LSP Inlay Hint"))
-  vim.keymap.set("n", "<space>f", function()
+  vim.keymap.set("n", "<space>L", function()
+    vim.lsp.inlay_hint(bufnr)
+  end, get_bufopts("Toggle LSP Inlay Hint"))
+  vim.keymap.set("n", "<space>ls", vim.lsp.buf.signature_help, get_bufopts("LSP Signature"))
+  vim.keymap.set("n", "<space>lf", function()
     vim.lsp.buf.format({ async = true })
   end, get_bufopts("LSP Format"))
 
@@ -168,53 +170,47 @@ rt.setup({
 })
 
 ts.setup({
-  disable_commands = false, -- prevent the plugin from creating Vim commands
-  debug = false,            -- enable debug logging for commands
-  go_to_source_definition = {
-    fallback = true,        -- fall back to standard LSP definition on failure
-  },
-  server = {
-    on_attach = function(client, bufnr)
-      on_attach(client, bufnr)
-      vim.keymap.set(
-        "n",
-        "<leader>tmi",
-        ts.actions.addMissingImports,
-        get_opts("Typescript Add Missing Imports ")
-      )
-      vim.keymap.set("n", "K", vim.lsp.buf.hover, get_opts("LSP HOVER"))
-      vim.keymap.set("n", "<leader>toi", ts.actions.organizeImports, get_opts("Typescript Organize Imports"))
-      vim.keymap.set("n", "<leader>tru", ts.actions.removeUnused, get_opts("Typescript Remove Unused"))
-      vim.keymap.set("n", "<leader>tfa", ts.actions.fixAll, get_opts("Typescript Fix All"))
-      vim.keymap.set("n", "<leader>trf", "<cmd>TypescriptRenameFile<cr>", get_opts("Typescript Rename File"))
-      vim.keymap.set("n", "gd", ts.goToSourceDefinition, get_opts("Typescript Go To Source definition"))
-    end,
-    capabilities = capabilities,
-    settings = {
-      typescript = {
-        inlayHints = {
-          includeInlayEnumMemberValueHints = true,
-          includeInlayFunctionLikeReturnTypeHints = true,
-          includeInlayFunctionParameterTypeHints = true,
-          includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-          includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayVariableTypeHints = false,
-        },
-      },
-
-      javascript = {
-        inlayHints = {
-          includeInlayEnumMemberValueHints = true,
-          includeInlayFunctionLikeReturnTypeHints = true,
-          includeInlayFunctionParameterTypeHints = false,
-          includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-          includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayVariableTypeHints = false,
-        },
-      },
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    vim.keymap.set(
+      "n",
+      "<leader>tmi",
+      "<cmd>TSToolsAddMissingImports<cr>",
+      get_opts("Typescript Add Missing Imports ")
+    )
+    vim.keymap.set("n", "<leader>toi", "<cmd>TSToolsOrganizeImports<cr>", get_opts("Typescript Organize Imports"))
+    vim.keymap.set("n", "<leader>tru", "<cmd>TSToolsRemoveUnused<cr>", get_opts("Typescript Remove Unused"))
+    vim.keymap.set("n", "<leader>tfa", "<cmd>TSToolsFixAll<cr>", get_opts("Typescript Fix All"))
+    vim.keymap.set(
+      "n",
+      "gd",
+      "<cmd>TSToolsGoToSourceDefinition<cr>",
+      get_opts("Typescript Go To Source definition")
+    )
+  end,
+  capabilities = capabilities,
+  settings = {
+    tsserver_plugins = {
+      -- for TypeScript v4.9+
+      "@styled/typescript-styled-plugin",
+      -- or for older TypeScript versions
+      -- "typescript-styled-plugin",
     },
+    -- spawn additional tsserver instance to calculate diagnostics on it
+    separate_diagnostic_server = true,
+    publish_diagnostic_on = "insert_leave",
+    expose_as_code_action = { "fix_all", "add_missing_imports", "remove_unused" },
+    tsserver_format_options = {},
+    tsserver_file_preferences = {
+      includeInlayEnumMemberValueHints = true,
+      includeInlayFunctionLikeReturnTypeHints = true,
+      includeInlayFunctionParameterTypeHints = true,
+      includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+      includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+      includeInlayPropertyDeclarationTypeHints = true,
+      includeInlayVariableTypeHints = false,
+    },
+    complete_function_calls = true,
   },
 })
 

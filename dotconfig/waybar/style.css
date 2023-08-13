@@ -3,7 +3,7 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: "CommitMono Nerd Font";
+  font-family: "Hack Nerd Font";
   font-size: 14px;
   font-weight: bold;
   transition-duration: 0.2s;
@@ -24,6 +24,7 @@ window#waybar {
   color: @theme_text_color;
   padding: 0 15px;
   border-radius: 20px;
+  border-bottom: 5px solid #1161cb;
 }
 
 #battery {
@@ -49,5 +50,7 @@ window#waybar {
 
 #workspaces button.active {
   color: @accent_color;
+  border-radius: 20px;
+  border-top: 5px solid @accent_color;
   opacity: 1;
 }

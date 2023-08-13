@@ -4,7 +4,7 @@ return {
     ft = "lua",
     opts = {},
   },
-  { 'rafcamlet/nvim-luapad' },
+  { "rafcamlet/nvim-luapad" },
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
@@ -82,7 +82,8 @@ return {
     config = function()
       require("user.plugins.lsp.lsp")
       require("user.plugins.lsp.mason")
-      require("user.plugins.lsp.null-ls")
+      require("user.plugins.lsp.efm-ls")
+      -- require("user.plugins.lsp.null-ls")
     end,
   }, -- LSP
 
@@ -112,9 +113,9 @@ return {
     "williamboman/mason.nvim",
     -- build = ":MasonUpdate",
     cmd = "Mason",
-  },                                                   -- LSP Package Manager
+  }, -- LSP Package Manager
   { "williamboman/mason-lspconfig.nvim" },
-  { "jose-elias-alvarez/null-ls.nvim" },               -- Global Formatter
+  -- { "jose-elias-alvarez/null-ls.nvim" },               -- Global Formatter
   { "simrat39/rust-tools.nvim",         ft = "rust" }, -- Better rust tools
 
   {
@@ -160,8 +161,9 @@ return {
         },
       })
     end,
-  },                                             --  show code actions
+  }, --  show code actions
 
-  { "jose-elias-alvarez/typescript.nvim" },      -- typescript lsp plugin
+  { "pmizio/typescript-tools.nvim" },
+  -- { "jose-elias-alvarez/typescript.nvim" },      -- typescript lsp plugin
   { "styled-components/vim-styled-components" }, -- highlight for styled-components
 }

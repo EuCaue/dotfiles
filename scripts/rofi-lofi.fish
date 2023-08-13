@@ -138,7 +138,7 @@ function main
             set URL "https://www.youtube.com/watch?v=lP26UCnoH9s"
         case 7
             notification "Rainy Nights ☕️🎶"
-            set URL "https://www.youtube.com/watch?v=DGTZbDBRfNg"
+            set URL "https://www.youtube.com/watch?v=techmgGVOhk"
         case 8
             notification "SmoothChill ☕️🎶"
             set URL "https://media-ssl.musicradio.com/SmoothChill"

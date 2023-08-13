@@ -31,7 +31,9 @@ M.create_select_menu = function(prompt, options_table) -- Or M.create_select_men
       {
         prompt = prompt, --> Prompt passed as the argument
         -- Remove this variable if you want to keep the numbering in front of option names
-        format_item = function(item) return item:gsub("%d. ", "") end
+        format_item = function(item)
+          return item:gsub("%d. ", "")
+        end,
       },
 
       function(choice)
@@ -44,7 +46,8 @@ M.create_select_menu = function(prompt, options_table) -- Or M.create_select_men
             action()
           end
         end
-      end)
+      end
+    )
   end
 
   return menu

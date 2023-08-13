@@ -11,19 +11,19 @@ if status is-interactive
 
     if test "$TERM" = foot
         sleep 0.1
-        neofetch --sixel --source $WALLPAPER
+        # neofetch --sixel --source $WALLPAPER
         hyprctl splash
         return 0
     end
 
     if test "$TERM" = wezterm
-        neofetch --sixel --source $WALLPAPER
+        # neofetch --sixel --source $WALLPAPER
         echo $(hyprctl splash)
         return 0
     end
 
     if test "$TERM" = xterm-kitty
-        neofetch --kitty --source $WALLPAPER
+        # neofetch --kitty --source $WALLPAPER
         echo $( hyprctl splash )
         return 0
     end

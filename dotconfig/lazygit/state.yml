@@ -1,24 +1,25 @@
 lastupdatecheck: 0
 recentrepos:
-    - /home/caue/dotfiles
-    - /home/caue/Dev/pkgbuild/CommitMono-Nerd-Font
-    - /home/caue/Dev/webdev/country-search
-    - /home/caue/gitclone/EuCaue
-    - /home/caue/gitclone/frontend
-    - /home/caue/Dev/webdev/portfolio-new
-    - /home/caue/Dev/webdev/markright
-    - /home/caue/Dev/webdev/portfolio
-    - /home/caue/Dev/go/cron-alarm
-    - /home/caue/Dev/webdev/rating-component
-    - /home/caue/Dev/webdev/yaTODO
-    - /home/caue/Dev/webdev/url-shortening-api
-    - /home/caue/Dev/webdev/tip-calculator
-    - /home/caue/Dev/webdev/pricing-component
-    - /home/caue/gitclone/Divino-Sabor
-    - /home/caue/Dev/rust/wfetch
-    - /home/caue/Dev/webdev/password-generator
-    - /home/caue/Dev/rust
+- /home/caue/dotfiles
+- /home/caue/Dev/webdev/portfolio-new
+- /home/caue/Dev/pkgbuild/CommitMono-Nerd-Font
+- /home/caue/Dev/webdev/country-search
+- /home/caue/gitclone/EuCaue
+- /home/caue/gitclone/frontend
+- /home/caue/Dev/webdev/markright
+- /home/caue/Dev/webdev/portfolio
+- /home/caue/Dev/go/cron-alarm
+- /home/caue/Dev/webdev/rating-component
+- /home/caue/Dev/webdev/yaTODO
+- /home/caue/Dev/webdev/url-shortening-api
+- /home/caue/Dev/webdev/tip-calculator
+- /home/caue/Dev/webdev/pricing-component
+- /home/caue/gitclone/Divino-Sabor
+- /home/caue/Dev/rust/wfetch
+- /home/caue/Dev/webdev/password-generator
+- /home/caue/Dev/rust
 startuppopupversion: 5
 customcommandshistory:
-    - ""
+- ""
 hidecommandlog: false
+ignorewhitespaceindiffview: false

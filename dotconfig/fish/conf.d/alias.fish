@@ -33,7 +33,7 @@ end
 alias rn="mv"
 alias rm='trash put'
 alias rl='trash list'
-alias tree="exa --tree"
+alias tree="exa -l -a -g --icons --tree"
 abbr -a -g please sudo # Polite way to sudo
 abbr -a -g fucking sudo
 
@@ -43,6 +43,13 @@ alias v='nvim'
 alias vv="nvim ."
 alias clearpkg='sus -Qtdq | sus -Rns -'
 alias dumpkgs='sus -Qq > $HOME/dotfiles/pkgs.txt'
+
+function stats --description "Show custom variables"
+    echo $CURSOR
+    echo $CURSORSIZE
+    echo $FONT_NAME
+end
+
 function gcl --description "Clone to gitclone folder and cd"
     cd ~/gitclone; and git clone $argv[1] && cd (basename $argv[1] .git)
     return 0

@@ -1,7 +1,7 @@
 #!/usr/bin/env fish
 
 set device_mac "6D:01:01:1A:AB:44"
-set -l volume 45
+set -l volume 40
 set command_to_run_bluetooth pactl set-sink-volume @DEFAULT_SINK@ 50%
 set command_to_run pactl set-sink-volume @DEFAULT_SINK@ $volume%
 # set device_info (bluetoothctl info $device_mac)

@@ -5,9 +5,9 @@
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-font_family          Lilex Nerd Font 
+font_family Hack Nerd Font
 bold_font auto
-italic_auto
+italic auto
 bold_italic_font auto
 # symbol_map U+f101-U+f25c nonicons
 # bold_font          JetBrains Mono Bold Nerd Font Complete 
@@ -27,7 +27,7 @@ bold_italic_font auto
 #:     italic_font      Operator Mono Book Italic
 #:     bold_italic_font Operator Mono Medium Italic
 
-font_size 13 
+font_size 14 
 
 #: Font size (in pts)
 
@@ -205,7 +205,7 @@ box_drawing_scale 0.001, 1, 1.5, 2
 #: special keyword: background. Note that if cursor is set to none
 #: then this option is ignored.
 
-cursor_shape beam
+cursor_shape block
 
 #: The cursor shape can be one of block, beam, underline. Note that
 #: when reloading the config this will be changed only if the cursor
@@ -988,7 +988,7 @@ tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title
 
 #: The foreground and background colors.
 
-# background_opacity 0.9
+background_opacity 0.90
 
 #: The opacity of the background. A number between zero and one, where
 #: one is opaque and zero is fully transparent. This will only work if
@@ -2239,6 +2239,6 @@ map kitty_mod+f5 load_config_file
 
 
 # BEGIN_KITTY_THEME
-# Harper
+# Dark Pastel
 include current-theme.conf
 # END_KITTY_THEME

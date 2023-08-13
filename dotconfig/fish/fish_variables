@@ -1,8 +1,8 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR --export CURSOR:macOS\x2dDarker
+SETUVAR --export CURSOR:Windows10Light
 SETUVAR --export CURSORSIZE:32
-SETUVAR --export FONT_NAME:CommitMono\x20Nerd\x20Font
+SETUVAR --export FONT_NAME:Hack\x20Nerd\x20Font
 SETUVAR --export WALLPAPER:/home/caue/Pictures/wallpapers/wallhaven\x2dg7vwve\x2ejpg
 SETUVAR Z_DATA_DIR:/home/caue/\x2elocal/share/z
 SETUVAR __fish_initialized:3400

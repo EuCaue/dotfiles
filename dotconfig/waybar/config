@@ -26,11 +26,11 @@
     "format-icons": {
       "1": "1 <span font='14'>󰈹</span> ",
       "2": "2 <span font='14'></span> ",
-      "3": "3 <span font='14'>󰅴</span>" ,
+      "3": "3 <span font='14'>󰅴</span>",
       "4": "4 <span font='14'>󰖟</span> ",
       "5": "5 <span font='14'>󰝚</span>",
       "6": "6 <span font='14'>󰊗</span>",
-      "7": "7 <span font='14'>󰗠</span>"
+      "7": "7 <span font='14'>󱞁</span>"
     }
   },
   "hyprland/submap": {
@@ -86,9 +86,9 @@
     "format-bluetooth-muted": "󰆪 󰂰 {format_source}",
     "format-muted": "󰆪 {format_source}",
     "format-source": " {volume}% <span font='14'>󰍬</span>",
-    "format-source-muted": " <span font='14'>󰍭</span>" ,
+    "format-source-muted": " <span font='14'>󰍭</span>",
     "format-icons": {
-      "headphone": "<span font='14'>󰋋</span> " ,
+      "headphone": "<span font='14'>󰋋</span> ",
       "hands-free": "󰂑",
       "headset": "󰂑",
       "phone": "",
@@ -101,8 +101,8 @@
       ]
     },
     "on-click": "pavucontrol",
-    "on-click-middle": "pactl set-sink-volume @DEFAULT_SINK@ 60%",
-    "on-click-right": "pactl set-sink-volume @DEFAULT_SINK@ 60%",
+    "on-click-middle": "pactl set-sink-volume @DEFAULT_SINK@ 40%",
+    "on-click-right": "pactl set-sink-volume @DEFAULT_SINK@ 40%",
     "scroll-step": 5,
     "max-volume": 60
   },

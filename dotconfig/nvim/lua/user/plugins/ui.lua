@@ -69,47 +69,6 @@ return {
   --     })
   --   end,
   -- }, -- better ui's
-  --
-  -- {
-  -- 	"romgrk/barbar.nvim",
-  -- 	event = "BufRead",
-  -- 	init = function()
-  -- 		require("user.plugins.settings.barbar")
-  -- 	end,
-  --
-  -- 	version = "^1.0.0", -- optional: only update when a new 1.x version is released
-  -- },
-
-  { "j-morano/buffer_manager.nvim", opts = {} },
-  { 'matbme/JABS.nvim',             config = true },
-
-  -- {
-  --   "lukas-reineke/indent-blankline.nvim",
-  --   event = { "BufReadPost", "BufNewFile" },
-  --   config = function()
-  --     vim.opt.list = true
-  --     vim.opt.listchars:append("eol:↴")
-  --     require("indent_blankline").setup({
-  --       indentLine_enabled = 1,
-  --       filetype_exclude = {
-  --         "help",
-  --         "terminal",
-  --         "alpha",
-  --         "lazy",
-  --         "lspinfo",
-  --         "TelescopePrompt",
-  --         "TelescopeResults",
-  --         "mason",
-  --         "",
-  --       },
-  --       buftype_exclude = { "terminal" },
-  --       show_trailing_blankline_indent = false,
-  --       show_first_indent_level = true,
-  --       show_current_context = true,
-  --       show_current_context_start = true,
-  --     })
-  --   end,
-  -- }, -- indent blankline
 
   {
     "shellRaining/hlchunk.nvim",
@@ -222,21 +181,6 @@ return {
       },
     },
   },
-
-  -- {
-  --   "folke/zen-mode.nvim",
-  --   event = { "BufReadPost", "BufNewFile" },
-  --   config = function()
-  --     require("zen-mode").setup({ window = { width = 0.85, backdrop = 0.85, height = 80 } })
-  --   end,
-  --   cmd = "ZenMode",
-  -- }, -- zenmode
-  --
-  -- {
-  --   "shortcuts/no-neck-pain.nvim",
-  --   event = { "BufReadPost", "BufNewFile" },
-  --   cmd = "NoNeckPain",
-  -- }, -- center neovim
 
   {
     "nvim-tree/nvim-web-devicons",

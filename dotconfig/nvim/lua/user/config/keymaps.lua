@@ -23,7 +23,6 @@ vim.g.maplocalleader = " "
 
 -- Basic keymaps
 map({ "n", "i" }, "<C-s>", "<cmd>write!<cr>", get_opts("Write"))
--- map("n", "<C-z>", "<cmd>wq!<cr>", get_opts("Write and Quit"))
 map("n", "<leader>qq", "<cmd>qa!<cr>", get_opts("Quit"))
 map("n", "<leader>aa", "gg<S-v>G", get_opts("Select all"))
 map("n", "<C-S-t>", "<cmd>e#<cr>", get_opts("Reopen the last closed buffer"))
@@ -34,6 +33,7 @@ map("n", "<F2>", "<C-w>|", get_opts("Max the current window"))
 map("n", "<F3>", "<C-w>=", get_opts("Equal widhts between windows"))
 map("n", "<CR>", "ciw", get_opts("Cut the inner word"))
 map("n", "<leader>u", "gu", get_opts("t"))
+map("n", "<leader><leader>s", "<cmd>spellrepall<cr>", get_opts("Fix all spell problem"))
 map("n", "<leader>U", "gU", get_opts("t"))
 
 -- Comment
@@ -104,7 +104,7 @@ map("n", "<leader>nz", "<cmd>ZenMode<cr>", get_opts("ZenMode"))
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", get_opts("Recent Files"))
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", get_opts("Find Files"))
 map("n", "<leader>fb", "<cmd>Telescope file_browser<cr>", get_opts("File Browser"))
-map("n", "<leader><leader>", "<cmd>Telescope buffers<cr>", get_opts("Find Buffers"))
+map("n", "<leader>b", "<cmd>Telescope buffers<cr>", get_opts("Find Buffers"))
 map("n", "<leader>fr", "<cmd>Telescope current_buffer_fuzzy_find<cr>", get_opts("Fuzzy Find in Buffer"))
 map("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", get_opts("See diagnostics"))
 map("n", "<leader>fl", "<cmd>Telescope live_grep<cr>", get_opts("Find Words"))
@@ -179,12 +179,12 @@ map("n", "<leader>tc", "<cmd>tabclose<cr>", get_opts("Close Tab"))
 
 -- buffer
 
-map(
-  { "v", "n" },
-  "<leader>b",
-  "<cmd>lua require('buffer_manager.ui').toggle_quick_menu()<cr>",
-  get_opts("List Buffers")
-)
+-- map(
+--   { "v", "n" },
+--   "<leader>b",
+--   "<cmd>lua require('buffer_manager.ui').toggle_quick_menu()<cr>",
+--   get_opts("List Buffers")
+-- )
 
 -- Move to previous/next
 map("n", "<A-[>", "<cmd>bprevious<cr>", get_opts("Prev buffer"))

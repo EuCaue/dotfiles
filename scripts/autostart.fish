@@ -1,7 +1,7 @@
 #!/usr/bin/env fish 
 
 ~/dotfiles/scripts/gsettings.fish &
-hyprctl plugin load /home/caue/gitclone/hyprland-plugins/hyprbars/hyprbars.so &
+# hyprctl plugin load /home/caue/gitclone/hyprland-plugins/hyprbars/hyprbars.so &
 swww init &
 sleep 1 &&
     swww img $WALLPAPER --transition-type grow --transition-pos "$(hyprctl cursorpos)" --transition-duration 1

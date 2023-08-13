@@ -1,6 +1,6 @@
 local utils = require("user.utils")
 local function augroup(name)
-  return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
+  return vim.api.nvim_create_augroup("augroup" .. name, { clear = true })
 end
 -- close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
@@ -26,6 +26,34 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("quickfix"),
+  pattern = {
+    "qf",
+  },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.keymap.set("n", "<CR>", "<CR>", { buffer = event.buf, silent = true })
+  end
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("markdown_spell"),
+  pattern = {
+    "markdown",
+    "text",
+  },
+  callback = function()
+    local root_dir = vim.fn.getcwd()
+    if root_dir == "/home/caue/Documents/my vault" then
+      --  TODO: make this use nvim_option
+      vim.cmd("set spell")
+      vim.cmd("set spelllang=en_us,pt_br")
+      vim.cmd("hi SpellBad  guifg=Red")
+    end
+  end
+})
+
 -- highlight yank
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   group = augroup("yank_highlight"),
@@ -35,12 +63,12 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 })
 
 -- Autoformat
--- vim.api.nvim_create_autocmd("BufWritePre", {
--- 	group = augroup("format_on_save"),
--- 	callback = function()
--- 		vim.lsp.buf.format({ async = true })
--- 	end,
--- })
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = augroup("format_on_save"),
+  callback = function()
+    vim.lsp.buf.format({ async = true })
+  end,
+})
 
 -- check with eslint exist
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -72,30 +100,31 @@ vim.api.nvim_create_autocmd("BufNew", {
     vim.cmd("hi FlashMatch guibg=none")
     --  TODO: make this get the colorscheme
     vim.cmd("hi FlashLabel guifg=White guibg=#E55C67 cterm=bold")
+    vim.cmd("hi FlashLabel guifg=White guibg=#E55C67 cterm=bold")
   end,
 })
 
 -- LuaSnip Snippet History Fix (Seems to work really well, I think.)
--- vim.api.nvim_create_autocmd("ModeChanged", {
---   group = augroup("LuaSniptHistory"),
---   pattern = "*",
---   callback = function()
---     if
---         ((vim.v.event.old_mode == "s" and vim.v.event.new_mode == "n") or vim.v.event.old_mode == "i")
---         and require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
---         and not require("luasnip").session.jump_active
---     then
---       require("luasnip").unlink_current()
---     end
---   end,
--- })
---
--- vim.api.nvim_create_autocmd("WinLeave", {
---   callback = function()
---     if vim.bo.ft == "TelescopePrompt" and vim.fn.mode() == "i" then
---       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "i", false)
---     end
---   end,
--- })
+vim.api.nvim_create_autocmd("ModeChanged", {
+  group = augroup("LuaSniptHistory"),
+  pattern = "*",
+  callback = function()
+    if
+        ((vim.v.event.old_mode == "s" and vim.v.event.new_mode == "n") or vim.v.event.old_mode == "i")
+        and require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+        and not require("luasnip").session.jump_active
+    then
+      require("luasnip").unlink_current()
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd("WinLeave", {
+  callback = function()
+    if vim.bo.ft == "TelescopePrompt" and vim.fn.mode() == "i" then
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "i", false)
+    end
+  end,
+})
 
 vim.api.nvim_create_user_command("BG", utils.toggle_transparency, {})

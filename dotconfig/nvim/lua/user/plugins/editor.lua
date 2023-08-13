@@ -1,3 +1,4 @@
+local utils = require "user.utils"
 return {
   { dir = "~/Dev/lua/markvim.nvim",       config = true },
   {
@@ -9,6 +10,9 @@ return {
     end,
     cmd = "Neotree",
   }, -- tree file manager
+  {
+    "davidmh/cspell.nvim"
+  },
 
   {
     "BoaPi/task-toggler.nvim",
@@ -149,7 +153,7 @@ return {
       vim.g.mkdp_open_ip = "127.0.0.1"
       vim.g.mkdp_port = 8080
     end,
-    cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle" },
+    cmd = { "MarkdownPreviewToggle" },
   }, -- preview markdown files on browser
 
   -- {
@@ -205,18 +209,22 @@ return {
           miniclue.gen_clues.registers(),
           miniclue.gen_clues.windows(),
           miniclue.gen_clues.z(),
+          { mode = "n", keys = "<Leader>f", desc = "+Fuzzy Find" },
+          { mode = "n", keys = "<Leader>g", desc = "+Git" },
+          { mode = "n", keys = "<Leader>r", desc = "+Rename" },
+          { mode = "n", keys = "<Leader>s", desc = "+Session" },
+          { mode = "n", keys = "<Leader>t", desc = "+Tab" },
         },
 
         window = {
-
-          delay = 200,
+          delay = 100,
           config = {
             width = 400,
             height = 10,
             anchor = "SW",
             row = "auto",
-            col = "auto"
-
+            col = "auto",
+            border = utils.border_status,
           }
         }
       })

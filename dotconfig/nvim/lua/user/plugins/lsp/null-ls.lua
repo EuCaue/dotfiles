@@ -4,6 +4,14 @@ if not status_ok then
   return
 end
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+local cspell = require('cspell')
+
+local cspell_config = {
+  find_json = function(cwd)
+    return "/home/caue/.cspell.json"
+  end,
+}
+
 local async_formatting = function(bufnr)
   bufnr = bufnr or vim.api.nvim_get_current_buf()
 
@@ -63,7 +71,8 @@ null_ls.setup({
     }),
 
     -- NOTE: diagnostics
-    require("null-ls").builtins.diagnostics.codespell,
+    -- require("null-ls").builtins.diagnostics.codespell,
+    -- cspell.diagnostics.with({ config = cspell_config }),
     require("null-ls").builtins.diagnostics.fish,
     require("null-ls").builtins.diagnostics.luacheck.with({ extra_args = { "-g vim" } }),
     -- require("null-ls").builtins.diagnostics.proselint,
@@ -82,6 +91,7 @@ null_ls.setup({
     require("null-ls").builtins.hover.dictionary,
     require("null-ls").builtins.hover.printenv,
 
+    -- cspell.code_actions,
     require("typescript.extensions.null-ls.code-actions"),
   },
 })
