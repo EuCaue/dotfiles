@@ -37,23 +37,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("markdown_spell"),
-  pattern = {
-    "markdown",
-    "text",
-  },
-  callback = function()
-    local root_dir = vim.fn.getcwd()
-    if root_dir == "/home/caue/Documents/my vault" then
-      --  TODO: make this use nvim_option
-      vim.cmd("set spell")
-      vim.cmd("set spelllang=en_us,pt_br")
-      vim.cmd("hi SpellBad  guifg=Red")
-    end
-  end
-})
-
 -- highlight yank
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   group = augroup("yank_highlight"),

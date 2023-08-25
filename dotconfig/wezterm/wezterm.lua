@@ -19,11 +19,13 @@ local fonts = {
   { family = "M+CodeLat Nerd Font",     italic = italic },
   { family = "Cousine Nerd Font",       italic = italic },
   { family = "CommitMono Nerd Font",    italic = italic },
+  { family = "IntoneMono Nerd Font",    italic = italic },
+  { family = "Lilex Nerd Font",         italic = italic },
 }
 
 local emoji_font = { "Apple Color Emoji" }
 
-config.font = wezterm.font_with_fallback({ fonts[11], emoji_font[1] })
+config.font = wezterm.font_with_fallback({ fonts[13], emoji_font[1] })
 config.enable_scroll_bar = false
 config.font_size = 14
 config.enable_tab_bar = true

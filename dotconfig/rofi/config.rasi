@@ -1,6 +1,6 @@
 configuration {
   drun-display-format: "{icon} {name}";
-  font: "Hack Nerd Font 13";
+  font: "Lilex Nerd Font 13";
   modi: "window,run,drun,emoji,calc,";
   show-icons: true;
   eh: 1;
@@ -49,8 +49,8 @@ configuration {
 
 #window {
     background-color: @background;
-    border: 0;
-    border-radius: 5;
+    border: 3;
+    border-radius: 0;
     border-color: @bordercolor;
     padding: 5;
 }

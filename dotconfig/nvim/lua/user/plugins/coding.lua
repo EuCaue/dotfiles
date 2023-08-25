@@ -4,14 +4,14 @@ return {
     ft = "lua",
     opts = {},
   },
-  { "rafcamlet/nvim-luapad" },
+  { "ray-x/lsp_signature.nvim" },
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     lazy = false,
     event = "BufReadPost",
     dependencies = {
-      { "nvim-treesitter/nvim-treesitter-textobjects" },
+      -- { "nvim-treesitter/nvim-treesitter-textobjects" },
       { "windwp/nvim-ts-autotag",                      event = "BufReadPre", opts = {} }, -- <> autoclose tag
       { "JoosepAlviste/nvim-ts-context-commentstring", event = "BufRead" },               -- Better JSX + TSX comment
     },
@@ -91,7 +91,6 @@ return {
     "hrsh7th/nvim-cmp",
     event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
-      { "Jezda1337/cmp_bootstrap", ft = "html" },
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-buffer",
@@ -163,7 +162,7 @@ return {
     end,
   }, --  show code actions
 
-  { "pmizio/typescript-tools.nvim" },
+  -- { "pmizio/typescript-tools.nvim",           event = "VeryLazy" },
   -- { "jose-elias-alvarez/typescript.nvim" },      -- typescript lsp plugin
   { "styled-components/vim-styled-components" }, -- highlight for styled-components
 }

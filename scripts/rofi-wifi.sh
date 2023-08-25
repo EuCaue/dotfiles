@@ -186,8 +186,7 @@ show_menu() {
   # force monospace font to not get those fields messy
   chosen_row=$(echo -e "$options\nrefresh" | uniq -u |
                  rofi -dmenu -selected-row 2 \
-                   -theme-str '#entry { placeholder: "Wi-Fi SSID:"; }' \
-                   -theme-str '* { font: "syne mono 13"; }')
+                   -theme-str '#entry { placeholder: "Wi-Fi SSID:"; }')
 
   # chosen_ssid might b empty in case we chose 'enable/disable wifi' row
   # so we don't check for it's emptyness

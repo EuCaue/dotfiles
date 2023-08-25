@@ -98,7 +98,7 @@ M.get_transparency_value = function()
   return current_value
 end
 
-M.border_status = "rounded" -- "single" "double" "rounded" "none"
+M.border_status = "single" -- "single" "double" "rounded" "none"
 
 M.servers = {
   -- "tsserver",
@@ -322,6 +322,6 @@ M.icons = {
   },
 }
 
-M.icons_selected = M.icons.kinds.custom_icons
+M.icons_selected = M.icons.kinds.new
 
 return M

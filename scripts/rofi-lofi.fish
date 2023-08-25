@@ -167,7 +167,7 @@ function main
             notification "Custom Radio ☕️🎶"
             set URL $choice
     end
-    mpv --volume=$volume --title="radio-mpv" $URL --input-ipc-server=/tmp/mpvsocket --no-video
+    mpv --script-opts=ytdl_hook-ytdl_path=yt-dlp --volume=$volume --title="radio-mpv" $URL --input-ipc-server=/tmp/mpvsocket --no-video
 end
 
 main

@@ -14,11 +14,9 @@ local utils = require("user.utils")
 local icons = utils.icons
 local rt = require("rust-tools")
 local cr = require("crates")
-local ts = require("typescript-tools")
+-- local ts = require("typescript-tools")
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
--- vim.o.updatetime = 250
--- vim.cmd([[autocmd! CursorHold,CursorHoldI * :lua vim.lsp.buf.signature_help()]])
 local handlers = {
   ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = utils.border_status }),
   ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = utils.border_status }),
@@ -43,10 +41,9 @@ local on_attach = function(client, bufnr) -- Enable completion triggered by <c-x
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, get_bufopts("Go to declaration"))
   vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", get_bufopts("Go to definitions"))
   vim.keymap.set("n", "K", vim.lsp.buf.hover, get_bufopts("Hover documentation"))
-  vim.keymap.set("n", "<leader><leader>r", "<cmd>LspRestart<cr>", get_bufopts("Restart LSP"))
+  vim.keymap.set("n", "<leader>lr", "<cmd>LspRestart<cr>", get_bufopts("Restart LSP"))
   vim.keymap.set("n", "<space>o", "<cmd>Navbuddy<CR>", get_bufopts("Outline Icons"))
   vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", get_bufopts("Go to implementations"))
-  vim.keymap.set("n", "<space>l", vim.lsp.buf.signature_help, get_bufopts("Signature help"))
   vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, get_bufopts("Add workspace folder"))
   vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, get_bufopts("Remove workspace folder"))
   vim.keymap.set("n", "<space>wl", function()
@@ -101,6 +98,40 @@ lspconfig.bashls.setup({
     completeFunctionCalls = true,
   },
   filetypes = { "sh", "zsh", "fish" },
+})
+
+lspconfig.tsserver.setup({
+  on_attach = on_attach,
+  handlers = handlers,
+  capabilities = capabilities,
+  completions = {
+    completeFunctionCalls = true,
+  },
+  settings = {
+    javascript = {
+      inlayHints = {
+        includeInlayEnumMemberValueHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayVariableTypeHints = false,
+      },
+    },
+
+    typescript = {
+      inlayHints = {
+        includeInlayEnumMemberValueHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayVariableTypeHints = false,
+      },
+    }
+  }
 })
 
 lspconfig.tailwindcss.setup({
@@ -169,50 +200,68 @@ rt.setup({
   },
 })
 
-ts.setup({
-  on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-    vim.keymap.set(
-      "n",
-      "<leader>tmi",
-      "<cmd>TSToolsAddMissingImports<cr>",
-      get_opts("Typescript Add Missing Imports ")
-    )
-    vim.keymap.set("n", "<leader>toi", "<cmd>TSToolsOrganizeImports<cr>", get_opts("Typescript Organize Imports"))
-    vim.keymap.set("n", "<leader>tru", "<cmd>TSToolsRemoveUnused<cr>", get_opts("Typescript Remove Unused"))
-    vim.keymap.set("n", "<leader>tfa", "<cmd>TSToolsFixAll<cr>", get_opts("Typescript Fix All"))
-    vim.keymap.set(
-      "n",
-      "gd",
-      "<cmd>TSToolsGoToSourceDefinition<cr>",
-      get_opts("Typescript Go To Source definition")
-    )
-  end,
-  capabilities = capabilities,
-  settings = {
-    tsserver_plugins = {
-      -- for TypeScript v4.9+
-      "@styled/typescript-styled-plugin",
-      -- or for older TypeScript versions
-      -- "typescript-styled-plugin",
-    },
-    -- spawn additional tsserver instance to calculate diagnostics on it
-    separate_diagnostic_server = true,
-    publish_diagnostic_on = "insert_leave",
-    expose_as_code_action = { "fix_all", "add_missing_imports", "remove_unused" },
-    tsserver_format_options = {},
-    tsserver_file_preferences = {
-      includeInlayEnumMemberValueHints = true,
-      includeInlayFunctionLikeReturnTypeHints = true,
-      includeInlayFunctionParameterTypeHints = true,
-      includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-      includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-      includeInlayPropertyDeclarationTypeHints = true,
-      includeInlayVariableTypeHints = false,
-    },
-    complete_function_calls = true,
-  },
-})
+-- ts.setup({
+--   on_attach = function(client, bufnr)
+--     on_attach(client, bufnr)
+--     vim.keymap.set(
+--       "n",
+--       "<leader>tmi",
+--       "<cmd>TSToolsAddMissingImports<cr>",
+--       get_opts("Typescript Add Missing Imports ")
+--     )
+--     vim.keymap.set("n", "<leader>toi", "<cmd>TSToolsOrganizeImports<cr>", get_opts("Typescript Organize Imports"))
+--     vim.keymap.set("n", "<leader>tru", "<cmd>TSToolsRemoveUnused<cr>", get_opts("Typescript Remove Unused"))
+--     vim.keymap.set("n", "<leader>tfa", "<cmd>TSToolsFixAll<cr>", get_opts("Typescript Fix All"))
+--     vim.keymap.set(
+--       "n",
+--       "gd",
+--       "<cmd>TSToolsGoToSourceDefinition<cr>",
+--       get_opts("Typescript Go To Source definition")
+--     )
+--   end,
+--   handlers = handlers,
+--   capabilities = capabilities,
+--   completions = {
+--     completeFunctionCalls = true,
+--   },
+--   settings = {
+--     tsserver_plugins = {
+--       -- for TypeScript v4.9+
+--       -- "@styled/typescript-styled-plugin",
+--       -- or for older TypeScript versions
+--       -- "typescript-styled-plugin",
+--     },
+--     separate_diagnostic_server = true,
+--     publish_diagnostic_on = "insert_leave",
+--     expose_as_code_action = { "fix_all", "add_missing_imports", "remove_unused" },
+--     tsserver_format_options = {
+--       allowIncompleteCompletions = false,
+--       allowRenameOfImportPath = false,
+--     },
+--     tsserver_file_preferences = {
+--       includeInlayEnumMemberValueHints = true,
+--       includeInlayFunctionLikeReturnTypeHints = true,
+--       includeInlayFunctionParameterTypeHints = true,
+--       includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+--       includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+--       includeInlayPropertyDeclarationTypeHints = true,
+--       includeInlayVariableTypeHints = false,
+--     },
+--     complete_function_calls = false,
+--   },
+-- })
+require "lsp_signature".setup({
+  bind = true, -- This is mandatory, otherwise border config won't get registered.
+  close_timeout = 1500,
+  hint_prefix = " 󱨇 ",
+  always_trigger = true,
+  floating_window = false,
+  transparency = true,
+  toggle_key = "<C-g>",
+  handler_opts = {
+    border = utils.border_status
+  }
+}) -- Note: add in lsp client on-attach
 
 local signs =
 { Error = icons.ui.lsp_error, Warn = icons.ui.lsp_warn, Hint = icons.ui.lsp_hint, Info = icons.ui.lsp_info }
@@ -223,8 +272,8 @@ end
 
 vim.diagnostic.config({
   float = {
-    -- border = utils.border_status,
-    border = "rounded",
+    border = utils.border_status,
+    -- border = "rounded",
     focusable = true,
     style = "minimal",
     source = "always",

@@ -39,20 +39,19 @@ local function format(entry, item)
 
   -- Replace kind with icons.
   item.kind = (icons[item.kind] or icons.kinds.icons.treesitter) .. "│"
-  -- item.kind = string.format("%s %s", icons.kinds.icons[item.kind], item.kind) -- This concatenates the icons with the name of the item kind
-  -- item.kind = string.format("%s", icons.kinds.icons[item.kind])
+  -- item.kind = string.format("%s %s", icons[item.kind], item.kind) -- This concatenates the icons with the name of the item kind
+  -- item.kind = string.format("%s", icons[item.kind])
 
   item.menu = ({
-    nvim_lsp = "LSP",
-    nvim_lua = "LUA",
-    luasnip = "Snippet",
-    -- emmet_vim = "Emeet",
-    path = "Path",
-    buffer = "Text",
-    fonts = "Fonts",
-    fish = "Fish",
-    treesitter = "TS",
-    crates = "Crates",
+    nvim_lsp = "lsp",
+    nvim_lua = "lua",
+    luasnip = "snippet",
+    path = "path",
+    buffer = "text",
+    fonts = "fonts",
+    fish = "fish",
+    treesitter = "ts",
+    crates = "crates",
   })[entry.source.name]
 
   if entry.source.name == "fonts" then
@@ -160,10 +159,9 @@ cmp.setup({
   sources = {
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
-    { name = 'bootstrap' },
     { name = "path" },
     { name = "luasnip" },
-    { name = "buffer",   keyword_length = 3 },
+    { name = "buffer",  keyword_length = 3 },
     { name = "fish" },
     { name = "fonts",    option = { space_filter = "-" } },
   },
@@ -210,6 +208,10 @@ cmp.setup.cmdline({ "/", "?" }, {
     { name = "buffer" },
   },
 })
+
+-- cmp.setup.filetype({ "fish" },
+--   { sources = { { name = "fish" } } })
+
 
 cmp.setup.cmdline(":", {
   mapping = cmp.mapping.preset.cmdline(),

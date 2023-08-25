@@ -1,18 +1,15 @@
 local utils = require "user.utils"
 return {
   { dir = "~/Dev/lua/markvim.nvim",       config = true },
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    version = "*",
-    event = { "BufReadPost", "BufNewFile" },
-    config = function()
-      require("user.plugins.settings.neotree")
-    end,
-    cmd = "Neotree",
-  }, -- tree file manager
-  {
-    "davidmh/cspell.nvim"
-  },
+  -- {
+  --   "nvim-neo-tree/neo-tree.nvim",
+  --   version = "*",
+  --   event = { "BufReadPost", "BufNewFile" },
+  --   config = function()
+  --     require("user.plugins.settings.neotree")
+  --   end,
+  --   cmd = "Neotree",
+  -- }, -- tree file manager
 
   {
     "BoaPi/task-toggler.nvim",
@@ -57,43 +54,43 @@ return {
     config = true,
   },
 
-  {
-    "folke/flash.nvim",
-    event = "VeryLazy",
-    opts = {},
-    keys = {
-      {
-        "s",
-        mode = { "n", "x", "o" },
-        function()
-          require("flash").jump({
-            search = {
-              mode = function(str)
-                return "\\<" .. str
-              end,
-            },
-          })
-        end,
-        desc = "Flash",
-      },
-      {
-        "r",
-        mode = "o",
-        function()
-          require("flash").remote()
-        end,
-        desc = "Remote Flash",
-      },
-      {
-        "<c-s>",
-        mode = { "c" },
-        function()
-          require("flash").toggle()
-        end,
-        desc = "Toggle Flash Search",
-      },
-    },
-  },
+  -- {
+  --   "folke/flash.nvim",
+  --   event = "VeryLazy",
+  --   opts = {},
+  --   keys = {
+  --     {
+  --       "s",
+  --       mode = { "n", "x", "o" },
+  --       function()
+  --         require("flash").jump({
+  --           search = {
+  --             mode = function(str)
+  --               return "\\<" .. str
+  --             end,
+  --           },
+  --         })
+  --       end,
+  --       desc = "Flash",
+  --     },
+  --     {
+  --       "r",
+  --       mode = "o",
+  --       function()
+  --         require("flash").remote()
+  --       end,
+  --       desc = "Remote Flash",
+  --     },
+  --     {
+  --       "<c-s>",
+  --       mode = { "c" },
+  --       function()
+  --         require("flash").toggle()
+  --       end,
+  --       desc = "Toggle Flash Search",
+  --     },
+  --   },
+  -- },
   {
     "Shatur/neovim-session-manager",
     config = function()
@@ -214,6 +211,7 @@ return {
           { mode = "n", keys = "<Leader>r", desc = "+Rename" },
           { mode = "n", keys = "<Leader>s", desc = "+Session" },
           { mode = "n", keys = "<Leader>t", desc = "+Tab" },
+          { mode = "n", keys = "<Leader>l", desc = "+LSP" },
         },
 
         window = {

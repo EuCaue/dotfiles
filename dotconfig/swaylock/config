@@ -2,7 +2,7 @@ indicator-caps-lock
 indicator-radius=125
 indicator-thickness=10
 clock
-font=Hack Nerd Font
+font=Lilex Nerd Font
 font-size=40px
 ignore-empty-password
 effect-blur=3x5

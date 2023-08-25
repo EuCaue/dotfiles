@@ -2,11 +2,10 @@
 
 * {
   border: none;
-  border-radius: 0;
-  font-family: "Hack Nerd Font";
+  border-radius: 0px;
+  font-family: "Lilex Nerd Font";
   font-size: 14px;
-  font-weight: bold;
-  transition-duration: 0.2s;
+  font-weight: 400;
 }
 
 window#waybar {
@@ -23,8 +22,7 @@ window#waybar {
   background-color: @theme_base_color;
   color: @theme_text_color;
   padding: 0 15px;
-  border-radius: 20px;
-  border-bottom: 5px solid #1161cb;
+  border-bottom: 3px solid @accent_color;
 }
 
 #battery {
@@ -41,7 +39,6 @@ window#waybar {
   background: @theme_base_color;
   color: @theme_text_color;
   opacity: 0.8;
-  border-radius: 20px;
 }
 
 #workspaces button:hover {
@@ -50,7 +47,6 @@ window#waybar {
 
 #workspaces button.active {
   color: @accent_color;
-  border-radius: 20px;
-  border-top: 5px solid @accent_color;
+  border-top: 3px solid @accent_color;
   opacity: 1;
 }

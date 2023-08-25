@@ -24,6 +24,6 @@ if test -z "$WALLPAPER"
     return 0
 end
 
-swww img $WALLPAPER --transition-type grow --transition-pos "$(hyprctl cursorpos)" --transition-duration 3
+swww img $WALLPAPER --transition-type grow --transition-pos "$(hyprctl cursorpos)" --transition-duration 1
 echo $WALLPAPER >~/.config/wallpaper.txt
 return 1
