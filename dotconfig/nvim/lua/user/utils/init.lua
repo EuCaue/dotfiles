@@ -240,6 +240,35 @@ M.icons = {
       Operator = "󰆕 ",
       TypeParameter = "󰊄 ",
     },
+
+    icons_2 = {
+      Text = " ",
+      Method = " ",
+      Function = " ",
+      Constructor = " ",
+      Field = "ﰠ ",
+      Variable = " ",
+      Class = "ﴯ ",
+      Interface = " ",
+      Module = " ",
+      Property = "ﰠ ",
+      Unit = "塞 ",
+      Value = " ",
+      Enum = " ",
+      Keyword = " ",
+      Snippet = " ",
+      Color = " ",
+      File = " ",
+      Reference = " ",
+      Folder = " ",
+      EnumMember = " ",
+      Constant = " ",
+      Struct = "פּ ",
+      Event = " ",
+      Operator = " ",
+      TypeParameter = " ",
+    },
+
     custom_icons = {
       Text = " ",
       Method = " ",
@@ -322,6 +351,6 @@ M.icons = {
   },
 }
 
-M.icons_selected = M.icons.kinds.new
+M.icons_selected = M.icons.kinds.icons_icons
 
 return M

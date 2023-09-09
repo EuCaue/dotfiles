@@ -5,7 +5,7 @@
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-font_family IntoneMono Nerd Font
+font_family GoMono Nerd Font
 bold_font auto
 italic auto
 bold_italic_font auto
@@ -418,7 +418,7 @@ pointer_shape_when_grabbed arrow
 #: The shape of the mouse pointer when the program running in the
 #: terminal grabs the mouse. Valid values are: arrow, beam and hand.
 
-default_pointer_shape arrow
+default_pointer_shape beam
 
 #: The default shape of the mouse pointer. Valid values are: arrow,
 #: beam and hand.
@@ -2239,6 +2239,6 @@ map kitty_mod+f5 load_config_file
 
 
 # BEGIN_KITTY_THEME
-# Adwaita darker
+# Symfonic
 include current-theme.conf
 # END_KITTY_THEME

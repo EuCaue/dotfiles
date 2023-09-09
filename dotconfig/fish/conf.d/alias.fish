@@ -50,6 +50,10 @@ function stats --description "Show custom variables"
     echo $FONT_NAME
 end
 
+function mkcd --description "mkdir with cd"
+    mkdir -p $argv[1] && cd $argv[1]
+end
+
 function gcl --description "Clone to gitclone folder and cd"
     cd ~/gitclone; and git clone $argv[1] && cd (basename $argv[1] .git)
     return 0

@@ -5,14 +5,14 @@
   "position": "top", // Waybar position (top|bottom|left|right)
   "spacing": 9, // Gaps between modules 
   "margin-top": 5,
-  "margin-left": 15,
-  "margin-right": 15,
+  "margin-left": 0,
+  "margin-right": 0,
   "modules-left": [
     "clock",
     "tray"
   ],
   "modules-center": [
-    "hyprland/workspaces",
+    "wlr/workspaces",
     "hyprland/submap"
   ],
   "modules-right": [
@@ -20,26 +20,17 @@
     "hyprland/window",
     "pulseaudio"
   ],
-  "hyprland/workspaces": {
-    "all-outputs": false,
-    "active-only": "true",
-    "format": "{name} {icon}",
+  "wlr/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
     "format-icons": {
-      "1": "<span font='14'>󰈹</span> ",
-      "2": "<span font='14'></span> ",
-      "3": "<span font='14'>󰅴</span>",
-      "4": "<span font='14'>󰖟</span> ",
-      "5": "<span font='14'>󰝚</span>",
-      "6": "<span font='14'>󰊗</span>",
-      "7": "<span font='14'>󱞁</span>",
-      "8": "<span font='14'>󱁯</span>",
-      "urgent": "",
-      "default": "",
-      "persistent": "persistent",
-      "empty": "empty"
-    },
-    "persistent_workspaces": {
-      // "*": 8, // 5 workspaces by default on every monitor
+      "1": "1 <span font='14'>󰈹</span> ",
+      "2": "2 <span font='14'></span> ",
+      "3": "3 <span font='14'>󰅴</span>",
+      "4": "4 <span font='14'>󰖟</span> ",
+      "5": "5 <span font='14'>󰝚</span>",
+      "6": "6 <span font='14'>󰊗</span>",
+      "7": "7 <span font='14'>󱞁</span>"
     }
   },
   "hyprland/submap": {

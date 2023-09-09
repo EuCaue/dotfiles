@@ -55,6 +55,7 @@ function is_running -a choice
     if pgrep -f radio-mpv
         echo "is running"
         if string match -q -r true (echo $pause_status)
+            set volume_tune $(echo '{ "command": ["get_property", "volume"] }' | socat - /tmp/mpvsocket | jq | grep "data" | awk '{print $2}' | cut -d, -f1)
             set choice_menu_pause $(menu_pause | rofi -dmenu -p "$actual_radio Paused, Return/Stop/Nothing?" | cut -d. -f1)
             switch $choice_menu_pause
                 case 1
@@ -62,7 +63,7 @@ function is_running -a choice
                 case 2
                     pkill -f radio-mpv
                 case 3
-                    set volume $(rofi -dmenu -p "Volume" -theme-str 'listview {lines: 0;}')
+                    set volume $(rofi -dmenu -p "Volume ($volume_tune%)" -theme-str 'listview {lines: 0;}')
                     echo "{ \"command\": [\"set_property\", \"volume\", $volume] }" | socat - $mpv_socket
                 case 4
                     echo ":)"
@@ -73,6 +74,7 @@ function is_running -a choice
 
             end
         else
+            set volume_tune $(echo '{ "command": ["get_property", "volume"] }' | socat - /tmp/mpvsocket | jq | grep "data" | awk '{print $2}' | cut -d, -f1)
             set choice_menu_running $(menu_running | rofi -dmenu -p "Playing $actual_radio, Stop/Pause/Nothing" | cut -d. -f1)
             switch $choice_menu_running
                 case 1
@@ -80,7 +82,7 @@ function is_running -a choice
                 case 2
                     pkill -f radio-mpv
                 case 3
-                    set volume $(rofi -dmenu -p "Volume" -theme-str 'listview {lines: 0;}')
+                    set volume $(rofi -dmenu -p "Volume ($volume_tune%)" -theme-str 'listview {lines: 0;}')
                     echo "{ \"command\": [\"set_property\", \"volume\", $volume] }" | socat - $mpv_socket
                 case 4
                     echo ":)"

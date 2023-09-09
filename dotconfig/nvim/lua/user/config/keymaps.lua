@@ -1,9 +1,9 @@
 local function get_opts(desc, expr)
-  return { noremap = true, silent = true, desc = desc, expr = expr or false }
+	return { noremap = true, silent = true, desc = desc, expr = expr or false }
 end
 
 local map = function(modes, key, cmd, opts)
-  vim.keymap.set(modes, key, cmd, opts)
+	vim.keymap.set(modes, key, cmd, opts)
 end
 
 --Remap space as leader key
@@ -19,14 +19,12 @@ vim.g.maplocalleader = " "
 --   term_mode = "t",
 --   command_mode = "c",
 
-
 --  _  __
 -- | |/ /___ _   _ _ __ ___   __ _ _ __  ___
 -- | ' // _ \ | | | '_ ` _ \ / _` | '_ \/ __|
 -- | . \  __/ |_| | | | | | | (_| | |_) \__ \
 -- |_|\_\___|\__, |_| |_| |_|\__,_| .__/|___/
 --           |___/                |_|
-
 map({ "n", "i" }, "<C-s>", "<cmd>write!<cr>", get_opts("Write"))
 map("n", "<leader>qq", "<cmd>qa!<cr>", get_opts("Quit"))
 map("n", "<leader>aa", "gg<S-v>G", get_opts("Select all"))
@@ -39,6 +37,9 @@ map("n", "<leader>U", "gU", get_opts("Easy Caps"))
 map("n", "<leader>u", "gu", get_opts("Easy Uncaps"))
 map("n", "<leader><leader>s", "<cmd>spellrepall<cr>", get_opts("Fix all spell problem"))
 map("n", "vv", "viw", get_opts("Select word under cursor"))
+map("n", "<leader><leader>sc", "<cmd>luafile %<cr>", get_opts("Source current file"))
+map("n", "<A-j>", "5j", get_opts("Down 5 lines "))
+map("n", "<A-k>", "5k", get_opts("Up 5 Lines"))
 
 -- Better J/K
 map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'gj']], get_opts("Jump list relative line jump", true))
@@ -51,20 +52,43 @@ map({ "n", "v" }, "<leader>p", '"+p', get_opts("Paste from system clipboard"))
 map({ "n", "v" }, "<leader>d", '"_d', get_opts("Delete for the void register"))
 map({ "v", "x" }, "p", '"_dP', get_opts("greatest remap ever"))
 
+-- Comment
+
 vim.api.nvim_set_keymap(
-  "n",
-  "gcmt",
-  "gcO TODO:<ESC><Right>",
-  { silent = true, noremap = false, desc = "Create a todo comment" }
+	"n",
+	"gcmt",
+	"gcO TODO:<Right> ",
+	{ silent = true, noremap = false, desc = "Create a todo comment" }
+)
+
+vim.api.nvim_set_keymap(
+	"n",
+	"gcmf",
+	"gcO FIX:<Right> ",
+	{ silent = true, noremap = false, desc = "Create a fix comment" }
+)
+
+vim.api.nvim_set_keymap(
+	"n",
+	"gcmb",
+	"gcO BUG:<Right> ",
+	{ silent = true, noremap = false, desc = "Create a bug comment" }
+)
+
+vim.api.nvim_set_keymap(
+	"n",
+	"gcmn",
+	"gcO NOTE:<Right> ",
+	{ silent = true, noremap = false, desc = "Create a note comment" }
 )
 
 map("n", "<leader>re", ":%s//<Left>", get_opts("Rename with substitute command"))
 
 map(
-  { "n", "v" },
-  "<leader>rr",
-  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-  get_opts("Rename with substitute command based on current text")
+	{ "n", "v" },
+	"<leader>rr",
+	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+	get_opts("Rename with substitute command based on current text")
 )
 
 -- Make executable
@@ -92,8 +116,8 @@ map("v", ">", ">gv", get_opts("Right indent"))
 -- Move text up and down
 map("v", "<A-j>", ":m .+1<cr>==", get_opts("Move text up"))
 map("v", "<A-k>", ":m .-2<cr>==", get_opts("Move text down"))
-map("n", "<A-j>", "<Esc>:m .+1<cr>==gi", get_opts("Move line down"))
-map("n", "<A-k>", "<Esc>:m .-2<cr>==gi", get_opts("Move line up"))
+-- map("n", "<A-j>", "<Esc>:m .+1<cr>==gi", get_opts("Move line down"))
+-- map("n", "<A-k>", "<Esc>:m .-2<cr>==gi", get_opts("Move line up"))
 map("x", "<A-j>", ":move '>+1<cr>gv-gv", get_opts("Move line down"))
 map("x", "<A-k>", ":move '<-2<cr>gv-gv", get_opts("Move text up"))
 map("i", "<A-j>", "<Esc>:m .+1<cr>==gi", get_opts("Move line down"))
@@ -111,9 +135,6 @@ map("n", "<A-]>", "<cmd>bnext<cr>", get_opts("Next buffer"))
 
 -- Close buffer
 map("n", "<A-c>", "<cmd>bp | sp | bn | bd<cr>", get_opts("Close current buffer"))
-
-
-
 
 --  ____  _             _             _  __
 -- |  _ \| |_   _  __ _(_)_ __  ___  | |/ /___ _   _ _ __ ___   __ _ _ __  ___
@@ -154,11 +175,15 @@ map("n", "<leader>ss", "<cmd>SessionManager load_last_session<cr>", get_opts("Lo
 
 -- Harpoon
 map(
-  { "n", "v" },
-  "<leader>ah",
-  "<cmd>:lua require('harpoon.mark').add_file(vim.fn.expand('%')) vim.notify('File add to harpoon: ' .. vim.fn.expand('%:t'))<cr>",
-  get_opts("Add a file to harpoon")
+	{ "n", "v" },
+	"<leader>ha",
+	"<cmd>lua require('harpoon.mark').add_file(vim.fn.expand('%')) vim.notify('File add to harpoon: ' .. vim.fn.expand('%:t'))<cr>",
+	get_opts("Add a file to harpoon")
 )
+map("n", "<leader>hs", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", get_opts("Open Harpoon UI"))
+map("n", "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<cr>", get_opts("Harpoon Go Next"))
+map("n", "<leader>hp", "<cmd>lua require('harpoon.ui').nav_prev()<cr>", get_opts("Harpoon Go Prev"))
+map("n", "<leader>hc", "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<cr>", get_opts("Harpoon Commands UI"))
 
 -- Lazy
 map({ "n", "v" }, "<leader><leader>l", "<cmd>Lazy<cr>", get_opts("Open Lazy"))
@@ -168,7 +193,7 @@ map({ "n", "v" }, "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", get_opts("Prev
 map({ "n", "v" }, "<leader>gb", "<cmd>Gitsigns blame_line<cr>", get_opts("Blame Line"))
 
 -- Markdown
-map({ "n", "v" }, "<leader>mg", "<cmd>Glow<cr>", get_opts("Open glow in the current file"))
+-- map({ "n", "v" }, "<leader>mg", "<cmd>Glow<cr>", get_opts("Open glow in the current file"))
 map("n", "<leader>mf", "<cmd>Flote<cr>", get_opts("Open Flote"))
 
 -- ToggleTerm
@@ -176,8 +201,8 @@ map("n", "<C-t>", "<cmd>ToggleTerm<cr>", get_opts("ToggleTerm float"))
 map("n", "<leader><leader><leader>t", "<cmd>ToggleTerm direction=horizontal size=5<cr>", get_opts("ToggleTerm"))
 
 -- Neotree
-map("n", "<leader>n", "<cmd>Neotree toggle<cr>", get_opts("Neotree toggle"))
-map("n", "<leader>nf", "<cmd>Neotree focus<cr>", get_opts("Neotree focus"))
+-- map("n", "<leader>n", "<cmd>Neotree toggle<cr>", get_opts("Neotree toggle"))
+-- map("n", "<leader>nf", "<cmd>Neotree focus<cr>", get_opts("Neotree focus"))
 
 map("n", "<leader>dt", "<cmd>cd ~/dotfiles/ | Neotree toggle<cr>", get_opts("Go to dotfiles"))
 map("n", "<leader>vf", "<cmd>lua MiniFiles.open()<cr>", get_opts("Open MiniFiles"))
@@ -186,17 +211,17 @@ map("n", "<leader>vf", "<cmd>lua MiniFiles.open()<cr>", get_opts("Open MiniFiles
 map({ "n", "v" }, "<leader>rm", "<cmd>MurenToggle<cr>", get_opts("Replace with Muren"))
 
 -- Hop
-map("n", "<leader>H", ":HopChar2<cr>", get_opts("Hop to Char"))
-map("n", "<leader>h", ":HopWord<cr>", get_opts("Hop to Word"))
+-- map("n", "<leader>H", ":HopChar2<cr>", get_opts("Hop to Char"))
+map("n", "<leader>H", ":HopWord<cr>", get_opts("Hop to Word"))
 
 -- Notify
 map(
-  { "n", "v" },
-  "<leader>cn",
-  "<cmd>lua require('notify').dismiss({ silent = true, pending = true })<cr>",
-  get_opts("Close all notifications")
+	{ "n", "v" },
+	"<leader>cn",
+	"<cmd>lua require('notify').dismiss({ silent = true, pending = true })<cr>",
+	get_opts("Close all notifications")
 )
 
 -- Center screen
-map("n", "<leader>nc", "<cmd>NoNeckPain<cr>", get_opts("Center the screen"))
-map("n", "<leader>nz", "<cmd>ZenMode<cr>", get_opts("ZenMode"))
+-- map("n", "<leader>nc", "<cmd>NoNeckPain<cr>", get_opts("Center the screen"))
+-- map("n", "<leader>nz", "<cmd>ZenMode<cr>", get_opts("ZenMode"))

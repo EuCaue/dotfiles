@@ -11,17 +11,23 @@ else
     end
 end
 
+if test -z $FONT_NAME
+    return 1
+end
+
 function change_font
     sed -i "s#\(--font-primary: \).*#\1\"$FONT_NAME\";#" $HOME/.config/WebCord/Themes/black
-    sed -i "s#\(gtk-font-name=\).*#\1$FONT_NAME 12#" $HOME/dotfiles/dotconfig/gtk-3.0/settings.ini
+    sed -i "s#\(gtk-font-name#    ).*#\1$FONT_NAME 12#" $HOME/dotfiles/dotconfig/gtk-3.0/settings.ini
     sed -i "s#\(font \).*#\1\"$FONT_NAME 12\"#" $HOME/dotfiles/dotconfig/zathura/zathurarc
     sed -i "s#\(FONT \).*#\1\"$FONT_NAME 12\"#" $HOME/dotfiles/scripts/gsettings.fish
     sed -i "s#\(text_font=\).*#\1$FONT_NAME#" $HOME/dotfiles/dotconfig/swappy/config
     sed -i "s#\(font=\).*#\1$FONT_NAME#" $HOME/dotfiles/dotconfig/swaylock/config
     sed -i 's#\(^font_family \).*#\1'"$FONT_NAME"'#' $HOME/dotfiles/dotconfig/kitty/kitty.conf
-    sed -i 's#^ *family: .*#family: '$FONT_NAME'#' ~/.config/alacritty/alacritty.yml
+    sed -i 's#^ *family: .*#    family: '$FONT_NAME'#' ~/.config/alacritty/alacritty.yml
     sed -i "s#^\(font=\)[^:]*#\1$FONT_NAME#" $HOME/dotfiles/dotconfig/foot/foot.ini
+    sed -i "s#^\(font=\)[^:]*#\1$FONT_NAME#" $HOME/.config/fuzzel/fuzzel.ini
     sed -i "s#\(font-family: \).*#\1\"$FONT_NAME\";#" $HOME/dotfiles/dotconfig/waybar/style.css
+    sed -i "s#\(font-family: \).*#\1\"$FONT_NAME\";#" $HOME/.config/eww/eww.scss
     killall waybar && waybar & disown &
     sed -i "s#\(font: \).*#\1\"$FONT_NAME 13\";#" $HOME/dotfiles/dotconfig/rofi/config.rasi
     sed -i 's@user_pref("font.name.monospace.x-western",[^)]*)@user_pref("font.name.monospace.x-western", "'$FONT_NAME'")@g' /home/caue/.mozilla/firefox/9tzkj9s8.default-release/user.js
@@ -30,6 +36,6 @@ function change_font
     gsettings set org.gnome.desktop.interface font-name $FONT_NAME
     gsettings set org.gnome.desktop.interface document-font-name $FONT_NAME
     gsettings set org.gnome.desktop.interface monospace-font-name $FONT_NAME
-end
 
-change_font
+    change_font
+

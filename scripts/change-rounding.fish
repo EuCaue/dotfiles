@@ -25,6 +25,8 @@ function change_rouding
     sed -i "s#\(border-radius: \).*#\1"$ROUNDING"px;#" $HOME/dotfiles/dotconfig/waybar/style.css
     killall waybar && waybar & disown &
     sed -i "s#\(border-radius: \).*#\1"$ROUNDING";#" $HOME/dotfiles/dotconfig/rofi/config.rasi
+    sed -i '/\.notification-default-action {/ {n; s#border-radius: .*;#border-radius: '"$ROUNDING"px';#}' $HOME/dotfiles/dotconfig/swaync/style.css &&
+        swaync-client -rs
     sed -i 's/\(rounding = \)[0-9]\+/\1'"$ROUNDING"'/' $HOME/dotfiles/dotconfig/hypr/hyprland.conf
 
     if $found_none

@@ -3,7 +3,7 @@
 * {
   border: none;
   border-radius: 0px;
-  font-family: "GoMono Nerd Font";
+  font-family: "Lilex Nerd Font";
   font-size: 14px;
   font-weight: 400;
 }
@@ -21,7 +21,7 @@ window#waybar {
 #workspaces {
   background-color: @theme_base_color;
   color: @theme_text_color;
-  padding: 0 15px;
+  /* padding: 15px 0; */
   border-bottom: 3px solid @accent_color;
 }
 

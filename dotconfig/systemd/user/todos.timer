@@ -1,0 +1,10 @@
+[Unit]
+Description=Open todos in morning
+
+[Timer]
+Unit=todos.service
+OnCalendar=*-*-* 05:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,7 @@
+[Unit]
+Description=Open todos in morning
+
+[Service]
+Type=simple
+ExecStart=/home/caue/dotfiles/scripts/todos.fish
+Restart=Always

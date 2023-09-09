@@ -1,6 +1,6 @@
 configuration {
-  drun-display-format: "{icon} {name}";
-  font: "Lilex Nerd Font 13";
+  drun-display-format: "{name}";
+  font: "GoMono Nerd Font 13";
   modi: "window,run,drun,emoji,calc,";
   show-icons: true;
   eh: 1;
@@ -9,15 +9,15 @@ configuration {
   sorting-method: "fzf";
   hide-scrollbar: true;
   terminal: "foot";
-  display-drun: "   Apps ";
-  display-run: "   Run ";
+  display-drun: "󰀻 ";
+  display-run: " 󱓞 ";
   display-window: " 﩯  Window";
-  display-Network: " 󰤨  Network";
-  display-emoji: "  Emoji  ";
-  display-calc: "  Calc";
-  sidebar-mode: true;
+  display-Network: "󰖩 ";
+  display-emoji: "󰞅 ";
+  display-calc: "󰃬 ";
+  sidebar-mode: false;
   hover-select: true;
-  }
+}
 
 
 
@@ -27,8 +27,8 @@ configuration {
     fgd: #ffffff;
     cmt: #5e5c64;
     cya: #ffffff;
-    grn: #1a5fb4;
-    ora: #1a5fb4;
+    grn: #1161cb;
+    ora: #1161cb;
     pur: #dc8add;
     red: #a51d2d;
     yel: #e5a50a;
@@ -51,34 +51,35 @@ configuration {
     background-color: @background;
     border: 3;
     border-radius: 0;
+    width: 800px;
     border-color: @bordercolor;
     padding: 5;
 }
 
-#mainbox {
-    border:  0;
-    padding: 5;
-}
-#message {
-    border:       1px dash 0px 0px ;
-    border-color: @separatorcolor;
-    padding:      1px ;
-}
+// #mainbox {
+//     border:  0;
+//     padding: 9;
+// }
+
+// #message {
+//     border-color: @separatorcolor;
+//     padding:      1px ;
+// }
+
 #textbox {
     text-color: @foreground;
 }
+
 #listview {
-    fixed-height: 0;
-    border:       2px dash 0px 0px ;
-    border-color: @bordercolor;
-    spacing:      2px ;
-    scrollbar:    false;
-    padding:      2px 0px 0px ;
+    border: none;
+    scrollbar:    true;
+    padding:      0;
 }
+
 #element {
-    border:  0;
-    padding: 1px ;
+    padding: 6;
 }
+
 #element.normal.normal {
     background-color: @background;
     text-color:       @foreground;
@@ -92,8 +93,8 @@ configuration {
     text-color:       @background;
 }
 #element.selected.normal {
-    background-color: @selected-background;
-    text-color:       @foreground;
+    background-color: @grn;
+    text-color:       @fgd;
 }
 #element.selected.urgent {
     background-color: @selected-urgent-background;
@@ -103,55 +104,72 @@ configuration {
     background-color: @selected-active-background;
     text-color:       @background;
 }
+    
 #element.alternate.normal {
     background-color: @background;
     text-color:       @foreground;
 }
+
 #element.alternate.urgent {
     background-color: @urgent-background;
     text-color:       @foreground;
 }
+
 #element.alternate.active {
     background-color: @active-background;
     text-color:       @foreground;
 }
-#scrollbar {
-    width:        2px ;
-    border:       0;
-    handle-width: 8px ;
-    padding:      0;
-}
-#sidebar {
-    border:       2px dash 0px 0px ;
-    border-color: @separatorcolor;
-}
-#button.selected {
-    background-color: @selected-background;
-    text-color:       @foreground;
-}
+
+// #scrollbar {
+//     width:        2px ;
+//     border:       0;
+//     handle-width: 5px ;
+//     padding:      0;
+// }
+
+// #sidebar {
+//     border:       2px dash 0px 0px ;
+//     border-color: @separatorcolor;
+// }
+
+// #button.selected {
+//     background-color: @selected-background;
+//     text-color:       @foreground;
+// }
+
 #inputbar {
-    spacing:    0;
     text-color: @foreground;
-    padding:    1px ;
+    padding:      10px;
 }
+
 #case-indicator {
     spacing:    0;
     text-color: @foreground;
 }
-#entry {
-    spacing:    0;
-    text-color: @cya;
+
+#element-icon {
+  size: 1.2em;
 }
+
+#entry {
+    text-color: @cya;
+    placeholder: "Type Here";
+}
+
 #prompt {
     spacing:    0;
-    text-color: @grn;
+    text-color: #c3c3c3;
 }
+
 #inputbar {
     children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
 }
+
 #textbox-prompt-colon {
     expand:     false;
     str:        ":";
     margin:     0px 0.3em 0em 0em ;
-    text-color: @grn;
+    text-color: #c3c3c3;
 }
+
+/* vim: ft=sass

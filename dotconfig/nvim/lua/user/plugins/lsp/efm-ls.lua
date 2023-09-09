@@ -25,13 +25,9 @@ local languages = {
   css = { prettier },
   fish = {
     {
-      -- TODO: Figure out why linting doesn't work
-      --
-      -- lintCommand = "fish --no-execute",
-      -- lintStdin = false,
-      -- lintStderr = true,
-      -- lintFormats = { "%f (line %l): %m" },
-      --
+      lintCommand = "fish --no-execute ${INPUT}",
+      lintIgnoreExitCode = true,
+      lintFormats = { "%.%#(line %l): %m" },
       formatCommand = "fish_indent",
       formatStdin = true,
     },
@@ -46,6 +42,8 @@ local languages = {
       lintCommand = "luacheck -g vim --formatter plain --codes --ranges --filename ${INPUT}",
       lintFormats = { "%f:%l %m" },
       lintStdin = true,
+      formatCommand = "stylua ${INPUT}",
+      formatStdin = true,
     },
   },
   markdown = { markdown_lint },

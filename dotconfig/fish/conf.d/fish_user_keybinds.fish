@@ -1,1 +1,1 @@
-bind \co "/home/caue/a.sh"
+bind \co "$HOME/dotfiles/scripts/tmux-session.sh"
