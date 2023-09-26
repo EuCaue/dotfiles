@@ -1,0 +1,89 @@
+label {
+  font-weight: normal;
+  font-family: "GoMono Nerd Font";
+}
+
+* {
+  border-radius: 0px;
+  font-size: 14px;
+}
+
+.bar {
+  background-color: transparent;
+}
+
+.workspaces {
+  border-bottom: 3px solid @accent_color;
+}
+
+.workspace {
+  background-color: black;
+  color: #eee;
+  font-size: 20px;
+}
+
+.workspace-icon {
+  font-size: 20px;
+}
+
+.workspace-box {
+}
+
+.workspace:hover,
+.media:hover {
+  background-color: @popover_bg_color;
+}
+
+.workspace.focused {
+  color: @accent_color;
+  border-top: 3px solid @accent_color;
+}
+
+.notification image {
+  color: yellow;
+  margin-left: 1em;
+}
+
+.client-title {
+}
+
+.battery > label,
+.audio-icon,
+.clock-icon {
+  font-size: 18px;
+}
+
+.default-box {
+  margin-left: 15px;
+  background-color: black;
+  color: white;
+  padding: 0 15px;
+  border-bottom: 3px solid @accent_color;
+}
+
+.clock {
+  background-color: black;
+  padding: 0 15px;
+  border-bottom: 3px solid @accent_color;
+}
+
+.systemtray {
+  border-bottom: 3px solid @accent_color;
+  margin-left: 10px;
+}
+
+.systemtray > button {
+  background-color: black;
+}
+
+.systemtray > button * {
+  font-size: 20px;
+}
+
+/* .systemtray > button:first-child { */
+/* margin-left: 10px; */
+/* } */
+
+.volume * {
+  all: unset;
+}

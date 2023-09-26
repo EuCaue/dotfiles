@@ -1,0 +1,29 @@
+# -*- conf -*-
+# Night Lion  
+ 
+[cursor]
+color=000000 bbbbbb 
+
+[colors]
+background=000000
+foreground=bbbbbb
+
+# Normal/regular colors (color palette 0-7)
+regular0=000000 # black
+regular1=bb0000 # red
+regular2=5ede8f # green
+regular3=f2f067 # yellow
+regular4=1161cb # blue
+regular5=bb00bb # magenta
+regular6=00d9df # cyan
+regular7=bbbbbb # white 
+
+# Bright colors (color palette 8-15)
+bright0=545454 # black
+bright1=ff5555 # red
+bright2=55ff55 # green
+bright3=ffff55 # yellow
+bright4=5555ff # blue
+bright5=ff55ff # magenta
+bright6=55ffff # cyan
+bright7=ffffff # white

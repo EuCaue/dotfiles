@@ -1,33 +1,50 @@
 local utils = require("user.utils")
-return {
-	{ dir = "~/Dev/lua/markvim.nvim", config = true },
-	-- {
-	--   "nvim-neo-tree/neo-tree.nvim",
-	--   version = "*",
-	--   event = { "BufReadPost", "BufNewFile" },
-	--   config = function()
-	--     require("user.plugins.settings.neotree")
-	--   end,
-	--   cmd = "Neotree",
-	-- }, -- tree file manager
 
-	{ "christoomey/vim-tmux-navigator", event = "VimEnter" },
+return {
+	-- { dir = "~/Dev/lua/markvim.nvim", config = true },
+
+	{ "nacro90/numb.nvim", config = true, event = "BufReadPost" },
+
 	{
-		"m4xshen/hardtime.nvim",
+		"uga-rosa/ccc.nvim",
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
-			require("hardtime").setup({
-				restricted_keys = {
-					["j"] = {},
-					["k"] = {},
+			local ccc = require("ccc")
+
+			ccc.setup({
+				highlighter = {
+					auto_enable = true,
+					lsp = true,
+				},
+				win_opts = {
+					border = utils.border_status,
 				},
 			})
 		end,
 	},
 
 	{
-		"tzachar/highlight-undo.nvim",
-		event = { "BufReadPost", "BufNewFile" },
-		config = true,
+		"m4xshen/hardtime.nvim",
+		event = { "BufReadPre" },
+		config = function()
+			require("hardtime").setup({
+				restricted_keys = {
+					["j"] = {},
+					["k"] = {},
+					["<Up>"] = {},
+					["<Down>"] = {},
+				},
+				disabled_keys = {
+					["<Up>"] = {},
+					["<Down>"] = {},
+				},
+			})
+		end,
+	},
+	{
+		"ellisonleao/carbon-now.nvim",
+		lazy = true,
+		cmd = "CarbonNow",
 	},
 
 	{
@@ -52,6 +69,11 @@ return {
 					go_in_plus = "<CR>",
 					go_out_plus = "<BS>",
 				},
+				windows = {
+					preview = true,
+					width_focus = 30,
+					width_preview = 90,
+				},
 			})
 		end,
 		version = false,
@@ -65,6 +87,12 @@ return {
 		end,
 		cmd = "Gitsigns",
 	}, --  git status on file
+
+	{
+		"NeogitOrg/neogit",
+		cmd = "Neogit",
+		config = true,
+	},
 
 	{
 		"kylechui/nvim-surround",
@@ -100,26 +128,7 @@ return {
 		"folke/todo-comments.nvim",
 		event = { "BufReadPost", "BufNewFile" },
 		config = true,
-		cmd = { "TodoTelescope" },
 	}, -- TODO: plugin
-
-	{
-		"phaazon/hop.nvim",
-		event = "BufRead",
-		config = true,
-	}, --  move faster
-
-	-- {
-	--   "ellisonleao/glow.nvim",
-	--   ft = "markdown",
-	--   config = true,
-	--   cmd = "Glow",
-	-- }, -- preview markdown
-
-	{
-		"JellyApple102/flote.nvim",
-		cmd = "Flote",
-	}, -- Quick notes for projects
 
 	{
 		"iamcco/markdown-preview.nvim",
@@ -165,16 +174,13 @@ endfunction
 		dependencies = {
 			{ "debugloop/telescope-undo.nvim" }, -- telescope for undo tree
 			{ "nvim-telescope/telescope-file-browser.nvim" },
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = false },
+			-- {
+			-- 	"nvim-telescope/telescope-fzf-native.nvim",
+			-- 	build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+			-- },
 			{ "nvim-telescope/telescope-project.nvim" }, -- find projects
 		},
 	}, -- Telescope
-
-	{
-		"AckslD/muren.nvim",
-		event = "BufReadPost",
-		config = true,
-	},
 
 	{
 		"asiryk/auto-hlsearch.nvim",
@@ -188,47 +194,48 @@ endfunction
 	}, -- better search
 
 	{
-		"NvChad/nvim-colorizer.lua",
-		event = { "BufReadPre", "BufNewFile" },
-		config = function()
-			require("colorizer").setup({
-				user_default_options = {
-					css = true,
-					always_update = true,
-					tailwind = true, -- Enable tailwind colors
-				},
-			})
-		end,
-	}, -- CSS COLORS
-
-	{
 		"yamatsum/nvim-cursorline",
 		config = true,
 	}, -- highlight cursor on things
 
 	{
-		"karb94/neoscroll.nvim",
-		config = function()
-			require("neoscroll").setup({
-				respect_scrolloff = false,
-			})
-			local t = {}
-			t["<C-k>"] = { "scroll", { "-vim.wo.scroll", "true", "250" } }
-			t["<C-j>"] = { "scroll", { "vim.wo.scroll", "true", "250" } }
-			require("neoscroll.config").set_mappings(t)
-		end,
-	}, -- better scroll
+		"m4xshen/autoclose.nvim",
+		event = { "BufRead", "BufNewFile" },
+		opts = {
+			keys = {
+				["("] = { escape = false, close = true, pair = "()" },
+				["["] = { escape = false, close = true, pair = "[]" },
+				["{"] = { escape = false, close = true, pair = "{}" },
+
+				[">"] = { escape = true, close = false, pair = "<>" },
+				[")"] = { escape = true, close = false, pair = "()" },
+				["]"] = { escape = true, close = false, pair = "[]" },
+				["}"] = { escape = true, close = false, pair = "{}" },
+
+				['"'] = { escape = true, close = true, pair = '""' },
+				["'"] = { escape = true, close = true, pair = "''" },
+				["`"] = { escape = true, close = true, pair = "``" },
+			},
+			options = {
+				disabled_filetypes = { "text" },
+				disable_when_touch = true,
+				touch_regex = "[%w(%[{]",
+				pair_spaces = false,
+				auto_indent = true,
+				disable_command_mode = false,
+			},
+		},
+	},
 
 	{
-		"windwp/nvim-autopairs",
-		event = { "BufRead", "BufNewFile" },
-		config = function()
-			require("user.plugins.settings.nvim-autopairs")
-		end,
-	}, -- auto close ({[
-
-	{ "theRealCarneiro/hyprland-vim-syntax" }, -- Better syntax highlight in hyprland.conf
-	{ "editorconfig/editorconfig-vim" }, -- Editorconfig
+		"folke/zen-mode.nvim",
+		cmd = "ZenMode",
+		opts = {},
+	},
+	{ "tzachar/highlight-undo.nvim", config = true, event = "BufReadPost" }, -- awesome plugin.
+	{ "nguyenvukhang/nvim-toggler", config = true, event = { "BufReadPre" } }, -- toggle states,
+	{ "theRealCarneiro/hyprland-vim-syntax", lazy = true }, -- Better syntax highlight in hyprland.conf
 	{ "mbbill/undotree", cmd = { "UndotreeToggle", "UndotreeFocus" } }, -- undo tree
-	{ "ThePrimeagen/harpoon" }, -- harpoon
+	{ "christoomey/vim-tmux-navigator", event = "VimEnter" },
+	{ "ThePrimeagen/harpoon", event = "BufReadPre" }, -- harpoon
 }

@@ -1,5 +1,5 @@
 local cmp_status_ok, cmp = pcall(require, "cmp")
-local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+-- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 local utils = require("user.utils")
 if not cmp_status_ok then
 	vim.notify("Plugin nvim-cmp not found", "error")
@@ -48,7 +48,6 @@ local function format(entry, item)
 	--   crates = "crates",
 	--
 	-- })[entry.source.name]
-
 	item.menu = item.kind .. "" or ""
 	item.kind = (icons[item.kind] or icons.treesitter) -- .. "│"
 
@@ -63,9 +62,9 @@ local function format(entry, item)
 	return item
 end
 
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+-- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 cmp.setup({
-	preselect = "item",
+	preselect = cmp.PreselectMode.None,
 	-- Snippet
 	snippet = {
 		expand = function(args)
@@ -88,26 +87,10 @@ cmp.setup({
 		-- Set `select` to `false` to only confirm explicitly selected items.
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			-- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-			-- they way you will only jump inside the snippet region
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			elseif has_words_before() then
-				cmp.complete()
-			else
-				fallback()
-			end
+			luasnip.expand_or_jump()
 		end, { "i", "s" }),
 		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
+			luasnip.jump(-1)
 		end, {
 			"i",
 			"s",
@@ -116,49 +99,11 @@ cmp.setup({
 	formatting = {
 		fields = { "abbr", "kind", "menu" },
 		format = format,
-		-- 	format = function(entry, item)
-		-- 		local MAX_LABEL_WIDTH = 50
-		-- 		local function whitespace(max, len)
-		-- 			return (" "):rep(max - len)
-		-- 		end
-		--
-		-- 		-- Limit content width.
-		-- 		-- local content = item.abbr
-		-- 		-- if #content > MAX_LABEL_WIDTH then
-		-- 		-- 	item.abbr = vim.fn.strcharpart(content, 0, MAX_LABEL_WIDTH) .. "…"
-		-- 		-- else
-		-- 		-- 	item.abbr = content .. whitespace(MAX_LABEL_WIDTH, #content)
-		-- 		-- end
-		--
-		-- 		-- item.kind = string.format("%s %s", icons.kinds.icons[item.kind], item.kind) -- This concatenates the icons with the name of the item kind
-		-- 		-- item.kind = string.format("%s %s", item.kind, icons.kinds.icons[item.kind]) -- This concatenates the icons with the name of the item kind
-		--
-		-- 		item.menu = ({
-		-- 			nvim_lsp = "LSP",
-		-- 			nvim_lua = "LUA",
-		-- 			luasnip = "Snippet",
-		-- 			emmet_vim = "Emeet",
-		-- 			path = "Path",
-		-- 			buffer = "Text",
-		-- 			fonts = "Fonts",
-		-- 			fish = "Fish",
-		-- 			treesitter = "TS",
-		-- 			crates = "Crates",
-		-- 		})[entry.source.name]
-		-- 		if entry.source.name == "treesitter" then
-		-- 			item.kind = ""
-		-- 		end
-		-- 		item.kind = string.format("%s", icons.kinds.icons[item.kind])
-		-- 		-- item.menu = item.kind
-		-- 		-- item.kind = icons.kinds.icons[item.kind]
-		--
-		-- 		return item
-		-- 	end,
 	},
 	sources = {
 		{ name = "nvim_lsp" },
-		-- { name = "nvim_lua" },
-		{ name = "codeium" },
+		{ name = "nvim_lsp_signature_help" },
+		{ name = "codeium", max_item_count = 5},
 		{ name = "path" },
 		{ name = "luasnip" },
 		{ name = "buffer", keyword_length = 3 },

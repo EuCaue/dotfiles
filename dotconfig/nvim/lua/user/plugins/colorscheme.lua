@@ -1,6 +1,6 @@
 local utils = require("user.utils")
 
-local ad = {
+local poi = {
 	"olivercederborg/poimandres.nvim",
 	lazy = false,
 	priority = 1000,
@@ -70,86 +70,83 @@ local onedark = {
 	end,
 }
 
-local c = {
-	"titanzero/zephyrium",
+local t = {
+	"folke/tokyonight.nvim",
 	lazy = false,
 	priority = 1000,
 	config = function()
-		vim.cmd([[colorscheme zephyrium]])
-		vim.cmd([[hi Normal guibg=NONE ctermbg=NONE]])
-		vim.cmd([[hi NonText guibg=NONE ctermbg=NONE]])
-		vim.cmd([[hi VertSplit guibg=NONE ctermbg=NONE]])
-		vim.cmd([[hi Folded guibg=NONE ctermbg=NONE]])
-		vim.cmd([[hi SignColumn guibg=NONE ctermbg=NONE]])
-		vim.cmd([[hi LineNr guibg=NONE ctermbg=NONE]])
-		vim.cmd([[hi EndOfBuffer guibg=NONE ctermbg=NONE]])
-		vim.cmd([[hi StatusLine guibg=NONE ctermbg=NONE]])
-		vim.cmd([[hi StatusLineNC guibg=NONE ctermbg=NONE]])
+		require("tokyonight").setup({
+			style = "night", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+			light_style = "dark", -- The theme is used when the background is set to light
+			transparent = true, -- Enable this to disable setting the background color
+			terminal_colors = true, -- Configure the colors used when opening a `:terminal` in [Neovim](https://github.com/neovim/neovim)
+			styles = {
+				comments = { italic = true },
+				keywords = { italic = true },
+				functions = {},
+				variables = {},
+				-- Background styles. Can be "dark", "transparent" or "normal"
+				sidebars = "transparent", -- style for sidebars, see below
+				floats = "transparent", -- style for floating windows
+			},
+			sidebars = { "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
+		})
+		vim.cmd("colorscheme tokyonight")
 	end,
 }
 
-local d = {
-	"neanias/everforest-nvim",
-	version = false,
+local ma = {
+	"ramojus/mellifluous.nvim",
 	lazy = false,
-	priority = 1000, -- make sure to load this before all the other start plugins
-	-- Optional; default configuration will be used if setup isn't called.
+	priority = 1000,
 	config = function()
-		require("everforest").setup({
-			---Controls the "hardness" of the background. Options are "soft", "medium" or "hard".
-			---Default is "medium".
-			background = "medium",
-			---How much of the background should be transparent. 2 will have more UI
-			---components be transparent (e.g. status line background)
-			transparent_background_level = 2,
-			---Whether italics should be used for keywords and more.
-			italics = false,
-			---Disable italic fonts for comments. Comments are in italics by default, set
-			---this to `true` to make them _not_ italic!
-			disable_italic_comments = false,
-			---By default, the colour of the sign column background is the same as the as normal text
-			---background, but you can use a grey background by setting this to `"grey"`.
-			sign_column_background = "none",
-			---The contrast of line numbers, indent lines, etc. Options are `"high"` or
-			---`"low"` (default).
-			ui_contrast = "medium",
-			---Dim inactive windows. Only works in Neovim. Can look a bit weird with Telescope.
-			---
-			---When this option is used in conjunction with show_eob set to `false`, the
-			---end of the buffer will only be hidden inside the active window. Inside
-			---inactive windows, the end of buffer filler characters will be visible in
-			---dimmed symbols. This is due to the way Vim and Neovim handle `EndOfBuffer`.
-			dim_inactive_windows = false,
-			---Some plugins support highlighting error/warning/info/hint texts, by
-			---default these texts are only underlined, but you can use this option to
-			---also highlight the background of them.
-			diagnostic_text_highlight = false,
-			---Which colour the diagnostic text should be. Options are `"grey"` or `"coloured"` (default)
-			diagnostic_virtual_text = "coloured",
-			---Some plugins support highlighting error/warning/info/hint lines, but this
-			---feature is disabled by default in this colour scheme.
-			diagnostic_line_highlight = false,
-			---By default, this color scheme won't colour the foreground of |spell|, instead
-			---colored under curls will be used. If you also want to colour the foreground,
-			---set this option to `true`.
-			spell_foreground = false,
-			---Whether to show the EndOfBuffer highlight.
-			show_eob = false,
-			---You can override specific highlights to use other groups or a hex colour.
-			---This function will be called with the highlights and colour palette tables.
-			---@param highlight_groups Highlights
-			---@param palette Palette
-			on_highlights = function(highlight_groups, palette) end,
-			---You can override colours in the palette to use different hex colours.
-			---This function will be called once the base and background colours have
-			---been mixed on the palette.
-			---@param palette Palette
-			colours_override = function(palette) end,
+		require("mellifluous").setup({
+			dim_inactive = false,
+			color_set = "tender",
+			styles = { -- see :h attr-list for options. set {} for NONE, { option = true } for option
+				comments = { italic = true },
+				conditionals = {},
+				folds = { bold = true },
+				loops = {},
+				functions = {},
+				keywords = { italic = true },
+				strings = {},
+				variables = {},
+				numbers = {},
+				booleans = { italic = true },
+				properties = {},
+				types = { italic = true },
+				operators = {},
+			},
+			transparent_background = {
+				enabled = true,
+				floating_windows = true,
+				telescope = true,
+				file_tree = true,
+				cursor_line = true,
+				status_line = true,
+			},
+			flat_background = {
+				line_numbers = false,
+				floating_windows = true,
+				file_tree = false,
+				cursor_line_number = false,
+			},
+			plugins = {
+				cmp = true,
+				gitsigns = true,
+				indent_blankline = true,
+				telescope = {
+					enabled = true,
+					nvchad_like = true,
+				},
+				startify = true,
+			},
 		})
-		vim.cmd([[colorscheme everforest]])
+		vim.cmd("colorscheme mellifluous")
 	end,
 }
 
 return {
-	pale,
+	ma,
 }

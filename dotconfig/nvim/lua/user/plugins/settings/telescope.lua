@@ -11,9 +11,21 @@ local fb_actions = require("telescope._extensions.file_browser.actions")
 local grep_args = { "--hidden", "--glob", "!**/.git/*" }
 
 telescope.setup({
-	defaults = {
+	defaults = require("telescope.themes").get_dropdown({
 		initial_mode = "insert",
 		border = utils.border_status ~= "none",
+		results_title = false,
+		borderchars = {
+			{ "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+			prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
+			results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+			preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+		},
+
+		width = 0.8,
+		previewer = false,
+		preview = false,
+		prompt_title = false,
 
 		vimgrep_arguments = {
 			"rg",
@@ -25,18 +37,17 @@ telescope.setup({
 			"--smart-case",
 			"--hidden",
 		},
+
 		prompt_prefix = icons.ui.prompt_prefix,
 		selection_caret = icons.ui.selection_caret,
 		path_display = { "smart" },
 		mappings = {
 			i = {
-				["<C-n>"] = actions.cycle_history_next,
-				["<C-p>"] = actions.cycle_history_prev,
+				["<C-n>"] = actions.move_selection_next,
+				["<C-p>"] = actions.move_selection_previous,
 				["<C-j>"] = actions.move_selection_next,
 				["<C-k>"] = actions.move_selection_previous,
 				["<C-c>"] = actions.close,
-				["<Down>"] = actions.move_selection_next,
-				["<Up>"] = actions.move_selection_previous,
 				["<CR>"] = actions.select_default,
 				["<C-x>"] = actions.select_horizontal,
 				["<C-v>"] = actions.select_vertical,
@@ -79,7 +90,7 @@ telescope.setup({
 				["?"] = actions.which_key,
 			},
 		},
-	},
+	}),
 	pickers = {
 		oldfiles = {},
 		colorscheme = {
@@ -88,6 +99,22 @@ telescope.setup({
 		find_files = {
 			find_command = { "fd", "--type", "f", "--hidden", "--follow", "--exclude", ".git" },
 		},
+
+		buffers = {
+			sort_lastused = true,
+			sort_mru = true,
+			bufnr_width = 10,
+			mappings = {
+				i = {
+					["<c-d>"] = actions.delete_buffer,
+				},
+				n = {
+					["<c-d>"] = actions.delete_buffer,
+					["dd"] = actions.delete_buffer,
+				},
+			},
+		},
+
 		live_grep = {
 			only_sort_text = true,
 			additional_args = function()
@@ -106,9 +133,10 @@ telescope.setup({
 	extensions = {
 		file_browser = {
 			cwd_to_path = false,
+			initial_mode = "normal",
 			grouped = true,
 			select_buffer = true,
-			hijack_netrw = true,
+			hijack_netrw = false,
 			mappings = {
 				["i"] = {
 					["<bs>"] = false,
@@ -119,12 +147,12 @@ telescope.setup({
 			},
 		},
 		fzf = {
-			fuzzy = true, -- false will only do exact matching
+			fuzzy = false, -- false will only do exact matching
 			override_generic_sorter = true, -- override the generic sorter
 			override_file_sorter = true, -- override the file sorter
 			case_mode = "smart_case", -- or "ignore_case" or "respect_case"
 		},
-		telescope_code_actions = {},
+		-- telescope_code_actions = {},
 		project = {
 			base_dirs = {
 				{ "~/Dev/" },
@@ -133,16 +161,11 @@ telescope.setup({
 			order_by = "asc",
 		},
 	},
-	["ui-select"] = {
-		require("telescope.themes").get_dropdown({
-			-- even more opts
-		}),
-	},
 })
 
-require("telescope").load_extension("project")
-require("telescope").load_extension("harpoon")
-require("telescope").load_extension("undo")
+-- require("telescope").load_extension("ui-select")
+-- require("telescope").load_extension("fzf")
 require("telescope").load_extension("file_browser")
-require("telescope").load_extension("fzf")
-require("telescope").load_extension("ui-select")
+require("telescope").load_extension("project")
+-- require("telescope").load_extension("harpoon")
+require("telescope").load_extension("undo")

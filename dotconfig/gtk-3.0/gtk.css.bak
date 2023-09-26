@@ -1,3 +1,11 @@
+/*
+Generated with Gradience
+
+Issues caused by theming should be reported to Gradience repository, and not to upstream
+
+https://github.com/GradienceTeam/Gradience
+*/
+
 @define-color accent_color #1161cb;
 @define-color accent_bg_color @accent_color;
 @define-color accent_fg_color #ffffff;

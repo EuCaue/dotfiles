@@ -9,3 +9,4 @@ abbr -a -g rn mv # "rename"
 abbr -a -g c qalc # quick math
 abbr -a -g md mkdir
 abbr -a -g cpdf "gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf input.pdf"
+abbr -a -g tma "tmux attach -t"

@@ -25,8 +25,10 @@ const deletePreviousWallpapers = () => {
 };
 
 const setBG = (image) => {
-  spawn("killall", ["swaybg"]).stdin.end();
-  spawn("swaybg", ["-i", image, "-m", "fill"]).stdin.end();
+  const s = spawn("fish", [
+    "-c",
+    `swww img ${image} --transition-type grow --transition-pos "$(hyprctl cursorpos)"`,
+  ]).stdin.end();
   spawn("fish", ["-c", "set -e -U WALLPAPER"]).stdin.end();
   spawn("fish", ["-c", `set -Ux WALLPAPER ${image}`]).stdin.end();
   spawn("fish", [
@@ -40,7 +42,6 @@ const fetchApi = async () => {
     "https://wallhaven.cc/api/v1/search?sorting=random"
   );
   const jsonData = await response.json();
-  console.log(jsonData);
   const pathImage = jsonData.data[0].path;
   const id = jsonData.data[0].id;
   const fileType = jsonData.data[0].file_type.replace("image/", "");

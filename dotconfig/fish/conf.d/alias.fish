@@ -5,9 +5,9 @@ alias afg='nvim ~/.config/alacritty/alacritty.yml'
 alias ffg="nvim ~/.config/foot/foot.ini"
 alias hfg='nvim ~/.config/hypr/hyprland.conf'
 alias nft='nvim ~/.config/neofetch/config.conf'
-alias nfg='cd ~/.config/nvim/ && nvim ~/.config/nvim/init.lua && cd'
-alias wfg='cd ~/.config/wezterm/ && nvim ~/.config/wezterm/wezterm.lua && cd'
-alias tfg='cd ~/.config/tmux/ && nvim ~/.config/tmux/tmux.conf'
+alias nfg='cd ~/.config/nvim/ && nvim ~/.config/nvim/init.lua && prevd'
+alias wfg='cd ~/.config/wezterm/ && nvim ~/.config/wezterm/wezterm.lua && prevd'
+alias tfg='cd ~/.config/tmux/ && nvim ~/.config/tmux/tmux.conf && prevd'
 alias sus='paru'
 function gal --description "alias git add commit push"
     git add .
@@ -45,9 +45,9 @@ alias clearpkg='sus -Qtdq | sus -Rns -'
 alias dumpkgs='sus -Qq > $HOME/dotfiles/pkgs.txt'
 
 function stats --description "Show custom variables"
-    echo $CURSOR
-    echo $CURSORSIZE
-    echo $FONT_NAME
+    echo "Cursor: $CURSOR"
+    echo "Cursor Size: $CURSORSIZE"
+    echo "Font: $FONT_NAME"
 end
 
 function mkcd --description "mkdir with cd"
@@ -60,7 +60,7 @@ function gcl --description "Clone to gitclone folder and cd"
 end
 
 function vf --description "open in nvim with fzf "
-    ls | set file $(fzf)
+    ls | set file $(fzf --prompt "Select File " --pointer "->" --multi)
     if test -z $file
         echo "Select a file!"
         return 1
@@ -77,7 +77,7 @@ alias cr="cargo run"
 alias wf='wfetch'
 alias remirror='sudo reflector -c BR -f 2 -l 20 -n 10 --save /etc/pacman.d/mirrorlist'
 function img --description "Display image"
-    if test "$TERM" = foot
+    if test "$TERM" = foot; or test "$TERM" = xterm-256color
         img2sixel $argv
         return
     end
@@ -98,6 +98,10 @@ function imgall --description "display all images in the current folder"
         img $file
     end
     return 0
+end
+
+function pc --description "better copy command"
+    eval $argv | wl-copy
 end
 
 function mvcur --description "Move cursor to icons folder"

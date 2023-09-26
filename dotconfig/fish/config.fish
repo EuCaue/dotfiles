@@ -5,10 +5,11 @@ if status is-interactive
     set fish_greeting "
  I use arch BTW ඞ
   "
-    # if test -z "$TMUX"
-    #     tmux attach || tmux
-    # end
+    # BEST THING 
     echo -en '\e]22;ibeam\e\\'
+    if test -z "$TMUX"
+        tmux attach -t home || tmux new -s home
+    end
 
     # if test "$TERM" = foot
     #     sleep 0.1
@@ -30,10 +31,9 @@ if status is-interactive
     # end
 
     # neofetch --ascii --source ~/dotfiles/dotconfig/neofetch/ascii.txt
-    echo $( hyprctl splash )
+    echo $(hyprctl splash)
 end
 set --global fish_color_error brred --bold
 bind yy fish_clipboard_copy
 bind Y fish_clipboard_copy
 bind p fish_clipboard_paste
-echo -en '\e]22;ibeam\e\\'

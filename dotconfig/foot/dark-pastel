@@ -1,8 +1,8 @@
 # -*- conf -*-
-# fail 
+# dark pastel 
  
 [cursor]
-color=000000 ffffff
+color=000000 99c1f1 
 
 [colors]
 background=000000
@@ -13,7 +13,7 @@ regular0=000000 # black
 regular1=ff5555 # red
 regular2=55ff55 # green
 regular3=ffff55 # yellow
-regular4=5555ff # blue
+regular4=1161cb # blue
 regular5=ff55ff # magenta
 regular6=55ffff # cyan
 regular7=bbbbbb # white 

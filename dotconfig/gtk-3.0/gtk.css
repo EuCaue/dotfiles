@@ -84,11 +84,39 @@ https://github.com/GradienceTeam/Gradience
 @define-color dark_3 #3d3846;
 @define-color dark_4 #241f31;
 @define-color dark_5 #000000;
-button.titlebutton { /* GTK3 */
+/* GTK3 */
+
+button.titlebutton {
   color: transparent;
-  min-width: 18px;
-  min-height: 18px;
+  min-width: 2px;
+  min-height: 2px;
+  border-radius: 100%;
+  padding: 0;
+  margin: 0 5px;
+  background-color: #505050;
+  border: none;
 }
-button.titlebutton:backdrop {
-  opacity: 0.5;
+
+button.titlebutton:hover {
+  opacity: 0.8;
+}
+
+button.titlebutton image {
+  padding: 0;
+}
+
+button.titlebutton.close,
+button.titlebutton.maximize,
+button.titlebutton.minimize {
+  background-color: #505050;
+}
+
+button.titlebutton.close:hover,
+button.titlebutton.maximize:hover,
+button.titlebutton.minimize:hover {
+  opacity: 0.8;
+}
+
+.navigation-sidebar {
+background-color: #000000;
 }

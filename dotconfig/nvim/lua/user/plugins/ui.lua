@@ -72,7 +72,7 @@ return {
 
 	{
 		"shellRaining/hlchunk.nvim",
-		event = { "UIEnter" },
+		event = { "BufReadPost" },
 		config = function()
 			require("user.plugins.settings.hlchunk")
 		end,
@@ -140,5 +140,4 @@ return {
 	{ "MunifTanjim/nui.nvim", lazy = true },
 	{ "nvim-lua/plenary.nvim", lazy = true },
 	{ "nvim-lua/popup.nvim", lazy = true }, -- PopUp API for neovim
-	{ "nvim-telescope/telescope-ui-select.nvim" }, -- wrap vim.ui()
 }

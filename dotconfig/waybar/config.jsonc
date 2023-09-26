@@ -1,9 +1,8 @@
-// vim: set ft=jsonc :
 {
   "gtk-layer-shell": true,
   "layer": "top", // Waybar at top layer
   "position": "top", // Waybar position (top|bottom|left|right)
-  "spacing": 9, // Gaps between modules 
+  "spacing": 9, // Gaps between modules
   "margin-top": 5,
   "margin-left": 15,
   "margin-right": 15,
@@ -33,7 +32,7 @@
       "6": "<span font='14'>󰊗</span>",
       "7": "<span font='14'>󱞁</span>",
       "8": "<span font='14'>󱁯</span>",
-      "urgent": "",
+      "urgent": "<span color='#c01c28' font='14'></span>",
       "default": "",
       "persistent": "persistent",
       "empty": "empty"
@@ -153,7 +152,7 @@
   "hyprland/window": {
     "format": "{}",
     "separate-outputs": true,
-    "max-length": 30,
+    "max-length": 30
   },
   "battery": {
     "interval": 60,
@@ -171,7 +170,7 @@
     ],
     "max-length": 25,
     "tooltip": true,
-    "tooltip-format": "{capacity}%, {timeTo}",
+    "tooltip-format": "{capacity}%, {timeTo}"
   },
   "backlight": {
     "device": "acpi_video1",

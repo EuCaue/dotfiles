@@ -1,7 +1,7 @@
-local utils = require("user.utils")
 local function augroup(name)
 	return vim.api.nvim_create_augroup("augroup" .. name, { clear = true })
 end
+
 -- close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
 	group = augroup("close_with_q"),
@@ -53,20 +53,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end,
 })
 
--- check with eslint exist
-vim.api.nvim_create_autocmd("BufWritePre", {
-	group = augroup("eslint_exists"),
-	pattern = { "*" },
-	callback = function()
-		local root_dir = vim.fn.getcwd()
-		local eslint_config_path = vim.fn.expand(root_dir .. "/*.eslint*")
-		local eslint_config_exists = vim.loop.fs_stat(eslint_config_path)
-		if eslint_config_exists ~= nil then
-			vim.cmd("EslintFixAll")
-		end
-	end,
-})
-
 -- better highlight on styled.js
 vim.api.nvim_create_autocmd("BufReadPost", {
 	group = augroup("styled"),
@@ -84,6 +70,7 @@ vim.api.nvim_create_autocmd("BufNew", {
 		--  TODO: make this get the colorscheme
 		vim.cmd("hi FlashLabel guifg=White guibg=#E55C67 cterm=bold")
 		vim.cmd("hi FlashLabel guifg=White guibg=#E55C67 cterm=bold")
+		vim.cmd("highlight Pmenu guifg=NONE guibg=NONE")
 	end,
 })
 
@@ -109,5 +96,3 @@ vim.api.nvim_create_autocmd("WinLeave", {
 		end
 	end,
 })
-
-vim.api.nvim_create_user_command("BG", utils.toggle_transparency, {})

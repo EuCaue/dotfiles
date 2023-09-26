@@ -2,10 +2,10 @@
 set -e -U FONT_NAME
 
 if test $TERM = linux
-    set -Ux FONT_NAME $(fc-list --format="%{family}\n" | cut -d , -f 1 | sort | uniq | rofi -dmenu)
+    set -Ux FONT_NAME $(fc-list --format="%{family}\n" | cut -d , -f 1 | sort | uniq | fuzzel --dmenu)
 else
     if test -z $argv[1]
-        set -Ux FONT_NAME "Lilex Nerd Font"
+        set -Ux FONT_NAME "GoMono Nerd Font"
     else
         set -Ux FONT_NAME $argv[1]
     end
@@ -13,6 +13,16 @@ end
 
 if test -z $FONT_NAME
     return 1
+end
+
+function verify_status_bar
+    if pgrep waybar
+        killall waybar && waybar & disown &
+    end
+
+    if pgrep ags
+        killall ags && ags & disown &
+    end
 end
 
 function change_font
@@ -28,7 +38,8 @@ function change_font
     sed -i "s#^\(font=\)[^:]*#\1$FONT_NAME#" $HOME/.config/fuzzel/fuzzel.ini
     sed -i "s#\(font-family: \).*#\1\"$FONT_NAME\";#" $HOME/dotfiles/dotconfig/waybar/style.css
     sed -i "s#\(font-family: \).*#\1\"$FONT_NAME\";#" $HOME/.config/eww/eww.scss
-    killall waybar && waybar & disown &
+    sed -i "s#\(font-family: \).*#\1\"$FONT_NAME\";#" $HOME/.config/ags/style.css
+    verify_status_bar
     sed -i "s#\(font: \).*#\1\"$FONT_NAME 13\";#" $HOME/dotfiles/dotconfig/rofi/config.rasi
     sed -i 's@user_pref("font.name.monospace.x-western",[^)]*)@user_pref("font.name.monospace.x-western", "'$FONT_NAME'")@g' /home/caue/.mozilla/firefox/9tzkj9s8.default-release/user.js
     sed -i 's@user_pref("font.name.sans-serif.x-western",[^)]*)@user_pref("font.name.sans-serif.x-western", "'$FONT_NAME'")@g' /home/caue/.mozilla/firefox/9tzkj9s8.default-release/user.js
@@ -36,6 +47,6 @@ function change_font
     gsettings set org.gnome.desktop.interface font-name $FONT_NAME
     gsettings set org.gnome.desktop.interface document-font-name $FONT_NAME
     gsettings set org.gnome.desktop.interface monospace-font-name $FONT_NAME
-
-    change_font
-
+end
+change_font
+verify_status_bar

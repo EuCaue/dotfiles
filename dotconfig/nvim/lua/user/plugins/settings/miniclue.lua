@@ -47,6 +47,7 @@ miniclue.setup({
 		{ mode = "n", keys = "<Leader>s", desc = "+Session" },
 		{ mode = "n", keys = "<Leader>t", desc = "+Tab" },
 		{ mode = "n", keys = "<Leader>l", desc = "+LSP" },
+		{ mode = "n", keys = "<Leader>h", desc = "+Harpoon" },
 		{ mode = "n", keys = "gcm", desc = "+Comment" },
 	},
 

@@ -1,4 +1,5 @@
-#!/bin/bash 
+#!/bin/bash
 swayidle -w \
-      timeout 120 ' swaylock ' \
-      before-sleep 'swaylock'
+	timeout 120 ' swaylock -f' \
+	before-sleep 'swaylock -f'
+

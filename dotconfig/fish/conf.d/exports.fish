@@ -1,4 +1,3 @@
-# NOTE: QT/Wayland
 set -x QT_QPA_PLATFORM wayland
 set -x MOZ_ENABLE_WAYLAND 1
 set -x QT_QPA_PLATFORMTHEME gnome
@@ -13,3 +12,13 @@ fish_add_path "$HOME/.local/bin:$PATH"
 fish_add_path "$HOME/dotfiles/scripts/"
 fish_add_path "/home/caue/.spicetify"
 fish_add_path "/home/caue/.local/bin/"
+
+set -x FZF_DEFAULT_OPTS "
+    --margin=20%,10%,20%
+    --layout=reverse
+    --preview-window=hidden:0%
+    --pointer="󰋇"
+    --no-preview
+    --ansi
+    --color=bg:-1,bg+:236,spinner:#FFFFFF,hl:#1161cb,fg:-1,header:#FFFFFF,info:#101010,prompt:#FFFFFF,pointer:#1161cb,marker:#1161cb,fg+:250,hl+:#1161cb
+"

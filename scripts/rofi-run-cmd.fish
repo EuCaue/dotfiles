@@ -1,2 +1,2 @@
 #!/usr/bin/env fish
-fish -c "$(rofi -dmenu -p 'Run command' -theme-str 'listview {lines: 0;}')"
+fish -c "$(fuzzel --dmenu -p 'Run command: ' --lines 0)"

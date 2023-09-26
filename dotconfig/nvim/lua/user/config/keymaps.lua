@@ -1,6 +1,7 @@
 local function get_opts(desc, expr)
 	return { noremap = true, silent = true, desc = desc, expr = expr or false }
 end
+local c = require("user.utils")
 
 local map = function(modes, key, cmd, opts)
 	vim.keymap.set(modes, key, cmd, opts)
@@ -25,7 +26,9 @@ vim.g.maplocalleader = " "
 -- | . \  __/ |_| | | | | | | (_| | |_) \__ \
 -- |_|\_\___|\__, |_| |_| |_|\__,_| .__/|___/
 --           |___/                |_|
+
 map({ "n", "i" }, "<C-s>", "<cmd>write!<cr>", get_opts("Write"))
+map("n", "<leader>q", "<cmd>q!<cr>", get_opts("Quit"))
 map("n", "<leader>qq", "<cmd>qa!<cr>", get_opts("Quit"))
 map("n", "<leader>aa", "gg<S-v>G", get_opts("Select all"))
 map("n", "<C-S-t>", "<cmd>e#<cr>", get_opts("Reopen the last closed buffer"))
@@ -37,9 +40,14 @@ map("n", "<leader>U", "gU", get_opts("Easy Caps"))
 map("n", "<leader>u", "gu", get_opts("Easy Uncaps"))
 map("n", "<leader><leader>s", "<cmd>spellrepall<cr>", get_opts("Fix all spell problem"))
 map("n", "vv", "viw", get_opts("Select word under cursor"))
-map("n", "<leader><leader>sc", "<cmd>luafile %<cr>", get_opts("Source current file"))
+
+-- Moviment
 map("n", "<A-j>", "5j", get_opts("Down 5 lines "))
 map("n", "<A-k>", "5k", get_opts("Up 5 Lines"))
+map("n", "<C-d>", "<C-d>zz", get_opts("Scroll down half a page"))
+map("n", "<C-d>", "<C-d>zz", get_opts("Scroll down half a page"))
+map("n", "n", "nzzzv", get_opts("Scroll up half a page"))
+map("n", "N", "Nzzzv", get_opts("Scroll up half a page"))
 
 -- Better J/K
 map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'gj']], get_opts("Jump list relative line jump", true))
@@ -52,37 +60,11 @@ map({ "n", "v" }, "<leader>p", '"+p', get_opts("Paste from system clipboard"))
 map({ "n", "v" }, "<leader>d", '"_d', get_opts("Delete for the void register"))
 map({ "v", "x" }, "p", '"_dP', get_opts("greatest remap ever"))
 
--- Comment
-
-vim.api.nvim_set_keymap(
-	"n",
-	"gcmt",
-	"gcO TODO:<Right> ",
-	{ silent = true, noremap = false, desc = "Create a todo comment" }
-)
-
-vim.api.nvim_set_keymap(
-	"n",
-	"gcmf",
-	"gcO FIX:<Right> ",
-	{ silent = true, noremap = false, desc = "Create a fix comment" }
-)
-
-vim.api.nvim_set_keymap(
-	"n",
-	"gcmb",
-	"gcO BUG:<Right> ",
-	{ silent = true, noremap = false, desc = "Create a bug comment" }
-)
-
-vim.api.nvim_set_keymap(
-	"n",
-	"gcmn",
-	"gcO NOTE:<Right> ",
-	{ silent = true, noremap = false, desc = "Create a note comment" }
-)
-
 map("n", "<leader>re", ":%s//<Left>", get_opts("Rename with substitute command"))
+
+map("n", "<C-t>", "<cmd>Ha<cr>", get_opts("Build and run"))
+map("n", "<leader><leader>r", "<cmd>Ha<cr>", get_opts("Run"))
+map("n", "<leader><leader>b", "<cmd>Ha<cr>", get_opts("Build"))
 
 map(
 	{ "n", "v" },
@@ -147,6 +129,34 @@ map("n", "<A-c>", "<cmd>bp | sp | bn | bd<cr>", get_opts("Close current buffer")
 map({ "n", "i", "x" }, "<C-_>", "<cmd>normal gcA<cr>", get_opts("Comment"))
 map({ "n", "i", "x" }, "<C-/>", "<cmd>normal gcA<cr>", get_opts("Comment"))
 
+vim.api.nvim_set_keymap(
+	"n",
+	"gcmt",
+	"gcO TODO:<Right> ",
+	{ silent = true, noremap = false, desc = "Create a todo comment" }
+)
+
+vim.api.nvim_set_keymap(
+	"n",
+	"gcmf",
+	"gcO FIX:<Right> ",
+	{ silent = true, noremap = false, desc = "Create a fix comment" }
+)
+
+vim.api.nvim_set_keymap(
+	"n",
+	"gcmb",
+	"gcO BUG:<Right> ",
+	{ silent = true, noremap = false, desc = "Create a bug comment" }
+)
+
+vim.api.nvim_set_keymap(
+	"n",
+	"gcmn",
+	"gcO NOTE:<Right> ",
+	{ silent = true, noremap = false, desc = "Create a note comment" }
+)
+
 -- Telescope
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", get_opts("Recent Files"))
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", get_opts("Find Files"))
@@ -190,29 +200,34 @@ map({ "n", "v" }, "<leader><leader>l", "<cmd>Lazy<cr>", get_opts("Open Lazy"))
 
 -- Git
 map({ "n", "v" }, "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", get_opts("Preview Git Hunk"))
-map({ "n", "v" }, "<leader>gb", "<cmd>Gitsigns blame_line<cr>", get_opts("Blame Line"))
+map({ "n", "v" }, "<leader>gb", "<cmd>Gitsigns blame_line<cr>", get_opts("Git Blame Line"))
+map({ "n", "v" }, "<leader>gf", "<cmd>Neogit kind=floating<cr>", get_opts("Neogit floating"))
+map({ "n", "v" }, "<leader>gv", "<cmd>Neogit kind=vsplit<cr>", get_opts("Neogit vsplit"))
 
 -- Markdown
 -- map({ "n", "v" }, "<leader>mg", "<cmd>Glow<cr>", get_opts("Open glow in the current file"))
-map("n", "<leader>mf", "<cmd>Flote<cr>", get_opts("Open Flote"))
+-- map("n", "<leader>mf", "<cmd>Flote<cr>", get_opts("Open Flote"))
 
 -- ToggleTerm
-map("n", "<C-t>", "<cmd>ToggleTerm<cr>", get_opts("ToggleTerm float"))
+-- map("n", "<C-t>", "<cmd>ToggleTerm<cr>", get_opts("ToggleTerm float"))
 map("n", "<leader><leader><leader>t", "<cmd>ToggleTerm direction=horizontal size=5<cr>", get_opts("ToggleTerm"))
 
 -- Neotree
 -- map("n", "<leader>n", "<cmd>Neotree toggle<cr>", get_opts("Neotree toggle"))
 -- map("n", "<leader>nf", "<cmd>Neotree focus<cr>", get_opts("Neotree focus"))
 
-map("n", "<leader>dt", "<cmd>cd ~/dotfiles/ | Neotree toggle<cr>", get_opts("Go to dotfiles"))
-map("n", "<leader>vf", "<cmd>lua MiniFiles.open()<cr>", get_opts("Open MiniFiles"))
+-- map("n", "<leader>dt", "<cmd>cd ~/dotfiles/ | Neotree toggle<cr>", get_opts("Go to dotfiles"))
+map("n", "<leader>mf", "<cmd>lua MiniFiles.open()<cr>", get_opts("Open MiniFiles"))
 
 -- Muren
-map({ "n", "v" }, "<leader>rm", "<cmd>MurenToggle<cr>", get_opts("Replace with Muren"))
+-- map({ "n", "v" }, "<leader>rm", "<cmd>MurenToggle<cr>", get_opts("Replace with Muren"))
 
 -- Hop
 -- map("n", "<leader>H", ":HopChar2<cr>", get_opts("Hop to Char"))
-map("n", "<leader>H", ":HopWord<cr>", get_opts("Hop to Word"))
+-- map("n", "<leader>H", ":HopWord<cr>", get_opts("Hop to Word"))
+
+-- fold
+map("n", "zp", "<cmd>lua require('ufo').peekFoldedLinesUnderCursor()<cr>", get_opts("Preview fold"))
 
 -- Notify
 map(
@@ -221,6 +236,11 @@ map(
 	"<cmd>lua require('notify').dismiss({ silent = true, pending = true })<cr>",
 	get_opts("Close all notifications")
 )
+
+-- CCC
+
+map("n", "<leader>ct", "<cmd>CccConvert<cr>", get_opts("Toggle color type"))
+map("n", "<leader>cp", "<cmd>CccPick<cr>", get_opts("Open color picker"))
 
 -- Center screen
 -- map("n", "<leader>nc", "<cmd>NoNeckPain<cr>", get_opts("Center the screen"))

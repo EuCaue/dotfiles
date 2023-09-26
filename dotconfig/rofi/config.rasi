@@ -22,7 +22,7 @@ configuration {
 
 
 * {
-    bg:  #000000;
+    bg:  #00000090;
     cur: #99c1f1;
     fgd: #ffffff;
     cmt: #5e5c64;
@@ -81,7 +81,7 @@ configuration {
 }
 
 #element.normal.normal {
-    background-color: @background;
+    background-color: #00000000; 
     text-color:       @foreground;
 }
 #element.normal.urgent {
@@ -106,7 +106,7 @@ configuration {
 }
     
 #element.alternate.normal {
-    background-color: @background;
+    background-color: #00000000; 
     text-color:       @foreground;
 }
 

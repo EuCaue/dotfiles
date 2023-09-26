@@ -1,28 +1,42 @@
 #!/usr/bin/env fish
-set option1 " Print: 1"\n
-set option2 "Record: 2"\n
-set option3 "Record screen: 3"\n
-set option4 "Stop Recording: 4"
-set o $option1 $option2 $option3 $option4
 
-set mode $(echo $o | rofi -dmenu -p "Select") &&
-    echo $mode &
 
-switch $mode
+function menu_options
+    echo "1. Print Screen"
+    echo "2. Print Area"
+    echo "3. Print Window"
+end
 
-    case ' Print: 1'
-        echo a &
-        grim -g "$(slurp -d)" - | swappy -f -
+function print_screen
+    sleep 0.5 &&
+        grim - | swappy -f -
+end
 
-    case ' Record: 2'
-        echo b &
-        notify-send Recording && wf-recorder -g "$(slurp -d)" -a -f ~/Videos/Screencasts/"$(date +'Screencast from %Y-%m-%d %H:%M:%S.mp4')"
+function print_area
+    grim -g "$(slurp -d)" - | swappy -f -
+end
 
-    case ' Record screen: 3'
-        echo b &
-        notify-send Recording && wf-recorder -a -f ~/Videos/Screencasts/"$(date +'Screencast from %Y-%m-%d %H:%M:%S.mp4')"
+function print_window
+    set hyprvars (hyprctl activewindow -j | cut -d' ' -f2- | head -n -1 | tail -n +4)
+    set jqvars (echo -e "{\n$hyprvars\n}" | jq -r ".at,.size" | jq -s "add" | jq '_nwise(4)' | jq -r '"\(.[0]),\(.[1]) \(.[2])x\(.[3])"')
+    sleep 0.5 &&
+        grim -g "$jqvars" - | swappy -f -
+end
 
-    case ' Stop Recording: 4'
-        echo c &
-        killall -s SIGINT wf-recorder & notify-send "Stop Recording"
+if test $argv[1] = window
+    print_window
+    return 1
+end
+
+set choice_print $(menu_options | fuzzel --dmenu -p "Print mode: " --lines 3| cut -d. -f1 )
+
+switch $choice_print
+    case 1
+        print_screen
+
+    case 2
+        print_area
+
+    case 3
+        print_window
 end
