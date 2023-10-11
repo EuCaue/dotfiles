@@ -1,0 +1,26 @@
+# theme
+
+colors:
+  primary:
+    background: "#000000"
+    foreground: "#a7a39c"
+
+  normal:
+    black: "#000000"
+    red: "#f7b63e"
+    green: "#7fb5e1"
+    yellow: "#d6da24"
+    blue: "#489d48"
+    magenta: "#b295c5"
+    cyan: "#f4bed6"
+    white: "#a7a39c"
+
+  bright:
+    black: "#716d69"
+    red: "#f7b63e"
+    green: "#7fb5e1"
+    yellow: "#d6da24"
+    blue: "#489d48"
+    magenta: "#b295c5"
+    cyan: "#f4bed6"
+    white: "#fefbe9"

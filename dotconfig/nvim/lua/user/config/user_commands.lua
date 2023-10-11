@@ -80,6 +80,10 @@ cmd("Run", function()
 	end
 end, {})
 
+cmd("ToggleInlayHints", function()
+	vim.lsp.inlay_hint(0, true)
+end, {})
+
 cmd("Ha", function()
 	vim.cmd([[Build]])
 	vim.cmd([[Run]])

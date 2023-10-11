@@ -379,7 +379,7 @@ const Bar = ({ monitor } = {}) =>
     name: `bar${monitor || ""}`, // name has to be unique
     className: "bar",
     monitor,
-    ////////margin: [5, 15, 0, 15],
+    //////////margin: [5, 15, 0, 15],
     margin: [0, 0, 0, 0],
     anchor: ["top", "left", "right"],
     exclusive: true,
