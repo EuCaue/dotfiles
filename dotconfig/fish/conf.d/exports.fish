@@ -22,3 +22,10 @@ set -x FZF_DEFAULT_OPTS "
     --ansi
     --color=bg:-1,bg+:236,spinner:#FFFFFF,hl:#1161cb,fg:-1,header:#FFFFFF,info:#101010,prompt:#FFFFFF,pointer:#1161cb,marker:#1161cb,fg+:250,hl+:#1161cb
 "
+
+# pnpm
+set -gx PNPM_HOME "/home/caue/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+    set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end

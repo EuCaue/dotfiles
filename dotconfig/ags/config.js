@@ -54,11 +54,11 @@ const Workspaces = () =>
       [
         Hyprland,
         (box) => {
-          const workspacesWithWindows = Object.values(
-            Hyprland.workspaces
-          ).filter((w) => {
-            return !w.name.startsWith("special");
-          }).sort((a, b) => a.id - b.id);
+          const workspacesWithWindows = Object.values(Hyprland.workspaces)
+            .filter((w) => {
+              return !w.name.startsWith("special");
+            })
+            .sort((a, b) => a.id - b.id);
 
           box.children = workspacesWithWindows.map((i) => {
             return Button({
@@ -130,35 +130,60 @@ const systemtray = Box({
                 },
               ],
             ],
-          })
+          }),
         );
       },
     ],
   ],
 });
 
+let showDateOrTime = ags.Variable(true);
+
 const Clock = () =>
-  Box({
-    className: "clock",
-    children: [
-      Label({
-        justification: "center",
-        className: "clock-icon",
-        label: "󰥔 ",
-      }),
-      Label({
-        justification: "center",
-        connections: [
-          [
-            1000,
-            (label) =>
-              execAsync(["date", "+%H:%M:%S"])
-                .then((date) => (label.label = `${date}`))
-                .catch(console.error),
+  EventBox({
+    onPrimaryClick: () => showDateOrTime.setValue(!showDateOrTime.value),
+    child: Box({
+      className: "clock",
+      children: [
+        Label({
+          justification: "center",
+          className: "clock-icon",
+          connections: [
+            [
+              showDateOrTime,
+              (label) => (label.label = showDateOrTime.value ? "󰥔 " : "󰃮 "),
+            ],
           ],
-        ],
-      }),
-    ],
+        }),
+        Label({
+          justification: "center",
+          connections: [
+            [
+              1000,
+              (label) =>
+                showDateOrTime.value
+                  ? execAsync(["date", "+%H:%M:%S"])
+                      .then((date) => (label.label = `${date}`))
+                      .catch(console.error)
+                  : execAsync(["date", "+%d-%a %m-%b %y"])
+                      .then((date) => (label.label = `${date}`))
+                      .catch(console.error),
+            ],
+            [
+              showDateOrTime,
+              (label) =>
+                showDateOrTime.value
+                  ? execAsync(["date", "+%H:%M:%S"])
+                      .then((date) => (label.label = `${date}`))
+                      .catch(console.error)
+                  : execAsync(["date", "+%d-%a %m-%b %y"])
+                      .then((date) => (label.label = `${date}`))
+                      .catch(console.error),
+            ],
+          ],
+        }),
+      ],
+    }),
   });
 
 // we don't need dunst or any other notification daemon
@@ -354,7 +379,8 @@ const Bar = ({ monitor } = {}) =>
     name: `bar${monitor || ""}`, // name has to be unique
     className: "bar",
     monitor,
-    margin: [5, 15, 0, 15],
+    ////////margin: [5, 15, 0, 15],
+    margin: [0, 0, 0, 0],
     anchor: ["top", "left", "right"],
     exclusive: true,
     child: CenterBox({

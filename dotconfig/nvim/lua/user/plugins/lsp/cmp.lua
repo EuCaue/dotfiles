@@ -52,11 +52,11 @@ local function format(entry, item)
 	item.kind = (icons[item.kind] or icons.treesitter) -- .. "│"
 
 	if entry.source.name == "fonts" then
-		item.kind = " " -- .. "│"
+		item.kind = "󰞂 " -- .. "│"
 	end
 
 	if entry.source.name == "codeium" then
-		item.kind = "󰘦 " --  .. "│"
+		item.kind = "󰚩 " --  .. "│"
 	end
 
 	return item
@@ -101,14 +101,14 @@ cmp.setup({
 		format = format,
 	},
 	sources = {
-		{ name = "nvim_lsp" },
+		{ name = "nvim_lsp", max_item_count = 5 },
 		{ name = "nvim_lsp_signature_help" },
-		{ name = "codeium", max_item_count = 5},
-		{ name = "path" },
-		{ name = "luasnip" },
+		{ name = "codeium", max_item_count = 5 },
+		{ name = "path", max_item_count = 5 },
+		{ name = "luasnip", max_item_count = 5 },
 		{ name = "buffer", keyword_length = 3 },
-		{ name = "fish" },
-		{ name = "fonts", option = { space_filter = "-" } },
+		-- { name = "fish" },
+		-- { name = "fonts", option = { space_filter = "-" } },
 	},
 
 	sorting = {
@@ -153,9 +153,11 @@ cmp.setup.cmdline({ "/", "?" }, {
 	},
 })
 
--- cmp.setup.filetype({ "fish" },
---   { sources = { { name = "fish" } } })
-
+cmp.setup.filetype({ "fish" }, { sources = { { name = "fish" } } })
+cmp.setup.filetype(
+	{ "conf", "config", "markdown", "txt", "yaml", "dosini", "fish", "sh", "bash" },
+	{ sources = { { name = "fonts", option = { space_filter = "-" } } } }
+)
 cmp.setup.cmdline(":", {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({

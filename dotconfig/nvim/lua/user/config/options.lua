@@ -5,12 +5,19 @@
 local opt = vim.opt
 local g = vim.g
 
+--   ___        _   _
+--  / _ \ _ __ | |_(_) ___  _ __  ___
+-- | | | | '_ \| __| |/ _ \| '_ \/ __|
+-- | |_| | |_) | |_| | (_) | | | \__ \
+--  \___/| .__/ \__|_|\___/|_| |_|___/
+--       |_|
+
 opt.backup = false -- creates a backup file
 opt.background = "dark"
 opt.clipboard = "" -- allows neovim to access the system clipboard
 opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
 opt.completeopt = { "menu", "menuone", "preview", "noselect" } -- mostly just for cmp
-opt.conceallevel = 2 -- so that `` is visible in markdown files
+opt.conceallevel = 0 -- so that `` is visible in markdown files
 opt.fileencoding = "utf-8" -- the encoding written to a file
 opt.hlsearch = true -- highlight all matches on previous search pattern
 opt.ignorecase = true -- ignore case in search patterns
@@ -18,6 +25,8 @@ opt.mouse = "" -- allow the mouse to be used in neovim
 opt.pumheight = 15 -- pop up menu height
 opt.showmode = false -- we don't need to see things like -- INSERT -- anymore
 opt.fillchars = { fold = "0", eob = " " }
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldtext = "v:lua.vim.treesitter.foldtext()"
 opt.foldmethod = "indent"
 opt.foldcolumn = "0" -- '0' is not bad
 opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
@@ -30,6 +39,7 @@ opt.smartindent = true -- make indenting smarter again
 opt.splitbelow = true -- force all horizontal splits to go below current window
 opt.splitright = true -- force all vertical splits to go to the right of current window
 opt.swapfile = false -- creates a swapfile
+-- opt.guicursor = "guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 -- opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
 opt.guicursor = "n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50"
 opt.termguicolors = true -- set term gui colors (most terminals support this)
@@ -40,7 +50,7 @@ opt.writebackup = false -- if a file is being edited by another program (or was 
 opt.expandtab = true -- convert tabs to spaces
 opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
 opt.tabstop = 2 -- insert 2 spaces for a tab
-opt.incsearch = true
+opt.incsearch = true -- incremental search
 opt.softtabstop = 2 -- insert 2 spaces for a tab
 opt.cursorline = true -- highlight the current line
 opt.number = true -- set numbered lines
@@ -56,6 +66,13 @@ opt.splitkeep = "screen"
 opt.shortmess:append({ C = true })
 opt.iskeyword:append("-") -- Treat dash separated words as a word text object
 
+--   ____    ___        _   _
+--  / ___|  / _ \ _ __ | |_(_) ___  _ __  ___
+-- | |  _  | | | | '_ \| __| |/ _ \| '_ \/ __|
+-- | |_| | | |_| | |_) | |_| | (_) | | | \__ \
+--  \____|  \___/| .__/ \__|_|\___/|_| |_|___/
+--               |_|
+
 g.loaded_gzip = 1
 g.loaded_zip = 1
 g.loaded_zipPlugin = 1
@@ -69,11 +86,13 @@ g.loaded_vimballPlugin = 1
 g.loaded_2html_plugin = 1
 
 g.loaded_matchit = 1
-g.loaded_matchparen = 1
+-- g.loaded_matchparen = 1
 g.loaded_logiPat = 1
 g.loaded_rrhelper = 1
 
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
-g.loaded_netrwSettings = 1
-g.loaded_netrwFileHandlers = 1
+g.netrw_keepdir = 0
+g.netrw_banner = 0
+-- g.loaded_netrw = 1
+-- g.loaded_netrwPlugin = 1
+-- g.loaded_netrwSettings = 1
+-- g.loaded_netrwFileHandlers = 1

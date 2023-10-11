@@ -2,10 +2,10 @@
 # Vscode like 
 
 [cursor]
-color=1e1e1e ffffff
+color=000000 26a269 
 
 [colors]
-background=1e1e1e
+background=000000
 foreground=cccccc
 
 # Normal/regular colors (color palette 0-7)

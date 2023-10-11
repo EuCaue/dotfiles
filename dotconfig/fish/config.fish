@@ -3,13 +3,13 @@ if status is-interactive
     starship init fish | source
     zoxide init fish | source
     set fish_greeting "
- I use arch BTW ඞ
-  "
+     I use arch BTW ඞ
+      "
     # BEST THING 
     echo -en '\e]22;ibeam\e\\'
-    if test -z "$TMUX"
-        tmux attach -t home || tmux new -s home
-    end
+    # if test -z "$TMUX"
+    #     tmux attach -t home || tmux new -s home
+    # end
 
     # if test "$TERM" = foot
     #     sleep 0.1

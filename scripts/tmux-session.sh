@@ -1,149 +1,44 @@
 #!/usr/bin/env bash
 
-if [ "$1" = "-h" ] || [ "$1" == "--help" ]; then # help argument
-	printf "\n"
-	printf "\033[1m  t - the smart tmux session manager\033[0m\n"
-	printf "\033[37m  https://github.com/joshmedeski/t-smart-tmux-session-manager\n"
-	printf "\n"
-	printf "\033[32m  Run interactive mode\n"
-	printf "\033[34m      t\n"
-	printf "\033[34m        ctrl-s list only tmux sessions\n"
-	printf "\033[34m        ctrl-x list only zoxide results\n"
-	printf "\033[34m        ctrl-d list directories\n"
-	printf "\n"
-	printf "\033[32m  Go to session (matches tmux session, zoxide result, or directory)\n"
-	printf "\033[34m      t {name}\n"
-	printf "\n"
-	printf "\033[32m  Open popup (while in tmux)\n"
-	printf "\033[34m      <prefix>+T\n"
-	printf "\033[34m        ctrl-s list only tmux sessions\n"
-	printf "\033[34m        ctrl-x list only zoxide results\n"
-	printf "\033[34m        ctrl-d list directories\n"
-	printf "\n"
-	printf "\033[32m  Show help\n"
-	printf "\033[34m      t -h\n"
-	printf "\033[34m      t --help\n"
-	printf "\n"
-	exit 0
-fi
+# Usage: t <optional zoxide-like dir, relative or absolute path>
+# If no argument is given, a combination of existing sessions and a zoxide query will be displayed in a FZF
 
-tmux ls &>/dev/null
-TMUX_STATUS=$?
-
-get_fzf_prompt() {
-	local fzf_prompt
-	local fzf_default_prompt='>  '
-	if [ $TMUX_STATUS -eq 0 ]; then # tmux is running
-		fzf_prompt="$(tmux show -gqv '@t-fzf-prompt')"
-	fi
-	[ -n "$fzf_prompt" ] && echo "$fzf_prompt" || echo "$fzf_default_prompt"
+__fzfcmd() {
+  [ -n "$TMUX_PANE" ] && { [ "${FZF_TMUX:-0}" != 0 ] || [ -n "$FZF_TMUX_OPTS" ]; } &&
+    echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} -- " || echo "fzf"
 }
 
-HOME_REPLACER=""                                          # default to a noop
-echo "$HOME" | grep -E "^[a-zA-Z0-9\-_/.@]+$" &>/dev/null # chars safe to use in sed
-HOME_SED_SAFE=$?
-if [ $HOME_SED_SAFE -eq 0 ]; then # $HOME should be safe to use in sed
-	HOME_REPLACER="s|^$HOME/|~/|"
-fi
-
-BORDER_LABEL=" t - smart tmux session manager "
-HEADER=" ctrl-s: sessions / ctrl-x: zoxide / ctrl-d: directory"
-PROMPT=$(get_fzf_prompt)
-SESSION_BIND="ctrl-s:change-prompt(sessions> )+reload(tmux list-sessions -F '#S')"
-ZOXIDE_BIND="ctrl-x:change-prompt(zoxide> )+reload(zoxide query -l | sed -e \"$HOME_REPLACER\")"
-
-if fd --version &>/dev/null; then # fd is installed
-	DIR_BIND="ctrl-d:change-prompt(directory> )+reload(cd $HOME && echo $HOME; fd --type d --hidden --absolute-path --color never --exclude .git --exclude node_modules)"
-else # fd is not installed
-	DIR_BIND="ctrl-d:change-prompt(directory> )+reload(cd $HOME && find ~+ -type d -name node_modules -prune -o -name .git -prune -o -type d -print)"
-fi
-
-get_sessions_by_mru() {
-	tmux list-sessions -F '#{session_last_attached} #{session_name}' | sort --numeric-sort --reverse | awk '{print $2}'
-}
-
-if [ $# -eq 0 ]; then             # no argument provided
-	if [ "$TMUX" = "" ]; then        # not in tmux
-		if [ $TMUX_STATUS -eq 0 ]; then # tmux is running
-			RESULT=$(
-				(get_sessions_by_mru && (zoxide query -l | sed -e "$HOME_REPLACER")) | fzf \
-					--bind "$DIR_BIND" \
-					--bind "$SESSION_BIND" \
-					--bind "$ZOXIDE_BIND" \
-					--border-label "$BORDER_LABEL" \
-					--header "$HEADER" \
-					--no-sort \
-					--prompt "$PROMPT"
-			)
-		else # tmux is not running
-			RESULT=$(
-				(zoxide query -l | sed -e "$HOME_REPLACER") | fzf \
-					--bind "$DIR_BIND" \
-					--border-label "$BORDER_LABEL" \
-					--header " ctrl-d: directory" \
-					--no-sort \
-					--prompt "$PROMPT"
-			)
-		fi
-	else # in tmux
-		RESULT=$(
-			(get_sessions_by_mru && (zoxide query -l | sed -e "$HOME_REPLACER")) | fzf-tmux \
-				--bind "$DIR_BIND" \
-				--bind "$SESSION_BIND" \
-				--bind "$ZOXIDE_BIND" \
-				--border-label "$BORDER_LABEL" \
-				--header "$HEADER" \
-				--no-sort \
-				--prompt "$PROMPT" \
-				-p 60%,50%
-		)
-	fi
-else # argument provided
-	zoxide query "$1" &>/dev/null
-	ZOXIDE_RESULT_EXIT_CODE=$?
-	if [ $ZOXIDE_RESULT_EXIT_CODE -eq 0 ]; then # zoxide result found
-		RESULT=$(zoxide query "$1")
-	else # no zoxide result found
-		ls "$1" &>/dev/null
-		LS_EXIT_CODE=$?
-		if [ $LS_EXIT_CODE -eq 0 ]; then # directory found
-			RESULT=$1
-		else # no directory found
-			echo "No directory found."
-			exit 1
-		fi
-	fi
-fi
-
-if [ "$RESULT" = "" ]; then # no result
-	exit 0                     # exit silently
-fi
-
-if [ $HOME_SED_SAFE -eq 0 ]; then
-	RESULT=$(echo "$RESULT" | sed -e "s|^~/|$HOME/|") # get real home path back
-fi
-
-zoxide add "$RESULT" &>/dev/null # add to zoxide database
-FOLDER=$(basename "$RESULT")
-SESSION_NAME=$(echo "$FOLDER" | tr ' .:' '_')
-
-if [ $TMUX_STATUS -eq 0 ]; then                                 # tmux is running
-	SESSION=$(tmux list-sessions -F '#S' | grep "^$SESSION_NAME$") # find existing session
+# Parse optional argument
+if [ "$1" ]; then
+  # Argument is given
+  eval "$(zoxide init bash)"
+  RESULT=$(z $@ && pwd)
 else
-	SESSION=""
+  # No argument is given. Use FZF
+  RESULT=$((tmux list-sessions -F "#{session_name}: #{session_windows} window(s)\
+#{?session_grouped, (group ,}#{session_group}#{?session_grouped,),}\
+#{?session_attached, (attached),}"; zoxide query -l) | $(__fzfcmd) --reverse)
+  if [ -z "$RESULT" ]; then
+    exit 0
+  fi
 fi
 
-if [ "$TMUX" = "" ]; then                          # not currently in tmux
-	if [ "$SESSION" = "" ]; then                      # session does not exist
-		tmux new-session -s "$SESSION_NAME" -c "$RESULT" # create session and attach
-	else                                              # session exists
-		tmux attach -t "$SESSION"                        # attach to session
-	fi
-else                                                  # currently in tmux
-	if [ "$SESSION" = "" ]; then                         # session does not exist
-		tmux new-session -d -s "$SESSION_NAME" -c "$RESULT" # create session
-		tmux switch-client -t "$SESSION_NAME"               # attach to session
-	else                                                 # session exists
-		tmux switch-client -t "$SESSION"                    # switch to session
-	fi
+# Get or create session
+if [[ $RESULT == *":"* ]]; then
+  # RESULT comes from list-sessions
+  SESSION=$(echo $RESULT | awk '{print $1}')
+  SESSION=${SESSION//:/}
+else
+  # RESULT is a path
+  SESSION=$(basename "$RESULT" | tr . - | tr ' ' - | tr ':' - | tr '[:upper:]' '[:lower:]')
+  if ! tmux has-session -t=$SESSION 2> /dev/null; then
+    tmux new-session -d -s $SESSION -c "$RESULT"
+  fi
+fi
+
+# Attach to session
+if [ -z "$TMUX" ]; then
+  tmux attach -t $SESSION
+else
+  tmux switch-client -t $SESSION
 fi

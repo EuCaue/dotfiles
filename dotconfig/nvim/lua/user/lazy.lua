@@ -12,7 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 local configs = {
 	{
-		install = { colorscheme = "onedark" },
+		install = { colorscheme = "mellifluous" },
 	},
 }
 require("lazy").setup("user.plugins", configs)

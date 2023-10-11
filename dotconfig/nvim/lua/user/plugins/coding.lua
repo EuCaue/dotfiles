@@ -33,13 +33,13 @@ return {
 		config = true,
 	},
 
-	{
-		"akinsho/toggleterm.nvim",
-		event = { "BufReadPost", "BufNewFile" },
-		config = function()
-			require("user.plugins.settings.toggleterm")
-		end,
-	}, -- show a "portable" terminal
+	-- {
+	-- 	"akinsho/toggleterm.nvim",
+	-- 	event = { "BufReadPost", "BufNewFile" },
+	-- 	config = function()
+	-- 		require("user.plugins.settings.toggleterm")
+	-- 	end,
+	-- }, -- show a "portable" terminal
 
 	{
 		"dsznajder/vscode-es7-javascript-react-snippets",
@@ -62,6 +62,7 @@ return {
 
 	{
 		"numToStr/Comment.nvim",
+		keys = require("user.config.plugin_keymaps").comments,
 		event = { "BufRead", "BufNewFile" },
 		config = function()
 			require("Comment").setup({
@@ -80,6 +81,40 @@ return {
 			require("user.plugins.lsp.efm-ls")
 		end,
 	}, -- LSP
+
+	{
+		"stevearc/conform.nvim",
+		event = "LspAttach",
+		config = function()
+			local util = require("conform.util")
+			local prettier_markdown = vim.deepcopy(require("conform.formatters.prettier"))
+			local prettier_p = vim.deepcopy(require("conform.formatters.prettier"))
+			util.add_formatter_args(prettier_p, { "--single-attribute-per-line" })
+			util.add_formatter_args(prettier_markdown, { "--parser markdown" })
+
+			require("conform").setup({
+				formatters_by_ft = {
+					lua = { "stylua" },
+					fish = { "fish_indent" },
+					javascript = { "prettier" },
+					html = { { "prettier" } },
+					css = { "prettier" },
+					scss = { "prettier" },
+					sh = { "shfmt" },
+					bash = { "shfmt" },
+					javascriptreact = { "prettier" },
+					typescript = { "prettier" },
+					svelte = { "prettier" },
+					typescriptreact = { "prettier" },
+					markdown = { "prettier_markdown" },
+				},
+				formatters = {
+					prettier_markdown = prettier_markdown,
+					prettier = prettier_p,
+				},
+			})
+		end,
+	},
 
 	{
 		"hrsh7th/nvim-cmp",
@@ -119,6 +154,7 @@ return {
 
 	{
 		"kevinhwang91/nvim-ufo",
+		keys = require("user.config.plugin_keymaps").ufo,
 		event = { "BufRead", "BufNewFile" },
 		dependencies = "kevinhwang91/promise-async",
 		config = function()

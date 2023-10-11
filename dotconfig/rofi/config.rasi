@@ -1,6 +1,6 @@
 configuration {
   drun-display-format: "{name}";
-  font: "GoMono Nerd Font 13";
+  font: "Liga SFMono Nerd Font 13";
   modi: "window,run,drun,emoji,calc,";
   show-icons: true;
   eh: 1;
@@ -8,7 +8,7 @@ configuration {
   case-sensitivity: false; 
   sorting-method: "fzf";
   hide-scrollbar: true;
-  terminal: "foot";
+  terminal: "alacritty";
   display-drun: "󰀻 ";
   display-run: " 󱓞 ";
   display-window: " 﩯  Window";

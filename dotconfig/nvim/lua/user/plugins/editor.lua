@@ -1,12 +1,32 @@
 local utils = require("user.utils")
 
 return {
-	-- { dir = "~/Dev/lua/markvim.nvim", config = true },
+	{ dir = "~/Dev/lua/markvim.nvim", config = true },
 
 	{ "nacro90/numb.nvim", config = true, event = "BufReadPost" },
+	{
+		"prichrd/netrw.nvim",
+		config = function()
+			require("netrw").setup({
+				use_devicons = true,
+				mappings = {},
+			})
+		end,
+	},
+
+	{
+		"utilyre/sentiment.nvim",
+		version = "*",
+		event = "BufReadPost",
+		config = true,
+		init = function()
+			vim.g.loaded_matchparen = 1
+		end,
+	},
 
 	{
 		"uga-rosa/ccc.nvim",
+		keys = require("user.config.plugin_keymaps").ccc,
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			local ccc = require("ccc")
@@ -31,6 +51,8 @@ return {
 				restricted_keys = {
 					["j"] = {},
 					["k"] = {},
+					["h"] = {},
+					["l"] = {},
 					["<Up>"] = {},
 					["<Down>"] = {},
 				},
@@ -41,12 +63,6 @@ return {
 			})
 		end,
 	},
-	{
-		"ellisonleao/carbon-now.nvim",
-		lazy = true,
-		cmd = "CarbonNow",
-	},
-
 	{
 		"BoaPi/task-toggler.nvim",
 		config = true,
@@ -61,26 +77,29 @@ return {
 		},
 	},
 
-	{
-		"echasnovski/mini.files",
-		config = function()
-			require("mini.files").setup({
-				mappings = {
-					go_in_plus = "<CR>",
-					go_out_plus = "<BS>",
-				},
-				windows = {
-					preview = true,
-					width_focus = 30,
-					width_preview = 90,
-				},
-			})
-		end,
-		version = false,
-	},
+	-- {
+	-- 	"echasnovski/mini.files",
+	-- 	lazy = false,
+	-- 	keys = require("user.config.plugin_keymaps").minifiles,
+	-- 	config = function()
+	-- 		require("mini.files").setup({
+	-- 			mappings = {
+	-- 				go_in_plus = "<CR>",
+	-- 				go_out_plus = "<BS>",
+	-- 			},
+	-- 			windows = {
+	-- 				preview = true,
+	-- 				width_focus = 30,
+	-- 				width_preview = 90,
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- 	version = false,
+	-- },
 
 	{
 		"lewis6991/gitsigns.nvim",
+		keys = require("user.config.plugin_keymaps").git_signs,
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("user.plugins.settings.gitsigns")
@@ -90,6 +109,7 @@ return {
 
 	{
 		"NeogitOrg/neogit",
+		keys = require("user.config.plugin_keymaps").neogit,
 		cmd = "Neogit",
 		config = true,
 	},
@@ -103,6 +123,8 @@ return {
 
 	{
 		"Shatur/neovim-session-manager",
+		keys = require("user.config.plugin_keymaps").session_manager,
+		cmd = "SessionManager",
 		config = function()
 			local Path = require("plenary.path")
 			require("session_manager").setup({
@@ -126,6 +148,7 @@ return {
 
 	{
 		"folke/todo-comments.nvim",
+		keys = require("user.config.plugin_keymaps").todo_comments,
 		event = { "BufReadPost", "BufNewFile" },
 		config = true,
 	}, -- TODO: plugin
@@ -167,6 +190,7 @@ endfunction
 
 	{
 		"nvim-telescope/telescope.nvim",
+		keys = require("user.config.plugin_keymaps").telescope,
 		cmd = { "Telescope" },
 		config = function()
 			require("user.plugins.settings.telescope")
@@ -193,10 +217,18 @@ endfunction
 		end,
 	}, -- better search
 
+	-- {
+	-- 	"yamatsum/nvim-cursorline",
+	-- 	config = true,
+	-- }, -- highlight cursor on things
+
 	{
-		"yamatsum/nvim-cursorline",
-		config = true,
-	}, -- highlight cursor on things
+		"tzachar/local-highlight.nvim",
+		event = { "BufReadPost", "BufNewFile" },
+		config = function()
+			require("local-highlight").setup({ insert_mode = true })
+		end,
+	},
 
 	{
 		"m4xshen/autoclose.nvim",
@@ -226,16 +258,16 @@ endfunction
 			},
 		},
 	},
-
 	{
 		"folke/zen-mode.nvim",
 		cmd = "ZenMode",
 		opts = {},
 	},
+
 	{ "tzachar/highlight-undo.nvim", config = true, event = "BufReadPost" }, -- awesome plugin.
 	{ "nguyenvukhang/nvim-toggler", config = true, event = { "BufReadPre" } }, -- toggle states,
 	{ "theRealCarneiro/hyprland-vim-syntax", lazy = true }, -- Better syntax highlight in hyprland.conf
 	{ "mbbill/undotree", cmd = { "UndotreeToggle", "UndotreeFocus" } }, -- undo tree
 	{ "christoomey/vim-tmux-navigator", event = "VimEnter" },
-	{ "ThePrimeagen/harpoon", event = "BufReadPre" }, -- harpoon
+	{ "ThePrimeagen/harpoon", event = "BufReadPre", keys = require("user.config.plugin_keymaps").harpoon }, -- harpoon
 }

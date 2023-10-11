@@ -31,7 +31,6 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, get_opts("Jump to prev diagn
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, get_opts("Jump to next diagnostic"))
 vim.keymap.set("n", "<space>lc", vim.diagnostic.setloclist, get_opts("Set Diagnostics to loclist"))
 
-
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 	callback = function(ev)
@@ -48,9 +47,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				["1. Start LSP"] = "LspStart",
 				["2. Stop LSP"] = "LspStop",
 				["3. Restart LSP"] = "LspRestart",
+				["4. Info"] = "LspInfo",
+				["4. Log"] = "LspLog",
 			}
 			utils.create_select_menu("Lsp Options", options)()
-		end)
+		end, get_bufopts("Lsp Menu Options"))
 
 		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, get_bufopts("Go to declaration"))
 		vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", get_bufopts("Go to definitions"))
@@ -149,8 +150,9 @@ require("lspconfig").lua_ls.setup({
 lspconfig.tsserver.setup({
 	-- on_attach = on_attach,
 	handlers = handlers,
-	cmd = { "bun", "x", "typescript-language-server", "--stdio" },
+	cmd = { "bunx", "typescript-language-server", "--stdio" },
 	capabilities = capabilities,
+	single_file_support = true,
 	commands = {
 		OrganizeImports = {
 			typescript_organize_imports,
@@ -297,74 +299,7 @@ vim.diagnostic.config({
 		prefix = " ",
 	},
 	signs = true,
-	underline = false,
+	underline = true,
 	update_in_insert = true,
 	severity_sort = true,
 })
-
--- DELETE:
--- local on_attach = function(client, bufnr) -- Enable completion triggered by <c-x><c-o>
--- 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
---
--- 	local function get_bufopts(desc)
--- 		return { noremap = true, silent = true, buffer = bufnr, desc = desc }
--- 	end
---
--- 	vim.keymap.set("n", "<space>lm", function()
--- 		local options = {
--- 			["1. Start LSP"] = "LspStart",
--- 			["2. Stop LSP"] = "LspStop",
--- 			["3. Restart LSP"] = "LspRestart",
--- 		}
--- 		utils.create_select_menu("Lsp Options", options)()
--- 	end)
---
--- 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, get_bufopts("Go to declaration"))
--- 	vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", get_bufopts("Go to definitions"))
--- 	vim.keymap.set("n", "K", vim.lsp.buf.hover, get_bufopts("Hover documentation"))
--- 	vim.keymap.set("n", "<leader>lr", "<cmd>LspRestart<cr>", get_bufopts("Restart LSP"))
--- 	vim.keymap.set("n", "<space>o", "<cmd>Navbuddy<CR>", get_bufopts("Outline Icons"))
--- 	vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", get_bufopts("Go to implementations"))
--- 	vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, get_bufopts("Add workspace folder"))
--- 	vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, get_bufopts("Remove workspace folder"))
--- 	vim.keymap.set("n", "<space>wl", function()
--- 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
--- 	end, get_bufopts("List workspace folders"))
--- 	vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", get_bufopts("Go to type definition"))
--- 	vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, get_bufopts("LSP Rename"))
--- 	vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, get_bufopts("Code action"))
--- 	vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", get_bufopts("References"))
--- 	vim.keymap.set("n", "<space>L", function()
--- 		vim.lsp.inlay_hint(bufnr)
--- 	end, get_bufopts("Toggle LSP Inlay Hint"))
--- 	vim.keymap.set("n", "<space>ls", vim.lsp.buf.signature_help, get_bufopts("LSP Signature"))
--- 	vim.keymap.set("n", "<space>lf", function()
--- 		vim.lsp.buf.format({ async = true })
--- 	end, get_bufopts("LSP Format"))
---
--- 	if client.server_capabilities.documentSymbolProvider then
--- 		navic.attach(client, bufnr)
--- 		navbuddy.attach(client, bufnr)
--- 	end
---
--- 	if client.server_capabilities.inlayHintProvider then
--- 		vim.lsp.inlay_hint(bufnr, true)
--- 	end
---
--- 	if client.name == "eslint" then
--- 		client.server_capabilities.documentFormattingProvider = true
--- 	elseif client.name == "tsserver" then
--- 		client.server_capabilities.documentFormattingProvider = false
--- 	elseif client.name == "html" then
--- 		client.server_capabilities.documentFormattingProvider = false
--- 	end
--- end
---
--- local function typescript_organize_imports()
--- 	local params = {
--- 		command = "_typescript.organizeImports",
--- 		arguments = { vim.api.nvim_buf_get_name(0) },
--- 	}
---
--- 	vim.lsp.buf.execute_command(params)
--- end

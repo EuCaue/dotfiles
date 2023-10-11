@@ -20,6 +20,8 @@ return {
 
 	{
 		"rcarriga/nvim-notify",
+		event = "BufReadPost",
+		keys = require("user.config.plugin_keymaps").notify,
 		config = function()
 			vim.notify = require("notify")
 			require("notify").setup({

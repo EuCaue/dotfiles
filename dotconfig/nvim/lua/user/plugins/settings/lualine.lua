@@ -4,6 +4,7 @@ if not status_ok then
 	return
 end
 local icons = require("user.utils").icons
+
 local hide_in_width = function()
 	return vim.fn.winwidth(0) > 80
 end
@@ -87,6 +88,15 @@ local filename = {
 	},
 }
 
+local windows = {
+	"windows",
+	use_mode_colors = true,
+}
+
+local tabs = {
+	"tabs",
+}
+
 lualine.setup({
 	options = {
 		icons_enabled = true,
@@ -113,6 +123,27 @@ lualine.setup({
 		lualine_z = {},
 	},
 	winbar = {},
-	tabline = { lualine_a = { { "windows", use_mode_colors = true } }, lualine_y = { "tabs" } },
-	extensions = { "nvim-tree", "neo-tree" },
+	tabline = { lualine_a = { windows }, lualine_y = { tabs } },
+	extensions = {},
+})
+
+require("lualine").hide({ place = { "tabline" } })
+local lualine_tmp = vim.api.nvim_create_augroup("lualine_tmp", { clear = true })
+vim.api.nvim_create_autocmd({ "WinNew", "WinClosed", "TabNew", "TabClosed" }, {
+	group = lualine_tmp,
+	callback = function(args)
+		local win_num = vim.fn.winnr("$")
+		local tab_num = vim.fn.tabpagenr("$")
+
+		if tab_num > 1 then
+			require("lualine").hide({ place = { "tabline" }, unhide = true })
+		else
+			require("lualine").hide({ place = { "tabline" } })
+		end
+		if win_num >= 2 and args.event == "WinNew" then
+			require("lualine").hide({ place = { "tabline" }, unhide = true })
+		elseif win_num <= 2 and args.event == "WinClosed" then
+			require("lualine").hide({ place = { "tabline" } })
+		end
+	end,
 })

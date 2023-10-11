@@ -1,7 +1,10 @@
 label {
   font-weight: normal;
-  font-family: "GoMono Nerd Font";
+  font-family: "Liga SFMono Nerd Font";
 }
+
+@define-color bar-bg-color rgba(0, 0, 0, 0.5);
+@define-color bg-color rgba(0, 0, 0, 0.9);
 
 * {
   border-radius: 0px;
@@ -9,15 +12,15 @@ label {
 }
 
 .bar {
-  background-color: transparent;
+  background-color: @bar-bg-color;
 }
 
 .workspaces {
-  border-bottom: 3px solid @accent_color;
+  border-bottom: 3px solid @accent_fg_color;
 }
 
 .workspace {
-  background-color: black;
+  background-color: @bg-color;
   color: #eee;
   font-size: 20px;
 }
@@ -55,25 +58,25 @@ label {
 
 .default-box {
   margin-left: 15px;
-  background-color: black;
+  background-color: @bg-color;
   color: white;
   padding: 0 15px;
-  border-bottom: 3px solid @accent_color;
+  border-bottom: 3px solid @accent_fg_color;
 }
 
 .clock {
-  background-color: black;
+  background-color: @bg-color;
   padding: 0 15px;
-  border-bottom: 3px solid @accent_color;
+  border-bottom: 3px solid @accent_fg_color;
 }
 
 .systemtray {
-  border-bottom: 3px solid @accent_color;
+  border-bottom: 3px solid @accent_fg_color;
   margin-left: 10px;
 }
 
 .systemtray > button {
-  background-color: black;
+  background-color: @bg-color;
 }
 
 .systemtray > button * {

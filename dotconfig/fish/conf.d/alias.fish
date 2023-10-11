@@ -9,6 +9,7 @@ alias nfg='cd ~/.config/nvim/ && nvim ~/.config/nvim/init.lua && prevd'
 alias wfg='cd ~/.config/wezterm/ && nvim ~/.config/wezterm/wezterm.lua && prevd'
 alias tfg='cd ~/.config/tmux/ && nvim ~/.config/tmux/tmux.conf && prevd'
 alias sus='paru'
+alias cls="clear"
 function gal --description "alias git add commit push"
     git add .
     git status
@@ -77,7 +78,7 @@ alias cr="cargo run"
 alias wf='wfetch'
 alias remirror='sudo reflector -c BR -f 2 -l 20 -n 10 --save /etc/pacman.d/mirrorlist'
 function img --description "Display image"
-    if test "$TERM" = foot; or test "$TERM" = xterm-256color
+    if test "$TERM" = foot; or test "$TERM" = xterm-256color; or test "$TERM" = alacritty
         img2sixel $argv
         return
     end
@@ -102,6 +103,10 @@ end
 
 function pc --description "better copy command"
     eval $argv | wl-copy
+end
+
+function mv_tmp_wall --description "Move tmp to wallpapers folder"
+    mv $HOME/.local/share/backgrounds/* $HOME/Pictures/wallpapers/
 end
 
 function mvcur --description "Move cursor to icons folder"

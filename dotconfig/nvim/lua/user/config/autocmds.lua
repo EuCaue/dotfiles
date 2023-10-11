@@ -1,9 +1,11 @@
+local autocmd = vim.api.nvim_create_autocmd
+
 local function augroup(name)
 	return vim.api.nvim_create_augroup("augroup" .. name, { clear = true })
 end
 
 -- close some filetypes with <q>
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
 	group = augroup("close_with_q"),
 	pattern = {
 		"PlenaryTestPopup",
@@ -26,7 +28,28 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
+	group = augroup("MyQuickFixGroup"),
+	pattern = { "qf" },
+	callback = function()
+		vim.opt_local.wrap = true
+		vim.keymap.set(
+			"n",
+			"<Leader>sr",
+			[[:cdo s/<C-r><C-w>//gc | update <C-Left><C-Left><Left><Left><Left><Left>]],
+			{ buffer = true, desc = "qf search and replace cword" }
+		)
+		vim.keymap.set(
+			"v",
+			"<Leader>sr",
+			'y:cdo s/<C-R>"//gc | update <C-Left><C-Left><Left><Left><Left><Left>',
+			{ buffer = true, desc = "qf search and replace selection" }
+		)
+	end,
+	once = false,
+})
+
+autocmd("FileType", {
 	group = augroup("quickfix"),
 	pattern = {
 		"qf",
@@ -38,7 +61,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- highlight yank
-vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+autocmd({ "TextYankPost" }, {
 	group = augroup("yank_highlight"),
 	callback = function()
 		vim.highlight.on_yank({ higroup = "Visual", timeout = 80 })
@@ -46,15 +69,16 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 })
 
 -- Autoformat
-vim.api.nvim_create_autocmd("BufWritePre", {
+autocmd("BufWritePost", {
 	group = augroup("format_on_save"),
-	callback = function()
-		vim.lsp.buf.format({ async = true })
+	callback = function(args)
+		require("conform").format({ async = true, bufnr = args.buf, lsp_fallback = true })
+		-- vim.lsp.buf.format({ async = true, bufnr = args.buf })
 	end,
 })
 
 -- better highlight on styled.js
-vim.api.nvim_create_autocmd("BufReadPost", {
+autocmd("BufReadPost", {
 	group = augroup("styled"),
 	pattern = { "styled.js" },
 	callback = function()
@@ -62,7 +86,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufNew", {
+autocmd("BufNew", {
 	group = augroup("ColorScheme"),
 	callback = function()
 		vim.cmd("hi FlashCurrent guibg=none")
@@ -75,7 +99,7 @@ vim.api.nvim_create_autocmd("BufNew", {
 })
 
 -- LuaSnip Snippet History Fix (Seems to work really well, I think.)
-vim.api.nvim_create_autocmd("ModeChanged", {
+autocmd("ModeChanged", {
 	group = augroup("LuaSniptHistory"),
 	pattern = "*",
 	callback = function()
@@ -89,10 +113,10 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("WinLeave", {
-	callback = function()
-		if vim.bo.ft == "TelescopePrompt" and vim.fn.mode() == "i" then
-			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "i", false)
-		end
-	end,
-})
+-- vim.api.nvim_create_autocmd("WinLeave", {
+-- 	callback = function()
+-- 		if vim.bo.ft == "TelescopePrompt" and vim.fn.mode() == "i" then
+-- 			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "i", false)
+-- 		end
+-- 	end,
+-- })

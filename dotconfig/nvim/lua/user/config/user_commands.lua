@@ -1,10 +1,11 @@
-local c = vim.api.nvim_create_user_command
+local cmd = vim.api.nvim_create_user_command
 
 local build_commands = {
 	c = "g++ -std=c++17 -o %:p:r.o %",
 	typescript = "bun %",
 	cpp = "g++ -std=c++17 -Wall -O2 -o %:p:r.o %",
 	rust = "cargo build --release",
+	fish = "./%",
 	go = "go build",
 }
 
@@ -21,9 +22,10 @@ local run_commands = {
 	cpp = "%:p:r.o",
 	rust = "cargo run --release",
 	go = "go run .",
+	fish = "./%",
 }
 
-c("Build", function()
+cmd("Build", function()
 	local filetype = vim.bo.filetype
 
 	for file, command in pairs(build_commands) do
@@ -34,7 +36,7 @@ c("Build", function()
 	end
 end, {})
 
-c("DebugBuild", function()
+cmd("DebugBuild", function()
 	local filetype = vim.bo.filetype
 
 	for file, command in pairs(debug_build_commands) do
@@ -45,7 +47,22 @@ c("DebugBuild", function()
 	end
 end, {})
 
-c("Run", function()
+cmd("LspFormat", function()
+	require("conform").format({ async = true, bufnr = 0, lsp_fallback = true })
+end, { desc = "Format with LSP" })
+
+cmd("ToggleCursor", function()
+	local opt = vim.api.nvim_get_option_value("guicursor", {})
+	local pos = string.find(opt, "block", 0, false)
+
+	if pos == 7 then
+		vim.api.nvim_set_option_value("guicursor", "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20", {})
+	else
+		vim.api.nvim_set_option_value("guicursor", "n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50", {})
+	end
+end, { desc = "Toggle between cursors styles" })
+
+cmd("Run", function()
 	local filetype = vim.bo.filetype
 
 	for file, command in pairs(run_commands) do
@@ -63,7 +80,7 @@ c("Run", function()
 	end
 end, {})
 
-c("Ha", function()
+cmd("Ha", function()
 	vim.cmd([[Build]])
 	vim.cmd([[Run]])
 end, {})

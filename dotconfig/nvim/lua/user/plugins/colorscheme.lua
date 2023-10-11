@@ -95,19 +95,19 @@ local t = {
 	end,
 }
 
-local ma = {
+local me = {
 	"ramojus/mellifluous.nvim",
 	lazy = false,
 	priority = 1000,
 	config = function()
 		require("mellifluous").setup({
 			dim_inactive = false,
-			color_set = "tender",
+			color_set = "tender", -- alduin, mountain, tender
 			styles = { -- see :h attr-list for options. set {} for NONE, { option = true } for option
 				comments = { italic = true },
 				conditionals = {},
 				folds = { bold = true },
-				loops = {},
+				loops = { bold = true },
 				functions = {},
 				keywords = { italic = true },
 				strings = {},
@@ -116,7 +116,7 @@ local ma = {
 				booleans = { italic = true },
 				properties = {},
 				types = { italic = true },
-				operators = {},
+				operators = {italic = true},
 			},
 			transparent_background = {
 				enabled = true,
@@ -148,5 +148,5 @@ local ma = {
 }
 
 return {
-	ma,
+	me,
 }

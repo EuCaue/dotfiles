@@ -5,7 +5,7 @@
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-font_family GoMono Nerd Font
+font_family Martian Mono
 bold_font auto
 italic auto
 bold_italic_font auto
@@ -2239,6 +2239,6 @@ map kitty_mod+f5 load_config_file
 
 
 # BEGIN_KITTY_THEME
-# Night Lion V1
+# Vibrant Ink
 include current-theme.conf
 # END_KITTY_THEME
