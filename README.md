@@ -2,9 +2,9 @@
 
 _WM:_ **[hyprland](https://github.com/hyprwm/Hyprland)**
 
-_statusBar:_ **[waybar](https://github.com/Alexays/Waybar/wiki)**
+_statusBar:_ **[ags](https://github.com/Aylur/ags)**
 
-_terminal:_ **[foot](https://codeberg.org/dnkl/foot)**
+_terminal:_ **[alacritty](https://github.com/alacritty/alacritty/)**
 
 _shell:_ **[fish](https://github.com/fish-shell/fish-shell)**
 
@@ -14,10 +14,12 @@ _code/text editor:_ **[neovim](https://github.com/neovim/neovim)**
 
 _app launcher:_ **[rofi](https://aur.archlinux.org/packages/rofi-lbonn-wayland-git)**
 
-_notifications:_ **[dunst](https://github.com/dunst-project/dunst)**
+_notifications:_ **[swaync](https://github.com/ErikReider/SwayNotificationCenter)**
 
 _pdf reader:_ **[zathura](https://github.com/pwmt/zathura)**
 
 _font:_ **[MesloLG Nerd Font](https://www.nerdfonts.com/font-downloads)**
 
 ![rice](./rice.png)
+
+-- For more update info [Dotfiles website](todo!)

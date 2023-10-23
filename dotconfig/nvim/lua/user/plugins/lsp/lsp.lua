@@ -147,48 +147,48 @@ require("lspconfig").lua_ls.setup({
 	},
 })
 
-lspconfig.tsserver.setup({
-	-- on_attach = on_attach,
-	handlers = handlers,
-	cmd = { "bunx", "typescript-language-server", "--stdio" },
-	capabilities = capabilities,
-	single_file_support = true,
-	commands = {
-		OrganizeImports = {
-			typescript_organize_imports,
-			description = "Organize Imports",
-		},
-	},
-
-	completions = {
-		completeFunctionCalls = true,
-	},
-	settings = {
-		javascript = {
-			inlayHints = {
-				includeInlayEnumMemberValueHints = true,
-				includeInlayFunctionLikeReturnTypeHints = true,
-				includeInlayFunctionParameterTypeHints = true,
-				includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-				includeInlayPropertyDeclarationTypeHints = true,
-				includeInlayVariableTypeHints = false,
-			},
-		},
-
-		typescript = {
-			inlayHints = {
-				includeInlayEnumMemberValueHints = true,
-				includeInlayFunctionLikeReturnTypeHints = true,
-				includeInlayFunctionParameterTypeHints = true,
-				includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-				includeInlayPropertyDeclarationTypeHints = true,
-				includeInlayVariableTypeHints = false,
-			},
-		},
-	},
-})
+-- lspconfig.tsserver.setup({
+-- 	-- on_attach = on_attach,
+-- 	handlers = handlers,
+-- 	cmd = { "bunx", "typescript-language-server", "--stdio" },
+-- 	capabilities = capabilities,
+-- 	single_file_support = true,
+-- 	commands = {
+-- 		OrganizeImports = {
+-- 			typescript_organize_imports,
+-- 			description = "Organize Imports",
+-- 		},
+-- 	},
+--
+-- 	completions = {
+-- 		completeFunctionCalls = true,
+-- 	},
+-- 	settings = {
+-- 		javascript = {
+-- 			inlayHints = {
+-- 				includeInlayEnumMemberValueHints = true,
+-- 				includeInlayFunctionLikeReturnTypeHints = true,
+-- 				includeInlayFunctionParameterTypeHints = true,
+-- 				includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+-- 				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+-- 				includeInlayPropertyDeclarationTypeHints = true,
+-- 				includeInlayVariableTypeHints = false,
+-- 			},
+-- 		},
+--
+-- 		typescript = {
+-- 			inlayHints = {
+-- 				includeInlayEnumMemberValueHints = true,
+-- 				includeInlayFunctionLikeReturnTypeHints = true,
+-- 				includeInlayFunctionParameterTypeHints = true,
+-- 				includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+-- 				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+-- 				includeInlayPropertyDeclarationTypeHints = true,
+-- 				includeInlayVariableTypeHints = false,
+-- 			},
+-- 		},
+-- 	},
+-- })
 
 lspconfig.tailwindcss.setup({
 	-- on_attach = on_attach,
@@ -208,6 +208,54 @@ lspconfig.tailwindcss.setup({
 	),
 })
 
+require("typescript-tools").setup({
+	handlers = {},
+	settings = {
+		-- spawn additional tsserver instance to calculate diagnostics on it
+		separate_diagnostic_server = true,
+		-- "change"|"insert_leave" determine when the client asks the server about diagnostic
+		publish_diagnostic_on = "insert_leave",
+		-- array of strings("fix_all"|"add_missing_imports"|"remove_unused"|
+		-- "remove_unused_imports"|"organize_imports") -- or string "all"
+		-- to include all supported code actions
+		-- specify commands exposed as code_actions
+		expose_as_code_action = "all",
+		-- string|nil - specify a custom path to `tsserver.js` file, if this is nil or file under path
+		-- not exists then standard path resolution strategy is applied
+		tsserver_path = nil,
+		-- specify a list of plugins to load by tsserver, e.g., for support `styled-components`
+		-- (see 💅 `styled-components` support section)
+		tsserver_plugins = {},
+		-- this value is passed to: https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes
+		-- memory limit in megabytes or "auto"(basically no limit)
+		tsserver_max_memory = "auto",
+		-- described below
+		tsserver_format_options = {},
+		tsserver_file_preferences = {
+			includeInlayEnumMemberValueHints = true,
+			includeInlayFunctionLikeReturnTypeHints = true,
+			includeInlayFunctionParameterTypeHints = true,
+			includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+			includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+			includeInlayPropertyDeclarationTypeHints = true,
+			includeInlayVariableTypeHints = false,
+      quotePreference = "auto",
+		},
+		-- locale of all tsserver messages, supported locales you can find here:
+		-- https://github.com/microsoft/TypeScript/blob/3c221fc086be52b19801f6e8d82596d04607ede6/src/compiler/utilitiesPublic.ts#L620
+		tsserver_locale = "en",
+		-- mirror of VSCode's `typescript.suggest.completeFunctionCalls`
+		complete_function_calls = true,
+		include_completions_with_insert_text = true,
+		-- CodeLens
+		-- WARNING: Experimental feature also in VSCode, because it might hit performance of server.
+		-- possible values: ("off"|"all"|"implementations_only"|"references_only")
+		code_lens = "off",
+		-- by default code lenses are displayed on all referencable values and for some of you it can
+		-- be too much this option reduce count of them by removing member references from lenses
+		disable_member_code_lens = true,
+	},
+})
 lspconfig.eslint.setup({
 	on_attach = function(client, bufnr)
 		-- on_attach(client, bufnr)
@@ -287,7 +335,7 @@ end
 
 vim.diagnostic.config({
 	float = {
-		border = utils.border_status,
+		border = "none",
 		focusable = true,
 		style = "minimal",
 		source = "always",

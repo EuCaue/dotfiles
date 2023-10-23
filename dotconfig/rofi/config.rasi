@@ -1,6 +1,6 @@
 configuration {
   drun-display-format: "{name}";
-  font: "Liga SFMono Nerd Font 13";
+  font: "Maple Mono 13";
   modi: "window,run,drun,emoji,calc,";
   show-icons: true;
   eh: 1;

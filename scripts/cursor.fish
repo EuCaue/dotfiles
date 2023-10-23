@@ -25,10 +25,10 @@ end
 
 set -e -U CURSOR
 set -e -U CURSORSIZE
-set -Ux CURSORSIZE $(rofi -dmenu -p "Cursor Size")
+set -Ux CURSORSIZE $(rofi -dmenu -p "Cursor Size" -theme-str 'listview {lines: 0;}')
 set -Ux CURSOR $CURSORTHEME
 
-set reopen $(menu_reopen | rofi -dmenu -p "Reopen apps?" | cut -d. -f1)
+set reopen $(menu_reopen | rofi -dmenu -p "Reopen apps?" -theme-str 'listview {lines: 0;}' | cut -d. -f1)
 
 if test "$reopen" = 1
     reopen_apps

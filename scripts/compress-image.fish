@@ -8,7 +8,6 @@ set output_folder
 
 
 function questions
-    # echo "Suffix for compressed images? (Default: .low)"
     read -P "What format the compress image should be? (Default: webp) " image_format
     read -P "Suffix for compressed images? (Default: -low) " suffix
     read -P "What should be compressed? (Default: 858x480) " size

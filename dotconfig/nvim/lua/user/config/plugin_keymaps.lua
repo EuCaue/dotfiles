@@ -41,7 +41,7 @@ M.harpoon = {
 	},
 	{ "<leader>hs", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", mode = "n", desc = "Open harpoon UI" },
 	{ "<leader>hn", "<cmd>lua require('harpoon.ui').nav_next()<cr>", mode = "n", desc = "Harpoon Go Next" },
-	{ "<leader>hp", "<cmd>lua require('harpoon.ui').nav_prev()<cr>", mode = "n", desc = "Harpoon Go Prev" },
+	{ "<leader>hp", "<cmd>lua require('harpoon.tmux-ui').nav_prev()<cr>", mode = "n", desc = "Harpoon Go Prev" },
 	{
 		"<leader>hc",
 		"<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<cr>",
@@ -90,6 +90,24 @@ M.ccc = {
 
 M.todo_comments = {
 	{
+		"gcmh",
+		function()
+			vim.cmd("norm gcO HACK:  ")
+			vim.cmd("startinsert")
+		end,
+		mode = "n",
+		desc = "Create a hack comment",
+	},
+	{
+		"gcmn",
+		function()
+			vim.cmd("norm gcO NOTE:  ")
+			vim.cmd("startinsert")
+		end,
+		mode = "n",
+		desc = "Create a note comment",
+	},
+	{
 		"gcmt",
 		function()
 			vim.cmd("norm gcO TODO:  ")
@@ -137,7 +155,7 @@ M.comments = {
 			vim.cmd("norm yy")
 			vim.cmd("norm gcc")
 		end,
-    mode = "n",
+		mode = "n",
 		desc = "Yank and comment",
 	},
 }

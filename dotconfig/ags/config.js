@@ -6,6 +6,7 @@ import Audio from "resource:///com/github/Aylur/ags/service/audio.js";
 import Battery from "resource:///com/github/Aylur/ags/service/battery.js";
 import SystemTray from "resource:///com/github/Aylur/ags/service/systemtray.js";
 import App from "resource:///com/github/Aylur/ags/app.js";
+import Variable from 'resource:///com/github/Aylur/ags/variable.js'
 import {
   Box,
   Button,
@@ -137,7 +138,7 @@ const systemtray = Box({
   ],
 });
 
-let showDateOrTime = ags.Variable(true);
+let showDateOrTime = Variable(true);
 
 const Clock = () =>
   EventBox({
@@ -379,7 +380,7 @@ const Bar = ({ monitor } = {}) =>
     name: `bar${monitor || ""}`, // name has to be unique
     className: "bar",
     monitor,
-    //////////margin: [5, 15, 0, 15],
+    //////////////////////////////////margin: [5, 15, 0, 15],
     margin: [0, 0, 0, 0],
     anchor: ["top", "left", "right"],
     exclusive: true,

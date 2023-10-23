@@ -65,6 +65,7 @@ opt.guifont = os.getenv("FONT_NAME") -- the font used in graphical neovim applic
 opt.splitkeep = "screen"
 opt.shortmess:append({ C = true })
 opt.iskeyword:append("-") -- Treat dash separated words as a word text object
+-- opt.autochdir = true
 
 --   ____    ___        _   _
 --  / ___|  / _ \ _ __ | |_(_) ___  _ __  ___
@@ -90,7 +91,6 @@ g.loaded_matchit = 1
 g.loaded_logiPat = 1
 g.loaded_rrhelper = 1
 
-g.netrw_keepdir = 0
 g.netrw_banner = 0
 -- g.loaded_netrw = 1
 -- g.loaded_netrwPlugin = 1

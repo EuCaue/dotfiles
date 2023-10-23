@@ -101,17 +101,18 @@ cmp.setup({
 		format = format,
 	},
 	sources = {
-		{ name = "nvim_lsp", max_item_count = 5 },
-		{ name = "nvim_lsp_signature_help" },
-		{ name = "codeium", max_item_count = 5 },
-		{ name = "path", max_item_count = 5 },
-		{ name = "luasnip", max_item_count = 5 },
-		{ name = "buffer", keyword_length = 3 },
-		-- { name = "fish" },
-		-- { name = "fonts", option = { space_filter = "-" } },
+		{ name = "nvim_lsp", group_index = 1 },
+		{ name = "nvim_lsp_signature_help", max_item_count = 2, group_index = 1 },
+		{ name = "codeium", max_item_count = 5, group_index = 1 },
+		{ name = "path", max_item_count = 5, group_index = 2 },
+		{ name = "luasnip", max_item_count = 5, group_index = 1 },
+		{ name = "buffer", keyword_length = 3, group_index = 2 },
+		{ name = "fish", group_index = 2 },
+		{ name = "fonts", option = { space_filter = "-" }, group_index = 2 },
 	},
 
 	sorting = {
+		priority_weight = 2,
 		comparators = {
 			cmp.config.compare.sort_text, -- this needs to be 1st
 			cmp.config.compare.offset,
@@ -153,11 +154,17 @@ cmp.setup.cmdline({ "/", "?" }, {
 	},
 })
 
-cmp.setup.filetype({ "fish" }, { sources = { { name = "fish" } } })
-cmp.setup.filetype(
-	{ "conf", "config", "markdown", "txt", "yaml", "dosini", "fish", "sh", "bash" },
-	{ sources = { { name = "fonts", option = { space_filter = "-" } } } }
-)
+-- cmp.setup.filetype({ "fish" }, { sources = {
+-- 	{ name = "fish" },
+-- 	{ name = "path" },
+-- 	{ name = "fonts" },
+-- } })
+--
+-- cmp.setup.filetype(
+-- 	{ "conf", "config", "markdown", "txt", "yaml", "dosini", "sh", "bash" },
+-- 	{ sources = { { name = "fonts", option = { space_filter = "-" } } } }
+-- )
+
 cmp.setup.cmdline(":", {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({

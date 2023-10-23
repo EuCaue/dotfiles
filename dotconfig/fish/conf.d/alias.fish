@@ -9,7 +9,7 @@ alias nfg='cd ~/.config/nvim/ && nvim ~/.config/nvim/init.lua && prevd'
 alias wfg='cd ~/.config/wezterm/ && nvim ~/.config/wezterm/wezterm.lua && prevd'
 alias tfg='cd ~/.config/tmux/ && nvim ~/.config/tmux/tmux.conf && prevd'
 alias sus='paru'
-alias cls="clear"
+alias c="clear"
 function gal --description "alias git add commit push"
     git add .
     git status
@@ -35,8 +35,7 @@ alias rn="mv"
 alias rm='trash put'
 alias rl='trash list'
 alias tree="exa -l -a -g --icons --tree"
-abbr -a -g please sudo # Polite way to sudo
-abbr -a -g fucking sudo
+alias zl="z && c"
 
 alias vim='nvim'
 alias vi='nvim'
@@ -69,7 +68,7 @@ function vf --description "open in nvim with fzf "
     v $file
     return 0
 end
-alias r='ranger'
+alias r='yazi'
 alias g='lazygit'
 alias gw='glow'
 alias :wq="exit"
@@ -77,6 +76,7 @@ alias :q="exit"
 alias cr="cargo run"
 alias wf='wfetch'
 alias remirror='sudo reflector -c BR -f 2 -l 20 -n 10 --save /etc/pacman.d/mirrorlist'
+
 function img --description "Display image"
     if test "$TERM" = foot; or test "$TERM" = xterm-256color; or test "$TERM" = alacritty
         img2sixel $argv
@@ -140,11 +140,6 @@ function vited --description "alias vite and firefox"
     yarn vite --host
     return 0
 end
-
-alias yarns='yarn start'
-alias yarnd='yarn run dev'
-alias vercelp='yarn vercel --prod'
-# ----------------------------------
 
 
 # NOTE: System

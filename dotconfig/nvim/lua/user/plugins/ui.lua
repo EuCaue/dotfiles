@@ -18,19 +18,19 @@ return {
 		cmd = "Alpha",
 	}, -- title screen
 
-	{
-		"rcarriga/nvim-notify",
-		event = "BufReadPost",
-		keys = require("user.config.plugin_keymaps").notify,
-		config = function()
-			vim.notify = require("notify")
-			require("notify").setup({
-				timeout = 500,
-				render = "minimal",
-				background_colour = "#00000000",
-			})
-		end,
-	}, -- better vim.notify
+	-- {
+	-- 	"rcarriga/nvim-notify",
+	-- 	event = "BufReadPost",
+	-- 	keys = require("user.config.plugin_keymaps").notify,
+	-- 	config = function()
+	-- 		vim.notify = require("notify")
+	-- 		require("notify").setup({
+	-- 			timeout = 500,
+	-- 			render = "minimal",
+	-- 			background_colour = "#00000000",
+	-- 		})
+	-- 	end,
+	-- }, -- better vim.notify
 
 	{
 		"stevearc/dressing.nvim",
@@ -94,14 +94,14 @@ return {
 		cmd = "Navbuddy",
 	}, -- Outline symbols
 
-	{
-		"petertriho/nvim-scrollbar",
-		event = { "BufReadPost", "BufNewFile" },
-		config = function()
-			require("scrollbar").setup()
-			require("scrollbar.handlers.gitsigns").setup()
-		end,
-	}, -- scrollbar
+	-- {
+	-- 	"petertriho/nvim-scrollbar",
+	-- 	event = { "BufReadPost", "BufNewFile" },
+	-- 	config = function()
+	-- 		require("scrollbar").setup()
+	-- 		require("scrollbar.handlers.gitsigns").setup()
+	-- 	end,
+	-- }, -- scrollbar
 
 	{
 		"Bekaboo/dropbar.nvim",

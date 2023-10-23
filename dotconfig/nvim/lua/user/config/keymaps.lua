@@ -9,7 +9,7 @@ end
 
 --Remap space as leader key
 map("", "<Space>", "<Nop>", get_opts("remap space as leader key"))
-map("", "q", "<Nop>", get_opts("fuck q"))
+-- map("", "q", "<Nop>", get_opts("fuck q"))
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -204,6 +204,7 @@ map("n", "<A-c>", "<cmd>bp | sp | bn | bd<cr>", get_opts("Close current buffer")
 
 -- Lazy
 map({ "n", "v" }, "<leader><leader>l", "<cmd>Lazy<cr>", get_opts("Open Lazy"))
+map({ "n", "v" }, "<leader><leader>p", "<cmd>Lazy reload all<cr>", get_opts("Open Lazy"))
 
 -- Git
 -- map({ "n", "v" }, "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", get_opts("Preview Git Hunk"))

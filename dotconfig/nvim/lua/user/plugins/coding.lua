@@ -82,6 +82,11 @@ return {
 		end,
 	}, -- LSP
 
+  {  "pmizio/typescript-tools.nvim",
+    event = "LspAttach",
+  },
+
+
 	{
 		"stevearc/conform.nvim",
 		event = "LspAttach",
@@ -137,7 +142,7 @@ return {
 	{
 		"williamboman/mason.nvim",
 		build = ":MasonUpdate",
-		cmd = "Mason",
+		cmd = { "Mason", "MasonUpdate", "MasonInstall" },
 	}, -- LSP Package Manager
 	{ "williamboman/mason-lspconfig.nvim" },
 	{ "simrat39/rust-tools.nvim", ft = "rust" }, -- Better rust tools

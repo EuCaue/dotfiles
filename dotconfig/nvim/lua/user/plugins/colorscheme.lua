@@ -26,10 +26,10 @@ local pale = {
 	config = function()
 		require("palenightfall").setup({
 			transparent = true,
-			color_overrides = {
-				background = "#000000",
-				background_darker = "#000000",
-			},
+			-- color_overrides = {
+			-- 	background = "#000000",
+			-- 	background_darker = "#000000",
+			-- },
 		})
 	end,
 }
@@ -40,7 +40,7 @@ local onedark = {
 	priority = 1000,
 	config = function()
 		require("onedark").setup({
-			transparent = (utils.get_transparency_value() == "true"),
+			transparent = true,
 			term_colors = true,
 			lualine = {
 				transparent = true, -- lualine center bar transparency
@@ -70,31 +70,6 @@ local onedark = {
 	end,
 }
 
-local t = {
-	"folke/tokyonight.nvim",
-	lazy = false,
-	priority = 1000,
-	config = function()
-		require("tokyonight").setup({
-			style = "night", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
-			light_style = "dark", -- The theme is used when the background is set to light
-			transparent = true, -- Enable this to disable setting the background color
-			terminal_colors = true, -- Configure the colors used when opening a `:terminal` in [Neovim](https://github.com/neovim/neovim)
-			styles = {
-				comments = { italic = true },
-				keywords = { italic = true },
-				functions = {},
-				variables = {},
-				-- Background styles. Can be "dark", "transparent" or "normal"
-				sidebars = "transparent", -- style for sidebars, see below
-				floats = "transparent", -- style for floating windows
-			},
-			sidebars = { "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
-		})
-		vim.cmd("colorscheme tokyonight")
-	end,
-}
-
 local me = {
 	"ramojus/mellifluous.nvim",
 	lazy = false,
@@ -116,7 +91,7 @@ local me = {
 				booleans = { italic = true },
 				properties = {},
 				types = { italic = true },
-				operators = {italic = true},
+				operators = { italic = true },
 			},
 			transparent_background = {
 				enabled = true,
@@ -147,6 +122,127 @@ local me = {
 	end,
 }
 
+local gh = {
+	"projekt0n/github-nvim-theme",
+	lazy = false, -- make sure we load this during startup if it is your main colorscheme
+	priority = 1000, -- make sure to load this before all the other start plugins
+	config = function()
+		require("github-theme").setup({
+			options = {
+				-- Compiled file's destination location
+				compile_path = vim.fn.stdpath("cache") .. "/github-theme",
+				compile_file_suffix = "_compiled", -- Compiled file suffix
+				hide_end_of_buffer = true, -- Hide the '~' character at the end of the buffer for a cleaner look
+				hide_nc_statusline = true, -- Override the underline style for non-active statuslines
+				transparent = true, -- Disable setting background
+				dim_inactive = false, -- Non focused panes set to alternative background
+				module_default = true, -- Default enable value for modules
+				styles = { -- Style to be applied to different syntax groups
+					comments = "italic", -- Value is any valid attr-list value `:help attr-list`
+					functions = "bold",
+					keywords = "italic",
+					variables = "NONE",
+					conditionals = "bold",
+					constants = "NONE",
+					numbers = "NONE",
+					operators = "bold",
+					strings = "NONE",
+					types = "bold",
+				},
+			},
+		})
+		vim.cmd("colorscheme github_dark_high_contrast")
+	end,
+}
+
+local gb = {
+	"ellisonleao/gruvbox.nvim",
+	lazy = false,
+	priority = 1000,
+	config = function()
+		require("gruvbox").setup({
+			terminal_colors = true, -- add neovim terminal colors
+			undercurl = true,
+			underline = true,
+			bold = true,
+			italic = {
+				strings = false,
+				emphasis = false,
+				comments = true,
+				operators = false,
+				folds = true,
+			},
+			strikethrough = true,
+			invert_selection = false,
+			invert_signs = false,
+			invert_tabline = false,
+			invert_intend_guides = false,
+			inverse = true, -- invert background for search, diffs, statuslines and errors
+			contrast = "", -- can be "hard", "soft" or empty string
+			palette_overrides = {},
+			overrides = {},
+			dim_inactive = false,
+			transparent_mode = true,
+		})
+		vim.cmd("colorscheme gruvbox")
+		vim.cmd("Transparent")
+	end,
+}
+
+local mellow = {
+	"kvrohit/mellow.nvim",
+	lazy = false,
+	priority = 1000,
+	config = function()
+		vim.g.mellow_transparent = true
+		vim.g.mellow_bold_functions = true
+		vim.g.mellow_bold_keywords = true
+		vim.g.mellow_italic_comments = true
+
+		vim.cmd([[colorscheme mellow]])
+	end,
+}
+
+local nordic = {
+	"AlexvZyl/nordic.nvim",
+	lazy = false,
+	priority = 1000,
+	config = function()
+		require("nordic").setup({
+			-- Enable bold keywords.
+			bold_keywords = true,
+			-- Enable italic comments.
+			italic_comments = true,
+			-- Enable general editor background transparency.
+			transparent_bg = true,
+			-- Enable brighter float border.
+			bright_border = true,
+			-- Reduce the overall amount of blue in the theme (diverges from base Nord).
+			reduced_blue = true,
+			-- Swap the dark background with the normal one.
+			swap_backgrounds = true,
+			-- Override the styling of any highlight group.
+			override = {},
+			-- Cursorline options.  Also includes visual/selection.
+			cursorline = {
+				-- Bold font in cursorline.
+				bold = true,
+				-- Bold cursorline number.
+				bold_number = true,
+				-- Avialable styles: 'dark', 'light'.
+				theme = "dark",
+				-- Blending the cursorline bg with the buffer bg.
+				blend = 0.7,
+			},
+			telescope = {
+				-- Available styles: `classic`, `flat`.
+				style = "classic",
+			},
+		})
+		require("nordic").load()
+	end,
+}
+
 return {
-	me,
+	nordic,
 }

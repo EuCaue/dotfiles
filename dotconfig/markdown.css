@@ -48,7 +48,7 @@
   margin-bottom: 0;
 }
 .markdown-body {
-  font-family: "SF Pro Text", "Helvetica Neue", Helvetica, "Segoe UI", Arial,
+  font-family: "Cantarell", "Helvetica Neue", Helvetica, "Segoe UI", Arial,
     freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
   font-size: 16px;
@@ -260,7 +260,7 @@
   content: normal;
 }
 .markdown-body code {
-  font-family: "Liga SFMono Nerd Font", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-family: "Maple Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace;
   padding: 0;
   padding-top: 0.2em;
   padding-bottom: 0.2em;

@@ -1,0 +1,28 @@
+# -*- conf -*-
+    # mellow
+    [cursor]
+    color=c9c7cd 757581
+
+    [colors]
+    background=161617
+    foreground=c9c7cd
+
+    # Normal/regular colors (color palette 0-7)
+    regular0=27272a # black
+    regular1=f5a191 # red
+    regular2=90b99f # green
+    regular3=e6b99d # yellow
+    regular4=aca1cf # blue
+    regular5=e29eca # magenta
+    regular6=ea83a5 # cyan
+    regular7=c1c0d4 # white
+
+    # Bright colors (color palette 8-15)
+    bright0=353539 # black
+    bright1=ffae9f # red
+    bright2=9dc6ac # green
+    bright3=f0c5a9 # yellow
+    bright4=b9aeda # blue
+    bright5=ecaad6 # magenta
+    bright6=f591b2 # cyan
+    bright7=cac9dd # white

@@ -12,7 +12,7 @@ set recolor-keephue "true"
 set zoom-center "true"
 set selection-clipboard clipboard
 set adjust-open "width"
-set font "Liga SFMono Nerd Font 12"
+set font "Maple Mono 12"
 
 set statusbar-bg                "#000000"
 set statusbar-fg                "#f8f8f2"

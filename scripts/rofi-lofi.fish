@@ -11,6 +11,7 @@ function notification
 end
 
 function menu
+    #  NOTE: add a new option here and on the "switch $choice" state. 
     echo "1. Lofi Girl"
     echo "2. Lofi Hunter"
     echo "3. Lofi HipHop"
@@ -26,6 +27,7 @@ function menu
     echo "13. Code Lofi"
     echo "14. Aesthetic Lofi"
     echo "15. Forest Sounds"
+    echo "16. Lofi Search"
 end
 
 function menu_pause
@@ -103,7 +105,7 @@ function main
         return 1
     end
 
-    set choice $(menu | rofi -dmenu -p "Station" > /tmp/radio_choice_temp; cat /tmp/radio_choice_temp)
+    set choice $(menu | rofi -i -dmenu -p "Station" > /tmp/radio_choice_temp; cat /tmp/radio_choice_temp)
 
     if string match -r '^[0-9]+\..' $choice
         set choice (echo $choice | cut -d. -f1)
@@ -113,7 +115,7 @@ function main
         return 1
     end
 
-    set volume $(rofi -dmenu -p "Volume")
+    set volume $(rofi -dmenu -p "Volume" -theme-str 'listview {lines: 0;}')
 
     if test -z $volume
         return 1
@@ -165,11 +167,20 @@ function main
         case 15
             notification "Forest Sounds ☕️🎶"
             set URL "https://www.youtube.com/watch?v=xNN7iTA57jM"
+        case 16
+            source $HOME/dotfiles/scripts/rofi-ddgr.fish &&
+                if test $status -ne 0 
+                    notify-send "Error on query"
+                    return 1
+                end
+            echo $url
+            notification "$result ☕️🎶"
+            set URL "$url"
         case '*'
             notification "Custom Radio ☕️🎶"
             set URL $choice
     end
-    mpv --script-opts=ytdl_hook-ytdl_path=yt-dlp --volume=$volume --title="radio-mpv" $URL --input-ipc-server=/tmp/mpvsocket --no-video
+    mpv --script-opts=ytdl_hook-ytdl_path=yt-dlp --volume=$volume --title="radio-mpv" $URL --input-ipc-server=/tmp/mpvsocket --no-video --idle=once
 end
 
 main

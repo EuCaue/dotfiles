@@ -2,7 +2,7 @@ indicator-caps-lock
 indicator-radius=125
 indicator-thickness=10
 clock
-font=Liga SFMono Nerd Font
+font=Maple Mono
 font-size=40px
 ignore-empty-password
 effect-blur=3x5

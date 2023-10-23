@@ -23,11 +23,11 @@ local fonts = {
 	{ family = "Lilex Nerd Font", italic = italic },
 	{ family = "GoMono Nerd Font", italic = italic },
 	{ family = "Martian Mono", italic = italic },
+	{ family = "Maple Mono", italic = italic },
 }
 
 local emoji_font = { "Apple Color Emoji" }
-
-config.font = wezterm.font_with_fallback({ fonts[15], emoji_font[1] })
+config.font = wezterm.font_with_fallback({ fonts[16], emoji_font[1] })
 config.enable_scroll_bar = false
 config.font_size = 14
 config.enable_tab_bar = true

@@ -2,9 +2,9 @@
 # VERSION: 3.0
 SETUVAR --export CURSOR:Adwaita
 SETUVAR --export CURSORSIZE:24
-SETUVAR --export FONT_NAME:Liga\x20SFMono\x20Nerd\x20Font
+SETUVAR --export FONT_NAME:Maple\x20Mono
 SETUVAR --export ROUNDING:0
-SETUVAR --export WALLPAPER:/home/caue/\x2elocal/share/backgrounds/wallhaven\x2dmdvm78\x2ejpeg
+SETUVAR --export WALLPAPER:/home/caue/\x2elocal/share/backgrounds/wallhaven\x2d83oj8j\x2epng
 SETUVAR Z_DATA_DIR:/home/caue/\x2elocal/share/z
 SETUVAR __fish_initialized:3400
 SETUVAR _fisher_jorgebucaran_2F_autopair_2E_fish_files:\x7e/\x2econfig/fish/functions/_autopair_backspace\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_insert_left\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_insert_right\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_insert_same\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_tab\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/autopair\x2efish
@@ -53,4 +53,4 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dreverse
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/home/caue/\x2elocal/share/Steam/steamapps/common/Counter\x2dStrike\x20Global\x20Offensive/csgo/cfg\x1e/home/caue/\x2elocal/bin\x1e/home/caue/dotfiles/scripts\x1e/home/caue/\x2espicetify
+SETUVAR fish_user_paths:/home/caue/\x2ecargo/bin\x1e/home/caue/\x2elocal/share/Steam/steamapps/common/Counter\x2dStrike\x20Global\x20Offensive/csgo/cfg\x1e/home/caue/\x2elocal/bin\x1e/home/caue/dotfiles/scripts\x1e/home/caue/\x2espicetify

@@ -1,0 +1,28 @@
+# -*- conf -*-
+    # hurtado
+    [cursor]
+    color=000000 bbbbbb
+
+    [colors]
+    background=000000
+    foreground=dadbda
+
+    # Normal/regular colors (color palette 0-7)
+    regular0=575757 # black
+    regular1=ff1b00 # red
+    regular2=a5df55 # green
+    regular3=fbe74a # yellow
+    regular4=486387 # blue
+    regular5=fc5ef0 # magenta
+    regular6=85e9fe # cyan
+    regular7=cbcbcb # white
+
+    # Bright colors (color palette 8-15)
+    bright0=252525 # black
+    bright1=d41c00 # red
+    bright2=a5df55 # green
+    bright3=fbe749 # yellow
+    bright4=89bdff # blue
+    bright5=bf00c0 # magenta
+    bright6=85e9fe # cyan
+    bright7=dbdbdb # white

@@ -1,0 +1,7 @@
+[Unit]
+Description=Update dotfiles website
+
+[Service]
+Type=simple
+ExecStart=/home/caue/Dev/go/api/s.fish
+Restart=Always

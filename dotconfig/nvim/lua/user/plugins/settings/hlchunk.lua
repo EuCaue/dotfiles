@@ -1,5 +1,27 @@
 local hlchunk = require("hlchunk")
 
+local function hlcode(name)
+	local hlnr = vim.fn.hlID(name)
+	if type(hlnr) ~= "number" or hlnr <= 0 then
+		return nil
+	end
+	local synnr = vim.fn.synIDtrans(hlnr)
+	if type(synnr) ~= "number" or synnr <= 0 then
+		return nil
+	end
+	local guicode = vim.fn.synIDattr(synnr, "fg", "gui")
+	if type(guicode) == "string" and string.len(guicode) > 0 then
+		return guicode
+	end
+	return vim.fn.synIDattr(synnr, "fg", "cterm")
+end
+local HL = "#41a7fc"
+
+local line_nr = hlcode("Constant")
+if line_nr then
+	HL = line_nr
+end
+
 hlchunk.setup({
 	chunk = {
 		enable = true,
@@ -20,7 +42,7 @@ hlchunk.setup({
 			right_arrow = ">",
 		},
 		style = {
-			{ fg = "#41a7fc" },
+			{ fg = HL },
 		},
 	},
 
@@ -38,7 +60,7 @@ hlchunk.setup({
 	line_num = {
 		enable = true,
 		use_treesitter = false,
-		style = "#41a7fc",
+		style = HL,
 	},
 
 	blank = {

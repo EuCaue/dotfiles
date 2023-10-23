@@ -143,6 +143,7 @@ telescope.setup({
 				},
 				["n"] = {
 					["h"] = fb_actions.backspace,
+					["-"] = fb_actions.backspace,
 				},
 			},
 		},

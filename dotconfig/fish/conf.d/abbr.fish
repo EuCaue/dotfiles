@@ -6,7 +6,6 @@ abbr -a -g sha 'shasum -a 256' # Test checksum
 abbr -a -g cn 'ping -c 5 8.8.8.8'
 abbr -a -g tn "tmux new -s (pwd | sed 's/.*\///g')" # tmux session 
 abbr -a -g rn mv # "rename"
-abbr -a -g c qalc # quick math
 abbr -a -g md mkdir
 abbr -a -g cpdf "gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf input.pdf"
 abbr -a -g tma "tmux attach -t"

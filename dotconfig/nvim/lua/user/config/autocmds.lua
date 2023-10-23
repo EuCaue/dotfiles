@@ -86,15 +86,18 @@ autocmd("BufReadPost", {
 	end,
 })
 
-autocmd("BufNew", {
+autocmd("LspAttach", {
+	group = augroup("LspInlayHint highlight"),
+	callback = function()
+		local normal_fg = vim.fn.synIDattr(vim.fn.hlID("lualine_a_normal"), "fg")
+		vim.cmd("highlight LspInlayHint guibg=" .. normal_fg)
+	end,
+})
+
+autocmd("VimEnter", {
 	group = augroup("ColorScheme"),
 	callback = function()
-		vim.cmd("hi FlashCurrent guibg=none")
-		vim.cmd("hi FlashMatch guibg=none")
-		--  TODO: make this get the colorscheme
-		vim.cmd("hi FlashLabel guifg=White guibg=#E55C67 cterm=bold")
-		vim.cmd("hi FlashLabel guifg=White guibg=#E55C67 cterm=bold")
-		vim.cmd("highlight Pmenu guifg=NONE guibg=NONE")
+		vim.cmd("Transparent")
 	end,
 })
 
@@ -113,10 +116,6 @@ autocmd("ModeChanged", {
 	end,
 })
 
--- vim.api.nvim_create_autocmd("WinLeave", {
--- 	callback = function()
--- 		if vim.bo.ft == "TelescopePrompt" and vim.fn.mode() == "i" then
--- 			vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "i", false)
--- 		end
--- 	end,
--- })
+vim.cmd([[
+autocmd BufEnter * silent! :lcd %:p:r
+]])

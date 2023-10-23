@@ -10,8 +10,8 @@ set -x VISUAL nvim
 # Add paths
 fish_add_path "$HOME/.local/bin:$PATH"
 fish_add_path "$HOME/dotfiles/scripts/"
-fish_add_path "/home/caue/.spicetify"
-fish_add_path "/home/caue/.local/bin/"
+fish_add_path "$HOME/.spicetify"
+fish_add_path "$HOME/.cargo/bin"
 
 set -x FZF_DEFAULT_OPTS "
     --margin=20%,10%,20%

@@ -1,5 +1,7 @@
 command_timeout = 10000
 
+add_newline = false
+
 format = """$directory$time\n$character"""
  
 right_format = """
