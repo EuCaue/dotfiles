@@ -72,6 +72,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.lsp.inlay_hint(bufnr)
 		end, get_bufopts("Toggle LSP Inlay Hint"))
 		vim.keymap.set("n", "<space>ls", vim.lsp.buf.signature_help, get_bufopts("LSP Signature"))
+		vim.keymap.set("n", "<space>ltd", "<cmd>ToggleLspDiag<cr>", get_bufopts("Toggle LSP Diagnostics"))
 		vim.keymap.set("n", "<space>lf", function()
 			vim.lsp.buf.format({ async = true })
 		end, get_bufopts("LSP Format"))
@@ -335,7 +336,7 @@ end
 
 vim.diagnostic.config({
 	float = {
-		border = "none",
+		border = "single",
 		focusable = true,
 		style = "minimal",
 		source = "always",

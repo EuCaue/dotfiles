@@ -16,7 +16,7 @@ label {
 }
 
 .workspaces {
-  border-bottom: 3px solid @accent_fg_color;
+  /* border-bottom: 3px solid @accent_fg_color; */
 }
 
 .workspace {
@@ -39,7 +39,7 @@ label {
 
 .workspace.focused {
   color: @accent_color;
-  border-top: 3px solid @accent_color;
+  /* border-top: 3px solid @accent_color; */
 }
 
 .notification image {
@@ -60,18 +60,19 @@ label {
   margin-left: 15px;
   background-color: @bg-color;
   color: white;
-  padding: 0 15px;
-  border-bottom: 3px solid @accent_fg_color;
+  padding: 0 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  /* border-bottom: 3px solid @accent_fg_color; */
 }
 
 .clock {
   background-color: @bg-color;
-  padding: 0 15px;
-  border-bottom: 3px solid @accent_fg_color;
+  padding: 0 10px;
+  /* border-bottom: 3px solid @accent_fg_color; */
 }
 
 .systemtray {
-  border-bottom: 3px solid @accent_fg_color;
+  /* border-bottom: 3px solid @accent_fg_color; */
   margin-left: 10px;
 }
 

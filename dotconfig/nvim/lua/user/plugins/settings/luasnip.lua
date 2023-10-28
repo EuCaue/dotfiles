@@ -16,7 +16,6 @@ ls.config.set_config({
 	},
 })
 
-ls.filetype_extend("typescript", { "css" })
 ls.filetype_extend("text", { "license" })
 ls.filetype_extend("markdown", { "license" })
 require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets" })

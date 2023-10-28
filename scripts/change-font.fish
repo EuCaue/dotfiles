@@ -2,7 +2,7 @@
 set -e -U FONT_NAME
 
 if test $TERM = linux
-    set -Ux FONT_NAME $(fc-list --format="%{family}\n" | cut -d , -f 1 | sort | uniq | fuzzel --dmenu)
+    set -Ux FONT_NAME $(fc-list --format="%{family}\n" | cut -d , -f 1 | sort | uniq | rofi -dmenu)
 else
     if test -z $argv[1]
         set -Ux FONT_NAME "GoMono Nerd Font"

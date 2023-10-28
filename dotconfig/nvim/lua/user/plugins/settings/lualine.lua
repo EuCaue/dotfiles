@@ -13,7 +13,7 @@ local lsp = {
 	function(msg)
 		local clients = 0
 		msg = msg or "(LSP Inactive)"
-		local buf_clients = vim.lsp.buf_get_clients()
+		local buf_clients = vim.lsp.get_clients()
 		if next(buf_clients) == nil then
 			if type(msg) == "boolean" or #msg == 0 then
 				return "(LSP Inactive)"
@@ -110,7 +110,7 @@ lualine.setup({
 		lualine_a = { { "mode", icons_enabled = true, icon = "", padding = 1 } },
 		lualine_b = { branch, diff },
 		lualine_c = {},
-		lualine_x = {filename },
+		lualine_x = { filename },
 		lualine_y = { lsp, diagnostics },
 		lualine_z = { "location" },
 	},

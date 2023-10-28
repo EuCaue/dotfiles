@@ -4,7 +4,7 @@ set found_none false
 set -e -U ROUNDING
 
 if test $TERM = linux
-    set -Ux ROUNDING $(fuzzel --dmenu -p "Set the rounding ")
+    set -Ux ROUNDING $(rofi -dmenu -p "Set the rounding ")
 else
     if test -z $argv[1]
         set -Ux ROUNDING 0

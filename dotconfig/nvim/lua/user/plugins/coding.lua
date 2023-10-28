@@ -6,7 +6,6 @@ return {
 		lazy = false,
 		event = "BufReadPost",
 		dependencies = {
-			{ "windwp/nvim-ts-autotag", event = "BufReadPre", opts = {} }, -- <> autoclose tag
 			{ "JoosepAlviste/nvim-ts-context-commentstring", event = "BufRead" }, -- Better JSX + TSX comment
 		},
 		config = function()
@@ -14,6 +13,7 @@ return {
 		end,
 	}, -- a better highlight for everything
 
+	{ "windwp/nvim-ts-autotag", event = "InsertEnter", opts = {} }, -- <> autoclose tag
 	{
 		"L3MON4D3/LuaSnip",
 		event = { "BufReadPre", "BufNewFile" },
@@ -82,10 +82,7 @@ return {
 		end,
 	}, -- LSP
 
-  {  "pmizio/typescript-tools.nvim",
-    event = "LspAttach",
-  },
-
+	{ "pmizio/typescript-tools.nvim", event = "LspAttach" },
 
 	{
 		"stevearc/conform.nvim",

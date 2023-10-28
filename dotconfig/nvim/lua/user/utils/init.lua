@@ -62,6 +62,7 @@ M.servers = {
 	-- "tsserver",
 	-- "vtsls",
 	"prosemd_lsp",
+	"jedi_language_server",
 	"yamlls",
 	"bashls",
 	"pkgbuild_language_server",

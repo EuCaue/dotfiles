@@ -103,7 +103,7 @@ toggle_ssid() {
 	}
 
 	_connect_protected() {
-		wifi_pass=$(fuzzel --dmenu --password \
+		wifi_pass=$(rofi -dmenu -password \
 			-theme-str '#entry { placeholder: "password .."; }')
 		# if no password provided - quit that script and restore initial connection
 		# maybe show return to main menu instead?
@@ -158,7 +158,7 @@ ssid_menu() {
 		options="$connected\n$goback"
 
 	# Open rofi menu, read chosen option
-	chosen="$(echo -e "$options" | fuzzel --dmenu)"
+	chosen="$(echo -e "$options" | rofi -dmenu)"
 
 	# Match chosen option to command
 	case "$chosen" in
@@ -182,7 +182,7 @@ show_menu() {
 	wifi_on && options="$state\n$wifi_list" || options="$state"
 	# force monospace font to not get those fields messy
 	chosen_row=$(echo -e "$options\nrefresh" | uniq -u |
-		fuzzel --dmenu)
+		rofi -dmenu)
 	# chosen_ssid might b empty in case we chose 'enable/disable wifi' row
 	# so we don't check for it's emptyness
 	if [ -z "$chosen_row" ]; then exit; fi

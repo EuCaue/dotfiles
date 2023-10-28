@@ -44,7 +44,7 @@ stop_recording() {
 	fi
 }
 
-choice_start_recording=$(menu_start_recording | fuzzel --dmenu -p "Choose a option: " -l 4 | cut -d. -f1)
+choice_start_recording=$(menu_start_recording | rofi -dmenu -p "Choose a option" -theme-str 'listview {lines: 4;}' | cut -d. -f1)
 
 case $choice_start_recording in
 1)

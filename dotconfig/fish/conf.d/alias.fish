@@ -19,7 +19,7 @@ function gal --description "alias git add commit push"
     return 0
 end
 alias bat='bat --theme=base16'
-alias ls='exa -l -g --icons'
+alias ls='exa -l -g --icons -h'
 alias la='exa -l -a -g --icons'
 alias lll='exa -l -a -g --icons'
 function lr --description "Show a tree file"
@@ -35,7 +35,7 @@ alias rn="mv"
 alias rm='trash put'
 alias rl='trash list'
 alias tree="exa -l -a -g --icons --tree"
-alias zl="z && c"
+alias cl="cd && c"
 
 alias vim='nvim'
 alias vi='nvim'
@@ -55,7 +55,7 @@ function mkcd --description "mkdir with cd"
 end
 
 function gcl --description "Clone to gitclone folder and cd"
-    cd ~/gitclone; and git clone $argv[1] && cd (basename $argv[1] .git)
+    cd ~/gitclone; and git clone --depth=1 $argv && cd (basename $argv[1] .git)
     return 0
 end
 

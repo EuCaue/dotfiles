@@ -18,20 +18,6 @@ return {
 		cmd = "Alpha",
 	}, -- title screen
 
-	-- {
-	-- 	"rcarriga/nvim-notify",
-	-- 	event = "BufReadPost",
-	-- 	keys = require("user.config.plugin_keymaps").notify,
-	-- 	config = function()
-	-- 		vim.notify = require("notify")
-	-- 		require("notify").setup({
-	-- 			timeout = 500,
-	-- 			render = "minimal",
-	-- 			background_colour = "#00000000",
-	-- 		})
-	-- 	end,
-	-- }, -- better vim.notify
-
 	{
 		"stevearc/dressing.nvim",
 		lazy = true,
@@ -39,38 +25,6 @@ return {
 			require("dressing").setup({})
 		end,
 	}, -- better ui
-
-	-- {
-	--   "folke/noice.nvim",
-	--   -- event = "BufRead",
-	--
-	--   config = function()
-	--     require("noice").setup({
-	--       popupmenu = {
-	--         backend = "cmp",
-	--       },
-	--       lsp = {
-	--         documentation = {
-	--           enabled = false,
-	--         },
-	--         progress = {
-	--           enabled = false,
-	--           throttle = 8000 / 10, -- frequency to update lsp progress message
-	--         },
-	--         override = {
-	--           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-	--           ["vim.lsp.util.stylize_markdown"] = true,
-	--           ["cmp.entry.get_documentation"] = true,
-	--         },
-	--       },
-	--       presets = {
-	--         long_message_to_split = true, -- long messages will be sent to a split
-	--         inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-	--         lsp_doc_border = false,       -- add a border to hover docs and signature help
-	--       },
-	--     })
-	--   end,
-	-- }, -- better ui's
 
 	{
 		"shellRaining/hlchunk.nvim",
@@ -93,15 +47,6 @@ return {
 		end,
 		cmd = "Navbuddy",
 	}, -- Outline symbols
-
-	-- {
-	-- 	"petertriho/nvim-scrollbar",
-	-- 	event = { "BufReadPost", "BufNewFile" },
-	-- 	config = function()
-	-- 		require("scrollbar").setup()
-	-- 		require("scrollbar.handlers.gitsigns").setup()
-	-- 	end,
-	-- }, -- scrollbar
 
 	{
 		"Bekaboo/dropbar.nvim",

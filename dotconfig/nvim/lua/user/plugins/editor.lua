@@ -1,7 +1,7 @@
 local utils = require("user.utils")
 
 return {
-	{ dir = "~/Dev/lua/markvim.nvim", config = true },
+	-- { dir = "~/Dev/lua/markvim.nvim", config = true },
 
 	{ "nacro90/numb.nvim", config = true, event = "BufReadPost" },
 	{
@@ -230,34 +230,42 @@ endfunction
 		end,
 	},
 
-	{
-		"m4xshen/autoclose.nvim",
-		event = { "BufRead", "BufNewFile" },
-		opts = {
-			keys = {
-				["("] = { escape = false, close = true, pair = "()" },
-				["["] = { escape = false, close = true, pair = "[]" },
-				["{"] = { escape = false, close = true, pair = "{}" },
-
-				[">"] = { escape = true, close = false, pair = "<>" },
-				[")"] = { escape = true, close = false, pair = "()" },
-				["]"] = { escape = true, close = false, pair = "[]" },
-				["}"] = { escape = true, close = false, pair = "{}" },
-
-				['"'] = { escape = true, close = true, pair = '""' },
-				["'"] = { escape = true, close = true, pair = "''" },
-				["`"] = { escape = true, close = true, pair = "``" },
-			},
-			options = {
-				disabled_filetypes = { "text" },
-				disable_when_touch = true,
-				touch_regex = "[%w(%[{]",
-				pair_spaces = false,
-				auto_indent = true,
-				disable_command_mode = false,
-			},
-		},
-	},
+{
+    'altermo/ultimate-autopair.nvim',
+    event={'InsertEnter','CmdlineEnter'},
+    branch='v0.6', --recomended as each new version will have breaking changes
+    opts={
+        --Config goes here
+    },
+},
+	-- {
+	-- 	"m4xshen/autoclose.nvim",
+	-- 	event = { "BufRead", "BufNewFile" },
+	-- 	opts = {
+	-- 		keys = {
+	-- 			["("] = { escape = false, close = true, pair = "()" },
+	-- 			["["] = { escape = false, close = true, pair = "[]" },
+	-- 			["{"] = { escape = false, close = true, pair = "{}" },
+	--
+	-- 			[">"] = { escape = true, close = false, pair = "<>" },
+	-- 			[")"] = { escape = true, close = false, pair = "()" },
+	-- 			["]"] = { escape = true, close = false, pair = "[]" },
+	-- 			["}"] = { escape = true, close = false, pair = "{}" },
+	--
+	-- 			['"'] = { escape = true, close = true, pair = '""' },
+	-- 			["'"] = { escape = true, close = true, pair = "''" },
+	-- 			["`"] = { escape = true, close = true, pair = "``" },
+	-- 		},
+	-- 		options = {
+	-- 			disabled_filetypes = { "text" },
+	-- 			disable_when_touch = true,
+	-- 			touch_regex = "[%w(%[{]",
+	-- 			pair_spaces = false,
+	-- 			auto_indent = true,
+	-- 			disable_command_mode = false,
+	-- 		},
+	-- 	},
+	-- },
 	{
 		"folke/zen-mode.nvim",
 		cmd = "ZenMode",

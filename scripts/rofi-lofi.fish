@@ -54,6 +54,11 @@ function is_running -a choice
     else
         set actual_radio "Custom Radio"
     end
+
+    if test "$actual_radio" = "Lofi Search"
+        set actual_radio $result
+    end
+
     if pgrep -f radio-mpv
         echo "is running"
         if string match -q -r true (echo $pause_status)
@@ -169,11 +174,12 @@ function main
             set URL "https://www.youtube.com/watch?v=xNN7iTA57jM"
         case 16
             source $HOME/dotfiles/scripts/rofi-ddgr.fish &&
-                if test $status -ne 0 
+                if test $status -ne 0
                     notify-send "Error on query"
                     return 1
                 end
             echo $url
+            echo $result >/tmp/radio_choice_temp
             notification "$result ☕️🎶"
             set URL "$url"
         case '*'

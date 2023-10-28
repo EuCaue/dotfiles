@@ -28,7 +28,7 @@ if test $argv[1] = window
     return 1
 end
 
-set choice_print $(menu_options | fuzzel --dmenu -p "Print mode: " --lines 3| cut -d. -f1 )
+set choice_print $(menu_options | rofi -dmenu -p "Print mode: " -theme-str 'listview {lines: 3;}' | cut -d. -f1 )
 
 switch $choice_print
     case 1

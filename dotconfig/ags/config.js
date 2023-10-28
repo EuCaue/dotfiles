@@ -1,4 +1,5 @@
 // importing
+import Gdk from "gi://Gdk";
 import Hyprland from "resource:///com/github/Aylur/ags/service/hyprland.js";
 import Notifications from "resource:///com/github/Aylur/ags/service/notifications.js";
 import Mpris from "resource:///com/github/Aylur/ags/service/mpris.js";
@@ -6,7 +7,7 @@ import Audio from "resource:///com/github/Aylur/ags/service/audio.js";
 import Battery from "resource:///com/github/Aylur/ags/service/battery.js";
 import SystemTray from "resource:///com/github/Aylur/ags/service/systemtray.js";
 import App from "resource:///com/github/Aylur/ags/app.js";
-import Variable from 'resource:///com/github/Aylur/ags/variable.js'
+import Variable from "resource:///com/github/Aylur/ags/variable.js";
 import {
   Box,
   Button,
@@ -20,6 +21,7 @@ import {
   ProgressBar,
 } from "resource:///com/github/Aylur/ags/widget.js";
 import { exec, execAsync } from "resource:///com/github/Aylur/ags/utils.js";
+const display = Gdk.Display.get_default();
 
 // import statements are long, so there is also the global ags object you can import from
 // const { Hyprland, Notifications, Mpris, Audio, Battery } = ags.Service;
@@ -49,42 +51,50 @@ const workspacesIcons = new Map([
 ]);
 
 const Workspaces = () =>
-  Box({
-    className: "workspaces",
-    connections: [
-      [
-        Hyprland,
-        (box) => {
-          const workspacesWithWindows = Object.values(Hyprland.workspaces)
-            .filter((w) => {
-              return !w.name.startsWith("special");
-            })
-            .sort((a, b) => a.id - b.id);
+  EventBox({
+    onHover: (box) => {
+      box.window.set_cursor(Gdk.Cursor.new_from_name(display, "pointer"));
+    },
+   // onHoverLost: box => {
+   //      box.window.set_cursor(null);
+   //  },
+    child: Box({
+      className: "workspaces",
+      connections: [
+        [
+          Hyprland,
+          (box) => {
+            const workspacesWithWindows = Object.values(Hyprland.workspaces)
+              .filter((w) => {
+                return !w.name.startsWith("special");
+              })
+              .sort((a, b) => a.id - b.id);
 
-          box.children = workspacesWithWindows.map((i) => {
-            return Button({
-              onClicked: () =>
-                execAsync(`hyprctl dispatch workspace ${Number(i.id)}`),
-              child: Box({
-                className: "workspace-box",
-                children: [
-                  Label({ label: `${i.id} ` }),
-                  Label({
-                    justification: "center",
-                    label: `${workspacesIcons.get(String(i.id)) ?? ""} `,
-                    className: "workspace-icon",
-                  }),
-                ],
-              }),
-              className:
-                Hyprland.active.workspace.id == Number(i.id)
-                  ? "focused workspace"
-                  : "workspace",
+            box.children = workspacesWithWindows.map((i) => {
+              return Button({
+                onClicked: () =>
+                  execAsync(`hyprctl dispatch workspace ${Number(i.id)}`),
+                child: Box({
+                  className: "workspace-box",
+                  children: [
+                    Label({ label: `${i.id} ` }),
+                    Label({
+                      justification: "center",
+                      label: `${workspacesIcons.get(String(i.id)) ?? ""} `,
+                      className: "workspace-icon",
+                    }),
+                  ],
+                }),
+                className:
+                  Hyprland.active.workspace.id == Number(i.id)
+                    ? "focused workspace"
+                    : "workspace",
+              });
             });
-          });
-        },
+          },
+        ],
       ],
-    ],
+    }),
   });
 
 const activeWindowTitle = () => {
@@ -121,6 +131,14 @@ const systemtray = Box({
           Button({
             child: Icon(),
             onPrimaryClick: (_, event) => item.activate(event),
+            onHover: (box) => {
+              box.window.set_cursor(
+                Gdk.Cursor.new_from_name(display, "pointer"),
+              );
+            },
+   onHoverLost: box => {
+        box.window.set_cursor(null);
+    },
             onSecondaryClick: (_, event) => item.openMenu(event),
             connections: [
               [
@@ -143,6 +161,12 @@ let showDateOrTime = Variable(true);
 const Clock = () =>
   EventBox({
     onPrimaryClick: () => showDateOrTime.setValue(!showDateOrTime.value),
+    onHover: (box) => {
+      box.window.set_cursor(Gdk.Cursor.new_from_name(display, "pointer"));
+    },
+   onHoverLost: box => {
+        box.window.set_cursor(null);
+    },
     child: Box({
       className: "clock",
       children: [
@@ -229,6 +253,14 @@ const Volume = () =>
         .then((v) => console.log(v))
         .catch(console.error);
     },
+
+    onHover: (box) => {
+      box.window.set_cursor(Gdk.Cursor.new_from_name(display, "pointer"));
+    },
+   onHoverLost: box => {
+        box.window.set_cursor(null);
+    },
+
     onSecondaryClick: "pactl set-sink-volume @DEFAULT_SINK@ 40%",
     child: Box({
       className: "default-box",

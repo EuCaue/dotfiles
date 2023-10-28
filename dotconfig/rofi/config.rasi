@@ -1,7 +1,7 @@
 configuration {
   drun-display-format: "{name}";
   font: "Maple Mono 13";
-  modi: "window,run,drun,emoji,calc,";
+  modi: "window,run,drun,emoji,calc";
   show-icons: true;
   eh: 1;
   sort: true;
@@ -120,12 +120,12 @@ configuration {
     text-color:       @foreground;
 }
 
-// #scrollbar {
-//     width:        2px ;
-//     border:       0;
-//     handle-width: 5px ;
-//     padding:      0;
-// }
+#scrollbar {
+    width:        3px ;
+    border:       0;
+    padding:      0;
+    handle-width: 3px ;
+}
 
 // #sidebar {
 //     border:       2px dash 0px 0px ;
@@ -148,12 +148,12 @@ configuration {
 }
 
 #element-icon {
-  size: 1.2em;
+  size: 1.3em;
 }
 
 #entry {
     text-color: @cya;
-    placeholder: "Type Here";
+    placeholder: "Type Here...";
 }
 
 #prompt {

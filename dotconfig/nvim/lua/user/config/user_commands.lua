@@ -1,4 +1,5 @@
 local cmd = vim.api.nvim_create_user_command
+vim.g.diagnostics_visible = true
 
 local build_commands = {
 	c = "g++ -std=c++17 -o %:p:r.o %",
@@ -6,6 +7,7 @@ local build_commands = {
 	cpp = "g++ -std=c++17 -Wall -O2 -o %:p:r.o %",
 	rust = "cargo build --release",
 	fish = "./%",
+	python = "python3 %",
 	go = "go build",
 }
 
@@ -19,6 +21,7 @@ local debug_build_commands = {
 local run_commands = {
 	c = "%:p:r.o",
 	typescript = "bun %",
+	python = "python3 %",
 	cpp = "%:p:r.o",
 	rust = "cargo run --release",
 	go = "go run .",
@@ -103,9 +106,27 @@ cmd("Transparent", function()
 	vim.cmd("hi TelescopePromptBorder ctermbg=NONE guibg=NONE")
 	vim.cmd("hi TelescopePromptNormal ctermbg=NONE guibg=NONE")
 	vim.cmd("hi FloatBorder ctermbg=NONE guibg=NONE")
+	vim.cmd("hi CursorLine gui=bold cterm=bold")
 end, { desc = "Transparent background" })
 
 cmd("Update", function()
 	vim.cmd("Lazy update")
 	vim.cmd("MasonUpdate")
 end, { desc = "Update" })
+
+cmd("ToggleLspDiag", function()
+	local buf_clients = vim.lsp.get_clients()
+	if next(buf_clients) == nil then
+		if type(buf_clients) == "boolean" or #buf_clients == 0 then
+			vim.notify("No LSP client found")
+			return
+		end
+	end
+	if vim.g.diagnostics_visible then
+		vim.g.diagnostics_visible = false
+		vim.diagnostic.disable()
+	else
+		vim.g.diagnostics_visible = true
+		vim.diagnostic.enable()
+	end
+end, {})
