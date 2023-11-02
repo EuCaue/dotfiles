@@ -3,10 +3,9 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		lazy = false,
-		event = "BufReadPost",
+		event = "InsertEnter",
 		dependencies = {
-			{ "JoosepAlviste/nvim-ts-context-commentstring", event = "BufRead" }, -- Better JSX + TSX comment
+			{ "JoosepAlviste/nvim-ts-context-commentstring", event = "InsertEnter" }, -- Better JSX + TSX comment
 		},
 		config = function()
 			require("user.plugins.settings.treesitter")
@@ -63,7 +62,7 @@ return {
 	{
 		"numToStr/Comment.nvim",
 		keys = require("user.config.plugin_keymaps").comments,
-		event = { "BufRead", "BufNewFile" },
+		event = "BufReadPost",
 		config = function()
 			require("Comment").setup({
 				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),

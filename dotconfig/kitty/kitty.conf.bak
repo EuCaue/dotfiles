@@ -879,7 +879,7 @@ tab_bar_align left
 #: The horizontal alignment of the tab bar, can be one of: left,
 #: center, right.
 
-tab_bar_min_tabs 0
+tab_bar_min_tabs 99
 
 #: The minimum number of tabs that must exist before the tab bar is
 #: shown.
@@ -2239,6 +2239,6 @@ map kitty_mod+f5 load_config_file
 
 
 # BEGIN_KITTY_THEME
-# Hurtado
-include mellow.conf
+# 3024 Night
+include current-theme.conf
 # END_KITTY_THEME

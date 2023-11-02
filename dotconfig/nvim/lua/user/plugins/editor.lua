@@ -182,6 +182,7 @@ endfunction
 
 	{
 		"echasnovski/mini.clue",
+    event = "BufReadPost", 
 		version = false,
 		config = function()
 			require("user.plugins.settings.miniclue")

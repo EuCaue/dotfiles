@@ -7,7 +7,6 @@ local build_commands = {
 	cpp = "g++ -std=c++17 -Wall -O2 -o %:p:r.o %",
 	rust = "cargo build --release",
 	fish = "./%",
-	python = "python3 %",
 	go = "go build",
 }
 
@@ -105,6 +104,9 @@ cmd("Transparent", function()
 	vim.cmd("hi TelescopePromptTitle ctermbg=NONE guibg=NONE")
 	vim.cmd("hi TelescopePromptBorder ctermbg=NONE guibg=NONE")
 	vim.cmd("hi TelescopePromptNormal ctermbg=NONE guibg=NONE")
+	vim.cmd("hi TelescopePreviewSize guibg=NONE ctermbg=NONE")
+	vim.cmd("hi TelescopePreviewExecute guibg=NONE ctermbg=NONE")
+	vim.cmd("hi TelescopePreviewHyphen guibg=NONE ctermbg=NONE")
 	vim.cmd("hi FloatBorder ctermbg=NONE guibg=NONE")
 	vim.cmd("hi CursorLine gui=bold cterm=bold")
 end, { desc = "Transparent background" })

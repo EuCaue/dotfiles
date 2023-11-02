@@ -8,7 +8,8 @@ end
 
 --Remap space as leader key
 map("", "<Space>", "<Nop>", get_opts("remap space as leader key"))
--- map("", "q", "<Nop>", get_opts("fuck q"))
+map("n", "<space>R", "q", get_opts("fuck q"))
+map("", "q", "<Nop>", get_opts("fuck q"))
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 

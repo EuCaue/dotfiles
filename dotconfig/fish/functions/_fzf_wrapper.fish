@@ -16,5 +16,5 @@ function _fzf_wrapper --description "Prepares some environment variables before 
         set --export FZF_DEFAULT_OPTS '--cycle --layout=reverse --border --height=90% --preview-window=wrap --marker="*"'
     end
 
-    fzf $argv
+    fzf --preview-window=wrap --preview="cat {}" $argv
 end

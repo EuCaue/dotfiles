@@ -13,7 +13,6 @@ M.toggle_transparency = function()
 	if current_value == "true" then
 		new_value = "false"
 	end
-
 	file = io.open(file_path, "w")
 	file:write(new_value)
 	file:close()
