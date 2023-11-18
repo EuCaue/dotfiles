@@ -1,0 +1,30 @@
+# dark-pastel
+
+colors:
+  primary:
+    background: "#000000"
+    foreground: "#ffffff"
+
+  cursor: 
+    text: "#000000"
+    cursor: "#bbbbbb"
+
+  normal:
+    black: "#000000"
+    red: "#ff5555"
+    green: "#55ff55"
+    yellow: "#ffff55"
+    blue: "#5555ff"
+    magenta: "#ff55ff"
+    cyan: "#55ffff"
+    white: "#bbbbbb"
+
+  bright:
+    black: "#545454"
+    red: "#ff5555"
+    green: "#55ff55"
+    yellow: "#ffff55"
+    blue: "#5555ff"
+    magenta: "#ff55ff"
+    cyan: "#55ffff"
+    white: "#ffffff"

@@ -1,20 +1,26 @@
 #!/usr/bin/env fish
 
-set device_mac "6D:01:01:1A:AB:44"
 set -l volume 40
-set command_to_run_bluetooth pactl set-sink-volume @DEFAULT_SINK@ 50%
 set command_to_run pactl set-sink-volume @DEFAULT_SINK@ $volume%
-# set device_info (bluetoothctl info $device_mac)
-set is_connected (echo $device_info | grep "Connected: yes")
+#  TODO:socket? 
 set volume $(pactl list sinks | grep 'Volume:' | head -n 1 | awk -F/ '{print $2}' | cut -d% -f1)
+
+if test $argv[1] = up
+    if test $volume -gt 55
+        return 0
+    else
+        pactl set-sink-volume @DEFAULT_SINK@ +5%
+        return 0
+    end
+end
+
+if test $argv[1] = down
+    pactl set-sink-volume @DEFAULT_SINK@ -5%
+    return 0
+end
 
 if test $volume -lt $volume
     return 0
 end
 
-
-if test -n "$is_connected"
-    $command_to_run_bluetooth
-else
-    $command_to_run
-end
+$command_to_run

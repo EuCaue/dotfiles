@@ -2,10 +2,10 @@
 set -e -U FONT_NAME
 
 if test $TERM = linux
-    set -Ux FONT_NAME $(fc-list --format="%{family}\n" | cut -d , -f 1 | sort | uniq | rofi -dmenu)
+    set -Ux FONT_NAME $(fc-list --format="%{family}\n" | cut -d , -f 1 | sort | uniq | rofi -dmenu -i -p "Choose your font")
 else
     if test -z $argv[1]
-        set -Ux FONT_NAME "GoMono Nerd Font"
+        set -Ux FONT_NAME "Maple Mono"
     else
         set -Ux FONT_NAME $argv[1]
     end
@@ -44,7 +44,7 @@ function change_font
     sed -i "s#\(font-family: \).*#\1\"$FONT_NAME\";#" $HOME/dotfiles/dotconfig/waybar/style.css
     sed -i "s#\(font-family: \).*#\1\"$FONT_NAME\";#" $HOME/.config/eww/eww.scss
     sed -i "s#\(font-family: \).*#\1\"$FONT_NAME\";#" $HOME/.config/ags/style.css
-sed -i '/\.markdown-body code {/,/}/{s/font-family: "[^"]*"/font-family: "'"$FONT_NAME"'"/;}' $HOME/dotfiles/dotconfig/markdown.css
+    sed -i '/\.markdown-body code {/,/}/{s/font-family: "[^"]*"/font-family: "'"$FONT_NAME"'"/;}' $HOME/dotfiles/dotconfig/markdown.css
     verify_status_programs
     sed -i "s#\(font: \).*#\1\"$FONT_NAME 13\";#" $HOME/dotfiles/dotconfig/rofi/config.rasi
     sed -i 's@user_pref("font.name.monospace.x-western",[^)]*)@user_pref("font.name.monospace.x-western", "'$FONT_NAME'")@g' /home/caue/.mozilla/firefox/9tzkj9s8.default-release/user.js

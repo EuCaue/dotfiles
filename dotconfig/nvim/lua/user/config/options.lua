@@ -39,8 +39,8 @@ opt.smartindent = true -- make indenting smarter again
 opt.splitbelow = true -- force all horizontal splits to go below current window
 opt.splitright = true -- force all vertical splits to go to the right of current window
 opt.swapfile = false -- creates a swapfile
--- opt.guicursor = "guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
--- opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
+-- -- opt.guicursor = "guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
+-- -- opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
 opt.guicursor = "n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50"
 opt.termguicolors = true -- set term gui colors (most terminals support this)
 opt.timeoutlen = 300 -- time to wait for a mapped sequence to complete (in milliseconds)
@@ -62,7 +62,6 @@ opt.scrolloff = 8 -- minimal number of screen lines to keep above and below the 
 opt.sidescrolloff = 8 -- minimal number of screen columns either side of cursor if wrap is `false`
 opt.wrap = false -- wrap
 opt.guifont = os.getenv("FONT_NAME") -- the font used in graphical neovim applications
-opt.splitkeep = "screen"
 opt.shortmess:append({ C = true })
 opt.iskeyword:append("-") -- Treat dash separated words as a word text object
 

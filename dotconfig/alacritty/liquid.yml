@@ -1,0 +1,30 @@
+# liquid
+
+colors:
+  primary:
+    background: "#000000"
+    foreground: "#afc2c2"
+
+  cursor: 
+    text: "#000000"
+    cursor: "#ffffff"
+
+  normal:
+    black: "#bbcbcc"
+    red: "#ff2f2f"
+    green: "#549a6f"
+    yellow: "#ccac00"
+    blue: "#0099cc"
+    magenta: "#cc68c8"
+    cyan: "#79c4cc"
+    white: "#000000"
+
+  bright:
+    black: "#ffffff"
+    red: "#ff2f2f"
+    green: "#549a6f"
+    yellow: "#ccac00"
+    blue: "#0099cc"
+    magenta: "#cc68c8"
+    cyan: "#79c4cc"
+    white: "#000000"

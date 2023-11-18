@@ -1,6 +1,4 @@
 function _fzf_search_git_log --description "Search the output of git log and preview commits. Replace the current token with the selected commit hash."
-    set -x FZF_DEFAULT_OPTS ""
-
     if not git rev-parse --git-dir >/dev/null 2>&1
         echo '_fzf_search_git_log: Not in a git repository.' >&2
     else
@@ -33,6 +31,6 @@ function _fzf_search_git_log --description "Search the output of git log and pre
             commandline --current-token --replace (string join ' ' $commit_hashes)
         end
     end
+
     commandline --function repaint
-  set -x FZF_DEFAULT_OPTS $FZF_DEFAULT_OPTS_B
 end

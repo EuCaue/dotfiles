@@ -69,7 +69,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, get_bufopts("Code action"))
 		vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", get_bufopts("References"))
 		vim.keymap.set("n", "<space>L", function()
-			vim.lsp.inlay_hint(bufnr)
+			vim.cmd("ToggleInlayHints")
 		end, get_bufopts("Toggle LSP Inlay Hint"))
 		vim.keymap.set("n", "<space>ls", vim.lsp.buf.signature_help, get_bufopts("LSP Signature"))
 		vim.keymap.set("n", "<space>ltd", "<cmd>ToggleLspDiag<cr>", get_bufopts("Toggle LSP Diagnostics"))
@@ -81,11 +81,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			navic.attach(client, bufnr)
 			navbuddy.attach(client, bufnr)
 		end
-
+		--
 		if client.server_capabilities.inlayHintProvider then
-			vim.lsp.inlay_hint(bufnr, true)
+			vim.lsp.inlay_hint.enable(bufnr, true)
 		end
-
+		--
 		if client.name == "eslint" then
 			client.server_capabilities.documentFormattingProvider = true
 		elseif client.name == "tsserver" then
@@ -108,7 +108,7 @@ end
 for _, lsp in ipairs(utils.servers) do
 	lspconfig[lsp].setup({
 		-- on_attach = on_attach,
-		handlers = handlers,
+		-- handlers = handlers,
 		capabilities = capabilities,
 		completions = {
 			completeFunctionCalls = true,
@@ -118,7 +118,7 @@ end
 
 lspconfig.bashls.setup({
 	-- on_attach = on_attach,
-	handlers = handlers,
+	-- handlers = handlers,
 	capabilities = capabilities,
 	completions = {
 		completeFunctionCalls = true,
@@ -193,7 +193,7 @@ require("lspconfig").lua_ls.setup({
 
 lspconfig.tailwindcss.setup({
 	-- on_attach = on_attach,
-	handlers = handlers,
+	-- handlers = handlers,
 	cmd = { "bunx", "tailwindcss-language-server", "--stdio" },
 	capabilities = capabilities,
 	completions = {
@@ -240,7 +240,7 @@ require("typescript-tools").setup({
 			includeInlayParameterNameHintsWhenArgumentMatchesName = true,
 			includeInlayPropertyDeclarationTypeHints = true,
 			includeInlayVariableTypeHints = false,
-      quotePreference = "auto",
+			quotePreference = "auto",
 		},
 		-- locale of all tsserver messages, supported locales you can find here:
 		-- https://github.com/microsoft/TypeScript/blob/3c221fc086be52b19801f6e8d82596d04607ede6/src/compiler/utilitiesPublic.ts#L620
@@ -265,7 +265,7 @@ lspconfig.eslint.setup({
 			command = "EslintFixAll",
 		})
 	end,
-	handlers = handlers,
+	-- handlers = handlers,
 	cmd = { "bunx", "vscode-eslint-language-server", "--stdio" },
 	capabilities = capabilities,
 	completions = {
@@ -275,7 +275,7 @@ lspconfig.eslint.setup({
 
 lspconfig.rust_analyzer.setup({
 	-- on_attach = on_attach,
-	handlers = handlers,
+	-- handlers = handlers,
 	capabilities = capabilities,
 	completions = {
 		completeFunctionCalls = true,
@@ -334,11 +334,25 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
+-- lspconfig.dartls.setup({
+-- 	capabilities = capabilities,
+-- 	settings = {
+-- 		dart = {
+-- 			showTodos = true,
+-- 			completeFunctionCalls = true,
+-- 			renameFilesWithClasses = "prompt",
+-- 			enableSnippets = true,
+-- 			updateImportsOnRename = true,
+-- 			enableSdkFormatter = true,
+-- 		},
+-- 	},
+-- })
+
 vim.diagnostic.config({
 	float = {
 		border = "single",
 		focusable = true,
-		style = "minimal",
+		-- style = "minimal",
 		source = "always",
 		header = "",
 		prefix = "  ",

@@ -21,6 +21,7 @@ autocmd("FileType", {
 		"startuptime",
 		"tsplayground",
 		"checkhealth",
+		"",
 	},
 	callback = function(event)
 		vim.bo[event.buf].buflisted = false
@@ -86,15 +87,14 @@ autocmd("BufReadPost", {
 	end,
 })
 
-autocmd("LspAttach", {
-	group = augroup("LspInlayHint highlight"),
+autocmd("VimEnter", {
+	group = augroup("ColorSchemeVimEnter"),
 	callback = function()
-		local normal_fg = vim.fn.synIDattr(vim.fn.hlID("lualine_a_normal"), "fg")
-		vim.cmd("highlight LspInlayHint guibg=" .. normal_fg)
+		vim.cmd("Transparent")
 	end,
 })
 
-autocmd("VimEnter", {
+autocmd("ColorScheme", {
 	group = augroup("ColorScheme"),
 	callback = function()
 		vim.cmd("Transparent")

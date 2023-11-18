@@ -1,12 +1,11 @@
 lastupdatecheck: 0
 recentrepos:
 - /home/caue/dotfiles
+- /home/caue/Dev/webdev/dotfiles-website
+- /home/caue/Dev/rust/Tparser
 - /home/caue/Dev/webdev/portfolio
 - /home/caue/Dev/webdev/portfolio-new
-- /home/caue/Dev/rust/Tparser
 - /home/caue/Dev/webdev/pointerof
-- /home/caue/Dev/webdev/dotfiles-website
-- /home/caue/gitclone/adwaita-icon-theme
 - /home/caue/gitclone/EuCaue
 - /home/caue/Dev/skype-bot
 - /home/caue/Dev/webdev/otp-component

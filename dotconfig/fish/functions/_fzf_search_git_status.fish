@@ -1,5 +1,4 @@
 function _fzf_search_git_status --description "Search the output of git status. Replace the current token with the selected file paths."
-    set -x FZF_DEFAULT_OPTS ""
     if not git rev-parse --git-dir >/dev/null 2>&1
         echo '_fzf_search_git_status: Not in a git repository.' >&2
     else
@@ -39,5 +38,4 @@ function _fzf_search_git_status --description "Search the output of git status. 
     end
 
     commandline --function repaint
-    set -x FZF_DEFAULT_OPTS $FZF_DEFAULT_OPTS_B
 end

@@ -13,9 +13,10 @@ return {
 	}, -- a better highlight for everything
 
 	{ "windwp/nvim-ts-autotag", event = "InsertEnter", opts = {} }, -- <> autoclose tag
+
 	{
 		"L3MON4D3/LuaSnip",
-		event = { "BufReadPre", "BufNewFile" },
+		event = { "InsertEnter" },
 		dependencies = {
 			{ "rafamadriz/friendly-snippets" }, -- a bunch of snippets
 		},
@@ -26,23 +27,20 @@ return {
 	}, --  Snippet Engine
 
 	{
-		"barrett-ruth/import-cost.nvim",
-		event = "BufReadPost",
-		build = "sh install.sh yarn",
-		config = true,
+		"akinsho/flutter-tools.nvim",
+		ft = "dart",
+		config = function()
+			require("flutter-tools").setup({
+				ui = {
+					border = "single",
+				},
+			})
+		end,
 	},
-
-	-- {
-	-- 	"akinsho/toggleterm.nvim",
-	-- 	event = { "BufReadPost", "BufNewFile" },
-	-- 	config = function()
-	-- 		require("user.plugins.settings.toggleterm")
-	-- 	end,
-	-- }, -- show a "portable" terminal
-
 	{
 		"dsznajder/vscode-es7-javascript-react-snippets",
-		event = { "BufReadPost", "BufNewFile" },
+		ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+		-- event = { "BufReadPost", "BufNewFile" },
 		build = "yarn install --frozen-lockfile && yarn compile",
 		priority = 51,
 	}, -- JS snippets
@@ -103,6 +101,7 @@ return {
 					scss = { "prettier" },
 					sh = { "shfmt" },
 					bash = { "shfmt" },
+					dart = { "dart_format" },
 					javascriptreact = { "prettier" },
 					typescript = { "prettier" },
 					svelte = { "prettier" },
@@ -165,11 +164,12 @@ return {
 
 	{
 		"jcdickinson/codeium.nvim",
-		event = "BufRead",
+		event = "InsertEnter",
 		config = function()
 			require("codeium").setup({})
 		end,
 	},
+
 	{
 		"kosayoda/nvim-lightbulb",
 		event = "LspAttach",

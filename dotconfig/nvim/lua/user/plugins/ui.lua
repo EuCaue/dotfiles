@@ -4,11 +4,18 @@ local utils = require("user.utils")
 return {
 	{
 		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
 		config = function()
 			require("user.plugins.settings.lualine")
 		end,
 	}, -- status bar
-
+	{
+		"j-hui/fidget.nvim",
+		event = "LspAttach",
+		opts = {
+			-- options
+		},
+	},
 	{
 		"goolord/alpha-nvim",
 		event = "VimEnter",
@@ -17,6 +24,7 @@ return {
 		end,
 		cmd = "Alpha",
 	}, -- title screen
+	-- Lua
 
 	{
 		"stevearc/dressing.nvim",

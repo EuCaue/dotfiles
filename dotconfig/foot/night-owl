@@ -1,0 +1,28 @@
+# -*- conf -*-
+    # night-owl
+    [cursor]
+    color=000000 4d4d4d
+
+    [colors]
+    background=000000
+    foreground=f2f2f2
+
+    # Normal/regular colors (color palette 0-7)
+    regular0=000000 # black
+    regular1=990000 # red
+    regular2=00a600 # green
+    regular3=999900 # yellow
+    regular4=1f08db # blue
+    regular5=b200b2 # magenta
+    regular6=00a6b2 # cyan
+    regular7=bfbfbf # white
+
+    # Bright colors (color palette 8-15)
+    bright0=666666 # black
+    bright1=e50000 # red
+    bright2=00d900 # green
+    bright3=e5e500 # yellow
+    bright4=0000ff # blue
+    bright5=e500e5 # magenta
+    bright6=00e5e5 # cyan
+    bright7=e5e5e5 # white

@@ -51,7 +51,7 @@ def getWallpaperFromWallhaven(query: str = ""):
 
 
 def getWallhavenOption():
-    WALLPAPER_WALLHAVEN_ASK = "1. Random\n2. Query\n3. Exit"
+    WALLPAPER_WALLHAVEN_ASK = "1. Random\n2. Query\n3. Last Query\n4. Exit"
     opt = (
         s.check_output(
             f'echo "{WALLPAPER_WALLHAVEN_ASK}" | rofi -dmenu -i -p "Choose" ',
@@ -72,16 +72,21 @@ def deletePreviousWallpapers(wallpaperDir):
             os.remove(wallpaper_path)
 
 
-def getQueryHistory():
-    queryFilePath = "/home/caue/.cache/query.txt"
-    lines = []
+def getPrevQuerys(queryFilePath: str):
     prevQuery = ""
     if os.path.exists(queryFilePath):
         file = open(queryFilePath, "r")
-        prevQuery = file.read()
+        prevQuery = file.read().strip()
+    return prevQuery
+
+
+def getQueryHistory():
+    queryFilePath = "/home/caue/.cache/query.txt"
+    lines = []
+    prevQuerys = getPrevQuerys(queryFilePath)
 
     query = s.check_output(
-        f'echo "{prevQuery}" | rofi -dmenu -i -p "Query" -theme-str "listview {{lines: 5;}}"',
+        f'echo "{prevQuerys}" | rofi -dmenu -i -p "Query" -theme-str "listview {{lines: 5;}}"',
         shell=True,
         text=True,
     ).strip()
@@ -95,7 +100,11 @@ def getQueryHistory():
         if f"{query}\n" not in lines:
             if len(lines) >= 10:
                 lines.pop(0)
-            lines.append(f"{query}\n")
+            lines.insert(0, f"{query}\n")
+        else:
+            idx = lines.index(f"{query}\n")
+            lines.pop(idx)
+            lines.insert(0, f"{query}\n")
         wPrevQuerys.writelines(lines)
         wPrevQuerys.close()
     return query
@@ -143,9 +152,13 @@ if wallpaperChoiceMode == "1":
     setWallpaper(w)
 elif wallpaperChoiceMode == "2":
     wallhavenOption = getWallhavenOption()
+    query = ""
     if wallhavenOption == "2":
         query = getQueryHistory()
-    getWallpaperFromWallhaven(query=query)
+        getWallpaperFromWallhaven(query=query)
+    if wallhavenOption == "3":
+        query = getPrevQuerys("/home/caue/.cache/query.txt").splitlines()
+        getWallpaperFromWallhaven(query[0])
 elif wallpaperChoiceMode == "3":
     print("Exiting...")
     s.run('notify-send "Quiting Wallpaper Menu..."', shell=True)

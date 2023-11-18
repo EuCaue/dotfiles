@@ -186,7 +186,8 @@ function main
             notification "Custom Radio ☕️🎶"
             set URL $choice
     end
-    mpv --script-opts=ytdl_hook-ytdl_path=yt-dlp --volume=$volume --title="radio-mpv" $URL --input-ipc-server=/tmp/mpvsocket --no-video --idle=once
+    mpv --script-opts=ytdl_hook-ytdl_path=yt-dlp --volume=$volume --title="radio-mpv" $URL --input-ipc-server=/tmp/mpvsocket --no-video --idle=once &&
+        notify-send "Lofi Station has been finished."
 end
 
 main

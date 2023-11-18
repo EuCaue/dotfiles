@@ -1,11 +1,13 @@
 local utils = require("user.utils")
 
 return {
-	-- { dir = "~/Dev/lua/markvim.nvim", config = true },
+	{ dir = "~/Dev/lua/markutils.nvim", config = true },
 
 	{ "nacro90/numb.nvim", config = true, event = "BufReadPost" },
+
 	{
 		"prichrd/netrw.nvim",
+		event = "UIEnter",
 		config = function()
 			require("netrw").setup({
 				use_devicons = true,
@@ -63,39 +65,6 @@ return {
 			})
 		end,
 	},
-	{
-		"BoaPi/task-toggler.nvim",
-		config = true,
-		ft = "markdown",
-		keys = {
-			{
-				"<leader><leader>m",
-				mode = { "n" },
-				"<cmd>TaskTogglerCheck<cr>",
-				desc = "Markdown Task Toggle",
-			},
-		},
-	},
-
-	-- {
-	-- 	"echasnovski/mini.files",
-	-- 	lazy = false,
-	-- 	keys = require("user.config.plugin_keymaps").minifiles,
-	-- 	config = function()
-	-- 		require("mini.files").setup({
-	-- 			mappings = {
-	-- 				go_in_plus = "<CR>",
-	-- 				go_out_plus = "<BS>",
-	-- 			},
-	-- 			windows = {
-	-- 				preview = true,
-	-- 				width_focus = 30,
-	-- 				width_preview = 90,
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- 	version = false,
-	-- },
 
 	{
 		"lewis6991/gitsigns.nvim",
@@ -106,13 +75,6 @@ return {
 		end,
 		cmd = "Gitsigns",
 	}, --  git status on file
-
-	-- {
-	-- 	"NeogitOrg/neogit",
-	-- 	keys = require("user.config.plugin_keymaps").neogit,
-	-- 	cmd = "Neogit",
-	-- 	config = true,
-	-- },
 
 	{
 		"kylechui/nvim-surround",
@@ -182,7 +144,7 @@ endfunction
 
 	{
 		"echasnovski/mini.clue",
-    event = "BufReadPost", 
+		event = "VimEnter",
 		version = false,
 		config = function()
 			require("user.plugins.settings.miniclue")
@@ -197,7 +159,6 @@ endfunction
 			require("user.plugins.settings.telescope")
 		end,
 		dependencies = {
-			{ "debugloop/telescope-undo.nvim" }, -- telescope for undo tree
 			{ "nvim-telescope/telescope-file-browser.nvim" },
 			-- {
 			-- 	"nvim-telescope/telescope-fzf-native.nvim",
@@ -218,11 +179,6 @@ endfunction
 		end,
 	}, -- better search
 
-	-- {
-	-- 	"yamatsum/nvim-cursorline",
-	-- 	config = true,
-	-- }, -- highlight cursor on things
-
 	{
 		"tzachar/local-highlight.nvim",
 		event = { "BufReadPost", "BufNewFile" },
@@ -231,14 +187,15 @@ endfunction
 		end,
 	},
 
-{
-    'altermo/ultimate-autopair.nvim',
-    event={'InsertEnter','CmdlineEnter'},
-    branch='v0.6', --recomended as each new version will have breaking changes
-    opts={
-        --Config goes here
-    },
-},
+	{
+		"altermo/ultimate-autopair.nvim",
+		event = { "InsertEnter", "CmdlineEnter" },
+		branch = "v0.6", --recomended as each new version will have breaking changes
+		opts = {
+			--Config goes here
+		},
+	},
+
 	-- {
 	-- 	"m4xshen/autoclose.nvim",
 	-- 	event = { "BufRead", "BufNewFile" },
@@ -267,6 +224,7 @@ endfunction
 	-- 		},
 	-- 	},
 	-- },
+
 	{
 		"folke/zen-mode.nvim",
 		cmd = "ZenMode",
@@ -280,7 +238,6 @@ endfunction
 	{ "christoomey/vim-tmux-navigator", event = "VimEnter" },
 	{
 		"ThePrimeagen/harpoon",
-		event = "BufReadPre",
 		keys = require("user.config.plugin_keymaps").harpoon,
 		config = function()
 			require("harpoon").setup({

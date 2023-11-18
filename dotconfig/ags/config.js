@@ -55,9 +55,9 @@ const Workspaces = () =>
     onHover: (box) => {
       box.window.set_cursor(Gdk.Cursor.new_from_name(display, "pointer"));
     },
-   // onHoverLost: box => {
-   //      box.window.set_cursor(null);
-   //  },
+    // onHoverLost: box => {
+    //      box.window.set_cursor(null);
+    //  },
     child: Box({
       className: "workspaces",
       connections: [
@@ -110,7 +110,7 @@ const activeWindowTitle = () => {
 
 const ClientTitle = () =>
   Label({
-    className: ["client-title", "default-box"],
+    className: "client-title default-box",
     connections: [
       [
         Hyprland,
@@ -136,9 +136,9 @@ const systemtray = Box({
                 Gdk.Cursor.new_from_name(display, "pointer"),
               );
             },
-   onHoverLost: box => {
-        box.window.set_cursor(null);
-    },
+            onHoverLost: (box) => {
+              box.window.set_cursor(null);
+            },
             onSecondaryClick: (_, event) => item.openMenu(event),
             connections: [
               [
@@ -164,8 +164,8 @@ const Clock = () =>
     onHover: (box) => {
       box.window.set_cursor(Gdk.Cursor.new_from_name(display, "pointer"));
     },
-   onHoverLost: box => {
-        box.window.set_cursor(null);
+    onHoverLost: (box) => {
+      box.window.set_cursor(null);
     },
     child: Box({
       className: "clock",
@@ -248,6 +248,7 @@ const Volume = () =>
         .then((v) => console.log(v))
         .catch(console.error);
     },
+
     onScrollDown: () => {
       execAsync(["fish", "-c", "$HOME/.config/ags/volume.fish down"])
         .then((v) => console.log(v))
@@ -257,11 +258,13 @@ const Volume = () =>
     onHover: (box) => {
       box.window.set_cursor(Gdk.Cursor.new_from_name(display, "pointer"));
     },
-   onHoverLost: box => {
-        box.window.set_cursor(null);
+    onHoverLost: (box) => {
+      box.window.set_cursor(null);
     },
 
-    onSecondaryClick: "pactl set-sink-volume @DEFAULT_SINK@ 40%",
+    onSecondaryClick: () => {
+      exec("pactl set-sink-volume @DEFAULT_SINK@ 40%");
+    },
     child: Box({
       className: "default-box",
       children: [
@@ -271,7 +274,7 @@ const Volume = () =>
             [
               Audio,
               (label) => {
-                const isMuted = Audio.speaker?.isMuted;
+                const isMuted = Audio.speaker?.stream?.isMuted;
                 if (isMuted) {
                   label.label = "";
                   return;
@@ -290,7 +293,7 @@ const Volume = () =>
             [
               Audio,
               (label) => {
-                const isMuted = Audio.speaker?.isMuted;
+                const isMuted = Audio.speaker?.stream?.isMuted;
                 if (isMuted) {
                   label.label = "󰆪 ";
                   return;
@@ -308,13 +311,14 @@ const Volume = () =>
             [
               Audio,
               (label) => {
-                const isMuted = Audio.microphone?.isMuted;
+                // console.log("mic", Audio.microphones);
+                const isMuted = Audio.microphone?.stream?.isMuted;
                 if (isMuted) {
                   label.label = ``;
                   return;
                 }
                 const volume = Math.round(Audio.microphone?.volume * 100);
-                label.label = `${volume}% `;
+                label.label = `${volume || ""}% `;
               },
               "microphone-changed",
             ],
@@ -327,7 +331,7 @@ const Volume = () =>
             [
               Audio,
               (label) => {
-                const isMuted = Audio.microphone?.isMuted;
+                const isMuted = Audio.microphone?.stream?.isMuted;
                 if (isMuted) {
                   label.label = `󰍭`;
                   return;
@@ -403,7 +407,7 @@ const Center = () =>
 
 const Right = () =>
   Box({
-    halign: "end",
+    hpack: "end",
     children: [BatteryLabel(), ClientTitle(), Volume()],
   });
 
@@ -412,8 +416,8 @@ const Bar = ({ monitor } = {}) =>
     name: `bar${monitor || ""}`, // name has to be unique
     className: "bar",
     monitor,
-    //////////////////////////////////margin: [5, 15, 0, 15],
-    margin: [0, 0, 0, 0],
+    //margin: [5, 15, 0, 15],
+    margins: [0, 0, 0, 0],
     anchor: ["top", "left", "right"],
     exclusive: true,
     child: CenterBox({

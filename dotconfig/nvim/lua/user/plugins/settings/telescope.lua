@@ -169,4 +169,8 @@ telescope.setup({
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("project")
 -- require("telescope").load_extension("harpoon")
-require("telescope").load_extension("undo")
+-- require("telescope").load_extension("undo")
+
+if vim.bo.filetype == "dart" then
+	require("telescope").load_extension("flutter")
+end

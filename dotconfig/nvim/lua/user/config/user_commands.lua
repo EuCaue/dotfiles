@@ -83,8 +83,11 @@ cmd("Run", function()
 end, {})
 
 cmd("ToggleInlayHints", function()
-	-- TODO: get the status of the inlay hints
-	vim.lsp.inlay_hint(0, true)
+	if vim.lsp.inlay_hint.is_enabled(0) then
+		vim.lsp.inlay_hint.enable(0, false)
+		return
+	end
+	vim.lsp.inlay_hint.enable(0, true)
 end, {})
 
 cmd("Ha", function()
@@ -109,12 +112,47 @@ cmd("Transparent", function()
 	vim.cmd("hi TelescopePreviewHyphen guibg=NONE ctermbg=NONE")
 	vim.cmd("hi FloatBorder ctermbg=NONE guibg=NONE")
 	vim.cmd("hi CursorLine gui=bold cterm=bold")
+	vim.cmd("hi CmpItemAbbrMatch guibg=NONE ctermbg=NONE")
+	vim.cmd("hi CmpItemAbbr guibg=NONE ctermbg=NONE")
 end, { desc = "Transparent background" })
 
 cmd("Update", function()
 	vim.cmd("Lazy update")
 	vim.cmd("MasonUpdate")
 end, { desc = "Update" })
+
+--  TODO: work more on this.
+cmd("Scratch", function()
+	local opts = {
+		relative = "editor",
+		width = 120,
+		height = 30,
+		row = 100,
+		col = 100,
+		border = "single",
+		title = "Scratch",
+		title_pos = "center",
+		style = "minimal",
+	}
+
+	local bufnr = vim.fn.bufnr("scratch")
+	if bufnr ~= -1 then
+		local win = vim.api.nvim_open_win(bufnr, true, opts)
+		vim.api.nvim_set_current_win(win)
+		return
+	end
+
+	local buf = vim.api.nvim_create_buf(true, true)
+	vim.api.nvim_buf_set_name(buf, "scratch")
+	vim.api.nvim_buf_set_keymap(buf, "n", "q", "<cmd>hide<cr>", { desc = "Hide Scratch" })
+	vim.api.nvim_open_win(buf, true, opts)
+end, { desc = "Open Scratch Buffer" })
+
+cmd("DisableLspSemantic", function()
+for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+    vim.api.nvim_set_hl(0, group, {})
+end
+end, {})
 
 cmd("ToggleLspDiag", function()
 	local buf_clients = vim.lsp.get_clients()

@@ -1,0 +1,30 @@
+# night-owl
+
+colors:
+  primary:
+    background: "#000000"
+    foreground: "#f2f2f2"
+
+  cursor: 
+    text: "#000000"
+    cursor: "#4d4d4d"
+
+  normal:
+    black: "#000000"
+    red: "#990000"
+    green: "#00a600"
+    yellow: "#999900"
+    blue: "#1f08db"
+    magenta: "#b200b2"
+    cyan: "#00a6b2"
+    white: "#bfbfbf"
+
+  bright:
+    black: "#666666"
+    red: "#e50000"
+    green: "#00d900"
+    yellow: "#e5e500"
+    blue: "#0000ff"
+    magenta: "#e500e5"
+    cyan: "#00e5e5"
+    white: "#e5e5e5"

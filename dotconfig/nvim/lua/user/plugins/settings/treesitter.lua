@@ -52,7 +52,11 @@ ts.setup({
 		additional_vim_regex_highlighting = false,
 	},
 	-- indent
-	indent = { enable = true },
+	indent = { 
+    enable = true, 
+    disable = {
+		"dart",
+	} },
 	autopairs = {
 		enable = true,
 	},

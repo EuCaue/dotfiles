@@ -1,22 +1,3 @@
-local poi = {
-	"olivercederborg/poimandres.nvim",
-	lazy = false,
-	priority = 1000,
-	config = function()
-		require("poimandres").setup({
-			bold_vert_split = false, -- use bold vertical separators
-			dim_nc_background = false, -- dim 'non-current' window backgrounds
-			disable_background = true, -- disable background
-			disable_float_background = true, -- disable background for floats
-			disable_italics = false, -- disable italics
-		})
-	end,
-
-	init = function()
-		vim.cmd("colorscheme poimandres")
-	end,
-}
-
 local pale = {
 	"JoosepAlviste/palenightfall.nvim",
 	priority = 1000,
@@ -43,7 +24,7 @@ local onedark = {
 			lualine = {
 				transparent = true, -- lualine center bar transparency
 			},
-			style = "deep", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+			style = "warm", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
 			colors = {
 				bg0 = "#000000",
 				bg1 = "#000000",
@@ -58,8 +39,8 @@ local onedark = {
 			},
 			code_style = {
 				comments = "italic",
-				keywords = "italic",
-				functions = "none",
+				keywords = "bold",
+				functions = "bold",
 				strings = "italic",
 				variables = "none",
 			},
@@ -96,7 +77,7 @@ local me = {
 				floating_windows = true,
 				telescope = true,
 				file_tree = true,
-				cursor_line = true,
+				cursor_line = false,
 				status_line = true,
 			},
 			flat_background = {
@@ -153,20 +134,6 @@ local gh = {
 	end,
 }
 
-local mellow = {
-	"kvrohit/mellow.nvim",
-	lazy = false,
-	priority = 1000,
-	config = function()
-		vim.g.mellow_transparent = true
-		vim.g.mellow_bold_functions = true
-		vim.g.mellow_bold_keywords = true
-		vim.g.mellow_italic_comments = true
-
-		vim.cmd([[colorscheme mellow]])
-	end,
-}
-
 local nordic = {
 	"AlexvZyl/nordic.nvim",
 	lazy = false,
@@ -204,15 +171,6 @@ local nordic = {
 			},
 		})
 		require("nordic").load()
-	end,
-}
-
-local n = {
-	"oxfist/night-owl.nvim",
-	lazy = false, -- make sure we load this during startup if it is your main colorscheme
-	priority = 1000, -- make sure to load this before all the other start plugins
-	config = function()
-		vim.cmd.colorscheme("night-owl")
 	end,
 }
 
