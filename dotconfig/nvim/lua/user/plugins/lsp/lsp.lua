@@ -4,8 +4,6 @@ if not status_ok then
 	return
 end
 
-local navic = require("nvim-navic")
-local navbuddy = require("nvim-navbuddy")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local utils = require("user.utils")
 local icons = utils.icons
@@ -15,6 +13,25 @@ capabilities.textDocument.foldingRange = {
 	dynamicRegistration = false,
 	lineFoldingOnly = true,
 }
+
+vim.diagnostic.config({
+	float = {
+		border = "single",
+		focusable = true,
+		style = "minimal",
+		source = "always",
+		header = "",
+		prefix = "  ",
+	},
+	virtual_text = {
+		prefix = "󱅶 ",
+		-- prefix = " ",
+	},
+	signs = true,
+	underline = true,
+	update_in_insert = true,
+	severity_sort = true,
+})
 
 local handlers = {
 	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = utils.border_status }),
@@ -68,7 +85,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, get_bufopts("LSP Rename"))
 		vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, get_bufopts("Code action"))
 		vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", get_bufopts("References"))
-		vim.keymap.set("n", "<space>L", function()
+		vim.keymap.set("n", "<space>ll", function()
 			vim.cmd("ToggleInlayHints")
 		end, get_bufopts("Toggle LSP Inlay Hint"))
 		vim.keymap.set("n", "<space>ls", vim.lsp.buf.signature_help, get_bufopts("LSP Signature"))
@@ -77,11 +94,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.lsp.buf.format({ async = true })
 		end, get_bufopts("LSP Format"))
 
-		if client.server_capabilities.documentSymbolProvider then
-			navic.attach(client, bufnr)
-			navbuddy.attach(client, bufnr)
-		end
-		--
 		if client.server_capabilities.inlayHintProvider then
 			vim.lsp.inlay_hint.enable(bufnr, true)
 		end
@@ -96,19 +108,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
-local function typescript_organize_imports()
-	local params = {
-		command = "_typescript.organizeImports",
-		arguments = { vim.api.nvim_buf_get_name(0) },
-	}
-
-	vim.lsp.buf.execute_command(params)
-end
-
 for _, lsp in ipairs(utils.servers) do
 	lspconfig[lsp].setup({
-		-- on_attach = on_attach,
-		-- handlers = handlers,
+		handlers = handlers,
 		capabilities = capabilities,
 		completions = {
 			completeFunctionCalls = true,
@@ -117,8 +119,7 @@ for _, lsp in ipairs(utils.servers) do
 end
 
 lspconfig.bashls.setup({
-	-- on_attach = on_attach,
-	-- handlers = handlers,
+	handlers = handlers,
 	capabilities = capabilities,
 	completions = {
 		completeFunctionCalls = true,
@@ -127,7 +128,6 @@ lspconfig.bashls.setup({
 })
 
 require("lspconfig").lua_ls.setup({
-	-- on_attach = on_attach,
 	capabilities = capabilities,
 
 	settings = {
@@ -148,52 +148,8 @@ require("lspconfig").lua_ls.setup({
 	},
 })
 
--- lspconfig.tsserver.setup({
--- 	-- on_attach = on_attach,
--- 	handlers = handlers,
--- 	cmd = { "bunx", "typescript-language-server", "--stdio" },
--- 	capabilities = capabilities,
--- 	single_file_support = true,
--- 	commands = {
--- 		OrganizeImports = {
--- 			typescript_organize_imports,
--- 			description = "Organize Imports",
--- 		},
--- 	},
---
--- 	completions = {
--- 		completeFunctionCalls = true,
--- 	},
--- 	settings = {
--- 		javascript = {
--- 			inlayHints = {
--- 				includeInlayEnumMemberValueHints = true,
--- 				includeInlayFunctionLikeReturnTypeHints = true,
--- 				includeInlayFunctionParameterTypeHints = true,
--- 				includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
--- 				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
--- 				includeInlayPropertyDeclarationTypeHints = true,
--- 				includeInlayVariableTypeHints = false,
--- 			},
--- 		},
---
--- 		typescript = {
--- 			inlayHints = {
--- 				includeInlayEnumMemberValueHints = true,
--- 				includeInlayFunctionLikeReturnTypeHints = true,
--- 				includeInlayFunctionParameterTypeHints = true,
--- 				includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
--- 				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
--- 				includeInlayPropertyDeclarationTypeHints = true,
--- 				includeInlayVariableTypeHints = false,
--- 			},
--- 		},
--- 	},
--- })
-
 lspconfig.tailwindcss.setup({
-	-- on_attach = on_attach,
-	-- handlers = handlers,
+	handlers = handlers,
 	cmd = { "bunx", "tailwindcss-language-server", "--stdio" },
 	capabilities = capabilities,
 	completions = {
@@ -210,7 +166,7 @@ lspconfig.tailwindcss.setup({
 })
 
 require("typescript-tools").setup({
-	handlers = {},
+	handlers = handlers,
 	settings = {
 		-- spawn additional tsserver instance to calculate diagnostics on it
 		separate_diagnostic_server = true,
@@ -257,35 +213,19 @@ require("typescript-tools").setup({
 		disable_member_code_lens = true,
 	},
 })
+
 lspconfig.eslint.setup({
 	on_attach = function(client, bufnr)
-		-- on_attach(client, bufnr)
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			buffer = bufnr,
 			command = "EslintFixAll",
 		})
 	end,
-	-- handlers = handlers,
+	handlers = handlers,
 	cmd = { "bunx", "vscode-eslint-language-server", "--stdio" },
 	capabilities = capabilities,
 	completions = {
 		completeFunctionCalls = true,
-	},
-})
-
-lspconfig.rust_analyzer.setup({
-	-- on_attach = on_attach,
-	-- handlers = handlers,
-	capabilities = capabilities,
-	completions = {
-		completeFunctionCalls = true,
-	},
-	settings = {
-		["rust_analyzer"] = {
-			cargo = {
-				allFeatures = true,
-			},
-		},
 	},
 })
 
@@ -295,8 +235,7 @@ if vim.bo.filetype == "rust" then
 
 	rt.setup({
 		server = {
-			on_attach = function(client, bufnr)
-				-- on_attach(client, bufnr)
+			on_attach = function()
 				vim.keymap.set("n", "K", rt.hover_actions.hover_actions, get_opts("Rust Tools Hover"))
 				vim.keymap.set(
 					"n",
@@ -317,11 +256,7 @@ if vim.bo.filetype == "rust" then
 				vim.keymap.set("n", "<leader>rtod", cr.open_documentation, get_opts("Open create documentation"))
 				vim.keymap.set("n", "<leader>rtp", cr.show_popup, get_opts("Show Create Pop Up"))
 				vim.keymap.set("n", "<leader>rtub", cr.update, get_opts("Update Data"))
-
 				rt.inlay_hints.enable()
-
-				navic.attach(client, bufnr)
-				navbuddy.attach(client, bufnr)
 			end,
 		},
 	})
@@ -333,36 +268,3 @@ for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
-
--- lspconfig.dartls.setup({
--- 	capabilities = capabilities,
--- 	settings = {
--- 		dart = {
--- 			showTodos = true,
--- 			completeFunctionCalls = true,
--- 			renameFilesWithClasses = "prompt",
--- 			enableSnippets = true,
--- 			updateImportsOnRename = true,
--- 			enableSdkFormatter = true,
--- 		},
--- 	},
--- })
-
-vim.diagnostic.config({
-	float = {
-		border = "single",
-		focusable = true,
-		-- style = "minimal",
-		source = "always",
-		header = "",
-		prefix = "  ",
-	},
-	virtual_text = {
-		-- prefix = "󱨇 ",
-		prefix = " ",
-	},
-	signs = true,
-	underline = true,
-	update_in_insert = true,
-	severity_sort = true,
-})

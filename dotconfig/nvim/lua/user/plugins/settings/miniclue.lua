@@ -1,5 +1,6 @@
 local miniclue = require("mini.clue")
 local utils = require("user.utils")
+
 miniclue.setup({
 	triggers = {
 		-- Leader triggers
@@ -44,10 +45,10 @@ miniclue.setup({
 		{ mode = "n", keys = "<Leader>f", desc = "+Fuzzy Find" },
 		{ mode = "n", keys = "<Leader>g", desc = "+Git" },
 		{ mode = "n", keys = "<Leader>r", desc = "+Rename" },
-		{ mode = "n", keys = "<Leader>s", desc = "+Session" },
+		-- { mode = "n", keys = "<Leader>s", desc = "+Session" },
 		{ mode = "n", keys = "<Leader>t", desc = "+Tab" },
 		{ mode = "n", keys = "<Leader>l", desc = "+LSP" },
-		{ mode = "n", keys = "<Leader>h", desc = "+Harpoon" },
+		-- { mode = "n", keys = "<Leader>h", desc = "+Harpoon" },
 		{ mode = "n", keys = "gcm", desc = "+Comment" },
 	},
 

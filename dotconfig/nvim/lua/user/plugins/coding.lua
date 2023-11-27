@@ -12,7 +12,7 @@ return {
 		end,
 	}, -- a better highlight for everything
 
-	{ "windwp/nvim-ts-autotag", event = "InsertEnter", opts = {} }, -- <> autoclose tag
+	{ "windwp/nvim-ts-autotag", event = "InsertEnter", opts = {} }, -- <> autoclose tags
 
 	{
 		"L3MON4D3/LuaSnip",
@@ -29,31 +29,28 @@ return {
 	{
 		"akinsho/flutter-tools.nvim",
 		ft = "dart",
-		config = function()
-			require("flutter-tools").setup({
+		opts = {
+			{
 				ui = {
 					border = "single",
 				},
-			})
-		end,
-	},
+			},
+		},
+	}, -- flutter tools
+
 	{
 		"dsznajder/vscode-es7-javascript-react-snippets",
 		ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-		-- event = { "BufReadPost", "BufNewFile" },
 		build = "yarn install --frozen-lockfile && yarn compile",
-		priority = 51,
-	}, -- JS snippets
+	}, -- JS/JSX snippets
 
 	{
 		"barrett-ruth/live-server.nvim",
 		ft = "html",
 		build = "yarn global add live-server",
-		config = function()
-			require("live-server").setup({
-				args = { "--port=5137", "--browser=min" },
-			})
-		end,
+		opts = {
+			args = { "--port=5137", "--browser=min" },
+		},
 		cmd = { "LiveServerStart", "LiveServerStop" },
 	}, -- LiveServer
 
@@ -68,10 +65,9 @@ return {
 		end,
 	}, -- Comment Plugin
 
-	-- LSP
 	{
 		"neovim/nvim-lspconfig",
-		event = { "BufReadPre", "BufNewFile" },
+		event = { "BufRead", "BufNewFile" },
 		config = function()
 			require("user.plugins.lsp.lsp")
 			require("user.plugins.lsp.mason")
@@ -79,42 +75,18 @@ return {
 		end,
 	}, -- LSP
 
-	{ "pmizio/typescript-tools.nvim", event = "LspAttach" },
+	{
+		"pmizio/typescript-tools.nvim",
+		ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+	}, -- Better tsserver
 
 	{
 		"stevearc/conform.nvim",
 		event = "LspAttach",
 		config = function()
-			local util = require("conform.util")
-			local prettier_markdown = vim.deepcopy(require("conform.formatters.prettier"))
-			local prettier_p = vim.deepcopy(require("conform.formatters.prettier"))
-			util.add_formatter_args(prettier_p, { "--single-attribute-per-line" })
-			util.add_formatter_args(prettier_markdown, { "--parser markdown" })
-
-			require("conform").setup({
-				formatters_by_ft = {
-					lua = { "stylua" },
-					fish = { "fish_indent" },
-					javascript = { "prettier" },
-					html = { { "prettier" } },
-					css = { "prettier" },
-					scss = { "prettier" },
-					sh = { "shfmt" },
-					bash = { "shfmt" },
-					dart = { "dart_format" },
-					javascriptreact = { "prettier" },
-					typescript = { "prettier" },
-					svelte = { "prettier" },
-					typescriptreact = { "prettier" },
-					markdown = { "prettier_markdown" },
-				},
-				formatters = {
-					prettier_markdown = prettier_markdown,
-					prettier = prettier_p,
-				},
-			})
+			require("user.plugins.settings.conform")
 		end,
-	},
+	}, -- Formatter
 
 	{
 		"hrsh7th/nvim-cmp",
@@ -139,8 +111,9 @@ return {
 		build = ":MasonUpdate",
 		cmd = { "Mason", "MasonUpdate", "MasonInstall" },
 	}, -- LSP Package Manager
+
 	{ "williamboman/mason-lspconfig.nvim" },
-	{ "simrat39/rust-tools.nvim", ft = "rust" }, -- Better rust tools
+	{ "simrat39/rust-tools.nvim", ft = "rust" }, -- Rust tools
 
 	{
 		"Saecki/crates.nvim",
@@ -150,50 +123,39 @@ return {
 			require("crates").setup({})
 			require("crates").show()
 		end,
-	}, -- Better rust tools
+	}, -- Better Rust Management packages
 
 	{
 		"kevinhwang91/nvim-ufo",
 		keys = require("user.config.plugin_keymaps").ufo,
-		event = { "BufRead", "BufNewFile" },
+		event = "BufReadPost",
 		dependencies = "kevinhwang91/promise-async",
-		config = function()
-			require("ufo").setup({})
-		end,
-	}, --  better folding
+		opts = {},
+	}, -- Magically Better folding
 
 	{
 		"jcdickinson/codeium.nvim",
 		event = "InsertEnter",
-		config = function()
-			require("codeium").setup({})
-		end,
-	},
+		opts = {},
+	}, -- Auto Complete IA
 
 	{
 		"kosayoda/nvim-lightbulb",
 		event = "LspAttach",
-		config = function()
-			require("nvim-lightbulb").setup({
-				sign = {
-					enabled = true,
-					-- Text to show in the sign column.
-					-- Must be between 1-2 characters.
-					text = "󱧣",
-					-- Highlight group to highlight the sign column text.
-					hl = "Yellow",
-				},
+		opts = {
+			sign = {
+				enabled = true,
+				text = "󱧣",
+				hl = "Yellow",
+			},
 
-				autocmd = {
-					enabled = true,
-					-- see :help autocmd-pattern
-					pattern = { "*" },
-					-- see :help autocmd-events
-					events = { "CursorHold", "CursorHoldI" },
-				},
-			})
-		end,
-	}, --  show code actions
+			autocmd = {
+				enabled = true,
+				pattern = { "*" },
+        events = { "CursorHold", "CursorHoldI" },
+			},
+		},
+	}, -- show code actions
 
 	{
 		"mfussenegger/nvim-dap",
@@ -243,5 +205,5 @@ return {
 				}
 			end
 		end,
-	},
+	}, -- Debugging
 }

@@ -39,10 +39,6 @@ M.create_select_menu = function(prompt, options_table) -- Or M.create_select_men
 	return menu
 end
 
-M.create_command = function(name, callback)
-	vim.api.nvim_create_user_command(name, calback, {})
-end
-
 M.get_user = function()
 	local user = ""
 	if os.getenv("OS") ~= nil and os.getenv("OS"):match("^Windows") then
@@ -63,7 +59,7 @@ M.servers = {
 	-- "vtsls",
 	"prosemd_lsp",
 	-- "jedi_language_server",
-  "pylsp",
+	"pylsp",
 	"ruff_lsp",
 	"yamlls",
 	"bashls",

@@ -10,13 +10,6 @@ local build_commands = {
 	go = "go build",
 }
 
-local debug_build_commands = {
-	c = "g++ -std=c++17 -g -o %:p:r.o %",
-	cpp = "g++ -std=c++17 -g -o %:p:r.o %",
-	rust = "cargo build",
-	go = "go build",
-}
-
 local run_commands = {
 	c = "%:p:r.o",
 	typescript = "bun %",
@@ -31,17 +24,6 @@ cmd("Build", function()
 	local filetype = vim.bo.filetype
 
 	for file, command in pairs(build_commands) do
-		if filetype == file then
-			vim.cmd("!" .. command)
-			break
-		end
-	end
-end, {})
-
-cmd("DebugBuild", function()
-	local filetype = vim.bo.filetype
-
-	for file, command in pairs(debug_build_commands) do
 		if filetype == file then
 			vim.cmd("!" .. command)
 			break
@@ -69,11 +51,9 @@ cmd("Run", function()
 
 	for file, command in pairs(run_commands) do
 		if filetype == file then
-			-- vim.cmd("vsplit")
 			vim.cmd("sp")
 			print(file)
 			vim.cmd("term " .. command)
-			-- vim.cmd("vertical-resize 120")
 			vim.cmd("resize 12N")
 			local keys = vim.api.nvim_replace_termcodes("i", true, false, true)
 			vim.api.nvim_feedkeys(keys, "n", false)
@@ -82,13 +62,9 @@ cmd("Run", function()
 	end
 end, {})
 
-cmd("ToggleInlayHints", function()
-	if vim.lsp.inlay_hint.is_enabled(0) then
-		vim.lsp.inlay_hint.enable(0, false)
-		return
-	end
-	vim.lsp.inlay_hint.enable(0, true)
-end, {})
+-- cmd("ToggleInlayHints", function()
+-- 	vim.lsp.inlay_hint.enable(0, vim.lsp.inlay_hint.is_enabled(0))
+-- end, {})
 
 cmd("Ha", function()
 	vim.cmd([[Build]])
@@ -149,9 +125,9 @@ cmd("Scratch", function()
 end, { desc = "Open Scratch Buffer" })
 
 cmd("DisableLspSemantic", function()
-for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
-    vim.api.nvim_set_hl(0, group, {})
-end
+	for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+		vim.api.nvim_set_hl(0, group, {})
+	end
 end, {})
 
 cmd("ToggleLspDiag", function()

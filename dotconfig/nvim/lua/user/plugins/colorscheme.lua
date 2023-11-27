@@ -24,7 +24,7 @@ local onedark = {
 			lualine = {
 				transparent = true, -- lualine center bar transparency
 			},
-			style = "warm", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+			style = "darker", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
 			colors = {
 				bg0 = "#000000",
 				bg1 = "#000000",
@@ -59,10 +59,10 @@ local me = {
 			color_set = "tender", -- alduin, mountain, tender
 			styles = { -- see :h attr-list for options. set {} for NONE, { option = true } for option
 				comments = { italic = true },
-				conditionals = {},
+				conditionals = { bold = true },
 				folds = { bold = true },
 				loops = { bold = true },
-				functions = {},
+				functions = { bold = true },
 				keywords = { italic = true },
 				strings = {},
 				variables = {},

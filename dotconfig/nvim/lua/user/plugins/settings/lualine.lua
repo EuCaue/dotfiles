@@ -12,30 +12,25 @@ end
 local lsp = {
 	function(msg)
 		local clients = 0
-		msg = msg or "(LSP Inactive)"
+		msg = msg or "[LSP Inactive]"
 		local buf_clients = vim.lsp.get_clients()
 		if next(buf_clients) == nil then
 			if type(msg) == "boolean" or #msg == 0 then
-				return "(LSP Inactive)"
+				return "[LSP Inactive]"
 			end
 			return msg
 		end
 		local buf_client_names = {}
-
-		-- add client
 		for _, client in pairs(buf_clients) do
 			clients = clients + 1
 
-			if client.name ~= "null-ls" and client.name ~= "copilot" then
+			if client.name ~= "copilot" then
 				table.insert(buf_client_names, client.name)
 			end
-			-- if clients == 3 then
-			-- 	break
-			-- end
 		end
 
 		local unique_client_names = vim.fn.uniq(buf_client_names)
-		local language_servers = "(" .. table.concat(unique_client_names, " ") .. ")"
+		local language_servers = "[" .. table.concat(unique_client_names, " ") .. "]"
 		return language_servers
 	end,
 	cond = hide_in_width,
@@ -54,12 +49,6 @@ local diagnostics = {
 	colored = true,
 	update_in_insert = true,
 	always_visible = false,
-}
-
-local mode = {
-	function()
-		return icons.ui.mode_icon
-	end,
 }
 
 local diff = {
@@ -88,30 +77,21 @@ local filename = {
 	},
 }
 
-local windows = {
-	"windows",
-	use_mode_colors = true,
-}
-
-local tabs = {
-	"tabs",
-}
-
 lualine.setup({
 	options = {
 		icons_enabled = true,
 		component_separators = "|",
 		section_separators = "",
 		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
-		always_divide_middle = true,
+		always_divide_middle = false,
 		globalstatus = false,
 	},
 	sections = {
 		lualine_a = { { "mode", icons_enabled = true, icon = "", padding = 1 } },
-		lualine_b = { branch, diff },
-		lualine_c = {},
-		lualine_x = { filename },
-		lualine_y = { lsp, diagnostics },
+		lualine_b = { filename },
+		lualine_c = { lsp, diagnostics },
+		lualine_x = {},
+		lualine_y = { diff, branch },
 		lualine_z = { "location" },
 	},
 	inactive_sections = {
@@ -123,27 +103,6 @@ lualine.setup({
 		lualine_z = {},
 	},
 	winbar = {},
-	tabline = { lualine_a = { windows }, lualine_y = { tabs } },
+	tabline = {},
 	extensions = {},
-})
-
-require("lualine").hide({ place = { "tabline" } })
-local lualine_tmp = vim.api.nvim_create_augroup("lualine_tmp", { clear = true })
-vim.api.nvim_create_autocmd({ "WinNew", "WinClosed", "TabNew", "TabClosed" }, {
-	group = lualine_tmp,
-	callback = function(args)
-		local win_num = vim.fn.winnr("$")
-		local tab_num = vim.fn.tabpagenr("$")
-
-		if tab_num > 1 then
-			require("lualine").hide({ place = { "tabline" }, unhide = true })
-		else
-			require("lualine").hide({ place = { "tabline" } })
-		end
-		if win_num >= 2 and args.event == "WinNew" then
-			require("lualine").hide({ place = { "tabline" }, unhide = true })
-		elseif win_num <= 2 and args.event == "WinClosed" then
-			require("lualine").hide({ place = { "tabline" } })
-		end
-	end,
 })

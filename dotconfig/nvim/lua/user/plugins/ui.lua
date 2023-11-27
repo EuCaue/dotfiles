@@ -8,30 +8,27 @@ return {
 		config = function()
 			require("user.plugins.settings.lualine")
 		end,
-	}, -- status bar
+	}, -- Status Bar
+
 	{
 		"j-hui/fidget.nvim",
 		event = "LspAttach",
-		opts = {
-			-- options
-		},
-	},
+		opts = {},
+	}, -- LSP progress
+
 	{
 		"goolord/alpha-nvim",
 		event = "VimEnter",
 		config = function()
-			return require("user.plugins.settings.alpha")
+			require("user.plugins.settings.alpha")
 		end,
 		cmd = "Alpha",
-	}, -- title screen
-	-- Lua
+	}, -- Splash Screen
 
 	{
 		"stevearc/dressing.nvim",
-		lazy = true,
-		init = function()
-			require("dressing").setup({})
-		end,
+		event = "VeryLazy",
+		opts = {},
 	}, -- better ui
 
 	{
@@ -40,21 +37,7 @@ return {
 		config = function()
 			require("user.plugins.settings.hlchunk")
 		end,
-	},
-
-	{
-		"SmiteshP/nvim-navbuddy",
-		event = "LspAttach",
-		dependencies = {
-			"SmiteshP/nvim-navic",
-		},
-		config = function()
-			require("nvim-navbuddy").setup({
-				icons = icons,
-			})
-		end,
-		cmd = "Navbuddy",
-	}, -- Outline symbols
+	}, -- Highlight chunks
 
 	{
 		"Bekaboo/dropbar.nvim",
@@ -85,12 +68,13 @@ return {
 				},
 			},
 		},
-	},
+	}, -- IDE Breadcrumbs
 
 	{
 		"nvim-tree/nvim-web-devicons",
 		lazy = true,
 	}, -- icons
+
 	-- ui components
 	{ "MunifTanjim/nui.nvim", lazy = true },
 	{ "nvim-lua/plenary.nvim", lazy = true },

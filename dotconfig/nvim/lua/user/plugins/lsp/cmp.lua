@@ -1,5 +1,4 @@
 local cmp_status_ok, cmp = pcall(require, "cmp")
--- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 local utils = require("user.utils")
 if not cmp_status_ok then
 	vim.notify("Plugin nvim-cmp not found", "error")
@@ -16,38 +15,7 @@ require("luasnip/loaders/from_vscode").lazy_load()
 require("luasnip").log.set_loglevel("debug")
 local icons = require("user.utils").icons_selected
 
-local has_words_before = function()
-	unpack = unpack or table.unpack
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
-
 local function format(entry, item)
-	-- Utils.
-	local MAX_LABEL_WIDTH = 30
-	local function whitespace(max, len)
-		return (" "):rep(max - len)
-	end
-	-- Limit content width.
-
-	-- Replace kind with icons.
-	-- item.kind = (icons[item.kind] or icons.treesitter) -- .. "│"
-	-- item.kind = string.format("%s %s", icons[item.kind], item.kind) -- This concatenates the icons with the name of the item kind
-	-- item.kind = string.format("%s", icons[item.kind])
-
-	-- item.menu = ({
-	--   nvim_lsp = "lsp",
-	--   nvim_lua = "lua",
-	--   luasnip = "snippet",
-	--   path = "path",
-	--   buffer = "text",
-	--   fonts = "fonts",
-	--   fish = "fish",
-	--   codeium = "ia",
-	--   treesitter = "ts",
-	--   crates = "crates",
-	--
-	-- })[entry.source.name]
 	item.menu = item.kind .. "" or ""
 	item.kind = (icons[item.kind] or icons.treesitter) -- .. "│"
 
@@ -62,7 +30,6 @@ local function format(entry, item)
 	return item
 end
 
--- cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 cmp.setup({
 	preselect = cmp.PreselectMode.None,
 	-- Snippet
@@ -78,13 +45,12 @@ cmp.setup({
 		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
 		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-		["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+		["<C-y>"] = cmp.config.disable,
 		["<C-e>"] = cmp.mapping({
 			i = cmp.mapping.abort(),
 			c = cmp.mapping.close(),
 		}),
-		-- Accept currently selected item. If none selected, `select` first item.
-		-- Set `select` to `false` to only confirm explicitly selected items.
+
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 		["<Tab>"] = cmp.mapping(function(fallback)
 			luasnip.expand_or_jump()
@@ -127,6 +93,7 @@ cmp.setup({
 		behavior = cmp.ConfirmBehavior.Replace,
 		select = false,
 	},
+
 	window = {
 		documentation = cmp.config.window.bordered({
 			border = utils.border_status,
@@ -153,17 +120,6 @@ cmp.setup.cmdline({ "/", "?" }, {
 		{ name = "buffer" },
 	},
 })
-
--- cmp.setup.filetype({ "fish" }, { sources = {
--- 	{ name = "fish" },
--- 	{ name = "path" },
--- 	{ name = "fonts" },
--- } })
---
--- cmp.setup.filetype(
--- 	{ "conf", "config", "markdown", "txt", "yaml", "dosini", "sh", "bash" },
--- 	{ sources = { { name = "fonts", option = { space_filter = "-" } } } }
--- )
 
 cmp.setup.cmdline(":", {
 	mapping = cmp.mapping.preset.cmdline(),

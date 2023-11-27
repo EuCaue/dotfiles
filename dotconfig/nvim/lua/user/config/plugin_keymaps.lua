@@ -9,14 +9,14 @@ M.telescope = {
 	{ "<leader>fd", "<cmd>Telescope diagnostics<cr>", mode = "n", desc = "LSP diagnostics" },
 	{ "<leader>fl", "<cmd>Telescope live_grep<cr>", mode = "n", desc = "Find Words" },
 	{ "<leader>fs", "<cmd>Telescope grep_string<cr>", mode = "n", desc = "Find Word under the cursor" },
-	{ "<leader>fp", "<cmd>Telescope project<cr>", mode = "n", desc = "Find Projects" },
+	-- { "<leader>fp", "<cmd>Telescope project<cr>", mode = "n", desc = "Find Projects" },
 	{ "<leader>fc", "<cmd>Telescope colorscheme<cr>", mode = "n", desc = "Change Colorscheme" },
 	{ "<leader>fg", "<cmd>Telescope git_status<cr>", mode = "n", desc = "Check git status" },
 	{ "<leader>fk", "<cmd>Telescope keymaps<cr>", mode = "n", desc = "Keymaps" },
-	{ "<leader>fu", "<cmd>Telescope undo<cr>", mode = "n", desc = "Undo Tree" },
+	-- { "<leader>fu", "<cmd>Telescope undo<cr>", mode = "n", desc = "Undo Tree" },
 	{ "<leader>fv", "<cmd>cd ~/Documents/vault/ | Telescope file_browser<cr>", mode = "n", desc = "Personal Notes" },
 	{ "<leader>ft", "<cmd>TodoTelescope<cr>", mode = "n", desc = "Find Todos" },
-	{ "<leader>fh", "<cmd>Telescope harpoon marks<cr>", mode = "n", desc = "See harpoon marks" },
+	-- { "<leader>fh", "<cmd>Telescope harpoon marks<cr>", mode = "n", desc = "See harpoon marks" },
 	{ "<leader>fj", "<cmd>Telescope jumplist<cr>", mode = "n", desc = "Telescope Jumplist" },
 	{ "<leader><leader>t", "<cmd>Telescope<cr>", mode = "n", desc = "Telescope Builtins Options" },
 }
@@ -62,6 +62,10 @@ M.neogit = {
 
 M.ufo = {
 	{ "zp", "<cmd>lua require('ufo').peekFoldedLinesUnderCursor()<cr>", mode = "n", desc = "Preview Fold" },
+}
+
+M.toggler = {
+	{ "<leader>i", "<cmd>lua require('nvim-toggler').toggle()<cr>", mode = "n", desc = "Toggle Things" },
 }
 
 M.notify = {

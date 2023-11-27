@@ -38,26 +38,27 @@ ts.setup({
 			},
 		},
 	},
+
 	-- Install parsers synchronously (only applied to `ensure_installed`)
 	sync_install = false,
+
 	-- Automatically install missing parsers when entering buffer
 	auto_install = true,
+
 	highlight = {
 		-- `false` will disable the whole extension
 		enable = true,
 		disable = function(lang, bufnr) --
 			-- Extend this to other languages by adding `lang == "x"` where x is the language
-			return vim.api.nvim_buf_line_count(bufnr) > 50000
+			return vim.api.nvim_buf_line_count(bufnr) > 10000
 		end,
 		additional_vim_regex_highlighting = false,
 	},
 	-- indent
-	indent = { 
-    enable = true, 
-    disable = {
-		"dart",
-	} },
-	autopairs = {
+	indent = {
 		enable = true,
+		disable = {
+			"dart",
+		},
 	},
 })

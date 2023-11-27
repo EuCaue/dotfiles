@@ -7,8 +7,8 @@ local map = function(modes, key, cmd, opts)
 end
 
 --Remap space as leader key
-map("", "<Space>", "<Nop>", get_opts("remap space as leader key"))
-map("n", "<space>R", "q", get_opts("fuck q"))
+map("", "<Space>", "<Nop>", get_opts("remap space as leader"))
+map("n", "<space>R", "q", get_opts("R to q"))
 map("", "q", "<Nop>", get_opts("fuck q"))
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -28,24 +28,23 @@ vim.g.maplocalleader = " "
 -- |_|\_\___|\__, |_| |_| |_|\__,_| .__/|___/
 --           |___/                |_|
 
+-- Basic Keymaps
 map({ "n", "i" }, "<C-s>", "<cmd>write!<cr>", get_opts("Write"))
-map("n", "<leader>q", "<cmd>q!<cr>", get_opts("Quit"))
-map("n", "<leader>qa", "<cmd>qa!<cr>", get_opts("Quit all"))
+map("n", "<leader>Q", "<cmd>qa!<cr>", get_opts("Quit all"))
 map("n", "<leader>a", "gg<S-v>G", get_opts("Select all text in the buffer"))
-map("n", "<Tab>", "<C-W>w", get_opts("Cycle through windows"))
 map("n", "<CR>", "ciw", get_opts("Cut the inner word"))
-map("n", "<leader><leader>s", "<cmd>spellrepall<cr>", get_opts("Fix all spell problem"))
 map("n", "vv", "viw", get_opts("Select word under cursor"))
-map("n", "<leader>Q", "<cmd>bufdo bdelete<cr>", get_opts("Close all buffers"))
 map({ "n", "v" }, "<leader>m", "<cmd>lua require('markutils').toggle_checkbox()<cr>", get_opts("Toggle todo markdown"))
 
 -- Moviment
 map("n", "<A-j>", "5j", get_opts("Down 5 lines "))
 map("n", "<A-k>", "5k", get_opts("Up 5 Lines"))
 map("n", "<C-d>", "<C-d>zz", get_opts("Scroll down half a page"))
-map("n", "<C-d>", "<C-d>zz", get_opts("Scroll down half a page"))
+map("n", "<C-u>", "<C-u>zz", get_opts("Scroll up half a page"))
 map("n", "n", "nzzzv", get_opts("Scroll up half a page"))
 map("n", "N", "Nzzzv", get_opts("Scroll up half a page"))
+map("i", "<C-d>", "<C-o><C-d>", get_opts("Scroll down in insert mode"))
+map("i", "<C-u>", "<C-o><C-u>", get_opts("Scroll up in insert mode"))
 
 -- Better J/K
 map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'gj']], get_opts("Jump list relative line jump", true))
@@ -66,24 +65,23 @@ map(
 	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
 	get_opts("Rename with substitute command based on current text")
 )
+
 map("n", "<C-t>", "<cmd>Ha<cr>", get_opts("Build and run"))
--- map("n", "<leader><leader>r", "<cmd>Ha<cr>", get_opts("Run"))
--- map("n", "<leader><leader>b", "<cmd>Ha<cr>", get_opts("Build"))
 
 -- Make executable
 map("n", "<leader>x", "<cmd>!chmod +x %<cr>", get_opts("Make the current file executable"))
 map("n", "<leader><leader>x", "<cmd>!chmod -x %<cr>", get_opts("Make the current file not executable"))
 
 -- Terminal
-map("n", "<leader>T", "<cmd>vsplit | terminal<cr>", get_opts("Create a terminal"))
-map("t", "<esc>", [[<C-\><C-n>]], get_opts("Escapa in Terminal"))
-
--- Cursor
-map("n", "<leader><leader>c", "<cmd>ToggleCursor<cr>", get_opts("Toggle cursor style"))
+map("t", "<esc>", [[<C-\><C-n>]], get_opts("Esc in terminal"))
 
 -- Better window navigation
 map("n", "<C-h>", "<C-w>h", get_opts("Move to left window"))
 map("n", "<C-l>", "<C-w>l", get_opts("Move to right window"))
+
+-- Window Split
+map("n", "ss", "<cmd>vsplit<cr>", get_opts("Split Window"))
+map("n", "sq", "<cmd>close<cr>", get_opts("Split Window"))
 
 -- Resize with arrows
 map("n", "<C-Up>", ":resize -2<cr>", get_opts("Resize Up"))
@@ -102,8 +100,6 @@ map("v", ">", ">gv", get_opts("Right indent"))
 -- Move text up and down
 map("v", "<A-j>", ":m .+1<cr>==", get_opts("Move text up"))
 map("v", "<A-k>", ":m .-2<cr>==", get_opts("Move text down"))
--- map("n", "<A-j>", "<Esc>:m .+1<cr>==gi", get_opts("Move line down"))
--- map("n", "<A-k>", "<Esc>:m .-2<cr>==gi", get_opts("Move line up"))
 map("x", "<A-j>", ":move '>+1<cr>gv-gv", get_opts("Move line down"))
 map("x", "<A-k>", ":move '<-2<cr>gv-gv", get_opts("Move text up"))
 map("i", "<A-j>", "<Esc>:m .+1<cr>==gi", get_opts("Move line down"))
@@ -115,13 +111,9 @@ map("n", "<A-,>", "<cmd>tabprevious<cr>", get_opts("Previous tab"))
 map("n", "<A-.>", "<cmd>tabnext<cr>", get_opts("Next tab"))
 map("n", "<leader>tc", "<cmd>tabclose<cr>", get_opts("Close Tab"))
 
--- Move to previous/next
-map("n", "<A-[>", "<cmd>bprevious<cr>", get_opts("Prev buffer"))
-map("n", "<A-]>", "<cmd>bnext<cr>", get_opts("Next buffer"))
-
 -- Close buffer
-map("n", "<A-c>", "<cmd>bp | sp | bn | bd<cr>", get_opts("Close current buffer"))
+map("n", "<leader>q", "<cmd>bp | sp | bn | bd<cr>", get_opts("Close current buffer"))
 
 -- Lazy
-map({ "n", "v" }, "<leader><leader>l", "<cmd>Lazy<cr>", get_opts("Open Lazy"))
+map({ "n", "v" }, "<leader>L", "<cmd>Lazy<cr>", get_opts("Open Lazy"))
 map({ "n", "v" }, "<leader><leader>p", "<cmd>Lazy reload all<cr>", get_opts("Open Lazy"))

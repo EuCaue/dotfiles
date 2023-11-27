@@ -74,19 +74,10 @@ autocmd("BufWritePost", {
 	group = augroup("format_on_save"),
 	callback = function(args)
 		require("conform").format({ async = true, bufnr = args.buf, lsp_fallback = true })
-		-- vim.lsp.buf.format({ async = true, bufnr = args.buf })
 	end,
 })
 
--- better highlight on styled.js
-autocmd("BufReadPost", {
-	group = augroup("styled"),
-	pattern = { "styled.js" },
-	callback = function()
-		vim.cmd([[TSBufDisable highlight]])
-	end,
-})
-
+-- Applying transparency
 autocmd("VimEnter", {
 	group = augroup("ColorSchemeVimEnter"),
 	callback = function()
@@ -118,4 +109,4 @@ autocmd("ModeChanged", {
 
 vim.cmd([[
 autocmd BufEnter * silent! :lcd %:p:r
-]])
+]]) -- for netrw
