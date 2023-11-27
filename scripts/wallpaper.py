@@ -153,8 +153,12 @@ if wallpaperChoiceMode == "1":
 elif wallpaperChoiceMode == "2":
     wallhavenOption = getWallhavenOption()
     query = ""
+    if wallhavenOption == "1":
+        getWallpaperFromWallhaven()
     if wallhavenOption == "2":
         query = getQueryHistory()
+        print("heere")
+        print(query)
         getWallpaperFromWallhaven(query=query)
     if wallhavenOption == "3":
         query = getPrevQuerys("/home/caue/.cache/query.txt").splitlines()

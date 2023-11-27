@@ -30,4 +30,4 @@ mkdir -p "$output_folder"
 printf "%b" "\e[1;33m==> WARNING: \e[0mNow patching all fonts. This will take very long...\n"
 parallel -j $(math ( nproc ) / 2) fontforge --script $HOME/Downloads/Compressed/FontPatcher/font-patcher -c -out "$output_folder" ::: ./$input_folder/*.{otf, ttf}
 
-cd $output_folder
+cd $output_folder && notify-send "Fonts patched!"

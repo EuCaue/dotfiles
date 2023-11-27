@@ -9,7 +9,7 @@ if test -z "$CURSORSIZE"; or test "$CURSORSIZE" = " "
 end
 
 gsettings set org.gnome.desktop.interface cursor-theme $CURSOR &&
-    gsettings set org.gnome.desktop.interface icon-theme Newaita-dark &&
+    gsettings set org.gnome.desktop.interface icon-theme kora &&
     gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-dark &&
     gsettings set org.gnome.desktop.interface cursor-size $CURSORSIZE &&
     hyprctl setcursor $CURSOR $CURSORSIZE &&
