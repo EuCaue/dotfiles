@@ -26,7 +26,7 @@ function fish_vi_cursor --on-variable fish_bind_mode
             # echo -ne "\e[3 q" # underline 
             printf '\e]50;CursorShape=1\x7'
         case default
-            printf '\e]50;CursorShape=0\x7'
+            printf '\e]50;CursorShape=2\x7'
             echo -ne "\e[5 q" # block 
         case "*"
             printf '\e]50;CursorShape=0\x7'
