@@ -10,6 +10,7 @@ alias wfg='cd ~/.config/wezterm/ && nvim ~/.config/wezterm/wezterm.lua && prevd'
 alias tfg='cd ~/.config/tmux/ && nvim ~/.config/tmux/tmux.conf && prevd'
 alias sus='paru'
 alias c="clear"
+
 function gal --description "alias git add commit push"
     git add .
     git status
@@ -18,15 +19,17 @@ function gal --description "alias git add commit push"
     git push
     return 0
 end
+
 alias bat='bat --theme=base16'
 alias ls='exa -l -g --icons -h'
 alias la='exa -l -a -g --icons'
 alias lll='exa -l -a -g --icons'
+
 function lr --description "Show a tree file"
     if test -z $argv[1]
         exa -l -a -g --icons --tree --level=2
     else
-        exa -l -a -g --icons --tree --level=$argv[1]
+        exa -l -a -g --icons --tree --level=$argv[1] $argv[2]
     end
     return 0
 end
@@ -68,9 +71,10 @@ function vf --description "open in nvim with fzf "
     v $file
     return 0
 end
+
 alias r='yazi'
-alias g='lazygit'
-alias gw='glow'
+alias g="git"
+alias gg='lazygit'
 alias :wq="exit"
 alias :q="exit"
 alias cr="cargo run"
@@ -105,7 +109,7 @@ function pc --description "better copy command"
     eval $argv | wl-copy
 end
 
-function mv_tmp_wall --description "Move tmp to wallpapers folder"
+function mv_tmp_wall --description "Move tmp wallpaper to wallpapers folder"
     mv $HOME/.local/share/backgrounds/* $HOME/Pictures/wallpapers/
 end
 
@@ -128,7 +132,6 @@ end
 
 # just make Interactive
 alias mv='mv -i'
-# alias rm='rm -i'
 alias cp='cp -i'
 
 
@@ -148,8 +151,9 @@ alias li='free -h && sudo limpante && free -h'
 alias f='free -h'
 
 # NOTE: Random 
-alias csgoc='sed -i -e "/kb_options/s/^#*/#/" dotfiles/dotconfig/hypr/hyprland.conf'
-alias csgocc='sed -i -e "/kb_options/s/^#//" dotfiles/dotconfig/hypr/hyprland.conf'
+
 alias susa='paru -Syua'
-alias suslol='sudo sh -c "sysctl -w abi.vsyscall32=0"'
-alias mann='read -S -P 'man:' manpage && man $manpage | nvim'
+# alias csgoc='sed -i -e "/kb_options/s/^#*/#/" dotfiles/dotconfig/hypr/hyprland.conf'
+# alias csgocc='sed -i -e "/kb_options/s/^#//" dotfiles/dotconfig/hypr/hyprland.conf'
+# alias suslol='sudo sh -c "sysctl -w abi.vsyscall32=0"'
+# alias mann='read -S -P 'man:' manpage && man $manpage | nvim'
