@@ -41,10 +41,10 @@ map("n", "<A-j>", "5j", get_opts("Down 5 lines "))
 map("n", "<A-k>", "5k", get_opts("Up 5 Lines"))
 map("n", "<C-d>", "<C-d>zz", get_opts("Scroll down half a page"))
 map("n", "<C-u>", "<C-u>zz", get_opts("Scroll up half a page"))
-map("n", "n", "nzzzv", get_opts("Scroll up half a page"))
-map("n", "N", "Nzzzv", get_opts("Scroll up half a page"))
 map("i", "<C-d>", "<C-o><C-d>", get_opts("Scroll down in insert mode"))
 map("i", "<C-u>", "<C-o><C-u>", get_opts("Scroll up in insert mode"))
+map("n", "n", "nzzzv", get_opts("Scroll up half a page"))
+map("n", "N", "Nzzzv", get_opts("Scroll up half a page"))
 
 -- Better J/K
 map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'gj']], get_opts("Jump list relative line jump", true))
@@ -116,4 +116,3 @@ map("n", "<leader>q", "<cmd>bp | sp | bn | bd<cr>", get_opts("Close current buff
 
 -- Lazy
 map({ "n", "v" }, "<leader>L", "<cmd>Lazy<cr>", get_opts("Open Lazy"))
-map({ "n", "v" }, "<leader><leader>p", "<cmd>Lazy reload all<cr>", get_opts("Open Lazy"))

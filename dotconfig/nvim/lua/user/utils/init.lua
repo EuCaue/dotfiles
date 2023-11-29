@@ -71,7 +71,7 @@ M.servers = {
 	"svelte",
 	"marksman",
 	"html",
-	"rust_analyzer",
+	-- "rust_analyzer",
 	"cssls",
 	-- "cssmodules_ls",
 	"clangd",

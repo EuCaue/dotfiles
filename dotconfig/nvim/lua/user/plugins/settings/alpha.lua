@@ -15,7 +15,8 @@ dashboard.section.header.val = require("user.plugins.settings.alpha-headers")
 
 dashboard.section.buttons.val = {
 	dashboard.button("e", icons.ui.file .. "  New file", "<cmd>enew<CR>"),
-	dashboard.button("o", icons.ui.files .. "  Recent Files", "<cmd>Telescope oldfiles<cr>"),
+	dashboard.button("o", icons.ui.file .. "  Recent Files", "<cmd>Telescope oldfiles<cr>"),
+	dashboard.button("f", icons.ui.open_folder .. "  Explorer", "<cmd>Explore<cr>"),
 	dashboard.button("c", icons.ui.config .. "  Neovim config", "<cmd>e ~/.config/nvim/lua/user/ | cd %:p:h<cr>"),
 	dashboard.button("l", "󰒲  Lazy", "<cmd>Lazy<cr>"),
 	dashboard.button("q", icons.ui.close .. "  Quit NVIM", ":qa<CR>"),

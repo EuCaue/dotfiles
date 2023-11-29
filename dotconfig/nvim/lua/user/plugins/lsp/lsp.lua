@@ -38,7 +38,6 @@ local handlers = {
 	["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = utils.border_status }),
 }
 
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local function get_opts(desc)
 	return { noremap = true, silent = true, desc = desc }
 end
@@ -228,39 +227,6 @@ lspconfig.eslint.setup({
 		completeFunctionCalls = true,
 	},
 })
-
-if vim.bo.filetype == "rust" then
-	local rt = require("rust-tools")
-	local cr = require("crates")
-
-	rt.setup({
-		server = {
-			on_attach = function()
-				vim.keymap.set("n", "K", rt.hover_actions.hover_actions, get_opts("Rust Tools Hover"))
-				vim.keymap.set(
-					"n",
-					"<leader>ca",
-					rt.code_action_group.code_action_group,
-					get_opts("Rust Tools Code Action")
-				)
-				vim.keymap.set("n", "<leader>rtr", rt.runnables.runnables, get_opts("Rust Tools Runnables"))
-				vim.keymap.set(
-					"n",
-					"<leader>rtoc",
-					rt.open_cargo_toml.open_cargo_toml,
-					get_opts("Rust Tools Open Cargo Toml")
-				)
-				vim.keymap.set("n", "<leader>rtj", rt.join_lines.join_lines, get_opts("Rust Tools Join Lines"))
-				vim.keymap.set("n", "<leader>rtuc", cr.update_crate, get_opts("Update Create"))
-				vim.keymap.set("n", "<leader>rtuca", cr.update_all_crates, get_opts("Update All Create"))
-				vim.keymap.set("n", "<leader>rtod", cr.open_documentation, get_opts("Open create documentation"))
-				vim.keymap.set("n", "<leader>rtp", cr.show_popup, get_opts("Show Create Pop Up"))
-				vim.keymap.set("n", "<leader>rtub", cr.update, get_opts("Update Data"))
-				rt.inlay_hints.enable()
-			end,
-		},
-	})
-end
 
 local signs =
 	{ Error = icons.ui.lsp_error, Warn = icons.ui.lsp_warn, Hint = icons.ui.lsp_hint, Info = icons.ui.lsp_info }

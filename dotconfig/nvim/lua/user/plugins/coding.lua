@@ -113,7 +113,12 @@ return {
 	}, -- LSP Package Manager
 
 	{ "williamboman/mason-lspconfig.nvim" },
-	{ "simrat39/rust-tools.nvim", ft = "rust" }, -- Rust tools
+
+	{
+		"mrcjkb/rustaceanvim",
+		version = "^3", 
+		ft = { "rust" },
+	}, -- Better rust tools
 
 	{
 		"Saecki/crates.nvim",
@@ -152,7 +157,7 @@ return {
 			autocmd = {
 				enabled = true,
 				pattern = { "*" },
-        events = { "CursorHold", "CursorHoldI" },
+				events = { "CursorHold", "CursorHoldI" },
 			},
 		},
 	}, -- show code actions

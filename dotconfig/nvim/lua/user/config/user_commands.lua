@@ -62,9 +62,9 @@ cmd("Run", function()
 	end
 end, {})
 
--- cmd("ToggleInlayHints", function()
--- 	vim.lsp.inlay_hint.enable(0, vim.lsp.inlay_hint.is_enabled(0))
--- end, {})
+cmd("ToggleInlayHints", function()
+	vim.lsp.inlay_hint.enable(0, vim.lsp.inlay_hint.is_enabled(0))
+end, {})
 
 cmd("Ha", function()
 	vim.cmd([[Build]])
@@ -146,3 +146,34 @@ cmd("ToggleLspDiag", function()
 		vim.diagnostic.enable()
 	end
 end, {})
+
+local options = {
+	start = 0,
+	stop = 1,
+}
+
+cmd("AutoRun", function(input)
+	if input.args == "start" then
+		-- print("start")
+		local pattern = vim.fn.input("Pattern: ")
+		local command = vim.split(vim.fn.input("Command: "), " ")
+		require("user.utils.autorun").attach_buffer(pattern, command)
+		return
+	elseif input.args == "stop" then
+		require("user.utils.autorun").detach_buffer()
+		-- print("stop")
+		return
+	end
+	-- print("start")
+	local pattern = vim.fn.input("Pattern: ")
+	local command = vim.split(vim.fn.input("Command: "), " ")
+	require("user.utils.autorun").attach_buffer(pattern, command)
+end, {
+	desc = "Autorun buffer",
+	complete = function(line)
+		return vim.tbl_filter(function(val)
+			return vim.startswith(val, line)
+		end, vim.tbl_keys(options))
+	end,
+	nargs = "*",
+})
