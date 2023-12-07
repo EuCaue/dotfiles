@@ -86,10 +86,10 @@ return {
 		end,
 		dependencies = {
 			{ "nvim-telescope/telescope-file-browser.nvim" },
-			{
-				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "make",
-			},
+			-- {
+			-- 	"nvim-telescope/telescope-fzf-native.nvim",
+			-- 	build = "make",
+			-- },
 		},
 	}, -- Telescope - Fuzzy Finder
 
@@ -112,12 +112,12 @@ return {
 		},
 	}, -- highlight current word
 
-	{
-		"altermo/ultimate-autopair.nvim",
-		event = { "InsertEnter", "CmdlineEnter" },
-		branch = "v0.6", --recomended as each new version will have breaking changes
-		opts = {},
-	}, -- auto close
+	-- {
+	-- 	"altermo/ultimate-autopair.nvim",
+	-- 	event = { "InsertEnter", "CmdlineEnter" },
+	-- 	branch = "v0.6", --recomended as each new version will have breaking changes
+	-- 	opts = {},
+	-- }, -- auto close
 
 	{ "tzachar/highlight-undo.nvim", opts = {}, event = "BufReadPost" }, -- highlight undos.
 

@@ -63,7 +63,7 @@ cmd("Run", function()
 end, {})
 
 cmd("ToggleInlayHints", function()
-	vim.lsp.inlay_hint.enable(0, vim.lsp.inlay_hint.is_enabled(0))
+	vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))
 end, {})
 
 cmd("Ha", function()

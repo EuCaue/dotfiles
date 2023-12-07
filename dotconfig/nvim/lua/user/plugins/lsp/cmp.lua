@@ -35,7 +35,7 @@ cmp.setup({
 	-- Snippet
 	snippet = {
 		expand = function(args)
-			luasnip.lsp_expand(args.body) -- For `luasnip` users.
+			luasnip.lsp_expand(args.body)
 		end,
 	},
 	-- Mappings
@@ -52,10 +52,10 @@ cmp.setup({
 		}),
 
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		["<Tab>"] = cmp.mapping(function(fallback)
+		["<Tab>"] = cmp.mapping(function()
 			luasnip.expand_or_jump()
 		end, { "i", "s" }),
-		["<S-Tab>"] = cmp.mapping(function(fallback)
+		["<S-Tab>"] = cmp.mapping(function()
 			luasnip.jump(-1)
 		end, {
 			"i",
@@ -68,13 +68,13 @@ cmp.setup({
 	},
 	sources = {
 		{ name = "nvim_lsp", group_index = 1 },
-		{ name = "nvim_lsp_signature_help", max_item_count = 2, group_index = 1 },
 		{ name = "codeium", max_item_count = 5, group_index = 1 },
-		{ name = "path", max_item_count = 5, group_index = 2 },
+		{ name = "copilot", group_index = 1 },
+		{ name = "async_path", max_item_count = 5, group_index = 2 },
 		{ name = "luasnip", max_item_count = 5, group_index = 1 },
 		{ name = "buffer", keyword_length = 3, group_index = 2 },
 		{ name = "fish", group_index = 2 },
-		{ name = "fonts", option = { space_filter = "-" }, group_index = 2 },
+		{ name = "fonts", option = { space_filter = "-" }, group_index = 2, trigger_characters = { "-" } },
 	},
 
 	sorting = {
@@ -114,11 +114,19 @@ cmp.setup({
 		ghost_text = true,
 	},
 })
+
 cmp.setup.cmdline({ "/", "?" }, {
+
 	mapping = cmp.mapping.preset.cmdline(),
-	sources = {
+	sources = cmp.config.sources({
 		{ name = "buffer" },
-	},
+	}),
+})
+
+cmp.setup.filetype("gitcommit", {
+	sources = cmp.config.sources({
+		{ name = "conventionalcommits" },
+	}),
 })
 
 cmp.setup.cmdline(":", {

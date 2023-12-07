@@ -92,11 +92,27 @@ return {
 		"hrsh7th/nvim-cmp",
 		event = { "InsertEnter", "CmdlineEnter" },
 		dependencies = {
+			{
+				"zbirenbaum/copilot-cmp",
+				dependencies = {
+					"zbirenbaum/copilot.lua",
+					cmd = "Copilot",
+					config = function()
+						require("copilot").setup({
+							suggestion = { enabled = false },
+							panel = { enabled = false },
+						})
+					end,
+				},
+				config = function()
+					require("copilot_cmp").setup()
+				end,
+			},
 			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"hrsh7th/cmp-cmdline",
+			{ "davidsierradz/cmp-conventionalcommits", ft = "gitcommit" },
 			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
+			"FelipeLema/cmp-async-path",
 			{ "mtoohey31/cmp-fish", ft = "fish" },
 			"amarakon/nvim-cmp-fonts",
 			"saadparwaiz1/cmp_luasnip",
@@ -116,7 +132,7 @@ return {
 
 	{
 		"mrcjkb/rustaceanvim",
-		version = "^3", 
+		version = "^3",
 		ft = { "rust" },
 	}, -- Better rust tools
 
@@ -141,7 +157,10 @@ return {
 	{
 		"jcdickinson/codeium.nvim",
 		event = "InsertEnter",
-		opts = {},
+		commit = "822e762567a0bf50b1a4e733c8c93691934d7606",
+		config = function()
+			require("codeium").setup({})
+		end,
 	}, -- Auto Complete IA
 
 	{
