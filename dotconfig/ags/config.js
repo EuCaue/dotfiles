@@ -422,7 +422,7 @@ const Bar = ({ monitor } = {}) =>
     //margin: [5, 15, 0, 15],
     margins: [0, 0, 0, 0],
     anchor: ["top", "left", "right"],
-    exclusive: true,
+    exclusivity: "exclusive",
     child: CenterBox({
       startWidget: Left(),
       centerWidget: Center(),
