@@ -23,7 +23,7 @@ end
 alias bat='bat --theme=base16'
 alias ls='exa -l -g --icons -h'
 alias la='exa -l -a -g --icons'
-alias lll='exa -l -a -g --icons'
+alias lll='exa -l -a -g --icons -h'
 
 function lr --description "Show a tree file"
     if test -z $argv[1]
@@ -37,8 +37,12 @@ end
 alias rn="mv"
 alias rm='trash put'
 alias rl='trash list'
+alias rr="trash restore"
 alias tree="exa -l -a -g --icons --tree"
 alias cl="cd && c"
+function unzip --description "unzip and delete the zip file"
+    /usr/bin/unzip $argv[1] -d $(basename -s .zip $argv[1])
+end
 
 alias vim='nvim'
 alias vi='nvim'
@@ -148,7 +152,10 @@ end
 # NOTE: System
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias li='free -h && sudo limpante && free -h'
-alias f='free -h'
+
+function f --description "open file manager in current dir"
+    thunar . >/dev/null 2>&1 & disown
+end
 
 # NOTE: Random 
 
