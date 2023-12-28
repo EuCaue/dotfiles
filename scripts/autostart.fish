@@ -11,5 +11,5 @@ ags &
 redshift -O 3500K &
 swaync &
 /opt/xdman/xdm-app &
-hyprshade on vibrance &
+# hyprshade on vibrance &
 syncthing -no-browser
