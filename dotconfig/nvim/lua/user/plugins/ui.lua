@@ -10,6 +10,15 @@ return {
 		end,
 	}, -- Status Bar
 
+-- TODO: try this later
+-- {
+--   "MunifTanjim/nougat.nvim",
+-- 		event = "VeryLazy",
+--     config = function ()
+--       
+--     end
+-- },
+
 	{
 		"j-hui/fidget.nvim",
 		event = "LspAttach",

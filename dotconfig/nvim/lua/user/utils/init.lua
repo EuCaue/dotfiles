@@ -57,6 +57,7 @@ M.border_status = "single" -- "single" "double" "rounded" "none"
 M.servers = {
 	-- "tsserver",
 	-- "vtsls",
+	"jdtls",
 	"prosemd_lsp",
 	-- "jedi_language_server",
 	"pylsp",

@@ -67,7 +67,7 @@ cmp.setup({
 		format = format,
 	},
 	sources = {
-		{ name = "nvim_lsp", group_index = 1 },
+		{ name = "nvim_lsp", group_index = 1, priority = 10 },
 		{ name = "codeium", max_item_count = 5, group_index = 1 },
 		{ name = "copilot", group_index = 1 },
 		{ name = "async_path", max_item_count = 5, group_index = 2 },
@@ -75,6 +75,12 @@ cmp.setup({
 		{ name = "buffer", keyword_length = 3, group_index = 2 },
 		{ name = "fish", group_index = 2 },
 		{ name = "fonts", option = { space_filter = "-" }, group_index = 2, trigger_characters = { "-" } },
+	},
+
+	performance = {
+		trigger_debounce_time = 500,
+		throttle = 550,
+		fetching_timeout = 80,
 	},
 
 	sorting = {
@@ -120,12 +126,6 @@ cmp.setup.cmdline({ "/", "?" }, {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
 		{ name = "buffer" },
-	}),
-})
-
-cmp.setup.filetype("gitcommit", {
-	sources = cmp.config.sources({
-		{ name = "conventionalcommits" },
 	}),
 })
 

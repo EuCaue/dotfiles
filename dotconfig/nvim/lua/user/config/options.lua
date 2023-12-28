@@ -1,4 +1,4 @@
--- HACK: one day i'll figure out what is this but works nice. :)
+-- HACK: one day i'll figure out what is this but works nice. :)ot
 -- vim.opt.statuscolumn =
 -- "%{v:virtnum < 1 ? (v:relnum ? v:relnum : v:lnum < 10 ? v:lnum . '  ' : v:lnum) : ''}%=%{v:relnum == 0 ? ' ' : ''}"
 
@@ -39,9 +39,9 @@ opt.smartindent = true -- make indenting smarter again
 opt.splitbelow = true -- force all horizontal splits to go below current window
 opt.splitright = true -- force all vertical splits to go to the right of current window
 opt.swapfile = false -- disable swapfile
--- opt.guicursor = "guicursor=n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
+opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 -- opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
-opt.guicursor = "n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50" -- blocky cursor
+-- opt.guicursor = "n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50" -- blocky cursor
 opt.termguicolors = true -- set term gui colors (most terminals support this)
 opt.timeoutlen = 300 -- time to wait for a mapped sequence to complete (in milliseconds)
 opt.undofile = true -- enable persistent undo

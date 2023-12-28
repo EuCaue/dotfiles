@@ -2,6 +2,25 @@ return {
 	{ dir = "~/Dev/lua/markutils.nvim", opts = {}, ft = "markdown" }, -- yes.
 
 	{
+		"uga-rosa/ccc.nvim",
+		keys = require("user.config.plugin_keymaps").ccc,
+		cmd = { "CccHighlighterEnable", "CccHighlighterDisable", "CccHighlighterToggle", "CccConvert", "CccPick" },
+		config = function()
+			local ccc = require("ccc")
+
+			ccc.setup({
+				highlighter = {
+					auto_enable = true,
+					lsp = true,
+				},
+				win_opts = {
+					border = require("user.utils").border_status,
+				},
+			})
+		end,
+	},
+	{
+
 		"prichrd/netrw.nvim",
 		event = "VeryLazy",
 		opts = {
@@ -85,6 +104,36 @@ return {
 			require("user.plugins.settings.telescope")
 		end,
 		dependencies = {
+			{
+				"FabianWirth/search.nvim",
+				config = function()
+					require("search").setup({
+						append_tabs = {
+							{
+								name = "Lsp Symbols",
+								tele_func = require("telescope.builtin").lsp_document_symbols,
+								available = function()
+									return #vim.lsp.get_clients() > 0
+								end,
+							},
+							{
+								name = "Registers",
+								tele_func = require("telescope.builtin").registers,
+								available = function()
+									return true
+								end,
+							},
+							{
+								name = "Buffers",
+								tele_func = require("telescope.builtin").buffers,
+								available = function()
+									return true
+								end,
+							},
+						},
+					})
+				end,
+			},
 			{ "nvim-telescope/telescope-file-browser.nvim" },
 			-- {
 			-- 	"nvim-telescope/telescope-fzf-native.nvim",

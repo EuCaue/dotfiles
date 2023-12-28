@@ -262,6 +262,9 @@ const Volume = () =>
       box.window.set_cursor(null);
     },
 
+    onPrimaryClick: () => {
+      exec("pavucontrol");
+    },
     onSecondaryClick: () => {
       exec("pactl set-sink-volume @DEFAULT_SINK@ 40%");
     },

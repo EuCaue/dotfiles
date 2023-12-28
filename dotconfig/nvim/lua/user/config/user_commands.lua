@@ -8,10 +8,12 @@ local build_commands = {
 	rust = "cargo build --release",
 	fish = "./%",
 	go = "go build",
+	java = "java %",
 }
 
 local run_commands = {
 	c = "%:p:r.o",
+	java = "java %",
 	typescript = "bun %",
 	python = "python3 %",
 	cpp = "%:p:r.o",

@@ -58,7 +58,7 @@ hlchunk.setup({
 	},
 
 	line_num = {
-		enable = true,
+		enable = false,
 		use_treesitter = false,
 		style = HL,
 	},

@@ -27,11 +27,19 @@ vim.diagnostic.config({
 		prefix = "󱅶 ",
 		-- prefix = " ",
 	},
-	signs = true,
 	underline = true,
 	update_in_insert = true,
 	severity_sort = true,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = icons.ui.lsp_error,
+			[vim.diagnostic.severity.WARN] = icons.ui.lsp_warn,
+			[vim.diagnostic.severity.INFO] = icons.ui.lsp_info,
+			[vim.diagnostic.severity.HINT] = icons.ui.lsp_hint,
+		},
+	},
 })
+
 
 local handlers = {
 	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = utils.border_status }),
@@ -84,14 +92,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, get_bufopts("LSP Rename"))
 		vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, get_bufopts("Code action"))
 		vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", get_bufopts("References"))
-		vim.keymap.set("n", "<space>ll", function()
-			vim.cmd("ToggleInlayHints")
-		end, get_bufopts("Toggle LSP Inlay Hint"))
+		vim.keymap.set("n", "<space>ll", "<cmd>ToggleInlayHints<cr>", get_bufopts("Toggle LSP Inlay Hint"))
 		vim.keymap.set("n", "<space>ls", vim.lsp.buf.signature_help, get_bufopts("LSP Signature"))
 		vim.keymap.set("n", "<space>ltd", "<cmd>ToggleLspDiag<cr>", get_bufopts("Toggle LSP Diagnostics"))
-		vim.keymap.set("n", "<space>lf", function()
-			vim.lsp.buf.format({ async = true })
-		end, get_bufopts("LSP Format"))
+		vim.keymap.set("n", "<space>lf", "<cmd>LspFormat<cr>", get_bufopts("LSP Format"))
 
 		if client.server_capabilities.inlayHintProvider then
 			vim.lsp.inlay_hint.enable(bufnr, true)
@@ -214,9 +218,9 @@ require("typescript-tools").setup({
 })
 
 lspconfig.eslint.setup({
-	on_attach = function(client, bufnr)
+	on_attach = function(bufnr)
 		vim.api.nvim_create_autocmd("BufWritePre", {
-			buffer = bufnr,
+			buffer = tonumber(bufnr),
 			command = "EslintFixAll",
 		})
 	end,
@@ -227,10 +231,3 @@ lspconfig.eslint.setup({
 		completeFunctionCalls = true,
 	},
 })
-
-local signs =
-	{ Error = icons.ui.lsp_error, Warn = icons.ui.lsp_warn, Hint = icons.ui.lsp_hint, Info = icons.ui.lsp_info }
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end

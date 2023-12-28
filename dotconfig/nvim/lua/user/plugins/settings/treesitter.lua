@@ -45,16 +45,26 @@ ts.setup({
 	-- Automatically install missing parsers when entering buffer
 	auto_install = true,
 
+	incremental_selection = {
+		enable = true,
+		keymaps = {
+			init_selection = "gnn", -- set to `false` to disable one of the mappings
+			node_incremental = "<CR>",
+			scope_incremental = "grc",
+			node_decremental = "<BS>",
+		},
+	},
+
 	highlight = {
 		-- `false` will disable the whole extension
 		enable = true,
-		disable = function(lang, bufnr) --
+		disable = function(_, bufnr) --
 			-- Extend this to other languages by adding `lang == "x"` where x is the language
 			return vim.api.nvim_buf_line_count(bufnr) > 10000
 		end,
 		additional_vim_regex_highlighting = false,
 	},
-	-- indent
+
 	indent = {
 		enable = true,
 		disable = {

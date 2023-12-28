@@ -18,7 +18,9 @@ M.telescope = {
 	{ "<leader>ft", "<cmd>TodoTelescope<cr>", mode = "n", desc = "Find Todos" },
 	-- { "<leader>fh", "<cmd>Telescope harpoon marks<cr>", mode = "n", desc = "See harpoon marks" },
 	{ "<leader>fj", "<cmd>Telescope jumplist<cr>", mode = "n", desc = "Telescope Jumplist" },
+	{ "<leader>fj", "<cmd>Telescope jumplist<cr>", mode = "n", desc = "Telescope Jumplist" },
 	{ "<leader><leader>t", "<cmd>Telescope<cr>", mode = "n", desc = "Telescope Builtins Options" },
+	{ "<leader>fa", "<cmd>lua require('search').open()<cr>", mode = "n", desc = "Search all things" },
 }
 
 M.minifiles = {
@@ -137,6 +139,22 @@ M.todo_comments = {
 		end,
 		mode = "n",
 		desc = "Create a bug comment",
+	},
+	{
+		"]t",
+		function()
+			require("todo-comments").jump_next()
+		end,
+		mode = "n",
+		desc = "Next todo comment",
+	},
+	{
+		"[t",
+		function()
+			require("todo-comments").jump_prev()
+		end,
+		mode = "n",
+		desc = "Previous todo comment",
 	},
 }
 

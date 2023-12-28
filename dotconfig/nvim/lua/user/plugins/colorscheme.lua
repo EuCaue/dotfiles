@@ -5,10 +5,6 @@ local pale = {
 	config = function()
 		require("palenightfall").setup({
 			transparent = true,
-			-- color_overrides = {
-			-- 	background = "#000000",
-			-- 	background_darker = "#000000",
-			-- },
 		})
 	end,
 }
@@ -98,6 +94,7 @@ local me = {
 			},
 		})
 		vim.cmd("colorscheme mellifluous")
+		vim.cmd("hi CursorLine guibg=#101010")
 	end,
 }
 
@@ -176,6 +173,8 @@ local nordic = {
 
 local gruber_dark = {
 	"thimc/gruber-darker.nvim",
+	lazy = false,
+	priority = 1000,
 	config = function()
 		require("gruber-darker").setup({
 			transparent = true, -- removes the background
@@ -187,5 +186,5 @@ local gruber_dark = {
 }
 
 return {
-	me,
+  me,
 }
