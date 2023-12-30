@@ -24,6 +24,26 @@ const workspacesIcons = new Map([
   ["8", "󱁯"],
 ]);
 
+const WorkspaceButton = (id) =>
+  Button({
+    onClicked: () => execAsync(`hyprctl dispatch workspace ${Number(id)}`),
+    child: Box({
+      className: "workspace-box",
+      children: [
+        Label({ label: `${id} ` }),
+        Label({
+          justification: "center",
+          label: `${workspacesIcons.get(String(id)) ?? ""} `,
+          className: "workspace-icon",
+        }),
+      ],
+    }),
+    className:
+      Hyprland.active.workspace.id == Number(id)
+        ? "focused workspace"
+        : "workspace",
+  });
+
 const Workspaces = () =>
   EventBox({
     onHover: (box) => {
@@ -31,40 +51,14 @@ const Workspaces = () =>
     },
     child: Box({
       className: "workspaces",
-      connections: [
-        [
-          Hyprland,
-          (box) => {
-            const workspacesWithWindows = Object.values(Hyprland.workspaces)
-              .filter((w) => {
-                return !w.name.startsWith("special");
-              })
-              .sort((a, b) => a.id - b.id);
+    }).hook(Hyprland, (self) => {
+      const workspacesWithWindows = Object.values(Hyprland.workspaces)
+        .filter((w) => {
+          return !w.name.startsWith("special");
+        })
+        .sort((a, b) => a.id - b.id);
 
-            box.children = workspacesWithWindows.map((i) => {
-              return Button({
-                onClicked: () =>
-                  execAsync(`hyprctl dispatch workspace ${Number(i.id)}`),
-                child: Box({
-                  className: "workspace-box",
-                  children: [
-                    Label({ label: `${i.id} ` }),
-                    Label({
-                      justification: "center",
-                      label: `${workspacesIcons.get(String(i.id)) ?? ""} `,
-                      className: "workspace-icon",
-                    }),
-                  ],
-                }),
-                className:
-                  Hyprland.active.workspace.id == Number(i.id)
-                    ? "focused workspace"
-                    : "workspace",
-              });
-            });
-          },
-        ],
-      ],
+      self.children = workspacesWithWindows.map((i) => WorkspaceButton(i.id));
     }),
   });
 

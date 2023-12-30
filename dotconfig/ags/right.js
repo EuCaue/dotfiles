@@ -2,19 +2,15 @@ import Gdk from "gi://Gdk";
 import Hyprland from "resource:///com/github/Aylur/ags/service/hyprland.js";
 import Battery from "resource:///com/github/Aylur/ags/service/battery.js";
 import Audio from "resource:///com/github/Aylur/ags/service/audio.js";
-
 import {
   Box,
   EventBox,
   Label,
 } from "resource:///com/github/Aylur/ags/widget.js";
-
 import { exec, execAsync } from "resource:///com/github/Aylur/ags/utils.js";
-
 import { gdkDisplay } from "./consts.js";
 
-const batteryIcon = () => {
-  const per = Math.abs(Math.floor(Battery.percent / 10) * 10);
+const batteryIcon = (per) => {
   let icon;
 
   if (per > 90) {
@@ -44,27 +40,21 @@ const batteryIcon = () => {
 };
 
 const activeWindowTitle = () => {
-  const min = 0;
-  const max = 30;
+  const minChars = 0;
+  const maxChars = 30;
   const title = Hyprland.active.client.title;
-  if (title.length >= max) {
-    return title.slice(min, max) + "…";
+  if (title.length >= maxChars) {
+    return title.slice(minChars, maxChars) + "…";
   }
-
   return title;
 };
 
 const ClientTitle = () =>
   Label({
     className: "client-title default-box",
-    connections: [
-      [
-        Hyprland,
-        (label) => {
-          label.label = activeWindowTitle();
-        },
-      ],
-    ],
+  }).hook(Hyprland, (self) => {
+    self.label = activeWindowTitle();
+    self.tooltipText = Hyprland.active.client.title;
   });
 
 const Volume = () =>
@@ -97,80 +87,96 @@ const Volume = () =>
     child: Box({
       className: "default-box",
       children: [
-        Label({
-          className: "speaker-text",
-          connections: [
-            [
-              Audio,
-              (label) => {
-                const isMuted = Audio.speaker?.stream?.isMuted;
-                if (isMuted) {
-                  label.label = "";
-                  return;
-                }
-                const volume = Math.round(Audio.speaker?.volume * 100);
-                label.label = `${volume}% `;
-              },
-              "speaker-changed",
-            ],
-          ],
-        }),
+        Box({
+          setup: (self) => {
+            self.add(
+              Label({
+                className: "speaker-text",
+              }).hook(
+                Audio,
+                function (self, ...args) {
+                  const isMuted = Audio.speaker?.stream?.isMuted;
+                  if (isMuted) {
+                    self.label = "";
+                    return;
+                  }
+                  const volume = Math.round(Audio.speaker?.volume * 100);
+                  self.label = `${volume}% `;
+                },
+                "speaker-changed",
+              ),
+            );
 
-        Label({
-          className: "audio-icon",
-          connections: [
-            [
-              Audio,
-              (label) => {
-                const isMuted = Audio.speaker?.stream?.isMuted;
-                if (isMuted) {
-                  label.label = "󰆪 ";
-                  return;
-                }
-                label.label = `󰋋 `;
-              },
-              "speaker-changed",
-            ],
-          ],
-        }),
+            self.add(
+              Label({
+                className: "audio-icon",
+              }).hook(
+                Audio,
+                (self, ...args) => {
+                  const isMuted = Audio.speaker?.stream?.isMuted;
+                  if (isMuted) {
+                    self.label = "󰆪 ";
+                    return;
+                  }
+                  self.label = `󰋋 `;
+                },
+                "speaker-changed",
+              ),
+            );
+          },
+        }).hook(
+          Audio,
+          (self, ...args) => {
+            const volume = Math.round(Audio.speaker?.volume * 100);
+            self.tooltipText = `Volume: ${volume}%`;
+          },
+          "speaker-changed",
+        ),
 
-        Label({
-          className: "mic-text",
-          connections: [
-            [
-              Audio,
-              (label) => {
-                // console.log("mic", Audio.microphones);
-                const isMuted = Audio.microphone?.stream?.isMuted;
-                if (isMuted) {
-                  label.label = ``;
-                  return;
-                }
-                const volume = Math.round(Audio.microphone?.volume * 100);
-                label.label = `${volume || ""}% `;
-              },
-              "microphone-changed",
-            ],
-          ],
-        }),
-
-        Label({
-          className: "audio-icon",
-          connections: [
-            [
-              Audio,
-              (label) => {
-                const isMuted = Audio.microphone?.stream?.isMuted;
-                if (isMuted) {
-                  label.label = `󰍭`;
-                  return;
-                }
-                label.label = `󰍬`;
-              },
-              "microphone-changed",
-            ],
-          ],
-        }),
+        Box({
+          setup: (self) => {
+            self.add(
+              Label({
+                className: "mic-text",
+              }).hook(
+                Audio,
+                (self) => {
+                  const isMuted = Audio.microphone?.stream?.isMuted;
+                  if (isMuted) {
+                    self.label = ``;
+                    return;
+                  }
+                  const volume = Math.round(Audio.microphone?.volume * 100);
+                  self.label = `${volume || ""}% `;
+                },
+                "microphone-changed",
+              ),
+            );
+            self.add(
+              Label({
+                className: "audio-icon",
+              }).hook(
+                Audio,
+                (self) => {
+                  const isMuted = Audio.microphone?.stream?.isMuted;
+                  if (isMuted) {
+                    self.label = `󰍭`;
+                    return;
+                  }
+                  self.label = `󰍬`;
+                },
+                "microphone-changed",
+              ),
+            );
+          },
+        }).hook(
+          Audio,
+          (self) => {
+            const volume = Math.round(Audio.microphone?.volume * 100);
+            self.tooltipText = `Microphone: ${volume}%`;
+          },
+          "microphone-changed",
+        ),
       ],
     }),
   });
@@ -179,15 +185,10 @@ const BatteryLabel = () =>
   Box({
     className: "battery",
     children: [
-      Label({
-        connections: [
-          [
-            Battery,
-            (label) => {
-              label.label = batteryIcon();
-            },
-          ],
-        ],
+      Label().hook(Battery, (self) => {
+        const batteryPercent = Battery.percent;
+        self.tooltipText = `Battery: ${batteryPercent}%`;
+        self.label = batteryIcon(batteryPercent);
       }),
     ],
   });
