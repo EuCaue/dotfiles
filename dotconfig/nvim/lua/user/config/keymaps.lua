@@ -1,9 +1,9 @@
 local function get_opts(desc, expr)
-	return { noremap = true, silent = true, desc = desc, expr = expr or false }
+  return { noremap = true, silent = true, desc = desc, expr = expr or false }
 end
 
 local map = function(modes, key, cmd, opts)
-	vim.keymap.set(modes, key, cmd, opts)
+  vim.keymap.set(modes, key, cmd, opts)
 end
 
 --Remap space as leader key
@@ -34,7 +34,12 @@ map("n", "<leader>Q", "<cmd>qa!<cr>", get_opts("Quit all"))
 map("n", "<leader>a", "gg<S-v>G", get_opts("Select all text in the buffer"))
 map("n", "<CR>", "ciw", get_opts("Cut the inner word"))
 map("n", "vv", "viw", get_opts("Select word under cursor"))
-map({ "n", "v" }, "<leader>m", "<cmd>lua require('markutils').toggle_checkbox()<cr>", get_opts("Toggle todo markdown"))
+map(
+  { "n", "v" },
+  "<leader>m",
+  "<cmd>lua require('markutils').toggle_checkbox()<cr>",
+  get_opts("Toggle todo markdown")
+)
 
 -- Moviment
 map("n", "<A-j>", "5j", get_opts("Down 5 lines "))
@@ -47,8 +52,18 @@ map("n", "n", "nzzzv", get_opts("Scroll up half a page"))
 map("n", "N", "Nzzzv", get_opts("Scroll up half a page"))
 
 -- Better J/K
-map("n", "j", [[(v:count > 1 ? "m'" . v:count : '') . 'gj']], get_opts("Jump list relative line jump", true))
-map("n", "k", [[(v:count > 1 ? "m'" . v:count : '') . 'gk']], get_opts("Jump list relative line jump", true))
+map(
+  "n",
+  "j",
+  [[(v:count > 1 ? "m'" . v:count : '') . 'gj']],
+  get_opts("Jump list relative line jump", true)
+)
+map(
+  "n",
+  "k",
+  [[(v:count > 1 ? "m'" . v:count : '') . 'gk']],
+  get_opts("Jump list relative line jump", true)
+)
 
 -- Better
 map({ "n", "v" }, "<leader>y", '"+y', get_opts("Copy to system clipboard"))
@@ -57,20 +72,35 @@ map({ "n", "v" }, "<leader>p", '"+p', get_opts("Paste from system clipboard"))
 map({ "n", "v" }, "<leader>d", '"_d', get_opts("Delete for the void register"))
 map({ "v", "x" }, "p", '"_dP', get_opts("greatest remap ever"))
 
-map("n", "<leader>re", ":%s//<Left>", get_opts("Rename with substitute command"))
+map(
+  "n",
+  "<leader>re",
+  ":%s//<Left>",
+  get_opts("Rename with substitute command")
+)
 
 map(
-	{ "n", "v" },
-	"<leader>rr",
-	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-	get_opts("Rename with substitute command based on current text")
+  { "n", "v" },
+  "<leader>rr",
+  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  get_opts("Rename with substitute command based on current text")
 )
 
 map("n", "<C-t>", "<cmd>Ha<cr>", get_opts("Build and run"))
 
 -- Make executable
-map("n", "<leader>x", "<cmd>!chmod +x %<cr>", get_opts("Make the current file executable"))
-map("n", "<leader><leader>x", "<cmd>!chmod -x %<cr>", get_opts("Make the current file not executable"))
+map(
+  "n",
+  "<leader>x",
+  "<cmd>!chmod +x %<cr>",
+  get_opts("Make the current file executable")
+)
+map(
+  "n",
+  "<leader><leader>x",
+  "<cmd>!chmod -x %<cr>",
+  get_opts("Make the current file not executable")
+)
 
 -- Terminal
 map("t", "<esc>", [[<C-\><C-n>]], get_opts("Esc in terminal"))
@@ -112,7 +142,12 @@ map("n", "<A-.>", "<cmd>tabnext<cr>", get_opts("Next tab"))
 map("n", "<leader>tc", "<cmd>tabclose<cr>", get_opts("Close Tab"))
 
 -- Close buffer
-map("n", "<leader>q", "<cmd>bp | sp | bn | bd<cr>", get_opts("Close current buffer"))
+map(
+  "n",
+  "<leader>q",
+  "<cmd>bp | sp | bn | bd<cr>",
+  get_opts("Close current buffer")
+)
 
 -- Lazy
 map({ "n", "v" }, "<leader>L", "<cmd>Lazy<cr>", get_opts("Open Lazy"))

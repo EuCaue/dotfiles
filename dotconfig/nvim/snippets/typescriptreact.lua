@@ -29,33 +29,33 @@ local k = require("luasnip.nodes.key_indexer").new_key
 local snippets, autosnippets = {}, {}
 
 local cli = s(
-	"cli",
-	fmt(
-		[[
+  "cli",
+  fmt(
+    [[
 console.info("{}", {})
 ]],
-		{
-			f(function(args)
-				return args[1][1]
-			end, 1),
-			i(1, "myVar"),
-		}
-	)
+    {
+      f(function(args)
+        return args[1][1]
+      end, 1),
+      i(1, "myVar"),
+    }
+  )
 )
 
 local cld = s(
-	"cld",
-	fmt(
-		[[
+  "cld",
+  fmt(
+    [[
 console.dir("{}", {})
 ]],
-		{
-			f(function(args)
-				return args[1][1]
-			end, 1),
-			i(1, "myObj/Array"),
-		}
-	)
+    {
+      f(function(args)
+        return args[1][1]
+      end, 1),
+      i(1, "myObj/Array"),
+    }
+  )
 )
 
 table.insert(snippets, cli)

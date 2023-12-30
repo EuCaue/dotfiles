@@ -1,259 +1,260 @@
 return {
 
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-		event = "InsertEnter",
-		dependencies = {
-			{ "JoosepAlviste/nvim-ts-context-commentstring", event = "InsertEnter" }, -- Better JSX + TSX comment
-		},
-		config = function()
-			require("user.plugins.settings.treesitter")
-		end,
-	}, -- a better highlight for everything
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    event = "InsertEnter",
+    dependencies = {
+      { "JoosepAlviste/nvim-ts-context-commentstring", event = "InsertEnter" }, -- Better JSX + TSX comment
+    },
+    config = function()
+      require("user.plugins.settings.treesitter")
+    end,
+  }, -- a better highlight for everything
 
-	{ "windwp/nvim-ts-autotag", event = "LspAttach", opts = {} }, -- <> autoclose tags
+  { "windwp/nvim-ts-autotag", event = "LspAttach", opts = {} }, -- <> autoclose tags
 
-	{
-		"L3MON4D3/LuaSnip",
-		event = { "InsertEnter" },
-		dependencies = {
-			{ "rafamadriz/friendly-snippets" }, -- a bunch of snippets
-		},
-		build = "make install_jsregexp",
-		config = function()
-			require("user.plugins.settings.luasnip")
-		end,
-	}, --  Snippet Engine
+  {
+    "L3MON4D3/LuaSnip",
+    event = { "InsertEnter" },
+    dependencies = {
+      { "rafamadriz/friendly-snippets" }, -- a bunch of snippets
+    },
+    build = "make install_jsregexp",
+    config = function()
+      require("user.plugins.settings.luasnip")
+    end,
+  }, --  Snippet Engine
 
-	{
-		"akinsho/flutter-tools.nvim",
-		ft = "dart",
-		opts = {
-			{
-				ui = {
-					border = "single",
-				},
-			},
-		},
-	}, -- flutter tools
+  {
+    "akinsho/flutter-tools.nvim",
+    ft = "dart",
+    opts = {
+      {
+        ui = {
+          border = "single",
+        },
+      },
+    },
+  }, -- flutter tools
 
-	{
-		"dsznajder/vscode-es7-javascript-react-snippets",
-		ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-		build = "yarn install --frozen-lockfile && yarn compile",
-	}, -- JS/JSX snippets
+  {
+    "dsznajder/vscode-es7-javascript-react-snippets",
+    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+    build = "yarn install --frozen-lockfile && yarn compile",
+  }, -- JS/JSX snippets
 
-	{
-		"barrett-ruth/live-server.nvim",
-		ft = "html",
-		build = "yarn global add live-server",
-		opts = {
-			args = { "--port=5137", "--browser=min" },
-		},
-		cmd = { "LiveServerStart", "LiveServerStop" },
-	}, -- LiveServer
+  {
+    "barrett-ruth/live-server.nvim",
+    ft = "html",
+    build = "yarn global add live-server",
+    opts = {
+      args = { "--port=5137", "--browser=min" },
+    },
+    cmd = { "LiveServerStart", "LiveServerStop" },
+  }, -- LiveServer
 
-	{
-		"numToStr/Comment.nvim",
-		keys = require("user.config.plugin_keymaps").comments,
-		event = "BufReadPost",
-		config = function()
-			require("Comment").setup({
-				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-			})
-		end,
-	}, -- Comment Plugin
+  {
+    "numToStr/Comment.nvim",
+    keys = require("user.config.plugin_keymaps").comments,
+    event = "BufReadPost",
+    config = function()
+      require("Comment").setup({
+        pre_hook = require(
+          "ts_context_commentstring.integrations.comment_nvim"
+        ).create_pre_hook(),
+      })
+    end,
+  }, -- Comment Plugin
 
-	{
-		"neovim/nvim-lspconfig",
-		event = { "BufRead", "BufNewFile" },
-		config = function()
-			require("user.plugins.lsp.lsp")
-			require("user.plugins.lsp.mason")
-			require("user.plugins.lsp.efm-ls")
-		end,
-	}, -- LSP
+  {
+    "neovim/nvim-lspconfig",
+    event = { "BufRead", "BufNewFile" },
+    config = function()
+      require("user.plugins.lsp.lsp")
+      require("user.plugins.lsp.mason")
+      require("user.plugins.lsp.efm-ls")
+    end,
+  }, -- LSP
 
-	{
-		"pmizio/typescript-tools.nvim",
-		ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-	}, -- Better tsserver
+  {
+    "pmizio/typescript-tools.nvim",
+    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  }, -- Better tsserver
 
-	{
-		"stevearc/conform.nvim",
-		event = "LspAttach",
-		config = function()
-			require("user.plugins.settings.conform")
-		end,
-	}, -- Formatter
+  {
+    "stevearc/conform.nvim",
+    event = "LspAttach",
+    config = function()
+      require("user.plugins.settings.conform")
+    end,
+  }, -- Formatter
 
-	{
-		"hrsh7th/nvim-cmp",
-		event = { "InsertEnter", "CmdlineEnter" },
-		dependencies = {
-			{
-				"zbirenbaum/copilot-cmp",
-				dependencies = {
-					"zbirenbaum/copilot.lua",
-					cmd = "Copilot",
-					config = function()
-						require("copilot").setup({
-							suggestion = { enabled = false },
-							panel = { enabled = false },
-						})
-					end,
-				},
-				config = function()
-					require("copilot_cmp").setup()
-				end,
-			},
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-cmdline",
-			"hrsh7th/cmp-buffer",
-			"FelipeLema/cmp-async-path",
-			{ "mtoohey31/cmp-fish", ft = "fish" },
-			"amarakon/nvim-cmp-fonts",
-			"saadparwaiz1/cmp_luasnip",
-		},
-		config = function()
-			require("user.plugins.lsp.cmp")
-		end,
-	}, -- Auto complete
+  {
+    "hrsh7th/nvim-cmp",
+    event = { "InsertEnter", "CmdlineEnter" },
+    dependencies = {
+      {
+        "zbirenbaum/copilot-cmp",
+        dependencies = {
+          "zbirenbaum/copilot.lua",
+          cmd = "Copilot",
+          config = function()
+            require("copilot").setup({
+              suggestion = { enabled = false },
+              panel = { enabled = false },
+            })
+          end,
+        },
+        config = function()
+          require("copilot_cmp").setup()
+        end,
+      },
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-buffer",
+      "FelipeLema/cmp-async-path",
+      { "mtoohey31/cmp-fish", ft = "fish" },
+      "amarakon/nvim-cmp-fonts",
+      "saadparwaiz1/cmp_luasnip",
+    },
+    config = function()
+      require("user.plugins.lsp.cmp")
+    end,
+  }, -- Auto complete
 
-	{
-		"williamboman/mason.nvim",
-		build = ":MasonUpdate",
-		cmd = { "Mason", "MasonUpdate", "MasonInstall" },
-	}, -- LSP Package Manager
+  {
+    "williamboman/mason.nvim",
+    build = ":MasonUpdate",
+    cmd = { "Mason", "MasonUpdate", "MasonInstall" },
+  }, -- LSP Package Manager
 
-	{ "williamboman/mason-lspconfig.nvim" },
+  { "williamboman/mason-lspconfig.nvim" },
 
-	{
-		"mrcjkb/rustaceanvim",
-		version = "^3",
-		ft = { "rust" },
-	}, -- Better rust tools
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^3",
+    ft = { "rust" },
+  }, -- Better rust tools
 
-	{
-		"Saecki/crates.nvim",
-		version = "v0.3.*",
-		ft = "rust",
-		config = function()
-			require("crates").setup({})
-			require("crates").show()
-		end,
-	}, -- Better Rust Management packages
+  {
+    "Saecki/crates.nvim",
+    version = "v0.3.*",
+    ft = "rust",
+    config = function()
+      require("crates").setup({})
+      require("crates").show()
+    end,
+  }, -- Better Rust Management packages
 
-	{
-		"kevinhwang91/nvim-ufo",
-		keys = require("user.config.plugin_keymaps").ufo,
-		event = "BufReadPost",
-		dependencies = "kevinhwang91/promise-async",
-		opts = {},
-	}, -- Magically Better folding
+  {
+    "kevinhwang91/nvim-ufo",
+    keys = require("user.config.plugin_keymaps").ufo,
+    event = "BufReadPost",
+    dependencies = "kevinhwang91/promise-async",
+    opts = {},
+  }, -- Magically Better folding
 
-	{
-		"jcdickinson/codeium.nvim",
-		event = "InsertEnter",
-		commit = "822e762567a0bf50b1a4e733c8c93691934d7606",
-		config = function()
-			require("codeium").setup({})
-		end,
-	}, -- Auto Complete IA
+  {
+    "jcdickinson/codeium.nvim",
+    event = "InsertEnter",
+    config = function()
+      require("codeium").setup({})
+    end,
+  }, -- Auto Complete IA
 
-	{
-		"kosayoda/nvim-lightbulb",
-		event = "LspAttach",
-		opts = {
-			sign = {
-				enabled = true,
-				text = "󱧣",
-				hl = "Yellow",
-			},
+  {
+    "kosayoda/nvim-lightbulb",
+    event = "LspAttach",
+    opts = {
+      sign = {
+        enabled = true,
+        text = "󱧣",
+        hl = "Yellow",
+      },
 
-			autocmd = {
-				enabled = true,
-				pattern = { "*" },
-				events = { "CursorHold", "CursorHoldI" },
-			},
-		},
-	}, -- show code actions
+      autocmd = {
+        enabled = true,
+        pattern = { "*" },
+        events = { "CursorHold", "CursorHoldI" },
+      },
+    },
+  }, -- show code actions
 
-	{
-		"mfussenegger/nvim-dap",
-		cmd = { "DapContinue", "DapToggleBreakpoint" },
-		dependencies = {
-			{
-				"rcarriga/nvim-dap-ui",
-				config = function()
-					local dap = require("dap")
-					local dapui = require("dapui")
+  {
+    "mfussenegger/nvim-dap",
+    cmd = { "DapContinue", "DapToggleBreakpoint" },
+    dependencies = {
+      {
+        "rcarriga/nvim-dap-ui",
+        config = function()
+          local dap = require("dap")
+          local dapui = require("dapui")
 
-					require("dapui").setup()
-					dap.listeners.after.event_initialized["dapui_config"] = function()
-						dapui.open()
-					end
-					dap.listeners.before.event_terminated["dapui_config"] = function()
-						dapui.close()
-					end
-					dap.listeners.before.event_exited["dapui_config"] = function()
-						dapui.close()
-					end
-				end,
-			},
-		},
-		config = function()
-			local dap = require("dap")
+          require("dapui").setup()
+          dap.listeners.after.event_initialized["dapui_config"] = function()
+            dapui.open()
+          end
+          dap.listeners.before.event_terminated["dapui_config"] = function()
+            dapui.close()
+          end
+          dap.listeners.before.event_exited["dapui_config"] = function()
+            dapui.close()
+          end
+        end,
+      },
+    },
+    config = function()
+      local dap = require("dap")
 
-			dap.adapters["pwa-node"] = {
-				type = "server",
-				host = "localhost",
-				port = 8123,
-				executable = {
-					command = "js-debug-adapter",
-				},
-			}
+      dap.adapters["pwa-node"] = {
+        type = "server",
+        host = "localhost",
+        port = 8123,
+        executable = {
+          command = "js-debug-adapter",
+        },
+      }
 
-			for _, language in ipairs({ "typescript", "javascript" }) do
-				dap.configurations[language] = {
-					{
-						type = "pwa-node",
-						request = "launch",
-						name = "Launch file",
-						program = "${file}",
-						cwd = "${workspaceFolder}",
-						runtimeExecutable = "ts-node",
-					},
-				}
-			end
-		end,
-	}, -- Debugging
+      for _, language in ipairs({ "typescript", "javascript" }) do
+        dap.configurations[language] = {
+          {
+            type = "pwa-node",
+            request = "launch",
+            name = "Launch file",
+            program = "${file}",
+            cwd = "${workspaceFolder}",
+            runtimeExecutable = "ts-node",
+          },
+        }
+      end
+    end,
+  }, -- Debugging
 
-	-- JAVA
-	{
-		"nvim-java/nvim-java",
+  -- JAVA
+  {
+    "nvim-java/nvim-java",
     ft = "java",
-		config = function()
-			require("java").setup()
-		end,
-		dependencies = {
-			"nvim-java/lua-async-await",
-			"nvim-java/nvim-java-core",
-			"nvim-java/nvim-java-test",
-			"nvim-java/nvim-java-dap",
-			"MunifTanjim/nui.nvim",
-			"neovim/nvim-lspconfig",
-			"mfussenegger/nvim-dap",
-			{
-				"williamboman/mason.nvim",
-				opts = {
-					registries = {
-						"github:nvim-java/mason-registry",
-						"github:mason-org/mason-registry",
-					},
-				},
-			},
-		},
-	},
+    config = function()
+      require("java").setup()
+    end,
+    dependencies = {
+      "nvim-java/lua-async-await",
+      "nvim-java/nvim-java-core",
+      "nvim-java/nvim-java-test",
+      "nvim-java/nvim-java-dap",
+      "MunifTanjim/nui.nvim",
+      "neovim/nvim-lspconfig",
+      "mfussenegger/nvim-dap",
+      {
+        "williamboman/mason.nvim",
+        opts = {
+          registries = {
+            "github:nvim-java/mason-registry",
+            "github:mason-org/mason-registry",
+          },
+        },
+      },
+    },
+  },
 }

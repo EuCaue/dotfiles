@@ -29,35 +29,35 @@ local k = require("luasnip.nodes.key_indexer").new_key
 local snippets, autosnippets = {}, {}
 
 local snip = s("snip", {
-	t("hi, this a node for a snippets"),
-	i(1, " placeholdertext"),
-	t("this is another text node"),
+  t("hi, this a node for a snippets"),
+  i(1, " placeholdertext"),
+  t("this is another text node"),
 })
 
 local snip2 = s(
-	"snip2",
-	fmt(
-		[[
+  "snip2",
+  fmt(
+    [[
 
 local {} = function({})
 {}
 end
 ]],
-		{
-			i(1, "myVar"),
-			c(2, { t(""), t("myArg") }),
-			i(3, "-- TODO: "),
-		}
-	)
+    {
+      i(1, "myVar"),
+      c(2, { t(""), t("myArg") }),
+      i(3, "-- TODO: "),
+    }
+  )
 )
 
 local autoSnip = s({ trig = "autosnipt", regTrig = true }, { t("auto expnd") })
 
 local functionSnip = s("fsnip", {
-	f(function(arg, snipp)
-		return arg[1][1]
-	end, 1),
-	i(1, "bomdia"),
+  f(function(arg, snipp)
+    return arg[1][1]
+  end, 1),
+  i(1, "bomdia"),
 })
 
 --
