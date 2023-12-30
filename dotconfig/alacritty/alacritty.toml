@@ -1,0 +1,37 @@
+import = ["/home/caue/.config/alacritty/alpha.toml"]
+#
+[cursor]
+blink_interval = 600
+blink_timeout = 5
+thickness = 0.15
+
+[cursor.style]
+blinking = "Always"
+shape = "Beam"
+
+[env]
+TERM = "alacritty"
+
+[font]
+builtin_box_drawing = true
+size = 14.0
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[font.normal]
+family = "NK57 Monospace"
+
+[font.offset]
+x = 0
+y = 9
+
+[window]
+dynamic_title = true
+decorations = "NONE"
+opacity = 1.0
+blur = true
+
+[window.padding]
+x = 30
+y = 5
