@@ -4,7 +4,7 @@
 swww init &
 sleep 1 &&
     swww img $WALLPAPER --transition-type grow --transition-pos "$(hyprctl cursorpos)" --transition-duration 1
-ags &
+ags --config $HOME/.config/ags/appbar/config.js &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 ~/dotfiles/scripts/suspend.sh &
 ~/dotfiles/scripts/rofi-clipboard.fish &

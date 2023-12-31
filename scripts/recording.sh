@@ -8,7 +8,7 @@ datetime=$(cat /tmp/date)
 dir=$HOME/Videos/Screencasts
 
 menu_start_recording() {
-	echo "1, Record"
+	echo "1. Record"
 	echo "2. Record Area"
 	echo "3. Record Window"
 	echo "4. Stop recording"
@@ -16,6 +16,7 @@ menu_start_recording() {
 
 record_screen() {
 	notify-send "Start Recording 🚀🚀" "Recording ${datetime}"
+	echo " bomdia "
 	sleep 0.5 &&
 		wl-screenrec --audio --codec avc -b "1 MB" -f "${dir}/${datetime}".mp4
 }
