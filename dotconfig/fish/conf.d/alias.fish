@@ -1,7 +1,7 @@
 # NOTE: most used
 alias cfg='cd ~/.config/fish/ && nvim ~/.config/fish/config.fish && cd'
 alias kfg='nvim ~/.config/kitty/kitty.conf'
-alias afg='nvim ~/.config/alacritty/alacritty.yml'
+alias afg='nvim ~/.config/alacritty/alacritty.toml'
 alias ffg="nvim ~/.config/foot/foot.ini"
 alias hfg='nvim ~/.config/hypr/hyprland.conf'
 alias nft='nvim ~/.config/neofetch/config.conf'
@@ -10,6 +10,7 @@ alias wfg='cd ~/.config/wezterm/ && nvim ~/.config/wezterm/wezterm.lua && prevd'
 alias tfg='cd ~/.config/tmux/ && nvim ~/.config/tmux/tmux.conf && prevd'
 alias sus='paru'
 alias c="clear"
+alias cf="ls | wc -l"
 
 function gal --description "alias git add commit push"
     git add .

@@ -1,10 +1,10 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR --export CURSOR:cz\x2dViator\x2dBlack_Ring
-SETUVAR --export CURSORSIZE:24
+SETUVAR --export CURSOR:macOS\x2dDarker
+SETUVAR --export CURSORSIZE:28
 SETUVAR --export FONT_NAME:NK57\x20Monospace
 SETUVAR --export ROUNDING:0
-SETUVAR --export WALLPAPER:/home/caue/\x2elocal/share/backgrounds/wallhaven\x2dp23mm9\x2epng
+SETUVAR --export WALLPAPER:/home/caue/Pictures/wallpapers/a67r3y42gs9b1\x2ejpg
 SETUVAR Z_DATA_DIR:/home/caue/\x2elocal/share/z
 SETUVAR __fish_initialized:3400
 SETUVAR _fisher_nickeb96_2F_puffer_2D_fish_files:\x7e/\x2econfig/fish/functions/_puffer_fish_expand_bang\x2efish\x1e\x7e/\x2econfig/fish/functions/_puffer_fish_expand_dots\x2efish\x1e\x7e/\x2econfig/fish/functions/_puffer_fish_expand_lastarg\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/puffer_fish_key_bindings\x2efish

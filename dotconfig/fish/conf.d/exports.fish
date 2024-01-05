@@ -1,11 +1,14 @@
+# QT
 set -x QT_QPA_PLATFORM wayland
+set -x QT_QPA_PLATFORMTHEME qt5ct
+
+# firefox
 set -x MOZ_ENABLE_WAYLAND 1
-set -x QT_QPA_PLATFORMTHEME gnome
 
 # Exporting the default $EDITOR
 set -x EDITOR /usr/bin/nvim
 set -x VISUAL nvim
-# set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
+set -x FREETYPE_PROPERTIES "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0 truetype:interpreter-version=35"
 
 # Add paths
 fish_add_path "$HOME/.local/bin:$PATH"
@@ -38,4 +41,3 @@ set -gx PNPM_HOME "/home/caue/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
     set -gx PATH "$PNPM_HOME" $PATH
 end
-# pnpm end
