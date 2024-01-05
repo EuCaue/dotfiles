@@ -39,7 +39,7 @@ function batteryIcon(per) {
   return icon;
 }
 
-function activeWindowTitle() {
+function activeWindowTitle(self) {
   const minChars = 0;
   const maxChars = 30;
   const title = Hyprland.active.client.title;
@@ -53,20 +53,20 @@ const CurrentWindowTitle = () =>
   Label({
     className: "client-title default-box",
   }).hook(Hyprland, (self) => {
-    self.label = activeWindowTitle();
+    self.label = activeWindowTitle(self);
     self.tooltipText = Hyprland.active.client.title;
   });
 
 const Volume = () =>
   EventBox({
     onScrollUp: () => {
-      execAsync(["fish", "-c", "$HOME/.config/ags/volume.fish up"])
+      execAsync(["fish", "-c", "audio.fish up"])
         .then((v) => console.log(v))
         .catch(console.error);
     },
 
     onScrollDown: () => {
-      execAsync(["fish", "-c", "$HOME/.config/ags/volume.fish down"])
+      execAsync(["fish", "-c", "audio.fish down"])
         .then((v) => console.log(v))
         .catch(console.error);
     },

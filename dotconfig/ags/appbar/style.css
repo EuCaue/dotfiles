@@ -4,7 +4,7 @@ label {
 }
 
 @define-color bar-bg-color rgba(0, 0, 0, 1);
-@define-color bg-color rgba(10,10,10,2);
+@define-color bg-color rgba(15,15,15,2);
 @define-color sep #f9f9f9;
 
 * {
@@ -52,6 +52,7 @@ label {
 }
 
 .client-title {
+  padding: 15px 0;
 }
 
 .battery > label,

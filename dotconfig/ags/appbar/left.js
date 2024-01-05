@@ -10,22 +10,22 @@ import {
 } from "resource:///com/github/Aylur/ags/widget.js";
 
 import { exec, execAsync } from "resource:///com/github/Aylur/ags/utils.js";
-let showDateOrTime = Variable(true);
+let showTimeOrDate = Variable(true);
 import { gdkDisplay } from "./consts.js";
 
 function dateOrTime(label) {
-  showDateOrTime.value
+  showTimeOrDate.value
     ? execAsync(["date", "+%H:%M:%S"])
         .then((date) => (label.label = `${date}`))
         .catch(console.error)
-    : execAsync(["date", "+%b %d"])
+    : execAsync(["date", "+%b %d %A"])
         .then((date) => (label.label = `${date}`))
         .catch(console.error);
 }
 
 const Clock = () =>
   EventBox({
-    onPrimaryClick: () => showDateOrTime.setValue(!showDateOrTime.value),
+    onPrimaryClick: () => showTimeOrDate.setValue(!showTimeOrDate.value),
 
     onHover: (box) => {
       box.window.set_cursor(Gdk.Cursor.new_from_name(gdkDisplay, "pointer"));
@@ -41,15 +41,15 @@ const Clock = () =>
         Label({
           justification: "center",
           className: "clock-icon",
-        }).hook(showDateOrTime, (self) => {
-          self.label = showDateOrTime.value ? "󰥔 " : "󰃮 ";
+        }).hook(showTimeOrDate, (self) => {
+          self.label = showTimeOrDate.value ? "󰥔 " : "󰃮 ";
         }),
 
         Label({
           justification: "center",
         })
-          .hook(showDateOrTime, (self) => {
-            self.tooltipText = showDateOrTime.value
+          .hook(showTimeOrDate, (self) => {
+            self.tooltipText = showTimeOrDate.value
               ? exec("date +'%H:%M:%S'")
               : exec("date +'%b %d'");
             dateOrTime(self);
