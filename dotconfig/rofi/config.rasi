@@ -4,6 +4,7 @@ configuration {
   modi: "window,run,drun,emoji,calc";
   show-icons: true;
   eh: 1;
+  matching: "regex";
   sort: true;
   case-sensitivity: false; 
   sorting-method: "fzf";
