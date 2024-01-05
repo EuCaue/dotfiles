@@ -24,7 +24,7 @@ family = "NK57 Monospace"
 
 [font.offset]
 x = 0
-y = 9
+y = 0
 
 [window]
 dynamic_title = true
