@@ -109,9 +109,8 @@ map("t", "<esc>", [[<C-\><C-n>]], get_opts("Esc in terminal"))
 map("n", "<C-h>", "<C-w>h", get_opts("Move to left window"))
 map("n", "<C-l>", "<C-w>l", get_opts("Move to right window"))
 
--- Window Split
-map("n", "ss", "<cmd>vsplit<cr>", get_opts("Split Window"))
-map("n", "sq", "<cmd>close<cr>", get_opts("Split Window"))
+-- search
+map("n", "s", "/", get_opts("Search"))
 
 -- Resize with arrows
 map("n", "<C-Up>", ":resize -2<cr>", get_opts("Resize Up"))

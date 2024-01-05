@@ -30,7 +30,6 @@ opt.foldtext = "v:lua.vim.treesitter.foldtext()"
 opt.foldmethod = "indent"
 opt.foldcolumn = "0" -- '0' is not bad
 opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-opt.foldenable = true -- starting with folding, for nvim-ufo
 opt.showcmd = false -- not show
 opt.title = true -- neovim window title by titlestring
 opt.showtabline = 0 -- always show tabs
@@ -87,14 +86,9 @@ g.loaded_vimballPlugin = 1
 g.loaded_2html_plugin = 1
 
 g.loaded_matchit = 1
--- g.loaded_matchparen = 1
 g.loaded_logiPat = 1
 g.loaded_rrhelper = 1
 
 g.netrw_banner = 0
--- g.loaded_netrw = 1
--- g.loaded_netrwPlugin = 1
--- g.loaded_netrwSettings = 1
--- g.loaded_netrwFileHandlers = 1
 
 g.skip_ts_context_commentstring_module = true

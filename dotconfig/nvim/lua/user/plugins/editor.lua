@@ -50,7 +50,7 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     keys = require("user.config.plugin_keymaps").git_signs,
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufReadPre" },
     config = function()
       require("user.plugins.settings.gitsigns")
     end,
@@ -90,8 +90,9 @@ return {
       vim.g.mkdp_highlight_css = "/home/caue/dotfiles/dotconfig/highlight.css"
       vim.g.mkdp_port = 8080
     end,
-    cmd = { "MarkdownPreviewToggle" },
+    cmd = { "MarkdownPreview" },
   }, -- preview markdown files on browser
+
 
   {
     "echasnovski/mini.clue",
@@ -141,10 +142,6 @@ return {
         end,
       },
       { "nvim-telescope/telescope-file-browser.nvim" },
-      -- {
-      -- 	"nvim-telescope/telescope-fzf-native.nvim",
-      -- 	build = "make",
-      -- },
     },
   }, -- Telescope - Fuzzy Finder
 
@@ -167,12 +164,6 @@ return {
     },
   }, -- highlight current word
 
-  -- {
-  -- 	"altermo/ultimate-autopair.nvim",
-  -- 	event = { "InsertEnter", "CmdlineEnter" },
-  -- 	branch = "v0.6", --recomended as each new version will have breaking changes
-  -- 	opts = {},
-  -- }, -- auto close
 
   { "tzachar/highlight-undo.nvim", opts = {}, event = "BufReadPost" }, -- highlight undos.
 

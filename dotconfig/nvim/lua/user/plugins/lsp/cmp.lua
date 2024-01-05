@@ -1,15 +1,7 @@
-local cmp_status_ok, cmp = pcall(require, "cmp")
+local cmp = require("cmp")
 local utils = require("user.utils")
-if not cmp_status_ok then
-  vim.notify("Plugin nvim-cmp not found", "error")
-  return
-end
 
-local snip_status_ok, luasnip = pcall(require, "luasnip")
-if not snip_status_ok then
-  vim.notify("Plugin luasnip not found", "error")
-  return
-end
+local luasnip = require("luasnip")
 
 require("luasnip/loaders/from_vscode").lazy_load()
 require("luasnip").log.set_loglevel("debug")
@@ -30,6 +22,36 @@ local function format(entry, item)
   return item
 end
 
+vim.g.cmp_toggle_flag = false -- initialize
+
+local normal_buftype = function()
+  return vim.api.nvim_get_option_value("buftype", { buf = 0 })
+end
+
+local toggle_completion = function()
+  local ok, cmp = pcall(require, "cmp")
+  if ok then
+    local next_cmp_toggle_flag = not vim.g.cmp_toggle_flag
+    if next_cmp_toggle_flag then
+      print("completion on")
+    else
+      print("completion off")
+    end
+    cmp.setup({
+      enabled = function()
+        vim.g.cmp_toggle_flag = next_cmp_toggle_flag
+        if next_cmp_toggle_flag then
+          return normal_buftype
+        else
+          return next_cmp_toggle_flag
+        end
+      end,
+    })
+  else
+    print("completion not available")
+  end
+end
+
 cmp.setup({
   preselect = cmp.PreselectMode.None,
   -- Snippet
@@ -41,6 +63,18 @@ cmp.setup({
   -- Mappings
   mapping = {
     ["<C-p>"] = cmp.mapping.select_prev_item(),
+    ["<C-k>"] = cmp.mapping({
+      i = function()
+        if cmp.visible() then
+          cmp.abort()
+          toggle_completion()
+        else
+          cmp.complete()
+          toggle_completion()
+        end
+      end,
+    }),
+
     ["<C-n>"] = cmp.mapping.select_next_item(),
     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
@@ -70,7 +104,7 @@ cmp.setup({
     { name = "nvim_lsp", group_index = 1, priority = 10 },
     { name = "codeium", max_item_count = 5, group_index = 1 },
     { name = "copilot", group_index = 1 },
-    { name = "async_path", max_item_count = 5, group_index = 2 },
+    { name = "async_path", max_item_count = 5, group_index = 1 },
     { name = "luasnip", max_item_count = 5, group_index = 1 },
     { name = "buffer", keyword_length = 3, group_index = 2 },
     { name = "fish", group_index = 2 },

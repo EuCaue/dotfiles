@@ -1,11 +1,6 @@
+local gitsigns = require("gitsigns")
 local icons = require("user.utils").icons
 local utils = require("user.utils")
-
-local status_ok, gitsigns = pcall(require, "gitsigns")
-if not status_ok then
-  vim.notify("Plugin gitsigns not found", "error")
-  return
-end
 
 gitsigns.setup({
   signs = {

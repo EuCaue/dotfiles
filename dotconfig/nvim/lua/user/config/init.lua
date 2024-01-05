@@ -4,6 +4,8 @@ require("user.config.options")
 require("user.config.autocmds")
 
 vim.cmd("cnoreabbrev W! w!")
+vim.cmd("cnoreabbrev W1 w!")
+vim.cmd("cnoreabbrev Q1 q!")
 vim.cmd("cnoreabbrev Q! q!")
 vim.cmd("cnoreabbrev Qall! qall!")
 vim.cmd("cnoreabbrev Wq wq")

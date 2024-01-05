@@ -163,12 +163,11 @@ cmd("ToggleLspDiag", function()
   end
 end, {})
 
-local options = {
-  start = 0,
-  stop = 1,
-}
-
 cmd("AutoRun", function(input)
+  local options = {
+    start = 0,
+    stop = 1,
+  }
   if input.args == "start" then
     -- print("start")
     local pattern = vim.fn.input("Pattern: ")

@@ -47,7 +47,7 @@ return {
   {
     "barrett-ruth/live-server.nvim",
     ft = "html",
-    build = "yarn global add live-server",
+    build = "bun add --global live-server",
     opts = {
       args = { "--port=5137", "--browser=min" },
     },
@@ -163,23 +163,23 @@ return {
     end,
   }, -- Auto Complete IA
 
-  {
-    "kosayoda/nvim-lightbulb",
-    event = "LspAttach",
-    opts = {
-      sign = {
-        enabled = true,
-        text = "󱧣",
-        hl = "Yellow",
-      },
-
-      autocmd = {
-        enabled = true,
-        pattern = { "*" },
-        events = { "CursorHold", "CursorHoldI" },
-      },
-    },
-  }, -- show code actions
+  -- {
+  --   "kosayoda/nvim-lightbulb",
+  --   event = "LspAttach",
+  --   opts = {
+  --     sign = {
+  --       enabled = true,
+  --       text = "󱧣",
+  --       hl = "Yellow",
+  --     },
+  --
+  --     autocmd = {
+  --       enabled = true,
+  --       pattern = { "*" },
+  --       events = { "CursorHold", "CursorHoldI" },
+  --     },
+  --   },
+  -- }, -- show code actions
 
   {
     "mfussenegger/nvim-dap",

@@ -1,8 +1,4 @@
-local status_ok, lspconfig = pcall(require, "lspconfig")
-if not status_ok then
-  vim.notify("Plugin nvim-lspconfig not found", "error")
-  return
-end
+local lspconfig = require("lspconfig")
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local utils = require("user.utils")
@@ -25,7 +21,6 @@ vim.diagnostic.config({
   },
   virtual_text = {
     prefix = "󱅶 ",
-    -- prefix = " ",
   },
   underline = true,
   update_in_insert = true,
@@ -36,6 +31,12 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.WARN] = icons.ui.lsp_warn,
       [vim.diagnostic.severity.INFO] = icons.ui.lsp_info,
       [vim.diagnostic.severity.HINT] = icons.ui.lsp_hint,
+    },
+    linehl = {
+      -- [vim.diagnostic.severity.ERROR] = "DiagnosticError",
+      -- [vim.diagnostic.severity.WARN] = "DiagnosticWarn",
+      -- [vim.diagnostic.severity.INFO] = "DiagnosticInfo",
+      -- [vim.diagnostic.severity.HINT] = "DiagnosticHint",
     },
   },
 })
@@ -54,26 +55,12 @@ local handlers = {
 local function get_opts(desc)
   return { noremap = true, silent = true, desc = desc }
 end
+local map = vim.keymap.set
 
-vim.keymap.set(
-  "n",
-  "<leader>e",
-  vim.diagnostic.open_float,
-  get_opts("Line diagnostic")
-)
-vim.keymap.set(
-  "n",
-  "[d",
-  vim.diagnostic.goto_prev,
-  get_opts("Jump to prev diagnostic")
-)
-vim.keymap.set(
-  "n",
-  "]d",
-  vim.diagnostic.goto_next,
-  get_opts("Jump to next diagnostic")
-)
-vim.keymap.set(
+map("n", "<leader>e", vim.diagnostic.open_float, get_opts("Line diagnostic"))
+map("n", "[d", vim.diagnostic.goto_prev, get_opts("Jump to prev diagnostic"))
+map("n", "]d", vim.diagnostic.goto_next, get_opts("Jump to next diagnostic"))
+map(
   "n",
   "<leader>lc",
   vim.diagnostic.setloclist,
@@ -85,7 +72,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)
     local bufnr = ev.buf
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    local map = vim.keymap.set
     vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
     local function get_bufopts(desc)
@@ -98,7 +84,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         ["2. Stop LSP"] = "LspStop",
         ["3. Restart LSP"] = "LspRestart",
         ["4. Info"] = "LspInfo",
-        ["4. Log"] = "LspLog",
+        ["5. Log"] = "LspLog",
       }
       utils.create_select_menu("Lsp Options", options)()
     end, get_bufopts("Lsp Menu Options"))
@@ -112,7 +98,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     )
     map("n", "K", vim.lsp.buf.hover, get_bufopts("Hover documentation"))
     map("n", "<leader>lr", "<cmd>LspRestart<cr>", get_bufopts("Restart LSP"))
-    map("n", "<leader>o", "<cmd>Navbuddy<CR>", get_bufopts("Outline Icons"))
     map(
       "n",
       "gi",
@@ -159,7 +144,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<leader>lf", "<cmd>LspFormat<cr>", get_bufopts("LSP Format"))
     map(
       "n",
-      "<leader>lo",
+      "<leader>o",
       "<cmd>Telescope lsp_document_symbols<cr>",
       get_bufopts("Document Symbols")
     )

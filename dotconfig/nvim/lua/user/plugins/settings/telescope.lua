@@ -1,14 +1,28 @@
-local status_ok, telescope = pcall(require, "telescope")
-if not status_ok then
-  vim.notify("Plugin telescope not found", "error")
-  return
-end
-
+local telescope = require("telescope")
 local icons = require("user.utils").icons
 local utils = require("user.utils")
 local actions = require("telescope.actions")
 local fb_actions = require("telescope._extensions.file_browser.actions")
 local grep_args = { "--hidden", "--glob", "!**/.git/*" }
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "TelescopeResults",
+  callback = function(ctx)
+    vim.api.nvim_buf_call(ctx.buf, function()
+      vim.fn.matchadd("TelescopeParent", "\t\t.*$")
+      vim.api.nvim_set_hl(0, "TelescopeParent", { link = "Comment" })
+    end)
+  end,
+})
+
+local function filenameFirst(_, path)
+  local tail = vim.fs.basename(path)
+  local parent = vim.fs.dirname(path)
+  if parent == "." then
+    return tail
+  end
+  return string.format("%s\t\t%s", tail, parent)
+end
 
 telescope.setup({
   defaults = require("telescope.themes").get_dropdown({
@@ -101,6 +115,7 @@ telescope.setup({
     },
 
     find_files = {
+      path_display = filenameFirst,
       find_command = {
         "fd",
         "--type",

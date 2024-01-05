@@ -1,10 +1,4 @@
-local status_ok, alpha = pcall(require, "alpha")
-
-if not status_ok then
-  vim.notify("Plugin alpha not found", "error")
-  return
-end
-
+local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
 local icons = require("user.utils").icons
 local utils = require("user.utils")

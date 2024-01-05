@@ -11,17 +11,9 @@ local settings = {
 }
 local utils = require("user.utils")
 
-local status_ok, mason = pcall(require, "mason")
-if not status_ok then
-  vim.notify("Plugin mason not found", "error")
-  return
-end
+local mason = require("mason")
 
-local status_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
-if not status_ok then
-  vim.notify("Plugin mason-lspconfig not found", "error")
-  return
-end
+local mason_lspconfig = require("mason-lspconfig")
 
 mason.setup(settings)
 mason_lspconfig.setup({

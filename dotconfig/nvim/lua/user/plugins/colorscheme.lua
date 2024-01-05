@@ -84,6 +84,31 @@ local gh = {
   end,
 }
 
+local hybrid = {
+  "HoNamDuong/hybrid.nvim",
+  lazy = false,
+  priority = 1000,
+  config = function()
+    require("hybrid").setup({
+      terminal_colors = true,
+      undercurl = true,
+      underline = true,
+      bold = true,
+      italic = {
+        strings = false,
+        emphasis = false,
+        comments = true,
+        folds = false,
+      },
+      strikethrough = true,
+      inverse = true,
+      transparent = true,
+    })
+    vim.cmd.colorscheme("hybrid")
+  end,
+}
+
+
 return {
-  me,
+  hybrid,
 }
