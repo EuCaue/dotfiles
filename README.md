@@ -18,7 +18,7 @@ _notifications:_ **[swaync](https://github.com/ErikReider/SwayNotificationCenter
 
 _pdf reader:_ **[zathura](https://github.com/pwmt/zathura)**
 
-_font:_ **[MesloLG Nerd Font](https://www.nerdfonts.com/font-downloads)**
+_font:_ **FiraCode Nerd Font**
 
 ![rice](./rice.png)
 

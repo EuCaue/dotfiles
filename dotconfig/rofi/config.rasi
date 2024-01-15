@@ -1,8 +1,9 @@
 configuration {
-  drun-display-format: "{name}";
-  font: "NK57 Monospace 13";
+  drun-display-format: "  {name}";
+  font: "FiraCode Nerd Font 13";
   modi: "window,run,drun,emoji,calc";
   show-icons: true;
+  icon-theme: "Papirus-Dark";
   eh: 1;
   matching: "regex";
   sort: true;
