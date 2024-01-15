@@ -21,6 +21,7 @@ vim.diagnostic.config({
   },
   virtual_text = {
     prefix = "󱅶 ",
+    suffix = icons.ui.arrow_left,
   },
   underline = true,
   update_in_insert = true,
@@ -125,7 +126,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     )
     map(
       "n",
-      "<leader>ll",
+      "<leader>lh",
       "<cmd>ToggleInlayHints<cr>",
       get_bufopts("Toggle LSP Inlay Hint")
     )
@@ -135,6 +136,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.lsp.buf.signature_help,
       get_bufopts("LSP Signature")
     )
+    map("i", "<C-h>", vim.lsp.buf.signature_help, get_bufopts("LSP Signature"))
     map(
       "n",
       "<leader>ltd",
@@ -189,6 +191,9 @@ require("lspconfig").lua_ls.setup({
     Lua = {
       diagnostics = {
         globals = { "vim" },
+      },
+      hint = {
+        enable = true,
       },
       workspace = {
         library = {

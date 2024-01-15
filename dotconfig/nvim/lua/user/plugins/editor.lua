@@ -1,6 +1,7 @@
 return {
   { dir = "~/Dev/lua/markutils.nvim", opts = {}, ft = "markdown" }, -- yes.
 
+
   {
     "uga-rosa/ccc.nvim",
     keys = require("user.config.plugin_keymaps").ccc,
@@ -93,7 +94,6 @@ return {
     cmd = { "MarkdownPreview" },
   }, -- preview markdown files on browser
 
-
   {
     "echasnovski/mini.clue",
     event = "VimEnter",
@@ -163,7 +163,6 @@ return {
       insert_mode = true,
     },
   }, -- highlight current word
-
 
   { "tzachar/highlight-undo.nvim", opts = {}, event = "BufReadPost" }, -- highlight undos.
 

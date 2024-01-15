@@ -42,7 +42,7 @@ ts.setup({
   auto_install = true,
 
   incremental_selection = {
-    enable = true,
+    enable = false,
     keymaps = {
       init_selection = "gnn", -- set to `false` to disable one of the mappings
       node_incremental = "<CR>",

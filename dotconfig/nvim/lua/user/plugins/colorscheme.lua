@@ -84,31 +84,179 @@ local gh = {
   end,
 }
 
-local hybrid = {
-  "HoNamDuong/hybrid.nvim",
+local o = {
+  "navarasu/onedark.nvim",
   lazy = false,
   priority = 1000,
   config = function()
-    require("hybrid").setup({
-      terminal_colors = true,
-      undercurl = true,
-      underline = true,
-      bold = true,
-      italic = {
-        strings = false,
-        emphasis = false,
-        comments = true,
-        folds = false,
+    -- Lua
+    require("onedark").setup({
+      -- Main options --
+      style = "warmer", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+      transparent = true, -- Show/hide background
+      term_colors = true, -- Change terminal color as per the selected theme style
+      ending_tildes = false, -- Show the end-of-buffer tildes. By default they are hidden
+      cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
+
+      -- toggle theme style ---
+      toggle_style_key = nil, -- keybind to toggle theme style. Leave it nil to disable it, or set it to a string, for example "<leader>ts"
+      toggle_style_list = {
+        "dark",
+        "darker",
+        "cool",
+        "deep",
+        "warm",
+        "warmer",
+        "light",
+      }, -- List of styles to toggle between
+
+      -- Change code style ---
+      -- Options are italic, bold, underline, none
+      -- You can configure multiple style with comma separated, For e.g., keywords = 'italic,bold'
+      code_style = {
+        comments = "italic",
+        keywords = "none",
+        functions = "none",
+        strings = "none",
+        variables = "none",
       },
-      strikethrough = true,
-      inverse = true,
-      transparent = true,
+
+      -- Lualine options --
+      lualine = {
+        transparent = false, -- lualine center bar transparency
+      },
+
+      -- Plugins Config --
+      diagnostics = {
+        darker = true, -- darker colors for diagnostic
+        undercurl = true, -- use undercurl instead of underline for diagnostics
+        background = true, -- use background color for virtual text
+      },
     })
-    vim.cmd.colorscheme("hybrid")
+    vim.cmd("colorscheme onedark")
   end,
 }
 
+-- Lua with Lazy.nvim:
+local ad = {
+  "Mofiqul/adwaita.nvim",
+  lazy = false,
+  priority = 1000,
+
+  -- configure and set on startup
+  config = function()
+    vim.g.adwaita_darker = true -- for darker version
+    vim.g.adwaita_disable_cursorline = true -- to disable cursorline
+    vim.g.adwaita_transparent = true -- makes the background transparent
+    vim.cmd("colorscheme adwaita")
+  end,
+}
+
+local base = {
+  "echasnovski/mini.base16",
+  version = false,
+  lazy = false,
+  priority = 1000,
+  config = function()
+    require("mini.base16").setup({
+      use_ctrm = true,
+      palette = {
+
+        base00 = "#000000", -- Background
+        base01 = "#000000", -- cursor line
+        base02 = "#000000", -- lua line
+        base03 = "#c0bfbc", -- Cursor Text Color
+        base04 = "#f9f06b", -- highlight current line
+        base05 = "#f8f8f8", -- Foreground
+        base06 = "#613583", -- idk debug coor for now
+        base07 = "#e5a50a", -- Cursor
+        base08 = "#73cef4", -- some keywords and dots
+        base09 = "#ff7b63", -- var assignments value
+        base0A = "#8ff0a4", -- Types
+        base0B = "#cdab8f", -- string
+        base0C = "#9a9996", -- comments andi imports
+        base0D = "#a1d6ec", -- lsp error
+        base0E = "#1161cb", -- declarations
+        base0F = "#f8f8d7", -- special chars {}$ etc
+        --
+      },
+    })
+  end,
+}
+
+local r = {
+  "rose-pine/neovim",
+  name = "rose-pine",
+  lazy = false,
+  priority = 1000,
+  config = function()
+    require("rose-pine").setup({
+      variant = "main", -- auto, main, moon, or dawn
+      dark_variant = "main", -- main, moon, or dawn
+      dim_inactive_windows = false,
+      extend_background_behind_borders = true,
+
+      styles = {
+        bold = true,
+        italic = true,
+        transparency = true,
+      },
+
+      groups = {
+        border = "muted",
+        link = "iris",
+        panel = "surface",
+
+        error = "love",
+        hint = "iris",
+        info = "foam",
+        warn = "gold",
+
+        git_add = "foam",
+        git_change = "rose",
+        git_delete = "love",
+        git_dirty = "rose",
+        git_ignore = "muted",
+        git_merge = "iris",
+        git_rename = "pine",
+        git_stage = "iris",
+        git_text = "rose",
+        git_untracked = "subtle",
+
+        headings = {
+          h1 = "iris",
+          h2 = "foam",
+          h3 = "rose",
+          h4 = "gold",
+          h5 = "pine",
+          h6 = "foam",
+        },
+        -- Alternatively, set all headings at once.
+        -- headings = "subtle",
+      },
+
+      highlight_groups = {
+        -- Comment = { fg = "foam" },
+        -- VertSplit = { fg = "muted", bg = "muted" },
+      },
+
+      before_highlight = function(group, highlight, palette)
+        -- Disable all undercurls
+        -- if highlight.undercurl then
+        --     highlight.undercurl = false
+        -- end
+        --
+        -- Change palette colour
+        -- if highlight.fg == palette.pine then
+        --     highlight.fg = palette.foam
+        -- end
+      end,
+    })
+
+    vim.cmd("colorscheme rose-pine-main")
+  end,
+}
 
 return {
-  hybrid,
+  r,
 }

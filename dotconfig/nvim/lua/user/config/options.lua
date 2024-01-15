@@ -90,5 +90,7 @@ g.loaded_logiPat = 1
 g.loaded_rrhelper = 1
 
 g.netrw_banner = 0
+-- g.loaded_netrwPlugin = 0
+-- g.loaded_netrw = 0
 
 g.skip_ts_context_commentstring_module = true

@@ -28,6 +28,7 @@ miniclue.setup({
 
     -- Window commands
     { mode = "n", keys = "<C-w>" },
+    { mode = "n", keys = "<space>w" },
 
     -- `z` key
     { mode = "n", keys = "z" },

@@ -100,6 +100,7 @@ cmd("Transparent", function()
   vim.cmd("hi CursorLine gui=bold cterm=bold")
   vim.cmd("hi CmpItemAbbrMatch guibg=NONE ctermbg=NONE")
   vim.cmd("hi CmpItemAbbr guibg=NONE ctermbg=NONE")
+  vim.cmd("hi EndOfBuffer guibg=NONE ctermbg=NONE")
 end, { desc = "Transparent background" })
 
 cmd("Update", function()

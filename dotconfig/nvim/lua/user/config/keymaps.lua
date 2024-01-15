@@ -72,6 +72,7 @@ map({ "n", "v" }, "<leader>p", '"+p', get_opts("Paste from system clipboard"))
 map({ "n", "v" }, "<leader>d", '"_d', get_opts("Delete for the void register"))
 map({ "v", "x" }, "p", '"_dP', get_opts("greatest remap ever"))
 
+-- window
 map(
   "n",
   "<leader>re",
@@ -105,12 +106,23 @@ map(
 -- Terminal
 map("t", "<esc>", [[<C-\><C-n>]], get_opts("Esc in terminal"))
 
+-- window
+map("n", "<leader>wv", "<C-w>v", get_opts("Vertical split"))
+map("n", "<leader>ws", "<C-w>s", get_opts("Horizontal split"))
+map("n", "<leader>wr", "<C-w>r", get_opts("Rotate splits"))
+map("n", "<leader>wq", "<C-w>q", get_opts("Close split"))
+map("n", "<leader>w=", "<C-w>=", get_opts("Make split equal"))
+map("n", "<leader>w|", "<C-w>|", get_opts("Maximize split"))
+
+
 -- Better window navigation
 map("n", "<C-h>", "<C-w>h", get_opts("Move to left window"))
 map("n", "<C-l>", "<C-w>l", get_opts("Move to right window"))
 
--- search
-map("n", "s", "/", get_opts("Search"))
+-- visual inc
+
+map("v", "<CR>", "e", get_opts(""))
+map("v", "<BS>", "b", get_opts(""))
 
 -- Resize with arrows
 map("n", "<C-Up>", ":resize -2<cr>", get_opts("Resize Up"))

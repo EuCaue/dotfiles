@@ -4,6 +4,20 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("augroup" .. name, { clear = true })
 end
 
+-- better commments format
+autocmd({ "BufWinEnter" }, {
+  callback = function()
+    vim.cmd("set formatoptions-=cro")
+  end,
+})
+
+-- resize windows
+autocmd({ "VimResized" }, {
+  callback = function()
+    vim.cmd("tabdo wincmd =")
+  end,
+})
+
 -- close some filetypes with <q>
 autocmd("FileType", {
   group = augroup("close_with_q"),
