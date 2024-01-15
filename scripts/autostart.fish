@@ -9,7 +9,8 @@ ags --config $HOME/.config/ags/appbar/config.js &
 ~/dotfiles/scripts/suspend.sh &
 ~/dotfiles/scripts/rofi-clipboard.fish &
 redshift -O 3500K &
-swaync &
+# swaync &
+mako &
 /opt/xdman/xdm-app &
-# hyprshade on vibrance &
+mpv --script-opts=ytdl_hook-ytdl_path=yt-dlp --volume=30 --title="radio-mpv" "https://play.streamafrica.net/lofiradio" --input-ipc-server=/tmp/mpvsocket --no-video --idle=once &
 syncthing -no-browser

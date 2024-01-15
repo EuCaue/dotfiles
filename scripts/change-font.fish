@@ -20,7 +20,7 @@ function verify_status_programs
         killall waybar && waybar & disown &
     end
     if pgrep ags
-        killall ags && ags & disown &
+        killall ags && ags --config $HOME/.config/ags/appbar/config.js & disown &
     end
     if pgrep xdm-app
         killall xdm-app && xdm-app & disown &
@@ -32,18 +32,20 @@ end
 
 function change_font
     sed -i "s#\(--font-primary: \).*#\1\"$FONT_NAME\";#" $HOME/.config/WebCord/Themes/black
-    sed -i "s#\(gtk-font-name#    ).*#\1$FONT_NAME 12#" $HOME/dotfiles/dotconfig/gtk-3.0/settings.ini
     sed -i "s#\(font \).*#\1\"$FONT_NAME 12\"#" $HOME/dotfiles/dotconfig/zathura/zathurarc
+    sed -i "s#\(font=\).*#\1$FONT_NAME 12#" $HOME/.config/mako/config
     sed -i "s#\(FONT \).*#\1\"$FONT_NAME 12\"#" $HOME/dotfiles/scripts/gsettings.fish
     sed -i "s#\(text_font=\).*#\1$FONT_NAME#" $HOME/dotfiles/dotconfig/swappy/config
+    sed -i "s#\(gtk-font-name=\).*#\1$FONT_NAME#" $HOME/dotfiles/dotconfig/gtk-3.0/settings.ini
+    sed -i "s#^\(_font:_ \*\*\).*\(\*\*\)#\1$FONT_NAME\2#" $HOME/dotfiles/README.md
     sed -i "s#\(font=\).*#\1$FONT_NAME#" $HOME/dotfiles/dotconfig/swaylock/config
     sed -i 's#\(^font_family \).*#\1'"$FONT_NAME"'#' $HOME/dotfiles/dotconfig/kitty/kitty.conf
-    sed -i 's#^ *family: .*#    family: '$FONT_NAME'#' ~/.config/alacritty/alacritty.yml
+    sed -i "s/\(family = \)\"[^\"]*\"/\1\"$FONT_NAME\"/" $HOME/dotfiles/dotconfig/alacritty/alacritty.toml
     sed -i "s#^\(font=\)[^:]*#\1$FONT_NAME#" $HOME/dotfiles/dotconfig/foot/foot.ini
-    sed -i "s#^\(font=\)[^:]*#\1$FONT_NAME#" $HOME/.config/fuzzel/fuzzel.ini
-    sed -i "s#\(font-family: \).*#\1\"$FONT_NAME\";#" $HOME/dotfiles/dotconfig/waybar/style.css
-    sed -i "s#\(font-family: \).*#\1\"$FONT_NAME\";#" $HOME/.config/eww/eww.scss
-    sed -i "s#\(font-family: \).*#\1\"$FONT_NAME\";#" $HOME/.config/ags/style.css
+    # sed -i "s#^\(font=\)[^:]*#\1$FONT_NAME#" $HOME/.config/fuzzel/fuzzel.ini
+    # sed -i "s#\(font-family: \).*#\1\"$FONT_NAME\";#" $HOME/dotfiles/dotconfig/waybar/style.css
+    # sed -i "s#\(font-family: \).*#\1\"$FONT_NAME\";#" $HOME/.config/eww/eww.scss
+    sed -i "s#\(font-family: \).*#\1\"$FONT_NAME\";#" $HOME/.config/ags/appbar/style.css
     sed -i '/\.markdown-body code {/,/}/{s/font-family: "[^"]*"/font-family: "'"$FONT_NAME"'"/;}' $HOME/dotfiles/dotconfig/markdown.css
     verify_status_programs
     sed -i "s#\(font: \).*#\1\"$FONT_NAME 13\";#" $HOME/dotfiles/dotconfig/rofi/config.rasi

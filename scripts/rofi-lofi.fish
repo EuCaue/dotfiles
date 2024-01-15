@@ -21,7 +21,7 @@ function menu
     echo "7. Rainy Nights"
     echo "8. SmoothChill"
     echo "9. Lofi TokyoGhoul"
-    echo "10. Cloudy Sakura"
+    echo "10. Cloudy Sakura" 
     echo "11. Rain Sounds"
     echo "12. Nature Sounds"
     echo "13. Code Lofi"
