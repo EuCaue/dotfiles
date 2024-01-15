@@ -79,7 +79,7 @@ const Volume = () =>
     },
 
     onPrimaryClick: () => {
-      exec("pavucontrol");
+      exec("pactl set-sink-mute @DEFAULT_SINK@ toggle");
     },
     onSecondaryClick: () => {
       exec("pactl set-sink-volume @DEFAULT_SINK@ 40%");

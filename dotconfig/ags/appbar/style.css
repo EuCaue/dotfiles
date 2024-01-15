@@ -1,11 +1,17 @@
 label {
   font-weight: normal;
-  font-family: "NK57 Monospace";
+  font-family: "FiraCode Nerd Font";
 }
 
 @define-color bar-bg-color rgba(0, 0, 0, 1);
 @define-color bg-color rgba(15,15,15,2);
 @define-color sep #f9f9f9;
+@define-color border-color #deddda;
+/*
+uncomment the border-bottom and commend all box shadow and border and change
+.bar background-color to @bar-bg-color 
+to get antoher visual style. 
+*/
 
 * {
   border-radius: 0px;
@@ -14,12 +20,14 @@ label {
 }
 
 .bar {
-  background-color: @bar-bg-color;
-  border-bottom: 1px solid @sep;
+  background-color: transparent;
+  /* border-bottom: 1px solid @sep; */
 }
 
 .workspaces {
-  border-bottom: 1px solid @sep;
+  /* border-bottom: 1px solid @sep; */
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 0px;
+  border: 1px solid @border-color;
 }
 
 .workspace {
@@ -38,7 +46,7 @@ label {
 
 .workspace:hover,
 .media:hover {
-  background-color: @popover_bg_color;
+  background-color: @border-color;
 }
 
 .workspace.focused {
@@ -64,20 +72,26 @@ label {
 .default-box {
   margin-left: 15px;
   background-color: @bg-color;
-  border-bottom: 1px solid @sep;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 0px;
+  border: 1px solid @border-color;
+  /* border-bottom: 1px solid @sep; */
   color: white;
   padding: 2px 5px;
 }
 
 .clock {
   background-color: @bg-color;
-  border-bottom: 1px solid @sep;
+  /* border-bottom: 1px solid @sep; */
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 0px;
+  border: 1px solid @border-color;
   padding: 2px 5px;
 }
 
 .systemtray {
   margin-left: 10px;
-  border-bottom: 1px solid @sep;
+  /* border-bottom: 1px solid @sep; */
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 0px;
+  border: 1px solid @border-color;
 }
 
 .systemtray > button {

@@ -9,8 +9,8 @@ const Bar = ({ monitor } = {}) =>
     name: "appbar", // name has to be unique
     className: "bar",
     monitor,
-    //margin: [5, 15, 0, 15],
-    margins: [0, 0, 0, 0],
+    margins: [5, 5, 5, 5],
+    // margins: [0, 0, 0, 0],
     anchor: ["top", "left", "right"],
     exclusivity: "exclusive",
     child: CenterBox({
