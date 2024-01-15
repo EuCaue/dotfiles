@@ -12,6 +12,8 @@ alias sus='paru'
 alias c="clear"
 alias cf="ls | wc -l"
 
+
+
 function gal --description "alias git add commit push"
     git add .
     git status
@@ -22,9 +24,9 @@ function gal --description "alias git add commit push"
 end
 
 alias bat='bat --theme=base16'
-alias ls='exa -l -g --icons -h'
-alias la='exa -l -a -g --icons'
-alias lll='exa -l -a -g --icons -h'
+alias ls='exa -l -g --icons -h --group-directories-first --sort modified --reverse '
+alias la='exa -l -a -g --icons -h --group-directories-first --sort modified --reverse '
+alias lll='ls'
 
 function lr --description "Show a tree file"
     if test -z $argv[1]
