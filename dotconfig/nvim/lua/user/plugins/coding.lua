@@ -12,13 +12,13 @@ return {
     end,
   }, -- a better highlight for everything
 
-  { "windwp/nvim-ts-autotag", event = "LspAttach", opts = {} }, -- <> autoclose tags
+  -- { "windwp/nvim-ts-autotag", event = "LspAttach", opts = {} }, -- <> autoclose tags
 
   {
     "L3MON4D3/LuaSnip",
     event = { "InsertEnter" },
     dependencies = {
-      { "rafamadriz/friendly-snippets" }, -- a bunch of snippets
+      -- { "rafamadriz/friendly-snippets" }, -- a bunch of snippets
     },
     build = "make install_jsregexp",
     config = function()
@@ -44,15 +44,15 @@ return {
     build = "yarn install --frozen-lockfile && yarn compile",
   }, -- JS/JSX snippets
 
-  {
-    "barrett-ruth/live-server.nvim",
-    ft = "html",
-    build = "bun add --global live-server",
-    opts = {
-      args = { "--port=5137", "--browser=min" },
-    },
-    cmd = { "LiveServerStart", "LiveServerStop" },
-  }, -- LiveServer
+  -- {
+  --   "barrett-ruth/live-server.nvim",
+  --   ft = "html",
+  --   build = "bun add --global live-server",
+  --   opts = {
+  --     args = { "--port=5137", "--browser=min" },
+  --   },
+  --   cmd = { "LiveServerStart", "LiveServerStop" },
+  -- }, -- LiveServer
 
   {
     "numToStr/Comment.nvim",
@@ -77,10 +77,10 @@ return {
     end,
   }, -- LSP
 
-  {
-    "pmizio/typescript-tools.nvim",
-    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-  }, -- Better tsserver
+  -- {
+  --   "pmizio/typescript-tools.nvim",
+  --   ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  -- }, -- Better tsserver
 
   {
     "stevearc/conform.nvim",
@@ -92,7 +92,7 @@ return {
 
   {
     "hrsh7th/nvim-cmp",
-    event = { "InsertEnter", "CmdlineEnter" },
+    event = { "InsertEnter" },
     dependencies = {
       {
         "zbirenbaum/copilot-cmp",
@@ -111,17 +111,30 @@ return {
         end,
       },
       "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-buffer",
       "FelipeLema/cmp-async-path",
-      { "mtoohey31/cmp-fish", ft = "fish" },
-      "amarakon/nvim-cmp-fonts",
-      "saadparwaiz1/cmp_luasnip",
+      -- "saadparwaiz1/cmp_luasnip",
     },
     config = function()
       require("user.plugins.lsp.cmp")
     end,
   }, -- Auto complete
+
+  { "hrsh7th/cmp-cmdline", event = "CmdlineEnter" },
+
+  {
+    "amarakon/nvim-cmp-fonts",
+    keys = {
+      {
+        "<leader><leader>lf",
+        "<cmd>: print('Font Source loaded')<cr>",
+        mode = "n",
+        desc = "Add Font source for nvim-cmp",
+      },
+    },
+  },
+
+  { "mtoohey31/cmp-fish", ft = "fish" },
 
   {
     "williamboman/mason.nvim",
@@ -129,7 +142,7 @@ return {
     cmd = { "Mason", "MasonUpdate", "MasonInstall" },
   }, -- LSP Package Manager
 
-  { "williamboman/mason-lspconfig.nvim" },
+  { "williamboman/mason-lspconfig.nvim", event = "LspAttach" },
 
   {
     "mrcjkb/rustaceanvim",
@@ -162,24 +175,6 @@ return {
       require("codeium").setup({})
     end,
   }, -- Auto Complete IA
-
-  -- {
-  --   "kosayoda/nvim-lightbulb",
-  --   event = "LspAttach",
-  --   opts = {
-  --     sign = {
-  --       enabled = true,
-  --       text = "󱧣",
-  --       hl = "Yellow",
-  --     },
-  --
-  --     autocmd = {
-  --       enabled = true,
-  --       pattern = { "*" },
-  --       events = { "CursorHold", "CursorHoldI" },
-  --     },
-  --   },
-  -- }, -- show code actions
 
   {
     "mfussenegger/nvim-dap",

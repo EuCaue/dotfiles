@@ -58,7 +58,7 @@ ts.setup({
       -- Extend this to other languages by adding `lang == "x"` where x is the language
       return vim.api.nvim_buf_line_count(bufnr) > 10000
     end,
-    additional_vim_regex_highlighting = false,
+    additional_vim_regex_highlighting = true,
   },
 
   indent = {

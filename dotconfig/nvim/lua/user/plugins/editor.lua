@@ -1,7 +1,6 @@
 return {
   { dir = "~/Dev/lua/markutils.nvim", opts = {}, ft = "markdown" }, -- yes.
 
-
   {
     "uga-rosa/ccc.nvim",
     keys = require("user.config.plugin_keymaps").ccc,
@@ -26,17 +25,16 @@ return {
       })
     end,
   },
-  {
-
-    "prichrd/netrw.nvim",
-    event = "VeryLazy",
-    opts = {
-      {
-        use_devicons = true,
-        mappings = {},
-      },
-    },
-  }, -- netrw++
+  -- {
+  --   "prichrd/netrw.nvim",
+  --   event = "VeryLazy",
+  --   opts = {
+  --     {
+  --       use_devicons = true,
+  --       mappings = {},
+  --     },
+  --   },
+  -- }, -- netrw++
 
   {
     "utilyre/sentiment.nvim",
@@ -96,7 +94,7 @@ return {
 
   {
     "echasnovski/mini.clue",
-    event = "VimEnter",
+    event = "VeryLazy",
     version = false,
     config = function()
       require("user.plugins.settings.miniclue")
@@ -111,36 +109,6 @@ return {
       require("user.plugins.settings.telescope")
     end,
     dependencies = {
-      {
-        "FabianWirth/search.nvim",
-        config = function()
-          require("search").setup({
-            append_tabs = {
-              {
-                name = "Lsp Symbols",
-                tele_func = require("telescope.builtin").lsp_document_symbols,
-                available = function()
-                  return #vim.lsp.get_clients() > 0
-                end,
-              },
-              {
-                name = "Registers",
-                tele_func = require("telescope.builtin").registers,
-                available = function()
-                  return true
-                end,
-              },
-              {
-                name = "Buffers",
-                tele_func = require("telescope.builtin").buffers,
-                available = function()
-                  return true
-                end,
-              },
-            },
-          })
-        end,
-      },
       { "nvim-telescope/telescope-file-browser.nvim" },
     },
   }, -- Telescope - Fuzzy Finder
@@ -179,10 +147,10 @@ return {
     keys = require("user.config.plugin_keymaps").toggler,
   }, -- toggle states,
 
-  { "theRealCarneiro/hyprland-vim-syntax", lazy = true }, -- Better syntax highlight in hyprland.conf
   {
     "mbbill/undotree",
     cmd = { "UndotreeShow", "UndotreeFocus", "UndotreeHide" },
   }, -- undo tree
-  { "christoomey/vim-tmux-navigator", event = "VimEnter" }, -- navigate between vim and tmux pane
+
+  { "christoomey/vim-tmux-navigator", event = "VeryLazy" }, -- navigate between vim and tmux pane
 }

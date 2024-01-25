@@ -33,6 +33,7 @@ map({ "n", "i" }, "<C-s>", "<cmd>write!<cr>", get_opts("Write"))
 map("n", "<leader>Q", "<cmd>qa!<cr>", get_opts("Quit all"))
 map("n", "<leader>a", "gg<S-v>G", get_opts("Select all text in the buffer"))
 map("n", "<CR>", "ciw", get_opts("Cut the inner word"))
+map("n", "<TAB>", "<C-6>", get_opts("Cut the inner word"))
 map("n", "vv", "viw", get_opts("Select word under cursor"))
 map(
   { "n", "v" },
@@ -113,7 +114,6 @@ map("n", "<leader>wr", "<C-w>r", get_opts("Rotate splits"))
 map("n", "<leader>wq", "<C-w>q", get_opts("Close split"))
 map("n", "<leader>w=", "<C-w>=", get_opts("Make split equal"))
 map("n", "<leader>w|", "<C-w>|", get_opts("Maximize split"))
-
 
 -- Better window navigation
 map("n", "<C-h>", "<C-w>h", get_opts("Move to left window"))

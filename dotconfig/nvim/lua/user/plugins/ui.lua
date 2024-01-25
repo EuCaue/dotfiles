@@ -15,6 +15,7 @@ return {
 
   {
     "goolord/alpha-nvim",
+    lazy = true,
     event = "VimEnter",
     config = function()
       require("user.plugins.settings.alpha")
@@ -45,5 +46,4 @@ return {
   -- ui components
   { "MunifTanjim/nui.nvim", lazy = true },
   { "nvim-lua/plenary.nvim", lazy = true },
-  { "nvim-lua/popup.nvim", lazy = true }, -- PopUp API for neovim
 }

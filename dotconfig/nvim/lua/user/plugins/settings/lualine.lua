@@ -91,9 +91,11 @@ lualine.setup({
   sections = {
     lualine_a = { { "mode", icons_enabled = true, icon = "", padding = 1 } },
     lualine_b = { filename },
-    lualine_c = { lsp, diagnostics },
+    -- lualine_c = { lsp, diagnostics },
+    lualine_c = { lsp },
     lualine_x = {},
-    lualine_y = { diff, branch },
+    lualine_y = {},
+    -- lualine_y = { diff, branch },
     lualine_z = { "location" },
   },
   inactive_sections = {

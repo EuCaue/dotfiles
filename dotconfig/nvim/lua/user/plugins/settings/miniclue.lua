@@ -54,7 +54,7 @@ miniclue.setup({
   },
 
   window = {
-    delay = 100,
+    delay = 50,
     config = {
       width = 400,
       height = 10,

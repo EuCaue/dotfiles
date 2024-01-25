@@ -26,6 +26,12 @@ M.telescope = {
     desc = "Find Buffers",
   },
   {
+    "<leader>fg",
+    "<cmd>Telescope git_files<cr>",
+    mode = "n",
+    desc = "Find Git Files",
+  },
+  {
     "<leader>fr",
     "<cmd>Telescope current_buffer_fuzzy_find<cr>",
     mode = "n",

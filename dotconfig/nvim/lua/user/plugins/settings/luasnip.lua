@@ -17,6 +17,7 @@ ls.config.set_config({
 })
 
 ls.filetype_extend("text", { "license" })
+ls.filetype_extend("javascript", { "typescript" })
 ls.filetype_extend("markdown", { "license" })
 require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets" })
 
@@ -24,4 +25,4 @@ vim.keymap.set({ "i", "s" }, "<C-E>", function()
   if ls.choice_active() then
     ls.change_choice(1)
   end
-end, { silent = true })
+end, { silent = true, desc = "Move snippet choice" })
