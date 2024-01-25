@@ -10,7 +10,16 @@ import {
 } from "resource:///com/github/Aylur/ags/widget.js";
 
 import { exec, execAsync } from "resource:///com/github/Aylur/ags/utils.js";
-let showTimeOrDate = Variable(true);
+const showTimeOrDate = Variable(true);
+// const pomoString = Variable("", {
+//   listen: [
+//     'pomodoro status --wait --format "%r 🍅"',
+//     (out) => (out === '"0:00' ? "" : out),
+//   ],
+// });
+// export const isPomoRunning = Variable(false);
+// globalThis.isPomoRunning = isPomoRunning;
+//
 import { gdkDisplay } from "./consts.js";
 
 function dateOrTime(label) {
@@ -22,6 +31,27 @@ function dateOrTime(label) {
         .then((date) => (label.label = `${date}`))
         .catch(console.error);
 }
+
+// function getPomo() {
+//   execAsync(["pomodoro", "status", "--format", "%r 🍅"])
+//     .then((status) => {
+//       pomoString.value = status;
+//     })
+//     .catch(console.error);
+// }
+//
+// const Pomodoro = () =>
+//   Label({ justification: "center", label: pomoString.bind() }).poll(
+//     1000,
+//     () => {
+//       print(isPomoRunning.value);
+//       if (isPomoRunning.value === true) {
+//         getPomo();
+//       } else {
+//         pomoString.value = "";
+//       }
+//     },
+//   );
 
 const Clock = () =>
   EventBox({

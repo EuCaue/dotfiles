@@ -33,11 +33,11 @@ const WorkspaceButton = (id) =>
       className: "workspace-box",
       children: [
         Label({ label: `${id} ` }),
-        Label({
-          justification: "center",
-          label: `${workspacesIcons.get(String(id)) ?? ""} `,
-          className: "workspace-icon",
-        }),
+        // Label({
+        //   justification: "center",
+        //   label: `${workspacesIcons.get(String(id)) ?? ""} `,
+        //   className: "workspace-icon",
+        // }),
       ],
     }),
     className:

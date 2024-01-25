@@ -3,10 +3,11 @@ label {
   font-family: "FiraCode Nerd Font";
 }
 
-@define-color bar-bg-color rgba(0, 0, 0, 1);
+@define-color bar-bg-color rgba(0, 0, 0, 0.8);
 @define-color bg-color rgba(15,15,15,2);
 @define-color sep #f9f9f9;
 @define-color border-color #deddda;
+
 /*
 uncomment the border-bottom and commend all box shadow and border and change
 .bar background-color to @bar-bg-color 
@@ -20,21 +21,24 @@ to get antoher visual style.
 }
 
 .bar {
-  background-color: transparent;
-  /* border-bottom: 1px solid @sep; */
+  background-color: @bar-bg-color;
+  border-bottom: 1px solid @sep;
+  padding: 0;
 }
 
 .workspaces {
-  /* border-bottom: 1px solid @sep; */
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 0px;
-  border: 1px solid @border-color;
+  border-bottom: 1px solid @sep;
+  /* box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 0px; */
+  /* border: 1px solid @border-color; */
 }
 
 .workspace {
-  background-color: @bg-color;
+  /* background-color: @bg-color; */
+  background-color: unset;
+
   color: #eee;
   font-size: 20px;
-  padding: 2px 5px;
+  padding: 0px 5px;
 }
 
 .workspace-icon {
@@ -46,7 +50,7 @@ to get antoher visual style.
 
 .workspace:hover,
 .media:hover {
-  background-color: @border-color;
+  background-color: #1e1e1e;
 }
 
 .workspace.focused {
@@ -60,7 +64,7 @@ to get antoher visual style.
 }
 
 .client-title {
-  padding: 15px 0;
+  /* padding: 15px 0; */
 }
 
 .battery > label,
@@ -71,32 +75,32 @@ to get antoher visual style.
 
 .default-box {
   margin-left: 15px;
-  background-color: @bg-color;
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 0px;
-  border: 1px solid @border-color;
-  /* border-bottom: 1px solid @sep; */
+  /* background-color: @bg-color; */
+  /* box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 0px; */
+  /* border: 1px solid @border-color; */
+  border-bottom: 1px solid @sep;
   color: white;
-  padding: 2px 5px;
+  padding: 0px 5px;
 }
 
 .clock {
-  background-color: @bg-color;
-  /* border-bottom: 1px solid @sep; */
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 0px;
-  border: 1px solid @border-color;
-  padding: 2px 5px;
+  /* background-color: @bg-color; */
+  border-bottom: 1px solid @sep;
+  /* box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 0px; */
+  /* border: 1px solid @border-color; */
+  padding: 0px 5px;
 }
 
 .systemtray {
   margin-left: 10px;
-  /* border-bottom: 1px solid @sep; */
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 0px;
-  border: 1px solid @border-color;
+  border-bottom: 1px solid @sep;
+  /* box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 0px; */
+  /* border: 1px solid @border-color; */
 }
 
 .systemtray > button {
-  padding: 2px 5px;
-  background-color: @bg-color;
+  padding: 0px 5px;
+  /* background-color: @bg-color; */
 }
 
 .systemtray > button * {
