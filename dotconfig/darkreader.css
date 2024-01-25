@@ -1,0 +1,76 @@
+html,
+body,
+:not([style*="background-color:"]) {
+  background-color: #000000 !important;
+}
+html,
+body,
+:not([style*="color:"]),
+.sr-reader *:not([class*="sr-pivot"]) {
+  color: #ffffff !important;
+}
+h1:not([style*="color:"]),
+h2:not([style*="color:"]),
+h3:not([style*="color:"]),
+h4:not([style*="color:"]),
+h5:not([style*="color:"]),
+h6:not([style*="color:"]) {
+  color: #f6f5f4 !important;
+}
+cite:not([style*="color:"]) {
+  color: #99c1f1 !important;
+}
+input:not([style*="background-color:"]),
+textarea:not([style*="background-color:"]),
+button:not([style*="background-color:"]),
+[role="button"] {
+  background-color: #101010 !important;
+}
+
+
+
+
+input:not([style*="background-color:"]):hover,
+textarea:not([style*="background-color:"]):hover,
+button:not([style*="background-color:"]):hover,
+[role="button"]:hover {
+  background-color: #000000 !important;
+}
+input:not([style*="background-color:"]):active,
+input:not([style*="background-color:"]):focus,
+textarea:not([style*="background-color:"]):active,
+textarea:not([style*="background-color:"]):focus,
+button:not([style*="background-color:"]):active,
+button:not([style*="background-color:"]):focus,
+[role="button"]:active,
+[role="button"]:focus {
+  background-color: #000000 !important;
+}
+a:not([style*="color:"]) {
+  color: #1161cb !important;
+}
+a:not([style*="color:"]):hover {
+  color: #1c71d8 !important;
+}
+a:not([style*="color:"]):active,
+a:not([style*="color:"]):focus {
+  color: #1c71d8 !important;
+}
+:not([style*="border-color:"]),
+::before,
+::after {
+  border-color: #000000 !important;
+}
+div:empty,
+.sr-reader *,
+.sr-backdrop {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+input::placeholder,
+textarea::placeholder {
+  color: #f8f8f2 !important;
+}
+input:not([style*="background-image:"]),
+textarea:not([style*="background-image:"]) {
+  background-image: none !important;
+}
