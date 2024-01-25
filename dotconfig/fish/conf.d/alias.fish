@@ -12,7 +12,14 @@ alias sus='paru'
 alias c="clear"
 alias cf="ls | wc -l"
 
+alias wo="pomo 'work'"
+alias br="pomo 'break'"
 
+function pomoc --description "pomo with count"
+    for i in (seq $argv[1])
+        pomo work && pomo break
+    end
+end
 
 function gal --description "alias git add commit push"
     git add .
