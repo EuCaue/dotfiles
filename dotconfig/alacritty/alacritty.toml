@@ -22,6 +22,7 @@ draw_bold_text_with_bright_colors = true
 [font.normal]
 family = "FiraCode Nerd Font"
 
+
 [font.offset]
 x = 0
 y = 0
@@ -35,3 +36,8 @@ blur = true
 [window.padding]
 x = 30
 y = 5
+
+[bell]
+animation = "EaseOutCubic"
+color = "#131313"
+duration = 158 
