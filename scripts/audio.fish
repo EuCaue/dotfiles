@@ -2,10 +2,11 @@
 
 set -l volume 40
 set command_to_run pactl set-sink-volume @DEFAULT_SINK@ $volume%
-#  TODO:socket? 
-set volume $(pactl list sinks | grep 'Volume:' | head -n 1 | awk -F/ '{print $2}' | cut -d% -f1)
+set default_sink $(pactl info | grep 'Default Sink' | awk '{print $3}')
+set volume $(pactl list sinks | grep -A 7 "$default_sink" | awk '/Volume:/{print $5}' |cut -d% -f1)
 
 if test $argv[1] = up
+    echo $volume
     if test $volume -gt 55
         return 0
     else
