@@ -50,9 +50,9 @@ alias rl='trash list'
 alias rr="trash restore"
 alias tree="exa -l -a -g --icons --tree"
 alias cl="cd && c"
-function unzip --description "unzip and delete the zip file"
-    /usr/bin/unzip $argv[1] -d $(basename -s .zip $argv[1])
-end
+# function unzip --description "unzip and delete the zip file"
+#     /usr/bin/unzip $argv[1] -d $(basename -s .zip $argv[1])
+# end
 
 alias vim='nvim'
 alias vi='nvim'
