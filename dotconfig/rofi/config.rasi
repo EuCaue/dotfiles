@@ -1,6 +1,6 @@
 configuration {
   drun-display-format: "  {name}";
-  font: "FiraCode Nerd Font 13";
+  font: "FiraMono Nerd Font 13";
   modi: "window,run,drun,emoji,calc,filebrowser";
   show-icons: true;
   icon-theme: "Papirus-Dark";
