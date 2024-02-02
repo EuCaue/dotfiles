@@ -35,6 +35,7 @@ map("n", "<leader>a", "gg<S-v>G", get_opts("Select all text in the buffer"))
 map("n", "<CR>", "ciw", get_opts("Cut the inner word"))
 map("n", "<TAB>", "<C-6>", get_opts("Cut the inner word"))
 map("n", "vv", "viw", get_opts("Select word under cursor"))
+map('n', '<C-f>', ':silent !tmux neww tmux-session.sh<Return>', get_opts("tmux"))
 map(
   { "n", "v" },
   "<leader>m",

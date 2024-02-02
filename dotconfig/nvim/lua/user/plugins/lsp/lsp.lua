@@ -93,6 +93,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "gD", vim.lsp.buf.declaration, get_bufopts("Go to declaration"))
     map(
       "n",
+      "<leader>lgd",
+      "<cmd>vsplit | Telescope lsp_definitions<CR>",
+      get_bufopts("Go to definitions")
+    )
+    map(
+      "n",
       "gd",
       "<cmd>Telescope lsp_definitions<CR>",
       get_bufopts("Go to definitions")

@@ -107,12 +107,8 @@ cmp.setup({
     { name = "async_path", max_item_count = 5, group_index = 1 },
     { name = "luasnip", max_item_count = 5, group_index = 1 },
     { name = "buffer", keyword_length = 3, group_index = 2 },
-    { name = "fish", group_index = 2 },
-    {
-      name = "fonts",
-      option = { space_filter = "-" },
-      group_index = 2,
-      trigger_characters = { "-" },
+    { name = "fish" },
+    { name = "fonts", option = { space_filter = "-" },
     },
   },
 

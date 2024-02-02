@@ -15,8 +15,7 @@ M.create_select_menu = function(prompt, options_table) -- Or M.create_select_men
     vim.ui.select(
       option_names, --> the list we populated above
       {
-        prompt = prompt, --> Prompt passed as the argument
-        -- Remove this variable if you want to keep the numbering in front of option names
+        prompt = prompt, --> Prompt passed as the argument Remove this variable if you want to keep the numbering in front of option names
         format_item = function(item)
           return item:gsub("%d. ", "")
         end,
@@ -67,7 +66,7 @@ M.servers = {
   "pkgbuild_language_server",
   "lua_ls",
   "emmet_ls",
-  "eslint",
+  -- "eslint",
   "svelte",
   "marksman",
   "html",
