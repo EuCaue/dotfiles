@@ -20,8 +20,7 @@ size = 14.0
 draw_bold_text_with_bright_colors = true
 
 [font.normal]
-family = "FiraCode Nerd Font"
-
+family = "FiraMono Nerd Font"
 
 [font.offset]
 x = 0
