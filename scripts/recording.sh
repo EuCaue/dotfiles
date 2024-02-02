@@ -30,16 +30,16 @@ record_area() {
 record_window() {
 	hyprvars=$(hyprctl activewindow -j | cut -d' ' -f2- | head -n -1 | tail -n +4)
 	jqvars=$(echo -e "{\n$hyprvars\n}" | jq -r ".at,.size" | jq -s "add" | jq '_nwise(4)' | jq -r '"\(.[0]),\(.[1]) \(.[2])x\(.[3])"')
-	sleep 2 && wl-screenrec --audio --codec avc -b "1 MB" -g "${jqvars}" -f "${dir}/${datetime}".mp4
+	sleep 2 && wl-screenrec --codec avc -b "1 MB" -g "${jqvars}" -f "${dir}/${datetime}".mp4
 }
 
 stop_recording() {
 	if [ $(pgrep wl-screenrec) -gt 1 ]; then
+		kill -2 $(pgrep wl-screenrec)
 		notify-send "Stopped Recording ${datetime}.mp4 🚀🚀" "Path Copied to clipboard!"
+		mpv "$(wl-paste)"
 		wl-copy "$dir/$datetime".mp4
 		rm /tmp/date
-		kill -2 $(pgrep wl-screenrec)
-		mpv "$(wl-paste)"
 	else
 		notify-send "No Recording Found"
 	fi

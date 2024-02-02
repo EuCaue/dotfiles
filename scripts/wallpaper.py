@@ -4,12 +4,14 @@ import os
 import random
 import subprocess as s
 from math import floor
-
 from requests import get
 
 WALLPAPER_CHOICE_ROFI_MENU = (
     "1. Wallpaper From Dir\n2. Wallpaper From Wallhaven\n3. Exit"
 )
+HOME_PATH = os.environ.get("HOME")
+QUERY_CACHE_PATH = f"{HOME_PATH}/.cache/query.txt"
+WALLPAPER_DIR_PATH = f"{HOME_PATH}/Pictures/wallpapers"
 
 
 def notifyWallpaper(title: str, body):
@@ -51,7 +53,9 @@ def getWallpaperFromWallhaven(query: str = ""):
 
 
 def getWallhavenOption():
-    WALLPAPER_WALLHAVEN_ASK = "1. Random\n2. Query\n3. Last Query\n4. Exit"
+    WALLPAPER_WALLHAVEN_ASK = (
+        "1. Random\n2. Query\n3. Last Query\n4. Move Wallpaper\n5. Exit"
+    )
     opt = (
         s.check_output(
             f'echo "{WALLPAPER_WALLHAVEN_ASK}" | rofi -dmenu -i -p "Choose" ',
@@ -81,9 +85,8 @@ def getPrevQuerys(queryFilePath: str):
 
 
 def getQueryHistory():
-    queryFilePath = "/home/caue/.cache/query.txt"
     lines = []
-    prevQuerys = getPrevQuerys(queryFilePath)
+    prevQuerys = getPrevQuerys(QUERY_CACHE_PATH)
 
     query = s.check_output(
         f'echo "{prevQuerys}" | rofi -dmenu -i -p "Query" -theme-str "listview {{lines: 5;}}"',
@@ -91,11 +94,11 @@ def getQueryHistory():
         text=True,
     ).strip()
 
-    if os.path.exists(queryFilePath):
-        with open(queryFilePath, "r") as rPrevQuerys:
+    if os.path.exists(QUERY_CACHE_PATH):
+        with open(QUERY_CACHE_PATH, "r") as rPrevQuerys:
             lines = rPrevQuerys.readlines()
             rPrevQuerys.close()
-    with open(queryFilePath, "w") as wPrevQuerys:
+    with open(QUERY_CACHE_PATH, "w") as wPrevQuerys:
         # adding to query history
         if f"{query}\n" not in lines:
             if len(lines) >= 10:
@@ -111,9 +114,8 @@ def getQueryHistory():
 
 
 def getWallpaperFromDir():
-    wallpaperDir = os.path.expanduser("~/Pictures/wallpapers")
     formatted_outputs = []
-    for dirpath, dirnames, files in os.walk(wallpaperDir):
+    for dirpath, dirnames, files in os.walk(WALLPAPER_DIR_PATH):
         for file in files:
             file_path = dirpath + "/" + file
             formatted_outputs.append(f"{file_path}\x00icon\x1f{file_path}")
@@ -146,7 +148,6 @@ wallpaperChoiceMode = (
 )
 
 
-#  TODO: do a option to take the current random wallpaper from wallhaven;
 if wallpaperChoiceMode == "1":
     w = getWallpaperFromDir()
     setWallpaper(w)
@@ -161,8 +162,24 @@ elif wallpaperChoiceMode == "2":
         print(query)
         getWallpaperFromWallhaven(query=query)
     if wallhavenOption == "3":
-        query = getPrevQuerys("/home/caue/.cache/query.txt").splitlines()
+        query = getPrevQuerys(QUERY_CACHE_PATH).splitlines()
         getWallpaperFromWallhaven(query[0])
+    if wallhavenOption == "4":
+        wallpaperLocalPath = f"{HOME_PATH}/.local/share/backgrounds/"
+        if (
+            os.path.exists(wallpaperLocalPath)
+            and len(os.listdir(wallpaperLocalPath)) >= 1
+        ):
+            os.chdir(wallpaperLocalPath)
+            for file in os.listdir(wallpaperLocalPath):
+                print(f"{WALLPAPER_DIR_PATH}/{file}")
+                os.rename(file, f"{WALLPAPER_DIR_PATH}/{file}")
+                setWallpaper(f"{WALLPAPER_DIR_PATH}/{file}")
+                notifyWallpaper("Wallpaper Moved", [f"Wallpaper: {file}"])
+                print("file: " + file)
+        else:
+            notifyWallpaper("Error", ["No wallpapers found to move."])
+
 elif wallpaperChoiceMode == "3":
     print("Exiting...")
     s.run('notify-send "Quiting Wallpaper Menu..."', shell=True)
