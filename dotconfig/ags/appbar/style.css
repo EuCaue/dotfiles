@@ -1,6 +1,6 @@
 label {
   font-weight: normal;
-  font-family: "FiraCode Nerd Font";
+  font-family: "FiraMono Nerd Font";
 }
 
 @define-color bar-bg-color rgba(0, 0, 0, 0.8);
@@ -67,6 +67,10 @@ to get antoher visual style.
   /* padding: 15px 0; */
 }
 
+.battery > label {
+  margin-right: 4px;
+}
+
 .battery > label,
 .audio-icon,
 .clock-icon {
@@ -74,7 +78,7 @@ to get antoher visual style.
 }
 
 .default-box {
-  margin-left: 15px;
+  /* margin-left: 15px; */
   /* background-color: @bg-color; */
   /* box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 0px; */
   /* border: 1px solid @border-color; */
@@ -89,10 +93,11 @@ to get antoher visual style.
   /* box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 0px; */
   /* border: 1px solid @border-color; */
   padding: 0px 5px;
+  /* margin-left: 10px; */
 }
 
 .systemtray {
-  margin-left: 10px;
+  margin-left: 0px;
   border-bottom: 1px solid @sep;
   /* box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px 0px; */
   /* border: 1px solid @border-color; */
@@ -105,6 +110,11 @@ to get antoher visual style.
 
 .systemtray > button * {
   font-size: 20px;
+}
+
+.sep {
+  font-size: 21px;
+  color: #9a9996;
 }
 
 .volume * {
