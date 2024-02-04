@@ -45,7 +45,7 @@ const WorkspaceButton = (id) =>
     child: Box({
       className: "workspace-box",
       children: [
-        Label({ label: `${id} ` }),
+        Label({ label: `${id}` }),
         // Label({
         //   justification: "center",
         //   label: `${workspacesIcons.get(String(id)) ?? ""} `,
