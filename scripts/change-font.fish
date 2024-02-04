@@ -37,7 +37,7 @@ function change_font
     sed -i "s#\(FONT \).*#\1\"$FONT_NAME 12\"#" $HOME/dotfiles/scripts/gsettings.fish
     sed -i "s#\(text_font=\).*#\1$FONT_NAME#" $HOME/dotfiles/dotconfig/swappy/config
     sed -i "s#\(gtk-font-name=\).*#\1$FONT_NAME#" $HOME/dotfiles/dotconfig/gtk-3.0/settings.ini
-    sed -i "s#^\(_font:_ \*\*\).*\(\*\*\)#\1$FONT_NAME\2#" $HOME/dotfiles/README.md
+    sed -i "s#^\(_font:_ \*\*\).*\(\*\*\)#\1$FONT_NAME\2#" $HOME/dotfiles/readme.md
     sed -i "s#\(font=\).*#\1$FONT_NAME#" $HOME/dotfiles/dotconfig/swaylock/config
     sed -i 's#\(^font_family \).*#\1'"$FONT_NAME"'#' $HOME/dotfiles/dotconfig/kitty/kitty.conf
     sed -i "s/\(family = \)\"[^\"]*\"/\1\"$FONT_NAME\"/" $HOME/dotfiles/dotconfig/alacritty/alacritty.toml

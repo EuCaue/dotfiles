@@ -10,7 +10,8 @@ ags --config $HOME/.config/ags/appbar/config.js &
 ~/dotfiles/scripts/rofi-clipboard.fish &
 redshift -O 3500K &
 # swaync &
-mako &
+# mako &
+dunst &
 /opt/xdman/xdm-app &
 mpv --script-opts=ytdl_hook-ytdl_path=yt-dlp --volume=30 --title="radio-mpv" "https://play.streamafrica.net/lofiradio" --input-ipc-server=/tmp/mpvsocket --no-video --idle=once &
-syncthing -no-browser
+# syncthing -no-browser
