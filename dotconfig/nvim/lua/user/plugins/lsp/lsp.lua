@@ -213,6 +213,7 @@ require("lspconfig").lua_ls.setup({
     },
   },
 })
+
 local TSOrganizeImports = function()
   vim.lsp.buf.code_action({
     apply = true,
@@ -233,7 +234,6 @@ local TSRemoveUnused = function()
 end
 
 lspconfig.tsserver.setup({
-  -- on_attach = on_attach,
   handlers = handlers,
   cmd = { "bunx", "typescript-language-server", "--stdio" },
   capabilities = capabilities,

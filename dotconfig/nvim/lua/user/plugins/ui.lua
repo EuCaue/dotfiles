@@ -36,7 +36,7 @@ return {
     opts = {
       symbol = "│",
     },
-  },
+  }, -- indent
 
   {
     "nvim-tree/nvim-web-devicons",

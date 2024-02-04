@@ -25,16 +25,6 @@ return {
       })
     end,
   },
-  -- {
-  --   "prichrd/netrw.nvim",
-  --   event = "VeryLazy",
-  --   opts = {
-  --     {
-  --       use_devicons = true,
-  --       mappings = {},
-  --     },
-  --   },
-  -- }, -- netrw++
 
   {
     "utilyre/sentiment.nvim",

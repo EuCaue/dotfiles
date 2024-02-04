@@ -17,6 +17,11 @@ autocmd({ "VimResized" }, {
     vim.cmd("tabdo wincmd =")
   end,
 })
+-- turn off paste mode when leaving insert
+autocmd("InsertLeave", {
+  pattern = "*",
+  command = "set nopaste",
+})
 
 -- close some filetypes with <q>
 autocmd("FileType", {

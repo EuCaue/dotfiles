@@ -20,7 +20,7 @@ local configs_opts = {
     border = require("user.utils").border_status,
     title = "Lazy",
   },
-  install = { colorscheme = { "solarized-osaka"} },
+  install = { colorscheme = { vim.cmd.colorscheme, "default" } },
 }
 
 require("lazy").setup("user.plugins", configs_opts)

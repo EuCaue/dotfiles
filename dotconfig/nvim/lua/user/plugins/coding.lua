@@ -12,8 +12,6 @@ return {
     end,
   }, -- a better highlight for everything
 
-  -- { "windwp/nvim-ts-autotag", event = "LspAttach", opts = {} }, -- <> autoclose tags
-
   {
     "L3MON4D3/LuaSnip",
     event = { "InsertEnter" },
@@ -44,16 +42,6 @@ return {
     build = "yarn install --frozen-lockfile && yarn compile",
   }, -- JS/JSX snippets
 
-  -- {
-  --   "barrett-ruth/live-server.nvim",
-  --   ft = "html",
-  --   build = "bun add --global live-server",
-  --   opts = {
-  --     args = { "--port=5137", "--browser=min" },
-  --   },
-  --   cmd = { "LiveServerStart", "LiveServerStop" },
-  -- }, -- LiveServer
-
   {
     "numToStr/Comment.nvim",
     keys = require("user.config.plugin_keymaps").comments,
@@ -76,11 +64,6 @@ return {
       require("user.plugins.lsp.efm-ls")
     end,
   }, -- LSP
-
-  -- {
-  --   "pmizio/typescript-tools.nvim",
-  --   ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-  -- }, -- Better tsserver
 
   {
     "stevearc/conform.nvim",
@@ -111,9 +94,7 @@ return {
         end,
       },
       "hrsh7th/cmp-nvim-lsp",
-      -- "hrsh7th/cmp-buffer",
       "FelipeLema/cmp-async-path",
-      -- "saadparwaiz1/cmp_luasnip",
     },
     config = function()
       require("user.plugins.lsp.cmp")

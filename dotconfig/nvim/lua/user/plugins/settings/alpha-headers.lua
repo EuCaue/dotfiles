@@ -972,4 +972,4 @@ local headers = {
     [[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
   },
 }
-return headers[10]
+return headers[47]
