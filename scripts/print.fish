@@ -22,13 +22,18 @@ end
 
 function freeze
     hyprpicker -r -z &
-    sleep 0.2
+    sleep 0.1
 end
 
 function print_area
     freeze
-    set geo $(slurp -b "#00000000" -s "#FFFFFF25" -c "#FFFFFFFF" -w 2 -d -F "$(echo $FONT_NAME)") && sleep 0.39
+    set geo $(slurp -b "#00000000" -s "#FFFFFF25" -c "#FFFFFFFF" -w 2 -d -F "$(echo $FONT_NAME)") && sleep 0.39 &&
+        killall hyprpicker
     grim -c -g $geo - | swappy -f -
+end
+
+function clear
+    killall grim && killall slurp
 end
 
 function print_window
@@ -40,16 +45,16 @@ end
 
 switch $argv[1]
     case screen
-        print_screen
+        print_screen && clear
         return 1
     case area
-        print_area
+        print_area && clear
         return 1
     case window
-        print_window
+        print_window && clear
         return 1
     case geo
-        get_geometry
+        get_geometry && clear
         return 1
 end
 

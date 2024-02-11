@@ -26,9 +26,9 @@ if pgrep -f radio-mpv
     if string match -q -r true (echo $pause_status)
         echo '{ "command": ["cycle", "pause"] }' | socat - $mpv_socket
     end
-    echo "{ \"command\": [\"set_property\", \"volume\", 30] }" | socat - $mpv_socket
+    echo "{ \"command\": [\"set_property\", \"volume\", 35] }" | socat - $mpv_socket
 else
-    mpv --script-opts=ytdl_hook-ytdl_path=yt-dlp --volume=30 --title="radio-mpv" "https://play.streamafrica.net/lofiradio" --input-ipc-server=/tmp/mpvsocket --no-video --idle=once &
+    mpv --script-opts=ytdl_hook-ytdl_path=yt-dlp --volume=30 --title="radio-mpv" "https://live.hunter.fm/lofi_high" --input-ipc-server=/tmp/mpvsocket --no-video --idle=once &
 end
 
 if test $volume -lt $volume

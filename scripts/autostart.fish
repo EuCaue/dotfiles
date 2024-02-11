@@ -13,5 +13,6 @@ redshift -O 3500K &
 # mako &
 dunst &
 /opt/xdman/xdm-app &
-mpv --script-opts=ytdl_hook-ytdl_path=yt-dlp --volume=30 --title="radio-mpv" "https://play.streamafrica.net/lofiradio" --input-ipc-server=/tmp/mpvsocket --no-video --idle=once &
+mpv --script-opts=ytdl_hook-ytdl_path=yt-dlp --volume=30 --title="radio-mpv" "https://live.hunter.fm/lofi_high" --input-ipc-server=/tmp/mpvsocket --no-video --idle=once &
+~/dotfiles/scripts/set-lofi-sound.fish
 # syncthing -no-browser
