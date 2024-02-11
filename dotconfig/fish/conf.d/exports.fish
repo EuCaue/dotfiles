@@ -11,7 +11,7 @@ set -x VISUAL nvim
 set -x FREETYPE_PROPERTIES "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0 truetype:interpreter-version=35"
 
 
-set -x _ZO_MAXAGE 20000
+set -x _ZO_MAXAGE 200000
 
 # Add paths
 fish_add_path "$HOME/.local/bin:$PATH"

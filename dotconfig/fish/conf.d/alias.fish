@@ -12,12 +12,18 @@ alias sus='paru'
 alias c="clear"
 alias cf="ls | wc -l"
 
-alias wo="pomo 'work'"
-alias br="pomo 'break'"
+alias pwo="pomo 'work'"
+alias pbr="pomo 'break'"
+alias pla="pomo 'lang'"
 
-function pomoc --description "pomo with count"
-    for i in (seq $argv[1])
-        pomo work && pomo break
+function pomoc --description "pomo with count and pomo time" -a count pomo_name
+    if test -z $pomo_name
+        set argv[2] default
+        set pomo_name default
+    end
+    for i in (seq $count)
+        notify-send --expire-time=5000 Pomo "Starting $pomo_name $i/$count"
+        pomof $pomo_name && pomof break
     end
 end
 
@@ -110,8 +116,9 @@ function img --description "Display image"
         kitty +kitten icat --align=left $argv
         return
     end
-    echo "Terminal not supported"
+    chafa $argv
 end
+
 function imgall --description "display all images in the current folder"
     for file in ./*.{jpg, png}
         img $file
