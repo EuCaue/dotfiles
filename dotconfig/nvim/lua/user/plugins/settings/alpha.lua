@@ -5,7 +5,7 @@ local utils = require("user.utils")
 local datetime = os.date(" %H:%M. ")
 local num_plugins_loaded = require("lazy").stats().loaded
 
-dashboard.section.header.val = require("user.plugins.settings.alpha-headers")
+dashboard.section.header.val = require("user.utils.alpha-headers")
 
 dashboard.section.buttons.val = {
   dashboard.button("e", icons.ui.file .. "  New file", "<cmd>enew<CR>"),

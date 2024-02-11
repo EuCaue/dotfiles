@@ -338,6 +338,29 @@ local min = {
     vim.cmd.colorscheme("min-theme")
   end,
 }
+local farout = {
+  "thallada/farout.nvim",
+  lazy = false,
+  priority = 1000,
+  config = function()
+    require("farout").setup({
+      style = "night", -- The theme comes in two styles: `night` and `day`
+      light_style = "day", -- The theme is used when the background is set to light
+      transparent = true, -- Enable this to disable setting the background color
+      terminal_colors = true, -- Configure the colors used when opening a `:terminal` in [Neovim](https://github.com/neovim/neovim)
+      styles = {
+        comments = { italic = true },
+        keywords = { bold = false },
+        functions = {},
+        variables = {},
+        sidebars = "transparent", -- style for sidebars, see below
+        floats = "transparent", -- style for floating windows
+      },
+      sidebars = { "qf", "help" },
+    })
+    vim.cmd([[colorscheme farout]])
+  end,
+}
 
 return {
   min,

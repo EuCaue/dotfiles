@@ -80,4 +80,6 @@ M.icons = require("user.utils.icons").icons
 
 M.icons_selected = M.icons.kinds.nvchad
 
+M.alpha_headers = require("user.utils.alpha-headers")
+
 return M
