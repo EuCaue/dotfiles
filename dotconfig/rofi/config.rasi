@@ -1,4 +1,11 @@
 configuration {
+filebrowser {
+      directory: "/home/caue/";
+      sorting-method: "name";
+      directories-first: true;
+      show-hidden: false;
+      command: "xdg-open";
+ }
   drun-display-format: "  {name}";
   font: "FiraMono Nerd Font 13";
   modi: "window,run,drun,emoji,calc,filebrowser";
