@@ -6,7 +6,7 @@ import { Noti } from "./widgets/notify.js";
 const Notify = ({ monitor } = {}) =>
   Window({
     name: "notification-bar", // name has to be unique
-    className: "notifiy-bar",
+    className: "notify-center",
     monitor,
     margins: [0, 0, 0, 0],
     anchor: ["top"],
@@ -15,17 +15,17 @@ const Notify = ({ monitor } = {}) =>
     child: Noti(),
   });
 
-// const css = `${App.configDir}/style.css`;
+const css = `${App.configDir}/style.css`;
 export default {
-  // style: css,
+  style: css,
   windows: [Notify()],
 };
 //
-// Utils.monitorFile(
-//   `${App.configDir}`,
-//   function () {
-//     App.resetCss();
-//     App.applyCss(css);
-//   },
-//   "directory",
-// );
+Utils.monitorFile(
+  `${App.configDir}`,
+  function () {
+    App.resetCss();
+    App.applyCss(css);
+  },
+  "directory",
+);

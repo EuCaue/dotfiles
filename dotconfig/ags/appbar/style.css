@@ -3,7 +3,7 @@ label {
   font-family: "FiraMono Nerd Font";
 }
 
-@define-color bar-bg-color rgba(0, 0, 0, 0.8);
+@define-color bar-bg-color rgba(0, 0, 0, 1);
 @define-color bg-color rgba(15,15,15,2);
 @define-color sep #f9f9f9;
 @define-color border-color #deddda;
@@ -76,7 +76,6 @@ to get antoher visual style.
 .clock-icon {
   font-size: 18px;
 }
-
 
 .default-box {
   /* margin-left: 15px; */

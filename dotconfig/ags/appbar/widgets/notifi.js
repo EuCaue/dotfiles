@@ -6,7 +6,8 @@ const isNotWindowOpen = Variable(false);
 export const Noti = () =>
   Widget.Button({
     className: "default-box",
-    onSecondaryClick: () => exec("dunstctl history-clear"),
+    onSecondaryClick: () =>
+      exec("dunstctl history-clear && ags --quit --bus-name noti"),
     onPrimaryClick: () => {
       isNotWindowOpen.setValue(!isNotWindowOpen.value);
       if (isNotWindowOpen.value) {

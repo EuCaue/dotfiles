@@ -1,0 +1,9 @@
+@define-color bg-color rgba(0, 0, 0, 1);
+
+.notify-center {
+  background-color: @bg-color;
+}
+
+.noti-widget {
+  background-color: @bg-color;
+}
