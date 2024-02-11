@@ -34,7 +34,7 @@ blur = true
 
 [window.padding]
 x = 30
-y = 5
+y = 0
 
 [bell]
 animation = "EaseOutCubic"
