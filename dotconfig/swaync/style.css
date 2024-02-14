@@ -2,8 +2,8 @@
  * vim: ft=less
  */
 
-@define-color cc-bg #000000;
-@define-color noti-border-color #1161cb;
+@define-color cc-bg black;
+@define-color noti-border-color rgba(255, 255, 255, 0.7);
 @define-color noti-bg #000000;
 @define-color noti-bg-hover #000000;
 @define-color noti-bg-focus #1161cb;
@@ -26,7 +26,7 @@
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.7),
     0 2px 6px 2px rgba(0, 0, 0, 0.3);
   padding: 0;
-  border-radius: 20px;
+  border-radius: 0px;
 }
 
 /* 
@@ -87,7 +87,7 @@
 .notification-action:hover {
   -gtk-icon-effect: none;
   background: @noti-bg-hover;
-  border-radius: 20px;
+  border-radius: 0px;
 }
 
 .notification-default-action {
@@ -178,7 +178,8 @@
   margin: 8px;
   font-size: 1.5rem;
 }
-.widget-title > button {
+
+.widget-title>button {
   font-size: initial;
   color: @text;
   text-shadow: none;
@@ -187,7 +188,8 @@
   box-shadow: none;
   border-radius: 5px;
 }
-.widget-title > button:hover {
+
+.widget-title>button:hover {
   background: @noti-bg-focus;
 }
 
@@ -196,41 +198,34 @@
   margin: 8px;
   font-size: 1.1rem;
 }
-.widget-dnd > switch {
+
+.widget-dnd>switch {
   font-size: initial;
   border-radius: 5px;
   background: @noti-bg;
   border: 1px solid @noti-border-color;
   box-shadow: none;
 }
-.widget-dnd > switch:checked {
+
+.widget-dnd>switch:checked {
   background: @bg-selected;
 }
-.widget-dnd > switch slider {
-  background: @noti-bg-hover;
+
+
+.widget-dnd>switch slider {
+  background: #ffffff;
   border-radius: 5px;
+}
+
+.widget-dnd>switch:checked .widget-dnd>switch slider {
+  background: #000000;
 }
 
 /* Label widget */
 .widget-label {
   margin: 8px;
 }
-.widget-label > label {
-  font-size: 1.1rem;
-}
 
-/* Mpris widget */
-.widget-mpris {
-  /* The parent to all players */
-}
-.widget-mpris-player {
-  padding: 8px;
-  margin: 8px;
-}
-.widget-mpris-title {
-  font-weight: bold;
-  font-size: 1.25rem;
-}
-.widget-mpris-subtitle {
+.widget-label>label {
   font-size: 1.1rem;
 }
