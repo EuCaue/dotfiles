@@ -1,9 +1,11 @@
 set sandbox none
-set statusbar-h-padding 10
-set statusbar-v-padding 10
-set page-padding 20
-set scroll-step 120
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding 1 
+set scroll-step 50
+set scroll-full-overlap 0.01
 set show-recent 25
+set sandbox strict
 set incremental-search "true"
 set window-title-home-tilde "true"
 set statusbar-home-tilde "true"
@@ -11,7 +13,8 @@ set recolor  "false"
 set recolor-keephue "true"
 set zoom-center "true"
 set selection-clipboard clipboard
-set adjust-open "width"
+set adjust-open "best-fit"
+set guioptions none
 set font "FiraMono Nerd Font 12"
 
 set statusbar-bg                "#000000"
