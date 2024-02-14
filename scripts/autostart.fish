@@ -9,9 +9,9 @@ ags --config $HOME/.config/ags/appbar/config.js &
 ~/dotfiles/scripts/suspend.sh &
 ~/dotfiles/scripts/rofi-clipboard.fish &
 redshift -O 3500K &
-# swaync &
+swaync &
 # mako &
-dunst &
+# dunst &
 /opt/xdman/xdm-app &
 mpv --script-opts=ytdl_hook-ytdl_path=yt-dlp --volume=30 --title="radio-mpv" "https://live.hunter.fm/lofi_high" --input-ipc-server=/tmp/mpvsocket --no-video --idle=once &
 ~/dotfiles/scripts/set-lofi-sound.fish

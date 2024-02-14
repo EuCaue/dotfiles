@@ -13,9 +13,9 @@ function main
         if test $status -eq 0
             set volume $(pactl list sinks | grep -E "^\s+Volume:" | awk '{print $12}' | cut -d% -f1)
             if test $volume -ge 0; and test $volume -lt 60
-                set_volume 50
+                set_volume 30
             else if test $volume -ge 60
-                set_volume 40
+                set_volume 30
             end
         end
     end
