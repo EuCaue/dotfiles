@@ -1,0 +1,28 @@
+# -*- conf -*-
+    # data
+    [cursor]
+    color=303030 EEEEEE
+
+    [colors]
+    background=000000
+    foreground=EEEEEE
+
+    # Normal/regular colors (color palette 0-7)
+    regular0=323232 # black
+    regular1=f43753 # red
+    regular2=d9e066 # green
+    regular3=facc72 # yellow
+    regular4=c0eafb # blue
+    regular5=efd093 # magenta
+    regular6=a1d6ec # cyan
+    regular7=ffffff # white
+
+    # Bright colors (color palette 8-15)
+    bright0=323232 # black
+    bright1=f43753 # red
+    bright2=d9e066 # green
+    bright3=facc72 # yellow
+    bright4=c0eafb # blue
+    bright5=efd093 # magenta
+    bright6=a1d6ec # cyan
+    bright7=ffffff # white

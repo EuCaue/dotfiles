@@ -1,0 +1,35 @@
+{
+    base00 = '#1c1c1c',
+    base01 = '#c01c',
+    base02 = '#323232', 
+    base03 = '#606366',
+    base04 = '#a4a3a3', 
+    base05 = '#a9b7c6', 
+    base06 = '#ffc66d', 
+    base07 = '#ffffff',
+    base08 = '#4eade5', 
+    base09 = '#689757', 
+    base0A = '#bbb529', 
+    base0B = '#6a8759',
+    base0C = '#629755', 
+    base0D = '#9876aa', 
+    base0E = '#cc7832', 
+    base0F = '#808080'
+
+      base00 = "#1c1c1c"
+      base01 = "#c01c28"
+      base02 = "#26a269"
+      base03 = "#f8e45c"
+      base04 = "#1161cb"
+      base05 = "#c061cb"
+      base06 = "#73cef4"
+      base07 = "#f8f8f2"
+      base08 = "#77767b"
+      base09 = "#ff7b63"
+      base0A = "#8ff0a4"
+      base0B ="#f6d32d"
+      base0C ="#3584e4"
+      base0D ="#c061cb"
+      base0E ="#a1d6ec"
+      base0F ="#ffffff"
+}

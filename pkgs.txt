@@ -61,6 +61,7 @@ blueprint-compiler
 bluez
 bluez-libs
 bluez-utils
+bob
 boost-libs
 bottom
 box2d
@@ -90,7 +91,6 @@ clang
 cliphist
 clucene
 cmake
-codespell
 compiler-rt
 containerd
 coreutils
@@ -102,7 +102,6 @@ cryptsetup
 curl
 dart
 dav1d
-db
 db5.3
 dbus
 dbus-broker
@@ -111,7 +110,6 @@ dbus-glib
 dbus-python
 dconf
 dconf-editor
-ddcutil
 ddgr
 debugedit
 default-cursors
@@ -129,12 +127,13 @@ dnssec-anchors
 docbook-xml
 docbook-xsl
 docker
+docker-compose
 dos2unix
 dosfstools
-dotconf
 double-conversion
 downgrade
 drawing
+drawio-desktop-bin
 duf
 duktape
 dunst
@@ -146,9 +145,8 @@ electron25
 electron27
 enchant
 epiphany
-espeak-ng
-espeakup
 ethtool
+evtest
 exiv2
 exo
 expac
@@ -156,9 +154,8 @@ expat
 eza
 faac
 faad2
+fake-ms-fonts
 fakeroot
-fastfetch
-fcft
 fd
 feedbackd
 ffmpeg
@@ -183,7 +180,6 @@ fnm-bin
 font-manager
 fontconfig
 fontforge
-foot
 foot-terminfo
 freeglut
 freeimage
@@ -192,7 +188,6 @@ fribidi
 fuse-common
 fuse2
 fuse3
-fuzzel
 fzf
 gamemode
 gawk
@@ -222,13 +217,14 @@ glib2-docs
 glibc
 glibmm
 glibmm-2.68
-glow
 glslang
 glu
 gmp
+gnome-autoar
 gnome-bluetooth-3.0
 gnome-common
 gnome-desktop
+gnome-desktop-4
 gnome-desktop-common
 gnome-disk-utility
 gnome-icon-theme-extras
@@ -244,6 +240,8 @@ google-chrome
 gperftools
 gpgme
 gpm
+gradience
+granite
 grapejuice
 graphene
 graphicsmagick
@@ -291,6 +289,7 @@ gumbo-parser
 gupnp
 gupnp-igd
 gvfs
+gvfs-mtp
 gzip
 harfbuzz
 harfbuzz-icu
@@ -301,6 +300,7 @@ highlight
 highway
 http-parser
 hunspell
+hurl-bin
 hwdata
 hwloc
 hyphen
@@ -308,14 +308,11 @@ hyprland
 hyprlang
 hyprpicker-git
 hyprshade
-i2c-tools
 iana-etc
 icu
 ijs
 imagemagick
 imath
-imcat-git
-imgur-uploader-git
 imlib2
 imv
 inkscape
@@ -324,7 +321,6 @@ intel-media-driver
 intel-ucode
 inter-font
 intltool
-inxi
 iproute2
 iptables
 iputils
@@ -352,6 +348,7 @@ json-glib
 jsoncpp
 jxrlib
 kakwafont
+karchive5
 kbd
 keyb
 keyd
@@ -365,7 +362,6 @@ krb5
 l-smash
 lame
 lapack
-lazygit
 lcms2
 ldb
 ldns
@@ -439,6 +435,7 @@ lib32-libjpeg6-turbo
 lib32-libldap
 lib32-libltdl
 lib32-libnghttp2
+lib32-libnghttp3
 lib32-libnl
 lib32-libogg
 lib32-libpcap
@@ -533,7 +530,6 @@ lib32-zstd
 libabw
 libadwaita
 libaio
-libao
 libappimage
 libappindicator-gtk2
 libappindicator-gtk3
@@ -572,6 +568,7 @@ libcolord
 libcups
 libcurl-gnutls
 libdaemon
+libdatachannel
 libdatrie
 libdbusmenu-glib
 libdbusmenu-gtk2
@@ -598,6 +595,7 @@ libevdev
 libevent
 libexif
 libexttextcat
+libfabric
 libfbclient
 libfdk-aac
 libffi
@@ -634,6 +632,7 @@ libisofs
 libixion
 libjpeg-turbo
 libjpeg6-turbo
+libjuice
 libjxl
 libkate
 libksba
@@ -645,7 +644,6 @@ libliftoff
 liblqr
 liblrdf
 libltc
-libluv
 libmanette
 libmd
 libmediainfo
@@ -667,6 +665,7 @@ libmwaw
 libmypaint
 libmysofa
 libnatpmp
+libnautilus-extension
 libndp
 libnet
 libnetfilter_conntrack
@@ -729,12 +728,10 @@ libsixel
 libsm
 libsndfile
 libsodium
-libsonic
 libsoup
 libsoup3
 libsoxr
 libspectre
-libspeechd
 libspiro
 libsrtp
 libssh
@@ -745,7 +742,6 @@ libsynctex
 libsysprof-capture
 libtasn1
 libteam
-libtermkey
 libthai
 libtheora
 libtiff
@@ -762,7 +758,6 @@ liburing
 libusb
 libusbmuxd
 libutempter
-libutf8proc
 libuv
 libva
 libva-intel-driver
@@ -775,7 +770,6 @@ libvoikko
 libvorbis
 libvpl
 libvpx
-libvterm
 libwacom
 libwbclient
 libwebp
@@ -841,6 +835,7 @@ linux-lts
 linux-lts-headers
 linux-zen
 linux-zen-headers
+llvm
 llvm-libs
 lm_sensors
 lmdb
@@ -851,8 +846,6 @@ lsof
 lua
 lua-argparse
 lua-filesystem
-lua51
-lua51-lpeg
 luacheck
 luajit
 luarocks
@@ -866,12 +859,11 @@ lzop
 m4
 mailcap
 make
-mako
+mako-git
 mallard-ducktype
 man-db
 mariadb-libs
 mbedtls
-mcpelauncher-appimage
 md4c
 mdadm
 mediainfo
@@ -880,7 +872,6 @@ mercury-browser-bin
 mesa
 mesa-utils
 meson
-micro
 min
 minecraft-launcher
 minecraft-technic-launcher
@@ -890,28 +881,29 @@ mjpegtools
 mkinitcpio
 mkinitcpio-busybox
 mobile-broadband-provider-info
+mongodb-bin
+mongosh-bin
 montecarlo-font
 mpfr
 mpg123
 mpv
 mpvpaper
-msgpack-c
 mtdev
 mujs
 mupdf
 mupdf-tools
 mypaint-brushes1
 nano
+nautilus
 ncurses
 neofetch
 neon
-neovide
-neovim-git
 nerdfix
 net-snmp
 netpbm
 nettle
 networkmanager
+nextcloud-client
 nftables
 ninja
 node-gyp
@@ -924,6 +916,7 @@ nspr
 nss
 ntfs-3g
 ntp
+numactl
 nwg-look-bin
 obs-studio
 obsidian
@@ -960,9 +953,7 @@ parallel
 parted
 paru
 patch
-patool
 pavucontrol
-pcaudiolib
 pciutils
 pcre
 pcre2
@@ -993,7 +984,6 @@ perl-uri
 perl-www-robotrules
 perl-xml-parser
 pinentry
-pipes.sh
 pipewire
 pipewire-alsa
 pipewire-audio
@@ -1017,6 +1007,7 @@ preload
 procps-ng
 protobuf
 proton-ge-custom-bin
+prrte
 psautohint
 psmisc
 pyenv
@@ -1045,6 +1036,7 @@ python-configargparse
 python-coverage
 python-cryptography
 python-cssselect
+python-cssselect2
 python-cssutils
 python-defcon
 python-distlib
@@ -1071,6 +1063,7 @@ python-jaraco.context
 python-jaraco.functools
 python-jaraco.text
 python-jeepney
+python-jinja
 python-keyring
 python-lockfile
 python-lxml
@@ -1092,6 +1085,7 @@ python-pip
 python-pipenv
 python-pipx
 python-platformdirs
+python-pluggy
 python-ply
 python-psutil
 python-pyclipper
@@ -1108,7 +1102,6 @@ python-pyserial
 python-pytesseract
 python-pytz
 python-pywal
-python-pyxdg
 python-regex
 python-reportlab
 python-requests
@@ -1120,7 +1113,9 @@ python-shtab
 python-six
 python-soupsieve
 python-sqlparse
+python-svglib
 python-termcolor
+python-tinycss2
 python-toml
 python-tomli
 python-toolz
@@ -1139,6 +1134,7 @@ python-virtualenv-clone
 python-webencodings
 python-wheel
 python-yaml
+python-yapsy
 python-zipp
 python-zopfli
 python-zstandard
@@ -1147,6 +1143,8 @@ qgnomeplatform-qt6
 qrencode
 qt5-base
 qt5-declarative
+qt5-graphicaleffects
+qt5-location
 qt5-quickcontrols
 qt5-quickcontrols2
 qt5-sensors
@@ -1154,6 +1152,8 @@ qt5-svg
 qt5-tools
 qt5-translations
 qt5-wayland
+qt5-webchannel
+qt5-webengine
 qt5-websockets
 qt5-x11extras
 qt5ct
@@ -1163,6 +1163,7 @@ qt6-imageformats
 qt6-svg
 qt6-translations
 qt6-wayland
+qtkeychain-qt5
 ragel
 raptor
 rasqal
@@ -1208,17 +1209,15 @@ shfmt
 showmethekey
 slang
 slurp
+smassh
 smbclient
 snappy
-sndio
-snes9x
 socat
 sord
 sound-theme-freedesktop
 soundtouch
 source-highlight
 spandsp
-speech-dispatcher
 speedtest-cli
 speex
 speexdsp
@@ -1226,6 +1225,7 @@ spirv-tools
 spotify
 spotify-adblock
 sqlite
+squashfs-tools
 squashfuse
 squeekboard
 sratom
@@ -1243,7 +1243,6 @@ swayidle
 swaylock-effects-git
 swaync
 swww
-syncthing
 systemd
 systemd-libs
 systemd-sysvcompat
@@ -1279,7 +1278,6 @@ tracker3
 transmission-gtk
 trashy
 tree-sitter
-tree-sitter-cli
 tslib
 ttf-apple-emoji
 ttf-fira-code
@@ -1290,12 +1288,10 @@ ttf-nerd-fonts-symbols-common
 ttf-nerd-fonts-symbols-mono
 ttf-opensans
 twolame
-typescript
 tzdata
 uchardet
 udisks2
 ungoogled-chromium-bin
-unibilium
 unixodbc
 unrar
 unzip
@@ -1343,12 +1339,10 @@ wl-mirror
 wl-screenrec-git
 wlrobs-hg
 wlroots
-wlsunset
 woff2
 wofi
 wpa_supplicant
 wpebackend-fdo
-wshowkeys-git
 wtype
 wxwidgets-common
 wxwidgets-gtk3
@@ -1415,8 +1409,6 @@ zathura-cb
 zathura-djvu
 zathura-pdf-mupdf
 zathura-ps
-zbar
-zellij
 zenity
 zeromq
 zimg

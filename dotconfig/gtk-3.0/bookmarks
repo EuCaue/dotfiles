@@ -5,9 +5,10 @@ file:///home/caue/Videos Videos
 file:///home/caue/Downloads Downloads
 file:///home/caue/Dev Dev
 file:///home/caue/.config .config
-file:///home/caue/.config/nvim nvim
 file:///home/caue/.local .local
 file:///home/caue/.local/share/nvim nvim
 file:///home/caue/.cache .cache
 file:///home/caue/Music/OnTheSpot OnTheSpot
 file:///home/caue/.minecraft .minecraft
+file:///home/caue/nextcloud
+file:///home/caue/Documents/vault

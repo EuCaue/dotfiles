@@ -1,0 +1,28 @@
+# -*- conf -*-
+    # alpha
+    [cursor]
+    color=303030 f8f8f2
+
+    [colors]
+    background=000000
+    foreground=f8f8f2
+
+    # Normal/regular colors (color palette 0-7)
+    regular0=1c1c1c # black
+    regular1=c01c28 # red
+    regular2=26a269 # green
+    regular3=f8e45c # yellow
+    regular4=1161cb # blue
+    regular5=c061cb # magenta
+    regular6=73cef4 # cyan
+    regular7=f8f8f2 # white
+
+    # Bright colors (color palette 8-15)
+    bright0=77767b # black
+    bright1=ff7b63 # red
+    bright2=8ff0a4 # green
+    bright3=f6d32d # yellow
+    bright4=3584e4 # blue
+    bright5=c061cb # magenta
+    bright6=a1d6ec # cyan
+    bright7=ffffff # white
