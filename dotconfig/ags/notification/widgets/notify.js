@@ -37,6 +37,7 @@ const notiWidget = (name, sum, body, id) =>
         },
         child: Widget.Box({
           vertical: true,
+          hpack: "center",
           className: "noti-widget",
           children: [
             Widget.Label({ label: String(name) }),
@@ -52,7 +53,6 @@ const notiWidget = (name, sum, body, id) =>
 export const Noti = () =>
   Widget.Scrollable({
     className: "noti-scroll",
-    css: "min-width: 600px; min-height: 200px;",
     child: Widget.Box({
       className: "noti-box",
       vertical: true,
@@ -63,7 +63,9 @@ export const Noti = () =>
           console.log(notiData.value);
           console.log(notiData.value.length);
           if (notiData.value.length === 0) {
-            arrayNotificationsWidget.push(Widget.Label({ label: "No notifications" }));
+            arrayNotificationsWidget.push(
+              Widget.Label({ label: "No notifications" }),
+            );
           } else {
             for (const noti of notiData.value) {
               arrayNotificationsWidget.push(
@@ -76,7 +78,7 @@ export const Noti = () =>
               );
             }
           }
-            self.children = arrayNotificationsWidget;
+          self.children = arrayNotificationsWidget;
         }),
     }),
   });

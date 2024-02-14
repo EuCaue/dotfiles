@@ -1,33 +1,19 @@
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
-import Variable from "resource:///com/github/Aylur/ags/variable.js";
 import { exec, execAsync } from "resource:///com/github/Aylur/ags/utils.js";
-const isNotWindowOpen = Variable(false);
 
 export const Noti = () =>
   Widget.Button({
     className: "default-box",
-    onSecondaryClick: () =>
-      exec("dunstctl history-clear && ags --quit --bus-name noti"),
+    onSecondaryClick: () => exec("swaync-client -C"),
     onPrimaryClick: () => {
-      isNotWindowOpen.setValue(!isNotWindowOpen.value);
-      if (isNotWindowOpen.value) {
-        execAsync([
-          "ags",
-          "--config",
-          "/home/caue/.config/ags/notification/config.js",
-          "--bus-name",
-          "noti",
-        ]).then((v) => console.log(v));
-      } else {
-        exec("ags --quit --bus-name noti");
-      }
+      execAsync(["swaync-client", "-t"]);
     },
     child: Widget.Label().poll(5000, (self) => {
-      execAsync(["dunstctl", "history"])
+      execAsync(["swaync-client", "-c"])
         .then((notis) => {
-          const notiCount = JSON.parse(notis).data[0].length;
-          if (notiCount > 0) {
-            self.label = `󱅫 ${notiCount}`;
+          console.log(notis);
+          if (Number(notis.trim()) > 0) {
+            self.label = `󱅫 ${notis.trim()}`;
           } else {
             self.label = "󰂚";
           }

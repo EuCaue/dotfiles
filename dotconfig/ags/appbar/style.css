@@ -106,7 +106,7 @@ to get antoher visual style.
 
 .systemtray > button {
   padding: 0px 5px;
-  /* background-color: @bg-color; */
+  background-color: black;
 }
 
 .systemtray > button * {

@@ -4,6 +4,31 @@
   background-color: @bg-color;
 }
 
+.noti-scroll {
+  min-width: 600px;
+  min-height: 500px;
+}
+
 .noti-widget {
+  min-width: 350px;
+  min-height: 70px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  padding: 10px;
   background-color: @bg-color;
+}
+
+.noti-widget:first-child {
+  margin-top: 5px;
+}
+
+.noti-widget label:hover {
+  color: black;
+}
+
+.noti-widget * {
+  margin-top: 10px;
+}
+
+.noti-widget label:first-child {
+  margin-top: 0px;
 }
