@@ -1,0 +1,49 @@
+return {
+  {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("user.plugins.configs.lualine")
+    end,
+  }, -- Status Bar
+
+  {
+    "j-hui/fidget.nvim",
+    event = "LspAttach",
+    opts = {},
+  }, -- LSP progress
+
+  {
+    "goolord/alpha-nvim",
+    lazy = true,
+    event = "VimEnter",
+    config = function()
+      require("user.plugins.configs.alpha")
+    end,
+    cmd = "Alpha",
+  }, -- Splash Screen
+
+  {
+    "stevearc/dressing.nvim",
+    event = "VeryLazy",
+    opts = {},
+  }, -- better ui
+
+  {
+    "echasnovski/mini.indentscope",
+    event = "BufReadPost",
+    version = false,
+    opts = {
+      symbol = "│",
+    },
+  }, -- indent
+
+  {
+    "nvim-tree/nvim-web-devicons",
+    lazy = true,
+  }, -- icons
+
+  -- ui components
+  { "MunifTanjim/nui.nvim", lazy = true },
+  { "nvim-lua/plenary.nvim", lazy = true },
+}

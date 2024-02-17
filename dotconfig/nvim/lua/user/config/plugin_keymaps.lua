@@ -1,0 +1,288 @@
+local M = {}
+
+M.telescope = {
+  {
+    "<leader>fo",
+    "<cmd>Telescope oldfiles<cr>",
+    mode = "n",
+    desc = "Recent Files",
+  },
+  {
+    "<leader>ff",
+    "<cmd>Telescope find_files<cr>",
+    mode = "n",
+    desc = "Find Files",
+  },
+  {
+    "<leader>fb",
+    "<cmd>Telescope file_browser<cr>",
+    mode = "n",
+    desc = "File Browser",
+  },
+  {
+    "<leader>b",
+    "<cmd>Telescope buffers<cr>",
+    mode = "n",
+    desc = "Find Buffers",
+  },
+  {
+    "<leader>fg",
+    "<cmd>Telescope git_files<cr>",
+    mode = "n",
+    desc = "Find Git Files",
+  },
+  {
+    "<leader>fr",
+    "<cmd>Telescope current_buffer_fuzzy_find<cr>",
+    mode = "n",
+    desc = "Fuzzy Find in Buffer",
+  },
+  {
+    "<leader>fd",
+    "<cmd>Telescope diagnostics<cr>",
+    mode = "n",
+    desc = "LSP diagnostics",
+  },
+  {
+    "<leader>fm",
+    "<cmd>Telescope marks<cr>",
+    mode = "n",
+    desc = "Local file Marks",
+  },
+  {
+    "<leader>fl",
+    "<cmd>Telescope live_grep<cr>",
+    mode = "n",
+    desc = "Find Words",
+  },
+  {
+    "<leader>fs",
+    "<cmd>Telescope grep_string<cr>",
+    mode = "n",
+    desc = "Find Word under the cursor",
+  },
+  { "<leader>fk", "<cmd>Telescope keymaps<cr>", mode = "n", desc = "Keymaps" },
+  { "<leader>ft", "<cmd>TodoTelescope<cr>", mode = "n", desc = "Find Todos" },
+  {
+    "<leader>fj",
+    "<cmd>Telescope jumplist<cr>",
+    mode = "n",
+    desc = "Telescope Jumplist",
+  },
+  {
+    "<leader><leader>t",
+    "<cmd>Telescope<cr>",
+    mode = "n",
+    desc = "Telescope Builtins Options",
+  },
+  {
+    "<leader>fa",
+    "<cmd>lua require('search').open()<cr>",
+    mode = "n",
+    desc = "Search all things",
+  },
+}
+
+M.minifiles = {
+  {
+    "<leader>mf",
+    "<cmd>lua MiniFiles.open()<cr>",
+    mode = { "n", "v" },
+    desc = "Open MiniFiles",
+  },
+}
+
+M.session_manager = {
+  {
+    "<leader>sl",
+    "<cmd>SessionManager load_session<cr>",
+    mode = "n",
+    desc = "List Sessions",
+  },
+  {
+    "<leader>sd",
+    "<cmd>SessionManager delete_session<cr>",
+    mode = "n",
+    desc = "Delete Sessions",
+  },
+  {
+    "<leader>sc",
+    "<cmd>SessionManager save_current_session<cr>",
+    mode = "n",
+    desc = "Save Current Session",
+  },
+  {
+    "<leader>ss",
+    "<cmd>SessionManager load_last_session<cr>",
+    mode = "n",
+    desc = "Load Last Session",
+  },
+}
+
+M.git_signs = {
+  {
+    "<leader>gp",
+    "<cmd>Gitsigns preview_hunk<cr>",
+    mode = { "n", "v" },
+    desc = "Preview Git Hunk",
+  },
+  {
+    "<leader>gb",
+    "<cmd>Gitsigns blame_line<cr>",
+    mode = { "n", "v" },
+    desc = "Git Blame Line",
+  },
+  {
+    "<leader>gd",
+    "<cmd>Gitsigns diffthis<cr>",
+    mode = { "n", "v" },
+    desc = "Git Diff on chunk",
+  },
+}
+
+M.neogit = {
+  {
+    "<leader>gf",
+    "<cmd>Neogit kind=floating<cr>",
+    mode = { "n", "v" },
+    desc = "Neogit floating",
+  },
+  {
+    "<leader>gv",
+    "<cmd>Neogit kind=vsplit<cr>",
+    mode = { "n", "v" },
+    desc = "Neogit vsplit",
+  },
+}
+
+M.ufo = {
+  {
+    "zp",
+    "<cmd>lua require('ufo').peekFoldedLinesUnderCursor()<cr>",
+    mode = "n",
+    desc = "Preview Fold",
+  },
+}
+
+M.toggler = {
+  {
+    "<leader>i",
+    "<cmd>lua require('nvim-toggler').toggle()<cr>",
+    mode = "n",
+    desc = "Toggle Things",
+  },
+}
+
+M.notify = {
+  {
+    "<leader>cn",
+    "<cmd>lua require('notify').dismiss({ silent = true, pending = true })<cr>",
+    mode = { "n", "v" },
+    desc = "Close All Notifications",
+  },
+}
+
+M.ccc = {
+  {
+    "<leader>ct",
+    "<cmd>CccConvert<cr>",
+    mode = "n",
+    desc = "Toggle color type",
+  },
+  {
+    "<leader>ct",
+    "<cmd>CccPick<cr>",
+    mode = "n",
+    desc = "Open Color Picker",
+  },
+}
+
+M.todo_comments = {
+  {
+    "gcmh",
+    function()
+      vim.cmd("norm gcO HACK:  ")
+      vim.cmd("startinsert")
+    end,
+    mode = "n",
+    desc = "Create a hack comment",
+  },
+  {
+    "gcmn",
+    function()
+      vim.cmd("norm gcO NOTE:  ")
+      vim.cmd("startinsert")
+    end,
+    mode = "n",
+    desc = "Create a note comment",
+  },
+  {
+    "gcmt",
+    function()
+      vim.cmd("norm gcO TODO:  ")
+      vim.cmd("startinsert")
+    end,
+    mode = "n",
+    desc = "Create a todo comment",
+  },
+  {
+    "gcmf",
+    function()
+      vim.cmd("norm gcO FIX:  ")
+      vim.cmd("startinsert")
+    end,
+    mode = "n",
+    desc = "Create a fix comment",
+  },
+  {
+    "gcmb",
+    function()
+      vim.cmd("norm gcO BUG:  ")
+      vim.cmd("startinsert")
+    end,
+    mode = "n",
+    desc = "Create a bug comment",
+  },
+  {
+    "]t",
+    function()
+      require("todo-comments").jump_next()
+    end,
+    mode = "n",
+    desc = "Next todo comment",
+  },
+  {
+    "[t",
+    function()
+      require("todo-comments").jump_prev()
+    end,
+    mode = "n",
+    desc = "Previous todo comment",
+  },
+}
+
+M.comments = {
+  {
+    "<C-_>",
+    "<cmd>normal gcA<cr>",
+    mode = { "n", "i", "x" },
+    desc = "Comment",
+  },
+  {
+    "<C-/>",
+    "<cmd>normal gcA<cr>",
+    mode = { "n", "i", "x" },
+    desc = "Comment",
+  },
+  {
+    "gcy",
+    function()
+      vim.cmd("norm yy")
+      vim.cmd("norm gcc")
+    end,
+    mode = "n",
+    desc = "Yank and comment",
+  },
+}
+
+return M
