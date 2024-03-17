@@ -1,6 +1,7 @@
 # QT
 set -x QT_QPA_PLATFORM wayland
-set -x QT_QPA_PLATFORMTHEME qt5ct
+set -x QT_QPA_PLATFORMTHEME gnome
+set -x QT_STYLE_OVERRIDE Adwaita-Dark
 
 # firefox
 set -x MOZ_ENABLE_WAYLAND 1
@@ -9,8 +10,9 @@ set -x MOZ_ENABLE_WAYLAND 1
 set -x EDITOR /usr/bin/nvim
 set -x VISUAL nvim
 
-
 set -x _ZO_MAXAGE 200000
+
+set -x FREETYPE_PROPERTIES "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0 autofitter:darkening-parameters=500,0,1000,400,1250,250,1500,0"
 
 # Add paths
 fish_add_path "$HOME/.local/bin"

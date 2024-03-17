@@ -15,6 +15,7 @@ alias g="git"
 alias la='exa -l -a -g --icons -h --group-directories-first --sort modified --reverse '
 alias lll='ls'
 alias ls='exa -l -g --icons -h --group-directories-first --sort modified --reverse '
+alias lc="ls | wc -l"
 
 # pomodoro aliases
 alias pbr="pomo 'break'"
