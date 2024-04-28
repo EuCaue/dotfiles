@@ -29,7 +29,7 @@ Hints.setCharacters('asdfgyuiopqwertnmzxcvb');
 
 settings.defaultSearchEngine = 'd';
 settings.hintAlign = 'left';
-settings.omnibarPosition = 'bottom';
+// settings.omnibarPosition = 'bottom';
 settings.focusFirstCandidate = false;
 settings.focusAfterClosed = 'last';
 settings.scrollStepSize = 200;
@@ -43,6 +43,8 @@ settings.showModeStatus = true;
 // --- Hints ---
 // Open Multiple Links
 map('<Alt-f>', 'cf');
+
+map('<Ctrl-e>', "t");
 
 // Yank Link URL
 map('<Alt-y>', 'ya');
@@ -85,7 +87,7 @@ map('J', 'R');
 map('K', 'E');
 
 // Open Chrome Flags
-mapkey('gF', '#12Open Chrome Flags', () => { tabOpenLink("chrome://flags/"); });
+mapkey('gF', '#12Open Chrome Flags', () => { tabOpenLink("about:config"); });
 
 // --- Tabs ---
 // Tab Delete/Undo
@@ -604,5 +606,3 @@ settings.theme = `
     }
   }
 `;
-
-// click `Save` button to make above settings to take effect.</ctrl-i></ctrl-y>

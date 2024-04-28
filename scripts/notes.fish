@@ -4,7 +4,6 @@ cd $markdown_folder
 
 while true
     set selected_files $(fzf --preview 'bat --color=always {}' --pointer "->" --prompt "Select Files" --multi)
-    echo $selected_files
     if test (count $selected_files) -eq 0
         return 1
     end

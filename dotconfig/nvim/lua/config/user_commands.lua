@@ -1,5 +1,4 @@
 local cmd = vim.api.nvim_create_user_command
-vim.g.diagnostics_visible = true
 
 local build_commands = {
   c = "g++ -std=c++17 -o %:p:r.o %",
@@ -62,33 +61,6 @@ cmd("Ha", function()
   vim.cmd([[Run]])
 end, {})
 
-cmd("Transparent", function()
-  vim.cmd("hi Normal ctermbg=NONE guibg=NONE")
-  vim.cmd("hi NormalFloat ctermbg=NONE guibg=NONE")
-  vim.cmd("hi NormalNC ctermbg=NONE guibg=NONE")
-  vim.cmd("hi Pmenu ctermbg=NONE guibg=NONE")
-  vim.cmd("hi WinBar ctermbg=NONE guibg=NONE")
-  vim.cmd("hi SignColumn ctermbg=NONE guibg=NONE")
-  vim.cmd("hi TelescopeNormal ctermbg=NONE guibg=NONE")
-  vim.cmd("hi TelescopeBorder ctermbg=NONE guibg=NONE")
-  vim.cmd("hi TelescopePromptTitle ctermbg=NONE guibg=NONE")
-  vim.cmd("hi TelescopePromptBorder ctermbg=NONE guibg=NONE")
-  vim.cmd("hi TelescopePromptNormal ctermbg=NONE guibg=NONE")
-  vim.cmd("hi TelescopePreviewSize guibg=NONE ctermbg=NONE")
-  vim.cmd("hi TelescopePreviewExecute guibg=NONE ctermbg=NONE")
-  vim.cmd("hi TelescopePreviewHyphen guibg=NONE ctermbg=NONE")
-  vim.cmd("hi FloatBorder ctermbg=NONE guibg=NONE")
-  vim.cmd("hi CursorLine gui=bold cterm=bold")
-  vim.cmd("hi CmpItemAbbrMatch guibg=NONE ctermbg=NONE")
-  vim.cmd("hi CmpItemAbbr guibg=NONE ctermbg=NONE")
-  vim.cmd("hi EndOfBuffer guibg=NONE ctermbg=NONE")
-end, { desc = "Transparent background" })
-
-cmd("Update", function()
-  vim.cmd("Lazy update")
-  vim.cmd("MasonUpdate")
-end, { desc = "Update" })
-
 cmd("LtexLangChangeLanguage", function(data)
   local language = data.fargs[1]
   local bufnr = vim.api.nvim_get_current_buf()
@@ -109,20 +81,3 @@ end, {
   nargs = 1,
   force = true,
 })
-
-cmd("ToggleLspDiag", function()
-  local buf_clients = vim.lsp.get_clients()
-  if next(buf_clients) == nil then
-    if type(buf_clients) == "boolean" or #buf_clients == 0 then
-      vim.notify("No LSP client found")
-      return
-    end
-  end
-  if vim.g.diagnostics_visible then
-    vim.g.diagnostics_visible = false
-    vim.diagnostic.disable()
-  else
-    vim.g.diagnostics_visible = true
-    vim.diagnostic.enable()
-  end
-end, {})

@@ -1,39 +1,44 @@
-# Colors (Gruvbox Material Hard Dark)
-# Default colors
+# Material Darker
 [colors.primary]
-background = '#1d2021'
-foreground = '#d4be98'
+background = '#212121'
+foreground = '#EEFFFF'
 
-# Normal colors
 [colors.normal]
-black = '#32302f'
-red = '#ea6962'
-green = '#a9b665'
-yellow = '#d8a657'
-blue = '#7daea3'
-magenta = '#d3869b'
-cyan = '#89b482'
-white = '#d4be98'
+black = '#212121'
+red = '#F07178'
+green = '#C3E88D'
+yellow = '#FFCB6B'
+blue = '#82AAFF'
+magenta = '#C792EA'
+cyan = '#89DDFF'
+white = '#EEFFFF'
 
-# Bright colors (same as normal colors)
 [colors.bright]
-black = '#32302f'
-red = '#ea6962'
-green = '#a9b665'
-yellow = '#d8a657'
-blue = '#7daea3'
-magenta = '#d3869b'
-cyan = '#89b482'
-white = '#d4be98'
+black = '#303030'
+red = '#F07178'
+green = '#C3E88D'
+yellow = '#FFCB6B'
+blue = '#82AAFF'
+magenta = '#C792EA'
+cyan = '#89DDFF'
+white = '#FFFFFF'
+
+[colors.cursor]
+text = '#212121'
+cursor = '#EEFFFF'
+
+[colors.selection]
+text = '#EEFFFF'
+background = '#4A4A4A'
 
 [cursor]
-blink_interval = 600
+blink_interval = 645
 blink_timeout = 5
-thickness = 0.15
+thickness = 1.00
 
 [cursor.style]
 blinking = "Always"
-shape = "Beam"
+shape = "Block"
 
 [env]
 TERM = "alacritty"
@@ -45,7 +50,7 @@ builtin_box_drawing = true
 draw_bold_text_with_bright_colors = true
 
 [window]
-startup_mode = "Maximized"
+startup_mode = "Windowed"
 
 [window.padding]
 x = 10
@@ -53,5 +58,5 @@ y = 0
 
 [bell]
 animation = "EaseOutCubic"
-color = "#1e1e1e"
+color = "#212121"
 duration = 158

@@ -67,3 +67,25 @@ sudo ln -s xterm text
 sudo ln -s left_ptr top_left_arrow
 sudo ln -s sb_v_double_arrow v_double_arrow
 sudo ln -s watch wait
+
+sudo ln -s sw-resize bottom_left_corner
+sudo ln -s bottom_left_corner sw-resize
+sudo ln -s col-resize sb_h_double_arrow
+sudo ln -s top_left_arrow
+sudo ln -s alias link
+sudo ln -s progress left_ptr_watch
+sudo ln -s no-drop dnd-no-drop
+sudo ln -s move dnd-move
+sudo ln -s copy dnd-copy
+sudo ln -s alias dnd-link
+sudo ln -s move dotbox
+sudo ln -s hand1 openhand
+sudo ln -s openhand hand1
+sudo ln -s grabbing hand1
+sudo ln -s text xterm
+sudo ln -s crosshair cross
+sudo ln -s help question_arrow
+sudo ln -s wait left_ptr_watch
+sudo ln -s pointer hand2
+sudo ln -s pointer hand
+sudo ln -s default left_ptr

@@ -3,16 +3,15 @@ return {
     "neovim/nvim-lspconfig",
     init = function()
       local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      keys[#keys + 1] = { "<leader>cth", "<cmd>ToggleInlayHints<cr>", desc = "Toggle Inlay [H]ints" }
-      keys[#keys + 1] = { "<leader>ctd", "<cmd>ToggleLspDiag<cr>", desc = "Toggle Lsp [D]iagnostics" }
+      keys[#keys + 1] = { "<leader>ch", "<cmd>ToggleInlayHints<cr>", desc = "Toggle Inlay Hints" }
     end,
     opts = {
       servers = {
         ["ltex"] = {
+          autostart = false,
           settings = {
             ltex = {
               language = "en-US",
-              enabled = true,
             },
           },
         },
@@ -97,11 +96,32 @@ return {
     },
   },
   {
+    "kndndrj/nvim-dbee",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+    build = function()
+      require("dbee").install("curl")
+    end,
+    opts = {},
+    keys = {
+      {
+        "<leader>uD",
+        function()
+          require("dbee").toggle()
+        end,
+        mode = "n",
+        desc = "Toggle Dbee UI",
+      },
+    },
+  },
+  {
     "hrsh7th/nvim-cmp",
     dependencies = { "FelipeLema/cmp-async-path" },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local i = 1
+      -- make sure nvim_lsp it's always the first suggestion
       while i <= #opts.sources do
         if opts.sources[i].name == "nvim_lsp" then
           table.remove(opts.sources, i)
@@ -112,6 +132,8 @@ return {
 
       table.insert(opts.sources, 1, { name = "nvim_lsp", priority = 150, group_index = 1 })
       table.insert(opts.sources, { name = "async_path", priority = 150, group_index = 1 })
+
+      opts.completion.autocomplete = false
 
       opts.window = {
         completion = { scrollbar = false },
@@ -133,16 +155,15 @@ return {
 
   {
     "dsznajder/vscode-es7-javascript-react-snippets",
+    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+    build = "npm install --frozen-lockfile && npm run compile",
     config = function()
       require("luasnip.loaders.from_vscode").lazy_load()
     end,
-    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-    build = "npm install --frozen-lockfile && npm run compile",
   }, -- JS/JSX snippets
 
   {
     "L3MON4D3/LuaSnip",
-    dependencies = {},
     config = function()
       local ls = require("luasnip")
       local s = ls.snippet
@@ -155,6 +176,18 @@ return {
         t("`"),
         i(1, ""),
         t("`"),
+      })
+
+      local bold = s("b", {
+        t("**"),
+        i(1, ""),
+        t("** "),
+      })
+
+      local italic = s("i", {
+        t("_"),
+        i(1, ""),
+        t("_ "),
       })
 
       local link = s(
@@ -180,10 +213,12 @@ return {
       )
       ls.add_snippets("markdown", {
         code,
+        bold,
+        italic,
         code_block,
         todo,
         link,
-      }, { type = "snippets" })
+      })
     end,
     keys = {
       {

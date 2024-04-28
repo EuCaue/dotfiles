@@ -2,24 +2,8 @@ return {
   {
     "folke/which-key.nvim",
     opts = function(_, opts)
-      opts.defaults["<leader>ct"] = { name = "+toggles" }
       opts.defaults["<leader>r"] = { name = "+rename" }
-    end,
-  },
-  {
-    "iamcco/markdown-preview.nvim",
-    config = function()
-      vim.cmd([[do FileType]])
-      vim.cmd([[
-      function OpenMarkdownPreview (url)
-      let cmd = "epiphany --new-window " . shellescape(a:url) . " &"
-      silent call system(cmd)
-      endfunction
-      ]])
-      vim.g.mkdp_browserfunc = "OpenMarkdownPreview"
-      vim.g.mkdp_open_ip = "127.0.0.1"
-      vim.g.mkdp_highlight_css = "/home/caue/dotfiles/dotconfig/highlight.css"
-      vim.g.mkdp_port = 8080
+      opts.defaults["<leader>m"] = { name = "+markdown" }
     end,
   },
   {
@@ -178,8 +162,26 @@ return {
           action = "Telescope zoxide list",
           section = string.rep(" ", 22) .. "Telescope",
         },
+        {
+          name = "Vault",
+          action = "cd $HOME/Documents/vault | ObsidianSearch",
+          section = string.rep(" ", 22) .. "Telescope",
+        },
       }
       vim.list_extend(opts.items, items)
     end,
+  },
+  {
+    "chrishrb/gx.nvim",
+    keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },
+    cmd = { "Browse" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      handler_options = {
+        search_engine = "duckduckgo", -- or you can pass in a custom search engine
+        select_for_search = true,
+      },
+    },
+    submodules = false, -- not needed, submodules are required only for tests
   },
 }

@@ -4,7 +4,8 @@ function set_mode_pre_execution --on-event fish_preexec
     if test $command = node
         or echo $command | grep python >/dev/null
     else
-        echo -ne "\e[5 q" # beam 
+        echo -ne "\e[5 q" # block 
+        printf '\e]50;CursorShape=1\x7'
     end
 end
 function set_mode_post_execution --on-event fish_postexec
@@ -22,13 +23,16 @@ function fish_vi_cursor --on-variable fish_bind_mode
     set -g __last_fish_bind_mode $fish_bind_mode
     switch $fish_bind_mode
         case insert
-            echo -ne "\e[5 q" # beam 
-            # echo -ne "\e[3 q" # underline 
-            printf '\e]50;CursorShape=1\x7'
-        case default
-            printf '\e]50;CursorShape=2\x7'
             echo -ne "\e[5 q" # block 
+            printf '\e]50;CursorShape=1\x7'
+            printf "\033[2 q" # block
+        case default
+            echo -ne "\e[5 q" # block 
+            printf '\e]50;CursorShape=1\x7'
+            printf "\033[2 q" # block
         case "*"
-            printf '\e]50;CursorShape=0\x7'
+            echo -ne "\e[5 q" # block 
+            printf '\e]50;CursorShape=1\x7'
+            printf "\033[2 q" # block
     end
 end

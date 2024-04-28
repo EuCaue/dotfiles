@@ -1,16 +1,14 @@
-local gruvbox_material = {
-  "sainnhe/gruvbox-material",
+local material = {
+  "marko-cerovac/material.nvim",
+  lazy = false,
   priority = 1000,
   config = function()
-    vim.g.gruvbox_material_background = "hard"
-    vim.g.gruvbox_material_better_performance = 1
-    vim.g.gruvbox_material_cursor = "orange"
-    vim.g.gruvbox_material_ui_contrast = "high"
-    vim.g.gruvbox_material_foreground = "original"
-    vim.cmd.colorscheme("gruvbox-material")
+    vim.g.material_style = "darker"
+    vim.cmd("colorscheme material")
+    vim.cmd("hi CursorLine gui=bold cterm=bold")
   end,
 }
 
 return {
-  gruvbox_material,
+  material,
 }

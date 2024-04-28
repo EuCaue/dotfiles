@@ -1,6 +1,6 @@
 # quick config files
-alias afg='nvim ~/.config/alacritty/alacritty.toml'
-alias cfg='cd ~/.config/fish/ && nvim ~/.config/fish/config.fish && cd'
+alias afg='nvim ~/.config/alacritty/alacritty.toml && prevd'
+alias cfg='cd ~/.config/fish/ && nvim ~/.config/fish/config.fish && prevd'
 alias nfg='cd ~/.config/nvim/ && nvim ~/.config/nvim/init.lua && prevd'
 alias tfg='cd ~/.config/tmux/ && nvim ~/.config/tmux/tmux.conf && prevd'
 
@@ -10,17 +10,13 @@ alias cl="cd && c"
 
 # git
 alias g="git"
+alias gu="gitu"
 
 # better ls
 alias la='exa -l -a -g --icons -h --group-directories-first --sort modified --reverse '
 alias lll='ls'
 alias ls='exa -l -g --icons -h --group-directories-first --sort modified --reverse '
 alias lc="ls | wc -l"
-
-# pomodoro aliases
-alias pbr="pomo 'break'"
-alias pla="pomo 'lang'"
-alias pwo="pomo 'work'"
 
 # better rm
 alias rl='trash list'

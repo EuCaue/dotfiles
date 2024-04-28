@@ -9,9 +9,6 @@ return {
         inc_rename = true,
         lsp_doc_border = true,
       },
-      popupmenu = {
-        backend = "cmp", -- backend to use to show regular cmdline completions
-      },
       routes = {
         filter = {
           event = "notify",

@@ -19,21 +19,6 @@ autocmd({ "BufWinEnter" }, {
   end,
 })
 
--- Applying transparency
--- autocmd("VimEnter", {
---   group = augroup("ColorSchemeVimEnter"),
---   callback = function()
---     vim.cmd("Transparent")
---   end,
--- })
---
--- autocmd("ColorScheme", {
---   group = augroup("ColorScheme"),
---   callback = function()
---     vim.cmd("Transparent")
---   end,
--- })
-
 vim.cmd([[
 autocmd BufEnter * silent! :lcd %:p:r
 ]]) -- for netrw
