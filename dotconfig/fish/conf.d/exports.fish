@@ -14,7 +14,7 @@ set -xg VISUAL nvim
 set -xg _ZO_MAXAGE 200000
 
 # mac font rendering
-set -xg FREETYPE_PROPERTIES "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0 autofitter:darkening-parameters=500,0,1000,400,1250,250,1500,0"
+set -xg FREETYPE_PROPERTIES "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0 autofitter:darkening-parameters=500,0,1000,400,1250,250,1500,0 autohinter:no-stem-darkening=0"
 
 # enable mouse 
 set -xg LESS --mouse

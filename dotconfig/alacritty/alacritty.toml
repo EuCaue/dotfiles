@@ -1,35 +1,34 @@
-# Material Darker
+# Everblush
+# Default colors
 [colors.primary]
-background = '#212121'
-foreground = '#EEFFFF'
-
-[colors.normal]
-black = '#212121'
-red = '#F07178'
-green = '#C3E88D'
-yellow = '#FFCB6B'
-blue = '#82AAFF'
-magenta = '#C792EA'
-cyan = '#89DDFF'
-white = '#EEFFFF'
-
-[colors.bright]
-black = '#303030'
-red = '#F07178'
-green = '#C3E88D'
-yellow = '#FFCB6B'
-blue = '#82AAFF'
-magenta = '#C792EA'
-cyan = '#89DDFF'
-white = '#FFFFFF'
+background = '#141b1e'
+foreground = '#dadada'
 
 [colors.cursor]
-text = '#212121'
-cursor = '#EEFFFF'
+text = '#dadada'
+cursor = '#dadada'
 
-[colors.selection]
-text = '#EEFFFF'
-background = '#4A4A4A'
+# Normal colors
+[colors.normal]
+black = '#232a2d'
+red = '#e57474'
+green = '#8ccf7e'
+yellow = '#e5c76b'
+blue = '#67b0e8'
+magenta = '#c47fd5'
+cyan = '#6cbfbf'
+white = '#b3b9b8'
+
+# Bright colors
+[colors.bright]
+black = '#2d3437'
+red = '#ef7e7e'
+green = '#96d988'
+yellow = '#f4d67a'
+blue = '#71baf2'
+magenta = '#ce89df'
+cyan = '#67cbe7'
+white = '#bdc3c2'
 
 [cursor]
 blink_interval = 645
@@ -44,17 +43,20 @@ shape = "Block"
 TERM = "alacritty"
 
 [font]
+glyph_offset = { x = 1, y = 1 }
 builtin_box_drawing = true
 
 [colors]
 draw_bold_text_with_bright_colors = true
 
 [window]
-startup_mode = "Windowed"
+startup_mode = "Maximized"
+dynamic_padding = true
 
 [window.padding]
 x = 10
 y = 0
+
 
 [bell]
 animation = "EaseOutCubic"

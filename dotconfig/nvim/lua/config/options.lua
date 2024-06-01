@@ -12,6 +12,9 @@ opt.scrolloff = 8 -- Lines of context
 opt.sidescrolloff = 8 -- Columns of context
 opt.relativenumber = false -- disable relative number
 opt.colorcolumn = "80"
+opt.inccommand = "split" -- inc in split view
+opt.jumpoptions = "stack,view"
+opt.undofile = true -- enable persistent undo
 
 g.markdown_folding = 1 -- enable markdown folding
 g.lazyvim_python_lsp = "basedpyright" -- basedpyright as python lsp

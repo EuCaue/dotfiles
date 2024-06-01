@@ -6,7 +6,13 @@ return {
       keys[#keys + 1] = { "<leader>ch", "<cmd>ToggleInlayHints<cr>", desc = "Toggle Inlay Hints" }
     end,
     opts = {
+      inlay_hints = {
+        enabled = false,
+      },
       servers = {
+        ["bashls"] = {
+          filetypes = { "sh", "zsh", "bash" },
+        },
         ["ltex"] = {
           autostart = false,
           settings = {
@@ -19,81 +25,55 @@ return {
     },
   },
   {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        zsh = { "shfmt" },
+        bash = { "shfmt" },
+      },
+    },
+  },
+
+  {
+    "akinsho/flutter-tools.nvim",
+    ft = "dart",
+    config = true,
+  },
+  {
+    "luckasRanarison/tailwind-tools.nvim",
+    opts = {
+      document_color = {
+        kind = "background", -- "inline" | "foreground" | "background"
+      },
+      conceal = {
+        enabled = true,
+      },
+    },
+    cond = function()
+      return LazyVim.extras.wants({
+        root = {
+          "tailwind.config.js",
+          "tailwind.config.cjs",
+          "tailwind.config.mjs",
+          "tailwind.config.ts",
+          "postcss.config.js",
+          "postcss.config.cjs",
+          "postcss.config.mjs",
+          "postcss.config.ts",
+        },
+      })
+    end,
+  },
+  {
+    "echasnovski/mini.surround",
+    opts = {
+      search_method = "cover_or_nearest",
+    },
+  },
+  {
     "dmmulroy/ts-error-translator.nvim",
     ft = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
     opts = {},
-  },
-  {
-    "numToStr/Comment.nvim",
-    event = "VeryLazy",
-    keys = {
-      {
-        "gcmh",
-        function()
-          vim.cmd("norm gcO HACK:  ")
-          vim.cmd("startinsert")
-        end,
-        mode = "n",
-        desc = "Create a hack comment",
-      },
-      {
-        "gcmn",
-        function()
-          vim.cmd("norm gcO NOTE:  ")
-          vim.cmd("startinsert")
-        end,
-        mode = "n",
-        desc = "Create a note comment",
-      },
-      {
-        "gcmt",
-        function()
-          vim.cmd("norm gcO TODO:  ")
-          vim.cmd("startinsert")
-        end,
-        mode = "n",
-        desc = "Create a todo comment",
-      },
-      {
-        "gcmf",
-        function()
-          vim.cmd("norm gcO FIX:  ")
-          vim.cmd("startinsert")
-        end,
-        mode = "n",
-        desc = "Create a fix comment",
-      },
-      {
-        "gcmb",
-        function()
-          vim.cmd("norm gcO BUG:  ")
-          vim.cmd("startinsert")
-        end,
-        mode = "n",
-        desc = "Create a bug comment",
-      },
-      {
-        "]t",
-        function()
-          require("todo-comments").jump_next()
-        end,
-        mode = "n",
-        desc = "Next todo comment",
-      },
-      {
-        "[t",
-        function()
-          require("todo-comments").jump_prev()
-        end,
-        mode = "n",
-        desc = "Previous todo comment",
-      },
-    },
-    opts = {
-      pre_hook = function()
-        return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
-      end,
-    },
   },
   {
     "kndndrj/nvim-dbee",
@@ -133,11 +113,12 @@ return {
       table.insert(opts.sources, 1, { name = "nvim_lsp", priority = 150, group_index = 1 })
       table.insert(opts.sources, { name = "async_path", priority = 150, group_index = 1 })
 
-      opts.completion.autocomplete = false
-
       opts.window = {
         completion = { scrollbar = false },
       }
+    end,
+    keys = function()
+      return {}
     end,
   },
 
@@ -146,6 +127,7 @@ return {
     opts = {
       ensure_installed = {
         "stylua",
+        "tailwindcss-language-server",
         "shellcheck",
         "shfmt",
         "markdownlint",
@@ -156,7 +138,7 @@ return {
   {
     "dsznajder/vscode-es7-javascript-react-snippets",
     ft = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-    build = "npm install --frozen-lockfile && npm run compile",
+    build = "yarn install --frozen-lockfile && yarn run compile",
     config = function()
       require("luasnip.loaders.from_vscode").lazy_load()
     end,
@@ -202,9 +184,9 @@ return {
         "codeblock",
         fmt(
           [[```{}
-{}
-```
-]],
+  {}
+  ```
+  ]],
           {
             i(1, "lang"),
             i(2, ""),

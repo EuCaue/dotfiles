@@ -1,3 +1,4 @@
 .null*
 **/tmux/plugins/*
 **/spell
+**/.zsh_history

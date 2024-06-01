@@ -11,6 +11,7 @@ alias cl="cd && c"
 # git
 alias g="git"
 alias gu="gitu"
+alias gui="dnf"
 
 # better ls
 alias la='exa -l -a -g --icons -h --group-directories-first --sort modified --reverse '
@@ -68,15 +69,4 @@ function vf --description "Open selected files in fzf with nvim"
     end
     v $file
     return 0
-end
-
-function pomoc --description "Pomodoro with count" -a count pomo_name
-    if test -z $pomo_name
-        set argv[2] default
-        set pomo_name default
-    end
-    for i in (seq $count)
-        notify-send --expire-time=5000 Pomo "Starting $pomo_name $i/$count"
-        pomof $pomo_name && pomof break
-    end
 end

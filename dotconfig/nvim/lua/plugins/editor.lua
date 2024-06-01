@@ -27,6 +27,25 @@ return {
       },
     },
   },
+
+  {
+    "uga-rosa/ccc.nvim",
+    cmd = { "CccHighlighterToggle", "CccPick", "CccConvert" },
+    keys = {
+      {
+        "<leader>uh",
+        "<cmd>CccHighlighterToggle<cr>",
+        desc = "Toggle Highlight Colors",
+      },
+    },
+    opts = {
+      highlighter = {
+        auto_enable = true,
+        lsp = true,
+      },
+    },
+  },
+
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
@@ -53,29 +72,13 @@ return {
       local telescope = require("telescope")
       local fb_actions = require("telescope._extensions.file_browser.actions")
 
-      local function filename_first(_, path)
-        local tail = vim.fs.basename(path)
-        local parent = vim.fs.dirname(path)
-        if parent == "." then
-          return tail
-        end
-        return string.format("%s\t\t%s", tail, parent)
-      end
-
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "TelescopeResults",
-        callback = function(ctx)
-          vim.api.nvim_buf_call(ctx.buf, function()
-            vim.fn.matchadd("TelescopeParent", "\t\t.*$")
-            vim.api.nvim_set_hl(0, "TelescopeParent", { link = "Comment" })
-          end)
-        end,
-      })
-
       opts.defaults = vim.tbl_deep_extend(
         "force",
         opts.defaults,
         require("telescope.themes").get_dropdown({
+          path_display = {
+            "filename_first",
+          },
           previewer = true,
           preview = true,
           borderchars = {
@@ -99,7 +102,6 @@ return {
       )
       opts.pickers = {
         find_files = {
-          path_display = filename_first,
           find_command = {
             "fd",
             "--type",
@@ -108,6 +110,10 @@ return {
             "--follow",
             "--exclude",
             ".git",
+            "--exclude",
+            "node_modules",
+            "--exclude",
+            "dist",
           },
         },
       }
@@ -164,16 +170,23 @@ return {
         },
         {
           name = "Vault",
-          action = "cd $HOME/Documents/vault | ObsidianSearch",
+          action = "cd $HOME/Documents/vault | ObsidianQuickSwitch",
           section = string.rep(" ", 22) .. "Telescope",
         },
       }
       vim.list_extend(opts.items, items)
+      local cwd = vim.fn.getcwd()
+      local start = string.find(cwd, "Personal")
+      if start then
+        vim.schedule(function()
+          require("persistence").load()
+        end)
+      end
     end,
   },
   {
     "chrishrb/gx.nvim",
-    keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },
+    keys = { { "<leader>gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },
     cmd = { "Browse" },
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {

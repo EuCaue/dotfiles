@@ -7,10 +7,10 @@ return {
   { "windwp/nvim-ts-autotag", enabled = false },
   { "rcarriga/nvim-notify", enabled = false },
   { "akinsho/bufferline.nvim", enabled = false },
-  -- { "folke/trouble.nvim", enabled = false },
-  -- { "folke/tokyonight.nvim", enabled = false },
-  { "catppuccin/nvim", enabled = false },
+  { "folke/tokyonight.nvim", enabled = false },
+  { "catppuccin/nvim", name = "catppuccin", enabled = false },
   { "rafamadriz/friendly-snippets", enabled = false },
   { "lukas-reineke/headlines.nvim", enabled = false },
   { "echasnovski/mini.comment", enabled = false },
+  { "garymjr/nvim-snippets", enabled = false },
 }

@@ -45,4 +45,4 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dreverse
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/home/caue/\x2ebun/bin\x1e/home/caue/\x2elocal/bin\x1e/home/caue/\x2ecargo/bin\x1e/home/caue/dotfiles/scripts
+SETUVAR fish_user_paths:/home/caue/\x2elocal/bin/flutter/bin\x1e/home/caue/\x2ebun/bin\x1e/home/caue/\x2elocal/bin\x1e/home/caue/\x2ecargo/bin\x1e/home/caue/dotfiles/scripts

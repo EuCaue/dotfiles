@@ -12,10 +12,11 @@ autocmd({ "TextYankPost" }, {
   end,
 })
 
--- better commments format
+-- better commments format and make CursorLine bold
 autocmd({ "BufWinEnter" }, {
   callback = function()
     vim.cmd("set formatoptions-=cro")
+    vim.cmd("hi CursorLine gui=bold cterm=bold")
   end,
 })
 

@@ -53,7 +53,7 @@ cmd("Run", function()
 end, {})
 
 cmd("ToggleInlayHints", function()
-  vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
 end, {})
 
 cmd("Ha", function()
@@ -79,5 +79,6 @@ cmd("LtexLangChangeLanguage", function(data)
   end
 end, {
   nargs = 1,
+  desc = "Change Ltex Langunage",
   force = true,
 })
