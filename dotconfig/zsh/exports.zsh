@@ -26,13 +26,16 @@ export FZF_DEFAULT_COMMAND=fd
 
 # FZF Theme
 export FZF_DEFAULT_OPTS='
-  --color fg:#5d6466,bg:#1e2527
-  --color bg+:#ef7d7d,fg+:#2c2f30
-  --color hl:#dadada,hl+:#26292a,gutter:#1e2527
-  --color pointer:#373d49,info:#606672
+  --color fg:bright-white,bg:black
+  --color fg+:cyan,bg+:black
+  --color hl:bright-yellow,hl+:bright-green
+  --color pointer:red,info:bright-yellow
   --border
-  --color border:#1e2527
-  --height 13'
+  --color border:bright-blue
+  '
+
+export FZF_DEFAULT_COMMAND="rg --files --hidden --follow"
+export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
 # Add paths
-export PATH="$HOME/.local/bin:$HOME/dotfiles/scripts:$HOME/.cargo/bin:$HOME/.bun/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/dotfiles/scripts:$HOME/.cargo/bin:$HOME/.bun/bin:$PATH:$HOME/.local/bin/flutter/bin"

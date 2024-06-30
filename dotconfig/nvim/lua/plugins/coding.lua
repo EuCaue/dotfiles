@@ -13,13 +13,8 @@ return {
         ["bashls"] = {
           filetypes = { "sh", "zsh", "bash" },
         },
-        ["ltex"] = {
-          autostart = false,
-          settings = {
-            ltex = {
-              language = "en-US",
-            },
-          },
+        ["marksman"] = {
+          enabled = false,
         },
       },
     },
@@ -43,7 +38,7 @@ return {
     "luckasRanarison/tailwind-tools.nvim",
     opts = {
       document_color = {
-        kind = "background", -- "inline" | "foreground" | "background"
+        kind = "background",
       },
       conceal = {
         enabled = true,

@@ -7,51 +7,34 @@ local material = {
   },
   {
     "marko-cerovac/material.nvim",
-    lazy = false,
+    lazy = true,
     priority = 1000,
     config = function()
       vim.g.material_style = "darker"
-      vim.cmd("colorscheme material")
+      vim.cmd("colorscheme material-darker")
     end,
   },
 }
 
-local t = {
-  "dasupradyumna/midnight.nvim",
-  lazy = false,
-  priority = 1000,
-  config = function()
-    -- Lua
-    require("midnight").setup({
-      LspInlayHint = {
-        link = "Namespace",
-      },
-    })
-    vim.cmd.colorscheme("midnight")
-  end,
-}
-
-local ever = {
+local night = {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "everblush",
+      colorscheme = "night-owl",
     },
   },
   {
-    "Everblush/nvim",
-    name = "everblush",
+    "oxfist/night-owl.nvim",
+    lazy = false,
+    priority = 1000,
     config = function()
-      require("everblush").setup({
-        override = {
-          IblIndent = { fg = "comment" },
-        },
-      })
-      vim.cmd("colorscheme everblush")
+      require("night-owl").setup()
+      vim.cmd.colorscheme("night-owl")
     end,
   },
 }
 
 return {
-  ever,
+  material,
+  night,
 }

@@ -37,7 +37,7 @@ map("i", "<C-BS>", "<C-w>", get_opts("Delete a word backward"))
 map("n", "dd", function()
   return vim.api.nvim_get_current_line():match("^%s*$") and '"_dd' or "dd"
 end, get_opts("Smarter DD", true))
-
+map({"n", "x"}, '<m-/>', "<esc>/\\%V", get_opts("Search within selection"))
 map("n", "<C-S-l>", "<cmd>vertical resize -2<cr>", get_opts("Decrease Window Width"))
 map("n", "<C-S-h>", "<cmd>vertical resize +2<cr>", get_opts("Increase Window Width"))
 map("n", "<C-S-j>", "<cmd>resize -2<cr>", get_opts("Decrease Window Height"))

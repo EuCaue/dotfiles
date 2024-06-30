@@ -18,3 +18,4 @@ opt.undofile = true -- enable persistent undo
 
 g.markdown_folding = 1 -- enable markdown folding
 g.lazyvim_python_lsp = "basedpyright" -- basedpyright as python lsp
+g.lazyvim_picker = "telescope"

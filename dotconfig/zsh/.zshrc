@@ -9,7 +9,7 @@ plug "zsh-users/zsh-autosuggestions"
 plug "zap-zsh/supercharge"
 plug "z-shell/F-Sy-H"
 plug 'wfxr/forgit'
-plug "jeffreytse/zsh-vi-mode"
+# plug "jeffreytse/zsh-vi-mode"
 plug "$ZDOTDIR/alias.zsh"
 plug "$ZDOTDIR/exports.zsh"
 plug "$ZDOTDIR/keybinds.zsh"
@@ -17,6 +17,7 @@ plug "$ZDOTDIR/fix.zsh"
 plug "$ZDOTDIR/dot-dot.zsh"
 plug "$ZDOTDIR/sudo-it.zsh"
 plug "/usr/share/fzf/shell/completion.zsh"
+plug "/usr/share/fzf/shell/key-bindings.zsh"
 plug "MenkeTechnologies/zsh-cargo-completion"
 
 # setopt
@@ -34,13 +35,6 @@ _git-bc() {
 
 compdef _git-bc git-bc
 
-# Load zsh-completions if installed manually
-fpath+=~/.zsh/zsh-completions/src
-
-# Enable completion system
-autoload -U compinit
-compinit
-
 if [ $(command -v procs) ]; then
 	zstyle ':completion:*:*:kill:*:processes' command 'procs'
 else
@@ -48,7 +42,8 @@ else
 fi
 
 zstyle ':completion:*:*:git:*' user-commands bc:'Checkout or switch to a branch'
-# eval
+
+# eval's
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 

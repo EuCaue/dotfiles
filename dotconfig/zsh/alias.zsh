@@ -5,6 +5,7 @@ alias afg='nvim ~/.config/alacritty/alacritty.toml'
 alias cfg='cd ~/.config/zsh/ && nvim ~/.config/zsh/.zshrc && cd -'
 alias nfg='cd ~/.config/nvim/ && nvim ~/.config/nvim/init.lua && cd -'
 alias tfg='cd ~/.config/tmux/ && nvim ~/.config/tmux/tmux.conf && cd -'
+alias disable_keyboard="sudo evtest --grab /dev/input/event3 > /dev/null 2>&1"
 
 # clear
 alias c="clear"
@@ -26,7 +27,6 @@ alias rm='trash put'
 alias rr="trash restore"
 
 # system
-alias li='free -h && sudo limpante && free -h'
 alias update-grub="sudo grub2-mkconfig -o /etc/grub2.cfg && sudo grub2-mkconfig -o /etc/grub2-efi.cfg"
 
 # nvim
@@ -49,7 +49,7 @@ mx() {
 }
 
 # extract files
-extract() {
+x() {
 	for archive in "$@"; do
 		if [ -f "$archive" ]; then
 			case $archive in
