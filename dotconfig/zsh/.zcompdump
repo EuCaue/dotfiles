@@ -1,4 +1,4 @@
-#files: 1023	version: 5.9
+#files: 1024	version: 5.9
 
 _comps=(
 '-' '_precommand'
@@ -399,6 +399,7 @@ _comps=(
 'eza' '_eza'
 'fakeroot' '_fakeroot'
 'false' '_nothing'
+'fast-theme' '_fast-theme'
 'fc' '_fc'
 'fc-list' '_xft_fonts'
 'fc-match' '_xft_fonts'
@@ -2104,7 +2105,7 @@ autoload -Uz _alacritty _bat _bluetoothctl _bootctl _busctl \
             _zip _zle _zlogin _zmodload _zmv \
             _zoneadm _zones _zparseopts _zpty _zsh \
             _zsh-mime-handler _zsocket _zstyle _ztodo _zypper \
-            _git-bc _zap
+            _git-bc _zap _fast-theme
 autoload -Uz +X _call_program
 
 typeset -gUa _comp_assocs

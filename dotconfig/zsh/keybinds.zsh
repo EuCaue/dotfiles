@@ -4,3 +4,4 @@ bindkey -s '\en' 'tmux new -s "$(basename "$PWD")"^M'
 bindkey -s '\et' '~/.config/tmux/plugins/tmux-session-wizard/bin/t^M'
 bindkey -s '\ea' 'tmux attach'
 bindkey -s '\ez' '^uzi^M'
+source "/usr/share/fzf/shell/key-bindings.zsh"

@@ -1,90 +1,85 @@
 # Material Darker
-# [colors.primary]
-# background = '#212121'
-# foreground = '#EEFFFF'
-#
-# [colors.normal]
-# black = '#212121'
-# red = '#F07178'
-# green = '#C3E88D'
-# yellow = '#FFCB6B'
-# blue = '#82AAFF'
-# magenta = '#C792EA'
-# cyan = '#89DDFF'
-# white = '#EEFFFF'
-#
-# [colors.bright]
-# black = '#303030'
-# red = '#F07178'
-# green = '#C3E88D'
-# yellow = '#FFCB6B'
-# blue = '#82AAFF'
-# magenta = '#C792EA'
-# cyan = '#89DDFF'
-# white = '#FFFFFF'
-#
-# [colors.cursor]
-# text = '#212121'
-# cursor = '#EEFFFF'
-#
-# [colors.selection]
-# text = '#EEFFFF'
-# background = '#4A4A4A'
+[colors.primary]
+background = '#212121'
+foreground = '#EEFFFF'
+
+[colors.normal]
+black = '#212121'
+red = '#F07178'
+green = '#C3E88D'
+yellow = '#FFCB6B'
+blue = '#82AAFF'
+magenta = '#C792EA'
+cyan = '#89DDFF'
+white = '#EEFFFF'
+
+[colors.bright]
+black = '#303030'
+red = '#F07178'
+green = '#C3E88D'
+yellow = '#FFCB6B'
+blue = '#82AAFF'
+magenta = '#C792EA'
+cyan = '#89DDFF'
+white = '#FFFFFF'
+
+[colors.cursor]
+text = '#212121'
+cursor = '#EEFFFF'
+
+[colors.selection]
+text = '#EEFFFF'
+background = '#4A4A4A'
 
 # Night Owl
-# Default colors
-[colors.primary]
-background = "#011627"
-foreground = "#d6deeb"
-
-# Cursor colors
-[colors.cursor]
-text = "CellBackground"
-cursor = "CellForeground"
-
-[colors.vi_mode_cursor]
-text = "CellBackground"
-cursor = "#22da6e"
-
-# Search colors
-[colors.search.matches]
-foreground = "#000000"
-background = "#22da6e"
-
-[colors.search.focused_match]
-foreground = "#ffffff"
-background = "#22da6e"
-
-[colors.footer_bar]
-foreground = "#ffffff"
-background = "#1d3b53"
-
-# Selection colors
-[colors.selection]
-text = "#ffffff"
-background = "#0d486e"
-
-# Normal colors
-[colors.normal]
-black = "#011627"
-red = "#EF5350"
-green = "#22da6e"
-yellow = "#c5e478"
-blue = "#82AAFF"
-magenta = "#C792EA"
-cyan = "#21c7a8"
-white = "#ffffff"
-
-# Bright colors
-[colors.bright]
-black = "#575656"
-red = "#EF5350"
-green = "#22da6e"
-yellow = "#ffeb95"
-blue = "#82AAFF"
-magenta = "#C792EA"
-cyan = "#7fdbca"
-white = "#ffffff"
+# [colors.primary]
+# background = "#011627"
+# foreground = "#d6deeb"
+#
+# [colors.cursor]
+# text = "CellBackground"
+# cursor = "CellForeground"
+#
+# [colors.vi_mode_cursor]
+# text = "CellBackground"
+# cursor = "#22da6e"
+#
+# # Search colors
+# [colors.search.matches]
+# foreground = "#000000"
+# background = "#22da6e"
+#
+# [colors.search.focused_match]
+# foreground = "#ffffff"
+# background = "#22da6e"
+#
+# [colors.footer_bar]
+# foreground = "#ffffff"
+# background = "#1d3b53"
+#
+# [colors.selection]
+# text = "#ffffff"
+# background = "#0d486e"
+#
+# [colors.normal]
+# black = "#011627"
+# red = "#EF5350"
+# green = "#22da6e"
+# yellow = "#c5e478"
+# blue = "#82AAFF"
+# magenta = "#C792EA"
+# cyan = "#21c7a8"
+# white = "#ffffff"
+#
+# [colors.bright]
+# black = "#575656"
+# red = "#EF5350"
+# green = "#22da6e"
+# yellow = "#ffeb95"
+# blue = "#82AAFF"
+# magenta = "#C792EA"
+# cyan = "#7fdbca"
+# white = "#ffffff"
 
 [cursor]
 blink_interval = 645
@@ -107,12 +102,8 @@ draw_bold_text_with_bright_colors = true
 [window]
 startup_mode = "Maximized"
 dynamic_padding = true
+decorations = "none"
 
 [window.padding]
 x = 10
 y = 0
-
-
-[bell]
-animation = "EaseOutCubic"
-duration = 158

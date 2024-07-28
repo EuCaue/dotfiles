@@ -16,7 +16,6 @@ autocmd({ "TextYankPost" }, {
 autocmd({ "BufWinEnter" }, {
   callback = function()
     vim.cmd("set formatoptions-=cro")
-    vim.cmd("hi CursorLine gui=bold cterm=bold")
   end,
 })
 

@@ -31,7 +31,7 @@ map("", "q", "<Nop>", get_opts("remove default q keymap"))
 map("n", "<leader>q", "<cmd>bp | sp | bn | bd<cr>", get_opts("Close current buffer"))
 map("n", "<leader>Q", "<cmd>qa!<cr>", get_opts("Quit all"))
 map("n", "<leader>a", "gg<S-v>G", get_opts("Select all text in the buffer"))
-map("n", "<BS>", "ciw", get_opts("Cut the inner word"))
+map("n", "<BS>", '"_ciw', get_opts("Cut the inner word"))
 map("n", "vv", "viw", get_opts("Select word under cursor"))
 map("i", "<C-BS>", "<C-w>", get_opts("Delete a word backward"))
 map("n", "dd", function()
@@ -57,7 +57,7 @@ map("n", "<leader>re", ":%s//<Left>", get_opts("Rename with substitute command")
 map(
   { "n", "v", "x" },
   "<leader>mc",
-  [[:s/\v\[( |x)?\]/\=submatch(0) == '[ ]' ? '[x]' : '[ ]'<CR>:nohlsearch<CR>:nohl<CR>]],
+  [[:s/\v\[( |x)?\]/\=submatch(0) == '[ ]' ? '[x]' : '[ ]'<CR>:nohlsearch<CR>:nohl<CR>:w<CR>]],
   get_opts("Check/Uncheck todo")
 )
 

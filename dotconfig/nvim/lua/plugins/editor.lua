@@ -2,13 +2,18 @@ return {
   {
     "folke/which-key.nvim",
     opts = function(_, opts)
-      opts.defaults["<leader>r"] = { name = "+rename" }
-      opts.defaults["<leader>m"] = { name = "+markdown" }
+      opts.spec = vim.tbl_deep_extend("force", opts.spec, {
+        { "<leader>m", group = "markdown" },
+        { "<leader>r", group = "rename" },
+      })
     end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
+      highlight = {
+        additional_vim_regex_highlighting = true,
+      },
       indent = {
         enable = true,
         disable = {
@@ -73,6 +78,7 @@ return {
         end,
         desc = "File Browser",
       },
+      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files (Root Dir)" },
     },
     config = function(_, opts)
       local telescope = require("telescope")
@@ -103,6 +109,7 @@ return {
             "--column",
             "--smart-case",
             "--hidden",
+            "--glob=!.git/",
           },
         })
       )
@@ -114,12 +121,8 @@ return {
             "f",
             "--hidden",
             "--follow",
-            "--exclude",
-            ".git",
-            "--exclude",
-            "node_modules",
-            "--exclude",
-            "dist",
+            "--ignore-file",
+            "/home/caue/.config/fd/ignore",
           },
         },
       }
@@ -157,11 +160,11 @@ return {
       "TmuxNavigatePrevious",
     },
     keys = {
-      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
-      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+      { "<c-\\>", "<cmd>TmuxNavigatePrevious<cr>", mode = {"i", "n"} },
+      { "<c-h>", "<cmd>TmuxNavigateLeft<cr>", mode = { "i", "n" } },
+      { "<c-j>", "<cmd>TmuxNavigateDown<cr>", mode = { "i", "n" } },
+      { "<c-k>", "<cmd>TmuxNavigateUp<cr>", mode = { "i", "n" } },
+      { "<c-l>", "<cmd>TmuxNavigateRight<cr>", mode = { "i", "n" } },
     },
   },
   {

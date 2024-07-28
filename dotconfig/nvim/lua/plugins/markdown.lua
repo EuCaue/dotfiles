@@ -1,4 +1,6 @@
 return {
+
+  { dir = "~/Code/lua/todo-priority.nvim", dev = true, opts = {} },
   {
     "iamcco/markdown-preview.nvim",
     config = function()
@@ -95,14 +97,14 @@ return {
         desc = "Create new note",
       },
     },
-    event = {
-      "BufReadPre " .. vim.fn.expand("~") .. "/Documents/vault/**.md",
-      "BufNewFile " .. vim.fn.expand("~") .. "/Documents/vault/**.md",
-    },
+    ft = "markdown",
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
     opts = {
+      ui = {
+        external_link_icon = { icon = "" },
+      },
       note_id_func = function(title)
         return title or ("new-note-" .. os.time())
       end,
@@ -172,28 +174,8 @@ return {
             rendered = 2,
           },
         },
-        markdown_query = [[
-            (atx_heading [
-                (atx_h1_marker)
-                (atx_h2_marker)
-                (atx_h3_marker)
-                (atx_h4_marker)
-                (atx_h5_marker)
-                (atx_h6_marker)
-            ] @heading)
-
-            (thematic_break) @dash
-
-            (fenced_code_block) @code
-
-            (block_quote (block_quote_marker) @quote_marker)
-            (block_quote (paragraph (inline (block_continuation) @quote_marker)))
-
-            (pipe_table) @table
-            (pipe_table_header) @table_head
-            (pipe_table_delimiter_row) @table_delim
-            (pipe_table_row) @table_row
-        ]],
+        checkbox = { enabled = false },
+        bullet = { enabled = false },
       })
     end,
   },

@@ -28,6 +28,11 @@ alias rr="trash restore"
 
 # system
 alias update-grub="sudo grub2-mkconfig -o /etc/grub2.cfg && sudo grub2-mkconfig -o /etc/grub2-efi.cfg"
+alias ls-font='fc-list --format="%{family}\\n" | cut -d , -f 1 | sort | uniq | fzf'
+alias set-cursor-theme='gsettings set org.gnome.desktop.interface cursor-theme '
+alias set-cursor-size='gsettings set org.gnome.desktop.interface cursor-size '
+alias get-cursor-theme='gsettings get org.gnome.desktop.interface cursor-theme'
+alias get-cursor-size='gsettings get org.gnome.desktop.interface cursor-size'
 
 # nvim
 alias vi='nvim'

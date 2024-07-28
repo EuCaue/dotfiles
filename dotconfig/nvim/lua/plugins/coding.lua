@@ -107,9 +107,25 @@ return {
 
       table.insert(opts.sources, 1, { name = "nvim_lsp", priority = 150, group_index = 1 })
       table.insert(opts.sources, { name = "async_path", priority = 150, group_index = 1 })
-
+      opts.formatting = {
+        fields = { "kind", "abbr", "menu" },
+        format = function(entry, vim_item)
+          local mini_icon, _, _ = require("mini.icons").get("lsp", vim_item.kind)
+          local icon = mini_icon .. " "
+          vim_item.kind = icon
+          vim_item.menu = ({
+            nvim_lsp = "",
+            async_path = "",
+          })[entry.source.name]
+          return vim_item
+        end,
+      }
+      opts.experimental = {
+        ghost_text = false,
+      }
       opts.window = {
-        completion = { scrollbar = false },
+        completion = { scrollbar = false, border = "rounded" },
+        documentatin = { border = "rounded" },
       }
     end,
     keys = function()
