@@ -16,9 +16,9 @@ alias g="git"
 alias gu="gitu"
 
 # better ls
-alias la='exa -l -a -g --icons -h --group-directories-first --sort modified --reverse '
+alias la='exa -l -a -g --icons -h --group-directories-first --sort modified --reverse --hyperlink'
 alias lll='ls'
-alias ls='exa -l -g --icons -h --group-directories-first --sort modified --reverse '
+alias ls='exa -l -g --icons -h --group-directories-first --sort modified --reverse --hyperlink'
 alias lc="ls | wc -l"
 
 # better rm

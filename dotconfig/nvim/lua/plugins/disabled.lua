@@ -16,4 +16,5 @@ return {
   { "rcarriga/nvim-notify", enabled = false },
   { "saadparwaiz1/cmp_luasnip", enabled = false },
   { "windwp/nvim-ts-autotag", enabled = false },
+  {"folke/noice.nvim", enabled = false}
 }

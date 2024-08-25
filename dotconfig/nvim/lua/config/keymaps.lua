@@ -26,6 +26,14 @@ for _, tag in pairs(commentsTags) do
   end, get_opts("Create a " .. tag_text .. " comment"))
 end
 
+--  TODO: think about that
+-- vim.keymap.set("i", "uu", "_")
+-- vim.keymap.set("i", "öö", "{")
+-- vim.keymap.set("i", "ää", "}")
+-- vim.keymap.set("i", "üü", "[")
+-- vim.keymap.set("i", "++", "]")
+-- vim.keymap.set("i", "hh", "=>")
+
 map("n", "<space>R", "q", get_opts("R to q"))
 map("", "q", "<Nop>", get_opts("remove default q keymap"))
 map("n", "<leader>q", "<cmd>bp | sp | bn | bd<cr>", get_opts("Close current buffer"))
@@ -37,11 +45,12 @@ map("i", "<C-BS>", "<C-w>", get_opts("Delete a word backward"))
 map("n", "dd", function()
   return vim.api.nvim_get_current_line():match("^%s*$") and '"_dd' or "dd"
 end, get_opts("Smarter DD", true))
-map({"n", "x"}, '<m-/>', "<esc>/\\%V", get_opts("Search within selection"))
+map({ "n", "x" }, "<m-/>", "<esc>/\\%V", get_opts("Search within selection"))
 map("n", "<C-S-l>", "<cmd>vertical resize -2<cr>", get_opts("Decrease Window Width"))
 map("n", "<C-S-h>", "<cmd>vertical resize +2<cr>", get_opts("Increase Window Width"))
 map("n", "<C-S-j>", "<cmd>resize -2<cr>", get_opts("Decrease Window Height"))
 map("n", "<C-S-k>", "<cmd>resize +2<cr>", get_opts("Increase Window Height"))
+map("n", "<CR>", "^", get_opts("Move to the first non-blank char"))
 
 -- Better system clipboard
 map({ "n", "v" }, "<leader>y", '"+y', get_opts("Copy to system clipboard"))

@@ -1,4 +1,5 @@
 export ZDOTDIR=$HOME/.config/zsh
+export ZK_NOTEBOOK_DIR="$HOME/Documents/vault/zk"
 CURSOR_THEME=$(gsettings get org.gnome.desktop.interface cursor-theme | tr -d "'")
 CURSOR_SIZE=$(gsettings get org.gnome.desktop.interface cursor-size)
 

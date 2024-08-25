@@ -83,8 +83,7 @@ background = '#4A4A4A'
 
 [cursor]
 blink_interval = 645
-blink_timeout = 5
-# thickness = 1.00
+blink_timeout = 255
 
 [cursor.style]
 blinking = "Always"

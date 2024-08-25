@@ -40,25 +40,8 @@ return {
   },
 
   {
-    "uga-rosa/ccc.nvim",
-    cmd = { "CccHighlighterToggle", "CccPick", "CccConvert" },
-    keys = {
-      {
-        "<leader>uh",
-        "<cmd>CccHighlighterToggle<cr>",
-        desc = "Toggle Highlight Colors",
-      },
-    },
-    opts = {
-      highlighter = {
-        auto_enable = true,
-        lsp = true,
-      },
-    },
-  },
-
-  {
     "nvim-telescope/telescope.nvim",
+    enabled = false,
     dependencies = {
       "nvim-telescope/telescope-file-browser.nvim",
       "jvgrootveld/telescope-zoxide",
@@ -122,7 +105,7 @@ return {
             "--hidden",
             "--follow",
             "--ignore-file",
-            "/home/caue/.config/fd/ignore",
+            "$HOME/.config/fd/ignore",
           },
         },
       }

@@ -34,8 +34,10 @@ return {
     ft = "dart",
     config = true,
   },
+
   {
     "luckasRanarison/tailwind-tools.nvim",
+    enabled = true,
     opts = {
       document_color = {
         kind = "background",

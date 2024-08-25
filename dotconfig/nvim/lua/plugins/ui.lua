@@ -19,10 +19,10 @@ return {
     },
   },
 
-  {
-    "dressing.nvim",
-    opts = {},
-  },
+  -- {
+  --   "dressing.nvim",
+  --   opts = {},
+  -- },
   {
     "nvim-lualine/lualine.nvim",
     opts = function()

@@ -16,9 +16,6 @@ local material = {
           cursor_line = true, -- Enable darker background for the cursor line
           lsp_virtual_text = true, -- Enable contrasted background for lsp virtual text
         },
-        high_visibility = {
-          darker = true, -- Enable higher contrast text for darker style
-        },
       })
       vim.cmd("colorscheme material-darker")
     end,
