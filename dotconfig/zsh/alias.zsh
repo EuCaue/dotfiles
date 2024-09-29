@@ -5,7 +5,7 @@ alias afg='nvim ~/.config/alacritty/alacritty.toml'
 alias cfg='cd ~/.config/zsh/ && nvim ~/.config/zsh/.zshrc && cd -'
 alias nfg='cd ~/.config/nvim/ && nvim ~/.config/nvim/init.lua && cd -'
 alias tfg='cd ~/.config/tmux/ && nvim ~/.config/tmux/tmux.conf && cd -'
-alias disable_keyboard="sudo evtest --grab /dev/input/event3 > /dev/null 2>&1"
+alias disable_keyboard="sudo evtest --grab /dev/input/event25 > /dev/null 2>&1"
 
 # clear
 alias c="clear"
@@ -66,6 +66,7 @@ x() {
 			*.tar) tar xvf $archive ;;
 			*.tbz2) tar xvjf $archive ;;
 			*.tgz) tar xvzf $archive ;;
+			*.txz) tar xvzf $archive ;;
 			*.zip) unzip $archive ;;
 			*.Z) uncompress $archive ;;
 			*.7z) 7z x $archive ;;

@@ -1,3 +1,3 @@
-# 💤 LazyVim
+# MyNvim
 
-My custom LazyVim setup.
+Here's my own neovim config! 😊 

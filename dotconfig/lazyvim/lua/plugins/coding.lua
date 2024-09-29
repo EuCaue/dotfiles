@@ -34,33 +34,6 @@ return {
     ft = "dart",
     config = true,
   },
-
-  {
-    "luckasRanarison/tailwind-tools.nvim",
-    enabled = true,
-    opts = {
-      document_color = {
-        kind = "background",
-      },
-      conceal = {
-        enabled = true,
-      },
-    },
-    cond = function()
-      return LazyVim.extras.wants({
-        root = {
-          "tailwind.config.js",
-          "tailwind.config.cjs",
-          "tailwind.config.mjs",
-          "tailwind.config.ts",
-          "postcss.config.js",
-          "postcss.config.cjs",
-          "postcss.config.mjs",
-          "postcss.config.ts",
-        },
-      })
-    end,
-  },
   {
     "echasnovski/mini.surround",
     opts = {

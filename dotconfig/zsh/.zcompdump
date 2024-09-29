@@ -44,6 +44,7 @@ _comps=(
 'ansible-playbook' '_ansible'
 'ansible-pull' '_ansible'
 'ansible-vault' '_ansible'
+'ansifilter' '_ansifilter'
 'ant' '_ant'
 'antiword' '_antiword'
 'aodh' '_openstack'
@@ -158,6 +159,11 @@ _comps=(
 'caffeinate' '_caffeinate'
 'cal' '_cal'
 'calendar' '_calendar'
+'calibre' '_calibre'
+'calibredb' '_calibre'
+'calibre-debug' '_calibre'
+'calibre-server' '_calibre'
+'calibre-smtp' '_calibre'
 'cat' '_cat'
 'catchsegv' '_precommand'
 'cc' '_gcc'
@@ -361,6 +367,11 @@ _comps=(
 'dwb' '_webbrowser'
 'e2label' '_e2label'
 'eatmydata' '_precommand'
+'ebook-convert' '_calibre'
+'ebook-edit' '_calibre'
+'ebook-meta' '_calibre'
+'ebook-polish' '_calibre'
+'ebook-viewer' '_calibre'
 'ecasound' '_ecasound'
 'echotc' '_echotc'
 'echoti' '_echoti'
@@ -407,6 +418,7 @@ _comps=(
 'fd' '_fd'
 'feh' '_feh'
 'fetch' '_fetch'
+'fetch-ebook-metadata' '_calibre'
 'fetchmail' '_fetchmail'
 'ffmpeg' '_ffmpeg'
 'fg' '_jobs_fg'
@@ -527,6 +539,7 @@ _comps=(
 'git-buildpackage' '_git-buildpackage'
 'git-cvsserver' '_git'
 'gitk' '_git'
+'git-lfs' '_git-lfs'
 'git-receive-pack' '_git'
 'git-shell' '_git'
 'git-upload-archive' '_git'
@@ -814,6 +827,8 @@ _comps=(
 'lpr' '_lp'
 'lprm' '_lp'
 'lpstat' '_lp'
+'lrf2lrs' '_calibre'
+'lrfviewer' '_calibre'
 'ls' '_ls'
 'lsattr' '_lsattr'
 'lsblk' '_lsblk'
@@ -878,7 +893,6 @@ _comps=(
 'mere' '_mere'
 'merge' '_rcs'
 'mergechanges' '_mergechanges'
-'meson' '_meson'
 'metaflac' '_flac'
 'mformat' '_mtools'
 'mgv' '_pspdf'
@@ -977,7 +991,6 @@ _comps=(
 'nginx' '_nginx'
 'ngrep' '_ngrep'
 'nice' '_nice'
-'ninja' '_ninja'
 'nkf' '_nkf'
 'nl' '_nl'
 'nm' '_nm'
@@ -1646,7 +1659,6 @@ _comps=(
 'watch' '_watch'
 'watcher' '_openstack'
 'wc' '_wc'
-'wezterm' '_wezterm'
 'wget' '_wget'
 'what' '_sccs'
 'whatis' '_man'
@@ -1905,17 +1917,17 @@ bindkey '^[,' _history-complete-newer
 bindkey '^[/' _history-complete-older
 bindkey '^[~' _bash_complete-word
 
-autoload -Uz _alacritty _bat _bluetoothctl _bootctl _busctl \
-            _bwrap _coredumpctl _curl _delta _docker-compose \
-            _eza _fd _firewalld _flatpak _hg \
-            _hostnamectl _journalctl _kernel-install _libinput _localectl \
-            _loginctl _machinectl _meson _mpv _networkctl \
-            _ninja _nvme _oomctl _parallel _playerctl \
-            _powerprofilesctl _procs _resolvectl _rg _sd_hosts_or_user_at_host \
-            _sd_machines _sd_outputmodes _sd_unit_files _skopeo _systemctl \
-            _systemd _systemd-analyze _systemd-delta _systemd-inhibit _systemd-nspawn \
-            _systemd-path _systemd-run _systemd-tmpfiles _timedatectl _udevadm \
-            _udisks2 _varlinkctl _wezterm _wl-copy _wl-paste \
+autoload -Uz _alacritty _ansifilter _bat _bluetoothctl _bootctl \
+            _busctl _bwrap _calibre _coredumpctl _curl \
+            _delta _docker-compose _eza _fd _firewalld \
+            _flatpak _git-lfs _hg _hostnamectl _journalctl \
+            _kernel-install _libinput _localectl _loginctl _machinectl \
+            _mpv _networkctl _nvme _oomctl _parallel \
+            _playerctl _powerprofilesctl _procs _resolvectl _rg \
+            _sd_hosts_or_user_at_host _sd_machines _sd_outputmodes _sd_unit_files _skopeo \
+            _systemctl _systemd _systemd-analyze _systemd-delta _systemd-inhibit \
+            _systemd-nspawn _systemd-path _systemd-run _systemd-tmpfiles _timedatectl \
+            _udevadm _udisks2 _varlinkctl _wl-copy _wl-paste \
             _wpctl _yt-dlp _zoxide _a2ps _a2utils \
             _aap _abcde _absolute_command_paths _ack _acpi \
             _acpitool _acroread _adb _add-zle-hook-widget _add-zsh-hook \
