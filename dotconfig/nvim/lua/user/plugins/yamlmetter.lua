@@ -1,5 +1,6 @@
 return {
   "ray-x/yamlmatter.nvim",
+  enabled=false,
   ft = "yaml",
   cmd = "YamlMatter",
   event = {

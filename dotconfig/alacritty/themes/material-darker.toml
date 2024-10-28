@@ -1,0 +1,32 @@
+# Material Darker
+[colors.primary]
+background = '#212121'
+foreground = '#EEFFFF'
+
+[colors.normal]
+black = '#212121'
+red = '#F07178'
+green = '#C3E88D'
+yellow = '#FFCB6B'
+blue = '#82AAFF'
+magenta = '#C792EA'
+cyan = '#89DDFF'
+white = '#EEFFFF'
+
+[colors.bright]
+black = '#303030'
+red = '#F07178'
+green = '#C3E88D'
+yellow = '#FFCB6B'
+blue = '#82AAFF'
+magenta = '#C792EA'
+cyan = '#89DDFF'
+white = '#FFFFFF'
+
+[colors.cursor]
+text = '#212121'
+cursor = '#EEFFFF'
+
+[colors.selection]
+text = '#EEFFFF'
+background = '#4A4A4A'

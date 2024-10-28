@@ -18,7 +18,15 @@ g.border_type = "rounded"
 
 -- trigger bigfile size
 g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
+local color_scheme = vim.fn.system("gsettings get org.gnome.desktop.interface color-scheme")
+color_scheme = color_scheme:gsub("%s+", "")
+color_scheme = color_scheme:gsub("\n", "")
 
+if color_scheme == "'prefer-dark'" then
+  opt.background = "dark"
+else
+ opt.background = "light"
+end
 opt.autowrite = true -- Enable auto write
 opt.backup = false -- creates a backup file
 opt.colorcolumn = "80" -- colorcolumn
@@ -40,14 +48,14 @@ opt.foldlevel = 99
 opt.formatoptions = "jcroqlnt" -- tcqj
 opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
-opt.guifont = "monospace:h14" -- the font used in graphical neovim applications
+opt.guifont = "monospace:h17" -- the font used in graphical neovim applications
 opt.ignorecase = true -- Ignore case
 opt.inccommand = "split" -- inc in split view
 opt.jumpoptions = "stack,view"
 opt.laststatus = 3 -- global statusline
 opt.linebreak = true -- Wrap lines at convenient points
 opt.list = true -- Show some invisible characters (tabs...
-opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 opt.mouse = "a" -- Enable mouse mode
 opt.number = true -- Print line number
 opt.pumblend = 0 -- Popup blend
@@ -91,5 +99,5 @@ opt.foldtext = ""
 g.markdown_recommended_style = 0
 g.markdown_folding = 1 -- enable markdown folding
 
-vim.cmd "set whichwrap+=<,>,[,],h,l"
-vim.cmd [[set iskeyword+=-]]
+vim.cmd("set whichwrap+=<,>,[,],h,l")
+vim.cmd([[set iskeyword+=-]])

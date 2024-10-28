@@ -1,5 +1,6 @@
 return {
   "AlejandroSuero/freeze-code.nvim",
+  cmd ={"Freeze", "FreezeLine"},
   opts = {
     open = true,
     copy = true,

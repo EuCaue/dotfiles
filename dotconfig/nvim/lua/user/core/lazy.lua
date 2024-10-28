@@ -11,6 +11,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+_P = function(any)
+  print(vim.ilnspect(any))
+end
+
 require("lazy").setup("user.plugins", {
   install = {
     colorscheme = { "material-darker", "default" },
@@ -28,7 +32,7 @@ require("lazy").setup("user.plugins", {
         "netrw_banner",
         "tar",
         "tarPlugin",
-        "tohtml",
+        -- "tohtml",
         "tutor",
         "zipPlugin",
       },

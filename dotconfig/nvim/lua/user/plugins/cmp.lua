@@ -42,10 +42,10 @@ local function expand_fix(snippet)
 end
 
 return {
-  { "hrsh7th/cmp-nvim-lsp", lazy = true },
+  { "hrsh7th/cmp-nvim-lsp", lazy = true, enabled = false },
   {
-    "yioneko/nvim-cmp",
-    branch = "perf-up",
+    "iguanacucumber/magazine.nvim",
+    enabled = false,
     dependencies = {
       { "FelipeLema/cmp-async-path" },
     },

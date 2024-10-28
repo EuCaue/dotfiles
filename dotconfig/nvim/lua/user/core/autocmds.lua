@@ -52,9 +52,12 @@ autocmd("FileType", {
 autocmd("FileType", {
   group = augroup("wrap_spell"),
   pattern = { "text", "gitcommit", "markdown" },
-  callback = function()
+  callback = function(event)
+    local buffer = event.buf
     vim.opt_local.spell = true
     require("user.core.markdown_pasting").setup()
+    vim.keymap.set("n", "<leader>mt", require("user.core.marktools").setup, {desc="cycle checkboxes state", buffer=buffer})
+    vim.keymap.set("n", "<CR>", require("user.core.marktools").setup, {desc="cycle checkboxes state", buffer=buffer})
   end,
 })
 
@@ -126,12 +129,12 @@ autocmd({ "TextYankPost" }, {
   end,
 })
 
-autocmd('FileType', {
-  pattern = 'qf',
+autocmd("FileType", {
+  pattern = "qf",
   callback = function(event)
     local opts = { buffer = event.buf, silent = true }
-    vim.keymap.set('n', '<C-n>', '<cmd>cn | wincmd p<CR>', opts)
-    vim.keymap.set('n', '<C-p>', '<cmd>cN | wincmd p<CR>', opts)
+    vim.keymap.set("n", "<C-n>", "<cmd>cn | wincmd p<CR>", opts)
+    vim.keymap.set("n", "<C-p>", "<cmd>cN | wincmd p<CR>", opts)
   end,
 })
 
@@ -143,4 +146,21 @@ autocmd({ "VimResized" }, {
     vim.cmd("tabdo wincmd =")
     vim.cmd("tabnext " .. current_tab)
   end,
+})
+
+autocmd("FileType", {
+	pattern = "markdown",
+	callback = function()
+		vim.opt_local.formatoptions:append("r") -- `<CR>` in insert mode
+		vim.opt_local.formatoptions:append("o") -- `o` in normal mode
+		vim.opt_local.comments = {
+			"b:- [ ]", -- tasks
+			"b:- [x]",
+			"b:- [>]",
+			"b:- [~]",
+			"b:*", -- unordered list
+			"b:-",
+			"b:+",
+		}
+	end,
 })

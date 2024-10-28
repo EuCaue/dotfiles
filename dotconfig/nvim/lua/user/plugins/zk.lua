@@ -53,7 +53,7 @@ return {
       if not filepath or filepath == "" then
         return
       end
-      local file = io.open(filepath, "w")
+      local file, err = io.open(filepath, "w")
       if not file then
         return
       end
@@ -71,7 +71,7 @@ return {
       if not filepath or filepath == "" then
         return
       end
-      local file = io.open(filepath, "w")
+      local file, err = io.open(filepath, "w")
       if not file then
         return
       end

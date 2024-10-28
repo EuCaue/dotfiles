@@ -30,8 +30,9 @@ Hints.setCharacters('asdfgyuiopqwertnmzxcvb');
 settings.defaultSearchEngine = 'd';
 settings.hintAlign = 'left';
 settings.enableEmojiInsertion = true
-settings.startToShowEmoji = 6;
+settings.startToShowEmoji = 4;
 settings.modeAfterYank = 'Normal';
+settings.focusFirstCandidate = true;
 
 
 // ---- Map -----

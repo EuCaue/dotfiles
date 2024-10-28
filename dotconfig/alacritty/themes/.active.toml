@@ -1,0 +1,33 @@
+# Material Lighter
+[colors.primary]
+background = '#FAFAFA'
+# background = "#F0EDEC"
+foreground = '#000000'
+
+[colors.normal]
+black = '#000000'
+red = '#E53935'
+green = '#91B859'
+yellow = '#E2931D'
+blue = '#6182B8'
+magenta = '#9C3EDA'
+cyan = '#39ADB5'
+white = '#FFFFFF'
+
+[colors.bright]
+black = '#000000'
+red = '#E53935'
+green = '#91B859'
+yellow = '#E2931D'
+blue = '#6182B8'
+magenta = '#9C3EDA'
+cyan = '#39ADB5'
+white = '#FFFFFF'
+
+[colors.cursor]
+text = '#e3e3e3'
+cursor = '#272727'
+
+[colors.selection]
+text = '#90A4AE'
+background = '#80CBC4'

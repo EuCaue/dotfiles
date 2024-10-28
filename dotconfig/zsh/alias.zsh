@@ -5,7 +5,7 @@ alias afg='nvim ~/.config/alacritty/alacritty.toml'
 alias cfg='cd ~/.config/zsh/ && nvim ~/.config/zsh/.zshrc && cd -'
 alias nfg='cd ~/.config/nvim/ && nvim ~/.config/nvim/init.lua && cd -'
 alias tfg='cd ~/.config/tmux/ && nvim ~/.config/tmux/tmux.conf && cd -'
-alias disable_keyboard="sudo evtest --grab /dev/input/event25 > /dev/null 2>&1"
+alias disable_keyboard="sudo evtest --grab /dev/input/event23 > /dev/null 2>&1"
 
 # clear
 alias c="clear"
@@ -29,10 +29,26 @@ alias rr="trash restore"
 # system
 alias update-grub="sudo grub2-mkconfig -o /etc/grub2.cfg && sudo grub2-mkconfig -o /etc/grub2-efi.cfg"
 alias ls-font='fc-list --format="%{family}\\n" | cut -d , -f 1 | sort | uniq | fzf'
+function install-custom-theme() {
+  for theme in "$@"; do
+    if [[ -e "$theme" ]]; then
+      sudo mv "$theme" /usr/share/icons/
+    else
+      echo "Provide a cursor/icon folder/path"
+    fi
+  done
+}
+
 alias set-cursor-theme='gsettings set org.gnome.desktop.interface cursor-theme '
 alias set-cursor-size='gsettings set org.gnome.desktop.interface cursor-size '
 alias get-cursor-theme='gsettings get org.gnome.desktop.interface cursor-theme'
 alias get-cursor-size='gsettings get org.gnome.desktop.interface cursor-size'
+alias check-font-weight='echo -e "\e[1mbold\e[0m"; echo -e "\e[3mitalic\e[0m"; echo -e "\e[4munderline\e[0m"; echo -e "\e[9mstrikethrough\e[0m"; echo -e "\e[31mHello World\e[0m"'
+function change-alacritty-theme() {
+  ln -fs ~/.config/alacritty/themes/$1.toml ~/.config/alacritty/themes/.active.toml
+     sed -i 's/.active/.active1/' ~/.config/alacritty/themes/.active.toml &&
+     sed -i 's/.active1/.active/' ~/.config/alacritty/themes/.active.toml 
+}
 
 # nvim
 alias vi='nvim'

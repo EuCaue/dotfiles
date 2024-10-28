@@ -24,6 +24,7 @@ end
 
 
 function M.setup()
+  --  TODO: make this only works in .md files 
 vim.paste = (function(overridden)
   return function(lines, phase)
     local new_lines = {}

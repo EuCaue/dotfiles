@@ -1,6 +1,6 @@
 return {
   "garymjr/nvim-snippets",
-  enabled = true,
+  enabled = false,
   event = "InsertEnter",
   dependencies = { "rafamadriz/friendly-snippets" },
   opts = {

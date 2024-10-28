@@ -3,7 +3,7 @@ return {
   "allaman/emoji.nvim",
   ft = "markdown", -- adjust to your needs
   opts = {
-    enable_cmp_integration = true,
+    enable_cmp_integration = false,
   },
   keys = {
     {
