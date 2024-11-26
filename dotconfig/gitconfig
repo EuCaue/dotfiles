@@ -1,0 +1,43 @@
+[user]
+	name = EuCaue
+	email = caueadriano.castro@gmail.com
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[init]
+	defaultBranch = master
+[pull]
+	rebase = false
+[color]
+	ui = true
+# DELTA
+[core]
+  pager = delta
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    line-numbers = true
+    side-by-side = false
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
+# END DELTA
+[alias]
+    s = status -s
+    a = add
+    c = commit
+    p = push
+    bc = "!f() { git checkout $1 2>/dev/null || git checkout -b $1; }; f"
+    bd = "branch --delete --"
+    b = "branch"
+    d = diff
+    ds = "diff --staged"
+    whatdiff = "log -p"
+    unstage = "reset HEAD --"
+    remove-file = "!f() { git filter-branch -f --index-filter \"git rm --cached --ignore-unmatch $1\" --prune-empty --tag-name-filter cat -- --all; }; f"
+    last-commit="log -1 --stat"
+    keep-only-branch = "!f() { git branch | grep -v $1 | xargs git branch -D; }; f"

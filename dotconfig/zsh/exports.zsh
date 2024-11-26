@@ -22,7 +22,7 @@ export FREETYPE_PROPERTIES="truetype:interpreter-version=40 cff:no-stem-darkenin
 export LESS="--mouse"
 
 # use bat as pager
-export MANPAGER="bat -l man -p"
+export MANPAGER="nvim +Man!"
 
 export FZF_DEFAULT_COMMAND=fd
 

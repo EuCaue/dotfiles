@@ -1,7 +1,7 @@
 return {
   {
     lazy = true,
-    enabled = true,
+    enabled = false,
     "vhyrro/luarocks.nvim",
     priority = 1001, -- this plugin needs to run before anything else
     opts = {
@@ -9,7 +9,7 @@ return {
     },
   },
   {
-    enabled = true,
+    enabled = false,
     "3rd/image.nvim",
     dependencies = { "luarocks.nvim" },
     opts = {},

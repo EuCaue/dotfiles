@@ -53,11 +53,29 @@ autocmd("FileType", {
   group = augroup("wrap_spell"),
   pattern = { "text", "gitcommit", "markdown" },
   callback = function(event)
+    --  TODO: organize this 
+    local map = vim.keymap.set
     local buffer = event.buf
     vim.opt_local.spell = true
     require("user.core.markdown_pasting").setup()
-    vim.keymap.set("n", "<leader>mt", require("user.core.marktools").setup, {desc="cycle checkboxes state", buffer=buffer})
-    vim.keymap.set("n", "<CR>", require("user.core.marktools").setup, {desc="cycle checkboxes state", buffer=buffer})
+    map(
+      "n",
+      "<leader>mt",
+      require("user.core.marktools").setup,
+      { desc = "cycle checkboxes state", buffer = buffer }
+    )
+    map(
+      "n",
+      "<CR>",
+      require("user.core.marktools").setup,
+      { desc = "cycle checkboxes state", buffer = buffer }
+    )
+    map(
+      "n",
+      "<leader>mp",
+      require("user.core.marktools").toggle_priority,
+      { desc = "cycle priority", buffer = buffer }
+    )
   end,
 })
 
@@ -147,20 +165,47 @@ autocmd({ "VimResized" }, {
     vim.cmd("tabnext " .. current_tab)
   end,
 })
-
+--  TODO: change some of this events 
+-- autocmd({ "BufReadPost", "TextChanged", "TextChangedI" }, {
+--   pattern = "*.md",
+--   callback = function()
+--     local opts = {
+--       {
+--         char = "@p1",
+--         group = "DiffDelete",
+--       },
+--       {
+--         char = "@p2",
+--         group = "DiffText",
+--       },
+--       {
+--         char = "@p3",
+--         group = "DiffAdd",
+--       },
+--       {
+--         char = "@custom",
+--         group = "CustomPriority",
+--         bg = "#0000FF", -- Azul
+--         fg = "#FFFFFF", -- Branco
+--         style = "underline",
+--       },
+--     }
+--     require("user.core.marktools").highlight_priority(opts)
+--   end,
+-- })
 autocmd("FileType", {
-	pattern = "markdown",
-	callback = function()
-		vim.opt_local.formatoptions:append("r") -- `<CR>` in insert mode
-		vim.opt_local.formatoptions:append("o") -- `o` in normal mode
-		vim.opt_local.comments = {
-			"b:- [ ]", -- tasks
-			"b:- [x]",
-			"b:- [>]",
-			"b:- [~]",
-			"b:*", -- unordered list
-			"b:-",
-			"b:+",
-		}
-	end,
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.formatoptions:append("r") -- `<CR>` in insert mode
+    vim.opt_local.formatoptions:append("o") -- `o` in normal mode
+    vim.opt_local.comments = {
+      "b:- [ ]", -- tasks
+      "b:- [x]",
+      "b:- [>]",
+      "b:- [~]",
+      "b:*", -- unordered list
+      "b:-",
+      "b:+",
+    }
+  end,
 })

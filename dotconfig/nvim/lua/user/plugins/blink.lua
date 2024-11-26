@@ -3,20 +3,12 @@ return {
   dependencies = "rafamadriz/friendly-snippets",
   build = "cargo build --release",
   event = "InsertEnter",
+  ---@module 'blink.cmp'
+  ---@type blink.cmp.Config
   opts = {
     keymap = {
-      show = "<C-space>",
-      hide = "<C-e>",
-      accept = "<C-y>",
-      select_prev = { "<Up>", "<C-p>" },
-      select_next = { "<Down>", "<C-n>" },
-      scroll_documentation_down = "<C-f>",
-      show_documentation = {},
-      hide_documentation = {},
-      snippet_forward = "<Tab>",
-      snippet_backward = "<S-Tab>",
+      preset = "default",
     },
-    nerd_font_variant = "normal",
     accept = { auto_brackets = { enabled = true } },
     trigger = { signature_help = { enabled = true } },
     fuzzy = {

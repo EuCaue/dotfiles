@@ -1,6 +1,6 @@
 return {
   "marko-cerovac/material.nvim",
-  lazy = false,
+  lazy = true,
   priority = 1000,
   config = function()
     local styles = { "lighter", "darker", "deep ocean", "oceanic", "palenight" }

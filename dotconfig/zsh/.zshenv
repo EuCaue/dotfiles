@@ -11,7 +11,6 @@ if [ -z "$XCURSOR_THEME" ] || [ "$XCURSOR_THEME" != "$CURSOR_THEME" ]; then
 fi
 
 if [ -z "$XCURSOR_SIZE" ] || [ "$XCURSOR_SIZE" != "$CURSOR_SIZE" ]; then
-  notify-send "here ig"
 	export XCURSOR_SIZE="$CURSOR_SIZE" &&
   flatpak override --user --env=XCURSOR_SIZE="$CURSOR_SIZE" 
 fi

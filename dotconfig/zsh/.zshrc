@@ -39,3 +39,4 @@ eval "$(starship init zsh)"
 # To customize prompt, run `p10k configure` or edit ~/dotfiles/dotconfig/zsh/.p10k.zsh.
 # [[ ! -f ~/dotfiles/dotconfig/zsh/.p10k.zsh ]] || source ~/dotfiles/dotconfig/zsh/.p10k.zsh
 # eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/bubbles.omp.json)"
+# eval "$(fnm env --use-on-cd --shell zsh)"

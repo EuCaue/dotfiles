@@ -12,7 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 _P = function(any)
-  print(vim.ilnspect(any))
+  print(vim.inspect(any))
 end
 
 require("lazy").setup("user.plugins", {

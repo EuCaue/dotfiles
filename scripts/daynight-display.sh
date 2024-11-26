@@ -37,7 +37,8 @@ get_monitor_info() {
   run_with_sudo "getvcp 12"
   run_with_sudo "getvcp 16"
   run_with_sudo "getvcp 18"
-  run_with_sudo "getvcp 1A"
+  run_with_sudo "getvcp 1A" &&
+  gsettings get org.gnome.settings-daemon.plugins.color night-light-temperature
 }
 
 # DAY CONFIG:
@@ -51,14 +52,14 @@ if [[ $TIME == "day" ]]; then
   red=50
   green=45
   blue=45
-  brightness=60
-  brightnessctl s 80%
-  contrast=60
-  gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature "5750"
-  run_with_sudo "setvcp 10 $brightness"
-  run_with_sudo "setvcp 12 $contrast"
-  run_with_sudo "setvcp 16 $red"
-  run_with_sudo "setvcp 18 $green"
+  brightness=85
+  contrast=45
+  gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature "5500" &&
+  light -S 85 &&
+  run_with_sudo "setvcp 10 $brightness" &&
+  run_with_sudo "setvcp 12 $contrast" &&
+  run_with_sudo "setvcp 16 $red" &&
+  run_with_sudo "setvcp 18 $green" &&
   run_with_sudo "setvcp 1A $blue" &&
     get_monitor_info 
   exit
@@ -78,13 +79,13 @@ if [[ $TIME == "night" ]]; then
   blue=50
   brightness=10
   contrast=50
-  notify-send -u critical "NIGHT TIME" "TURN ON THE AMBIENT LIGHT"
-  brightnessctl s 45%
-  gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature "4750"
-  run_with_sudo "setvcp 10 $brightness"
-  run_with_sudo "setvcp 12 $contrast"
-  run_with_sudo "setvcp 16 $red"
-  run_with_sudo "setvcp 18 $green"
+  notify-send -u critical "NIGHT TIME" "TURN ON THE AMBIENT LIGHT" &&
+  gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature "4500" &&
+  light -S 45 &&
+  run_with_sudo "setvcp 10 $brightness" &&
+  run_with_sudo "setvcp 12 $contrast" &&
+  run_with_sudo "setvcp 16 $red" &&
+  run_with_sudo "setvcp 18 $green"&& 
   run_with_sudo "setvcp 1A $blue"&&
     get_monitor_info 
   exit 

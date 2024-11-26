@@ -1,3 +1,4 @@
+---@diagnostic disable: need-check-nil
 local function goto_definition(split_cmd)
   local util = vim.lsp.util
   local log = require("vim.lsp.log")
@@ -31,6 +32,28 @@ local function goto_definition(split_cmd)
   return handler
 end
 
+---@class LspCommand: lsp.ExecuteCommandParams
+---@field handler? lsp.Handler
+local function lsp_execute(opts)
+  local params = {
+    command = opts.command,
+    arguments = opts.arguments,
+  }
+  return vim.lsp.buf_request(0, "workspace/executeCommand", params, opts.handler)
+end
+
+local function lsp_action(action)
+  return function()
+    vim.lsp.buf.code_action({
+      apply = true,
+      context = {
+        only = { action },
+        diagnostics = {},
+      },
+    })
+  end
+end
+
 vim.lsp.handlers["textDocument/definition"] = goto_definition("split")
 return {
   { "williamboman/mason-lspconfig.nvim", lazy = true },
@@ -50,6 +73,7 @@ return {
       local icons = require("user.core.icons")
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       -- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+      capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
       capabilities.textDocument.completion.completionItem.snippetSupport = true
       capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
 
@@ -95,6 +119,10 @@ return {
             client.server_capabilities.documentFormattingProvider = false
           elseif client.name == "html" then
             client.server_capabilities.documentFormattingProvider = false
+          end
+
+          if client.name == "ruff" then
+            client.server_capabilities.hoverProvider = false
           end
 
           if client.name == "tailwindcss" then
@@ -153,16 +181,26 @@ return {
               workspace = {
                 checkThirdParty = false,
                 library = {
-                  "${3rd}/luv/library",
+                  -- "${3rd}/luv/library",
                   unpack(vim.api.nvim_get_runtime_file("", true)),
                 },
               },
             },
           },
         },
+        pyright = {},
+        ruff = {
+          cmd_env = { RUFF_TRACE = "messages" },
+          nit_options = {
+            settings = {
+              logLevel = "error",
+            },
+          },
+        },
+        -- jedi_language_server = {},
         gopls = {},
         rust_analyzer = {},
-        markdown_oxide = {},
+        -- markdown_oxide = {},
         tailwindcss = {
           flags = { debounce_text_changes = 300 },
           root_dir = require("lspconfig").util.root_pattern(
@@ -176,8 +214,38 @@ return {
         },
         eslint = {},
         cssls = {},
-        bashls = {},
+        bashls = {
+          filetypes = { "sh", "zsh" },
+        },
         html = {},
+        vtsls = {
+          settings = {
+            complete_functions_calls = true,
+            vtsls = {
+              enableMoveToFileCodeAction = true,
+              autoUseWorkspaceTsdk = true,
+              experimental = {
+                completion = {
+                  enableServerSideFuzzyMatch = true,
+                },
+              },
+            },
+            typescript = {
+              updateImportsOnFileMove = { enabled = "always" },
+              suggest = {
+                completeFunctionCalls = true,
+              },
+              inlayHints = {
+                enumMemberValues = { enabled = true },
+                functionLikeReturnTypes = { enabled = true },
+                parameterNames = { enabled = "literals" },
+                parameterTypes = { enabled = true },
+                propertyDeclarationTypes = { enabled = true },
+                variableTypes = { enabled = false },
+              },
+            },
+          },
+        },
         jsonls = {},
       }
 

@@ -51,6 +51,14 @@ return {
       go = { "goimports", "gofumpt", "golines" },
       lua = { "stylua" },
       sh = { "shfmt" },
+      zsh = { "shfmt" },
+      python = function(bufnr)
+        if require("conform").get_formatter_info("ruff_format", bufnr).available then
+          return { "ruff_format" }
+        else
+          return { "isort", "black" }
+        end
+      end,
     }
 
     for _, ft in ipairs(supported_prettier_ft) do
