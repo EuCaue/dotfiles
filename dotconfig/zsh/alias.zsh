@@ -2,6 +2,7 @@
 
 # quick config files
 alias afg='nvim ~/.config/alacritty/alacritty.toml'
+alias gfg='nvim ~/.config/ghostty/config'
 alias cfg='cd ~/.config/zsh/ && nvim ~/.config/zsh/.zshrc && cd -'
 alias nfg='cd ~/.config/nvim/ && nvim ~/.config/nvim/init.lua && cd -'
 alias tfg='cd ~/.config/tmux/ && nvim ~/.config/tmux/tmux.conf && cd -'
@@ -56,14 +57,23 @@ function timer() {
     --app-name="Countdown" \
     "Countdown for $1" \
     "Countdown: $2"
-  
-  countdown $2
+
+  countdown "$2"
 
   notify-send -u normal \
     -i "/usr/share/icons/Adwaita/symbolic/categories/emoji-recent-symbolic.svg" \
     --app-name="Countdown" \
     "Countdown for $1" \
     "Countdown of $2 has been passed! =D"
+}
+
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+    builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
 }
 
 # nvim

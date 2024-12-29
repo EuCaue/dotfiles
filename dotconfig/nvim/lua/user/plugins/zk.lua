@@ -23,7 +23,7 @@ return {
     "ZkTomorrow",
   },
   opts = {
-    picker = "telescope",
+    picker = "fzf_lua",
   },
   config = function(_, opts)
     local zk = require("zk")

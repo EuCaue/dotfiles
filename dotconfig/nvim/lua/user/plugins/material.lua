@@ -1,6 +1,8 @@
 return {
   "marko-cerovac/material.nvim",
-  lazy = true,
+  enabled = false,
+  cond = vim.o.background ~= "light",
+  lazy = false,
   priority = 1000,
   config = function()
     local styles = { "lighter", "darker", "deep ocean", "oceanic", "palenight" }

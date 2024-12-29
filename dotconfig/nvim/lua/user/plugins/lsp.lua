@@ -72,7 +72,6 @@ return {
     config = function()
       local icons = require("user.core.icons")
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      -- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
       capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
       capabilities.textDocument.completion.completionItem.snippetSupport = true
       capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = true
@@ -126,7 +125,6 @@ return {
           end
 
           if client.name == "tailwindcss" then
-            -- vim.cmd("TailwindConcealEnable")
             client.server_capabilities.completionProvider.triggerCharacters =
               { '"', "'", "`", ".", "(", "[", "!", "/", ":" }
           end
@@ -181,8 +179,9 @@ return {
               workspace = {
                 checkThirdParty = false,
                 library = {
-                  -- "${3rd}/luv/library",
-                  unpack(vim.api.nvim_get_runtime_file("", true)),
+                  vim.env.vimruntime,
+                  "${3rd}/luv/library",
+                  "${3rd}/busted/library",
                 },
               },
             },

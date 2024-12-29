@@ -1,21 +1,26 @@
 local icons = require("user.core.icons")
 
 return {
+
   {
     "nvim-telescope/telescope-fzf-native.nvim",
     build = "make",
     lazy = true,
+    enabled = false,
   },
   { "nvim-lua/plenary.nvim", lazy = true },
   {
     "nvim-telescope/telescope-file-browser.nvim",
     lazy = true,
+    enabled = false,
   },
   {
     "jvgrootveld/telescope-zoxide",
     lazy = true,
+    enabled = false,
   },
   {
+    enabled = false,
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     keys = {

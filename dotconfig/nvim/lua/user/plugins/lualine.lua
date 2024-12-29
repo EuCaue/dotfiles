@@ -64,6 +64,18 @@ return {
       lualine_b = {
         {
           "filename",
+          path = 1,
+          fmt = function(str)
+            local filename = vim.fn.fnamemodify(str, ":t") -- Nome do arquivo
+            local filepath = vim.fn.fnamemodify(str, ":h") -- Caminho do diretório do arquivo
+            local current_dir = vim.fn.fnamemodify(filepath, ":t") -- Pasta atual
+            if filename == "page.tsx" or filename == "page.jsx" then
+              local parent_dir = vim.fn.fnamemodify(filepath, ":h:t") -- Pasta acima
+              return parent_dir .. "/" .. current_dir .. "/" .. filename
+            else
+              return current_dir .. "/" .. filename
+            end
+          end,
           symbols = {
             modified = icons.ui.Pencil, -- Text to show when the file is modified.
             readonly = icons.ui.Lock, -- Text to show when the file is non-modifiable or readonly.

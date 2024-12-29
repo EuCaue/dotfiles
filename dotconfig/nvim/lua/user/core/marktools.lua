@@ -30,18 +30,14 @@ M.highlight_priority = function(configs)
     local bg = config.bg
     local style = config.style
 
-    -- Adiciona um padrão baseado no char
     table.insert(patterns, {
       pattern = "^%s*%- %[.?%] .-" .. char,
       group = highlight_group,
     })
 
-    -- Verifica se o grupo de highlight já existe
     if highlight_group then
-      -- Se o grupo já existe, apenas modifica
       local hl_exists = vim.fn.hlexists(highlight_group)
       if hl_exists == 0 then
-        -- Se o grupo não existe, cria o grupo com as opções fornecidas
         vim.api.nvim_set_hl(0, highlight_group, {
           fg = fg or nil,
           bg = bg or nil,
@@ -50,7 +46,6 @@ M.highlight_priority = function(configs)
           underline = style == "underline" and true or false,
         })
       else
-        -- Caso o grupo exista, apenas atualiza
         vim.api.nvim_set_hl(0, highlight_group, {
           fg = fg,
           bg = bg,
@@ -105,8 +100,28 @@ M.toggle_priority = function()
   vim.api.nvim_set_current_line(line)
 end
 
+M.order_by_priority = function()
+  local priorities = { "@p1", "@p2", "@p3" }
+  local buffer = vim.api.nvim_get_current_buf()
+  local lines = vim.api.nvim_buf_get_lines(buffer, 0, -1, false)
+
+  local function get_priority(line)
+    for i, priority in ipairs(priorities) do
+      if line:find(priority) then
+        return i
+      end
+    end
+  end
+
+  table.sort(lines, function(a, b)
+    return get_priority(a) < get_priority(b)
+  end)
+
+  vim.api.nvim_buf_set_lines(buffer, 0, -1, false, lines)
+end
+
 M.setup = function()
-  local checkboxes = { ">", "~", "x", " " } -- checkbox order
+  local checkboxes = { ">", "x", "~", " " }
   M.cycle_checkbox(checkboxes)
 end
 

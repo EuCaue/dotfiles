@@ -53,29 +53,24 @@ autocmd("FileType", {
   group = augroup("wrap_spell"),
   pattern = { "text", "gitcommit", "markdown" },
   callback = function(event)
-    --  TODO: organize this 
+    if vim.bo[event.buf].buftype ~= "" then
+      return
+    end
+
+    -- TODO: organize this
     local map = vim.keymap.set
     local buffer = event.buf
     vim.opt_local.spell = true
     require("user.core.markdown_pasting").setup()
+    map("n", "<leader>mt", require("user.core.marktools").setup, { desc = "cycle checkboxes state", buffer = buffer })
+    map("n", "<CR>", require("user.core.marktools").setup, { desc = "cycle checkboxes state", buffer = buffer })
     map(
       "n",
-      "<leader>mt",
-      require("user.core.marktools").setup,
-      { desc = "cycle checkboxes state", buffer = buffer }
+      "<leader>mo",
+      require("user.core.marktools").order_by_priority,
+      { desc = "order by priority", buffer = buffer }
     )
-    map(
-      "n",
-      "<CR>",
-      require("user.core.marktools").setup,
-      { desc = "cycle checkboxes state", buffer = buffer }
-    )
-    map(
-      "n",
-      "<leader>mp",
-      require("user.core.marktools").toggle_priority,
-      { desc = "cycle priority", buffer = buffer }
-    )
+    map("n", "<leader>mp", require("user.core.marktools").toggle_priority, { desc = "cycle priority", buffer = buffer })
   end,
 })
 
@@ -165,7 +160,7 @@ autocmd({ "VimResized" }, {
     vim.cmd("tabnext " .. current_tab)
   end,
 })
---  TODO: change some of this events 
+--  TODO: change some of this events
 -- autocmd({ "BufReadPost", "TextChanged", "TextChangedI" }, {
 --   pattern = "*.md",
 --   callback = function()

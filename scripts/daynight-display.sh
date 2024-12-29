@@ -49,13 +49,21 @@ get_monitor_info() {
 # Color temp  = 50/45/45 or use a 6500K temperature for relaxing tones
 
 if [[ $TIME == "day" ]]; then
-  red=50
-  green=45
-  blue=45
-  brightness=85
-  contrast=45
-  gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature "5500" &&
-  light -S 85 &&
+  # red=50
+  # green=45
+  # blue=45
+  # brightness=85
+  # contrast=45
+  # gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature "5500" &&
+  # light -S 85 &&
+
+brightness=55
+contrast=60
+red=45
+green=40
+blue=40
+gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature "5000"
+light -S 55 &&
   run_with_sudo "setvcp 10 $brightness" &&
   run_with_sudo "setvcp 12 $contrast" &&
   run_with_sudo "setvcp 16 $red" &&
@@ -74,14 +82,22 @@ fi
 # Ambient light = ON
 
 if [[ $TIME == "night" ]]; then
-  red=40
-  green=45
+  # red=40
+  # green=45
+  # blue=50
+  # brightness=10
+  # contrast=50
+  # notify-send -u critical "NIGHT TIME" "TURN ON THE AMBIENT LIGHT" &&
+  # gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature "4500" &&
+  # light -S 45 &&
+
+  brightness=7
+  contrast=27
+  red=50
+  green=50
   blue=50
-  brightness=10
-  contrast=50
-  notify-send -u critical "NIGHT TIME" "TURN ON THE AMBIENT LIGHT" &&
-  gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature "4500" &&
-  light -S 45 &&
+  gsettings set org.gnome.settings-daemon.plugins.color night-light-temperature "4500"
+  light -S 50 &&
   run_with_sudo "setvcp 10 $brightness" &&
   run_with_sudo "setvcp 12 $contrast" &&
   run_with_sudo "setvcp 16 $red" &&

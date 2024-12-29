@@ -1,0 +1,43 @@
+adw-toolbar-style=raised-border
+bold-is-bright=true
+clipboard-paste-bracketed-safe=true
+clipboard-paste-protection=true
+clipboard-trim-trailing-spaces=true
+confirm-close-surface=false
+cursor-style=block
+desktop-notifications=true
+font-family=Symbols Nerd Font Mono
+font-family=monospace
+font-size=17
+freetype-load-flags=no-hinting
+freetype-load-flags=no-force-autohint
+gtk-adwaita=true
+gtk-wide-tabs=true
+link-url= true
+keybind=alt+eight=unbind
+keybind=alt+five=unbind
+keybind=alt+four=unbind
+keybind=alt+nine=unbind
+keybind=alt+seven=unbind
+keybind=alt+six=unbind
+keybind=alt+three=unbind
+keybind=alt+two=unbind
+keybind=alt+one=unbind
+keybind=ctrl+comma=open_config
+keybind=ctrl+shift+e=unbind
+keybind=ctrl+shift+o=unbind
+keybind=ctrl+shift+r=reload_config
+keybind=ctrl+shift+w=unbind
+#keybind=ctrl+h=goto_split:left
+#keybind=ctrl+j=goto_split:bottom
+#keybind=ctrl+k=goto_split:top
+#keybind=ctrl+l=goto_split:right
+mouse-hide-while-typing = false
+shell-integration-features=true
+theme=light:Material,dark:catppuccin-mocha
+window-height=32
+window-inherit-font-size=true
+#window-padding-balance=true
+#window-padding-x=5
+window-theme=ghostty
+window-width=136

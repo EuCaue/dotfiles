@@ -4,33 +4,22 @@ return {
   build = "cargo build --release",
   event = "InsertEnter",
   ---@module 'blink.cmp'
-  ---@type blink.cmp.Config
   opts = {
     keymap = {
       preset = "default",
     },
-    accept = { auto_brackets = { enabled = true } },
-    trigger = { signature_help = { enabled = true } },
-    fuzzy = {
-      use_typo_resistance = true,
-    },
-    windows = {
-      autocomplete = {
-        border = vim.g.border_type,
-      },
-      documentation = {
-        auto_show = true,
-        border = vim.g.border_type,
-      },
-      signature_help = {
-        border = vim.g.border_type,
-      },
+    signature = {
+      enabled = true,
+      window = { border = vim.g.border_type },
     },
     sources = {
-      completion = {
-        enabled_providers = { "lsp", "path", "snippets" },
-      },
+      default = { "lazydev", "lsp", "path", "snippets" },
       providers = {
+        lazydev = {
+          name = "LazyDev",
+          module = "lazydev.integrations.blink",
+          score_offset = 100,
+        },
         lsp = {
           name = "LSP",
           module = "blink.cmp.sources.lsp",
@@ -55,42 +44,56 @@ return {
         buffer = {
           name = "Buffer",
           module = "blink.cmp.sources.buffer",
-          fallback_for = { "lsp" },
+          fallbacks = { "lsp" },
         },
       },
     },
+    completion = {
+      list = { max_items = 100 },
+      menu = {
+        border = vim.g.border_type,
+      },
 
-    kind_icons = {
-      Text = "",
-      Method = "",
-      Function = "",
-      Constructor = "",
+      documentation = {
+        auto_show = true,
+        window = {
+          border = vim.g.border_type,
+        },
+      },
+    },
+    appearance = {
+      kind_icons = {
+        Text = "",
+        Method = "",
+        Function = "",
+        Constructor = "",
 
-      Field = "",
-      Variable = "",
-      Property = "",
+        Field = "",
+        Variable = "",
+        Property = "",
 
-      Class = "",
-      Interface = "",
-      Struct = "",
-      Module = "",
+        Class = "",
+        Interface = "",
+        Struct = "",
+        Module = "",
 
-      Unit = "",
-      Value = "",
-      Enum = "",
-      EnumMember = "",
+        Unit = "",
+        Value = "",
+        Enum = "",
+        EnumMember = "",
 
-      Keyword = "",
-      Constant = "",
+        Keyword = "",
+        Constant = "",
 
-      Snippet = "",
-      Color = "",
-      File = "",
-      Reference = "",
-      Folder = "",
-      Event = "",
-      Operator = "",
-      TypeParameter = "",
+        Snippet = "",
+        Color = "",
+        File = "",
+        Reference = "",
+        Folder = "",
+        Event = "",
+        Operator = "",
+        TypeParameter = "",
+      },
     },
   },
 }
