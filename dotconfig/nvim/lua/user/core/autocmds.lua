@@ -13,6 +13,12 @@ autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
   end,
 })
 
+autocmd("FileType", {
+  desc = "Automatically Split help Buffers to the right",
+  pattern = "help",
+  command = "wincmd L",
+})
+
 autocmd({ "BufWinEnter" }, {
   group = augroup("disable_continuo_comment"),
   callback = function()
@@ -39,18 +45,18 @@ autocmd({ "FileType" }, {
   end,
 })
 
--- make it easier to close man-files when opened inline
 autocmd("FileType", {
   group = augroup("man_unlisted"),
+  desc = "make it easier to close man-files when opened inline",
   pattern = { "man" },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
   end,
 })
 
--- wrap and check for spell in text filetypes
 autocmd("FileType", {
   group = augroup("wrap_spell"),
+  desc = "wrap and check for spell in text filetypes",
   pattern = { "text", "gitcommit", "markdown" },
   callback = function(event)
     if vim.bo[event.buf].buftype ~= "" then
@@ -61,22 +67,19 @@ autocmd("FileType", {
     local map = vim.keymap.set
     local buffer = event.buf
     vim.opt_local.spell = true
+    local marktools = require("user.core.marktools")
     require("user.core.markdown_pasting").setup()
-    map("n", "<leader>mt", require("user.core.marktools").setup, { desc = "cycle checkboxes state", buffer = buffer })
-    map("n", "<CR>", require("user.core.marktools").setup, { desc = "cycle checkboxes state", buffer = buffer })
-    map(
-      "n",
-      "<leader>mo",
-      require("user.core.marktools").order_by_priority,
-      { desc = "order by priority", buffer = buffer }
-    )
-    map("n", "<leader>mp", require("user.core.marktools").toggle_priority, { desc = "cycle priority", buffer = buffer })
+    marktools.setup()
+    map("n", "<leader>mt", marktools.cycle_checkbox, { desc = "cycle checkboxes state", buffer = buffer })
+    map("n", "<CR>", marktools.cycle_checkbox, { desc = "cycle checkboxes state", buffer = buffer })
+    map({ "n", "v" }, "<leader>mo", marktools.order_by_priority, { desc = "order by priority", buffer = buffer })
+    map("n", "<leader>mp", marktools.toggle_priority, { desc = "cycle priority", buffer = buffer })
   end,
 })
 
--- Auto create dir when saving a file, in case some intermediate directory does not exist
 autocmd({ "BufWritePre" }, {
   group = augroup("auto_create_dir"),
+  desc = "Auto create dir when saving a file, in case some intermediate directory does not exist",
   callback = function(event)
     if event.match:match("^%w%w+:[\\/][\\/]") then
       return
@@ -87,7 +90,6 @@ autocmd({ "BufWritePre" }, {
 })
 
 -- Big file
-
 vim.filetype.add({
   pattern = {
     [".*"] = {
@@ -151,9 +153,9 @@ autocmd("FileType", {
   end,
 })
 
--- resize splits if window got resized
 autocmd({ "VimResized" }, {
   group = augroup("resize_splits"),
+  desc = "resize splits if window got resized",
   callback = function()
     local current_tab = vim.fn.tabpagenr()
     vim.cmd("tabdo wincmd =")

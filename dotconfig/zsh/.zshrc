@@ -18,7 +18,7 @@ plug "Aloxaf/fzf-tab"
 plug "zsh-users/zsh-autosuggestions"
 plug "z-shell/F-Sy-H"
 plug "zsh-users/zsh-history-substring-search"
-
+plug "jeffreytse/zsh-vi-mode"
 source "$ZDOTDIR/sane.zsh"
 source "$ZDOTDIR/alias.zsh"
 source "$ZDOTDIR/exports.zsh"
@@ -26,8 +26,8 @@ source "$ZDOTDIR/keybinds.zsh"
 source "$ZDOTDIR/dot-dot.zsh"
 source "$ZDOTDIR/sudo-it.zsh"
 source "$ZDOTDIR/compdefs.zsh"
-source <(fzf --zsh) 
-
+# source <(fzf --zsh)
+zvm_after_init_commands+=('source <(fzf  --zsh)')
 
 # bun completions
 [ -s "/home/caue/.bun/_bun" ] && source "/home/caue/.bun/_bun"

@@ -1,5 +1,6 @@
 return {
   "kawre/leetcode.nvim",
+  cmd = "Leet",
   build = ":TSUpdate html",
   dependencies = {
     "ibhagwan/fzf-lua",
@@ -13,7 +14,7 @@ return {
       home = vim.fn.getenv("HOME") .. "/Code/leetcode"
     },
     description = {
-      width = "50%",
+      width = "35%",
     },
     image_support = true,
   },

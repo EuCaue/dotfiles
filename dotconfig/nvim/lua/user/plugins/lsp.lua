@@ -86,28 +86,29 @@ return {
             vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
           end
 
-          local map = function(keys, func, desc)
-            vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+          local map = function(modes, keys, func, desc)
+            vim.keymap.set(modes, keys, func, { buffer = bufnr, desc = desc })
           end
 
-          map("K", vim.lsp.buf.hover, "hover")
-          map("gd", vim.lsp.buf.definition, "goto definition")
-          map("gD", vim.lsp.buf.declaration, "goto declaration")
-          map("gr", vim.lsp.buf.references, "goto references")
-          map("gI", vim.lsp.buf.implementation, "goto implementation")
-          map("gy", vim.lsp.buf.type_definition, "goto type definition")
-          map("<leader>cr", vim.lsp.buf.rename, "code rename")
-          map("<leader>ca", vim.lsp.buf.code_action, "code action")
-          map("<leader>cl", "<cmd>LspInfo<cr>", "show lsp info")
+          map("n", "K", vim.lsp.buf.hover, "hover")
+          map("n", "gd", vim.lsp.buf.definition, "goto definition")
+          map("n", "gD", vim.lsp.buf.declaration, "goto declaration")
+          map("n", "gr", vim.lsp.buf.references, "goto references")
+          map("n", "gI", vim.lsp.buf.implementation, "goto implementation")
+          map("n", "gy", vim.lsp.buf.type_definition, "goto type definition")
+          map("n", "<leader>cr", vim.lsp.buf.rename, "code rename")
+          map("n", "<leader>ca", vim.lsp.buf.code_action, "code action")
+          map("n", "<leader>cl", "<cmd>LspInfo<cr>", "show lsp info")
+          map("i", "<A-s>", vim.lsp.buf.signature_help, "show signature help")
 
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-            map("<leader>th", function()
+            map("n", "<leader>th", function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }))
             end, "toggle inlay hints")
           end
 
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_codeLens) then
-            map("<leader>tc", function()
+            map("n", "<leader>tc", function()
               vim.lsp.codelens.refresh({ bufnr = bufnr })
             end, "toggle code lens")
           end

@@ -30,11 +30,13 @@
     s = status -s
     a = add
     c = commit
+    ca = commit --amend
     p = push
     ls = ls-files
     bc = "!f() { git checkout $1 2>/dev/null || git checkout -b $1; }; f"
     bd = "branch --delete --"
     b = "branch"
+    ba = "branch -a"
     d = diff
     ds = "diff --staged"
     whatdiff = "log -p"

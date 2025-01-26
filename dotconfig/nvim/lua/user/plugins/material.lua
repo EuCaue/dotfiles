@@ -1,6 +1,6 @@
 return {
   "marko-cerovac/material.nvim",
-  enabled = false,
+  enabled = true,
   cond = vim.o.background ~= "light",
   lazy = false,
   priority = 1000,

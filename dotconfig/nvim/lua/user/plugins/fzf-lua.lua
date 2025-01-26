@@ -5,29 +5,10 @@ end
 return {
   enabled = true,
   "ibhagwan/fzf-lua",
-  dependencies = { {
-    "michel-garcia/fzf-lua-file-browser.nvim",
-    opts = {},
-  } },
   cmd = "FzfLua",
-  opts = function(_, opts)
+  opts = function()
     local config = require("fzf-lua.config")
     local actions = require("fzf-lua.actions")
-    local fzf_lua = require("fzf-lua")
-    local fzf_zoxide = function()
-      opts = opts or {}
-      opts.prompt = "Directories> "
-      opts.actions = {
-        ["default"] = function(selected)
-          vim.cmd("cd " .. selected[1])
-        end,
-      }
-      fzf_lua.fzf_exec("zoxide query -l", opts)
-    end
-
-    if vim.fn.executable("zoxide") == 1 then
-      fzf_lua.zoxide = fzf_zoxide
-    end
 
     -- Quickfix
     config.defaults.keymap.fzf["ctrl-q"] = "select-all+accept"
@@ -86,6 +67,7 @@ return {
       },
       files = {
         cwd_prompt = false,
+        git_icons = true,
         actions = {
           ["alt-i"] = { actions.toggle_ignore },
           ["alt-h"] = { actions.toggle_hidden },
@@ -107,7 +89,6 @@ return {
   keys = {
     { "<leader>:", "<cmd>FzfLua command_history<cr>", desc = "Command History" },
     { "<leader>,", "<cmd>FzfLua buffers sort_lastused=true<cr>", desc = "Buffers" },
-    --  TODO: make the file browser keybind?
     { "<leader>fc", "<cmd>FzfLua files cwd=$HOME/.config/nvim<cr>", desc = "Find Config File" },
     { "<leader>fd", "<cmd>FzfLua zoxide<cr>", desc = "Find Directories" },
     {

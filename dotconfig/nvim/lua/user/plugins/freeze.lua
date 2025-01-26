@@ -1,5 +1,6 @@
 return {
   "charm-and-friends/freeze.nvim",
+  cmd = "Freeze",
   opts = {
     command = "freeze",
     window = true,

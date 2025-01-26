@@ -1,72 +1,17 @@
-local M = {}
+--- @class CheckboxCycleConfig
+--- @field order string[]
+--- @field write_on_change boolean
 
-M.cycle_checkbox = function(checkboxes, line_num)
-  line_num = line_num or vim.api.nvim_win_get_cursor(0)[1]
-  local line = vim.api.nvim_buf_get_lines(0, line_num - 1, line_num, false)[1]
-  if not line:match("^%s*- %[.") then
-    line = line:gsub("^(%s*)[-*+] ", "%1- [ ] ")
-  else
-    for i, check_char in ipairs(checkboxes or { " ", "x" }) do
-      if line:match("^%s*- %[" .. check_char .. "%]") then
-        local next_char = checkboxes[i + 1] or checkboxes[1]
-        line = line:gsub("%[" .. check_char .. "%]", "[" .. next_char .. "]")
-        break
-      end
-    end
-  end
+--- @class PriorityConfig
+--- @field priorities string[]
 
-  vim.api.nvim_buf_set_lines(0, line_num - 1, line_num, false, { line })
-end
+--- @class MarkToolsConfig
+--- @field checkbox_cycle CheckboxCycleConfig
+--- @field priorities PriorityConfig
 
-M.highlight_priority = function(configs)
-  --  TODO: thinking in hoow to add support for passing just a group or complettly highlihgts
-  --  TODO: optimize this code
-
-  local patterns = {}
-  for _, config in ipairs(configs) do
-    local char = config.char
-    local highlight_group = config.group
-    local fg = config.fg
-    local bg = config.bg
-    local style = config.style
-
-    table.insert(patterns, {
-      pattern = "^%s*%- %[.?%] .-" .. char,
-      group = highlight_group,
-    })
-
-    if highlight_group then
-      local hl_exists = vim.fn.hlexists(highlight_group)
-      if hl_exists == 0 then
-        vim.api.nvim_set_hl(0, highlight_group, {
-          fg = fg or nil,
-          bg = bg or nil,
-          bold = style == "bold" and true or false,
-          italic = style == "italic" and true or false,
-          underline = style == "underline" and true or false,
-        })
-      else
-        vim.api.nvim_set_hl(0, highlight_group, {
-          fg = fg,
-          bg = bg,
-          bold = style == "bold",
-          italic = style == "italic",
-          underline = style == "underline",
-        })
-      end
-    end
-  end
-  for i = 0, vim.api.nvim_buf_line_count(0) - 1 do
-    local line = vim.api.nvim_buf_get_lines(0, i, i + 1, false)[1]
-    for _, p in ipairs(patterns) do
-      if line:match(p.pattern) then
-        vim.api.nvim_buf_add_highlight(0, -1, p.group, i, 0, -1)
-        break
-      end
-    end
-  end
-end
-
+--- @param tbl table: The table to search in
+--- @param value any: The value to find
+--- @return number|nil: The index of the value or nil if not found
 local function table_index_of(tbl, value)
   for i, v in ipairs(tbl) do
     if v == value then
@@ -76,53 +21,111 @@ local function table_index_of(tbl, value)
   return nil
 end
 
-M.toggle_priority = function()
-  --  TODO: make this modular to support others prioritys systems?
+local M = {}
+
+M.config = {
+  checkbox_cycle = {
+    order = { ">", "x", "~", " " },
+    write_on_change = true,
+  },
+  priorities = { "@p1", "@p2", "@p3" }, }
+--- @param checkboxes? CheckboxCycleConfig: The order of checkboxes to cycle through (default: M.config.checkbox_cycle.order)
+--- @param write? boolean: Whether to save the file after changing (default: M.config.checkbox_cycle.write_on_change)
+--- @param line_num? number: The line number to operate on (default: current line)
+M.cycle_checkbox = function(checkboxes, write, line_num)
+  checkboxes = checkboxes or M.config.checkbox_cycle.order
+  write = write or M.config.checkbox_cycle.write_on_change
+
+  line_num = line_num or vim.api.nvim_win_get_cursor(0)[1]
+  local line = vim.api.nvim_buf_get_lines(0, line_num - 1, line_num, false)[1]
+
+  -- If line doesn't have a checkbox, convert it into one
+  if not line:match("^%s*- %[.") then
+    line = line:gsub("^(%s*)[-*+] ", "%1- [ ] ")
+  else
+    -- Cycle through the checkboxes
+    for i, check_char in ipairs(checkboxes) do
+      if line:match("^%s*- %[" .. check_char .. "%]") then
+        local next_char = checkboxes[i + 1] or checkboxes[1]
+        line = line:gsub("%[" .. check_char .. "%]", "[" .. next_char .. "]")
+        break
+      end
+    end
+  end
+
+  vim.api.nvim_buf_set_lines(0, line_num - 1, line_num, false, { line })
+  if write then
+    vim.cmd("write")
+  end
+end
+
+--- @param priorities? PriorityConfig: The list of priority tags to cycle through (default: M.config.priorities)
+M.toggle_priority = function(priorities)
+  priorities = priorities or M.config.priorities
   local line = vim.api.nvim_get_current_line()
-  local priorities = { "@p1", "@p2", "@p3" }
-  local current_priority = line:match("@p%d") -- make this use the pattern from priorities table
+  local current_priority = line:match("@p%d")
 
   if current_priority then
     local current_index = table_index_of(priorities, current_priority)
-    if current_priority == "@p3" then -- use the last index of priorities
-      -- removes @p3
-      line = line:gsub("%s*@p3", "") -- use the last index of priorities
+    if current_priority == priorities[#priorities] then
+      line = line:gsub("%s*" .. priorities[#priorities], "")
     else
-      -- cycle to next value
       local next_index = (current_index % #priorities) + 1
       line = line:gsub(current_priority, priorities[next_index])
     end
   else
-    -- adds @p1 if there's no priority.
-    line = line .. " @p1" -- use first index of priorities table
+    line = line .. " " .. priorities[1]
   end
 
   vim.api.nvim_set_current_line(line)
 end
 
-M.order_by_priority = function()
-  local priorities = { "@p1", "@p2", "@p3" }
-  local buffer = vim.api.nvim_get_current_buf()
-  local lines = vim.api.nvim_buf_get_lines(buffer, 0, -1, false)
+--  FIX:  
 
+--- @param priorities? PriorityConfig: The list of priority tags to order by (default: M.config.priorities)
+M.order_by_priority = function(priorities)
+  priorities = priorities or M.config.priorities
+  local buffer = vim.api.nvim_get_current_buf()
+  local start_line, end_line
+
+  if vim.fn.mode() == "v" or vim.fn.mode() == "V" then
+    local pos_start = vim.fn.getpos("'<")
+    local pos_end = vim.fn.getpos("'>")
+    start_line = math.min(pos_start[2], pos_end[2]) - 1
+    end_line = math.max(pos_start[2], pos_end[2])
+  else
+    start_line = 0
+    end_line = -1
+  end
+
+  if start_line < 0 or (end_line >= 0 and start_line > end_line) then
+    vim.api.nvim_err_writeln("Invalid range: 'start' is higher than 'end'")
+    return
+  end
+
+  local lines = vim.api.nvim_buf_get_lines(buffer, start_line, end_line, false)
+
+  --- @param line string: The line to check
+  --- @return number: The priority index (lower is higher priority)
   local function get_priority(line)
     for i, priority in ipairs(priorities) do
       if line:find(priority) then
         return i
       end
     end
+    return #priorities + 1
   end
 
   table.sort(lines, function(a, b)
     return get_priority(a) < get_priority(b)
   end)
 
-  vim.api.nvim_buf_set_lines(buffer, 0, -1, false, lines)
+  vim.api.nvim_buf_set_lines(buffer, start_line, end_line, false, lines)
 end
 
-M.setup = function()
-  local checkboxes = { ">", "x", "~", " " }
-  M.cycle_checkbox(checkboxes)
+--- @param config? MarkToolsConfig: The configuration to apply (default: M.config)
+M.setup = function(config)
+  M.config = vim.tbl_deep_extend("force", M.config, config or {})
 end
 
 return M

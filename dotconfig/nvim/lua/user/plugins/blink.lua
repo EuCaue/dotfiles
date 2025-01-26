@@ -52,6 +52,9 @@ return {
       list = { max_items = 100 },
       menu = {
         border = vim.g.border_type,
+        draw = {
+          treesitter = { "lsp" },
+        },
       },
 
       documentation = {
