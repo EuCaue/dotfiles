@@ -1,6 +1,3 @@
---  TODO: make the note taking maps
---  TODO: make the zk maps?
---  TODO: refactor UI things, make look aesthetic or something
 --  TODO: try vim-be-good
 --  TODO: make some menu to set the filetype 
 

@@ -11,7 +11,17 @@ return {
     arg = "leet",
     lang = "typescript",
     storage = {
-      home = vim.fn.getenv("HOME") .. "/Code/leetcode"
+      home = vim.fn.getenv("HOME") .. "/Code/leetcode",
+    },
+    hooks = {
+      ---@type fun()[]
+      ["question_enter"] = {
+        function()
+          vim.cmd("wincmd h")
+          vim.cmd("set wrap")
+          vim.cmd("wincmd l")
+        end,
+      },
     },
     description = {
       width = "35%",

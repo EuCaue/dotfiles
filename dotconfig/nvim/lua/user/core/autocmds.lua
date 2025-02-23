@@ -1,7 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 
 local function augroup(name)
-  return vim.api.nvim_create_augroup("myvim" .. name, { clear = true })
+  return vim.api.nvim_create_augroup("myvim_" .. name, { clear = true })
 end
 
 autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
@@ -63,10 +63,14 @@ autocmd("FileType", {
       return
     end
 
+
     -- TODO: organize this
     local map = vim.keymap.set
     local buffer = event.buf
     vim.opt_local.spell = true
+    vim.opt_local.number = false
+    vim.opt_local.signcolumn = "no"
+    vim.opt_local.textwidth = 100
     local marktools = require("user.core.marktools")
     require("user.core.markdown_pasting").setup()
     marktools.setup()

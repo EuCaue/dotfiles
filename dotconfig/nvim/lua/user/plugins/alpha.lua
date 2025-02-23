@@ -5,7 +5,7 @@ return {
   event = "VimEnter",
   opts = function()
     local dashboard = require("alpha.themes.dashboard")
-    local logo = require("user.core.ascii-headers").arts[24]
+    local logo = require("user.core.ascii-headers").arts[2]
     local button_width = math.floor(#logo[1] / 3)
     if button_width < 25 then
       button_width = math.floor(#logo[1])

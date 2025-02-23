@@ -1,0 +1,14 @@
+[[input.prepend_keymap]]
+on = "<Esc>"
+run = "close"
+desc = "Cancel input"
+
+[manager]
+prepend_keymap = [
+  { on = [
+    "<A-k>",
+  ], run = "seek -5" },
+  { on = [
+    "<A-j>",
+  ], run = "seek +5" },
+]

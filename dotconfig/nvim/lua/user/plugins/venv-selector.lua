@@ -1,5 +1,6 @@
 return {
   "linux-cultist/venv-selector.nvim",
+  enabled = false,
   branch = "regexp",
   cmd = "VenvSelect",
   opts = {

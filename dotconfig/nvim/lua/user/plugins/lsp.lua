@@ -54,7 +54,7 @@ local function lsp_action(action)
   end
 end
 
-vim.lsp.handlers["textDocument/definition"] = goto_definition("split")
+-- vim.lsp.handlers["textDocument/definition"] = goto_definition("split")
 return {
   { "williamboman/mason-lspconfig.nvim", lazy = true },
   { "WhoIsSethDaniel/mason-tool-installer.nvim", lazy = true },
@@ -91,13 +91,18 @@ return {
           end
 
           map("n", "K", vim.lsp.buf.hover, "hover")
-          map("n", "gd", vim.lsp.buf.definition, "goto definition")
-          map("n", "gD", vim.lsp.buf.declaration, "goto declaration")
+          map("n", "gd", vim.lsp.buf.definition, "goto declaration")
+          map("n", "gD", function()
+            vim.cmd("vsplit")
+            vim.lsp.buf.definition()
+          end, "goto definition in vsplit")
+          map("n", "gk", vim.lsp.buf.declaration, "goto declaration")
           map("n", "gr", vim.lsp.buf.references, "goto references")
           map("n", "gI", vim.lsp.buf.implementation, "goto implementation")
           map("n", "gy", vim.lsp.buf.type_definition, "goto type definition")
           map("n", "<leader>cr", vim.lsp.buf.rename, "code rename")
-          map("n", "<leader>ca", vim.lsp.buf.code_action, "code action")
+          map({ "n", "v", "x" }, "<leader>ca", vim.lsp.buf.code_action, "code action")
+
           map("n", "<leader>cl", "<cmd>LspInfo<cr>", "show lsp info")
           map("i", "<A-s>", vim.lsp.buf.signature_help, "show signature help")
 
@@ -169,7 +174,7 @@ return {
       vim.lsp.handlers["textDocument/signatureHelp"] =
         vim.lsp.with(vim.lsp.handlers.signature_help, { border = vim.g.border_type })
       require("lspconfig.ui.windows").default_options.border = vim.g.border_type
-      vim.lsp.handlers["textDocument/definition"] = goto_definition("vsplit")
+      -- vim.lsp.handlers["textDocument/definition"] = goto_definition("vsplit")
       local servers = {
         -- ts_ls = {},
         lua_ls = {

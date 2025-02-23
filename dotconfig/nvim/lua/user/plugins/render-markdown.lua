@@ -8,7 +8,8 @@ return {
     custom_handlers = {
       markdown = {
         extends = true,
-        parse = function(root, buf)
+        parse = function(ctx)
+          local root, buf = ctx.root, ctx.buf
           local marks = {}
 
           ---@param row { [1]: integer, [2]: integer }
@@ -57,6 +58,7 @@ return {
         end,
       },
     },
+    enabled = false,
     file_types = { "markdown" },
     render_modes = { "n", "c", "x", "v", "no" },
     quotes = {

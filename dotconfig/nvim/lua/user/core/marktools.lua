@@ -21,6 +21,18 @@ local function table_index_of(tbl, value)
   return nil
 end
 
+--- @param line string: The line to check
+--- @param priorities PriorityConfig: The line to check
+--- @return number: The priority index (lower is higher priority)
+local function get_priority(line, priorities)
+  for i, priority in ipairs(priorities) do
+    if line:find(priority) then
+      return i
+    end
+  end
+  return #priorities + 1
+end
+
 local M = {}
 
 M.config = {
@@ -28,7 +40,8 @@ M.config = {
     order = { ">", "x", "~", " " },
     write_on_change = true,
   },
-  priorities = { "@p1", "@p2", "@p3" }, }
+  priorities = { "@p1", "@p2", "@p3" },
+}
 --- @param checkboxes? CheckboxCycleConfig: The order of checkboxes to cycle through (default: M.config.checkbox_cycle.order)
 --- @param write? boolean: Whether to save the file after changing (default: M.config.checkbox_cycle.write_on_change)
 --- @param line_num? number: The line number to operate on (default: current line)
@@ -38,7 +51,6 @@ M.cycle_checkbox = function(checkboxes, write, line_num)
 
   line_num = line_num or vim.api.nvim_win_get_cursor(0)[1]
   local line = vim.api.nvim_buf_get_lines(0, line_num - 1, line_num, false)[1]
-
   -- If line doesn't have a checkbox, convert it into one
   if not line:match("^%s*- %[.") then
     line = line:gsub("^(%s*)[-*+] ", "%1- [ ] ")
@@ -80,7 +92,7 @@ M.toggle_priority = function(priorities)
   vim.api.nvim_set_current_line(line)
 end
 
---  FIX:  
+--  TODO: capture nested todos
 
 --- @param priorities? PriorityConfig: The list of priority tags to order by (default: M.config.priorities)
 M.order_by_priority = function(priorities)
@@ -104,23 +116,33 @@ M.order_by_priority = function(priorities)
   end
 
   local lines = vim.api.nvim_buf_get_lines(buffer, start_line, end_line, false)
+  local priority_lines = {}
+  local other_lines = {}
 
-  --- @param line string: The line to check
-  --- @return number: The priority index (lower is higher priority)
-  local function get_priority(line)
-    for i, priority in ipairs(priorities) do
-      if line:find(priority) then
-        return i
-      end
+  for _, line in ipairs(lines) do
+    if line:match("@p%d+") then
+      table.insert(priority_lines, line)
+    else
+      table.insert(other_lines, line)
     end
-    return #priorities + 1
   end
 
-  table.sort(lines, function(a, b)
-    return get_priority(a) < get_priority(b)
+  table.sort(priority_lines, function(a, b)
+    return get_priority(a, priorities) < get_priority(b, priorities)
   end)
 
-  vim.api.nvim_buf_set_lines(buffer, start_line, end_line, false, lines)
+  local sorted_lines = {}
+  local priority_index = 1
+  for _, line in ipairs(lines) do
+    if line:match("@p%d+") then
+      table.insert(sorted_lines, priority_lines[priority_index])
+      priority_index = priority_index + 1
+    else
+      table.insert(sorted_lines, line)
+    end
+  end
+
+  vim.api.nvim_buf_set_lines(buffer, start_line, end_line, false, sorted_lines)
 end
 
 --- @param config? MarkToolsConfig: The configuration to apply (default: M.config)

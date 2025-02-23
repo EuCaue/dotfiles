@@ -1,7 +1,6 @@
 #!/usr/bin/env zsh
 
 # quick config files
-alias afg='nvim ~/.config/alacritty/alacritty.toml'
 alias gfg='nvim ~/.config/ghostty/config'
 alias cfg='cd ~/.config/zsh/ && nvim ~/.config/zsh/.zshrc && cd -'
 alias nfg='cd ~/.config/nvim/ && nvim ~/.config/nvim/init.lua && cd -'
@@ -11,6 +10,7 @@ alias disable_keyboard="sudo evtest --grab /dev/input/event23 > /dev/null 2>&1"
 # clear
 alias c="clear"
 alias cl="cd && c"
+
 # git
 alias g="git"
 alias gu="gitu"
@@ -29,12 +29,20 @@ alias rr="trash restore"
 # system
 alias update-grub="sudo grub2-mkconfig -o /etc/grub2.cfg && sudo grub2-mkconfig -o /etc/grub2-efi.cfg"
 alias ls-font='fc-list --format="%{family}\\n" | cut -d , -f 1 | sort | uniq | fzf'
+
 function install-custom-theme() {
+  if [ "$(id -u)" -eq 0 ]; then
+    TARGET_DIR="/usr/share/icons/"
+  else
+    TARGET_DIR="$HOME/.local/share/icons/"
+  fi
+
   for theme in "$@"; do
     if [[ -e "$theme" ]]; then
-      sudo mv "$theme" /usr/share/icons/
+      mv "$theme" "$TARGET_DIR"
+      echo "Installed $theme to $TARGET_DIR"
     else
-      echo "Provide a cursor/icon folder/path"
+      echo "Provide a valid cursor/icon folder/path: $theme"
     fi
   done
 }

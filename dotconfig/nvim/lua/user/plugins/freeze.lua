@@ -26,6 +26,6 @@ return {
     output = function()
       return "/tmp/" .. os.date("%Y-%m-%d") .. "_freeze.png"
     end,
-    theme = "catppuccin-mocha",
+    theme = "lovelace",
   },
 }

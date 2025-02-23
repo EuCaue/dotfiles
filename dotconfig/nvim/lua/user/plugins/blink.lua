@@ -1,9 +1,9 @@
 return {
   "saghen/blink.cmp",
-  dependencies = "rafamadriz/friendly-snippets",
-  build = "cargo build --release",
+  dependencies = { "rafamadriz/friendly-snippets" },
+  -- build = "cargo build --release",
+  version = "*",
   event = "InsertEnter",
-  ---@module 'blink.cmp'
   opts = {
     keymap = {
       preset = "default",
@@ -13,8 +13,13 @@ return {
       window = { border = vim.g.border_type },
     },
     sources = {
-      default = { "lazydev", "lsp", "path", "snippets" },
+      default = { "lazydev", "lsp", "path", "snippets", "markdown" },
       providers = {
+        markdown = {
+          name = "RenderMarkdown",
+          module = "render-markdown.integ.blink",
+          fallbacks = { "lsp" },
+        },
         lazydev = {
           name = "LazyDev",
           module = "lazydev.integrations.blink",
@@ -53,6 +58,20 @@ return {
       menu = {
         border = vim.g.border_type,
         draw = {
+          components = {
+            kind_icon = {
+              ellipsis = false,
+              text = function(ctx)
+                local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
+                return kind_icon
+              end,
+              -- Optionally, you may also use the highlights from mini.icons
+              highlight = function(ctx)
+                local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+                return hl
+              end,
+            },
+          },
           treesitter = { "lsp" },
         },
       },
@@ -62,40 +81,6 @@ return {
         window = {
           border = vim.g.border_type,
         },
-      },
-    },
-    appearance = {
-      kind_icons = {
-        Text = "",
-        Method = "",
-        Function = "",
-        Constructor = "",
-
-        Field = "",
-        Variable = "",
-        Property = "",
-
-        Class = "",
-        Interface = "",
-        Struct = "",
-        Module = "",
-
-        Unit = "",
-        Value = "",
-        Enum = "",
-        EnumMember = "",
-
-        Keyword = "",
-        Constant = "",
-
-        Snippet = "",
-        Color = "",
-        File = "",
-        Reference = "",
-        Folder = "",
-        Event = "",
-        Operator = "",
-        TypeParameter = "",
       },
     },
   },

@@ -18,18 +18,23 @@ g.border_type = "rounded"
 
 -- trigger bigfile size
 g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
-local color_scheme = vim.fn.system("gsettings get org.gnome.desktop.interface color-scheme")
-color_scheme = color_scheme:gsub("%s+", "")
-color_scheme = color_scheme:gsub("\n", "")
-
-if color_scheme == "'prefer-dark'" then
-  opt.background = "dark"
-else
- opt.background = "light"
-end
+-- if vim.fn.executable("gsettings") == 1 then
+--   local color_scheme = vim.fn.system("gsettings get org.gnome.desktop.interface color-scheme")
+--   color_scheme = color_scheme:gsub("%s+", "")
+--   color_scheme = color_scheme:gsub("\n", "")
+--
+--   if color_scheme == "'prefer-dark'" then
+--     opt.background = "dark"
+--   else
+--     opt.background = "light"
+--   end
+-- else
+--   opt.background = "dark"
+-- end
+opt.background = "light"
 opt.autowrite = true -- Enable auto write
 opt.backup = false -- creates a backup file
-opt.colorcolumn = "80" -- colorcolumn
+opt.colorcolumn = "120" -- colorcolumn
 opt.completeopt = "menu,menuone,noinsert,noselect"
 opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
