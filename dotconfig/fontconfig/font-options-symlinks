@@ -1,10 +1,12 @@
 10-hinting-slight.conf -> /usr/share/fontconfig/conf.avail/10-hinting-slight.conf
 10-powerline-symbols.conf -> ../../../usr/share/fontconfig/conf.avail/10-powerline-symbols.conf
 10-scale-bitmap-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/10-scale-bitmap-fonts.conf
-10-sub-pixel-rgb.conf -> /usr/share/fontconfig/conf.avail/10-sub-pixel-rgb.conf
+10-sub-pixel-none.conf -> /usr/share/fontconfig/conf.avail/10-sub-pixel-none.conf
 10-yes-antialias.conf -> ../../../usr/share/fontconfig/conf.avail/10-yes-antialias.conf
 11-lcdfilter-default.conf -> ../../../usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf
 20-unhint-small-dejavu-sans.conf -> ../../../usr/share/fontconfig/conf.avail/20-unhint-small-dejavu-sans.conf
+20-unhint-small-dejavu-sans-mono.conf -> ../../../usr/share/fontconfig/conf.avail/20-unhint-small-dejavu-sans-mono.conf
+20-unhint-small-dejavu-serif.conf -> ../../../usr/share/fontconfig/conf.avail/20-unhint-small-dejavu-serif.conf
 20-unhint-small-vera.conf -> ../../../usr/share/fontconfig/conf.avail/20-unhint-small-vera.conf
 25-no-bitmap-fedora.conf
 25-unhint-nonlatin.conf -> /usr/share/fontconfig/conf.avail/25-unhint-nonlatin.conf
@@ -29,24 +31,22 @@
 56-google-noto-serif-vf.conf -> ../../../usr/share/fontconfig/conf.avail/56-google-noto-serif-vf.conf
 56-mono.conf -> /usr/share/fontconfig/conf.avail/56-mono.conf
 57-dejavu-sans-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/57-dejavu-sans-fonts.conf
-58-google-noto-sans-meeteimayek-vf.conf -> ../../../usr/share/fontconfig/conf.avail/58-google-noto-sans-meeteimayek-vf.conf
+57-dejavu-sans-mono-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/57-dejavu-sans-mono-fonts.conf
+57-dejavu-serif-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/57-dejavu-serif-fonts.conf
+58-google-noto-sans-meetei-mayek-vf.conf -> ../../../usr/share/fontconfig/conf.avail/58-google-noto-sans-meetei-mayek-vf.conf
 58-google-noto-sans-ol-chiki-vf.conf -> ../../../usr/share/fontconfig/conf.avail/58-google-noto-sans-ol-chiki-vf.conf
-58-google-noto-sans-symbols2.conf -> ../../../usr/share/fontconfig/conf.avail/58-google-noto-sans-symbols2.conf
+58-google-noto-sans-symbols-2.conf -> ../../../usr/share/fontconfig/conf.avail/58-google-noto-sans-symbols-2.conf
 58-google-noto-sans-symbols-vf.conf -> ../../../usr/share/fontconfig/conf.avail/58-google-noto-sans-symbols-vf.conf
 58-ibm-plex-mono-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/58-ibm-plex-mono-fonts.conf
 59-intel-one-mono-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/59-intel-one-mono-fonts.conf
-59-liberation-mono.conf -> /usr/share/fontconfig/conf.avail/59-liberation-mono.conf
-59-liberation-sans.conf -> /usr/share/fontconfig/conf.avail/59-liberation-sans.conf
-59-liberation-serif.conf -> /usr/share/fontconfig/conf.avail/59-liberation-serif.conf
+59-liberation-mono-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/59-liberation-mono-fonts.conf
+59-liberation-sans-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/59-liberation-sans-fonts.conf
+59-liberation-serif-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/59-liberation-serif-fonts.conf
 60-generic.conf -> ../../../usr/share/fontconfig/conf.avail/60-generic.conf
-60-jetbrains-mono-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/60-jetbrains-mono-fonts.conf
 60-latin.conf -> ../../../usr/share/fontconfig/conf.avail/60-latin.conf
-60-mozilla-fira-mono.conf -> /usr/share/fontconfig/conf.avail/60-mozilla-fira-mono.conf
-60-mozilla-fira-sans.conf -> /usr/share/fontconfig/conf.avail/60-mozilla-fira-sans.conf
 60-open-sans.conf -> /usr/share/fontconfig/conf.avail/60-open-sans.conf
 60-overpass-mono-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/60-overpass-mono-fonts.conf
 61-aajohan-comfortaa-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/61-aajohan-comfortaa-fonts.conf
-61-adobe-source-code-pro-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/61-adobe-source-code-pro-fonts.conf
 61-julietaula-montserrat-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/61-julietaula-montserrat-fonts.conf
 61-urw-bookman.conf -> /usr/share/fontconfig/conf.avail/61-urw-bookman.conf
 61-urw-c059.conf -> /usr/share/fontconfig/conf.avail/61-urw-c059.conf
@@ -65,9 +65,7 @@
 63-rsms-inter.conf -> ../../../usr/share/fontconfig/conf.avail/63-rsms-inter.conf
 63-rsms-inter-vf.conf -> ../../../usr/share/fontconfig/conf.avail/63-rsms-inter-vf.conf
 64-google-roboto-slab-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/64-google-roboto-slab-fonts.conf
-64-redhat-display.conf -> /usr/share/fontconfig/conf.avail/64-redhat-display.conf
 64-redhat-mono.conf -> /usr/share/fontconfig/conf.avail/64-redhat-mono.conf
-64-redhat-text.conf -> /usr/share/fontconfig/conf.avail/64-redhat-text.conf
 65-0-google-noto-sans-armenian-vf.conf -> ../../../usr/share/fontconfig/conf.avail/65-0-google-noto-sans-armenian-vf.conf
 65-0-google-noto-sans-bengali-vf.conf -> ../../../usr/share/fontconfig/conf.avail/65-0-google-noto-sans-bengali-vf.conf
 65-0-google-noto-sans-canadian-aboriginal-vf.conf -> ../../../usr/share/fontconfig/conf.avail/65-0-google-noto-sans-canadian-aboriginal-vf.conf
@@ -114,11 +112,10 @@
 65-google-noto-sans-mono-cjk-vf-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/65-google-noto-sans-mono-cjk-vf-fonts.conf
 65-google-noto-serif-cjk-vf-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/65-google-noto-serif-cjk-vf-fonts.conf
 65-meera-new-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/65-meera-new-fonts.conf
-65-sil-mingzat.conf -> ../../../usr/share/fontconfig/conf.avail/65-sil-mingzat.conf
 65-sil-padauk-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/65-sil-padauk-fonts.conf
 65-stix-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/65-stix-fonts.conf
+66-google-droid-sans-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/66-google-droid-sans-fonts.conf
 66-google-noto-serif-hebrew-vf.conf -> ../../../usr/share/fontconfig/conf.avail/66-google-noto-serif-hebrew-vf.conf
-66-sil-nuosu-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/66-sil-nuosu-fonts.conf
 69-google-droid-arabic-kufi-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/69-google-droid-arabic-kufi-fonts.conf
 69-google-droid-sans-armenian-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/69-google-droid-sans-armenian-fonts.conf
 69-google-droid-sans-devanagari-fonts.conf -> ../../../usr/share/fontconfig/conf.avail/69-google-droid-sans-devanagari-fonts.conf
@@ -133,3 +130,4 @@
 69-unifont.conf -> ../../../usr/share/fontconfig/conf.avail/69-unifont.conf
 80-delicious.conf -> ../../../usr/share/fontconfig/conf.avail/80-delicious.conf
 90-synthetic.conf -> ../../../usr/share/fontconfig/conf.avail/90-synthetic.conf
+99-custom-config.conf

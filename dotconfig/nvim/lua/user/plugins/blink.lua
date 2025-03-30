@@ -1,7 +1,6 @@
 return {
   "saghen/blink.cmp",
   dependencies = { "rafamadriz/friendly-snippets" },
-  -- build = "cargo build --release",
   version = "*",
   event = "InsertEnter",
   opts = {
@@ -13,30 +12,17 @@ return {
       window = { border = vim.g.border_type },
     },
     sources = {
-      default = { "lazydev", "lsp", "path", "snippets", "markdown" },
+      default = { "lazydev", "lsp", "path", "snippets" },
       providers = {
-        markdown = {
-          name = "RenderMarkdown",
-          module = "render-markdown.integ.blink",
-          fallbacks = { "lsp" },
-        },
         lazydev = {
           name = "LazyDev",
           module = "lazydev.integrations.blink",
           score_offset = 100,
         },
-        lsp = {
-          name = "LSP",
-          module = "blink.cmp.sources.lsp",
-        },
         path = {
-          name = "Path",
-          module = "blink.cmp.sources.path",
-          score_offset = 3,
+          score_offset = 10,
         },
         snippets = {
-          name = "Snippets",
-          module = "blink.cmp.sources.snippets",
           score_offset = -10,
           opts = {
             friendly_snippets = true,
@@ -46,15 +32,15 @@ return {
             ignored_filetypes = {},
           },
         },
-        buffer = {
-          name = "Buffer",
-          module = "blink.cmp.sources.buffer",
-          fallbacks = { "lsp" },
-        },
       },
     },
     completion = {
-      list = { max_items = 100 },
+      list = {
+        max_items = 100,
+        selection = {
+          auto_insert = false,
+        },
+      },
       menu = {
         border = vim.g.border_type,
         draw = {
@@ -62,11 +48,17 @@ return {
             kind_icon = {
               ellipsis = false,
               text = function(ctx)
+                -- if vim.g.have_nerd_Font == false then
+                --   return ""
+                -- end
                 local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
                 return kind_icon
               end,
               -- Optionally, you may also use the highlights from mini.icons
               highlight = function(ctx)
+                -- if vim.g.have_nerd_Font == false then
+                --   return
+                -- end
                 local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
                 return hl
               end,

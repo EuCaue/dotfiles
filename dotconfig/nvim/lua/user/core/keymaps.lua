@@ -6,7 +6,7 @@ local map = function(modes, key, cmd, opts)
   vim.keymap.set(modes, key, cmd, opts)
 end
 
-local commentsTags = {
+local comments_tags = {
   t = { "todo", "t" },
   h = { "hack", "h" },
   n = { "note", "n" },
@@ -14,7 +14,7 @@ local commentsTags = {
   b = { "bug", "b" },
 }
 
-for _, tag in pairs(commentsTags) do
+for _, tag in pairs(comments_tags) do
   local tag_text = tag[1]
   local tag_key = tag[2]
   local key = "gcm" .. tag_key
@@ -75,12 +75,12 @@ map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", get_opts("Up", true))
 map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", get_opts("Up", true))
 
 -- Move Lines
-map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
-map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move Up" })
+-- map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
+-- map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move Up" })
 -- map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
 -- map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
-map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
-map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
+-- map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
+-- map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
 
 -- buffers
 map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
@@ -104,8 +104,8 @@ map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
 
 -- quick fix
-map("n", "[q", vim.cmd.cprev, get_opts("Previous Quickfix"))
-map("n", "]q", vim.cmd.cnext, get_opts("Next Quickfix"))
+-- map("n", "[q", vim.cmd.cprev, get_opts("Previous Quickfix"))
+-- map("n", "]q", vim.cmd.cnext, get_opts("Next Quickfix"))
 
 -- tabs
 map("n", "<leader><tab>L", "<cmd>tablast<cr>", { desc = "Last Tab" })

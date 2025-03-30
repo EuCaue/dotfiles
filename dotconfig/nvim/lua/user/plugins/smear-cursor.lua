@@ -1,5 +1,6 @@
 return {
   "sphamba/smear-cursor.nvim",
+  enabled = false,
   event = "VeryLazy",
   opts = {
     stiffness = 0.8, -- 0.6      [0, 1]
@@ -8,5 +9,6 @@ return {
     hide_target_hack = false,
     cterm_cursor_colors = { 240, 245, 250, 255 },
     cterm_bg = 235,
+    smear_insert_mode = false,
   },
 }

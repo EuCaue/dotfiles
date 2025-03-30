@@ -3,6 +3,27 @@ return {
   "folke/snacks.nvim",
   keys = {
     {
+      "<leader>i",
+      function()
+        Snacks.zen.zoom()
+      end,
+      desc = "Toggle Zoom",
+    },
+    {
+      "<leader>tz",
+      function()
+        Snacks.zen.zoom()
+      end,
+      desc = "Toggle Zoom",
+    },
+    {
+      "<leader>tZ",
+      function()
+        Snacks.zen()
+      end,
+      desc = "Toggle Zen mode",
+    },
+    {
       "<leader>tD",
       function()
         if dim_enabled then
@@ -28,6 +49,7 @@ return {
   opts = {
     image = { enabled = true },
     dim = { enabled = true },
+    zen = {enabled=true},
     bigfile = {
       enabled = true,
     },

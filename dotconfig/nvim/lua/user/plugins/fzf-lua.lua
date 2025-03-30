@@ -3,7 +3,6 @@ local function buffer_dir()
 end
 
 return {
-  enabled = true,
   "ibhagwan/fzf-lua",
   cmd = "FzfLua",
   opts = function()

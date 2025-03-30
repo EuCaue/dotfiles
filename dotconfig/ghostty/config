@@ -5,6 +5,9 @@
 #window-padding-balance=true
 #window-padding-x=5
 adw-toolbar-style=raised-border
+adjust-box-thickness=100%
+adjust-cursor-height=10%
+adjust-cursor-thickness=100%
 bold-is-bright=true
 clipboard-paste-bracketed-safe=true
 background-opacity=1
@@ -15,9 +18,9 @@ cursor-style=block
 desktop-notifications=true
 font-family=monospace
 font-family=Symbols Nerd Font Mono
-font-size=15
-freetype-load-flags=no-force-autohint
-freetype-load-flags=no-hinting
+# font-size=15
+# freetype-load-flags=no-hinting
+freetype-load-flags=hinting,no-force-autohint,no-monochrome
 gtk-adwaita=true
 gtk-wide-tabs=true
 keybind=alt+eight=unbind
@@ -37,7 +40,7 @@ keybind=ctrl+shift+w=unbind
 link-url= true
 mouse-hide-while-typing = false
 shell-integration-features=true
-theme=light:bamboo_light,dark:bamboo
+theme=light:bamboo_light,dark:Kanagawa Dragon
 window-height=45
 window-inherit-font-size=true
 window-theme=ghostty

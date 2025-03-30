@@ -26,6 +26,6 @@ return {
     description = {
       width = "35%",
     },
-    image_support = true,
+    image_support = false,
   },
 }

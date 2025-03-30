@@ -40,3 +40,11 @@ eval "$(starship init zsh)"
 # [[ ! -f ~/dotfiles/dotconfig/zsh/.p10k.zsh ]] || source ~/dotfiles/dotconfig/zsh/.p10k.zsh
 # eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/bubbles.omp.json)"
 # eval "$(fnm env --use-on-cd --shell zsh)"
+
+# pnpm
+export PNPM_HOME="/home/caue/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

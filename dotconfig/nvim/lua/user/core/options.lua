@@ -1,6 +1,10 @@
 local opt = vim.opt
 local g = vim.g
 
+-- custom macros
+vim.fn.setreg("s", "]sz=1\r")
+vim.fn.setreg("S", "[sz=1\r")
+
 -- set <space> as the leader key
 g.mapleader = " "
 g.maplocalleader = " "
@@ -18,27 +22,14 @@ g.border_type = "rounded"
 
 -- trigger bigfile size
 g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
--- if vim.fn.executable("gsettings") == 1 then
---   local color_scheme = vim.fn.system("gsettings get org.gnome.desktop.interface color-scheme")
---   color_scheme = color_scheme:gsub("%s+", "")
---   color_scheme = color_scheme:gsub("\n", "")
---
---   if color_scheme == "'prefer-dark'" then
---     opt.background = "dark"
---   else
---     opt.background = "light"
---   end
--- else
---   opt.background = "dark"
--- end
-opt.background = "light"
+opt.background = "dark"
 opt.autowrite = true -- Enable auto write
 opt.backup = false -- creates a backup file
 opt.colorcolumn = "120" -- colorcolumn
 opt.completeopt = "menu,menuone,noinsert,noselect"
 opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
-opt.cursorline = true -- Enable highlighting of the current line
+opt.cursorline = true -- Enable highdarking of the current line
 opt.expandtab = true -- Use spaces instead of tabs
 opt.fillchars = {
   foldopen = "",
@@ -50,6 +41,9 @@ opt.fillchars = {
 }
 opt.fileencoding = "utf-8" -- the encoding written to a file
 opt.foldlevel = 99
+opt.foldexpr = "v:lua.require'user.core.fold'.foldexpr()"
+opt.foldmethod = "expr"
+opt.foldtext = ""
 opt.formatoptions = "jcroqlnt" -- tcqj
 opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
@@ -96,9 +90,6 @@ opt.winminwidth = 5 -- Minimum window width
 opt.wrap = false -- Disable line wrap
 opt.writebackup = false -- disable backup
 opt.smoothscroll = true
-opt.foldexpr = "v:lua.require'user.core.fold'.foldexpr()"
-opt.foldmethod = "expr"
-opt.foldtext = ""
 
 -- Fix markdown indentation settings
 g.markdown_recommended_style = 0

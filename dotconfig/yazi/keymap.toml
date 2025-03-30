@@ -11,4 +11,20 @@ prepend_keymap = [
   { on = [
     "<A-j>",
   ], run = "seek +5" },
+  { on = [
+    "n",
+    "d",
+  ], run = "shell --block --confirm --interactive '$ZK_NOTEBOOK_DIR/delete-note.sh \"$@\"'", desc = "Delete zk notes" },
+  { on = [
+    "n",
+    "r",
+  ], run = "shell --block --confirm --interactive '$ZK_NOTEBOOK_DIR/update-title.sh \"$1\"'", desc = "Rename title in zk note" },
+  { on = [
+    "n",
+    "u",
+  ], run = "shell --block --confirm --interactive '$ZK_NOTEBOOK_DIR/update-references.sh \"$1\"'", desc = "Update refs to a zk note" },
+  { on = [
+    "n",
+    "m",
+  ], run = "shell --block --confirm --interactive '$ZK_NOTEBOOK_DIR/mv-note \"$1\"'", desc = "Move a zk note" },
 ]

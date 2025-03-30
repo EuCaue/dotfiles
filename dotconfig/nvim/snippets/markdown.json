@@ -1,0 +1,24 @@
+{
+  "Inline Time Block": {
+    "prefix": "todo_time",
+    "body": "- [ ] ${1:Task description} @${2:p1} (${3:HH:MM}–${4:HH:MM})",
+    "description": "Create a todo with an inline time block"
+  },
+  "Dayparts Sections": {
+    "prefix": "dayparts",
+    "body": [
+      "**Morning:**",
+      "${1}",
+      "**Afternoon:**",
+      "${2}",
+      "**Evening:**",
+      "${3}"
+    ],
+    "description": "Creates Morning, Afternoon, and Evening sections"
+  },
+  "Timestamp Log": {
+    "prefix": "log",
+    "body": "(${CURRENT_DATE}/${CURRENT_MONTH}/${CURRENT_YEAR} ${CURRENT_HOUR}:${CURRENT_MINUTE}): ${2:Log entry}",
+    "description": "Adds a timestamped log entry"
+  }
+}

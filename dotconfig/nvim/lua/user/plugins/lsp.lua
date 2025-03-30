@@ -1,37 +1,3 @@
----@diagnostic disable: need-check-nil
-local function goto_definition(split_cmd)
-  local util = vim.lsp.util
-  local log = require("vim.lsp.log")
-  local api = vim.api
-
-  -- note, this handler style is for neovim 0.5.1/0.6, if on 0.5, call with function(_, method, result)
-  local handler = function(_, result, ctx)
-    if result == nil or vim.tbl_isempty(result) then
-      local _ = log.info() and log.info(ctx.method, "No location found")
-      return nil
-    end
-
-    if split_cmd then
-      vim.cmd(split_cmd)
-    end
-
-    if vim.tbl_islist(result) then
-      util.jump_to_location(result[1])
-
-      if #result > 1 then
-        -- util.set_qflist(util.locations_to_items(result))
-        vim.fn.setqflist(util.locations_to_items(result))
-        api.nvim_command("copen")
-        api.nvim_command("wincmd p")
-      end
-    else
-      util.jump_to_location(result)
-    end
-  end
-
-  return handler
-end
-
 ---@class LspCommand: lsp.ExecuteCommandParams
 ---@field handler? lsp.Handler
 local function lsp_execute(opts)
@@ -53,8 +19,30 @@ local function lsp_action(action)
     })
   end
 end
+---@param jumpCount number
+local function jumpWithVirtLineDiags(jumpCount)
+  pcall(vim.api.nvim_del_augroup_by_name, "jumpWithVirtLineDiags") -- prevent autocmd for repeated jumps
 
--- vim.lsp.handlers["textDocument/definition"] = goto_definition("split")
+  vim.diagnostic.jump({ count = jumpCount })
+
+  local initialVirtTextConf = vim.diagnostic.config().virtual_text
+  vim.diagnostic.config({
+    virtual_text = false,
+    virtual_lines = { current_line = true },
+  })
+
+  vim.defer_fn(function() -- deferred to not trigger by jump itself
+    vim.api.nvim_create_autocmd("CursorMoved", {
+      desc = "User(once): Reset diagnostics virtual lines",
+      once = true,
+      group = vim.api.nvim_create_augroup("jumpWithVirtLineDiags", {}),
+      callback = function()
+        vim.diagnostic.config({ virtual_lines = false, virtual_text = initialVirtTextConf })
+      end,
+    })
+  end, 1)
+end
+
 return {
   { "williamboman/mason-lspconfig.nvim", lazy = true },
   { "WhoIsSethDaniel/mason-tool-installer.nvim", lazy = true },
@@ -81,8 +69,13 @@ return {
         callback = function(ev)
           local bufnr = ev.buf
           local client = vim.lsp.get_client_by_id(ev.data.client_id)
-
-          if client.supports_method("textDocument/completion") then
+          local win = vim.api.nvim_get_current_win()
+          if client and client:supports_method("textDocument/foldingRange") then
+            vim.wo[win].foldexpr = "v:lua.vim.lsp.foldexpr()"
+          else
+            vim.wo[win].foldexpr = "v:lua.require'user.core.fold'.foldexpr()"
+          end
+          if client:supports_method("textDocument/completion") then
             vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
           end
 
@@ -90,7 +83,9 @@ return {
             vim.keymap.set(modes, keys, func, { buffer = bufnr, desc = desc })
           end
 
-          map("n", "K", vim.lsp.buf.hover, "hover")
+          map("n", "K", function()
+            vim.lsp.buf.hover({ border = vim.g.border_type })
+          end, "hover")
           map("n", "gd", vim.lsp.buf.definition, "goto declaration")
           map("n", "gD", function()
             vim.cmd("vsplit")
@@ -104,15 +99,37 @@ return {
           map({ "n", "v", "x" }, "<leader>ca", vim.lsp.buf.code_action, "code action")
 
           map("n", "<leader>cl", "<cmd>LspInfo<cr>", "show lsp info")
-          map("i", "<A-s>", vim.lsp.buf.signature_help, "show signature help")
+          map("i", "<A-s>", function()
+            vim.lsp.buf.signature_help({ border = vim.g.border_type })
+          end, "show signature help")
+          map("n", "<leader>k", function()
+            local initialVirtTextConf = vim.diagnostic.config().virtual_text
+            vim.diagnostic.config({ virtual_lines = { current_line = true }, virtual_text = false })
 
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+            vim.defer_fn(function()
+              vim.api.nvim_create_autocmd("CursorMoved", {
+                desc = "User(once): Reset diagnostics virtual lines",
+                once = true,
+                group = vim.api.nvim_create_augroup("jumpWithVirtLineDiags", {}),
+                callback = function()
+                  vim.diagnostic.config({ virtual_lines = false, virtual_text = initialVirtTextConf })
+                end,
+              })
+            end, 1)
+          end)
+          map("n", "[d", function()
+            jumpWithVirtLineDiags(-1)
+          end, "Jump to the previous diagnostic in the current buffer")
+          map("n", "]d", function()
+            jumpWithVirtLineDiags(1)
+          end, "Jump to the next diagnostic in the current buffer")
+          if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             map("n", "<leader>th", function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }))
             end, "toggle inlay hints")
           end
 
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_codeLens) then
+          if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_codeLens) then
             map("n", "<leader>tc", function()
               vim.lsp.codelens.refresh({ bufnr = bufnr })
             end, "toggle code lens")
@@ -138,42 +155,41 @@ return {
       })
 
       vim.diagnostic.config({
-        signs = {
-          active = vim.g.have_nerd_font,
-          values = {
-            { name = "DiagnosticSignError", text = icons.diagnostics.Error },
-            { name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
-            { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
-            { name = "DiagnosticSignInfo", text = icons.diagnostics.Information },
+        signs = vim.g.have_nerd_font and {
+          text = {
+            [vim.diagnostic.severity.ERROR] = icons.diagnostics.Error,
+            [vim.diagnostic.severity.WARN] = icons.diagnostics.Warning,
+            [vim.diagnostic.severity.INFO] = icons.diagnostics.Information,
+            [vim.diagnostic.severity.HINT] = icons.diagnostics.Hint,
           },
-        },
+        } or {},
         virtual_text = {
+          source = "if_many",
           spacing = 4,
           prefix = icons.misc.Point,
+          format = function(diagnostic)
+            local diagnostic_message = {
+              [vim.diagnostic.severity.ERROR] = diagnostic.message,
+              [vim.diagnostic.severity.WARN] = diagnostic.message,
+              [vim.diagnostic.severity.INFO] = diagnostic.message,
+              [vim.diagnostic.severity.HINT] = diagnostic.message,
+            }
+            return diagnostic_message[diagnostic.severity]
+          end,
         },
-        underline = true,
+        underline = { severity = vim.diagnostic.severity.ERROR },
         update_in_insert = false,
         severity_sort = true,
         float = {
           focusable = true,
           style = "minimal",
           border = vim.g.border_type,
-          source = "always",
+          source = "if_many",
           header = "",
           prefix = "",
         },
       })
-
-      if vim.g.have_nerd_font then
-        for _, sign in ipairs(vim.tbl_get(vim.diagnostic.config(), "signs", "values") or {}) do
-          vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
-        end
-      end
-
-      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = vim.g.border_type })
-      vim.lsp.handlers["textDocument/signatureHelp"] =
-        vim.lsp.with(vim.lsp.handlers.signature_help, { border = vim.g.border_type })
-      require("lspconfig.ui.windows").default_options.border = vim.g.border_type
+      -- require("lspconfig.ui.windows").default_options.border = vim.g.border_type
       -- vim.lsp.handlers["textDocument/definition"] = goto_definition("vsplit")
       local servers = {
         -- ts_ls = {},
@@ -208,14 +224,6 @@ return {
         -- markdown_oxide = {},
         tailwindcss = {
           flags = { debounce_text_changes = 300 },
-          root_dir = require("lspconfig").util.root_pattern(
-            "tailwind.config.js",
-            "tailwind.config.cjs",
-            "tailwind.config.ts",
-            "postcss.config.js",
-            "postcss.config.cjs",
-            "postcss.config.ts"
-          ),
         },
         eslint = {},
         cssls = {},
@@ -264,6 +272,7 @@ return {
       })
 
       require("mason").setup({
+
         ui = {
           icons = {
             package_installed = icons.ui.Check,

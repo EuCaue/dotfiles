@@ -35,13 +35,93 @@ end
 
 local M = {}
 
+--- @param conf table|string: The highlight configuration. It can be a table with custom options (e.g., fg, bg, bold) and optionally a 'from_group' field,
+--- or a string indicating an existing highlight group name.
+--- @return table|string: The resolved highlight configuration. If a table is returned, it contains the complete set of highlight options.
+local function resolve_highlight(conf)
+  if type(conf) == "table" then
+    if conf.from_group then
+      local group_hl = vim.api.nvim_get_hl_by_name(conf.from_group, true)
+      local hl = vim.tbl_extend("force", {}, conf)
+      hl.from_group = nil -- Remove o campo para não ser interpretado pelo set_hl
+      if group_hl.foreground and not hl.fg then
+        hl.fg = string.format("#%06x", group_hl.foreground)
+      end
+      if group_hl.background and not hl.bg then
+        hl.bg = string.format("#%06x", group_hl.background)
+      end
+      return hl
+    else
+      return conf
+    end
+  elseif type(conf) == "string" then
+    return conf
+  end
+end
+
 M.config = {
   checkbox_cycle = {
     order = { ">", "x", "~", " " },
     write_on_change = true,
   },
   priorities = { "@p1", "@p2", "@p3" },
+  highlight = {
+    patterns = { "*.md" },
+    -- events = { "BufWinEnter", "BufWrite", "BufNewFile", "BufRead", "InsertLeave" },
+    events = { "BufWinEnter", "BufWrite", "BufNewFile", "BufRead", "InsertLeave", "TextChanged" },
+    priority = {
+      [1] = { from_group = "Error", bg = "None", bold = true },
+      [2] = "WarningMsg",
+      [3] = { bg = "None", from_group = "DiffAdded", bold = true },
+      [4] = { from_group = "DiffChange", italic = true },
+    },
+  },
 }
+--- @param events? string[]: List of events to trigger the highlight update (default: M.config.highlight.events)
+--- @param patterns? string[]: List of file patterns to which the highlight should be applied (default: M.config.highlight.patterns)
+M.apply_priority_highlight = function(events, patterns)
+  events = events or M.config.highlight.events
+  patterns = patterns or M.config.highlight.patterns
+
+  local ns = vim.api.nvim_create_namespace("marktools_priority")
+  local augroup = vim.api.nvim_create_augroup("marktools-highlight", { clear = true })
+
+  for index, _ in ipairs(M.config.priorities) do
+    local hl_group = "PriorityP" .. index
+    local conf = M.config.highlight.priority and M.config.highlight.priority[index]
+    local resolved = resolve_highlight(conf)
+    if type(resolved) == "table" then
+      vim.api.nvim_set_hl(0, hl_group, resolved)
+    elseif type(resolved) == "string" then
+      vim.cmd(string.format("highlight! link %s %s", hl_group, resolved))
+    else
+      vim.cmd(string.format("highlight! link %s Normal", hl_group))
+    end
+  end
+
+  local function create_highlight()
+    local buffer = vim.api.nvim_get_current_buf()
+    vim.api.nvim_buf_clear_namespace(buffer, ns, 0, -1)
+    local lines = vim.api.nvim_buf_get_lines(buffer, 0, -1, false)
+    for i, line in ipairs(lines) do
+      for index, priority in ipairs(M.config.priorities) do
+        local s, e = line:find(priority, 1, true)
+        if s and e then
+          local hl_group = "PriorityP" .. index
+          vim.api.nvim_buf_add_highlight(buffer, ns, hl_group, i - 1, s - 1, e)
+          break
+        end
+      end
+    end
+  end
+
+  vim.api.nvim_create_autocmd(events, {
+    group = augroup,
+    pattern = patterns,
+    callback = create_highlight,
+  })
+end
+
 --- @param checkboxes? CheckboxCycleConfig: The order of checkboxes to cycle through (default: M.config.checkbox_cycle.order)
 --- @param write? boolean: Whether to save the file after changing (default: M.config.checkbox_cycle.write_on_change)
 --- @param line_num? number: The line number to operate on (default: current line)
@@ -120,6 +200,7 @@ M.order_by_priority = function(priorities)
   local other_lines = {}
 
   for _, line in ipairs(lines) do
+    --  FIX: this it will not work if change @p<number> pattern 
     if line:match("@p%d+") then
       table.insert(priority_lines, line)
     else

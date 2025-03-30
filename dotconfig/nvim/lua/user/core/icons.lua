@@ -1,23 +1,3 @@
-local function create_icon_proxy(icon_definitions, fallback_definitions)
-  return setmetatable({}, {
-    __index = function(_, key)
-      if vim.g.have_nerd_font then
-        return icon_definitions[key] or setmetatable({}, {
-          __index = function()
-            return ""
-          end,
-        })
-      else
-        return fallback_definitions[key] or setmetatable({}, {
-          __index = function()
-            return ""
-          end,
-        })
-      end
-    end,
-  })
-end
-
 local icon_definitions = {
   git = {
     LineAdded = " ",
@@ -25,7 +5,8 @@ local icon_definitions = {
     LineRemoved = " ",
     FileDeleted = " ",
     FileIgnored = "◌",
-    FileRenamed = " ", FileStaged = "S",
+    FileRenamed = " ",
+    FileStaged = "S",
     FileUnmerged = "",
     FileUnstaged = "",
     FileUntracked = "U",
@@ -137,14 +118,30 @@ local icon_definitions = {
     Watch = "",
     Smiley = " ",
     Point = "󱅶 ",
-    RestoreSession  = " ",
+    RestoreSession = " ",
     Lazy = "󰒲 ",
     Package = " ",
     CircuitBoard = " ",
   },
 }
 
-local fallback_definitions = {
+local function merge_fallback(icon_tbl, manual_fallback)
+  local merged = {}
+  for key, value in pairs(icon_tbl) do
+    if type(value) == "table" then
+      merged[key] = merge_fallback(value, manual_fallback and manual_fallback[key] or nil)
+    else
+      if manual_fallback and manual_fallback[key] then
+        merged[key] = manual_fallback[key]
+      else
+        merged[key] = ""
+      end
+    end
+  end
+  return merged
+end
+
+local manual_fallback_definitions = {
   git = {
     LineAdded = "+",
     LineModified = "~",
@@ -153,12 +150,35 @@ local fallback_definitions = {
     Branch = "B",
   },
   ui = {
-    BoldLineMiddle = '┃',
-    BoldLineDashedMiddle = '┃',
-    TriangleShortArrowRight = '_' ,
+    BoldLineMiddle = "┃",
+    BoldLineDashedMiddle = "┃",
+    TriangleShortArrowRight = "_",
   },
 }
 
-local icons = create_icon_proxy(icon_definitions, fallback_definitions)
+local final_fallback_definitions = merge_fallback(icon_definitions, manual_fallback_definitions)
 
+local function create_icon_proxy(icons, fallback_definitions)
+  return setmetatable({}, {
+    __index = function(_, key)
+      if vim.g.have_nerd_font then
+        return icons[key]
+          or setmetatable({}, {
+            __index = function()
+              return ""
+            end,
+          })
+      else
+        return fallback_definitions[key]
+          or setmetatable({}, {
+            __index = function()
+              return ""
+            end,
+          })
+      end
+    end,
+  })
+end
+
+local icons = create_icon_proxy(icon_definitions, final_fallback_definitions)
 return icons

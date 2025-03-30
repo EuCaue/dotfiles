@@ -1,3 +1,9 @@
+local get_theme = function()
+  if vim.o.background == "dark" then
+    return "github-dark"
+  end
+  return "github"
+end
 return {
   "charm-and-friends/freeze.nvim",
   cmd = "Freeze",
@@ -26,6 +32,6 @@ return {
     output = function()
       return "/tmp/" .. os.date("%Y-%m-%d") .. "_freeze.png"
     end,
-    theme = "lovelace",
+    theme = get_theme(),
   },
 }

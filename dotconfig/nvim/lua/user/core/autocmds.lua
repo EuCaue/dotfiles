@@ -34,6 +34,7 @@ autocmd({ "FileType" }, {
     "checkhealth",
     "qf",
     "git",
+    "undotree",
     "help",
     "man",
     "lspinfo",
@@ -63,7 +64,6 @@ autocmd("FileType", {
       return
     end
 
-
     -- TODO: organize this
     local map = vim.keymap.set
     local buffer = event.buf
@@ -74,10 +74,12 @@ autocmd("FileType", {
     local marktools = require("user.core.marktools")
     require("user.core.markdown_pasting").setup()
     marktools.setup()
+    marktools.apply_priority_highlight()
     map("n", "<leader>mt", marktools.cycle_checkbox, { desc = "cycle checkboxes state", buffer = buffer })
     map("n", "<CR>", marktools.cycle_checkbox, { desc = "cycle checkboxes state", buffer = buffer })
     map({ "n", "v" }, "<leader>mo", marktools.order_by_priority, { desc = "order by priority", buffer = buffer })
     map("n", "<leader>mp", marktools.toggle_priority, { desc = "cycle priority", buffer = buffer })
+    map("i", "<C-n>", "- [ ]  @p1 ()", { noremap = true, silent = false, desc = "create todo" })
   end,
 })
 
@@ -144,7 +146,7 @@ autocmd({ "VimResized" }, {
 autocmd({ "TextYankPost" }, {
   group = augroup("highlight_yank"),
   callback = function()
-    vim.highlight.on_yank({ higroup = "DiffDelete", timeout = 250 })
+    vim.hl.on_yank({ higroup = "DiffDelete", timeout = 250 })
   end,
 })
 

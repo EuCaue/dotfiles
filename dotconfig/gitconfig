@@ -22,25 +22,26 @@
     line-numbers = true
     side-by-side = false
 [merge]
-    conflictstyle = diff3
+    tool = "nvimdiff3"
 [diff]
     colorMoved = default
 # END DELTA
 [alias]
-    s = status -s
     a = add
-    c = commit
-    ca = commit --amend
-    p = push
-    ls = ls-files
-    bc = "!f() { git checkout $1 2>/dev/null || git checkout -b $1; }; f"
-    bd = "branch --delete --"
     b = "branch"
     ba = "branch -a"
+    bc = "!f() { git switch $1 2>/dev/null || git switch -b $1; }; f"
+    bd = "branch --delete --"
+    c = commit
+    ca = commit --amend
     d = diff
     ds = "diff --staged"
-    whatdiff = "log -p"
-    unstage = "reset HEAD --"
-    remove-file = "!f() { git filter-branch -f --index-filter \"git rm --cached --ignore-unmatch $1\" --prune-empty --tag-name-filter cat -- --all; }; f"
-    last-commit="log -1 --stat"
     keep-only-branch = "!f() { git branch | grep -v $1 | xargs git branch -D; }; f"
+    last-commit="log -1 --stat"
+    ls = ls-files
+    ol="log --oneline --graph --all"
+    p = push
+    remove-file = "!f() { git filter-branch -f --index-filter \"git rm --cached --ignore-unmatch $1\" --prune-empty --tag-name-filter cat -- --all; }; f"
+    s = status -s
+    unstage = "reset HEAD --"
+    whatdiff = "log -p"

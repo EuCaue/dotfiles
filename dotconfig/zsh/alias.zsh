@@ -13,7 +13,7 @@ alias cl="cd && c"
 
 # git
 alias g="git"
-alias gu="gitu"
+alias gg="gitu"
 
 # better ls
 alias la='exa -l -a -g --icons -h --group-directories-first --sort modified --reverse --hyperlink'
@@ -31,15 +31,10 @@ alias update-grub="sudo grub2-mkconfig -o /etc/grub2.cfg && sudo grub2-mkconfig 
 alias ls-font='fc-list --format="%{family}\\n" | cut -d , -f 1 | sort | uniq | fzf'
 
 function install-custom-theme() {
-  if [ "$(id -u)" -eq 0 ]; then
-    TARGET_DIR="/usr/share/icons/"
-  else
-    TARGET_DIR="$HOME/.local/share/icons/"
-  fi
-
+  TARGET_DIR="/usr/share/icons/"
   for theme in "$@"; do
     if [[ -e "$theme" ]]; then
-      mv "$theme" "$TARGET_DIR"
+      sudo mv "$theme" "$TARGET_DIR"
       echo "Installed $theme to $TARGET_DIR"
     else
       echo "Provide a valid cursor/icon folder/path: $theme"

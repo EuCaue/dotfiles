@@ -5,7 +5,7 @@ return {
   event = "VimEnter",
   opts = function()
     local dashboard = require("alpha.themes.dashboard")
-    local logo = require("user.core.ascii-headers").arts[2]
+    local logo = require("user.core.ascii-headers").get_arts(35)
     local button_width = math.floor(#logo[1] / 3)
     if button_width < 25 then
       button_width = math.floor(#logo[1])
@@ -28,12 +28,9 @@ return {
     dashboard.section.header.val = logo
     dashboard.section.header.opts.hl = "Define"
     dashboard.section.buttons.val = {
-      -- button("f", icons.ui.Files .. " Find file", "<cmd>Telescope find_files<cr>"),
-      -- button("n", icons.ui.NewFile .. " New file", "<cmd>ene <BAR> startinsert<cr>"),
-      -- button("o", icons.ui.History .. " Old files", "<cmd>Telescope oldfiles<cr>"),
-      -- button("z", icons.ui.BookMark .. " Zoxide", "<cmd>Telescope zoxide list<cr>"),
       button("f", icons.ui.Files .. " Find file", "<cmd>FzfLua files<cr>"),
       button("n", icons.ui.NewFile .. " New file", "<cmd>ene <BAR> startinsert<cr>"),
+      button("v", icons.ui.Note .. " Vault", "<cmd>ZkNotes<cr>"),
       button("o", icons.ui.History .. " Old files", "<cmd>FzfLua oldfiles<cr>"),
       button("z", icons.ui.BookMark .. " Zoxide", "<cmd>FzfLua zoxide<cr>"),
       button("s", icons.misc.RestoreSession .. " Restore Session", [[<cmd> lua require("persistence").load()<cr>]]),
