@@ -119,11 +119,11 @@ return {
         },
         window = {
           completion = {
-            border = vim.g.border_type,
+            -- border = vim.g.border_type,
             scrollbar = false,
           },
           documentation = {
-            border = vim.g.border_type,
+            -- border = vim.g.border_type,
           },
         },
         experimental = {

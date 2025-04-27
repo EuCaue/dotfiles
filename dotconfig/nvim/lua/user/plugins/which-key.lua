@@ -5,7 +5,7 @@ return {
   opts = {
     defaults = {},
     win = {
-      border = vim.g.border_type,
+      -- border = vim.g.border_type,
     },
     spec = {
       {

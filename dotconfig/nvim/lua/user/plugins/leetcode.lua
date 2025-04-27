@@ -20,6 +20,8 @@ return {
           vim.cmd("wincmd h")
           vim.cmd("set wrap")
           vim.cmd("wincmd l")
+          vim.keymap.set("n", "<leader>clr", "<cmd>Leet run<cr>", { desc = "run leetcode answer" })
+          vim.keymap.set("n", "<leader>cls", "<cmd>Leet submit<cr>", { desc = "submit leetcode answer" })
         end,
       },
     },

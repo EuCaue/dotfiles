@@ -3,6 +3,9 @@
 --  TODO: improve tabline 
 --  TODO: disable icons is broken 
 --  TODO: make keybinds for leetcode 
+_P = function(any)
+  print(vim.inspect(any))
+end
 
 require("user.core.options")
 require("user.core.keymaps")

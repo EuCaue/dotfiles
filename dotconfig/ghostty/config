@@ -40,7 +40,7 @@ keybind=ctrl+shift+w=unbind
 link-url= true
 mouse-hide-while-typing = false
 shell-integration-features=true
-theme=light:bamboo_light,dark:Kanagawa Dragon
+theme=light:kanagawa-lotus,dark:kanagawa-dragon
 window-height=45
 window-inherit-font-size=true
 window-theme=ghostty

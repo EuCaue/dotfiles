@@ -37,18 +37,18 @@ local M = {}
 
 --- @param conf table|string: The highlight configuration. It can be a table with custom options (e.g., fg, bg, bold) and optionally a 'from_group' field,
 --- or a string indicating an existing highlight group name.
---- @return table|string: The resolved highlight configuration. If a table is returned, it contains the complete set of highlight options.
+--- @return table|string|nil: The resolved highlight configuration. If a table is returned, it contains the complete set of highlight options.
 local function resolve_highlight(conf)
   if type(conf) == "table" then
     if conf.from_group then
-      local group_hl = vim.api.nvim_get_hl_by_name(conf.from_group, true)
+      local group_hl = vim.api.nvim_get_hl(0, { name = conf.from_group })
       local hl = vim.tbl_extend("force", {}, conf)
       hl.from_group = nil -- Remove o campo para não ser interpretado pelo set_hl
-      if group_hl.foreground and not hl.fg then
-        hl.fg = string.format("#%06x", group_hl.foreground)
+      if group_hl.fg and not hl.fg then
+        hl.fg = string.format("#%06x", group_hl.fg)
       end
-      if group_hl.background and not hl.bg then
-        hl.bg = string.format("#%06x", group_hl.background)
+      if group_hl.bg and not hl.bg then
+        hl.bg = string.format("#%06x", group_hl.bg)
       end
       return hl
     else
@@ -172,6 +172,46 @@ M.toggle_priority = function(priorities)
   vim.api.nvim_set_current_line(line)
 end
 
+M.create_link = function()
+  local mode = vim.fn.mode()
+  if vim.tbl_contains({ "v", "V" }, mode) then
+    local buf = vim.api.nvim_get_current_buf()
+    local pos_start = vim.fn.getpos("'<")
+    local pos_end = vim.fn.getpos("'>")
+    local start_line = math.min(pos_start[2], pos_end[2]) - 1
+    local end_line = math.max(pos_start[2], pos_end[2])
+
+    if start_line < 0 or start_line > end_line then
+      vim.api.nvim_echo({
+        { "Invalid range: 'start' is higher than 'end'", "ErrorMsg" },
+      }, true, {})
+      return
+    end
+
+    local lines = vim.api.nvim_buf_get_lines(buf, start_line, end_line, false)
+    if #lines == 0 then
+      return
+    end
+
+    lines[1] = "[" .. lines[1] .. "]()"
+    vim.api.nvim_buf_set_lines(buf, start_line, end_line, false, lines)
+    local new_col = #lines[1] - 1
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
+    vim.api.nvim_win_set_cursor(0, { start_line + 1, new_col })
+    vim.cmd("startinsert")
+  else
+    local text = vim.fn.expand("<cword>")
+    local row, _ = unpack(vim.api.nvim_win_get_cursor(0))
+    local line = vim.api.nvim_get_current_line()
+    local col_start, col_end = line:find(text, 1, true)
+    if col_start and col_end then
+      vim.api.nvim_buf_set_text(0, row - 1, col_start - 1, row - 1, col_end, { "[" .. text .. "]()" })
+      vim.api.nvim_win_set_cursor(0, { row, col_end + 3 })
+      vim.cmd("startinsert")
+    end
+  end
+end
+
 --  TODO: capture nested todos
 
 --- @param priorities? PriorityConfig: The list of priority tags to order by (default: M.config.priorities)
@@ -191,7 +231,7 @@ M.order_by_priority = function(priorities)
   end
 
   if start_line < 0 or (end_line >= 0 and start_line > end_line) then
-    vim.api.nvim_err_writeln("Invalid range: 'start' is higher than 'end'")
+    vim.api.nvim_echo("Invalid range: 'start' is higher than 'end'", true, { err = true })
     return
   end
 
@@ -200,7 +240,7 @@ M.order_by_priority = function(priorities)
   local other_lines = {}
 
   for _, line in ipairs(lines) do
-    --  FIX: this it will not work if change @p<number> pattern 
+    --  FIX: this it will not work if change @p<number> pattern
     if line:match("@p%d+") then
       table.insert(priority_lines, line)
     else

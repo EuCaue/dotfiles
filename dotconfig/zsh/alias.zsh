@@ -124,11 +124,11 @@ x() {
 }
 
 # tree with exa
-treez() {
+t() {
   if [ $(command -v exa) ]; then
-    default_level=2
-    tree_level=${1:-$default_level}
-    exa -l -a -g --icons --tree --level=$default_level
+    dir=${1:(pwd)}
+    echo $dir
+    exa -l -a -g --icons --tree "${@:2}" $dir
   fi
 }
 

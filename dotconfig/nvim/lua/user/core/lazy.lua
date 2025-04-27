@@ -11,9 +11,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-_P = function(any)
-  print(vim.inspect(any))
-end
 
 require("lazy").setup("user.plugins", {
   install = {
@@ -88,7 +85,7 @@ require("lazy").setup("user.plugins", {
         "",
       },
     },
-    border = vim.g.border_type,
+    -- border = vim.g.border_type,
   },
   checker = {
     enabled = true,

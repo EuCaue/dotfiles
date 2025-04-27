@@ -6,6 +6,7 @@ return {
     {
       "<leader>mm",
       "<CMD>Flote<CR>",
+      desc = "open project note",
     },
   },
 }

@@ -84,7 +84,7 @@ return {
           end
 
           map("n", "K", function()
-            vim.lsp.buf.hover({ border = vim.g.border_type })
+            vim.lsp.buf.hover()
           end, "hover")
           map("n", "gd", vim.lsp.buf.definition, "goto declaration")
           map("n", "gD", function()
@@ -100,7 +100,7 @@ return {
 
           map("n", "<leader>cl", "<cmd>LspInfo<cr>", "show lsp info")
           map("i", "<A-s>", function()
-            vim.lsp.buf.signature_help({ border = vim.g.border_type })
+            vim.lsp.buf.signature_help()
           end, "show signature help")
           map("n", "<leader>k", function()
             local initialVirtTextConf = vim.diagnostic.config().virtual_text
@@ -183,7 +183,7 @@ return {
         float = {
           focusable = true,
           style = "minimal",
-          border = vim.g.border_type,
+          -- border = vim.g.border_type,
           source = "if_many",
           header = "",
           prefix = "",

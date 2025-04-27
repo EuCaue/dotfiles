@@ -17,6 +17,7 @@ local mode_map = {
 
 return {
   "nvim-lualine/lualine.nvim",
+  enabled = false,
   event = "VeryLazy",
   keys = {
     {

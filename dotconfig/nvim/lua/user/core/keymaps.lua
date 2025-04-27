@@ -167,6 +167,16 @@ map("n", "<leader>ta", function()
   vim.g.async_format = not vim.g.async_format
 end, get_opts("toggle async format"))
 
+map("n", "<leader>tb", function()
+  ---@diagnostic disable-next-line: undefined-field
+  local bg = vim.opt.background._value
+  if bg == "dark" then
+    vim.opt.background = "light"
+    return
+  end
+  vim.opt.background = "dark"
+end, get_opts("toggle background"))
+
 map("n", "<leader>tt", function()
   if vim.b.ts_highlight then
     vim.treesitter.stop()

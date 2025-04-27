@@ -9,7 +9,7 @@ return {
     },
     signature = {
       enabled = true,
-      window = { border = vim.g.border_type },
+      -- window = { border = vim.g.border_type },
     },
     sources = {
       default = { "lazydev", "lsp", "path", "snippets" },
@@ -42,7 +42,7 @@ return {
         },
       },
       menu = {
-        border = vim.g.border_type,
+        -- border = vim.g.border_type,
         draw = {
           components = {
             kind_icon = {
@@ -71,7 +71,7 @@ return {
       documentation = {
         auto_show = true,
         window = {
-          border = vim.g.border_type,
+          -- border = vim.g.border_type,
         },
       },
     },

@@ -21,7 +21,7 @@ return {
             changedelete = { text = icons.ui.BoldLineMiddle },
         },
         preview_config = {
-            border = vim.g.border_type,
+            -- border = vim.g.border_type,
         },
         on_attach = function(buffer)
             local gs = package.loaded.gitsigns

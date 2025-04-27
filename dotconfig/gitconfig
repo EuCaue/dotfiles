@@ -30,12 +30,13 @@
     a = add
     b = "branch"
     ba = "branch -a"
-    bc = "!f() { git switch $1 2>/dev/null || git switch -b $1; }; f"
+    bc = "!f() { git switch $1 2>/dev/null || git switch -c $1; }; f"
     bd = "branch --delete --"
     c = commit
     ca = commit --amend
     d = diff
     ds = "diff --staged"
+    ini = "init ."
     keep-only-branch = "!f() { git branch | grep -v $1 | xargs git branch -D; }; f"
     last-commit="log -1 --stat"
     ls = ls-files
