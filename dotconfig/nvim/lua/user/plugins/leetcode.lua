@@ -11,7 +11,7 @@ return {
     arg = "leet",
     lang = "typescript",
     storage = {
-      home = vim.fn.getenv("HOME") .. "/Code/leetcode",
+      home = vim.uv.os_homedir() .. "/Code/leetcode",
     },
     hooks = {
       ---@type fun()[]

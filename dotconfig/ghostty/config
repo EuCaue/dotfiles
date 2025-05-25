@@ -15,12 +15,13 @@ clipboard-paste-protection=true
 clipboard-trim-trailing-spaces=true
 confirm-close-surface=false
 cursor-style=block
+shell-integration-features=no-cursor,sudo,title
 desktop-notifications=true
 font-family=monospace
 font-family=Symbols Nerd Font Mono
 # font-size=15
 # freetype-load-flags=no-hinting
-freetype-load-flags=hinting,no-force-autohint,no-monochrome
+# freetype-load-flags=hinting,no-force-autohint,no-monochrome
 gtk-adwaita=true
 gtk-wide-tabs=true
 keybind=alt+eight=unbind
@@ -37,11 +38,12 @@ keybind=ctrl+shift+e=unbind
 keybind=ctrl+shift+o=unbind
 keybind=ctrl+shift+r=reload_config
 keybind=ctrl+shift+w=unbind
+keybind=ctrl+shift+plus=increase_font_size:6
 link-url= true
 mouse-hide-while-typing = false
-shell-integration-features=true
 theme=light:kanagawa-lotus,dark:kanagawa-dragon
 window-height=45
 window-inherit-font-size=true
 window-theme=ghostty
+window-padding-color=extend
 window-width=195

@@ -6,6 +6,7 @@ export QT_STYLE_OVERRIDE="Adwaita-Dark"
 # export DARK_MODE=$(gsettings get org.gnome.desktop.interface color-scheme)
 
 export XDG_CONFIG_HOME="$HOME/.config"
+export DOTFILES="$HOME/dotfiles"
 
 # firefox
 export MOZ_ENABLE_WAYLAND=1
@@ -20,16 +21,25 @@ export _ZO_MAXAGE=200000
 # mac font rendering
 # export FREETYPE_PROPERTIES="truetype:interpreter-version=40 cff:no-stem-darkening=0 autofitter:no-stem-darkening=0 autofitter:darkening-parameters=500,0,1000,400,1250,250,1500,0 autohinter:no-stem-darkening=0"
 # export FREETYPE_PROPERTIES="truetype:interpreter-version=40 cff:no-stem-darkening=0 autofitter:no-stem-darkening=0 autofitter:darkening-parameters=500,0,1000,400,1250,250,1500,0 autohinter:no-stem-darkening=0 lcd_filter=default rgba=rgb"
-export FREETYPE_PROPERTIES="truetype:interpreter-version=40\
- autofitter:no-stem-darkening=0\
- autofitter:darkening-parameters=500,0,1000,500,2500,500,4000,0\
- cff:no-stem-darkening=0\
- cff:darkening-parameters=500,475,1000,475,2500,475,4000,0\
- type1:no-stem-darkening=0\
- type1:darkening-parameters=500,475,1000,475,2500,475,4000,0\
- t1cid:no-stem-darkening=0\
- t1cid:darkening-parameters=500,475,1000,475,2500,475,4000,0"
+# export FREETYPE_PROPERTIES="truetype:interpreter-version=40\
+#  autofitter:no-stem-darkening=0\
+#  autofitter:darkening-parameters=500,0,1000,500,2500,500,4000,0\
+#  cff:no-stem-darkening=0\
+#  cff:darkening-parameters=500,475,1000,475,2500,475,4000,0\
+#  type1:no-stem-darkening=0\
+#  type1:darkening-parameters=500,475,1000,475,2500,475,4000,0\
+#  t1cid:no-stem-darkening=0\
+#  t1cid:darkening-parameters=500,475,1000,475,2500,475,4000,0"
 
+export FREETYPE_PROPERTIES="truetype:interpreter-version=40 \
+autofitter:no-stem-darkening=1 \
+autofitter:darkening-parameters=0,0,0,0,0,0,0,0 \
+cff:no-stem-darkening=1 \
+cff:darkening-parameters=0,0,0,0,0,0,0,0 \
+type1:no-stem-darkening=1 \
+type1:darkening-parameters=0,0,0,0,0,0,0,0 \
+t1cid:no-stem-darkening=1 \
+t1cid:darkening-parameters=0,0,0,0,0,0,0,0"
 # enable mouse
 export LESS="--mouse"
 export BAT_THEME="base16"

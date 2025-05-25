@@ -14,17 +14,22 @@ alias cl="cd && c"
 # git
 alias g="git"
 alias gg="gitu"
+alias lg="lazygit"
 
 # better ls
-alias la='exa -l -a -g --icons -h --group-directories-first --sort modified --reverse --hyperlink'
-alias lll='ls'
-alias ls='exa -l -g --icons -h --group-directories-first --sort modified --reverse --hyperlink'
+if command -v exa >/dev/null 2>&1; then
+  alias la='exa -l -a -g --icons -h --group-directories-first --sort modified --reverse --hyperlink'
+  alias ls='exa -l -g --icons -h --group-directories-first --sort modified --reverse --hyperlink'
+fi
 alias lc="ls | wc -l"
+alias lll='ls'
 
 # better rm
-alias rl='trash list'
-alias rm='trash put'
-alias rr="trash restore"
+if command -v trash >/dev/null 2>&1; then
+  alias rl='trash list'
+  alias rm='trash put'
+  alias rr='trash restore'
+fi
 
 # system
 alias update-grub="sudo grub2-mkconfig -o /etc/grub2.cfg && sudo grub2-mkconfig -o /etc/grub2-efi.cfg"
@@ -58,16 +63,16 @@ function timer() {
   notify-send -u normal \
     -i "/usr/share/icons/Adwaita/symbolic/categories/emoji-recent-symbolic.svg" \
     --app-name="Countdown" \
-    "Countdown for $1" \
-    "Countdown: $2"
+    "Countdown for $2" \
+    "Countdown: $1"
 
-  countdown "$2"
+  countdown "$1"
 
   notify-send -u normal \
     -i "/usr/share/icons/Adwaita/symbolic/categories/emoji-recent-symbolic.svg" \
     --app-name="Countdown" \
-    "Countdown for $1" \
-    "Countdown of $2 has been passed! =D"
+    "Countdown for $2" \
+    "Countdown of $1 has been passed! =D"
 }
 
 function y() {

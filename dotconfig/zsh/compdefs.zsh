@@ -11,10 +11,9 @@ _git-bc() {
 compdef _git-bc git-bc
 
 if [ $(command -v procs) ]; then
-	zstyle ':completion:*:*:kill:*:processes' command 'procs'
+  zstyle ':completion:*:*:kill:*:processes' command 'procs'
 else
-	zstyle ':completion:*:*:kill:*:processes' command 'ps xo pid,user:10,cmd'
+  zstyle ':completion:*:*:kill:*:processes' command 'ps xo pid,user:10,cmd'
 fi
 
 zstyle ':completion:*:*:git:*' user-commands bc:'Checkout or switch to a branch'
-

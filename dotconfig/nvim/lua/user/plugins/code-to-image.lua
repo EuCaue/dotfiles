@@ -1,7 +1,7 @@
 return {
   "mactep/code_to_image.nvim",
   enabled = true,
-  build = "npm i", -- needed for `print_method = "browser"`
+  build = "bun install", -- needed for `print_method = "browser"`
   opts = {
     debug = true,
     browser = "firefox",

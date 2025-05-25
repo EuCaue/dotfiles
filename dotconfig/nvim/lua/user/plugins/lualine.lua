@@ -117,21 +117,21 @@ return {
           "filename",
           path = 1,
           fmt = function(str)
-            local filename = vim.fn.fnamemodify(str, ":t") -- Nome do arquivo
-            local filepath = vim.fn.fnamemodify(str, ":h") -- Caminho do diretório do arquivo
-            local current_dir = vim.fn.fnamemodify(filepath, ":t") -- Pasta atual
+            local filename = vim.fn.fnamemodify(str, ":t")
+            local filepath = vim.fn.fnamemodify(str, ":h")
+            local current_dir = vim.fn.fnamemodify(filepath, ":t")
             if filename == "page.tsx" or filename == "page.jsx" then
-              local parent_dir = vim.fn.fnamemodify(filepath, ":h:t") -- Pasta acima
+              local parent_dir = vim.fn.fnamemodify(filepath, ":h:t")
               return parent_dir .. "/" .. current_dir .. "/" .. filename
             else
               return current_dir .. "/" .. filename
             end
           end,
           symbols = {
-            modified = icons.ui.Pencil, -- Text to show when the file is modified.
-            readonly = icons.ui.Lock, -- Text to show when the file is non-modifiable or readonly.
-            unnamed = icons.ui.FileHidden, -- Text to show for unnamed buffers.
-            newfile = icons.ui.NewFile, -- Text to show for newly created file before first write
+            modified = icons.ui.Pencil,
+            readonly = icons.ui.Lock,
+            unnamed = icons.ui.FileHidden,
+            newfile = icons.ui.NewFile,
           },
         },
       },

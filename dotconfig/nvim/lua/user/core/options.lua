@@ -20,6 +20,9 @@ g.have_nerd_font = true
 -- border style for windows
 g.border_type = "rounded"
 
+vim.cmd(
+  "set guicursor=n-v-c-i-ci-ve-o-sm:block-blinkwait700-blinkon400-blinkoff250-Cursor,n-v-c:block-ModeNormal,i-ci-ve:block-ModeInsert,r-cr:hor20-blinkwait700-blinkon400-blinkoff250-ModeReplace "
+)
 -- trigger bigfile size
 g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
 opt.background = "dark"
@@ -54,6 +57,7 @@ opt.jumpoptions = "stack,view"
 opt.laststatus = 3 -- global statusline
 opt.linebreak = true -- Wrap lines at convenient points
 opt.list = true -- Show some invisible characters (tabs...
+opt.showbreak = ">>> "
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 opt.mouse = "" -- Enable mouse mode
 opt.number = true -- Print line number

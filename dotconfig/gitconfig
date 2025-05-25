@@ -1,6 +1,8 @@
 [user]
 	name = EuCaue
-	email = caueadriano.castro@gmail.com
+	email = souzacaue@proton.me
+[url  "git@github.com:"]
+  insteadOf = "gh:"
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
@@ -8,41 +10,69 @@
 	smudge = git-lfs smudge -- %f
 [init]
 	defaultBranch = master
+[push]
+  autoSetupRemote = true
+  default = current
+  followTags = true
 [pull]
-	rebase = false
+  default = current
+	rebase = true
+[rebase]
+  autoStash = true
+  missingCommitsCheck = true
 [color]
 	ui = true
-# DELTA
 [core]
   pager = delta
+  whitespace = error
+  preloadindex = true
 [interactive]
   diffFilter = delta --color-only
+[log]
+  abbrevCommit = true
+  graphColors = blue,yellow,cyan,magenta,green,red
 [delta]
-    navigate = true    # use n and N to move between diff sections
-    line-numbers = true
-    side-by-side = false
+  navigate = true    # use n and N to move between diff sections
+  line-numbers = true
+  side-by-side = false
+  tabs = 1
+[branch]
+  sort = -committerdate
+[tag]
+  sort = -taggerdate
+[status]
+  branch = true
+  showStash = true
+  showUntrackedFiles = all
 [merge]
-    tool = "nvimdiff3"
+  tool = "nvimdiff3"
 [diff]
-    colorMoved = default
-# END DELTA
+  renames = copies
+  interHunkContext = 10
+  context = 4
+  colorMoved = default
+[fetch]
+  prune = true
 [alias]
-    a = add
-    b = "branch"
-    ba = "branch -a"
-    bc = "!f() { git switch $1 2>/dev/null || git switch -c $1; }; f"
-    bd = "branch --delete --"
-    c = commit
-    ca = commit --amend
-    d = diff
-    ds = "diff --staged"
-    ini = "init ."
-    keep-only-branch = "!f() { git branch | grep -v $1 | xargs git branch -D; }; f"
-    last-commit="log -1 --stat"
-    ls = ls-files
-    ol="log --oneline --graph --all"
-    p = push
-    remove-file = "!f() { git filter-branch -f --index-filter \"git rm --cached --ignore-unmatch $1\" --prune-empty --tag-name-filter cat -- --all; }; f"
-    s = status -s
-    unstage = "reset HEAD --"
-    whatdiff = "log -p"
+  a = add
+  ap = add --patch 
+  b = "branch"
+  ba = "branch -a"
+  bc = "!f() { git switch $1 2>/dev/null || git switch -c $1; }; f"
+  bd = "branch --delete --"
+  c = commit
+  ca = commit --amend
+  co = checkout
+  d = diff
+  ds = "diff --staged"
+  ini = "init ."
+  keep-only-branch = "!f() { git branch | grep -v $1 | xargs git branch -D; }; f"
+  l = "log --oneline --graph --all --pretty=format:'%C(magenta)%h %C(white) %an %ar%C(auto) %D%n%s%n'"
+  last-commit = "log -1 --stat"
+  ls = ls-files
+  p = push
+  remove-file = "!f() { git filter-branch -f --index-filter \"git rm --cached --ignore-unmatch $1\" --prune-empty --tag-name-filter cat -- --all; }; f"
+  s = status -s
+  undo = "reset --soft HEAD~1"
+  unstage = "reset HEAD --"
+  whatdiff = "log -p"

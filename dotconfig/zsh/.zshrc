@@ -27,6 +27,7 @@ source "$ZDOTDIR/dot-dot.zsh"
 source "$ZDOTDIR/sudo-it.zsh"
 source "$ZDOTDIR/compdefs.zsh"
 # source <(fzf --zsh)
+ZVM_CURSOR_STYLE_ENABLED=false
 zvm_after_init_commands+=('source <(fzf  --zsh)')
 
 # bun completions
@@ -36,6 +37,10 @@ zvm_after_init_commands+=('source <(fzf  --zsh)')
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
+for al in $(git --list-cmds=alias); do
+  alias g$al="git $al"
+done
+
 # To customize prompt, run `p10k configure` or edit ~/dotfiles/dotconfig/zsh/.p10k.zsh.
 # [[ ! -f ~/dotfiles/dotconfig/zsh/.p10k.zsh ]] || source ~/dotfiles/dotconfig/zsh/.p10k.zsh
 # eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/bubbles.omp.json)"
@@ -44,7 +49,7 @@ eval "$(starship init zsh)"
 # pnpm
 export PNPM_HOME="/home/caue/.local/share/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+*":$PNPM_HOME:"*) ;;
+*) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end

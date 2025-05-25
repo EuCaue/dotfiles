@@ -17,6 +17,13 @@ autocmd("FileType", {
   command = "wincmd L",
 })
 
+autocmd({ "VimEnter" }, {
+  group = augroup("enable_tab_line"),
+  callback = function()
+    require("user.core.tabline").setup()
+  end,
+})
+
 autocmd({ "BufWinEnter" }, {
   group = augroup("disable_continuo_comment"),
   callback = function()
@@ -167,34 +174,7 @@ autocmd({ "VimResized" }, {
     vim.cmd("tabnext " .. current_tab)
   end,
 })
---  TODO: change some of this events
--- autocmd({ "BufReadPost", "TextChanged", "TextChangedI" }, {
---   pattern = "*.md",
---   callback = function()
---     local opts = {
---       {
---         char = "@p1",
---         group = "DiffDelete",
---       },
---       {
---         char = "@p2",
---         group = "DiffText",
---       },
---       {
---         char = "@p3",
---         group = "DiffAdd",
---       },
---       {
---         char = "@custom",
---         group = "CustomPriority",
---         bg = "#0000FF", -- Azul
---         fg = "#FFFFFF", -- Branco
---         style = "underline",
---       },
---     }
---     require("user.core.marktools").highlight_priority(opts)
---   end,
--- })
+
 autocmd("FileType", {
   pattern = "markdown",
   callback = function()

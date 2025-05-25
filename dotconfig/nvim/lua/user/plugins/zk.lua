@@ -33,10 +33,17 @@ return {
     { "<leader>zb", "<cmd>ZkBacklinks<cr>", desc = "Search ZK Backlinks in the current note", ft = "markdown" },
     { "<leader>zl", "<cmd>ZkLinks<cr>", desc = "Search Links in the current note", ft = "markdown" },
     { "<leader>zil", "<cmd>ZkInsertLink<cr>", desc = "Insert a link for a note", ft = "markdown" },
-    { "<leader>zis", "<cmd>ZkInsertLinkAtSelection<cr>", desc = "Insert a link for a note with selection", ft = "markdown" },
+    {
+      mode = { "v" },
+      "<leader>zis",
+      ":<cmd>'<,'><cr>ZkInsertLinkAtSelection<cr>",
+      desc = "Insert a link for a note with selection",
+      ft = "markdown",
+    },
     { "<leader>zjy", "<cmd>ZkYesterday<cr>", desc = "Open Journal Entry Yesterday" },
     { "<leader>zjd", "<cmd>ZkDaily<cr>", desc = "Open Journal Entry Daily" },
     { "<leader>zjt", "<cmd>ZkTomorrow<cr>", desc = "Open Journal Entry Tomorrow" },
+    { "<leader>zT", "<cmd>e $ZK_NOTEBOOK_DIR/temp.md<cr>", desc = "Open temp.md" },
   },
   opts = {
     picker = "fzf_lua",

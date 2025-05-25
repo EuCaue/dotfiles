@@ -93,6 +93,7 @@ return {
           end, "goto definition in vsplit")
           map("n", "gk", vim.lsp.buf.declaration, "goto declaration")
           map("n", "gr", vim.lsp.buf.references, "goto references")
+          map("n", "<leader>cR", "<cmd>FzfLua lsp_references<cr>", "goto references with fzf")
           map("n", "gI", vim.lsp.buf.implementation, "goto implementation")
           map("n", "gy", vim.lsp.buf.type_definition, "goto type definition")
           map("n", "<leader>cr", vim.lsp.buf.rename, "code rename")
@@ -272,7 +273,6 @@ return {
       })
 
       require("mason").setup({
-
         ui = {
           icons = {
             package_installed = icons.ui.Check,
@@ -284,13 +284,8 @@ return {
       })
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
       require("mason-lspconfig").setup({
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-            require("lspconfig")[server_name].setup(server)
-          end,
-        },
+        automatic_enable = true,
+        ensure_installed = servers,
       })
     end,
   },

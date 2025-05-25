@@ -1,6 +1,5 @@
 [data-theme="dark"] .hljs {
   color: #c9d1d9;
-  /* background: #0d1117; */
 }
 
 [data-theme="dark"] .hljs-doctag,
@@ -92,7 +91,6 @@
 
 [data-theme="light"] .hljs {
   color: #24292e;
-  /* background: #ffffff; */
 }
 
 [data-theme="light"] .hljs-doctag,

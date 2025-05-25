@@ -22,7 +22,7 @@ return {
     vim.g.mkdp_open_ip = "localhost"
     vim.g.mkdp_open_to_the_world = 1
     vim.g.mkdp_echo_preview_url = 1
-    vim.g.mkdp_highlight_css = vim.fn.getenv("HOME") .. "/dotfiles/dotconfig/highlight.css"
+    vim.g.mkdp_highlight_css = vim.uv.os_homedir() .. "/dotfiles/dotconfig/highlight.css"
   end,
   keys = {
     {
