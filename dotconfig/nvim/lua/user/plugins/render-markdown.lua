@@ -1,7 +1,7 @@
 return {
   "MeanderingProgrammer/render-markdown.nvim",
-  enabled = false,
-  ft = { "markdown" },
+  enabled = true,
+  -- ft = { "markdown" },
   cmd = "RenderMarkdown",
   opts = {
     -- https://github.com/MeanderingProgrammer/render-markdown.nvim/issues/212

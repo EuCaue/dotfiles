@@ -204,6 +204,7 @@ M.create_link = function()
     local row, _ = unpack(vim.api.nvim_win_get_cursor(0))
     local line = vim.api.nvim_get_current_line()
     local col_start, col_end = line:find(text, 1, true)
+
     if col_start and col_end then
       vim.api.nvim_buf_set_text(0, row - 1, col_start - 1, row - 1, col_end, { "[" .. text .. "]()" })
       vim.api.nvim_win_set_cursor(0, { row, col_end + 3 })

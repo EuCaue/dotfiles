@@ -1,4 +1,9 @@
 {
+  "Better time": {
+    "prefix": "tt",
+    "body": "${CURRENT_HOUR}:${CURRENT_MINUTE}: ${1:Log entry}",
+    "description": ""
+  },
   "Inline Time Block": {
     "prefix": "todo_time",
     "body": "- [ ] ${1:Task description} @${2:p1} (${3:HH:MM}–${4:HH:MM})",

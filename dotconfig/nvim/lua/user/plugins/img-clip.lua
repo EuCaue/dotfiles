@@ -22,7 +22,7 @@ return {
           return vim.fn.expand("%:t:r") .. time
         end,
         dir_path = function()
-          return "images"
+          return "assets"
         end,
       },
     },

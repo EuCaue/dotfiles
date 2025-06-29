@@ -1,6 +1,7 @@
 return {
   "rebelot/kanagawa.nvim",
   lazy = false,
+  enabled=false,
   priority = 1000,
   config = function()
     -- Default options:
@@ -9,9 +10,9 @@ return {
       undercurl = true, -- enable undercurls
       commentStyle = { italic = true },
       functionStyle = { bold = true },
-      keywordStyle = { italic = true },
+      keywordStyle = { bold = true, italic = true },
       statementStyle = { bold = true },
-      typeStyle = {},
+      typeStyle = { bold = true },
       transparent = false, -- do not set background color
       dimInactive = false, -- dim inactive window `:h hl-NormalNC`
       terminalColors = true, -- define vim.g.terminal_color_{0,17}

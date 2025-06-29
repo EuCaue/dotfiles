@@ -5,7 +5,8 @@ alias gfg='nvim ~/.config/ghostty/config'
 alias cfg='cd ~/.config/zsh/ && nvim ~/.config/zsh/.zshrc && cd -'
 alias nfg='cd ~/.config/nvim/ && nvim ~/.config/nvim/init.lua && cd -'
 alias tfg='cd ~/.config/tmux/ && nvim ~/.config/tmux/tmux.conf && cd -'
-alias disable_keyboard="sudo evtest --grab /dev/input/event23 > /dev/null 2>&1"
+alias eh='sudoedit /etc/hosts'
+alias disable_keyboard="sudo evtest"
 
 # clear
 alias c="clear"
@@ -17,9 +18,9 @@ alias gg="gitu"
 alias lg="lazygit"
 
 # better ls
-if command -v exa >/dev/null 2>&1; then
-  alias la='exa -l -a -g --icons -h --group-directories-first --sort modified --reverse --hyperlink'
-  alias ls='exa -l -g --icons -h --group-directories-first --sort modified --reverse --hyperlink'
+if command -v eza >/dev/null 2>&1; then
+  alias la='eza -l -a -g --icons -h --group-directories-first --sort modified --reverse --hyperlink'
+  alias ls='eza -l -g --icons -h --group-directories-first --sort modified --reverse --hyperlink'
 fi
 alias lc="ls | wc -l"
 alias lll='ls'
@@ -52,6 +53,7 @@ alias set-cursor-size='gsettings set org.gnome.desktop.interface cursor-size '
 alias get-cursor-theme='gsettings get org.gnome.desktop.interface cursor-theme'
 alias get-cursor-size='gsettings get org.gnome.desktop.interface cursor-size'
 alias check-font-weight='echo -e "\e[1mbold\e[0m"; echo -e "\e[3mitalic\e[0m"; echo -e "\e[4munderline\e[0m"; echo -e "\e[9mstrikethrough\e[0m"; echo -e "\e[31mHello World\e[0m"'
+alias test-font-weight='echo -e "\e[1mbold\e[0m"; echo -e "\e[3mitalic\e[0m"; echo -e "\e[4munderline\e[0m"; echo -e "\e[9mstrikethrough\e[0m"; echo -e "\e[31mHello World\e[0m"'
 function change-alacritty-theme() {
   ln -fs ~/.config/alacritty/themes/$1.toml ~/.config/alacritty/themes/.active.toml
   sed -i 's/.active/.active1/' ~/.config/alacritty/themes/.active.toml &&
@@ -169,4 +171,70 @@ vf() {
     v "$file"
     return 0
   fi
+}
+
+slugify() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: slugify <filename>"
+    return 1
+  fi
+
+  local filepath="$1"
+  local dir=$(dirname "$filepath")
+  local ext="${filepath##*.}"
+  local base=$(basename "$filepath" ."$ext")
+
+  # Slugify: lowercase, replace spaces with hyphens, remove special chars
+  local slug=$(echo "$base" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g' | sed -E 's/^-+|-+$//g')
+
+  local newpath="$dir/$slug.$ext"
+  mv "$filepath" "$newpath"
+  echo "Renamed to: $newpath"
+}
+
+toggle_comment_range() {
+  local range="$1"
+  local file="$2"
+  local apply="${3:-false}" # true = apply changes, false = preview only
+
+  if [[ -z "$range" || -z "$file" ]]; then
+    echo "Usage: toggle_comment_range <start_line,end_line> <file> [true|false]"
+    return 1
+  fi
+
+  # simulate the changes without modifying the file
+  local new
+  new=$(sed "${range}{
+    s/^#//;
+    t;
+    s/^/#/
+  }" "$file")
+
+  # show only the changed lines
+  diff <(cat "$file") <(echo "$new") | rg '^[<>]' | sed 's/^/> /'
+
+  # apply changes if requested
+  if [[ "$apply" == "true" ]]; then
+    sudo sed -i "${range}{
+      s/^#//;
+      t;
+      s/^/#/
+    }" "$file"
+    echo "Changes applied with sudo to $file."
+  else
+    echo "Preview only. No changes were applied. Pass 'true' as third argument to apply."
+  fi
+}
+
+toggle_with_selection() {
+  selection=$(cat --number /etc/hosts | fzf --multi | awk '{print $1}' | sort)
+  first=$(echo "$selection" | head -n1)
+  last=$(echo "$selection" | tail -n1)
+  [ -z "$selection" ] && return
+  range="$first,$last"
+  toggle_comment_range "$range" /etc/hosts true
+}
+
+toggle_yt() {
+  toggle_comment_range "24,27" /etc/hosts true
 }

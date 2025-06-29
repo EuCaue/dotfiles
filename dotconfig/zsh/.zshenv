@@ -5,6 +5,12 @@ export PATH="$HOME/.local/bin:$HOME/dotfiles/scripts:$HOME/.cargo/bin:$HOME/.bun
 if command -v gsettings >/dev/null 2>&1; then
   CURSOR_THEME=$(gsettings get org.gnome.desktop.interface cursor-theme | tr -d "'")
   CURSOR_SIZE=$(gsettings get org.gnome.desktop.interface cursor-size)
+  DARK_MODE=$(gsettings get org.gnome.desktop.interface color-scheme)
+  if [[ $DARK_MODE = "'prefer-dark'" ]]; then
+    export IS_DARKMODE=true
+  else
+    export IS_DARKMODE=false
+  fi
 
   if command -v flatpak >/dev/null 2>&1; then
     FLATPAK_INSTALLED=1
@@ -27,3 +33,5 @@ if command -v gsettings >/dev/null 2>&1; then
     fi
   fi
 fi
+
+[ -z "$IS_DARKMODE" ] && export IS_DARKMODE=true

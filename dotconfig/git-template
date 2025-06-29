@@ -1,0 +1,15 @@
+
+# type(scope): short description
+# types:
+# feat     - new feature
+# fix      - bug fix
+# docs     - documentation changes
+# style    - code style changes (formatting, etc.)
+# refactor - code change without fixing bugs or adding features
+# perf     - performance improvement
+# test     - adding or updating tests
+# chore    - maintenance tasks
+# build    - changes to build tools or dependencies
+# ci       - continuous integration setup
+# example:
+# feat(auth): add login endpoint

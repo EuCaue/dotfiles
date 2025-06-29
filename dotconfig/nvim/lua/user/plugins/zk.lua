@@ -43,7 +43,7 @@ return {
     { "<leader>zjy", "<cmd>ZkYesterday<cr>", desc = "Open Journal Entry Yesterday" },
     { "<leader>zjd", "<cmd>ZkDaily<cr>", desc = "Open Journal Entry Daily" },
     { "<leader>zjt", "<cmd>ZkTomorrow<cr>", desc = "Open Journal Entry Tomorrow" },
-    { "<leader>zT", "<cmd>e $ZK_NOTEBOOK_DIR/temp.md<cr>", desc = "Open temp.md" },
+    { "<leader>zN", "<cmd>e $ZK_NOTEBOOK_DIR/temp.md<cr>", desc = "Open temp.md" },
   },
   opts = {
     picker = "fzf_lua",

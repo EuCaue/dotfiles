@@ -3,7 +3,7 @@ on = "<Esc>"
 run = "close"
 desc = "Cancel input"
 
-[manager]
+[mgr]
 prepend_keymap = [
   { on = [
     "<A-k>",

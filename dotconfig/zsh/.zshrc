@@ -8,7 +8,7 @@
 # fi
 
 # best thing
-echo -en '\e]22;ibeam\e\\'
+echo -en '\e]22;text\e\\'
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#4A4A4A,bg=bold"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 

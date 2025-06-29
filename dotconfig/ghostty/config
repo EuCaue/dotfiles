@@ -1,12 +1,7 @@
-#keybind=ctrl+h=goto_split:left
-#keybind=ctrl+j=goto_split:bottom
-#keybind=ctrl+k=goto_split:top
-#keybind=ctrl+l=goto_split:right
-#window-padding-balance=true
-#window-padding-x=5
+#window-padding-x=10
 adw-toolbar-style=raised-border
 adjust-box-thickness=100%
-adjust-cursor-height=10%
+adjust-cursor-height=20%
 adjust-cursor-thickness=100%
 bold-is-bright=true
 clipboard-paste-bracketed-safe=true
@@ -17,12 +12,10 @@ confirm-close-surface=false
 cursor-style=block
 shell-integration-features=no-cursor,sudo,title
 desktop-notifications=true
-font-family=monospace
-font-family=Symbols Nerd Font Mono
-# font-size=15
-# freetype-load-flags=no-hinting
-# freetype-load-flags=hinting,no-force-autohint,no-monochrome
-gtk-adwaita=true
+font-size=13.2
+font-family=ZedMono Nerd Font
+font-family=Symbols Nerd Font
+# gtk-adwaita=true
 gtk-wide-tabs=true
 keybind=alt+eight=unbind
 keybind=alt+five=unbind
@@ -36,14 +29,14 @@ keybind=alt+two=unbind
 keybind=ctrl+comma=open_config
 keybind=ctrl+shift+e=unbind
 keybind=ctrl+shift+o=unbind
+keybind=ctrl+shift+plus=increase_font_size:6
 keybind=ctrl+shift+r=reload_config
 keybind=ctrl+shift+w=unbind
-keybind=ctrl+shift+plus=increase_font_size:6
 link-url= true
 mouse-hide-while-typing = false
-theme=light:kanagawa-lotus,dark:kanagawa-dragon
+theme=light:Tomorrow,dark:Tomorrow Night
 window-height=45
 window-inherit-font-size=true
-window-theme=ghostty
 window-padding-color=extend
+window-theme=ghostty
 window-width=195

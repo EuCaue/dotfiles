@@ -11,6 +11,7 @@ autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
     end
   end,
 })
+
 autocmd("FileType", {
   desc = "Automatically Split help Buffers to the right",
   pattern = "help",
@@ -84,7 +85,7 @@ autocmd("FileType", {
     map("n", "<CR>", marktools.cycle_checkbox, { desc = "cycle checkboxes state", buffer = buffer })
     map({ "n", "v" }, "<leader>mo", marktools.order_by_priority, { desc = "order by priority", buffer = buffer })
     map("n", "<leader>mp", marktools.toggle_priority, { desc = "cycle priority", buffer = buffer })
-    map({ "n", "v" }, "<leader>ml", marktools.create_link, { desc = "cretae link", buffer = buffer })
+    map({ "n", "v" }, "<leader>ml", marktools.create_link, { desc = "create link", buffer = buffer })
     map("i", "<C-n>", "- [ ]  @p1 ()", { noremap = true, silent = false, desc = "create todo" })
   end,
 })
@@ -169,9 +170,9 @@ autocmd({ "VimResized" }, {
   group = augroup("resize_splits"),
   desc = "resize splits if window got resized",
   callback = function()
-    local current_tab = vim.fn.tabpagenr()
+    -- local current_tab = vim.fn.tabpagenr()
     vim.cmd("tabdo wincmd =")
-    vim.cmd("tabnext " .. current_tab)
+    -- vim.cmd("tabnext " .. current_tab)
   end,
 })
 

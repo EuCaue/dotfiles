@@ -10,6 +10,8 @@
 	smudge = git-lfs smudge -- %f
 [init]
 	defaultBranch = master
+[commit]
+  template = ~/dotfiles/dotconfig/git-template
 [push]
   autoSetupRemote = true
   default = current

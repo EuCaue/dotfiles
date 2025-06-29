@@ -1,10 +1,7 @@
 # qt
 export QT_QPA_PLATFORM="wayland"
 export QT_QPA_PLATFORMTHEME="gnome"
-export QT_STYLE_OVERRIDE="Adwaita-Dark"
-
-# export DARK_MODE=$(gsettings get org.gnome.desktop.interface color-scheme)
-
+export QT_STYLE_OVERRIDE=$([ "$IS_DARKMODE" = "true" ] && echo "Adwaita-Dark" || echo "Adwaita")
 export XDG_CONFIG_HOME="$HOME/.config"
 export DOTFILES="$HOME/dotfiles"
 
@@ -42,15 +39,15 @@ t1cid:no-stem-darkening=1 \
 t1cid:darkening-parameters=0,0,0,0,0,0,0,0"
 # enable mouse
 export LESS="--mouse"
-export BAT_THEME="base16"
+export BAT_THEME="ansi"
 
 # use bat as pager
 export MANPAGER="nvim +Man!"
 
 export FZF_DEFAULT_COMMAND=fd
 
-# if [[ $DARK_MODE = "'prefer-dark'" ]]; then
-export FZF_DEFAULT_OPTS='
+if [[ $IS_DARKMODE == true ]]; then
+  export FZF_DEFAULT_OPTS='
   --color fg:bright-white,bg:-1
   --color fg+:cyan,bg+:-1
   --color hl:bright-yellow,hl+:bright-green
@@ -58,17 +55,17 @@ export FZF_DEFAULT_OPTS='
   --border
   --color border:bright-blue
 '
-# else
-#   export FZF_DEFAULT_OPTS='
-#   --color fg:black,bg:white
-#   --color fg+:black,bg+:bright-white
-#   --color hl:blue,hl+:bright-blue
-#   --color pointer:red,info:blue
-#   --border
-#   --color border:black
-#   '
-#   zstyle ':fzf-tab:*' default-color $'\033[30m'
-# fi
+else
+  export FZF_DEFAULT_OPTS='
+  --color fg:black,bg:white
+  --color fg+:black,bg+:bright-white
+  --color hl:blue,hl+:bright-blue
+  --color pointer:red,info:blue
+  --border
+  --color border:black
+  '
+  zstyle ':fzf-tab:*' default-color $'\033[30m'
+fi
 #
 zstyle ':fzf-tab:*' fzf-flags $(echo $FZF_DEFAULT_OPTS)
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow"

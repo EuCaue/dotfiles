@@ -2,7 +2,6 @@ Tabline = {}
 
 local logo = vim.g.have_nerd_font and " 󰬛  " or "Neovim"
 
-
 ---Given a list of |window-ID|, filters out abnormal (i.e., float) windows.
 ---The mechanism relies on checking the `relative` field of the window config (|api-win_config|),
 ---as |api-floatwin| states "To check whether a window is floating, check whether `relative` option ... is non-empty."
@@ -23,7 +22,6 @@ local function filterFloatWins(winids)
   return nonFloats
 end
 
-
 ---Given a list of buffer numbers (e.g., return value of |tabpagebuflist()|),
 ---filters out duplicates AND unlisted buffers.
 ---Example:
@@ -37,7 +35,7 @@ local function filterUnlistedBuffers(bufnums)
   local listed = {}
   local hash = {}
   for _, buf in pairs(bufnums) do
-    if vim.fn.buflisted(buf) == 1 and (not hash[buf]) then
+    if vim.fn.buflisted(buf) == 1 and not hash[buf] then
       listed[#listed + 1] = buf
       hash[buf] = true
     end
@@ -45,11 +43,10 @@ local function filterUnlistedBuffers(bufnums)
   return listed
 end
 
-
 ---Format a string for Vim tabline based on tabs and buffers on the current tab
 ---@return string s Formatted string to be used as a Vim tabline
 Tabline.build = function()
-  local s = "%#TabLineFill#" .. logo
+  local s = "%#TabLineFill#"
 
   -- ========== Left ==========
   -- List of tabs
@@ -58,23 +55,27 @@ Tabline.build = function()
   local currTabID = vim.api.nvim_get_current_tabpage()
   for _, tabID in pairs(vim.api.nvim_list_tabpages()) do
     -- This should not happen
-    if not vim.api.nvim_tabpage_is_valid(tabID) then break end
+    if not vim.api.nvim_tabpage_is_valid(tabID) then
+      break
+    end
 
     local tabNum = vim.api.nvim_tabpage_get_number(tabID)
     local winids = filterFloatWins(vim.api.nvim_tabpage_list_wins(tabID))
 
     -- Basic setup
     s = s .. ((tabID == currTabID) and "%#TabLineSel#" or "%#TabLine#") --> diff hl for active and inactive tabs
-    s = s .. " "                                                        --> Left margin/separator
-    s = s .. "%" .. tabNum .. "T"                                       --> make tab clickable (%nT)
-    s = s .. tabNum .. " "                                              --> Tab index
+    s = s .. " " --> Left margin/separator
+    s = s .. "%" .. tabNum .. "T" --> make tab clickable (%nT)
+    s = s .. tabNum .. " " --> Tab index
+    -- _P("tabn " .. tabNum)
+    -- _P(#winids)
 
     -- Add a number of windows in the tab, if applicable
     if #winids > 1 then
       if vim.g.have_nerd_font then
-        s = s .. "[ " .. (#winids) .. "]"
+        s = s .. "[ " .. #winids .. "]"
       else
-        s = s .. "[" .. (#winids) .. " WINS]"
+        s = s .. "[" .. #winids .. " WINS]"
       end
     end
 
@@ -91,7 +92,7 @@ Tabline.build = function()
   -- ========== Middle ==========
   -- Empty space
   -- ============================
-  s = s .. "%="            --> spacer
+  s = s .. "%=" --> spacer
   s = s .. "%#TabLineSel#" --> highlight
 
   -- ========== Right ==========
@@ -131,7 +132,6 @@ Tabline.build = function()
   s = s .. "%<"
   return s
 end
-
 
 -- Set tabline. The Lua function called must be globally accessible
 Tabline.setup = function()

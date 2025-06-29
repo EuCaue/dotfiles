@@ -25,7 +25,7 @@ vim.cmd(
 )
 -- trigger bigfile size
 g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
-opt.background = "dark"
+opt.background = "light"
 opt.autowrite = true -- Enable auto write
 opt.backup = false -- creates a backup file
 opt.colorcolumn = "120" -- colorcolumn
@@ -59,7 +59,7 @@ opt.linebreak = true -- Wrap lines at convenient points
 opt.list = true -- Show some invisible characters (tabs...
 opt.showbreak = ">>> "
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-opt.mouse = "" -- Enable mouse mode
+opt.mouse = "a" -- Enable mouse mode
 opt.number = true -- Print line number
 opt.pumblend = 0 -- Popup blend
 opt.pumheight = 10 -- Maximum number of entries in a popup
