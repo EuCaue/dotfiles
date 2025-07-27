@@ -3,6 +3,7 @@
 --  TODO: improve tabline 
 --  TODO: show window names when split  
 --  TODO: disable icons is broken 
+--  TODO: create custom folding for frontmatter 
 _P = function(any)
   print(vim.inspect(any))
 end

@@ -1,6 +1,9 @@
 #!/usr/bin/env sh
-#  TODO: improve this script 
 
+DEFAULT_CURSOR_LIGHT="macOS-White"
+DEFAULT_BACKGROUND_LIGHT="$HOME/Pictures/wallpapers/wallhaven-48xr3o.jpg"
+DEFAULT_CURSOR_DARK="macOS"
+DEFAULT_BACKGROUND_DARK="$HOME/Pictures/wallpapers/1357320.jpeg"
 FLAG_FILE="/tmp/style_has_runned"
 
 if [ ! -f "$FLAG_FILE" ]; then
@@ -19,15 +22,15 @@ for arg in "$@"; do
 done
 
 NVIM_FILE="${NVIM_FILE:-$HOME/.config/nvim/lua/user/core/options.lua}"
-CURSOR_NAME_LIGHT="${CURSOR_NAME_LIGHT:-adwhite-new}"
-CURSOR_NAME_DARK="${CURSOR_NAME_DARK:-adwaita-new}"
-BACKGROUND_DARK="${BACKGROUND_DARK:-$HOME/Pictures/wallpapers/1357320.jpeg}"
-BACKGROUND_LIGHT="${BACKGROUND_LIGHT:-$HOME/Pictures/wallpapers/wallhaven-48xr3o.jpg}"
+CURSOR_LIGHT="${CURSOR_LIGHT:-$DEFAULT_CURSOR_LIGHT}"
+CURSOR_DARK="${CURSOR_DARK:-$DEFAULT_CURSOR_DARK}"
+BACKGROUND_DARK="${BACKGROUND_DARK:-$DEFAULT_BACKGROUND_DARK}"
+BACKGROUND_LIGHT="${BACKGROUND_LIGHT:-$DEFAULT_BACKGROUND_LIGHT}"
 
 if [ "$1" = "dark" ]; then
   echo "dark mode"
   gsettings set org.gnome.desktop.interface color-scheme "'prefer-dark'"
-  gsettings set org.gnome.desktop.interface cursor-theme "$CURSOR_NAME_DARK"
+  gsettings set org.gnome.desktop.interface cursor-theme "$CURSOR_DARK"
   gsettings set org.gnome.desktop.background picture-uri-dark "file://$BACKGROUND_DARK"
   sed -i "s/light/dark/" "$NVIM_FILE"
   notify-send "Dark mode"
@@ -35,7 +38,7 @@ fi
 
 if [ "$1" = "light" ]; then
   echo "light mode"
-  gsettings set org.gnome.desktop.interface cursor-theme "$CURSOR_NAME_LIGHT"
+  gsettings set org.gnome.desktop.interface cursor-theme "$CURSOR_LIGHT"
   gsettings set org.gnome.desktop.background picture-uri "file://$BACKGROUND_LIGHT" &&
     sed -i "s/dark/light/" "$NVIM_FILE"
   gsettings set org.gnome.desktop.interface color-scheme "'prefer-light'"

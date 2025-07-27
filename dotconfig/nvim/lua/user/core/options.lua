@@ -18,14 +18,14 @@ g.async_format = true
 g.have_nerd_font = true
 
 -- border style for windows
-g.border_type = "rounded"
+g.border_type = "none"
 
 vim.cmd(
   "set guicursor=n-v-c-i-ci-ve-o-sm:block-blinkwait700-blinkon400-blinkoff250-Cursor,n-v-c:block-ModeNormal,i-ci-ve:block-ModeInsert,r-cr:hor20-blinkwait700-blinkon400-blinkoff250-ModeReplace "
 )
 -- trigger bigfile size
 g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
-opt.background = "light"
+opt.background = "dark"
 opt.autowrite = true -- Enable auto write
 opt.backup = false -- creates a backup file
 opt.colorcolumn = "120" -- colorcolumn

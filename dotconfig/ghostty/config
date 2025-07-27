@@ -1,5 +1,4 @@
 #window-padding-x=10
-adw-toolbar-style=raised-border
 adjust-box-thickness=100%
 adjust-cursor-height=20%
 adjust-cursor-thickness=100%
@@ -13,7 +12,7 @@ cursor-style=block
 shell-integration-features=no-cursor,sudo,title
 desktop-notifications=true
 font-size=13.2
-font-family=ZedMono Nerd Font
+font-family=Atkinson Hyperlegible Mono
 font-family=Symbols Nerd Font
 # gtk-adwaita=true
 gtk-wide-tabs=true

@@ -3,6 +3,16 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("myvim_" .. name, { clear = true })
 end
 
+autocmd("BufEnter", {
+  group = augroup("new_file"),
+  pattern = "*",
+  callback = function()
+    if vim.bo.filetype == "" then
+      vim.bo.filetype = "markdown"
+    end
+  end,
+})
+
 autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
   group = augroup("checktime"),
   callback = function()

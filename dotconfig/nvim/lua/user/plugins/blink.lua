@@ -1,6 +1,6 @@
 return {
   "saghen/blink.cmp",
-  dependencies = { "rafamadriz/friendly-snippets" },
+  dependencies = { "rafamadriz/friendly-snippets", "bydlw98/blink-cmp-env" },
   version = "*",
   event = "InsertEnter",
   opts = {
@@ -9,15 +9,23 @@ return {
     },
     signature = {
       enabled = true,
-      -- window = { border = vim.g.border_type },
     },
     sources = {
-      default = { "lazydev", "lsp", "path", "snippets" },
+      default = { "lsp", "path", "snippets", "buffer" },
+      per_filetype = {
+        lua = { inherit_defaults = true, "lazydev" },
+        sh = { inherit_defaults = true, "env" },
+        zsh = { inherit_defaults = true, "env" },
+        bash = { inherit_defaults = true, "env" },
+      },
       providers = {
         lazydev = {
           name = "LazyDev",
           module = "lazydev.integrations.blink",
           score_offset = 100,
+        },
+        buffer = {
+          score_offset = -15,
         },
         path = {
           score_offset = 10,
@@ -30,6 +38,15 @@ return {
             global_snippets = { "all" },
             extended_filetypes = {},
             ignored_filetypes = {},
+          },
+        },
+        env = {
+          score_offset = -2,
+          name = "Env",
+          module = "blink-cmp-env",
+          opts = {
+            show_braces = true,
+            show_documentation_window = true,
           },
         },
       },

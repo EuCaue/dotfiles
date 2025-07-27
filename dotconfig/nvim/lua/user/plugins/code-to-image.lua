@@ -5,14 +5,12 @@ return {
   opts = {
     debug = true,
     browser = "firefox",
-    -- colors = {
-    --   outline = "#54546d",
-    --   background = "#181616",
-    --   foreground = "#c5c9c5",
-    -- },
-  font = {
-    family = "ZedMono Nerd Font",
-  },
+    font = {
+      family = vim.fn
+        .system("ghostty +show-config | rg 'font-family' | awk -F= '{print $2}' | head -1")
+        :gsub("\n", "")
+        :match("^%s*(.-)%s*$"),
+    },
   },
   cmd = "CodeToImage",
 }

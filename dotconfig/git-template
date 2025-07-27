@@ -1,15 +1,15 @@
 
 # type(scope): short description
 # types:
-# feat     - new feature
-# fix      - bug fix
-# docs     - documentation changes
-# style    - code style changes (formatting, etc.)
-# refactor - code change without fixing bugs or adding features
-# perf     - performance improvement
-# test     - adding or updating tests
-# chore    - maintenance tasks
-# build    - changes to build tools or dependencies
-# ci       - continuous integration setup
+# feat     - new feature                                         - feat: add user login endpoint
+# fix      - bug fix                                             - fix: prevent memory leak on image upload
+# docs     - documentation changes                               - docs: update API rate limit information
+# style    - code style changes (formatting, etc.)               - style: format code with Black linter
+# refactor - code change without fixing bugs or adding features  - refactor: extract database logic to a repository
+# perf     - performance improvement                             - perf: optimize user query for faster load times
+# test     - adding or updating tests                            - test: add unit tests for new payment service
+# chore    - maintenance tasks                                   - chore: update dependencies in requirements.txt
+# build    - changes to build tools or dependencies              - build: update Dockerfile for production environment
+# ci       - continuous integration setup                        - ci: add new deployment step to GitHub Actions
 # example:
 # feat(auth): add login endpoint

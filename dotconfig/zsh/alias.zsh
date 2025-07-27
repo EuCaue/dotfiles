@@ -132,12 +132,13 @@ x() {
 
 # tree with exa
 t() {
-  if [ $(command -v exa) ]; then
+  if [ $(command -v eza) ]; then
     dir=${1:(pwd)}
     echo $dir
-    exa -l -a -g --icons --tree "${@:2}" $dir
+    eza -l -a -g --icons --tree "${@:2}" $dir
   fi
 }
+
 
 # open neovim with markdownpreview
 nm() {
