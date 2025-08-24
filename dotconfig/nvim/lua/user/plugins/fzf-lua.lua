@@ -32,7 +32,7 @@ return {
     end
 
     return {
-      "default",
+      "border-fused",
       fzf_colors = true,
       fzf_opts = {
         ["--no-scrollbar"] = true,
@@ -128,7 +128,6 @@ return {
     { "<leader>sl", "<cmd>FzfLua loclist<cr>", desc = "Location List" },
     { "<leader>sM", "<cmd>FzfLua manpages<cr>", desc = "Man Pages" },
     { "<leader>sm", "<cmd>FzfLua marks<cr>", desc = "Jump to Mark" },
-    -- { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
     { "<leader>sR", "<cmd>FzfLua resume<cr>", desc = "Resume" },
     { "<leader>sq", "<cmd>FzfLua quickfix<cr>", desc = "Quickfix List" },
     {

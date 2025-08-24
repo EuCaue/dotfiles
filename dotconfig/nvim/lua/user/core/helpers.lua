@@ -59,13 +59,61 @@ function M.apply_theme_by_system_mode(opts)
   return is_dark
 end
 
+local function get_symbol_name_under_cursor()
+  local params = { textDocument = vim.lsp.util.make_text_document_params(0) }
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  local line, col = cursor[1] - 1, cursor[2]
+  local result = vim.lsp.buf_request_sync(0, "textDocument/documentSymbol", params, 1000)
+  if not result or vim.tbl_isempty(result) then
+    print("No symbol results from LSP")
+    return nil
+  end
+  -- Defensive: find a non-nil result
+  local symbols
+  _P(result)
+  for _, res in pairs(result) do
+    if res and res.result then
+      symbols = res.result
+      break
+    end
+  end
+  if not symbols then
+    print("No document symbols returned")
+    return nil
+  end
+  local function find_symbol(symbolss, linee, coll)
+    for _, sym in ipairs(symbolss or {}) do
+      local range = sym.range or sym.location and sym.location.range
+      if range then
+        local start, finish = range.start, range["end"]
+        if
+          (linee > start.line or (linee == start.line and coll >= start.character))
+          and (linee < finish.line or (linee == finish.line and coll <= finish.character))
+        then
+          if sym.children then
+            local found = find_symbol(sym.children, linee, coll)
+            if found then
+              return found
+            end
+          end
+          return sym.name
+        end
+      end
+    end
+    return nil
+  end
+  return find_symbol(symbols, line, col)
+end
+
 --  TODO: get current scope/indenxt with ts
 --  TODO: adapt for others languages
 function M.debug()
   if not vim.bo.modifiable or vim.bo.readonly then
     return
   end
-  local indent = vim.o.tabstop or vim.o.shiftwidth
+  local line_num = vim.api.nvim_win_get_cursor(0)[1]
+  local indent = vim.fn.indent(line_num)
+  -- _P(get_symbol_name_under_cursor())
   vim.cmd("norm yiw")
   local var_name = vim.fn.getreg('"')
   vim.cmd("norm o")

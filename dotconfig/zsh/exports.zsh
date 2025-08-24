@@ -1,7 +1,15 @@
 # qt
+#  TODO: add support for dark light mode 
+# IS_DARKMODE_FILE="$HOME/.cache/is_darkmode"
+# if [[ -f "$IS_DARKMODE_FILE" ]]; then
+#   export IS_DARKMODE=$(<"$IS_DARKMODE_FILE")
+# else
+#   export IS_DARKMODE=true # fallback
+# fi
 export QT_QPA_PLATFORM="wayland"
 export QT_QPA_PLATFORMTHEME="gnome"
-export QT_STYLE_OVERRIDE=$([ "$IS_DARKMODE" = "true" ] && echo "Adwaita-Dark" || echo "Adwaita")
+# export QT_STYLE_OVERRIDE=$([ "$IS_DARKMODE" = "true" ] && echo "Adwaita-Dark" || echo "Adwaita")
+export QT_STYLE_OVERRIDE="Adwaita-Dark"
 export XDG_CONFIG_HOME="$HOME/.config"
 export DOTFILES="$HOME/dotfiles"
 
@@ -15,6 +23,7 @@ export VISUAL=$EDITOR
 # Increase zoxide limit
 export _ZO_MAXAGE=200000
 
+export PATH="$HOME/.local/bin:$HOME/dotfiles/scripts:$HOME/.cargo/bin:$HOME/.bun/bin:$PATH:$HOME/.local/bin/flutter/bin:$HOME/go/bin/:$HOME/.local/share/bob/nvim-bin/"
 # mac font rendering
 # export FREETYPE_PROPERTIES="truetype:interpreter-version=40 cff:no-stem-darkening=0 autofitter:no-stem-darkening=0 autofitter:darkening-parameters=500,0,1000,400,1250,250,1500,0 autohinter:no-stem-darkening=0"
 # export FREETYPE_PROPERTIES="truetype:interpreter-version=40 cff:no-stem-darkening=0 autofitter:no-stem-darkening=0 autofitter:darkening-parameters=500,0,1000,400,1250,250,1500,0 autohinter:no-stem-darkening=0 lcd_filter=default rgba=rgb"
@@ -46,7 +55,7 @@ export MANPAGER="nvim +Man!"
 
 export FZF_DEFAULT_COMMAND=fd
 
-if [[ $IS_DARKMODE == true ]]; then
+# if [[ $IS_DARKMODE == true ]]; then
   export FZF_DEFAULT_OPTS='
   --color fg:bright-white,bg:-1
   --color fg+:cyan,bg+:-1
@@ -55,17 +64,17 @@ if [[ $IS_DARKMODE == true ]]; then
   --border
   --color border:bright-blue
 '
-else
-  export FZF_DEFAULT_OPTS='
-  --color fg:black,bg:white
-  --color fg+:black,bg+:bright-white
-  --color hl:blue,hl+:bright-blue
-  --color pointer:red,info:blue
-  --border
-  --color border:black
-  '
-  zstyle ':fzf-tab:*' default-color $'\033[30m'
-fi
+# else
+#   export FZF_DEFAULT_OPTS='
+#   --color fg:black,bg:white
+#   --color fg+:black,bg+:bright-white
+#   --color hl:blue,hl+:bright-blue
+#   --color pointer:red,info:blue
+#   --border
+#   --color border:black
+#   '
+#   zstyle ':fzf-tab:*' default-color $'\033[30m'
+# fi
 #
 zstyle ':fzf-tab:*' fzf-flags $(echo $FZF_DEFAULT_OPTS)
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow"

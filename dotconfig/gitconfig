@@ -68,6 +68,7 @@
   d = diff
   ds = "diff --staged"
   ini = "init ."
+  st = "stash -u "
   keep-only-branch = "!f() { git branch | grep -v $1 | xargs git branch -D; }; f"
   l = "log --oneline --graph --all --pretty=format:'%C(magenta)%h %C(white) %an %ar%C(auto) %D%n%s%n'"
   last-commit = "log -1 --stat"

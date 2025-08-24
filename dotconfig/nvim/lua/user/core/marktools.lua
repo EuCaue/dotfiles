@@ -120,6 +120,11 @@ M.apply_priority_highlight = function(events, patterns)
     pattern = patterns,
     callback = create_highlight,
   })
+  -- vim.api.nvim_create_autocmd({ "ColorScheme" }, {
+  --   group = vim.api.nvim_create_augroup("b", { clear = true }),
+  --   pattern = "*.md",
+  --   callback = create_highlight,
+  -- })
 end
 
 --- @param checkboxes? CheckboxCycleConfig: The order of checkboxes to cycle through (default: M.config.checkbox_cycle.order)

@@ -3,7 +3,6 @@
 return {
   "rebelot/heirline.nvim",
   event = "VeryLazy",
-  enabled = true,
   config = function()
     local icons = require("user.core.icons")
     local conditions = require("heirline.conditions")
@@ -12,10 +11,10 @@ return {
 
     local ViMode = {
       init = function(self)
-        self.mode = vim.fn.mode(1) -- :h mode()
+        self.mode = vim.fn.mode(1)
       end,
       static = {
-        mode_names = { -- change the strings if you like it vvvvverbose!
+        mode_names = {
           n = "N",
           no = "N?",
           nov = "N?",
@@ -51,21 +50,6 @@ return {
           ["!"] = "!",
           t = "T",
         },
-        -- mode_colors = {
-        --     n = "red" ,
-        --     i = "green",
-        --     v = "cyan",
-        --     V =  "cyan",
-        --     ["\22"] =  "cyan",
-        --     c =  "orange",
-        --     s =  "purple",
-        --     S =  "purple",
-        --     ["\19"] =  "purple",
-        --     R =  "orange",
-        --     r =  "orange",
-        --     ["!"] =  "red",
-        --     t =  "red",
-        -- }
       },
       -- We can now access the value of mode() that, by now, would have been
       -- computed by `init()` and use it to index our strings dictionary.
@@ -75,7 +59,6 @@ return {
       -- control the padding and make sure our string is always at least 2
       -- characters long. Plus a nice Icon.
       provider = function(self)
-        -- return "%2(" .. self.mode_names[self.mode] .. "%)"
         return padding(self.mode_names[self.mode], 2, 0)
       end,
       hl = function(self)
@@ -256,13 +239,11 @@ return {
         "RecordingLeave",
       },
     }
-    -- We're getting minimalist here!
     local Ruler = {
       -- %l = current line number
       -- %L = number of lines in the buffer
       -- %c = column number
       -- %P = percentage through file of displayed window
-      -- provider = "%7(%l/%3L%):%2c",
       provider = padding(icons.ui.Text, 2, 1) .. "LINE" .. padding("%l/%L", 1, 1) .. padding("", 0, 1) .. padding(
         "COL",
         0,

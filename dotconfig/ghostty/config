@@ -1,9 +1,9 @@
-#window-padding-x=10
 adjust-box-thickness=100%
-adjust-cursor-height=20%
-adjust-cursor-thickness=100%
 bold-is-bright=true
+freetype-load-flags=no-hinting
 clipboard-paste-bracketed-safe=true
+custom-shader-animation=true
+custom-shader=./shaders/cursor_smear_fade.glsl
 background-opacity=1
 clipboard-paste-protection=true
 clipboard-trim-trailing-spaces=true
@@ -11,10 +11,9 @@ confirm-close-surface=false
 cursor-style=block
 shell-integration-features=no-cursor,sudo,title
 desktop-notifications=true
-font-size=13.2
-font-family=Atkinson Hyperlegible Mono
+font-size=13.5
+font-family=monospace
 font-family=Symbols Nerd Font
-# gtk-adwaita=true
 gtk-wide-tabs=true
 keybind=alt+eight=unbind
 keybind=alt+five=unbind
@@ -31,7 +30,7 @@ keybind=ctrl+shift+o=unbind
 keybind=ctrl+shift+plus=increase_font_size:6
 keybind=ctrl+shift+r=reload_config
 keybind=ctrl+shift+w=unbind
-link-url= true
+link-url=true
 mouse-hide-while-typing = false
 theme=light:Tomorrow,dark:Tomorrow Night
 window-height=45

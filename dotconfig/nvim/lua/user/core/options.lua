@@ -25,14 +25,14 @@ vim.cmd(
 )
 -- trigger bigfile size
 g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
-opt.background = "dark"
+opt.background = "light"
 opt.autowrite = true -- Enable auto write
 opt.backup = false -- creates a backup file
 opt.colorcolumn = "120" -- colorcolumn
 opt.completeopt = "menu,menuone,noinsert,noselect"
 opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
-opt.cursorline = true -- Enable highdarking of the current line
+opt.cursorline = true -- Enable highlighting of the current line
 opt.expandtab = true -- Use spaces instead of tabs
 opt.fillchars = {
   foldopen = "",

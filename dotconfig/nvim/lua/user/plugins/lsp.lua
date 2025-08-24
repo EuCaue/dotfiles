@@ -44,19 +44,26 @@ local function jumpWithVirtLineDiags(jumpCount)
 end
 
 return {
-  { "williamboman/mason-lspconfig.nvim", lazy = true },
-  { "WhoIsSethDaniel/mason-tool-installer.nvim", lazy = true },
   {
-    "williamboman/mason.nvim",
-    build = ":MasonUpdate",
-    cmd = "Mason",
+    "mason-org/mason.nvim",
     lazy = true,
-    config = true,
+    cmd = "Mason",
+    opts = {},
+  },
+  {
+    "mason-org/mason-lspconfig.nvim",
+    opts = {},
+    event = { "BufReadPre", "BufNewFile", "BufReadPost" },
+  },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    event = { "BufReadPre", "BufNewFile", "BufReadPost" },
   },
   {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufReadPre", "BufNewFile", "BufReadPost" },
     keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+    dependencies = {},
     config = function()
       local icons = require("user.core.icons")
       local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -233,6 +240,16 @@ return {
         },
         html = {},
         vtsls = {
+          --  FIX: for some reason, `single_file_support` isn't working in vtsls 
+          root_dir = function(bufnr, on_dir)
+            local fname = vim.api.nvim_buf_get_name(bufnr)
+            local project_root = require("lspconfig.util").root_pattern("tsconfig.json", "package.json", ".git")(fname)
+            if project_root then
+              on_dir(project_root)
+            else
+              on_dir(vim.fs.dirname(fname))
+            end
+          end,
           settings = {
             complete_functions_calls = true,
             vtsls = {
@@ -283,10 +300,11 @@ return {
         max_concurrent_installers = 10,
       })
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-      require("mason-lspconfig").setup({
-        automatic_enable = true,
-        ensure_installed = servers,
-      })
+      for server, cfg in pairs(servers) do
+        cfg.capabilities = vim.tbl_deep_extend("force", {}, capabilities, cfg.capabilities or {})
+        vim.lsp.config(server, cfg)
+        vim.lsp.enable(server)
+      end
     end,
   },
 }

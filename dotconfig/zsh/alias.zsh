@@ -24,6 +24,7 @@ if command -v eza >/dev/null 2>&1; then
 fi
 alias lc="ls | wc -l"
 alias lll='ls'
+alias yy="yazi"
 
 # better rm
 if command -v trash >/dev/null 2>&1; then
@@ -48,8 +49,30 @@ function install-custom-theme() {
   done
 }
 
-alias set-cursor-theme='gsettings set org.gnome.desktop.interface cursor-theme '
-alias set-cursor-size='gsettings set org.gnome.desktop.interface cursor-size '
+function set-cursor-theme() {
+  local CURSOR_THEME="$1"
+  [[ -z "$CURSOR_THEME" ]] && echo "Usage: set-cursor-theme <theme-name>" && return 1
+
+  sed -i "s/^\(Inherits=\).*$/\1$CURSOR_THEME/" "$HOME/.local/share/icons/default/index.theme"
+  export XCURSOR_THEME="$CURSOR_THEME"
+  gsettings set org.gnome.desktop.interface cursor-theme "$CURSOR_THEME"
+
+  if command -v flatpak >/dev/null 2>&1; then
+    flatpak override --user --env=XCURSOR_THEME="$CURSOR_THEME"
+  fi
+}
+
+function set-cursor-size() {
+  local CURSOR_SIZE="$1"
+  [[ -z "$CURSOR_SIZE" ]] && echo "Usage: set-cursor-size <size>" && return 1
+
+  export XCURSOR_SIZE="$CURSOR_SIZE"
+  gsettings set org.gnome.desktop.interface cursor-size "$CURSOR_SIZE"
+
+  if command -v flatpak >/dev/null 2>&1; then
+    flatpak override --user --env=XCURSOR_SIZE="$CURSOR_SIZE"
+  fi
+}
 alias get-cursor-theme='gsettings get org.gnome.desktop.interface cursor-theme'
 alias get-cursor-size='gsettings get org.gnome.desktop.interface cursor-size'
 alias check-font-weight='echo -e "\e[1mbold\e[0m"; echo -e "\e[3mitalic\e[0m"; echo -e "\e[4munderline\e[0m"; echo -e "\e[9mstrikethrough\e[0m"; echo -e "\e[31mHello World\e[0m"'
@@ -61,7 +84,6 @@ function change-alacritty-theme() {
 }
 
 function timer() {
-  # Envia a primeira notificação
   notify-send -u normal \
     -i "/usr/share/icons/Adwaita/symbolic/categories/emoji-recent-symbolic.svg" \
     --app-name="Countdown" \
@@ -138,7 +160,6 @@ t() {
     eza -l -a -g --icons --tree "${@:2}" $dir
   fi
 }
-
 
 # open neovim with markdownpreview
 nm() {

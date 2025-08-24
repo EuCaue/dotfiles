@@ -3,15 +3,17 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("myvim_" .. name, { clear = true })
 end
 
-autocmd("BufEnter", {
-  group = augroup("new_file"),
-  pattern = "*",
-  callback = function()
-    if vim.bo.filetype == "" then
-      vim.bo.filetype = "markdown"
-    end
-  end,
-})
+-- autocmd("BufNewFile", {
+--   group = augroup("new_file"),
+--   pattern = "*",
+--   callback = function()
+--     local filename = vim.api.nvim_buf_get_name(0)
+--     filename = vim.fn.fnamemodify(filename, ":.")
+--     if filename == "" and vim.bo.filetype ~= "alpha" then
+--       vim.bo.filetype = "markdown"
+--     end
+--   end,
+-- })
 
 autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
   group = augroup("checktime"),
@@ -97,6 +99,18 @@ autocmd("FileType", {
     map("n", "<leader>mp", marktools.toggle_priority, { desc = "cycle priority", buffer = buffer })
     map({ "n", "v" }, "<leader>ml", marktools.create_link, { desc = "create link", buffer = buffer })
     map("i", "<C-n>", "- [ ]  @p1 ()", { noremap = true, silent = false, desc = "create todo" })
+  end,
+})
+
+--  TODO: move this to marktools 
+autocmd("ColorScheme", {
+  group = augroup("testin"),
+  callback = function()
+    if vim.bo.filetype == "markdown" then
+      local marktools = require("user.core.marktools")
+      marktools.setup()
+      marktools.apply_priority_highlight()
+    end
   end,
 })
 
