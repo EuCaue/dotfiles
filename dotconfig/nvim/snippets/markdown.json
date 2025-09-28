@@ -9,6 +9,11 @@
     "body": "- [ ] ${1:Task description} @${2:p1} (${3:HH:MM}–${4:HH:MM})",
     "description": "Create a todo with an inline time block"
   },
+  "now": {
+    "prefix": "now",
+    "body": "${CURRENT_HOUR}:${CURRENT_MINUTE} ${1}",
+    "description": "Insert current date and time"
+  },
   "Dayparts Sections": {
     "prefix": "dayparts",
     "body": [

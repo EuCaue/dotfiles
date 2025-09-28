@@ -17,6 +17,7 @@ return {
     "ZkMatch",
     "ZkTags",
     "ZkOrphans",
+    "ZkTest",
     "ZkN",
     "ZkNf",
     "ZkLf",
@@ -27,22 +28,56 @@ return {
   keys = {
     { mode = { "v" }, "<leader>zc", ":<cmd>'<,'><cr>ZkNC<cr>", desc = "Create a new note with content selected" },
     { mode = { "v" }, "<leader>zT", ":<cmd>'<,'><cr>ZkNT<cr>", desc = "Create a new note with title selected" },
-    { "<leader>zn", "<cmd>ZkNotes<cr>", desc = "Search ZK Notes" },
-    { "<leader>zt", "<cmd>ZkTags<cr>", desc = "Search ZK Notes Tags" },
-    { "<leader>zf", "<cmd>ZkLf<cr>", desc = "Search ZK Fleet notes" },
+    { "<leader>zn", "<cmd>ZkNotes { sort = { 'modified' } }<cr>", desc = "Search ZK Notes" },
+    { "<leader>zt", "<cmd>ZkTagsModified <cr>", desc = "Search ZK Notes Tags Modified" },
+    { "<leader>zT", "<cmd>ZkTags <cr>", desc = "Search ZK Notes Tags" },
+    { "<leader>zf", "<cmd>ZkLf { sort = { 'modified' } }<cr>", desc = "Search ZK Fleet notes" },
     { "<leader>zb", "<cmd>ZkBacklinks<cr>", desc = "Search ZK Backlinks in the current note", ft = "markdown" },
     { "<leader>zl", "<cmd>ZkLinks<cr>", desc = "Search Links in the current note", ft = "markdown" },
-    { "<leader>zil", "<cmd>ZkInsertLink<cr>", desc = "Insert a link for a note", ft = "markdown" },
+    {
+      "<leader>zil",
+      "<cmd>ZkInsertLink { sort = {'modified' } }<cr>",
+      desc = "Insert a link for a note",
+      ft = "markdown",
+    },
     {
       mode = { "v" },
       "<leader>zis",
-      ":<cmd>'<,'><cr>ZkInsertLinkAtSelection<cr>",
+      ":<cmd>'<,'><cr>ZkInsertLinkAtSelection { sort = { 'modified' } }<cr>",
       desc = "Insert a link for a note with selection",
       ft = "markdown",
     },
     { "<leader>zjy", "<cmd>ZkYesterday<cr>", desc = "Open Journal Entry Yesterday" },
     { "<leader>zjd", "<cmd>ZkDaily<cr>", desc = "Open Journal Entry Daily" },
     { "<leader>zjt", "<cmd>ZkTomorrow<cr>", desc = "Open Journal Entry Tomorrow" },
+    {
+      "<leader>zjT",
+      function()
+        local pattern = "## ✅Todos"
+        local lnum = vim.fn.search(pattern, "w")
+        if lnum == 0 then
+          vim.notify("Pattern not found " .. pattern, vim.log.levels.WARN)
+          return
+        end
+        vim.api.nvim_win_set_cursor(0, { lnum, 0 })
+        vim.cmd("normal! zz")
+      end,
+      desc = "Go to Todos Section",
+    },
+    {
+      "<leader>zjb",
+      function()
+        local pattern = "## 📝"
+        local lnum = vim.fn.search(pattern, "w")
+        if lnum == 0 then
+          vim.notify("Pattern not found " .. pattern, vim.log.levels.WARN)
+          return
+        end
+        vim.api.nvim_win_set_cursor(0, { lnum, 0 })
+        vim.cmd("normal! zz")
+      end,
+      desc = "Go to B Section",
+    },
     { "<leader>zN", "<cmd>e $ZK_NOTEBOOK_DIR/temp.md<cr>", desc = "Open temp.md" },
   },
   opts = {
@@ -118,7 +153,7 @@ return {
         local trimmed_path = file_path:match("zk/(.*)")
         link_note(trimmed_path, location, title)
       end
-    end, { needs_selection = true })
+    end, { needs_selection = true, desc = "New note from content" })
     commands.add("ZkNT", function(options)
       local location = util.get_lsp_location_from_selection()
       local selected_text = util.get_selected_text()
@@ -131,7 +166,7 @@ return {
       local trimmed_path = file_path:match("zk/(.*)")
       link_note(trimmed_path, location, selected_text)
       vim.cmd("edit" .. file_path)
-    end, { needs_selection = true })
+    end, { needs_selection = true, desc = "New note from selected text" })
     commands.add("ZkNf", function(options)
       local file_path = create_note('zk new "$ZK_NOTEBOOK_DIR/fleets/"', options)
       vim.cmd("edit " .. file_path)
@@ -149,6 +184,13 @@ return {
       local cmd = "zk new --no-input $ZK_NOTEBOOK_DIR/journal"
       local file_path = create_note(cmd, options)
       vim.cmd("edit" .. file_path)
+    end)
+    commands.add("ZkTagsModified", function()
+      --  TODO: add a broader api for this
+      require("zk").pick_tags({}, {}, function(tag)
+        local tag_name = tag[1].name
+        vim.cmd("ZkNotes { sort = { 'modified' }, tags = { '" .. tag_name .. "' } }")
+      end)
     end)
     commands.add("ZkTomorrow", function(options)
       local cmd = 'zk new --no-input $ZK_NOTEBOOK_DIR/journal --date="tomorrow"'

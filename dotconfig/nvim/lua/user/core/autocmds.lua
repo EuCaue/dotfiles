@@ -16,6 +16,7 @@ end
 -- })
 
 autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
+  desc = "Check if we need to reload the file when it changed",
   group = augroup("checktime"),
   callback = function()
     if vim.o.buftype ~= "nofile" then
@@ -81,14 +82,14 @@ autocmd("FileType", {
     if vim.bo[event.buf].buftype ~= "" then
       return
     end
-
     -- TODO: organize this
     local map = vim.keymap.set
     local buffer = event.buf
     vim.opt_local.spell = true
     vim.opt_local.number = false
     vim.opt_local.signcolumn = "no"
-    vim.opt_local.textwidth = 100
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true;
     local marktools = require("user.core.marktools")
     require("user.core.markdown_pasting").setup()
     marktools.setup()
@@ -102,14 +103,18 @@ autocmd("FileType", {
   end,
 })
 
---  TODO: move this to marktools 
+--  TODO: move this to marktools
 autocmd("ColorScheme", {
-  group = augroup("testin"),
+  group = augroup("update-colors"),
   callback = function()
     if vim.bo.filetype == "markdown" then
       local marktools = require("user.core.marktools")
       marktools.setup()
       marktools.apply_priority_highlight()
+    end
+    local ok, heirline = pcall(require, "heirline")
+    if ok then
+      heirline.reset_highlights()
     end
   end,
 })

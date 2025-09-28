@@ -95,7 +95,7 @@ return {
       },
     },
   },
-  dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" },
+  dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.icons" },
   keys = {
     { "<leader>tm", "<cmd>RenderMarkdown toggle<cr>", desc = "toggle markdown rendering" },
   },

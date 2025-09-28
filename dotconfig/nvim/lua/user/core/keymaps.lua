@@ -57,6 +57,9 @@ map(
 -- new file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
+map("n", "<S-h>", "_", get_opts("go to first non-blank"))
+map("n", "<S-l>", "g_", get_opts("go to last non-blank"))
+
 -- better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
@@ -83,8 +86,8 @@ map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", get_opts("Up", true))
 -- map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
 
 -- buffers
-map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+-- map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+-- map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<leader>bn", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<leader>bp", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "<leader>bd", "<cmd>bp | sp | bn | bd<cr>", { desc = "Delete Buffer" })

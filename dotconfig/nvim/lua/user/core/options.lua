@@ -25,10 +25,11 @@ vim.cmd(
 )
 -- trigger bigfile size
 g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
-opt.background = "light"
 opt.autowrite = true -- Enable auto write
+opt.autoread = true -- Enable auto read
+opt.background = "light"
 opt.backup = false -- creates a backup file
-opt.colorcolumn = "120" -- colorcolumn
+opt.colorcolumn = "" -- colorcolumn
 opt.completeopt = "menu,menuone,noinsert,noselect"
 opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 opt.confirm = true -- Confirm to save changes before exiting modified buffer
@@ -57,9 +58,10 @@ opt.jumpoptions = "stack,view"
 opt.laststatus = 3 -- global statusline
 opt.linebreak = true -- Wrap lines at convenient points
 opt.list = true -- Show some invisible characters (tabs...
-opt.showbreak = ">>> "
+opt.showbreak = "» "
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 opt.mouse = "a" -- Enable mouse mode
+opt.mousescroll = "ver:1,hor:6" -- scroll just 1 line
 opt.number = true -- Print line number
 opt.pumblend = 0 -- Popup blend
 opt.pumheight = 10 -- Maximum number of entries in a popup

@@ -2,6 +2,8 @@
 
 cd "$ZK_NOTEBOOK_DIR" || exit 1
 
+[ -x "$ZK_NOTEBOOK_DIR/fix-links.sh" ] && "$ZK_NOTEBOOK_DIR/fix-links.sh"
+
 now="$(date '+%Y-%m-%d %H:%M:%S')"
 msg="[zk] weekly snapshot – $now"
 

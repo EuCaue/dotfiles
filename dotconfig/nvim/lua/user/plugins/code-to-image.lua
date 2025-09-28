@@ -1,5 +1,6 @@
 return {
   "mactep/code_to_image.nvim",
+  commit = "6acc5c4988398588213e953836b1c65ca5ff82ac",
   enabled = true,
   build = "bun install", -- needed for `print_method = "browser"`
   opts = {

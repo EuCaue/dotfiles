@@ -34,11 +34,13 @@ if command -v trash >/dev/null 2>&1; then
 fi
 
 # system
+alias nocow="chattr +C "
 alias update-grub="sudo grub2-mkconfig -o /etc/grub2.cfg && sudo grub2-mkconfig -o /etc/grub2-efi.cfg"
 alias ls-font='fc-list --format="%{family}\\n" | cut -d , -f 1 | sort | uniq | fzf'
 
 function install-custom-theme() {
   TARGET_DIR="/usr/share/icons/"
+  echo "\033[1mTHEMES: $@\033[0m"
   for theme in "$@"; do
     if [[ -e "$theme" ]]; then
       sudo mv "$theme" "$TARGET_DIR"

@@ -1,5 +1,5 @@
 return {
-  "echasnovski/mini.icons",
+  "nvim-mini/mini.icons",
   version = false,
   enabled = vim.g.have_nerd_font,
   opts = {

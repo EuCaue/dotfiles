@@ -239,8 +239,9 @@ return {
           filetypes = { "sh", "zsh" },
         },
         html = {},
+        yamlls = {},
         vtsls = {
-          --  FIX: for some reason, `single_file_support` isn't working in vtsls 
+          --  FIX: for some reason, `single_file_support` isn't working in vtsls
           root_dir = function(bufnr, on_dir)
             local fname = vim.api.nvim_buf_get_name(bufnr)
             local project_root = require("lspconfig.util").root_pattern("tsconfig.json", "package.json", ".git")(fname)

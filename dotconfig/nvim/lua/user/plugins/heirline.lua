@@ -308,7 +308,7 @@ return {
           .. wc.chars
           .. "CHARS"
       end,
-      hl = { fg = utils.get_highlight("Comment").fg, bold = true },
+      hl = { fg = utils.get_highlight("Bold").fg, bold = true },
     }
 
     require("heirline").setup({

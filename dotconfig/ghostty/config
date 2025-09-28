@@ -1,5 +1,6 @@
 adjust-box-thickness=100%
-bold-is-bright=true
+bell-features=border
+#bold-is-bright=true
 freetype-load-flags=no-hinting
 clipboard-paste-bracketed-safe=true
 custom-shader-animation=true
@@ -28,6 +29,7 @@ keybind=ctrl+comma=open_config
 keybind=ctrl+shift+e=unbind
 keybind=ctrl+shift+o=unbind
 keybind=ctrl+shift+plus=increase_font_size:6
+keybind=ctrl+shift+minus=set_font_size:17
 keybind=ctrl+shift+r=reload_config
 keybind=ctrl+shift+w=unbind
 link-url=true
