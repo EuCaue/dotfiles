@@ -49,6 +49,7 @@
 [merge]
   tool = "nvimdiff3"
 [diff]
+  ; external = difft --display=inline
   renames = copies
   interHunkContext = 10
   context = 4
@@ -72,6 +73,7 @@
   keep-only-branch = "!f() { git branch | grep -v $1 | xargs git branch -D; }; f"
   l = "log --oneline --graph --all --pretty=format:'%C(magenta)%h %C(white) %an %ar%C(auto) %D%n%s%n'"
   last-commit = "log -1 --stat"
+  lo = "log --oneline --graph --all"
   ls = ls-files
   p = push
   remove-file = "!f() { git filter-branch -f --index-filter \"git rm --cached --ignore-unmatch $1\" --prune-empty --tag-name-filter cat -- --all; }; f"

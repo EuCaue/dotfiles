@@ -10,41 +10,51 @@ function M.padding(str, left, right)
   return string.rep(" ", left) .. str .. string.rep(" ", right)
 end
 
---- make the bg transparent
+--- toggle the background transparency
 --- @return nil
-function M.transparent()
-  vim.cmd([[
-   highlight Normal      guibg=NONE ctermbg=NONE
-   highlight NormalNC    guibg=NONE ctermbg=NONE
-   highlight SignColumn  guibg=NONE ctermbg=NONE
-   highlight VertSplit   guibg=NONE ctermbg=NONE
-   highlight StatusLine  guibg=NONE ctermbg=NONE
-   highlight CursorLineNr  guibg=NONE ctermbg=NONE
-   highlight CursorLineFold guibg=NONE ctermbg=NONE
-   highlight LineNr      guibg=NONE ctermbg=NONE
-   highlight Folded      guibg=NONE ctermbg=NONE
-   highlight EndOfBuffer guibg=NONE ctermbg=NONE
- ]])
-  vim.cmd("hi Normal ctermbg=NONE guibg=NONE")
-  vim.cmd("hi NormalFloat ctermbg=NONE guibg=NONE")
-  vim.cmd("hi NormalNC ctermbg=NONE guibg=NONE")
-  vim.cmd("hi Pmenu ctermbg=NONE guibg=NONE")
-  vim.cmd("hi WinBar ctermbg=NONE guibg=NONE")
-  vim.cmd("hi SignColumn ctermbg=NONE guibg=NONE")
-  vim.cmd("hi FloatBorder ctermbg=NONE guibg=NONE")
-  vim.cmd("hi CursorLine gui=bold cterm=bold")
-  vim.cmd("hi CmpItemAbbrMatch guibg=NONE ctermbg=NONE")
-  vim.cmd("hi CmpItemAbbr guibg=NONE ctermbg=NONE")
-  vim.cmd("hi EndOfBuffer guibg=NONE ctermbg=NONE")
+function M.toggle_transparency()
+  if not vim.g.transparent then
+    local hl_groups = {
+      Normal = { bg = "NONE", ctermbg = "NONE" },
+      NormalNC = { bg = "NONE", ctermbg = "NONE" },
+      SignColumn = { bg = "NONE", ctermbg = "NONE" },
+      VertSplit = { bg = "NONE", ctermbg = "NONE" },
+      StatusLine = { bg = "NONE", ctermbg = "NONE" },
+      CursorLineNr = { bg = "NONE", ctermbg = "NONE" },
+      CursorLineFold = { bg = "NONE", ctermbg = "NONE" },
+      LineNr = { bg = "NONE", ctermbg = "NONE" },
+      Folded = { bg = "NONE", ctermbg = "NONE" },
+      EndOfBuffer = { bg = "NONE", ctermbg = "NONE" },
+      NormalFloat = { bg = "NONE", ctermbg = "NONE" },
+      Pmenu = { bg = "NONE", ctermbg = "NONE" },
+      WinBar = { bg = "NONE", ctermbg = "NONE" },
+      FloatBorder = { bg = "NONE", ctermbg = "NONE" },
+      CmpItemAbbr = { bg = "NONE", ctermbg = "NONE" },
+      CmpItemAbbrMatch = { bg = "NONE", ctermbg = "NONE" },
+      CursorLine = { bold = true, cterm = { bold = true } },
+    }
+
+    for group, opts in pairs(hl_groups) do
+      vim.api.nvim_set_hl(0, group, opts)
+    end
+    vim.g.transparent = true
+    return
+  end
+  vim.g.transparent = false
+  vim.cmd("colorscheme " .. vim.g.colors_name)
 end
 
 --- Applies a theme based on the system's color scheme (dark or light).
 --- @param opts table A table containing optional `dark` and/or `light` callbacks.
 --- @param opts.dark? fun(): nil Function to run if the system is in dark mode.
 --- @param opts.light? fun(): nil Function to run if the system is in light mode.
---- @return boolean
+--- @return boolean|nil
 function M.apply_theme_by_system_mode(opts)
   --  TODO: check if gsettings exists.
+  if vim.fn.executable("gsettings") == 0 then
+    print("gsettings not found, skipping...")
+    return nil
+  end
   local output = vim.fn.system("gsettings get org.gnome.desktop.interface color-scheme")
   local mode = output:match("'(.-)'") or output
   local is_dark = (mode == "prefer-dark")
@@ -125,6 +135,7 @@ function M.map(modes, key, cmd, opts)
   vim.keymap.set(modes, key, cmd, opts)
 end
 
+--  TODO: merge this into `M.map`
 local function get_opts(desc, expr)
   return { noremap = true, silent = true, desc = desc, expr = expr or false }
 end

@@ -6,6 +6,9 @@ clipboard-paste-bracketed-safe=true
 custom-shader-animation=true
 custom-shader=./shaders/cursor_smear_fade.glsl
 background-opacity=1
+background-image=/home/caue/Pictures/wallpapers/wallhaven-3kx39y.png
+background-image-fit=cover
+background-image-opacity=0.1
 clipboard-paste-protection=true
 clipboard-trim-trailing-spaces=true
 confirm-close-surface=false
@@ -16,6 +19,7 @@ font-size=13.5
 font-family=monospace
 font-family=Symbols Nerd Font
 gtk-wide-tabs=true
+gtk-titlebar-style=tabs
 keybind=alt+eight=unbind
 keybind=alt+five=unbind
 keybind=alt+four=unbind

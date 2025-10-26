@@ -1,3 +1,4 @@
+--  TODO: improve cd handling when working with zk 
 return {
   "zk-org/zk-nvim",
   ft = "markdown",
@@ -47,9 +48,9 @@ return {
       desc = "Insert a link for a note with selection",
       ft = "markdown",
     },
-    { "<leader>zjy", "<cmd>ZkYesterday<cr>", desc = "Open Journal Entry Yesterday" },
-    { "<leader>zjd", "<cmd>ZkDaily<cr>", desc = "Open Journal Entry Daily" },
-    { "<leader>zjt", "<cmd>ZkTomorrow<cr>", desc = "Open Journal Entry Tomorrow" },
+    { "<leader>zjy", "<cmd>cd $ZK_NOTEBOOK_DIR | ZkYesterday<cr>", desc = "Open Journal Entry Yesterday" },
+    { "<leader>zjd", "<cmd>cd $ZK_NOTEBOOK_DIR | ZkDaily<cr>", desc = "Open Journal Entry Daily" },
+    { "<leader>zjt", "<cmd>cd $ZK_NOTEBOOK_DIR | ZkTomorrow<cr>", desc = "Open Journal Entry Tomorrow" },
     {
       "<leader>zjT",
       function()
@@ -78,7 +79,7 @@ return {
       end,
       desc = "Go to B Section",
     },
-    { "<leader>zN", "<cmd>e $ZK_NOTEBOOK_DIR/temp.md<cr>", desc = "Open temp.md" },
+    { "<leader>zN", "<cmd>cd $ZK_NOTEBOOK_DIR | e $ZK_NOTEBOOK_DIR/temp.md<cr>", desc = "Open temp.md" },
   },
   opts = {
     picker = "fzf_lua",

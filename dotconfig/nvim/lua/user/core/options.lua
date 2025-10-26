@@ -3,7 +3,6 @@ local g = vim.g
 
 -- custom macros
 vim.fn.setreg("s", "]sz=1\r")
-vim.fn.setreg("S", "[sz=1\r")
 
 -- set <space> as the leader key
 g.mapleader = " "
@@ -12,7 +11,11 @@ g.maplocalleader = " "
 -- autoformat
 g.autoformat = false
 
+-- async auto format
 g.async_format = true
+
+-- transparency
+g.transparent = false
 
 -- use icons or not
 g.have_nerd_font = true
@@ -20,9 +23,9 @@ g.have_nerd_font = true
 -- border style for windows
 g.border_type = "none"
 
-vim.cmd(
-  "set guicursor=n-v-c-i-ci-ve-o-sm:block-blinkwait700-blinkon400-blinkoff250-Cursor,n-v-c:block-ModeNormal,i-ci-ve:block-ModeInsert,r-cr:hor20-blinkwait700-blinkon400-blinkoff250-ModeReplace "
-)
+-- vim.cmd(
+--   "set guicursor=n-v-c-i-ci-ve-o-sm:block-blinkwait700-blinkon400-blinkoff250-Cursor,n-v-c:block-ModeNormal,i-ci-ve:block-ModeInsert,r-cr:hor20-blinkwait700-blinkon400-blinkoff250-ModeReplace "
+-- )
 -- trigger bigfile size
 g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
 opt.autowrite = true -- Enable auto write

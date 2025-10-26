@@ -78,6 +78,24 @@ return {
       end,
     }
 
+    local TodayNote = {
+      provider = function()
+        local zk_journal = vim.fn.expand("$ZK_NOTEBOOK_DIR/journal")
+        local filepath = vim.fn.expand("%:p")
+        local today = os.date("%Y-%m-%d") .. ".md"
+        local today_path = zk_journal .. "/" .. today
+
+        if filepath == today_path then
+          return padding("TODAY", 1, 0)
+        end
+
+        return ""
+      end,
+      hl = function()
+        return { fg = utils.get_highlight("Bold").fg, bold = true }
+      end,
+    }
+
     local FileName = {
       provider = function(self)
         -- first, trim the pattern relative to the current directory. For other
@@ -317,6 +335,7 @@ return {
         ViMode,
         FileNameBlock,
         Git,
+        TodayNote,
         { provider = "%=" },
         Diagnostics,
         FileIcon,

@@ -2,9 +2,7 @@ local function get_opts(desc, expr)
   return { noremap = true, silent = true, desc = desc, expr = expr or false }
 end
 
-local map = function(modes, key, cmd, opts)
-  vim.keymap.set(modes, key, cmd, opts)
-end
+local map = require("user.core.helpers").map
 
 local comments_tags = {
   t = { "todo", "t" },
@@ -24,7 +22,7 @@ for _, tag in pairs(comments_tags) do
   end, get_opts("Create a " .. tag_text .. " comment"))
 end
 
-map("n", "<space>R", "q", get_opts("R to q"))
+map("n", "mr", "q", get_opts("record macro"))
 map("", "q", "<Nop>", get_opts("remove default q keymap"))
 map("n", "<leader>q", "<cmd>quitall!<cr>", get_opts("Quit all"))
 map({ "n", "i" }, "<C-a>", "<cmd>norm ggVG<cr>", get_opts("Select all text in the buffer"))
@@ -170,15 +168,7 @@ map("n", "<leader>ta", function()
   vim.g.async_format = not vim.g.async_format
 end, get_opts("toggle async format"))
 
-map("n", "<leader>tb", function()
-  ---@diagnostic disable-next-line: undefined-field
-  local bg = vim.opt.background._value
-  if bg == "dark" then
-    vim.opt.background = "light"
-    return
-  end
-  vim.opt.background = "dark"
-end, get_opts("toggle background"))
+map("n", "<leader>tb", "<cmd>Transparent<cr>",get_opts("toggle background"))
 
 map("n", "<leader>tt", function()
   if vim.b.ts_highlight then

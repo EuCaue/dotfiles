@@ -25,12 +25,12 @@ end
 --- @param priorities PriorityConfig: The line to check
 --- @return number: The priority index (lower is higher priority)
 local function get_priority(line, priorities)
-  for i, priority in ipairs(priorities) do
-    if line:find(priority) then
+  for i, pat in ipairs(priorities) do
+    if line:match(pat) then
       return i
     end
   end
-  return #priorities + 1
+  return math.huge -- lines without priority go to the end
 end
 
 local M = {}
@@ -67,7 +67,6 @@ M.config = {
   priorities = { "@p1", "@p2", "@p3" },
   highlight = {
     patterns = { "*.md" },
-    -- events = { "BufWinEnter", "BufWrite", "BufNewFile", "BufRead", "InsertLeave" },
     events = { "BufWinEnter", "BufWrite", "BufNewFile", "BufRead", "InsertLeave", "TextChanged" },
     priority = {
       [1] = { from_group = "Error", bg = "None", bold = true },
@@ -160,7 +159,14 @@ end
 M.toggle_priority = function(priorities)
   priorities = priorities or M.config.priorities
   local line = vim.api.nvim_get_current_line()
-  local current_priority = line:match("@p%d")
+  local current_priority
+  --  TODO: test with other patterns
+  for _, p in ipairs(priorities) do
+    if line:find(p, 1, true) then
+      current_priority = p
+      break
+    end
+  end
 
   if current_priority then
     local current_index = table_index_of(priorities, current_priority)
@@ -218,53 +224,67 @@ M.create_link = function()
   end
 end
 
---  TODO: capture nested todos
 
 --- @param priorities? PriorityConfig: The list of priority tags to order by (default: M.config.priorities)
 M.order_by_priority = function(priorities)
   priorities = priorities or M.config.priorities
   local buffer = vim.api.nvim_get_current_buf()
-  local start_line, end_line
 
+  local start_line, end_line
   if vim.fn.mode() == "v" or vim.fn.mode() == "V" then
     local pos_start = vim.fn.getpos("'<")
     local pos_end = vim.fn.getpos("'>")
     start_line = math.min(pos_start[2], pos_end[2]) - 1
     end_line = math.max(pos_start[2], pos_end[2])
   else
-    start_line = 0
-    end_line = -1
-  end
-
-  if start_line < 0 or (end_line >= 0 and start_line > end_line) then
-    vim.api.nvim_echo("Invalid range: 'start' is higher than 'end'", true, { err = true })
+    vim.api.nvim_echo({ { "Select a range in visual mode to sort priorities.", "ErrorMsg" } }, true, {})
     return
   end
 
   local lines = vim.api.nvim_buf_get_lines(buffer, start_line, end_line, false)
-  local priority_lines = {}
-  local other_lines = {}
 
+  -- Group lines into blocks (parent + children)
+  local blocks = {}
+  local current_block = {}
   for _, line in ipairs(lines) do
-    --  FIX: this it will not work if change @p<number> pattern
-    if line:match("@p%d+") then
-      table.insert(priority_lines, line)
+    if line:match("^%s*-") and #current_block > 0 and not line:match("^%s*%-") then
+      -- New parent
+      table.insert(blocks, current_block)
+      current_block = { line }
+    elseif #current_block == 0 then
+      current_block = { line }
+    elseif line:match("^%s") then
+      -- child line (indented)
+      table.insert(current_block, line)
     else
-      table.insert(other_lines, line)
+      -- new parent line
+      table.insert(blocks, current_block)
+      current_block = { line }
     end
   end
+  if #current_block > 0 then
+    table.insert(blocks, current_block)
+  end
 
-  table.sort(priority_lines, function(a, b)
-    return get_priority(a, priorities) < get_priority(b, priorities)
+  -- Determine priority of a block (look at first line only)
+  local function get_priority(block)
+    local line = block[1]
+    for i, pat in ipairs(priorities) do
+      if line:match(pat) then
+        return i
+      end
+    end
+    return math.huge
+  end
+
+  table.sort(blocks, function(a, b)
+    return get_priority(a) < get_priority(b)
   end)
 
+  -- Flatten blocks back to lines
   local sorted_lines = {}
-  local priority_index = 1
-  for _, line in ipairs(lines) do
-    if line:match("@p%d+") then
-      table.insert(sorted_lines, priority_lines[priority_index])
-      priority_index = priority_index + 1
-    else
+  for _, block in ipairs(blocks) do
+    for _, line in ipairs(block) do
       table.insert(sorted_lines, line)
     end
   end

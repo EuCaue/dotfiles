@@ -1,15 +1,15 @@
 # qt
-#  TODO: add support for dark light mode 
-# IS_DARKMODE_FILE="$HOME/.cache/is_darkmode"
-# if [[ -f "$IS_DARKMODE_FILE" ]]; then
-#   export IS_DARKMODE=$(<"$IS_DARKMODE_FILE")
-# else
-#   export IS_DARKMODE=true # fallback
-# fi
+#  TODO: add support for dark light mode
+THEME_FILE="/tmp/theme"
+if [[ -f "$THEME_FILE" ]]; then
+  export THEME=$(<"$THEME_FILE")
+else
+  export THEME=light # fallback
+fi
 export QT_QPA_PLATFORM="wayland"
 export QT_QPA_PLATFORMTHEME="gnome"
-# export QT_STYLE_OVERRIDE=$([ "$IS_DARKMODE" = "true" ] && echo "Adwaita-Dark" || echo "Adwaita")
-export QT_STYLE_OVERRIDE="Adwaita-Dark"
+export QT_STYLE_OVERRIDE=$([ "$THEME" = "light" ] && echo "Adwaita" || echo "Adwaita-Dark")
+# export QT_STYLE_OVERRIDE="Adwaita-Dark"
 export XDG_CONFIG_HOME="$HOME/.config"
 export DOTFILES="$HOME/dotfiles"
 
@@ -55,7 +55,7 @@ export MANPAGER="nvim +Man!"
 
 export FZF_DEFAULT_COMMAND=fd
 
-# if [[ $IS_DARKMODE == true ]]; then
+if [[ $THEME = "dark" ]]; then
   export FZF_DEFAULT_OPTS='
   --color fg:bright-white,bg:-1
   --color fg+:cyan,bg+:-1
@@ -64,18 +64,19 @@ export FZF_DEFAULT_COMMAND=fd
   --border
   --color border:bright-blue
 '
-# else
-#   export FZF_DEFAULT_OPTS='
-#   --color fg:black,bg:white
-#   --color fg+:black,bg+:bright-white
-#   --color hl:blue,hl+:bright-blue
-#   --color pointer:red,info:blue
-#   --border
-#   --color border:black
-#   '
-#   zstyle ':fzf-tab:*' default-color $'\033[30m'
-# fi
-#
+  zstyle ':fzf-tab:*' default-color $'\033[37m' # white fg
+else
+  export FZF_DEFAULT_OPTS='
+  --color fg:black,bg:white
+  --color fg+:black,bg+:bright-white
+  --color hl:blue,hl+:bright-blue
+  --color pointer:red,info:blue
+  --border
+  --color border:black
+  '
+  zstyle ':fzf-tab:*' default-color $'\033[30m' # black fg 
+fi
+
 zstyle ':fzf-tab:*' fzf-flags $(echo $FZF_DEFAULT_OPTS)
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow"
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND

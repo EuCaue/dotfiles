@@ -75,15 +75,23 @@ function set-cursor-size() {
     flatpak override --user --env=XCURSOR_SIZE="$CURSOR_SIZE"
   fi
 }
+
+function get-cursor() {
+  echo "$(get-cursor-theme) $(get-cursor-size)"
+}
+
+function update-cursor() {
+  cursor_data=$(get-cursor)
+  echo "$cursor_data"
+  size=${cursor_data##* }
+  theme=${cursor_data% $size}
+  set-cursor-theme "$theme"
+  set-cursor-size "$size"
+}
 alias get-cursor-theme='gsettings get org.gnome.desktop.interface cursor-theme'
 alias get-cursor-size='gsettings get org.gnome.desktop.interface cursor-size'
 alias check-font-weight='echo -e "\e[1mbold\e[0m"; echo -e "\e[3mitalic\e[0m"; echo -e "\e[4munderline\e[0m"; echo -e "\e[9mstrikethrough\e[0m"; echo -e "\e[31mHello World\e[0m"'
 alias test-font-weight='echo -e "\e[1mbold\e[0m"; echo -e "\e[3mitalic\e[0m"; echo -e "\e[4munderline\e[0m"; echo -e "\e[9mstrikethrough\e[0m"; echo -e "\e[31mHello World\e[0m"'
-function change-alacritty-theme() {
-  ln -fs ~/.config/alacritty/themes/$1.toml ~/.config/alacritty/themes/.active.toml
-  sed -i 's/.active/.active1/' ~/.config/alacritty/themes/.active.toml &&
-    sed -i 's/.active1/.active/' ~/.config/alacritty/themes/.active.toml
-}
 
 function timer() {
   notify-send -u normal \

@@ -16,7 +16,7 @@ return {
       },
     },
     dirs = {
-      ["$ZK_NOTEBOOK_DIR"] = {
+      [vim.uv.os_getenv("ZK_NOTEBOOK_DIR")] = {
         file_name = function()
           local time = "-%Y%m%d%H%M%S"
           return vim.fn.expand("%:t:r") .. time
