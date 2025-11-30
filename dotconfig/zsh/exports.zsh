@@ -23,7 +23,9 @@ export VISUAL=$EDITOR
 # Increase zoxide limit
 export _ZO_MAXAGE=200000
 
-export PATH="$HOME/.local/bin:$HOME/dotfiles/scripts:$HOME/.cargo/bin:$HOME/.bun/bin:$PATH:$HOME/.local/bin/flutter/bin:$HOME/go/bin/:$HOME/.local/share/bob/nvim-bin/"
+# export PATH="$HOME/.local/bin:$HOME/dotfiles/scripts:$HOME/.cargo/bin:$HOME/.bun/bin:$PATH:$HOME/.local/bin/flutter/bin:$HOME/go/bin/:$HOME/.local/share/bob/nvim-bin/"
+export PATH="$HOME/.local/bin:$HOME/dotfiles/scripts:$HOME/.cargo/bin:$HOME/.bun/bin:$HOME/.local/bin/flutter/bin:$HOME/go/bin:$PATH"
+
 # mac font rendering
 # export FREETYPE_PROPERTIES="truetype:interpreter-version=40 cff:no-stem-darkening=0 autofitter:no-stem-darkening=0 autofitter:darkening-parameters=500,0,1000,400,1250,250,1500,0 autohinter:no-stem-darkening=0"
 # export FREETYPE_PROPERTIES="truetype:interpreter-version=40 cff:no-stem-darkening=0 autofitter:no-stem-darkening=0 autofitter:darkening-parameters=500,0,1000,400,1250,250,1500,0 autohinter:no-stem-darkening=0 lcd_filter=default rgba=rgb"
@@ -74,7 +76,7 @@ else
   --border
   --color border:black
   '
-  zstyle ':fzf-tab:*' default-color $'\033[30m' # black fg 
+  zstyle ':fzf-tab:*' default-color $'\033[30m' # black fg
 fi
 
 zstyle ':fzf-tab:*' fzf-flags $(echo $FZF_DEFAULT_OPTS)

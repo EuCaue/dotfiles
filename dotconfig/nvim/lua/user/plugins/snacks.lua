@@ -1,10 +1,14 @@
 local dim_enabled = false
 return {
+  event = "VimEnter",
   "folke/snacks.nvim",
   keys = {
     {
       "<leader>i",
       function()
+        Snacks.config.style("zoom_indicator", {
+          row = vim.api.nvim_win_get_height(0) - 2,
+        })
         Snacks.zen.zoom()
       end,
       desc = "Toggle Zoom",
@@ -12,16 +16,12 @@ return {
     {
       "<leader>tz",
       function()
+        Snacks.config.style("zoom_indicator", {
+          row = vim.api.nvim_win_get_height(0) - 2,
+        })
         Snacks.zen.zoom()
       end,
       desc = "Toggle Zoom",
-    },
-    {
-      "<leader>tZ",
-      function()
-        Snacks.zen()
-      end,
-      desc = "Toggle Zen mode",
     },
     {
       "<leader>tD",
@@ -37,19 +37,25 @@ return {
       desc = "Toggle Dim",
     },
     {
-      "<leader>k",
+      "<leader>o",
       ft = { "txt", "markdown" },
-      function()
-        Snacks.image.hover()
-      end,
+      '<cmd>lua require("snacks").image.hover()<cr>',
       desc = "Preview image under cursor",
     },
   },
   ---@type snacks.Config
   opts = {
-    image = { enabled = true },
+    image = {
+      enabled = true,
+      doc = {
+        enabled = false,
+        inline = false,
+      },
+    },
     dim = { enabled = true },
-    zen = {enabled=true},
+    zen = {
+      enabled = true,
+    },
     bigfile = {
       enabled = true,
     },

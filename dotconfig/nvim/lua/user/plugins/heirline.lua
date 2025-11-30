@@ -79,14 +79,29 @@ return {
     }
 
     local TodayNote = {
+      condition = function()
+        return conditions.buffer_matches({ filetype = { "markdown" } })
+      end,
       provider = function()
         local zk_journal = vim.fn.expand("$ZK_NOTEBOOK_DIR/journal")
         local filepath = vim.fn.expand("%:p")
         local today = os.date("%Y-%m-%d") .. ".md"
+        local yesterday = os.date("%Y-%m-%d", os.time() - 24 * 60 * 60) .. ".md"
+        local tomorrow = os.date("%Y-%m-%d", os.time() + 24 * 60 * 60) .. ".md"
         local today_path = zk_journal .. "/" .. today
+        local yesterday_path = zk_journal .. "/" .. yesterday
+        local tomorrow_path = zk_journal .. "/" .. tomorrow
 
         if filepath == today_path then
           return padding("TODAY", 1, 0)
+        end
+
+        if filepath == yesterday_path then
+          return padding("YESTERDAY", 1, 0)
+        end
+
+        if filepath == tomorrow_path then
+          return padding("TOMORROW", 1, 0)
         end
 
         return ""
@@ -315,7 +330,7 @@ return {
 
     local WordCount = {
       condition = function()
-        return vim.bo.filetype == "markdown" or vim.bo.filetype == "text"
+        return conditions.buffer_matches({ filetype = { "markdown", "text", "help" } })
       end,
       provider = function()
         local wc = vim.fn.wordcount()

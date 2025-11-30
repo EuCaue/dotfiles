@@ -217,6 +217,18 @@ return {
             },
           },
         },
+        marksman = {
+          root_dir = function(bufnr, on_dir)
+            local fname = vim.api.nvim_buf_get_name(bufnr)
+            local zk_dir = vim.fn.expand("$ZK_NOTEBOOK_DIR/")
+            if zk_dir and fname:match("^" .. vim.pesc(zk_dir)) then
+              return nil -- disables Marksman for files inside ZK
+            end
+            -- fallback to default root pattern
+            on_dir(vim.fs.dirname(fname))
+            return require("lspconfig.util").root_pattern(".git", "README.md", ".marksman.toml")(fname)
+          end,
+        },
         pyright = {},
         ruff = {
           cmd_env = { RUFF_TRACE = "messages" },

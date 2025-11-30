@@ -1,0 +1,12 @@
+[Unit]
+Description=Timer to set screen brightness at specific hours
+
+[Timer]
+OnCalendar=*-*-* 07:00:00
+OnCalendar=*-*-* 09:00:00
+OnCalendar=*-*-* 12:00:00
+OnCalendar=*-*-* 21:45:00
+Persistent=true
+
+[Install]
+WantedBy=default.target

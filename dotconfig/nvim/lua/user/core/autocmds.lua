@@ -3,6 +3,20 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("myvim_" .. name, { clear = true })
 end
 
+autocmd("BufReadPost", {
+  callback = function(args)
+    local mark = vim.api.nvim_buf_get_mark(args.buf, '"')
+    local line_count = vim.api.nvim_buf_line_count(args.buf)
+    if mark[1] > 0 and mark[1] <= line_count then
+      vim.api.nvim_win_set_cursor(0, mark)
+      -- defer centering slightly so it's applied after render
+      vim.schedule(function()
+        vim.cmd("normal! zz")
+      end)
+    end
+  end,
+})
+
 autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
   desc = "Check if we need to reload the file when it changed",
   group = augroup("checktime"),
@@ -105,7 +119,12 @@ autocmd("ColorScheme", {
     if ok then
       heirline.reset_highlights()
     end
+    --  TODO: make this only run once
+    --  FIX: stop the loop 
     vim.g.transparent = false
+    -- if vim.opt.background:get() == "dark" then
+    --   require("user.core.helpers").toggle_transparency()
+    -- end
   end,
 })
 

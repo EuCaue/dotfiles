@@ -145,7 +145,7 @@ end, get_opts("toggle spelling"))
 
 map("n", "<leader>tS", function()
   ---@diagnostic disable-next-line: undefined-field
-  if vim.opt.signcolumn._value == "yes" then
+  if vim.opt.signcolumn:get() == "yes" then
     vim.opt.signcolumn = "no"
     return
   end
@@ -212,7 +212,7 @@ map(
   get_opts("Rename with substitute command based on current text")
 )
 
-map("n", "<C-t>", "<cmd>Ha<cr>", get_opts("Build and run"))
+map("n", "<C-t>", "<cmd>BuildRun<cr>", get_opts("Build and run"))
 
 -- toggle executable
 map("n", "<leader>x", function()

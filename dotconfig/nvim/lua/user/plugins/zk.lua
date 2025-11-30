@@ -1,4 +1,4 @@
---  TODO: improve cd handling when working with zk 
+--  TODO: improve cd handling when working with zk
 return {
   "zk-org/zk-nvim",
   ft = "markdown",
@@ -51,6 +51,11 @@ return {
     { "<leader>zjy", "<cmd>cd $ZK_NOTEBOOK_DIR | ZkYesterday<cr>", desc = "Open Journal Entry Yesterday" },
     { "<leader>zjd", "<cmd>cd $ZK_NOTEBOOK_DIR | ZkDaily<cr>", desc = "Open Journal Entry Daily" },
     { "<leader>zjt", "<cmd>cd $ZK_NOTEBOOK_DIR | ZkTomorrow<cr>", desc = "Open Journal Entry Tomorrow" },
+    {
+      "<leader>zjr",
+      "<cmd>cd $ZK_NOTEBOOK_DIR | e $ZK_NOTEBOOK_DIR/20241109170030-reminders.md<cr>",
+      desc = "Open Reminders",
+    },
     {
       "<leader>zjT",
       function()

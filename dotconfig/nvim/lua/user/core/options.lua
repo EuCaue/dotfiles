@@ -21,7 +21,7 @@ g.transparent = false
 g.have_nerd_font = true
 
 -- border style for windows
-g.border_type = "none"
+g.border_type = "bold"
 
 -- vim.cmd(
 --   "set guicursor=n-v-c-i-ci-ve-o-sm:block-blinkwait700-blinkon400-blinkoff250-Cursor,n-v-c:block-ModeNormal,i-ci-ve:block-ModeInsert,r-cr:hor20-blinkwait700-blinkon400-blinkoff250-ModeReplace "
@@ -105,5 +105,5 @@ opt.smoothscroll = true
 g.markdown_recommended_style = 0
 g.markdown_folding = 1 -- enable markdown folding
 
-vim.cmd("set whichwrap+=<,>,[,],h,l")
-vim.cmd([[set iskeyword+=-]])
+opt.whichwrap:append("<,>,[,],h,l") -- allows the cursor to move to the previous/next line
+opt.iskeyword:remove("_") -- o longer be treated as part of a keyword for motions or text objects

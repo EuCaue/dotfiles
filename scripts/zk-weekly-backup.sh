@@ -6,6 +6,7 @@ cd "$ZK_NOTEBOOK_DIR" || exit 1
 
 now="$(date '+%Y-%m-%d %H:%M:%S')"
 msg="[zk] weekly snapshot – $now"
+msg="$msg - $1"
 
 echo "[$now] Starting backup..."
 git add .

@@ -1,0 +1,6 @@
+[Unit]
+Description=Weekly Backup
+
+[Service]
+Type=oneshot
+ExecStart=/home/caue/dotfiles/scripts/weekly-backup.sh

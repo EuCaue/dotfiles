@@ -3,6 +3,8 @@ return {
   event = "VimEnter",
   build = "go build -o bin/darkman.nvim",
   opts = {
+    change_background = true,
+    send_user_event = false,
     colorscheme = { dark = "base16-tomorrow-night", light = "base16-tomorrow" },
   },
 }

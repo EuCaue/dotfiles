@@ -18,9 +18,12 @@ alias gg="gitu"
 alias lg="lazygit"
 
 # better ls
-if command -v eza >/dev/null 2>&1; then
+if command -v exa >/dev/null 2>&1; then
   alias la='eza -l -a -g --icons -h --group-directories-first --sort modified --reverse --hyperlink'
   alias ls='eza -l -g --icons -h --group-directories-first --sort modified --reverse --hyperlink'
+elif command -v lsd >/dev/null 2>&1; then
+  alias ls='lsd -lh --icon=always --color=auto --group-dirs=first --header --size=short --date=+"%-d %b %H:%M" -X'
+  alias la='lsd -lh --all --icon=always --color=auto --group-dirs=first --header --size=short --date=+"%-d %b %H:%M" -X'
 fi
 alias lc="ls | wc -l"
 alias lll='ls'
@@ -35,8 +38,24 @@ fi
 
 # system
 alias nocow="chattr +C "
+alias get-folder-size="du -csh"
 alias update-grub="sudo grub2-mkconfig -o /etc/grub2.cfg && sudo grub2-mkconfig -o /etc/grub2-efi.cfg"
 alias ls-font='fc-list --format="%{family}\\n" | cut -d , -f 1 | sort | uniq | fzf'
+
+function install-custom-font() {
+  local TARGET_DIR="$HOME/.local/share/fonts/"
+  echo "\033[1mFONTS: $@\033[0m"
+
+  for font in "$@"; do
+    if [[ -e "$font" ]]; then
+      mv "$font" "$TARGET_DIR"
+      echo "Installed $font to $TARGET_DIR"
+      fc-cache -rfv
+    else
+      echo "Provide a valid font path: $font"
+    fi
+  done
+}
 
 function install-custom-theme() {
   TARGET_DIR="/usr/share/icons/"
@@ -171,13 +190,6 @@ t() {
   fi
 }
 
-# open neovim with markdownpreview
-nm() {
-  if [ $(command -v nvim) ]; then
-    nvim "$1" -c MarkdownPreview
-  fi
-}
-
 mkcd() {
   mkdir -p $1 && cd $1
 }
@@ -189,20 +201,9 @@ f() {
   disown
 }
 
+#  TODO: add support for custom folder name
 gcl() {
   cd ~/gitclone && git clone --depth=1 "$1" && cd "$(basename "$1" .git)"
-}
-
-vf() {
-  if [ $(command -v fzf) ]; then
-    file=$(ls | fzf --prompt "Select File " --pointer "->" --multi)
-    if [ -z "$file" ]; then
-      echo "Select a file!"
-      return 1
-    fi
-    v "$file"
-    return 0
-  fi
 }
 
 slugify() {

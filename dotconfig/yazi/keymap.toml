@@ -13,6 +13,10 @@ prepend_keymap = [
   ], run = "seek +5" },
   { on = [
     "n",
+    "a",
+  ], run = "shell --block --confirm --interactive '$ZK_NOTEBOOK_DIR/archive-note \"$@\"'", desc = "Archive zk note" },
+  { on = [
+    "n",
     "d",
   ], run = "shell --block --confirm --interactive '$ZK_NOTEBOOK_DIR/delete-note.sh \"$@\"'", desc = "Delete zk notes" },
   { on = [

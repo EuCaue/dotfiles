@@ -3,3 +3,6 @@ id   = "mime"
 name = "*"
 run  = "mime-ext"
 prio = "high"
+
+[preview]
+wrap = "yes"

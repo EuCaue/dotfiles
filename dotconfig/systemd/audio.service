@@ -1,0 +1,14 @@
+[Unit]
+Description=Set Audio Volume
+StartLimitBurst=5
+StartLimitIntervalSec=10
+
+[Service]
+Type=simple
+ExecStart=amixer sset Master 55%
+Restart=always
+RestartSec=5
+ExecStopPost=systemctl --user start audio-autostart.timer
+
+[Install]
+WantedBy=default.target
