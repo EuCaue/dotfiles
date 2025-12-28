@@ -7,7 +7,11 @@ zmodload zsh/complist
 _comp_options+=(globdots) # Include hidden files.
 zle_highlight=('paste:none')
 
-compinit
+if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+  compinit
+else
+  compinit -C
+fi
 
 unsetopt BEEP
 setopt AUTO_CD

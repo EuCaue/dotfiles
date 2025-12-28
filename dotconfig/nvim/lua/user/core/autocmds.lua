@@ -85,7 +85,7 @@ autocmd("FileType", {
       return
     end
     -- TODO: organize this
-    local map = vim.keymap.set
+    local map = require("user.core.helpers").map
     local buffer = event.buf
     vim.opt_local.spell = true
     vim.opt_local.number = false
@@ -95,7 +95,6 @@ autocmd("FileType", {
     local marktools = require("user.core.marktools")
     require("user.core.markdown_pasting").setup()
     marktools.setup()
-    require("user.core.show_tasks").setup()
     marktools.apply_priority_highlight()
     map("n", "<leader>mt", marktools.cycle_checkbox, { desc = "cycle checkboxes state", buffer = buffer })
     map("n", "<CR>", marktools.cycle_checkbox, { desc = "cycle checkboxes state", buffer = buffer })
@@ -120,7 +119,7 @@ autocmd("ColorScheme", {
       heirline.reset_highlights()
     end
     --  TODO: make this only run once
-    --  FIX: stop the loop 
+    --  FIX: stop the loop
     vim.g.transparent = false
     -- if vim.opt.background:get() == "dark" then
     --   require("user.core.helpers").toggle_transparency()

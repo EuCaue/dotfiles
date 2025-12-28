@@ -69,7 +69,7 @@ if [[ $THEME = "dark" ]]; then
   zstyle ':fzf-tab:*' default-color $'\033[37m' # white fg
 else
   export FZF_DEFAULT_OPTS='
-  --color fg:black,bg:white
+  --color fg:black,bg:-1
   --color fg+:black,bg+:bright-white
   --color hl:blue,hl+:bright-blue
   --color pointer:red,info:blue

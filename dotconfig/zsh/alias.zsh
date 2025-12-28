@@ -18,9 +18,12 @@ alias gg="gitu"
 alias lg="lazygit"
 
 # better ls
-if command -v exa >/dev/null 2>&1; then
+if command -v eza >/dev/null 2>&1; then
   alias la='eza -l -a -g --icons -h --group-directories-first --sort modified --reverse --hyperlink'
   alias ls='eza -l -g --icons -h --group-directories-first --sort modified --reverse --hyperlink'
+elif command -v exa >/dev/null 2>&1; then
+  alias la='exa -l -a -g --icons -h --group-directories-first --sort modified --reverse --hyperlink'
+  alias ls='exa -l -g --icons -h --group-directories-first --sort modified --reverse --hyperlink'
 elif command -v lsd >/dev/null 2>&1; then
   alias ls='lsd -lh --icon=always --color=auto --group-dirs=first --header --size=short --date=+"%-d %b %H:%M" -X'
   alias la='lsd -lh --all --icon=always --color=auto --group-dirs=first --header --size=short --date=+"%-d %b %H:%M" -X'
@@ -41,6 +44,75 @@ alias nocow="chattr +C "
 alias get-folder-size="du -csh"
 alias update-grub="sudo grub2-mkconfig -o /etc/grub2.cfg && sudo grub2-mkconfig -o /etc/grub2-efi.cfg"
 alias ls-font='fc-list --format="%{family}\\n" | cut -d , -f 1 | sort | uniq | fzf'
+
+function set-ghostty-font() {
+  if command -v ghostty >/dev/null 2>&1; then
+    local cfg="$HOME/.config/ghostty/config"
+    local current=$(ghostty +show-config | rg "font-family" | awk -F= '{print $2}' | head -n 1 | xargs)
+    local new="$(ls-font)"
+    [ -n "$new" ] && sed -i "s|font-family=$current|font-family=$new|" "$cfg"
+    echo "Current font: $current\nNew Font: $new"
+    echo "${B}Available Weights${R}"
+    echo "$(check-font-weight)"
+    echo "$(check-font-features)"
+    echo ""
+  else
+    echo "ghostty not found in PATH: $PATH"
+  fi
+}
+
+function get-theme() {
+  local B="\033[1m"
+  local R="\033[0m"
+  local C1="\033[36m"
+  local C2="\033[35m"
+  local C3="\033[32m"
+
+  local cursor_data
+  cursor_data=$(get-cursor)
+
+  size=${cursor_data##* }
+  theme=${cursor_data% $size}
+
+  local current_ghostty_font
+  current_ghostty_font=$(ghostty +show-config | rg "font-family" | awk -F= '{print $2}' | head -n 1 | xargs)
+
+  local current_ghostty_font_size
+  current_ghostty_font_size=$(ghostty +show-config | rg "font-size" | awk -F= '{print $2}' | head -n 1 | xargs)
+
+  local fc_font_sans
+  fc_font_sans=$(fc-match --format="%{family}\n" 'sans-serif')
+
+  local fc_font_mono
+  fc_font_mono=$(fc-match --format="%{family}\n" 'monospace')
+
+  local gsettings_font_sans
+  gsettings_font_sans=$(gsettings get org.gnome.desktop.interface font-name)
+
+  local gsettings_font_mono
+  gsettings_font_mono=$(gsettings get org.gnome.desktop.interface monospace-font-name)
+
+  echo ""
+  echo "${B}${C1}Cursor${R}"
+  echo "  Size:           $size"
+  echo "  Theme:          $theme"
+  echo ""
+  echo "${B}${C2}System Fonts${R}"
+  echo "  Sans (fc):      $fc_font_sans"
+  echo "  Mono (fc):      $fc_font_mono"
+  echo "  Sans (GNOME):  $gsettings_font_sans"
+  echo "  Mono (GNOME):  $gsettings_font_mono"
+  echo ""
+  echo "${B}${C3}Ghostty${R}"
+  echo "  Font:           $current_ghostty_font"
+  echo "  Font Size:      $current_ghostty_font_size"
+  echo ""
+  echo "${B}Available Weights${R}"
+  echo "$(check-font-weight)"
+  echo ""
+  echo "${B}Available Font Features${R}"
+  echo "$(check-font-features)"
+}
 
 function install-custom-font() {
   local TARGET_DIR="$HOME/.local/share/fonts/"
@@ -73,7 +145,9 @@ function install-custom-theme() {
 function set-cursor-theme() {
   local CURSOR_THEME="$1"
   [[ -z "$CURSOR_THEME" ]] && echo "Usage: set-cursor-theme <theme-name>" && return 1
+  local prev="$(get-cursor-theme)"
 
+  echo "Changing from cursor theme $prev to $CURSOR_THEME"
   sed -i "s/^\(Inherits=\).*$/\1$CURSOR_THEME/" "$HOME/.local/share/icons/default/index.theme"
   export XCURSOR_THEME="$CURSOR_THEME"
   gsettings set org.gnome.desktop.interface cursor-theme "$CURSOR_THEME"
@@ -86,7 +160,9 @@ function set-cursor-theme() {
 function set-cursor-size() {
   local CURSOR_SIZE="$1"
   [[ -z "$CURSOR_SIZE" ]] && echo "Usage: set-cursor-size <size>" && return 1
+  local prev="$(get-cursor-size)"
 
+  echo "Changing from cursor size $prev to $CURSOR_SIZE"
   export XCURSOR_SIZE="$CURSOR_SIZE"
   gsettings set org.gnome.desktop.interface cursor-size "$CURSOR_SIZE"
 
@@ -111,6 +187,18 @@ alias get-cursor-theme='gsettings get org.gnome.desktop.interface cursor-theme'
 alias get-cursor-size='gsettings get org.gnome.desktop.interface cursor-size'
 alias check-font-weight='echo -e "\e[1mbold\e[0m"; echo -e "\e[3mitalic\e[0m"; echo -e "\e[4munderline\e[0m"; echo -e "\e[9mstrikethrough\e[0m"; echo -e "\e[31mHello World\e[0m"'
 alias test-font-weight='echo -e "\e[1mbold\e[0m"; echo -e "\e[3mitalic\e[0m"; echo -e "\e[4munderline\e[0m"; echo -e "\e[9mstrikethrough\e[0m"; echo -e "\e[31mHello World\e[0m"'
+function check-font-features() {
+  echo "Common ligatures:"
+  echo "==  !=  >=  <=  ===  ->  <-  =>  /*  */  ||  &&"
+  echo
+  echo "Special glyphs test:"
+  echo "† ‡ • · … « » → ← ↑ ↓"
+  echo
+  echo "Monospace alignment test:"
+  printf "1   | line\n"
+  printf "22  | line\n"
+  printf "333 | line\n"
+}
 
 function timer() {
   notify-send -u normal \

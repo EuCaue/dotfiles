@@ -64,7 +64,11 @@ M.config = {
     order = { ">", "x", "~", " " },
     write_on_change = true,
   },
-  priorities = { "@p1", "@p2", "@p3" },
+  priorities = {
+    "@p1",
+    "@p2",
+    "@%S+",
+  },
   highlight = {
     patterns = { "*.md" },
     events = { "BufWinEnter", "BufWrite", "BufNewFile", "BufRead", "InsertLeave", "TextChanged" },
@@ -104,11 +108,12 @@ M.apply_priority_highlight = function(events, patterns)
     local lines = vim.api.nvim_buf_get_lines(buffer, 0, -1, false)
     for i, line in ipairs(lines) do
       for index, priority in ipairs(M.config.priorities) do
-        local s, e = line:find(priority, 1, true)
+        local s, e = line:find(priority)
+
         if s and e then
           local hl_group = "PriorityP" .. index
           vim.api.nvim_buf_add_highlight(buffer, ns, hl_group, i - 1, s - 1, e)
-          break
+          break 
         end
       end
     end
@@ -119,11 +124,6 @@ M.apply_priority_highlight = function(events, patterns)
     pattern = patterns,
     callback = create_highlight,
   })
-  -- vim.api.nvim_create_autocmd({ "ColorScheme" }, {
-  --   group = vim.api.nvim_create_augroup("b", { clear = true }),
-  --   pattern = "*.md",
-  --   callback = create_highlight,
-  -- })
 end
 
 --- @param checkboxes? CheckboxCycleConfig: The order of checkboxes to cycle through (default: M.config.checkbox_cycle.order)
@@ -136,16 +136,15 @@ M.cycle_checkbox = function(checkboxes, write, line_num)
   line_num = line_num or vim.api.nvim_win_get_cursor(0)[1]
   local line = vim.api.nvim_buf_get_lines(0, line_num - 1, line_num, false)[1]
   -- If line doesn't have a checkbox, convert it into one
-  if not line:match("^%s*- %[.") then
-    line = line:gsub("^(%s*)[-*+] ", "%1- [ ] ")
-  else
-    -- Cycle through the checkboxes
-    for i, check_char in ipairs(checkboxes) do
-      if line:match("^%s*- %[" .. check_char .. "%]") then
-        local next_char = checkboxes[i + 1] or checkboxes[1]
-        line = line:gsub("%[" .. check_char .. "%]", "[" .. next_char .. "]")
-        break
-      end
+  -- Cycle through the checkboxes
+
+  for i, check_char in ipairs(checkboxes) do
+    local dash_pattern = "^%s*%-%s*%[" .. check_char .. "%]"
+    local number_pattern = "^%s*%d+[%.)]?%s*%[" .. check_char .. "%]"
+    if line:match(dash_pattern) or line:match(number_pattern) then
+      local next_char = checkboxes[i + 1] or checkboxes[1]
+      line = line:gsub("%[" .. check_char .. "%]", "[" .. next_char .. "]")
+      break
     end
   end
 
@@ -223,7 +222,6 @@ M.create_link = function()
     end
   end
 end
-
 
 --- @param priorities? PriorityConfig: The list of priority tags to order by (default: M.config.priorities)
 M.order_by_priority = function(priorities)

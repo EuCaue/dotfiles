@@ -290,6 +290,7 @@ return {
             },
           },
         },
+        -- tsgo = {},
         jsonls = {},
       }
 

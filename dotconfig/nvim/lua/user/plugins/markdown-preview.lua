@@ -10,8 +10,8 @@ return {
     vim.cmd([[do FileType]])
     vim.cmd([[
       function OpenMarkdownPreview (url)
-      let cmd = "epiphany " . shellescape(a:url) . " &"
-      silent call system(cmd)
+      " let cmd = "epiphany " . shellescape(a:url) . " &"
+      " silent call system(cmd)
       silent call setreg('+', a:url)
       endfunction
       ]])

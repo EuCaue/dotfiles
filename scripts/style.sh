@@ -24,26 +24,12 @@ MODE="$1"
 echo "$MODE" >$THEME_FILE #
 source "$HOME/dotfiles/dotconfig/zsh/exports.zsh"
 
-if command -v tmux >/dev/null; then
-  tmux set-environment -g FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS"
-  tmux set-environment -g BAT_THEME "$BAT_THEME"
-
-  tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index} #{pane_current_command}' |
-    while read -r entry; do
-      pane="${entry%% *}"
-      cmd="${entry##* }"
-
-      # only target zsh or bash panes that are idle shells
-      if [[ "$cmd" =~ ^(zsh|bash|sh|fish)$ ]]; then
-        tmux send-keys -t "$pane" C-x
-      fi
-    done
-fi
 
 if [ ! -f "$FLAG_FILE" ]; then
   touch "$FLAG_FILE"
   exit 0
 fi
+
 
 shift
 
@@ -127,6 +113,23 @@ else
   sed -i "s/dark/light/" "$HOME/.config/nvim/lua/user/core/options.lua"
   brightnessctl s "${BRIGHTNESS}%"
   notify-send "Light mode activated"
+fi
+
+if command -v tmux >/dev/null; then
+  tmux set-environment -g FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS"
+  tmux set-environment -g BAT_THEME "$BAT_THEME"
+
+  tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index} #{pane_current_command}' |
+    while read -r entry; do
+      pane="${entry%% *}"
+      cmd="${entry##* }"
+
+      # only target zsh or bash panes that are idle shells
+      if [[ "$cmd" =~ ^(zsh|bash|sh|fish)$ ]]; then
+        tmux send-keys -t "$pane" C-x
+        sleep 0.5
+      fi
+    done
 fi
 
 log "✅ Mode set successfully!"

@@ -1,3 +1,4 @@
+alpha-blending=linear
 # adjust-box-thickness=100%
 adjust-cursor-thickness=700%
 # adjust-cell-height=35% 
@@ -14,9 +15,9 @@ background-image-opacity=0.1
 clipboard-paste-protection=true
 clipboard-trim-trailing-spaces=true
 confirm-close-surface=false
-cursor-style=bar
-cursor-style-blink=false
-cursor-opacity=0.9
+cursor-style=block
+cursor-style-blink=true
+# cursor-opacity=0.9
 shell-integration-features=no-cursor,sudo,title
 desktop-notifications=true
 font-size=13.5
@@ -42,6 +43,7 @@ keybind=ctrl+shift+r=reload_config
 keybind=ctrl+shift+w=unbind
 link-url=true
 mouse-hide-while-typing = false
+mouse-scroll-multiplier=0.5
 theme=light:Tomorrow,dark:Tomorrow Night
 window-height=45
 window-inherit-font-size=true

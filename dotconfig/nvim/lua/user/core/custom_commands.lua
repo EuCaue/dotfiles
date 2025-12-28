@@ -54,5 +54,20 @@ cmd("BuildRun", function()
   vim.cmd("Run")
 end, {})
 
+cmd("UpdateGuiFont", function(data)
+  local family = vim.fn
+    .system("ghostty +show-config | rg 'font-family' | awk -F= '{print $2}' | head -1")
+    :gsub("\n", "")
+    :match("^%s*(.-)%s*$")
+  local args = (data.args ~= nil and data.args ~= "") and data.args or family
+  args = string.gsub(args, " ", "_")
+  args = string.gsub(args, '"', "")
+  local font = args
+  if not string.match(args, ":") then
+    font = args .. ":h19.50"
+  end
+  vim.opt.guifont = font
+end, {})
+
 cmd("Log", require("user.core.helpers").debug, { desc = "Logging" })
 cmd("Transparent", require("user.core.helpers").toggle_transparency, { desc = "Transparent" })
