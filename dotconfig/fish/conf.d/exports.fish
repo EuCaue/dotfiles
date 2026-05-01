@@ -30,6 +30,9 @@ set -xg FZF_DEFAULT_OPTS "
 "
 
 # Add paths
-fish_add_path "$HOME/.local/bin"
-fish_add_path "$HOME/dotfiles/scripts"
-fish_add_path "$HOME/.cargo/bin"
+set -gx fish_user_paths \
+    "$HOME/.local/bin/flutter/bin" \
+    "$HOME/.bun/bin" \
+    "$HOME/.local/bin" \
+    "$HOME/.cargo/bin" \
+    "$HOME/dotfiles/scripts"

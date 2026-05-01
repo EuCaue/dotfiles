@@ -3,6 +3,25 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("myvim_" .. name, { clear = true })
 end
 
+autocmd("ColorScheme", {
+  group = augroup("fix_colors"),
+  callback = function()
+    local set = vim.api.nvim_set_hl
+
+    set(0, "@variable.member", { link = "Function" })
+    set(0, "@constant.builtin", { link = "Constant" })
+    set(0, "@variable.builtin", { link = "@variable" })
+    set(0, "@keyword.import", { link = "Keyword" })
+    set(0, "@keyword.exception", { link = "Keyword" })
+    set(0, "@keyword.return", { link = "Keyword" })
+    set(0, "@lsp.type.class", { link = "Constant" })
+    set(0, "@lsp.type.namespace", { link = "Constant" })
+    set(0, "@lsp.type.interface", { link = "Constant" })
+    set(0, "@lsp.type.enum", { link = "@punctuation.special" })
+    set(0, "@lsp.type.enumMember", { link = "@punctuation.special" })
+  end,
+})
+
 autocmd("BufReadPost", {
   callback = function(args)
     local mark = vim.api.nvim_buf_get_mark(args.buf, '"')

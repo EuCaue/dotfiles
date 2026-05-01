@@ -10,3 +10,4 @@ function expand-dots() {
 }
 zle -N expand-dots
 bindkey '.' expand-dots
+bindkey -v '.' expand-dots

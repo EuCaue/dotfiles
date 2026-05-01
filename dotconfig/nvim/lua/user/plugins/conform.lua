@@ -1,6 +1,6 @@
 return {
   "stevearc/conform.nvim",
-  event = "LspAttach",
+  event = { "BufReadPre", "BufNewFile" },
   keys = {
     {
       "<leader>cf",
@@ -19,39 +19,68 @@ return {
       desc = "Format Injected Langs",
     },
   },
-  opts = function(_, opts)
-    local supported_prettier_ft = {
+  opts = function()
+    local prettier_only_ft = {
+      "markdown",
       "markdown.mdx",
-      "javascript",
-      "jsonc",
-      "vue",
+      "html",
+      "css",
+      "scss",
+      "less",
+      "yaml",
       "graphql",
       "handlebars",
-      "less",
-      "scss",
-      "yaml",
-      "typescript",
-      "css",
-      "json",
-      "html",
-      "javascriptreact",
-      "markdown",
-      "typescriptreact",
     }
 
-    opts.default_format_opts = {
-      timeout_ms = 3000,
-      async = false,
-      quiet = false,
-      lsp_format = "fallback",
+    local biome_and_prettier_ft = {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+      "json",
+      "jsonc",
+      "vue",
+      "svelte",
+      "astro",
+      "css",
+      "graphql",
     }
-    opts.formatters_by_ft = {
+
+    local function has_biome_config(bufnr)
+      local filepath = vim.api.nvim_buf_get_name(bufnr)
+      return vim.fs.find(
+        { "biome.json", "biome.jsonc" },
+        { path = filepath, upward = true }
+      )[1] ~= nil
+    end
+
+    local function has_prettier_config(bufnr)
+      local filepath = vim.api.nvim_buf_get_name(bufnr)
+      return vim.fs.find(
+        {
+          ".prettierrc",
+          ".prettierrc.json",
+          ".prettierrc.js",
+          ".prettierrc.cjs",
+          ".prettierrc.mjs",
+          ".prettierrc.yaml",
+          ".prettierrc.yml",
+          ".prettierrc.toml",
+          "prettier.config.js",
+          "prettier.config.cjs",
+          "prettier.config.mjs",
+        },
+        { path = filepath, upward = true }
+      )[1] ~= nil
+    end
+
+    local formatters_by_ft = {
       bash = { "shfmt" },
+      sh   = { "shfmt" },
+      zsh  = { "shfmt" },
+      lua  = { "stylua" },
       dart = { "dart_format" },
-      go = { "goimports", "gofumpt", "golines" },
-      lua = { "stylua" },
-      sh = { "shfmt" },
-      zsh = { "shfmt" },
+      go   = { "goimports", "gofumpt", "golines" },
       python = function(bufnr)
         if require("conform").get_formatter_info("ruff_format", bufnr).available then
           return { "ruff_format" }
@@ -61,17 +90,45 @@ return {
       end,
     }
 
-    for _, ft in ipairs(supported_prettier_ft) do
-      opts.formatters_by_ft[ft] = { "prettier" }
+    for _, ft in ipairs(prettier_only_ft) do
+      formatters_by_ft[ft] = { "prettier" }
     end
 
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      pattern = "*",
-      callback = function(args)
-        if vim.g.autoformat then
-          require("conform").format({ bufnr = args.buf, async = vim.g.async_format })
+    for _, ft in ipairs(biome_and_prettier_ft) do
+      formatters_by_ft[ft] = function(bufnr)
+        if has_biome_config(bufnr) then
+          return { "biome" }
+        elseif has_prettier_config(bufnr) then
+          return { "prettier" }
+        else
+          return { "prettier" }
         end
+      end
+    end
+
+    return {
+      default_format_opts = {
+        timeout_ms = 3000,
+        async = false,
+        quiet = false,
+        lsp_format = "fallback",
+      },
+      formatters_by_ft = formatters_by_ft,
+      formatters = {
+        shfmt = {
+          prepend_args = { "-i", "2" },
+        },
+      },
+      format_on_save = function(bufnr)
+        if not vim.g.autoformat then
+          return
+        end
+        return {
+          timeout_ms = 3000,
+          async = vim.g.async_format,
+          lsp_format = "fallback",
+        }
       end,
-    })
+    }
   end,
 }

@@ -1,0 +1,15 @@
+session_name: scrolled
+start_directory: ~/code/scrolled
+
+windows:
+  - window_name: dev
+    panes:
+      - zsh
+
+  - window_name: dev
+    panes:
+      - zsh
+
+  - window_name: git
+    panes:
+      - git status

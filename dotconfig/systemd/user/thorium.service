@@ -5,7 +5,7 @@ Description=Start Thorium Browser
 Type=simple
 TimeoutStopSec=10
 RuntimeMaxSec=500
-ExecStart=/home/caue/AppImages/thorium.AppImage
+ExecStart=%h/appimages/thorium.appimage
 Environment=XDG_RUNTIME_DIR=/run/user/%U
 Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/%U/bus
 Restart=no

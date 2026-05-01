@@ -7,6 +7,9 @@ local M = {}
 function M.padding(str, left, right)
   left = left or 0
   right = right or 0
+  if right == 0 and left == 0 then
+    return str
+  end
   return string.rep(" ", left) .. str .. string.rep(" ", right)
 end
 

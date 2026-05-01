@@ -1,5 +1,5 @@
 return {
-  lazy = false,
-  enabled=false,
+  enabled = true,
+  config = true,
   "f-person/auto-dark-mode.nvim",
 }

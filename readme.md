@@ -2,4 +2,4 @@
 
 Just my dotfiles for my dev setup.
 
-_Fedora + Gnome + Nvim + Fish/ZSH + Starship_
+_Fedora + Gnome + Nvim + ZSH + Starship_

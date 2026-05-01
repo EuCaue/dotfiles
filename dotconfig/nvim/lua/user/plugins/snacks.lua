@@ -4,6 +4,13 @@ return {
   "folke/snacks.nvim",
   keys = {
     {
+      "<leader>ft",
+      function()
+        Snacks.explorer()
+      end,
+      desc = "File Tree Explorere",
+    },
+    {
       "<leader>i",
       function()
         Snacks.config.style("zoom_indicator", {
@@ -45,6 +52,9 @@ return {
   },
   ---@type snacks.Config
   opts = {
+    explorer = {
+      trash = true,
+    },
     image = {
       enabled = true,
       doc = {

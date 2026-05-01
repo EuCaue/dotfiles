@@ -1,0 +1,7 @@
+session_name: caue
+start_directory: "$HOME"
+
+windows:
+  - window_name: home
+    panes:
+      - zsh

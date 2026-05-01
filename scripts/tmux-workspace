@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+sessions=(
+  caue
+  auto-volume
+  dotfiles
+  erp-vxcase
+  freelancer-template
+  landing-page-quick-lofi
+  quick-lofi
+  scratch
+  scrolled
+  work
+  zk
+)
+
+SESSIONS_DIR=$HOME/.config/tmuxp
+
+for session in "${sessions[@]}"; do
+  tmux has-session -t "$session" 2>/dev/null || tmuxp load -d "$SESSIONS_DIR/$session.yaml"
+done
+
+tmux attach -t caue

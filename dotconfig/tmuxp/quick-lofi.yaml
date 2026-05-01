@@ -1,0 +1,15 @@
+session_name: quick-lofi
+start_directory: ~/code/quick-lofi
+
+windows:
+  - window_name: editor
+    panes:
+      - zsh
+
+  - window_name: dev
+    panes:
+      - zsh
+
+  - window_name: git
+    panes:
+      - git status

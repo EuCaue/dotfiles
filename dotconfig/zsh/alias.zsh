@@ -122,10 +122,10 @@ function install-custom-font() {
     if [[ -e "$font" ]]; then
       mv "$font" "$TARGET_DIR"
       echo "Installed $font to $TARGET_DIR"
-      fc-cache -rfv
     else
       echo "Provide a valid font path: $font"
     fi
+    fc-cache -rfv
   done
 }
 
@@ -141,16 +141,59 @@ function install-custom-theme() {
     fi
   done
 }
+install-custom-bin() {
+  TARGET_DIR="$HOME/.local/bin"
+  mkdir -p "$TARGET_DIR"
+  echo -e "\033[1mBINARIES: $@\033[0m"
+  for bin in "$@"; do
+    if [[ -e "$bin" ]]; then
+      if [[ -f "$bin" ]]; then
+        cp "$bin" "$TARGET_DIR/"
+        chmod +x "$TARGET_DIR/$(basename "$bin")"
+        echo "Installed $(basename "$bin") to $TARGET_DIR"
+      else
+        echo "Skipping (not a file): $bin"
+      fi
+    else
+      echo "Provide a valid file path: $bin"
+    fi
+  done
+}
 
-function set-cursor-theme() {
+set-mono-font() {
+  local new_font="${1:-$(ls-font)}"
+  "$DOTFILES/scripts/setup-mono-font.sh" "$new_font"
+}
+
+set-cursor-theme() {
   local CURSOR_THEME="$1"
   [[ -z "$CURSOR_THEME" ]] && echo "Usage: set-cursor-theme <theme-name>" && return 1
+
+  local THEME_DIR="$HOME/.local/share/icons/default"
+  local THEME_FILE="$THEME_DIR/index.theme"
   local prev="$(get-cursor-theme)"
 
-  echo "Changing from cursor theme $prev to $CURSOR_THEME"
-  sed -i "s/^\(Inherits=\).*$/\1$CURSOR_THEME/" "$HOME/.local/share/icons/default/index.theme"
+  echo "Changing from cursor theme '$prev' to '$CURSOR_THEME'"
+
+  mkdir -p "$THEME_DIR"
+
+  if [[ ! -f "$THEME_FILE" ]]; then
+    cat >"$THEME_FILE" <<EOF
+[Icon Theme]
+Name=Default
+Inherits=$CURSOR_THEME
+EOF
+  else
+    if grep -q "^Inherits=" "$THEME_FILE"; then
+      sed -i "s/^Inherits=.*/Inherits=$CURSOR_THEME/" "$THEME_FILE"
+    else
+      echo "Inherits=$CURSOR_THEME" >>"$THEME_FILE"
+    fi
+  fi
+
   export XCURSOR_THEME="$CURSOR_THEME"
   gsettings set org.gnome.desktop.interface cursor-theme "$CURSOR_THEME"
+  "$DOTFILES/scripts/style.sh" --save-current-cursor
 
   if command -v flatpak >/dev/null 2>&1; then
     flatpak override --user --env=XCURSOR_THEME="$CURSOR_THEME"
@@ -165,6 +208,7 @@ function set-cursor-size() {
   echo "Changing from cursor size $prev to $CURSOR_SIZE"
   export XCURSOR_SIZE="$CURSOR_SIZE"
   gsettings set org.gnome.desktop.interface cursor-size "$CURSOR_SIZE"
+  "$DOTFILES/scripts/style.sh" --save-current-cursor
 
   if command -v flatpak >/dev/null 2>&1; then
     flatpak override --user --env=XCURSOR_SIZE="$CURSOR_SIZE"
@@ -291,7 +335,7 @@ f() {
 
 #  TODO: add support for custom folder name
 gcl() {
-  cd ~/gitclone && git clone --depth=1 "$1" && cd "$(basename "$1" .git)"
+  mkdir -p ~/gitclone && cd ~/gitclone && git clone --depth=1 "$1" && cd "$(basename "$1" .git)"
 }
 
 slugify() {

@@ -46,8 +46,6 @@ end
 return {
   {
     "mason-org/mason.nvim",
-    lazy = true,
-    cmd = "Mason",
     opts = {},
   },
   {
@@ -77,6 +75,7 @@ return {
           local bufnr = ev.buf
           local client = vim.lsp.get_client_by_id(ev.data.client_id)
           local win = vim.api.nvim_get_current_win()
+          client.server_capabilities.semanticTokensProvider = nil
           if client and client:supports_method("textDocument/foldingRange") then
             vim.wo[win].foldexpr = "v:lua.vim.lsp.foldexpr()"
           else
@@ -93,18 +92,26 @@ return {
           map("n", "K", function()
             vim.lsp.buf.hover()
           end, "hover")
-          map("n", "gd", vim.lsp.buf.definition, "goto declaration")
-          map("n", "gD", function()
-            vim.cmd("vsplit")
-            vim.lsp.buf.definition()
-          end, "goto definition in vsplit")
-          map("n", "gk", vim.lsp.buf.declaration, "goto declaration")
-          map("n", "gr", vim.lsp.buf.references, "goto references")
-          map("n", "<leader>cR", "<cmd>FzfLua lsp_references<cr>", "goto references with fzf")
-          map("n", "gI", vim.lsp.buf.implementation, "goto implementation")
-          map("n", "gy", vim.lsp.buf.type_definition, "goto type definition")
+          -- map("n", "gd", vim.lsp.buf.definition, "goto declaration")
+          -- map("n", "gD", function()
+          --   vim.cmd("vsplit")
+          --   vim.lsp.buf.definition()
+          -- end, "goto definition in vsplit")
+          -- map("n", "gk", vim.lsp.buf.declaration, "goto declaration")
+          -- map("n", "gr", vim.lsp.buf.references, "goto references")
+          -- map("n", "gI", vim.lsp.buf.implementation, "goto implementation")
+          -- map("n", "gy", vim.lsp.buf.type_definition, "goto type definition")
           map("n", "<leader>cr", vim.lsp.buf.rename, "code rename")
-          map({ "n", "v", "x" }, "<leader>ca", vim.lsp.buf.code_action, "code action")
+          -- map({ "n", "v", "x" }, "<leader>ca", vim.lsp.buf.code_action, "code action")
+
+          map("n", "<leader>cR", "<cmd>FzfLua lsp_references<cr>", "goto references with fzf")
+          map("n", "gd", "<cmd>FzfLua lsp_definitions<cr>", "goto definition")
+          map("n", "gD", "<cmd>vsplit | FzfLua lsp_definitions<cr>", "goto definition in vsplit")
+          map("n", "gk", "<cmd>FzfLua lsp_declarations<cr>", "goto declaration")
+          map("n", "gr", "<cmd>FzfLua lsp_references<cr>", "goto references")
+          map("n", "gI", "<cmd>FzfLua lsp_implementations<cr>", "goto implementation")
+          map("n", "gy", "<cmd>FzfLua lsp_typedefs<cr>", "goto type definition")
+          map({ "n", "v", "x" }, "<leader>ca", "<cmd>FzfLua lsp_code_actions<cr>", "code action")
 
           map("n", "<leader>cl", "<cmd>LspInfo<cr>", "show lsp info")
           map("i", "<A-s>", function()
@@ -301,6 +308,7 @@ return {
         "shellcheck",
         "prettier",
         "shfmt",
+        "biome",
       })
 
       require("mason").setup({

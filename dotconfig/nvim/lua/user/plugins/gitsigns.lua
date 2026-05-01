@@ -5,6 +5,7 @@ return {
   event = { "BufReadPost", "BufWritePost", "BufNewFile" },
   cmd = "Gitsigns",
   opts = {
+    current_line_blame = true,
     signs = {
       add = { text = icons.ui.BoldLineMiddle },
       change = { text = icons.ui.BoldLineDashedMiddle },

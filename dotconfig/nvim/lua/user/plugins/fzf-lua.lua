@@ -20,7 +20,8 @@ return {
     config.defaults.keymap.builtin["<c-b>"] = "preview-page-up"
 
     return {
-      "border-fused",
+      "telescope",
+      ui_select = true,
       fzf_colors = true,
       fzf_opts = {
         ["--no-scrollbar"] = true,
@@ -34,15 +35,15 @@ return {
         },
       },
       winopts = {
-        width = 0.525,
-        height = 0.725,
-        row = 0.5,
-        col = 0.5,
-        -- split = "botright vnew", -- open in split right of current window
-        preview = {
-          scrollchars = { "┃", "" },
-          layout = "vertical",
-        },
+        width = 1,
+        height = 1,
+        -- row = 0.5,
+        --   col = 0.5,
+        --   -- split = "botright vnew", -- open in split right of current window
+        -- preview = {
+        --     scrollchars = { "┃", "" },
+        --   layout = "vertical",
+        -- },
       },
       files = {
         cwd_prompt = false,

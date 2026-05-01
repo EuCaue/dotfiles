@@ -1,18 +1,18 @@
 #!/usr/bin/env zsh
 
 function sudo-it() {
-	if [[ -z "$LBUFFER" && -z "$RBUFFER" && "$LBUFFER" != sudo ]]; then
-		if [[ "$LBUFFER" != sudo\ * ]]; then
-			zle up-history
-			LBUFFER="sudo $LBUFFER"
-			zle end-of-line
-		fi
-	else
-		if [[ "$LBUFFER" != sudo\ * ]]; then
-			LBUFFER="sudo $LBUFFER"
-			zle end-of-line
-		fi
-	fi
+  echo $BUFFER
+  if [[ -z $BUFFER ]]; then
+    zle up-history
+    [[ -z $BUFFER ]] && { BUFFER='sudo '; CURSOR=${#BUFFER}; zle reset-prompt; return 0; }
+  fi
+
+  [[ $BUFFER =~ ^[[:space:]]*sudo([[:space:]]|$) ]] && return 0
+
+  BUFFER="sudo $BUFFER"
+  CURSOR=$(( CURSOR + 5 ))
+  zle reset-prompt
+  return 0
 }
 
 sudo-it-paste() {
@@ -23,5 +23,9 @@ sudo-it-paste() {
 zle -N sudo-it
 zle -N sudo-it-paste
 
-bindkey "\es" sudo-it
-bindkey "\ep" sudo-it-paste
+bindkey -e "\es" sudo-it
+bindkey -e "\ep" sudo-it-paste
+bindkey -v "\es" sudo-it
+bindkey -v "\ep" sudo-it-paste
+bindkey -a "\es" sudo-it
+bindkey -a "\ep" sudo-it-paste

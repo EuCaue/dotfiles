@@ -8,6 +8,115 @@ return {
     local conditions = require("heirline.conditions")
     local utils = require("heirline.utils")
     local padding = require("user.core.helpers").padding
+    local CodeCompanion = {
+      static = {
+        processing = false,
+      },
+      update = {
+        "User",
+        pattern = "CodeCompanionRequest*",
+        callback = function(self, args)
+          if args.match == "CodeCompanionRequestStarted" then
+            self.processing = true
+          elseif args.match == "CodeCompanionRequestFinished" then
+            self.processing = false
+          end
+          vim.cmd("redrawstatus")
+        end,
+      },
+      {
+        condition = function(self)
+          return self.processing
+        end,
+        provider = " ",
+        hl = { fg = "yellow" },
+      },
+    }
+
+    local IsCodeCompanion = function()
+      return package.loaded.codecompanion and vim.bo.filetype == "codecompanion"
+    end
+
+    local CodeCompanionCurrentContext = {
+      static = {
+        enabled = true,
+      },
+      condition = function(self)
+        return IsCodeCompanion() and _G.codecompanion_current_context ~= nil and self.enabled
+      end,
+      provider = function()
+        local bufname = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(_G.codecompanion_current_context), ":t")
+        return "[  " .. bufname .. " ] "
+      end,
+      hl = { fg = "gray", bg = "bg" },
+      update = {
+        "User",
+        pattern = { "CodeCompanionRequest*", "CodeCompanionContextChanged" },
+        callback = vim.schedule_wrap(function(self, args)
+          if args.match == "CodeCompanionRequestStarted" then
+            self.enabled = false
+          elseif args.match == "CodeCompanionRequestFinished" then
+            self.enabled = true
+          end
+          vim.cmd("redrawstatus")
+        end),
+      },
+    }
+
+    local CodeCompanionStats = {
+      condition = function(self)
+        return IsCodeCompanion()
+      end,
+      static = {
+        chat_values = {},
+      },
+      init = function(self)
+        local bufnr = vim.api.nvim_get_current_buf()
+        self.chat_values = _G.codecompanion_chat_metadata[bufnr]
+      end,
+      -- Tokens block
+      {
+        condition = function(self)
+          return self.chat_values.tokens > 0
+        end,
+        RightSlantStart,
+        {
+          provider = function(self)
+            return "   " .. self.chat_values.tokens .. " "
+          end,
+          hl = { fg = "gray", bg = "statusline_bg" },
+          update = {
+            "User",
+            pattern = { "CodeCompanionChatOpened", "CodeCompanionRequestFinished" },
+            callback = vim.schedule_wrap(function()
+              vim.cmd("redrawstatus")
+            end),
+          },
+        },
+        RightSlantEnd,
+      },
+      -- Cycles block
+      {
+        condition = function(self)
+          return self.chat_values.cycles > 0
+        end,
+        RightSlantStart,
+        {
+          provider = function(self)
+            return "  " .. self.chat_values.cycles .. " "
+          end,
+          hl = { fg = "gray", bg = "statusline_bg" },
+          update = {
+            "User",
+            pattern = { "CodeCompanionChatOpened", "CodeCompanionRequestFinished" },
+            callback = vim.schedule_wrap(function()
+              vim.cmd("redrawstatus")
+            end),
+          },
+        },
+        RightSlantEnd,
+      },
+    }
 
     local ViMode = {
       init = function(self)
@@ -350,6 +459,9 @@ return {
         ViMode,
         FileNameBlock,
         Git,
+        CodeCompanion,
+        CodeCompanionCurrentContext,
+        CodeCompanionStats,
         TodayNote,
         { provider = "%=" },
         Diagnostics,
@@ -359,6 +471,7 @@ return {
         SearchCount,
         WordCount,
         Ruler,
+        hl = { bg = utils.get_highlight("NormalSB").bg, fg = utils.get_highlight("NormalSB").fg },
       },
     })
   end,

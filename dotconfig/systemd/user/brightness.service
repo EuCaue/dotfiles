@@ -3,4 +3,4 @@ Description=Set screen brightness
 
 [Service]
 Type=oneshot
-ExecStart=/home/caue/.local/bin/set-brightness.sh
+ExecStart=%h/.local/bin/set-brightness.sh

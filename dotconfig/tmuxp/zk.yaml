@@ -1,0 +1,16 @@
+session_name: zk
+start_directory: ~/Documents/zk
+
+windows:
+  - window_name: zk
+    panes:
+      - zsh
+
+  - window_name: zk-2
+    panes:
+      - git status
+
+  - window_name: notes
+    start_directory: ~/Documents/notes
+    panes:
+      - zsh

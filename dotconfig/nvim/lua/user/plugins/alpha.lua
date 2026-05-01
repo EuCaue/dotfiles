@@ -5,7 +5,7 @@ return {
     local icons = require("user.core.icons")
     local pad = require("user.core.helpers").padding
     local dashboard = require("alpha.themes.dashboard")
-    local logo = require("user.core.ascii-headers").get_arts(8)
+    local logo = require("user.core.ascii-headers").get_arts(30)
     local button_width = math.floor(#logo[1] / 3)
     if button_width < 25 then
       button_width = math.floor(#logo[1])
@@ -29,6 +29,8 @@ return {
     dashboard.section.header.opts.hl = "Define"
     dashboard.section.buttons.val = {
       button("f", pad(icons.ui.Files, 0, 2) .. "Find file", "<cmd>FzfLua files<cr>"),
+      button("t", pad(icons.ui.Files, 0, 2) .. "File Tree", "<cmd>:lua Snacks.explorer()<cr>"),
+      button("b", pad(icons.ui.Files, 0, 2) .. "File Browser", "<cmd>Yazi<cr>"),
       button("n", pad(icons.ui.NewFile, 0, 2) .. "New file", "<cmd>ene <BAR> startinsert<cr>"),
       button("v", pad(icons.ui.Note, 0, 2) .. "Vault", "<cmd>ZkNotes<cr>"),
       button("o", pad(icons.ui.History, 0, 2) .. "Old files", "<cmd>FzfLua oldfiles<cr>"),

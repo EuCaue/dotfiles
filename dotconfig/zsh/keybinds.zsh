@@ -1,8 +1,7 @@
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey -s '\en' 'tmux new -s "$(basename $(pwd))" -c "$(pwd)"^M'
-# bindkey -s '\et' '~/.config/tmux/plugins/tmux-session-wizard/bin/t^M'
-bindkey -s '\ea' 'tmux attach'
-bindkey -s '\ez' '^uzi^M'
-bindkey -s '^f' '^uy^M'
-bindkey '\er' autosuggest-accept
+bindkey -M viins '^[[A' history-substring-search-up
+bindkey -M viins '^[[B' history-substring-search-down
+bindkey -M viins -s '\en' 'tmux new -s "$(basename $(pwd))" -c "$(pwd)"^M'
+bindkey -M viins -s '\ea' 'tmux attach'
+bindkey -M viins -s '\ez' '^uzi^M'
+bindkey -M viins -s '^f' '^uy^M'
+bindkey -M viins '\er' autosuggest-accept

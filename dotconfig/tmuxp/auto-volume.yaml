@@ -1,0 +1,19 @@
+session_name: auto-volume
+start_directory: ~/code/auto-volume
+
+windows:
+  - window_name: editor
+    panes:
+      - zsh
+
+  - window_name: dev
+    panes:
+      - zsh
+
+  - window_name: git
+    panes:
+      - git status
+
+  - window_name: opencode
+    panes:
+      - zsh

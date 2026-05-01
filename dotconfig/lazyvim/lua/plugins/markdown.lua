@@ -21,7 +21,7 @@ return {
       vim.g.mkdp_open_ip = "localhost"
       vim.g.mkdp_open_to_the_world = 1
       vim.g.mkdp_echo_preview_url = 1
-      vim.g.mkdp_highlight_css = "/home/caue/dotfiles/dotconfig/highlight.css"
+      vim.g.mkdp_highlight_css = vim.fn.expand("$HOME/dotfiles/dotconfig/highlight.css")
     end,
   },
   {

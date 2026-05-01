@@ -44,7 +44,7 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
 # bindings
-bindkey -s '^x' '^usource $ZSHRC\n'
+bindkey -M viins -s '^x' '^usource $ZSHRC\n'
 bindkey -M menuselect '?' history-incremental-search-forward
 bindkey -M menuselect '/' history-incremental-search-backward
 bindkey '^H' backward-kill-word # Ctrl + Backspace to delete a whole word.

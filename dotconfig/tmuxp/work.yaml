@@ -1,0 +1,7 @@
+session_name: work
+start_directory: ~/Documents/work
+
+windows:
+  - window_name: work
+    panes:
+      - zsh

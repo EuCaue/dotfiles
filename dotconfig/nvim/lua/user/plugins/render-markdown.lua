@@ -1,7 +1,8 @@
 return {
   "MeanderingProgrammer/render-markdown.nvim",
   enabled = true,
-  -- ft = { "markdown" },
+  lazy = true,
+  ft = { "Avante" },
   cmd = "RenderMarkdown",
   opts = {
     -- https://github.com/MeanderingProgrammer/render-markdown.nvim/issues/212
@@ -58,8 +59,7 @@ return {
         end,
       },
     },
-    enabled = false,
-    file_types = { "markdown" },
+    file_types = { "markdown", "Avante" },
     render_modes = { "n", "c", "x", "v", "no" },
     quotes = {
       repeat_linebreak = true,

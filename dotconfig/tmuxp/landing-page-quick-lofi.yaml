@@ -1,0 +1,15 @@
+session_name: landing-page-quick-lofi
+start_directory: ~/code/landing-page-quick-lofi
+
+windows:
+  - window_name: editor
+    panes:
+      - zsh
+
+  - window_name: dev
+    panes:
+      - zsh
+
+  - window_name: git
+    panes:
+      - git status

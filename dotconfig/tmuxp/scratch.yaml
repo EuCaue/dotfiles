@@ -1,0 +1,7 @@
+session_name: scratch
+start_directory: "$HOME"
+
+windows:
+  - window_name: zsh
+    panes:
+      - zsh
