@@ -162,7 +162,7 @@ return {
         },
         {
           name = "Vault",
-          action = "cd $HOME/Documents/vault | ObsidianQuickSwitch",
+          action = "cd $XDG_DOCUMENTS_DIR/vault | ObsidianQuickSwitch",
           section = string.rep(" ", 22) .. "Telescope",
         },
       }

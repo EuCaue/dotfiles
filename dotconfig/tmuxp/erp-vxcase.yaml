@@ -19,6 +19,6 @@ windows:
       - zsh
 
   - window_name: agent
-    start_directory: ~/Downloads
+    start_directory: ${XDG_DOWNLOAD_DIR}
     panes:
       - zsh
