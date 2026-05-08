@@ -72,4 +72,12 @@ echo "==> Git"
 link_file gitconfig "$HOME/.gitconfig"
 
 echo
+echo "==> Zap"
+
+if [ ! -d "$HOME/.local/share/zap" ]; then
+  zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 --keep
+  echo "==> Zap Installed"
+fi
+
+echo
 echo "==> Linking completed"
