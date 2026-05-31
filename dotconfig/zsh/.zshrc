@@ -4,9 +4,9 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block;
 # everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 if [[ -z "${_ZSH_INITIALIZED:-}" ]]; then
   _ZSH_INITIALIZED=1
@@ -17,7 +17,7 @@ if [[ -z "${_ZSH_INITIALIZED:-}" ]]; then
   ZSH_AUTOSUGGEST_STRATEGY=(history completion)
   fpath=($ZDOTDIR/completions $fpath)
   [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
-  plug "romkatv/powerlevel10k"
+  # plug "romkatv/powerlevel10k"
   plug "Aloxaf/fzf-tab"
   plug "zsh-users/zsh-autosuggestions"
   plug "z-shell/F-Sy-H"
@@ -42,7 +42,7 @@ if [[ -z "${_ZSH_INITIALIZED:-}" ]]; then
 
   # eval's
   eval "$(zoxide init zsh)"
-  # [[ -z ${STARSHIP_SESSION_KEY} ]] && eval "$(starship init zsh)"
+  eval "$(starship init zsh)"
 
   for al in $(git --list-cmds=alias); do
     alias g$al="git $al"
@@ -53,5 +53,5 @@ source "$ZDOTDIR/exports.zsh"
 source "$ZDOTDIR/alias.zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/dotfiles/dotconfig/zsh/.p10k.zsh.
-[[ ! -f ~/dotfiles/dotconfig/zsh/.p10k.zsh ]] ||
-  source ~/dotfiles/dotconfig/zsh/.p10k.zsh
+# [[ ! -f ~/dotfiles/dotconfig/zsh/.p10k.zsh ]] ||
+#   source ~/dotfiles/dotconfig/zsh/.p10k.zsh

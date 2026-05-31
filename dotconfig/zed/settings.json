@@ -1,0 +1,199 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "edit_predictions": {
+    "open_ai_compatible_api": {
+      "model": ""
+    },
+    "provider": "copilot"
+  },
+  "cli_default_open_behavior": "existing_window",
+  "prettier": {
+    "allowed": false
+  },
+  "diff_view_style": "unified",
+  "agent_ui_font_size": 21.0,
+  "base_keymap": "VSCode",
+  "proxy": "",
+  "terminal": {
+    "show_count_badge": true,
+    "font_family": "CommitMono-custom",
+    "font_fallbacks": [
+      "Symbols Nerd Font Mono",
+    ]
+  },
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "tree_view": true,
+    "dock": "left"
+  },
+  "buffer_line_height": "standard",
+  "agent_servers": {
+    "Antigravity": {
+      "type": "custom",
+      "command": "agy",
+      "args": [
+        "--acp"
+      ],
+      "env": {}
+    },
+    "OpenCode": {
+      "command": "opencode",
+      "args": [
+        "acp"
+      ],
+      "type": "custom"
+    },
+    "codex-acp": {
+      "favorite_config_option_values": {
+        "model": [
+          "gpt-5.5",
+          "gpt-5.4"
+        ]
+      },
+      "type": "registry"
+    },
+    "gemini": {
+      "favorite_models": [
+        "auto-gemini-3"
+      ],
+      "type": "registry"
+    },
+    "github-copilot-cli": {
+      "favorite_config_option_values": {
+        "model": [
+          "gpt-5-mini",
+          "claude-haiku-4.5"
+        ]
+      },
+      "type": "registry"
+    },
+    "github-copilot": {
+      "type": "registry"
+    }
+  },
+  "agent": {
+    "dock": "right",
+    "default_model": {
+      "enable_thinking": true,
+      "provider": "google",
+      "model": "gemini-2.5-flash"
+    },
+    "favorite_models": [],
+    "model_parameters": [],
+    "commit_message_model": {
+      "model": "gpt-5.5",
+      "provider": "opencode"
+    }
+  },
+  "ui_font_family": ".SystemUIFont",
+  "buffer_font_family": "CommitMono-custom",
+  "buffer_font_fallbacks": [
+    "Android Emoji",
+    "Twemoji"
+  ],
+  "icon_theme": {
+    "mode": "system",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha"
+  },
+  "session": {
+    "trust_all_worktrees": false
+  },
+  "vim_mode": true,
+  "vim": {
+    "use_system_clipboard": "never",
+    "highlight_on_yank_duration": 120
+  },
+  "ui_font_size": 19.0,
+  "buffer_font_size": 20.0,
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha"
+  },
+  "lsp": {
+    "biome": {
+      "settings": {
+        "require_config_file": true
+      }
+    }
+  },
+  "format_on_save": "on",
+  "languages": {
+    "JavaScript": {
+      "language_servers": [
+        "biome",
+        "..."
+      ],
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      },
+      "code_actions_on_format": {
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      }
+    },
+    "TypeScript": {
+      "language_servers": [
+        "biome",
+        "..."
+      ],
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      },
+      "code_actions_on_format": {
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      }
+    },
+    "TSX": {
+      "language_servers": [
+        "biome",
+        "..."
+      ],
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      },
+      "code_actions_on_format": {
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      }
+    },
+    "JSX": {
+      "language_servers": [
+        "biome",
+        "..."
+      ],
+      "formatter": {
+        "language_server": {
+          "name": "biome"
+        }
+      },
+      "code_actions_on_format": {
+        "source.fixAll.biome": true,
+        "source.organizeImports.biome": true
+      }
+    }
+  }
+}

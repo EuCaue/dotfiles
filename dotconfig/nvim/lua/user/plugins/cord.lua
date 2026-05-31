@@ -1,5 +1,5 @@
 local blacklist = {
-  vim.fn.expand("$HOME/Documents/zk"),
+  vim.fn.expand("$ZK_NOTEBOOK_DIR"),
 }
 
 local is_blacklisted = function(opts)

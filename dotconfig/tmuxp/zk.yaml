@@ -1,5 +1,5 @@
 session_name: zk
-start_directory: ~/Documents/zk
+start_directory: ${XDG_DOCUMENTS_DIR}/zk
 
 windows:
   - window_name: zk
@@ -11,6 +11,6 @@ windows:
       - git status
 
   - window_name: notes
-    start_directory: ~/Documents/notes
+    start_directory: ${XDG_DOCUMENTS_DIR}/notes
     panes:
       - zsh

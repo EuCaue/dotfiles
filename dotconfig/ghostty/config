@@ -21,9 +21,9 @@ confirm-close-surface=false
 cursor-style=block
 cursor-style-blink=true
 # cursor-opacity=0.9
-shell-integration-features=no-cursor,sudo,title
+shell-integration-features=true
 desktop-notifications=true
-font-size=18.3
+font-size=13.3
 # font-family=JetBrainsMono Nerd Font
 # font-family=monospace
 font-family=monospace
@@ -48,7 +48,7 @@ keybind=ctrl+shift+r=reload_config
 keybind=ctrl+shift+w=unbind
 link-url=true
 mouse-hide-while-typing = false
-mouse-shift-capture=true
+mouse-shift-capture=always
 mouse-scroll-multiplier=1
 theme=light:Catppuccin Latte,dark:Catppuccin Mocha
 window-height=45

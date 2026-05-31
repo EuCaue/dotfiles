@@ -157,7 +157,7 @@ return {
       workspaces = {
         {
           name = "personal",
-          path = "~/Documents/vault/zk/",
+          path = vim.fn.expand("$XDG_DOCUMENTS_DIR/vault/zk/"),
         },
       },
     },

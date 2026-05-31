@@ -2,12 +2,12 @@
 set -euo pipefail
 
 sessions=(
-  caue
   auto-volume
+  caue
   dotfiles
   erp-vxcase
-  freelancer-template
-  landing-page-quick-lofi
+  flexa
+  plataforma-web
   quick-lofi
   scratch
   scrolled

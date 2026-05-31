@@ -62,6 +62,7 @@ link_dir tmux
 link_dir yazi
 link_dir zsh
 link_dir tmuxp
+link_dir zed
 
 echo
 echo "==> Starship"
@@ -70,6 +71,14 @@ link_file starship.toml "$CONFIG_DIR/starship.toml"
 echo
 echo "==> Git"
 link_file gitconfig "$HOME/.gitconfig"
+
+echo
+echo "==> Zap"
+
+if [ ! -d "$HOME/.local/share/zap" ]; then
+  zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1 --keep
+  echo "==> Zap Installed"
+fi
 
 echo
 echo "==> Linking completed"

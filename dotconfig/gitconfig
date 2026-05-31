@@ -98,3 +98,15 @@
       [ \"$confirm\" = 'y' ] && echo \"$branches\" | xargs git branch -d && echo 'Done!' || echo 'Cancelled.'; \
     fi; \
   }; f"
+  clean-remote = "!f() { \
+      branches=$(git branch -r | grep -v '\\*\\|main\\|master\\|develop\\|HEAD' | sed 's/^[ \t]*origin\\///'); \
+      if [ -z \"$branches\" ]; then \
+        echo 'No remote branches to delete.'; \
+      else \
+        echo 'Remote branches to be deleted:'; \
+        echo \"$branches\" | cat -n; \
+        echo ''; \
+        read -p 'Confirm remote deletion? (y/N) ' confirm; \
+        [ \"$confirm\" = 'y' ] && echo \"$branches\" | xargs -I {} git push origin --delete {} && echo 'Done!' || echo 'Cancelled.'; \
+      fi; \
+    }; f"

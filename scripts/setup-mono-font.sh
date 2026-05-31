@@ -3,6 +3,7 @@ set -Eeuo pipefail
 
 DOTFILES="${DOTFILES:-$HOME/dotfiles}"
 FONT_DIR="$DOTFILES/dotconfig/fontconfig"
+ZED_SETTINGS="$DOTFILES/dotconfig/zed/settings.json"
 DEFAULT_MONO_FONT="Adwaita Mono"
 DEFAULT_MONO_FONT_SIZE="11"
 
@@ -40,9 +41,13 @@ cd "$FONT_DIR"
 
 for file in 99*conf; do
   sed -i "/<edit name=\"family\" mode=\"assign\" binding=\"same\">/,/<\/edit>/ s|<string>${escaped_current_mono_font}</string>|<string>${escaped_new_mono_font}</string>|" "$file"
-
   sed -i "/<edit name=\"family\" mode=\"assign\" binding=\"strong\">/,/<\/edit>/ s|<string>${escaped_current_mono_font}</string>|<string>${escaped_new_mono_font}</string>|" "$file"
 done
+
+if [ -f "$ZED_SETTINGS" ]; then
+  sed -i "s|\(\"buffer_font_family\"[[:space:]]*:[[:space:]]*\"\)[^\"]*\"|\1${escaped_new_mono_font}\"|" "$ZED_SETTINGS"
+  sed -i "/\"terminal\"[[:space:]]*:[[:space:]]*{/,/^[[:space:]]*}/ s|\(\"font_family\"[[:space:]]*:[[:space:]]*\"\)[^\"]*\"|\1${escaped_new_mono_font}\"|" "$ZED_SETTINGS"
+fi
 
 gsettings set org.gnome.desktop.interface monospace-font-name "${new_mono_font} ${current_font_size}"
 

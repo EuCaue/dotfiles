@@ -1,4 +1,3 @@
-
 partial alphanumeric_keys
 xkb_symbols "intl" {
 

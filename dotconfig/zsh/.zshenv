@@ -1,4 +1,10 @@
 export ZDOTDIR=$HOME/.config/zsh
-export ZK_NOTEBOOK_DIR="$HOME/Documents/zk"
+export XDG_DOCUMENTS_DIR="$(command -v xdg-user-dir >/dev/null 2>&1 && xdg-user-dir DOCUMENTS || printf '%s' "$HOME/Documents")"
+export XDG_DOCUMENTS_DIR="${XDG_DOCUMENTS_DIR:-$HOME/Documents}"
+export XDG_DOWNLOAD_DIR="$(command -v xdg-user-dir >/dev/null 2>&1 && xdg-user-dir DOWNLOAD || printf '%s' "$HOME/Downloads")"
+export XDG_DOWNLOAD_DIR="${XDG_DOWNLOAD_DIR:-$HOME/Downloads}"
+export XDG_PICTURES_DIR="$(command -v xdg-user-dir >/dev/null 2>&1 && xdg-user-dir PICTURES || printf '%s' "$HOME/Pictures")"
+export XDG_PICTURES_DIR="${XDG_PICTURES_DIR:-$HOME/Pictures}"
+export ZK_NOTEBOOK_DIR="$XDG_DOCUMENTS_DIR/zk"
 # export PATH="$HOME/.local/bin:$HOME/dotfiles/scripts:$HOME/.cargo/bin:$HOME/.bun/bin:$HOME/.local/bin/flutter/bin:$HOME/go/bin:$HOME/.local/share/bob/nvim-bin:$PATH"
 export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/dotfiles/scripts:$HOME/.cargo/bin:$HOME/.bun/bin:$HOME/.local/bin/flutter/bin:$HOME/go/bin:$HOME/.local/share/bob/bin:$HOME/.local/share/bob/nvim-bin/:$HOME/.opencode/bin:$PATH"

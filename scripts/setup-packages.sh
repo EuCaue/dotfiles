@@ -71,7 +71,6 @@ RPM_PACKAGES=(
   libudev-devel
   lsd
   make
-  megasync
   mpv
   neovim
   nextcloud-client
@@ -154,6 +153,9 @@ setup_zdotdir() {
   cat >"$HOME/.zshenv" <<'EOF'
 export ZDOTDIR="$HOME/.config/zsh"
 EOF
+
+  read -r -p "Do you want to switch your default shell to zsh? [y/N] " answer
+  [[ "$answer" =~ ^[yY]$ ]] && chsh -s "$(command -v zsh)" "$USER"
 }
 
 ### Interception tools ##################################################
@@ -172,6 +174,8 @@ build_and_install_interception_tools() {
   git clone --depth 1 https://gitlab.com/interception/linux/tools.git \
     "$tmp_dir/interception-tools"
 
+  sed -i 's/cmake_minimum_required(VERSION [0-9.]*/cmake_minimum_required(VERSION 3.5/' \
+    "$tmp_dir/interception-tools/CMakeLists.txt"
   cmake -S "$tmp_dir/interception-tools" -B "$tmp_dir/interception-tools/build" \
     -DCMAKE_BUILD_TYPE=Release
 
@@ -195,6 +199,8 @@ build_and_install_caps2esc() {
   git clone --depth 1 https://gitlab.com/interception/linux/plugins/caps2esc.git \
     "$tmp_dir/caps2esc"
 
+  sed -i 's/cmake_minimum_required(VERSION [0-9.]*/cmake_minimum_required(VERSION 3.5/' \
+    "$tmp_dir/caps2esc/CMakeLists.txt"
   cmake -S "$tmp_dir/caps2esc" -B "$tmp_dir/caps2esc/build" \
     -DCMAKE_BUILD_TYPE=Release
 
@@ -237,6 +243,26 @@ setup_zed() {
   else
     echo "Zed already installed"
   fi
+}
+
+setup_megasync() {
+  local fedora_version arch package_url
+
+  fedora_version="$(rpm -E %fedora)"
+  arch="$(uname -m)"
+
+  case "$arch" in
+    x86_64|aarch64) ;;
+    *)
+      echo "Unsupported architecture for MEGA Sync: $arch"
+      return 1
+      ;;
+  esac
+
+  package_url="https://mega.nz/linux/repo/Fedora_${fedora_version}/${arch}/megasync-Fedora_${fedora_version}.${arch}.rpm"
+
+  echo "==> Installing MEGA Sync (official RPM)"
+  sudo dnf install -y "$package_url"
 }
 
 setup_rustup() {
@@ -282,11 +308,14 @@ echo
 echo "==> Updating system"
 sudo dnf upgrade -y
 
+setup_rpm_fusion
 setup_terra
 setup_zen_copr
-setup_rpm_fusion
 
 install_rpm "${RPM_PACKAGES[@]}"
+
+echo
+setup_megasync
 
 echo
 echo "==> Installing Ghostty (Terra)"

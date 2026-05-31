@@ -12,6 +12,16 @@ for bin in zen zen-bin zen-browser; do
   fi
 done
 
+for bin in obsidian md.obsidian.Obsidian; do
+  if command -v "$bin" >/dev/null 2>&1; then
+    OBSIDIAN="$bin"
+    break
+  fi
+done
+if [[ -z "$OBSIDIAN" ]]; then
+  OBSIDIAN="flatpak run md.obsidian.Obsidian"
+fi
+
 TERMINAL="ghostty"
 FILE_MANAGER="nautilus -w"
 EDITOR_CMD="$TERMINAL -e nvim"
@@ -77,12 +87,13 @@ SCHEMA="org.gnome.settings-daemon.plugins.media-keys.custom-keybinding"
 CUSTOM_KEYS=(
   "gradia-screenshot:flatpak run be.alexandervanhee.gradia --screenshot=INTERACTIVE:<Shift><Alt>s"
   "open-browser:$BROWSER:<Super>b"
-  "open-daily-note:$TERMINAL -e zsh -c \"zk d\":<Super>t"
+  "open-daily-note:$HOME_DIR/dotfiles/scripts/open-daily-note.sh:<Super>t"
   "open-iotas:flatpak run org.gnome.World.Iotas:<Super>i"
   "open-nautilus:$FILE_MANAGER:<Super>e"
   "open-neovim:$EDITOR_CMD:<Super>n"
+  "open-obsidian:$OBSIDIAN:<Super>z"
+  "open-obsidian:$OBSIDIAN:<Super>o"
   "open-terminal:$TERMINAL:<Control><Super>Return"
-  "open-zk:$TERMINAL -e tmux new-session -A -s zk:<Super>z"
   "play-pause:playerctl play-pause:<Super>d"
   "tmux-home:$TERMINAL -e tmux new-session -A -s $TMUX_SESSION:<Shift><Super>Return"
   "tmux-sessions:$TERMINAL -e \"$HOME_DIR/dotfiles/scripts/sesh.sh\":<Super>Return"

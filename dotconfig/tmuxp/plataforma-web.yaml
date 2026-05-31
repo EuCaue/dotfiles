@@ -1,5 +1,5 @@
-session_name: erp-vxcase
-start_directory: ~/code/erp-vxcase
+session_name: plataforma-web
+start_directory: ~/code/plataforma-web
 
 windows:
   - window_name: editor
@@ -15,10 +15,5 @@ windows:
       - git status
 
   - window_name: opencode
-    panes:
-      - zsh
-
-  - window_name: agent
-    start_directory: ${XDG_DOWNLOAD_DIR}
     panes:
       - zsh

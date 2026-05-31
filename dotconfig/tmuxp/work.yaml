@@ -1,5 +1,5 @@
 session_name: work
-start_directory: ~/Documents/work
+start_directory: ${XDG_DOCUMENTS_DIR}/work
 
 windows:
   - window_name: work
