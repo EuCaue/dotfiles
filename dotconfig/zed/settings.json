@@ -18,7 +18,7 @@
     "allowed": false
   },
   "diff_view_style": "unified",
-  "agent_ui_font_size": 21.0,
+  "agent_ui_font_size": 19.0,
   "base_keymap": "VSCode",
   "proxy": "",
   "terminal": {
@@ -119,8 +119,8 @@
     "use_system_clipboard": "never",
     "highlight_on_yank_duration": 120
   },
-  "ui_font_size": 19.0,
-  "buffer_font_size": 20.0,
+  "ui_font_size": 15.0,
+  "buffer_font_size": 15.0,
   "theme": {
     "mode": "system",
     "light": "Catppuccin Latte",
