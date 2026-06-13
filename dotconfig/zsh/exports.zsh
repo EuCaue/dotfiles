@@ -54,7 +54,7 @@ fi
 # type1:darkening-parameters=0,0,0,0,0,0,0,0 \
 # t1cid:no-stem-darkening=1 \
 # t1cid:darkening-parameters=0,0,0,0,0,0,0,0"
-FREETYPE_PROPERTIES="autofitter:no-stem-darkening=0 autofitter:darkening-parameters=500,500,1000,500,2500,500,4000,0 cff:no-stem-darkening=0 type1:no-stem-darkening=0 t1cid:no-stem-darkening=0"
+export FREETYPE_PROPERTIES="autofitter:no-stem-darkening=0 autofitter:darkening-parameters=500,600,1000,600,2500,600,4000,0 cff:no-stem-darkening=0 type1:no-stem-darkening=0 t1cid:no-stem-darkening=0"
 # enable mouse
 export LESS="--mouse"
 export BAT_THEME="ansi"
