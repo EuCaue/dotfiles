@@ -1,0 +1,318 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/sleep-reminder"
+STATE_FILE="$STATE_DIR/state"
+
+MONITOR1_MIN=$((22 * 60 + 20))
+MONITOR2_MIN=$((22 * 60 + 55))
+LOCK_MIN=$((23 * 60 + 40))
+DEFAULT_SNOOZE_MIN=45
+WINDOW_START_MIN=$((22 * 60 + 19))
+WINDOW_END_MIN=$((27 * 60))
+DDC_DISPLAY=${SLEEP_REMINDER_DDC_DISPLAY:-1}
+WAKE_AFTER_SECONDS=${SLEEP_REMINDER_WAKE_AFTER_SECONDS:-30}
+
+DATE=""
+OFFSET=0
+MONITOR1_DONE=0
+MONITOR2_DONE=0
+LOCK_DONE=0
+
+minutes_now() {
+  date +%H:%M | awk -F: '{ print $1 * 60 + $2 }'
+}
+
+night_date() {
+  if ((10#$(date +%H) < 12)); then
+    date -d yesterday +%F
+  else
+    date +%F
+  fi
+}
+
+init_state() {
+  mkdir -p "$STATE_DIR"
+  DATE="$(night_date)"
+  OFFSET=0
+  MONITOR1_DONE=0
+  MONITOR2_DONE=0
+  LOCK_DONE=0
+  save_state
+}
+
+load_state() {
+  mkdir -p "$STATE_DIR"
+  if [[ -f "$STATE_FILE" ]]; then
+    # shellcheck disable=SC1090
+    source "$STATE_FILE"
+  else
+    init_state
+  fi
+
+  if [[ "$DATE" != "$(night_date)" ]]; then
+    init_state
+  fi
+}
+
+save_state() {
+  cat >"$STATE_FILE" <<EOF
+DATE=$DATE
+OFFSET=$OFFSET
+MONITOR1_DONE=$MONITOR1_DONE
+MONITOR2_DONE=$MONITOR2_DONE
+LOCK_DONE=$LOCK_DONE
+EOF
+}
+
+normalized_now() {
+  local now=$1
+  if ((now < 12 * 60)); then
+    now=$((now + 24 * 60))
+  fi
+  echo "$now"
+}
+
+in_window() {
+  local now
+  now="$(normalized_now "$(minutes_now)")"
+  ((now >= WINDOW_START_MIN && now <= WINDOW_END_MIN))
+}
+
+effective_min() {
+  local base=$1
+  echo $((base + OFFSET))
+}
+
+format_min() {
+  local total=$1
+  while ((total >= 24 * 60)); do
+    total=$((total - 24 * 60))
+  done
+  printf '%02d:%02d' $((total / 60)) $((total % 60))
+}
+
+time_reached() {
+  local now target
+  now="$(normalized_now "$1")"
+  target=$2
+  ((now >= target))
+}
+
+turn_off_external_monitor() {
+  if ! command -v ddcutil >/dev/null 2>&1; then
+    echo "sleep-reminder: ddcutil is not installed" >&2
+    return 1
+  fi
+
+  ddcutil --display "$DDC_DISPLAY" setvcp D6 04
+}
+
+turn_on_external_monitor() {
+  if ! command -v ddcutil >/dev/null 2>&1; then
+    echo "sleep-reminder: ddcutil is not installed" >&2
+    return 1
+  fi
+
+  ddcutil --display "$DDC_DISPLAY" setvcp D6 01
+}
+
+turn_off_internal_panel() {
+  # Laptop eDP panels do not support DDC/CI. Mutter DPMS is the GNOME/Wayland
+  # path that can blank the built-in panel and wake it with keyboard/mouse input.
+  busctl --user set-property org.gnome.Mutter.DisplayConfig /org/gnome/Mutter/DisplayConfig org.gnome.Mutter.DisplayConfig PowerSaveMode i 3 >/dev/null
+}
+
+turn_on_internal_panel() {
+  busctl --user set-property org.gnome.Mutter.DisplayConfig /org/gnome/Mutter/DisplayConfig org.gnome.Mutter.DisplayConfig PowerSaveMode i 0 >/dev/null
+}
+
+turn_off_monitors() {
+  local failed=0
+
+  turn_off_external_monitor || failed=1
+  turn_off_internal_panel || failed=1
+
+  if ((failed == 0)); then
+    return 0
+  fi
+
+  if busctl --user call org.gnome.ScreenSaver /org/gnome/ScreenSaver org.gnome.ScreenSaver SetActive b true >/dev/null 2>&1; then
+    return 0
+  fi
+
+  if command -v gnome-screensaver-command >/dev/null 2>&1; then
+    gnome-screensaver-command -b
+    return 0
+  fi
+
+  echo "sleep-reminder: could not turn off monitors" >&2
+  return 1
+}
+
+turn_on_monitors() {
+  local failed=0
+
+  turn_on_internal_panel || failed=1
+  turn_on_external_monitor || failed=1
+
+  return "$failed"
+}
+
+turn_off_monitors_temporarily() {
+  turn_off_monitors
+  sleep "$WAKE_AFTER_SECONDS"
+  turn_on_monitors || true
+}
+
+lock_session() {
+  loginctl lock-session
+}
+
+notify() {
+  local body=$1
+  if command -v notify-send >/dev/null 2>&1; then
+    notify-send -a sleep-reminder "Sleep reminder" "$body" || true
+  fi
+}
+
+next_pending() {
+  if [[ "$MONITOR1_DONE" == 0 ]]; then
+    echo "monitor 1 $(format_min "$(effective_min "$MONITOR1_MIN")")"
+  elif [[ "$MONITOR2_DONE" == 0 ]]; then
+    echo "monitor 2 $(format_min "$(effective_min "$MONITOR2_MIN")")"
+  elif [[ "$LOCK_DONE" == 0 ]]; then
+    echo "lock $(format_min "$(effective_min "$LOCK_MIN")")"
+  else
+    echo "done"
+  fi
+}
+
+run_check() {
+  load_state
+
+  if [[ "$MONITOR1_DONE" == 1 && "$MONITOR2_DONE" == 1 && "$LOCK_DONE" == 1 ]]; then
+    exit 0
+  fi
+
+  if ! in_window; then
+    exit 0
+  fi
+
+  local now effective
+  now="$(minutes_now)"
+
+  if [[ "$MONITOR1_DONE" == 0 ]]; then
+    effective="$(effective_min "$MONITOR1_MIN")"
+    if time_reached "$now" "$effective"; then
+      notify "Monitors off. Run 'sleep-reminder snooze' if you need more time."
+      turn_off_monitors_temporarily
+      MONITOR1_DONE=1
+      save_state
+    fi
+  fi
+
+  if [[ "$MONITOR2_DONE" == 0 ]]; then
+    effective="$(effective_min "$MONITOR2_MIN")"
+    if time_reached "$now" "$effective"; then
+      notify "Monitors off again. Session locks at $(format_min "$(effective_min "$LOCK_MIN")")."
+      turn_off_monitors_temporarily
+      MONITOR2_DONE=1
+      save_state
+    fi
+  fi
+
+  if [[ "$LOCK_DONE" == 0 ]]; then
+    effective="$(effective_min "$LOCK_MIN")"
+    if time_reached "$now" "$effective"; then
+      lock_session
+      LOCK_DONE=1
+      save_state
+    fi
+  fi
+}
+
+run_snooze() {
+  local minutes=${1:-$DEFAULT_SNOOZE_MIN}
+
+  if ! [[ "$minutes" =~ ^[0-9]+$ ]]; then
+    echo "sleep-reminder: snooze minutes must be a positive integer" >&2
+    exit 1
+  fi
+
+  load_state
+  OFFSET=$((OFFSET + minutes))
+  save_state
+
+  local next
+  next="$(next_pending)"
+  notify "Snoozed ${minutes}m. Next: ${next}."
+  echo "Snoozed ${minutes} minutes (total offset: ${OFFSET}m)"
+  echo "Next: ${next}"
+}
+
+run_status() {
+  load_state
+
+  echo "Date:    $DATE"
+  echo "Offset:  ${OFFSET}m"
+  echo "Done:    monitor1=$MONITOR1_DONE monitor2=$MONITOR2_DONE lock=$LOCK_DONE"
+  echo "Next:    $(next_pending)"
+  echo "Schedule (with offset):"
+  echo "  Monitor 1: $(format_min "$(effective_min "$MONITOR1_MIN")")"
+  echo "  Monitor 2: $(format_min "$(effective_min "$MONITOR2_MIN")")"
+  echo "  Lock:      $(format_min "$(effective_min "$LOCK_MIN")")"
+}
+
+run_off() {
+  turn_off_monitors_temporarily
+}
+
+run_wake() {
+  turn_on_monitors
+}
+
+usage() {
+  cat <<EOF
+Usage: sleep-reminder <command>
+
+Commands:
+  check            Run scheduled actions (used by systemd)
+  off              Turn monitors off now, then wake after ${WAKE_AFTER_SECONDS}s
+  wake             Wake monitors now
+  snooze [minutes] Delay remaining reminders (default: ${DEFAULT_SNOOZE_MIN}m)
+  status           Show tonight's schedule
+EOF
+}
+
+main() {
+  local cmd=${1:-check}
+
+  case "$cmd" in
+    check)
+      run_check
+      ;;
+    off)
+      run_off
+      ;;
+    wake | on)
+      run_wake
+      ;;
+    snooze)
+      run_snooze "${2:-}"
+      ;;
+    status)
+      run_status
+      ;;
+    -h | --help | help)
+      usage
+      ;;
+    *)
+      echo "Unknown command: $cmd" >&2
+      usage >&2
+      exit 1
+      ;;
+  esac
+}
+
+main "$@"

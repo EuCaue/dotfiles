@@ -1,0 +1,6 @@
+[Unit]
+Description=Clear RAM cache
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sudo /home/caue/dotfiles/scripts/limpante

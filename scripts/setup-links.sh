@@ -26,6 +26,7 @@ for unit in "$SYSTEMD_SRC"/*; do
 done
 
 systemctl --user daemon-reload || true
+systemctl --user enable --now limpante.timer || true
 
 link_dir() {
   local src="$DOTFILES_DIR/$1"
@@ -63,6 +64,7 @@ link_dir yazi
 link_dir zsh
 link_dir tmuxp
 link_dir zed
+link_dir opencode
 
 echo
 echo "==> Starship"

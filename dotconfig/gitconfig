@@ -28,6 +28,7 @@
   pager = delta
   whitespace = error
   preloadindex = true
+  excludesfile=~/.gitignore_global
 [interactive]
   diffFilter = delta --color-only
 [log]

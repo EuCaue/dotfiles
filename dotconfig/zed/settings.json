@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "enable_language_server": false,
   "edit_predictions": {
     "open_ai_compatible_api": {
       "model": ""
@@ -15,13 +16,14 @@
   },
   "cli_default_open_behavior": "existing_window",
   "prettier": {
-    "allowed": false
+    "allowed": true
   },
   "diff_view_style": "unified",
-  "agent_ui_font_size": 21.0,
+  "agent_ui_font_size": 19.0,
   "base_keymap": "VSCode",
   "proxy": "",
   "terminal": {
+    "font_size": 18.0,
     "show_count_badge": true,
     "font_family": "CommitMono-custom",
     "font_fallbacks": [
@@ -43,6 +45,9 @@
   },
   "buffer_line_height": "standard",
   "agent_servers": {
+    "opencode": {
+      "type": "registry"
+    },
     "Antigravity": {
       "type": "custom",
       "command": "agy",
@@ -52,6 +57,9 @@
       "env": {}
     },
     "OpenCode": {
+      "default_config_options": {
+        "model": "opencode/big-pickle"
+      },
       "command": "opencode",
       "args": [
         "acp"
@@ -74,6 +82,9 @@
       "type": "registry"
     },
     "github-copilot-cli": {
+      "default_config_options": {
+        "allow_all": "on"
+      },
       "favorite_config_option_values": {
         "model": [
           "gpt-5-mini",
@@ -87,6 +98,7 @@
     }
   },
   "agent": {
+    "flexible": true,
     "dock": "right",
     "default_model": {
       "enable_thinking": true,
@@ -119,12 +131,12 @@
     "use_system_clipboard": "never",
     "highlight_on_yank_duration": 120
   },
-  "ui_font_size": 19.0,
-  "buffer_font_size": 20.0,
+  "ui_font_size": 18.0,
+  "buffer_font_size": 18.0,
   "theme": {
     "mode": "system",
-    "light": "Catppuccin Latte",
-    "dark": "Catppuccin Mocha"
+    "light": "Night Owl Light",
+    "dark": "Night Owl Dark"
   },
   "lsp": {
     "biome": {

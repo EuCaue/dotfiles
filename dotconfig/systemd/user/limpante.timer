@@ -1,0 +1,10 @@
+[Unit]
+Description=Run RAM cleaner every 20 minutes
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=20min
+Unit=limpante.service
+
+[Install]
+WantedBy=timers.target

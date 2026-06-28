@@ -51,4 +51,8 @@ fi
 
 gsettings set org.gnome.desktop.interface monospace-font-name "${new_mono_font} ${current_font_size}"
 
+if command -v kwriteconfig5 >/dev/null 2>&1; then
+  kwriteconfig5 --file kdeglobals --group General --key fixed "${new_mono_font},${current_font_size},-1,5,50,0,0,0,0,0"
+fi
+
 "$DOTFILES/scripts/setup-fonts.sh"
