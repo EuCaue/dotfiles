@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/tui.json",
-  "theme": "catppuccin",
+  "theme": "nightowl",
   "keybinds": {
     "variant_list": "<leader>v",
   }
