@@ -333,7 +333,6 @@ f() {
   disown
 }
 
-#  TODO: add support for custom folder name
 gcl() {
   mkdir -p ~/gitclone && cd ~/gitclone && git clone --depth=1 "$1" && cd "$(basename "$1" .git)"
 }

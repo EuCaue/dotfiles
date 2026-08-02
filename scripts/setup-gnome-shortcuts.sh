@@ -96,7 +96,7 @@ CUSTOM_KEYS=(
   "open-terminal:$TERMINAL:<Control><Super>Return"
   "play-pause:playerctl play-pause:<Super>d"
   "tmux-home:$TERMINAL -e tmux new-session -A -s $TMUX_SESSION:<Shift><Super>Return"
-  "tmux-sessions:$TERMINAL -e \"$HOME_DIR/dotfiles/scripts/sesh.sh\":<Super>Return"
+  "tmux-sessions:$TERMINAL -e $HOME_DIR/dotfiles/scripts/sesh.sh -t:<Super>Return"
 )
 
 paths=()

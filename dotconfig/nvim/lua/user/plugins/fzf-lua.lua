@@ -21,7 +21,7 @@ return {
 
     return {
       "telescope",
-      ui_select = true,
+      ui_select = {},
       fzf_colors = true,
       fzf_opts = {
         ["--no-scrollbar"] = true,

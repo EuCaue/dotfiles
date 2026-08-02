@@ -103,7 +103,6 @@ autocmd("FileType", {
     if vim.bo[event.buf].buftype ~= "" then
       return
     end
-    -- TODO: organize this
     local map = require("user.core.helpers").map
     local buffer = event.buf
     vim.opt_local.spell = true
@@ -121,6 +120,19 @@ autocmd("FileType", {
     map("n", "<leader>mp", marktools.toggle_priority, { desc = "cycle priority", buffer = buffer })
     map({ "n", "v" }, "<leader>ml", marktools.create_link, { desc = "create link", buffer = buffer })
     map("i", "<C-n>", "- [ ]  @p1", { noremap = true, silent = false, desc = "create todo" })
+    if event.match == "markdown" then
+      vim.opt_local.formatoptions:append("r")
+      vim.opt_local.formatoptions:append("o")
+      vim.opt_local.comments = {
+        "b:- [ ]",
+        "b:- [x]",
+        "b:- [>]",
+        "b:- [~]",
+        "b:*",
+        "b:-",
+        "b:+",
+      }
+    end
   end,
 })
 
@@ -222,27 +234,4 @@ autocmd("FileType", {
   end,
 })
 
-autocmd({ "VimResized" }, {
-  group = augroup("resize_splits"),
-  desc = "resize splits if window got resized",
-  callback = function()
-    vim.cmd("tabdo wincmd =")
-  end,
-})
 
-autocmd("FileType", {
-  pattern = "markdown",
-  callback = function()
-    vim.opt_local.formatoptions:append("r") -- `<CR>` in insert mode
-    vim.opt_local.formatoptions:append("o") -- `o` in normal mode
-    vim.opt_local.comments = {
-      "b:- [ ]", -- tasks
-      "b:- [x]",
-      "b:- [>]",
-      "b:- [~]",
-      "b:*", -- unordered list
-      "b:-",
-      "b:+",
-    }
-  end,
-})

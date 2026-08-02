@@ -47,6 +47,18 @@ gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier '<Super>'
 gsettings set org.gnome.desktop.input-sources xkb-options "['lv3:switch']"
 gsettings set org.gnome.desktop.interface clock-format '12h'
 
+### Theme / Icons ######################################################
+
+echo "==> Applying adw-gtk3 + MoreWaita"
+
+gsettings set org.gnome.desktop.interface icon-theme 'MoreWaita'
+
+if gsettings get org.gnome.desktop.interface color-scheme | grep -q dark; then
+  gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3-dark'
+else
+  gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3'
+fi
+
 ### Quick Lofi #########################################################
 
 QUICK_LOFI_SCHEMA="org.gnome.shell.extensions.quick-lofi"

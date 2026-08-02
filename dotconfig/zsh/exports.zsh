@@ -25,7 +25,7 @@ export VISUAL=$EDITOR
 export _ZO_MAXAGE=200000
 
 # export PATH="$HOME/.local/bin:$HOME/dotfiles/scripts:$HOME/.cargo/bin:$HOME/.bun/bin:$PATH:$HOME/.local/bin/flutter/bin:$HOME/go/bin/:$HOME/.local/share/bob/nvim-bin/"
-export PATH="$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/dotfiles/scripts:$HOME/.cargo/bin:$HOME/.bun/bin:$HOME/.local/bin/flutter/bin:$HOME/go/bin:$HOME/.local/share/bob/bin:$HOME/.local/share/bob/nvim-bin/:$HOME/.opencode/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.npm-global/bin:$HOME/dotfiles/scripts:$HOME/.cargo/bin:$HOME/.bun/bin:$HOME/.local/bin/flutter/bin:$HOME/go/bin:$HOME/.local/share/bob/bin:$HOME/.local/share/bob/nvim-bin/:$HOME/.opencode/bin:$PATH"
 
 if [ -d "$HOME/Android/Sdk" ]; then
   export ANDROID_HOME="$HOME/Android/Sdk"

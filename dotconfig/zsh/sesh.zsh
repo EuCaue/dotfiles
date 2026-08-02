@@ -3,11 +3,8 @@ function sesh-sessions() {
     exec </dev/tty
     exec <&1
     zle -I
-    local session
-    session=$(sesh list --icons | sesh-ui.sh --height 40% --reverse)
+    sesh.sh --height 40%
     zle reset-prompt >/dev/null 2>&1 || true
-    [[ -z "$session" ]] && return
-    sesh connect "$session"
   }
 }
 

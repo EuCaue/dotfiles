@@ -33,6 +33,7 @@ git merge --squash "$WIP_BRANCH"
 echo
 echo "Now write your commit message."
 git commit
+git push
 
 echo
 confirm "Reset '${WIP_BRANCH}' to '${MAIN_BRANCH}' now?" || exit 0

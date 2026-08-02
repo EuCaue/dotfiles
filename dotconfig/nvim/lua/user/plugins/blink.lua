@@ -4,6 +4,9 @@ return {
   version = "*",
   event = "InsertEnter",
   opts = {
+    appearance = {
+      nerd_font_variant = "mono",
+    },
     keymap = {
       preset = "default",
     },
@@ -59,25 +62,24 @@ return {
         },
       },
       menu = {
-        -- border = vim.g.border_type,
+        max_height = 15,
         draw = {
+          padding = { 0, 1 },
+          gap = 1,
+          columns = {
+            { "kind_icon" },
+            { "label", "label_description", gap = 1 },
+          },
           components = {
             kind_icon = {
               ellipsis = false,
               text = function(ctx)
-                -- if vim.g.have_nerd_Font == false then
-                --   return ""
-                -- end
                 local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
-                return kind_icon
+                return " " .. kind_icon .. " "
               end,
-              -- Optionally, you may also use the highlights from mini.icons
               highlight = function(ctx)
-                -- if vim.g.have_nerd_Font == false then
-                --   return
-                -- end
                 local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
-                return hl
+                return { { group = hl, priority = 20000 } }
               end,
             },
           },
@@ -87,9 +89,7 @@ return {
 
       documentation = {
         auto_show = true,
-        window = {
-          -- border = vim.g.border_type,
-        },
+        auto_show_delay_ms = 500,
       },
     },
   },

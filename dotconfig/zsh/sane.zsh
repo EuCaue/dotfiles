@@ -22,7 +22,7 @@ setopt EXTENDED_GLOB
 setopt INTERACTIVE_COMMENTS
 setopt APPEND_HISTORY
 
-HISTFILE="${ZDOTDIR:-$HOME}/.zsh_history"
+export HISTFILE="${ZDOTDIR:-$HOME}/.zsh_history"
 HISTSIZE=100000
 SAVEHIST=100000
 setopt BANG_HIST        # Treat the '!' character specially during expansion.

@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@ai-sdk/openai-compatible": "^2.0.50",
-    "@opencode-ai/plugin": "1.17.11"
+    "@opencode-ai/plugin": "1.18.4",
+    "opencode-discord-presence": "^0.7.2"
   }
 }

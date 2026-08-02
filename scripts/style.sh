@@ -6,14 +6,14 @@
 DEFAULT_CURSOR_LIGHT="Adwhite"
 DEFAULT_CURSOR_SIZE_LIGHT=24
 DEFAULT_BACKGROUND_LIGHT="$XDG_PICTURES_DIR/wallpapers/wallhaven-6k6g9q.png"
-DEFAULT_BRIGHTNESS_LIGHT=75
+DEFAULT_BRIGHTNESS_LIGHT=45
 
 # dark
 DEFAULT_CURSOR_DARK="Adwaita"
 DEFAULT_CURSOR_SIZE_DARK=24
-DEFAULT_BACKGROUND_DARK="$XDG_PICTURES_DIR/wallpapers/wallhaven-qrlw3d.png"
+DEFAULT_BACKGROUND_DARK="$XDG_PICTURES_DIR/wallpapers/wallhaven-qrlwql.png"
 
-DEFAULT_BRIGHTNESS_DARK=100
+DEFAULT_BRIGHTNESS_DARK=70
 
 # files
 LOG_FILE="$HOME/.local/share/style-switch.log"
@@ -97,7 +97,7 @@ CURRENT_MODE=$(gsettings get org.gnome.desktop.interface color-scheme | grep -q 
 CURRENT_CURSOR=$(gsettings get org.gnome.desktop.interface cursor-theme | tr -d "'")
 CURRENT_SIZE=$(gsettings get org.gnome.desktop.interface cursor-size)
 CURRENT_BACKGROUND=$(gsettings get org.gnome.desktop.background picture-uri | sed "s/'//g" | sed "s/file:\/\///")
-CURRENT_BRIGHTNESS=$(brightnessctl g >/dev/null 2>&1 && brightnessctl g || echo "unknown")
+CURRENT_BRIGHTNESS=$(ddcutil getvcp 10 2>/dev/null | grep -oP 'current value = \K\d+' || echo "unknown")
 STATE_FILE=$(get_cursor_state_file "$MODE")
 
 if [[ -f "$STATE_FILE" ]]; then
@@ -141,20 +141,24 @@ source "$HOME/dotfiles/dotconfig/zsh/alias.zsh"
 if [[ "$MODE" == "dark" ]]; then
   echo "🌙 Switching to dark mode..."
   gsettings set org.gnome.desktop.interface color-scheme "'prefer-dark'"
+  gsettings set org.gnome.desktop.interface gtk-theme "'adw-gtk3-dark'"
   set-cursor-theme "$CURSOR"
   set-cursor-size "$SIZE"
-  gsettings set org.gnome.desktop.background picture-uri-dark "file://$BACKGROUND"
+  # gsettings set org.gnome.desktop.background picture-uri-dark "file://$BACKGROUND"
   sed -i "s/light/dark/" "$HOME/.config/nvim/lua/user/core/options.lua"
-  # brightnessctl s "${BRIGHTNESS}%"
+  sed -i "s/palette = 'atom_one_light'/palette = 'atom_one_dark'/" "$HOME/dotfiles/dotconfig/starship.toml"
+  ddcutil setvcp 10 "${BRIGHTNESS}"
   notify-send "Dark mode activated"
 else
   echo "☀️  Switching to light mode..."
   gsettings set org.gnome.desktop.interface color-scheme "'prefer-light'"
+  gsettings set org.gnome.desktop.interface gtk-theme "'adw-gtk3'"
   set-cursor-theme "$CURSOR"
   set-cursor-size "$SIZE"
-  gsettings set org.gnome.desktop.background picture-uri "file://$BACKGROUND"
+  # gsettings set org.gnome.desktop.background picture-uri "file://$BACKGROUND"
   sed -i "s/dark/light/" "$HOME/.config/nvim/lua/user/core/options.lua"
-  # brightnessctl s "${BRIGHTNESS}%"
+  sed -i "s/palette = 'atom_one_dark'/palette = 'atom_one_light'/" "$HOME/dotfiles/dotconfig/starship.toml"
+  ddcutil setvcp 10 "${BRIGHTNESS}"
   notify-send "Light mode activated"
 fi
 

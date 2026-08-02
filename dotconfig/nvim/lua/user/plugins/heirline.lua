@@ -359,6 +359,9 @@ return {
       end,
       provider = function(self)
         local search = self.search
+        if not search then
+          return ""
+        end
         return padding(icons.ui.Search, 2, 1) .. search.current .. "/" .. math.min(search.total, search.maxcount)
       end,
       hl = { fg = utils.get_highlight("IncSearch").bg, bold = true },

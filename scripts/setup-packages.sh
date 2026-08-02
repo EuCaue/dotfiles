@@ -40,6 +40,15 @@ setup_zen_copr() {
   fi
 }
 
+setup_morewaita_copr() {
+  if ! dnf repolist | grep -q "morewaita-icon-theme"; then
+    echo "==> Enabling MoreWaita COPR"
+    sudo dnf copr enable -y rivenirvana/morewaita-icon-theme
+  else
+    echo "MoreWaita COPR already enabled"
+  fi
+}
+
 setup_rpm_fusion() {
   if rpm -q rpmfusion-free-release rpmfusion-nonfree-release >/dev/null 2>&1; then
     echo "RPM Fusion already configured"
@@ -54,7 +63,9 @@ setup_rpm_fusion() {
 ### RPM #################################################################
 
 RPM_PACKAGES=(
+  adw-gtk3-theme
   bat
+  boost-devel
   cmake
   curl
   eza
@@ -91,6 +102,8 @@ RPM_PACKAGES=(
 ### Flatpak #############################################################
 
 FLATPAK_PACKAGES=(
+  org.gtk.Gtk3theme.adw-gtk3
+  org.gtk.Gtk3theme.adw-gtk3-dark
   org.gnome.World.PikaBackup
   page.tesk.Refine
   com.discordapp.Discord
@@ -213,16 +226,50 @@ build_and_install_caps2esc() {
 setup_caps2esc() {
   echo "==> Configuring caps2esc"
 
+  local intercept_bin caps2esc_bin uinput_bin udevmon_bin
+  intercept_bin="$(command -v intercept)"
+  caps2esc_bin="$(command -v caps2esc)"
+  uinput_bin="$(command -v uinput)"
+  udevmon_bin="$(command -v udevmon)"
+
+  if [[ -z "$intercept_bin" || -z "$caps2esc_bin" || -z "$uinput_bin" || -z "$udevmon_bin" ]]; then
+    echo "interception binaries not found (intercept/caps2esc/uinput/udevmon); skipping caps2esc setup"
+    return 1
+  fi
+
+  sudo modprobe uinput || true
+  if [[ ! -f /etc/modules-load.d/uinput.conf ]]; then
+    echo uinput | sudo tee /etc/modules-load.d/uinput.conf >/dev/null
+  fi
+
   sudo mkdir -p /etc/interception
 
-  sudo tee /etc/interception/udevmon.yaml >/dev/null <<'EOF'
-- JOB: "intercept -g $DEVNODE | caps2esc | uinput -d $DEVNODE"
+  sudo tee /etc/interception/udevmon.yaml >/dev/null <<EOF
+- JOB: "$intercept_bin -g \$DEVNODE | $caps2esc_bin | $uinput_bin -d \$DEVNODE"
   DEVICE:
     EVENTS:
       EV_KEY: [KEY_CAPSLOCK]
 EOF
 
-  sudo systemctl enable --now udevmon
+  sudo tee /etc/systemd/system/udevmon.service >/dev/null <<EOF
+[Unit]
+Description=Monitor input devices for launching tasks
+Wants=systemd-udev-settle.service
+After=systemd-udev-settle.service
+Documentation=man:udev(7)
+
+[Service]
+ExecStart=$udevmon_bin -c /etc/interception/udevmon.yaml
+Nice=-20
+Restart=on-failure
+OOMScoreAdjust=-1000
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+  sudo systemctl daemon-reload
+  sudo systemctl enable --now udevmon.service
 }
 
 ### Bun / Zed / Rust ####################################################
@@ -302,6 +349,12 @@ setup_flathub() {
   fi
 }
 
+setup_flatpak_theme_access() {
+  echo "==> Allowing Flatpak apps to use host icon themes"
+  # MoreWaita (COPR) installs into /usr/share/icons; Flatpak needs explicit access.
+  sudo flatpak override --filesystem=/usr/share/icons:ro
+}
+
 ### Execution ###########################################################
 
 echo
@@ -311,8 +364,13 @@ sudo dnf upgrade -y
 setup_rpm_fusion
 setup_terra
 setup_zen_copr
+setup_morewaita_copr
 
 install_rpm "${RPM_PACKAGES[@]}"
+
+echo
+echo "==> Installing MoreWaita icons (COPR)"
+install_rpm morewaita-icon-theme
 
 echo
 setup_megasync
@@ -329,6 +387,7 @@ setup_bun
 setup_zed
 setup_flathub
 install_flatpak "${FLATPAK_PACKAGES[@]}"
+setup_flatpak_theme_access
 
 setup_rustup
 setup_cargo_packages
@@ -338,7 +397,6 @@ echo
 echo "==> Go tools"
 install_go_tool sesh github.com/joshmedeski/sesh/v2@latest
 install_go_tool lazygit github.com/jesseduffield/lazygit@latest
-
 echo
 echo "==> Tmux"
 setup_tpm

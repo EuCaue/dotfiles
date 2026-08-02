@@ -5,6 +5,7 @@ echo "FROM ZK"
 cd "$ZK_NOTEBOOK_DIR" || exit 1
 echo "INSIDE ZK"
 
+[ -x "$ZK_NOTEBOOK_DIR/scripts/fix-cross-dir-links.sh" ] && "$ZK_NOTEBOOK_DIR/scripts/fix-cross-dir-links.sh"
 [ -x "$ZK_NOTEBOOK_DIR/fix-links.sh" ] && "$ZK_NOTEBOOK_DIR/fix-links.sh"
 
 now="$(date '+%Y-%m-%d %H:%M:%S')"

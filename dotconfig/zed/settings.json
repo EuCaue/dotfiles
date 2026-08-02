@@ -134,9 +134,9 @@
   "ui_font_size": 18.0,
   "buffer_font_size": 18.0,
   "theme": {
-    "mode": "system",
-    "light": "Night Owl Light",
-    "dark": "Night Owl Dark"
+    "mode": "light",
+    "light": "One Light",
+    "dark": "One Dark"
   },
   "lsp": {
     "biome": {
