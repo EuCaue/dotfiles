@@ -8,6 +8,8 @@ else
   echo "Skipping dconf backup"
 fi
 
+"$HOME"/dotfiles/scripts/backup-dconf-safe.sh
+
 if command -v megasync >/dev/null 2>&1; then
   megasync
 fi

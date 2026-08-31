@@ -3,6 +3,16 @@ set -e
 
 echo "==> Setup GNOME preferences"
 
+GNOME_SETTINGS_FILE="$HOME/dotfiles/dotconfig/gnome-settings-safe.conf"
+
+if [ -f "$GNOME_SETTINGS_FILE" ]; then
+  echo "==> Applying GNOME preferences from $(basename "$GNOME_SETTINGS_FILE")"
+  dconf load -f / <"$GNOME_SETTINGS_FILE"
+  exit 0
+fi
+
+echo "==> No $GNOME_SETTINGS_FILE found, applying gsettings defaults"
+
 ### Keyboard accessibility #############################################
 
 gsettings set org.gnome.desktop.a11y.keyboard bouncekeys-enable false

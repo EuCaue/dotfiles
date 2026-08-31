@@ -1,15 +1,17 @@
 # qt
 #  TODO: add support for dark light mode
-THEME_FILE="/tmp/theme"
+THEME_FILE="$HOME/.local/state/style-switch/theme"
 if [[ -f "$THEME_FILE" ]]; then
   export THEME=$(<"$THEME_FILE")
 else
+  mkdir -p "$(dirname "$THEME_FILE")"
   echo "dark" >"$THEME_FILE"
-  export THEME=dark # fallback
+  export THEME=dark
 fi
 export QT_QPA_PLATFORM="wayland"
 export QT_QPA_PLATFORMTHEME="gnome"
 export QT_STYLE_OVERRIDE=$([ "$THEME" = "light" ] && echo "Adwaita" || echo "Adwaita-Dark")
+export ZSHRC="$HOME/.config/zsh/.zshrc"
 # export QT_STYLE_OVERRIDE="Adwaita-Dark"
 export XDG_CONFIG_HOME="$HOME/.config"
 export DOTFILES="$HOME/dotfiles"

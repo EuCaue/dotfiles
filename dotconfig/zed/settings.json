@@ -43,7 +43,7 @@
     "tree_view": true,
     "dock": "left"
   },
-  "buffer_line_height": "standard",
+  "buffer_line_height": "comfortable",
   "agent_servers": {
     "opencode": {
       "type": "registry"
@@ -134,9 +134,9 @@
   "ui_font_size": 18.0,
   "buffer_font_size": 18.0,
   "theme": {
-    "mode": "light",
+    "mode": "system",
     "light": "One Light",
-    "dark": "One Dark"
+    "dark": "One Dark - Darkened"
   },
   "lsp": {
     "biome": {

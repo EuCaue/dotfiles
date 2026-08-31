@@ -16,14 +16,12 @@ DEFAULT_BACKGROUND_DARK="$XDG_PICTURES_DIR/wallpapers/wallhaven-qrlwql.png"
 DEFAULT_BRIGHTNESS_DARK=70
 
 # files
-LOG_FILE="$HOME/.local/share/style-switch.log"
-THEME_FILE="/tmp/theme"
-FLAG_FILE="/tmp/style_has_runned"
 STATE_DIR="$HOME/.local/state/style-switch"
+LOG_FILE="$HOME/.local/share/style-switch.log"
+THEME_FILE="$STATE_DIR/theme"
+FLAG_FILE="$STATE_DIR/has_run"
 
 MODE="$1"
-
-source "$HOME/dotfiles/dotconfig/zsh/exports.zsh"
 
 get_cursor_state_file() {
   local mode="$1"
@@ -58,7 +56,10 @@ if [[ "$MODE" == "--save-current-cursor" ]]; then
   exit 0
 fi
 
-echo "$MODE" >$THEME_FILE #
+mkdir -p "$STATE_DIR"
+echo "$MODE" >"$THEME_FILE"
+
+source "$HOME/dotfiles/dotconfig/zsh/exports.zsh"
 
 if [ ! -f "$FLAG_FILE" ]; then
   touch "$FLAG_FILE"
@@ -145,8 +146,8 @@ if [[ "$MODE" == "dark" ]]; then
   set-cursor-theme "$CURSOR"
   set-cursor-size "$SIZE"
   # gsettings set org.gnome.desktop.background picture-uri-dark "file://$BACKGROUND"
-  sed -i "s/light/dark/" "$HOME/.config/nvim/lua/user/core/options.lua"
-  sed -i "s/palette = 'atom_one_light'/palette = 'atom_one_dark'/" "$HOME/dotfiles/dotconfig/starship.toml"
+  sed -i 's/^opt\.background = "light"$/opt.background = "dark"/' "$HOME/.config/nvim/lua/user/core/options.lua"
+  sed -i "s/^palette = 'atom_one_light'\$/palette = 'atom_one_dark'/" "$HOME/dotfiles/dotconfig/starship.toml"
   ddcutil setvcp 10 "${BRIGHTNESS}"
   notify-send "Dark mode activated"
 else
@@ -156,8 +157,8 @@ else
   set-cursor-theme "$CURSOR"
   set-cursor-size "$SIZE"
   # gsettings set org.gnome.desktop.background picture-uri "file://$BACKGROUND"
-  sed -i "s/dark/light/" "$HOME/.config/nvim/lua/user/core/options.lua"
-  sed -i "s/palette = 'atom_one_dark'/palette = 'atom_one_light'/" "$HOME/dotfiles/dotconfig/starship.toml"
+  sed -i 's/^opt\.background = "dark"$/opt.background = "light"/' "$HOME/.config/nvim/lua/user/core/options.lua"
+  sed -i "s/^palette = 'atom_one_dark'\$/palette = 'atom_one_light'/" "$HOME/dotfiles/dotconfig/starship.toml"
   ddcutil setvcp 10 "${BRIGHTNESS}"
   notify-send "Light mode activated"
 fi

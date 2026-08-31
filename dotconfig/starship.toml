@@ -1,7 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 add_newline = true
-palette = 'atom_one_dark'
+palette = 'atom_one_light'
 
 format = """
 $os\

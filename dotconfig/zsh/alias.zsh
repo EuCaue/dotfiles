@@ -19,11 +19,11 @@ alias lg="lazygit"
 
 # better ls
 if command -v eza >/dev/null 2>&1; then
-  alias la='eza -l -a -g --icons -h --group-directories-first --sort modified --reverse --hyperlink'
-  alias ls='eza -l -g --icons -h --group-directories-first --sort modified --reverse --hyperlink'
+  alias la='eza -l -a -g --icons -h --group-directories-first --sort modified --reverse --hyperlink=auto'
+  alias ls='eza -l -g --icons -h --group-directories-first --sort modified --reverse --hyperlink=auto'
 elif command -v exa >/dev/null 2>&1; then
-  alias la='exa -l -a -g --icons -h --group-directories-first --sort modified --reverse --hyperlink'
-  alias ls='exa -l -g --icons -h --group-directories-first --sort modified --reverse --hyperlink'
+  alias la='exa -l -a -g --icons -h --group-directories-first --sort modified --reverse --hyperlink=auto'
+  alias ls='exa -l -g --icons -h --group-directories-first --sort modified --reverse --hyperlink=auto'
 elif command -v lsd >/dev/null 2>&1; then
   alias ls='lsd -lh --icon=always --color=auto --group-dirs=first --header --size=short --date=+"%-d %b %H:%M" -X'
   alias la='lsd -lh --all --icon=always --color=auto --group-dirs=first --header --size=short --date=+"%-d %b %H:%M" -X'
@@ -167,7 +167,32 @@ set-mono-font() {
 
 set-cursor-theme() {
   local CURSOR_THEME="$1"
-  [[ -z "$CURSOR_THEME" ]] && echo "Usage: set-cursor-theme <theme-name>" && return 1
+  local TARGET_MODE="$2"
+  [[ -z "$CURSOR_THEME" ]] && echo "Usage: set-cursor-theme <theme-name> [dark|light]" && return 1
+
+  if [[ -n "$TARGET_MODE" ]]; then
+    TARGET_MODE="${TARGET_MODE:l}"
+    if [[ "$TARGET_MODE" != "dark" && "$TARGET_MODE" != "light" ]]; then
+      echo "Usage: set-cursor-theme <theme-name> [dark|light]" >&2
+      echo "Error: second argument must be 'dark' or 'light' (got '$2')" >&2
+      return 1
+    fi
+    local STATE_DIR="$HOME/.local/state/style-switch"
+    local state_file="$STATE_DIR/cursor-${TARGET_MODE}.env"
+    mkdir -p "$STATE_DIR"
+    local existing_size=""
+    if [[ -f "$state_file" ]]; then
+      source "$state_file"
+      existing_size="$STYLE_SIZE_OVERRIDE"
+    fi
+    if [[ -z "$existing_size" ]]; then
+      existing_size=$(gsettings get org.gnome.desktop.interface cursor-size 2>/dev/null | tr -d "'" || echo "24")
+      [[ -z "$existing_size" ]] && existing_size="24"
+    fi
+    printf 'STYLE_CURSOR_OVERRIDE=%q\nSTYLE_SIZE_OVERRIDE=%q\n' "$CURSOR_THEME" "$existing_size" >"$state_file"
+    echo "Saved cursor theme '$CURSOR_THEME' for '$TARGET_MODE' mode (in $state_file). Switch with: style.sh $TARGET_MODE"
+    return 0
+  fi
 
   local THEME_DIR="$HOME/.local/share/icons/default"
   local THEME_FILE="$THEME_DIR/index.theme"

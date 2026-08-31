@@ -65,6 +65,7 @@ link_dir zsh
 link_dir tmuxp
 link_dir zed
 link_dir opencode
+link_dir lazygit
 
 echo
 echo "==> Starship"

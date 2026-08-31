@@ -30,7 +30,7 @@ vim.cmd(
 g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
 opt.autowrite = true -- Enable auto write
 opt.autoread = true -- Enable auto read
-opt.background = "dark"
+opt.background = "light"
 opt.backup = false -- creates a backup file
 opt.colorcolumn = "" -- colorcolumn
 opt.completeopt = "menu,menuone,noinsert,noselect"

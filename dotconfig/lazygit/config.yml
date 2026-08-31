@@ -1,0 +1,71 @@
+gui:
+  showIcons: true
+  nerdFontsVersion: "3"
+  mainPanelSplitMode: 'flexible'
+  sidePanelWidth: 0.33
+promptToReturnFromSubprocess: false
+git:
+  parseEmoji: true
+  autoFetch: false
+  diffRenderers:
+    - colorArg: always
+      command: delta --dark --paging=never --syntax-theme=base16
+os:
+  edit: nvim {{filename}}
+  openLink: xdg-open {{link}}
+update:
+  method: never
+customCommands:
+  - key: '<c-p>'
+    context: 'global'
+    description: 'Open repository in browser'
+    command: 'gh browse'
+  - key: 'O'
+    context: 'localBranches'
+    description: 'Open branch PR in browser'
+    command: 'gh pr view --web'
+  - key: 'P'
+    context: 'localBranches'
+    description: 'Create PR in browser'
+    command: 'gh pr create --web'
+  - key: 'y'
+    context: 'commits'
+    description: 'Copy commit hash'
+    command: 'echo -n {{.SelectedLocalCommit.Hash}} | wl-copy'
+  - key: 'C'
+    context: 'files'
+    description: 'Commit with Conventional Commits'
+    prompts:
+      - type: 'menu'
+        title: 'Commit type'
+        options:
+          - name: 'feat'
+            value: 'feat'
+          - name: 'fix'
+            value: 'fix'
+          - name: 'refactor'
+            value: 'refactor'
+          - name: 'chore'
+            value: 'chore'
+          - name: 'docs'
+            value: 'docs'
+          - name: 'test'
+            value: 'test'
+          - name: 'perf'
+            value: 'perf'
+          - name: 'ci'
+            value: 'ci'
+          - name: 'build'
+            value: 'build'
+          - name: 'style'
+            value: 'style'
+      - type: 'input'
+        title: 'Module / Scope (optional)'
+        initialValue: ''
+      - type: 'input'
+        title: 'Commit message'
+        initialValue: ''
+      - type: 'input'
+        title: 'Description (optional)'
+        initialValue: ''
+    command: 'git commit -m "{{index .PromptResponses 0}}{{if (index .PromptResponses 1)}}({{index .PromptResponses 1}}){{end}}: {{index .PromptResponses 2}}"{{if (index .PromptResponses 3)}} -m "{{index .PromptResponses 3}}"{{end}}'

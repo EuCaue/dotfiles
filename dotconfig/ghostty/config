@@ -1,7 +1,7 @@
 config-file=?auto/theme.ghostty
 alpha-blending=linear
 # adjust-box-thickness=100%
-adjust-cursor-thickness=700%
+adjust-cursor-thickness=900%
 # adjust-cell-height=35% 
 # adjust-cell-height = -12%
 adjust-cell-width = -10%
@@ -46,6 +46,28 @@ keybind=ctrl+shift+plus=increase_font_size:6
 keybind=ctrl+shift+minus=set_font_size:17
 keybind=ctrl+shift+r=reload_config
 keybind=ctrl+shift+w=unbind
+
+# tmux like binds
+keybind=performable:ctrl+h=goto_split:left
+keybind=performable:ctrl+j=goto_split:down
+keybind=performable:ctrl+k=goto_split:up
+keybind=performable:ctrl+l=goto_split:right
+
+keybind=alt+shift+w>backslash=new_split:right
+keybind=alt+shift+w>minus=new_split:down
+
+keybind=alt+shift+w>c=new_tab
+keybind=alt+shift+w>n=next_tab
+keybind=alt+shift+w>p=previous_tab
+keybind=alt+shift+w>q=close_surface
+keybind=alt+shift+w>m=toggle_split_zoom
+keybind=alt+shift+w>equal=equalize_splits
+keybind=alt+shift+w>r=reload_config
+keybind=alt+shift+w>h=resize_split:left,2
+keybind=alt+shift+w>j=resize_split:down,2
+keybind=alt+shift+w>k=resize_split:up,2
+keybind=alt+shift+w>l=resize_split:right,2
+
 link-url=true
 mouse-hide-while-typing = false
 mouse-shift-capture=always

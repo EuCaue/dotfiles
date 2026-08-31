@@ -3,6 +3,15 @@ set -e
 
 echo "==> Setup GNOME shortcuts"
 
+GNOME_SETTINGS_FILE="$HOME/dotfiles/dotconfig/gnome-settings-safe.conf"
+
+if [ -f "$GNOME_SETTINGS_FILE" ]; then
+  echo "==> Shortcuts covered by $(basename "$GNOME_SETTINGS_FILE"), skipping"
+  exit 0
+fi
+
+echo "==> No $GNOME_SETTINGS_FILE found, applying gsettings shortcuts"
+
 ### Easy to change variables ##########################################
 
 for bin in zen zen-bin zen-browser; do

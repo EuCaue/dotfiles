@@ -12,11 +12,12 @@ fi
 
 link_agent() {
     local target_dir="$1"
+    local target_name="${2:-AGENTS.md}"
 
     mkdir -p "$target_dir"
-    ln -sfn "$SOURCE" "$target_dir/AGENTS.md"
+    ln -sfn "$SOURCE" "$target_dir/$target_name"
 
-    echo "✓ $target_dir/AGENTS.md"
+    echo "✓ $target_dir/$target_name"
 }
 
 echo "Synchronizing AGENTS.md..."
@@ -29,7 +30,10 @@ link_agent "$HOME/.codex"
 link_agent "$HOME/.cursor"
 
 # Antigravity (adjust if Antigravity uses another directory)
-link_agent "$HOME/.antigravity"
+link_agent "$HOME/.gemini/config"
+
+# Claude Code (reads CLAUDE.md, not AGENTS.md)
+link_agent "$HOME/.claude" "CLAUDE.md"
 
 echo
 echo "Source of truth:"

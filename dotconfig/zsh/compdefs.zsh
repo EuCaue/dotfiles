@@ -12,12 +12,16 @@ _git-bs() {
   _git-branch
 }
 _set-cursor-theme() {
+  if (( CURRENT == 3 )); then
+    compadd dark light
+    return
+  fi
   local -a themes
-  for theme in /usr/share/icons/*; do
+  for theme in /usr/share/icons/*(N); do
     theme=$(basename $theme)
     themes+=("$theme")
   done
-  compadd "$themes[@]"
+  compadd -a themes
 }
 
 _set-cursor-size() {
