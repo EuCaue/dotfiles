@@ -32,6 +32,7 @@ run setup-gnome.sh
 run setup-gnome-shortcuts.sh
 run setup-mono-font.sh
 run setup-fonts.sh
+run setup-browser-policies.sh
 
 echo
 echo -e "${GREEN}==> Setup completed successfully${NC}"
