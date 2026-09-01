@@ -32,6 +32,7 @@ gtk-wide-tabs=true
 gtk-titlebar-style=tabs
 keybind=alt+eight=unbind
 keybind=alt+five=unbind
+keybind=ctrl+enter=unbind
 keybind=alt+four=unbind
 keybind=alt+nine=unbind
 keybind=alt+one=unbind
