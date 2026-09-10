@@ -106,6 +106,7 @@ CUSTOM_KEYS=(
   "play-pause:playerctl play-pause:<Super>d"
   "tmux-home:$TERMINAL -e tmux new-session -A -s $TMUX_SESSION:<Shift><Super>Return"
   "tmux-sessions:$TERMINAL -e $HOME_DIR/dotfiles/scripts/sesh.sh -t:<Super>Return"
+  "toggle-theme:$HOME_DIR/dotfiles/scripts/toggle-theme.sh:<Shift><Super>t"
 )
 
 paths=()
