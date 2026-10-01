@@ -98,7 +98,7 @@ CURRENT_MODE=$(gsettings get org.gnome.desktop.interface color-scheme | grep -q 
 CURRENT_CURSOR=$(gsettings get org.gnome.desktop.interface cursor-theme | tr -d "'")
 CURRENT_SIZE=$(gsettings get org.gnome.desktop.interface cursor-size)
 CURRENT_BACKGROUND=$(gsettings get org.gnome.desktop.background picture-uri | sed "s/'//g" | sed "s/file:\/\///")
-CURRENT_BRIGHTNESS=$(ddcutil getvcp 10 2>/dev/null | grep -oP 'current value = \K\d+' || echo "unknown")
+CURRENT_BRIGHTNESS=$(ddcutil --display 1 getvcp 10 2>/dev/null | grep -o 'current value = *[0-9]*' | grep -o '[0-9]*$' || echo "unknown")
 STATE_FILE=$(get_cursor_state_file "$MODE")
 
 if [[ -f "$STATE_FILE" ]]; then
@@ -148,7 +148,7 @@ if [[ "$MODE" == "dark" ]]; then
   # gsettings set org.gnome.desktop.background picture-uri-dark "file://$BACKGROUND"
   sed -i 's/^opt\.background = "light"$/opt.background = "dark"/' "$HOME/.config/nvim/lua/user/core/options.lua"
   sed -i "s/^palette = 'atom_one_light'\$/palette = 'atom_one_dark'/" "$HOME/dotfiles/dotconfig/starship.toml"
-  ddcutil setvcp 10 "${BRIGHTNESS}"
+  ddcutil --display 1 setvcp 10 "${BRIGHTNESS}"
   notify-send "Dark mode activated"
 else
   echo "☀️  Switching to light mode..."
@@ -159,7 +159,7 @@ else
   # gsettings set org.gnome.desktop.background picture-uri "file://$BACKGROUND"
   sed -i 's/^opt\.background = "dark"$/opt.background = "light"/' "$HOME/.config/nvim/lua/user/core/options.lua"
   sed -i "s/^palette = 'atom_one_dark'\$/palette = 'atom_one_light'/" "$HOME/dotfiles/dotconfig/starship.toml"
-  ddcutil setvcp 10 "${BRIGHTNESS}"
+  ddcutil --display 1 setvcp 10 "${BRIGHTNESS}"
   notify-send "Light mode activated"
 fi
 

@@ -1,6 +1,11 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["@dietrichgebert/ponytail", "opencode-discord-presence"],
+  "plugin": [
+    "@dietrichgebert/ponytail",
+    "opencode-discord-presence",
+    "superpowers@git+https://github.com/obra/superpowers.git",
+    "@franlol/opencode-md-table-formatter@latest"
+  ],
   "autoupdate": true,
   "shell": "zsh",
   "watcher": {
