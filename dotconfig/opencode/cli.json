@@ -1,0 +1,22 @@
+{
+  "$schema": "https://opencode.ai/v2/cli.json",
+  "theme": {
+    "name": "opencode"
+  },
+  "keybinds": {
+    "variant.list": "<leader>v"
+  },
+  "scroll": {
+    "acceleration": true
+  },
+  "diffs": {
+    "wrap": "word"
+  },
+  "session": {
+    "sidebar": "hide",
+    "scrollbar": false,
+    "thinking": "hide",
+    "permissions": "autoaccept"
+  },
+  "animations": true
+}

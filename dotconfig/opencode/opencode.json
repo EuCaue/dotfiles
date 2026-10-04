@@ -1,34 +1,27 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": [
+  "plugins": [
     "@dietrichgebert/ponytail",
-    "opencode-discord-presence",
     "superpowers@git+https://github.com/obra/superpowers.git",
-    "@franlol/opencode-md-table-formatter@latest"
   ],
-  "autoupdate": true,
+  "update": "auto",
   "shell": "zsh",
   "watcher": {
     "ignore": ["node_modules/**", "dist/**", ".git/**"]
   },
   "lsp": true,
   "formatter": true,
-  "permission": {
-    "todowrite": "allow",
-    "question": "allow"
-  },
-  "agent": {
+  "permissions": [
+    { "action": "todowrite", "resource": "*", "effect": "allow" },
+    { "action": "question", "resource": "*", "effect": "allow" }
+  ],
+  "agents": {
     "code-reviewer": {
       "description": "Reviews code for best practices and potential issues",
-      "prompt": "You are a code reviewer. Focus on security, performance, and maintainability.",
-      "tools": {
-        "write": false,
-        "edit": false
-      },
-      "options": {},
-      "permission": {
-        "edit": "deny"
-      }
+      "system": "You are a code reviewer. Focus on security, performance, and maintainability.",
+      "permissions": [
+        { "action": "edit", "resource": "*", "effect": "deny" }
+      ]
     }
   }
 }

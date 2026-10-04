@@ -2,3 +2,6 @@ node_modules
 package-lock.json
 bun.lock
 **/cave*
+.caveman-active
+server.env
+service.json
