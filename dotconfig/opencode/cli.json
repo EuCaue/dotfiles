@@ -1,7 +1,7 @@
 {
   "$schema": "https://opencode.ai/v2/cli.json",
   "theme": {
-    "name": "opencode"
+    "name": "system"
   },
   "keybinds": {
     "variant.list": "<leader>v"

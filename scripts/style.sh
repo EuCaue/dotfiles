@@ -147,7 +147,7 @@ if [[ "$MODE" == "dark" ]]; then
   set-cursor-size "$SIZE"
   # gsettings set org.gnome.desktop.background picture-uri-dark "file://$BACKGROUND"
   sed -i 's/^opt\.background = "light"$/opt.background = "dark"/' "$HOME/.config/nvim/lua/user/core/options.lua"
-  sed -i "s/^palette = 'atom_one_light'\$/palette = 'atom_one_dark'/" "$HOME/dotfiles/dotconfig/starship.toml"
+  sed -i "s/^palette = 'adwaita_light'\$/palette = 'adwaita_dark'/" "$HOME/dotfiles/dotconfig/starship.toml"
   ddcutil --display 1 setvcp 10 "${BRIGHTNESS}"
   notify-send "Dark mode activated"
 else
@@ -158,7 +158,7 @@ else
   set-cursor-size "$SIZE"
   # gsettings set org.gnome.desktop.background picture-uri "file://$BACKGROUND"
   sed -i 's/^opt\.background = "dark"$/opt.background = "light"/' "$HOME/.config/nvim/lua/user/core/options.lua"
-  sed -i "s/^palette = 'atom_one_dark'\$/palette = 'atom_one_light'/" "$HOME/dotfiles/dotconfig/starship.toml"
+  sed -i "s/^palette = 'adwaita_dark'\$/palette = 'adwaita_light'/" "$HOME/dotfiles/dotconfig/starship.toml"
   ddcutil --display 1 setvcp 10 "${BRIGHTNESS}"
   notify-send "Light mode activated"
 fi

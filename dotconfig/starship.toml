@@ -1,7 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 add_newline = true
-palette = 'atom_one_light'
+palette = 'adwaita_light'
 
 format = """
 $os\
@@ -193,3 +193,23 @@ sapphire = "#4078F2"
 lavender = "#A626A4"
 overlay0 = "#A0A1A7"
 crust = "#FAFAFA"
+
+[palettes.adwaita_dark]
+red = "#ED333B"
+peach = "#FFA348"
+yellow = "#F8E45C"
+green = "#57E389"
+sapphire = "#51A1FF"
+lavender = "#C061CB"
+overlay0 = "#5E5C64"
+crust = "#1C1C1F"
+
+[palettes.adwaita_light]
+red = "#C01C28"
+peach = "#C64600"
+yellow = "#A2734C"
+green = "#26A269"
+sapphire = "#1E78E4"
+lavender = "#A347BA"
+overlay0 = "#5D5D5D"
+crust = "#FFFFFF"

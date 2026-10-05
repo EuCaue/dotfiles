@@ -25,7 +25,7 @@
   "terminal": {
     "font_size": 18.0,
     "show_count_badge": true,
-    "font_family": "CommitMono-custom",
+    "font_family": "Chivo Mono",
     "font_fallbacks": [
       "Symbols Nerd Font Mono",
     ]
@@ -113,7 +113,7 @@
     }
   },
   "ui_font_family": ".SystemUIFont",
-  "buffer_font_family": "CommitMono-custom",
+  "buffer_font_family": "Chivo Mono",
   "buffer_font_fallbacks": [
     "Android Emoji",
     "Twemoji"
@@ -133,10 +133,13 @@
   },
   "ui_font_size": 18.0,
   "buffer_font_size": 18.0,
+  "auto_install_extensions": {
+    "adwaita": true
+  },
   "theme": {
     "mode": "system",
-    "light": "One Light",
-    "dark": "One Dark - Darkened"
+    "light": "Adwaita Light",
+    "dark": "Adwaita Dark"
   },
   "lsp": {
     "biome": {
