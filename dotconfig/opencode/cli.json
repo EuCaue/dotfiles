@@ -1,7 +1,8 @@
 {
   "$schema": "https://opencode.ai/v2/cli.json",
   "theme": {
-    "name": "system"
+    "name": "system",
+    "mode": "system"
   },
   "keybinds": {
     "variant.list": "<leader>v"
@@ -13,10 +14,19 @@
     "wrap": "word"
   },
   "session": {
-    "sidebar": "hide",
+    "sidebar": "auto",
     "scrollbar": false,
     "thinking": "hide",
-    "permissions": "autoaccept"
+    "permissions": "autoaccept",
+    "verbosity": "medium"
   },
-  "animations": true
+  "animations": true,
+  "tabs": {
+    "indicators": "status"
+  },
+  "prompt": {
+    "editor": true,
+    "paste": "compact",
+    "image_preview": true
+  }
 }
