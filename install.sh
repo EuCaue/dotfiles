@@ -26,6 +26,7 @@ run() {
 echo -e "${GREEN}==> Starting dotfiles setup${NC}"
 
 run setup-packages.sh
+run setup-sudoers.sh
 run setup-links.sh
 run setup-keyboard.sh
 run setup-gnome.sh
@@ -33,6 +34,7 @@ run setup-gnome-shortcuts.sh
 run setup-mono-font.sh
 run setup-fonts.sh
 run setup-browser-policies.sh
+run setup-agents.sh
 
 echo
 echo -e "${GREEN}==> Setup completed successfully${NC}"
