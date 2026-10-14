@@ -16,11 +16,9 @@ _set-cursor-theme() {
     compadd dark light
     return
   fi
+  # :h:t -> theme dir name, no subshell per entry; only dirs with cursors/
   local -a themes
-  for theme in /usr/share/icons/*(N); do
-    theme=$(basename $theme)
-    themes+=("$theme")
-  done
+  themes=(/usr/share/icons/*/cursors(N:h:t))
   compadd -a themes
 }
 
