@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "ui_font_family": "Adwaita Sans",
   "enable_language_server": false,
   "edit_predictions": {
     "open_ai_compatible_api": {
@@ -16,6 +17,7 @@
   },
   "cli_default_open_behavior": "existing_window",
   "prettier": {
+    "parser": "",
     "allowed": true
   },
   "diff_view_style": "unified",
@@ -25,7 +27,7 @@
   "terminal": {
     "font_size": 18.0,
     "show_count_badge": true,
-    "font_family": "Chivo Mono",
+    "font_family": "JetBrains Mono",
     "font_fallbacks": [
       "Symbols Nerd Font Mono",
     ]
@@ -112,16 +114,15 @@
       "provider": "opencode"
     }
   },
-  "ui_font_family": ".SystemUIFont",
-  "buffer_font_family": "Chivo Mono",
+  "buffer_font_family": "JetBrains Mono",
   "buffer_font_fallbacks": [
     "Android Emoji",
     "Twemoji"
   ],
   "icon_theme": {
     "mode": "system",
-    "light": "Catppuccin Latte",
-    "dark": "Catppuccin Mocha"
+    "light": "JetBrains New UI Icons (Light)",
+    "dark": "JetBrains New UI Icons (Dark)"
   },
   "session": {
     "trust_all_worktrees": false
@@ -132,7 +133,7 @@
     "highlight_on_yank_duration": 120
   },
   "ui_font_size": 18.0,
-  "buffer_font_size": 18.0,
+  "buffer_font_size": 20.0,
   "auto_install_extensions": {
     "adwaita": true
   },

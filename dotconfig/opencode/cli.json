@@ -1,7 +1,8 @@
 {
   "$schema": "https://opencode.ai/v2/cli.json",
   "theme": {
-    "name": "system"
+    "name": "adwaita",
+    "mode": "system"
   },
   "keybinds": {
     "variant.list": "<leader>v"

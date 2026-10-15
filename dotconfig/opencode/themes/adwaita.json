@@ -1,0 +1,174 @@
+{
+  "$schema": "https://opencode.ai/theme.json",
+  "name": "Adwaita",
+  "id": "adwaita",
+  "defs": {
+    "blue1": "#99c1f1",
+    "blue2": "#62a0ea",
+    "blue3": "#3584e4",
+    "blue4": "#1c71d8",
+    "blue5": "#1a5fb4",
+
+    "green1": "#8ff0a4",
+    "green2": "#57e389",
+    "green3": "#33d17a",
+    "green4": "#2ec27e",
+    "green5": "#26a269",
+    "green6": "#1e8747",
+
+    "yellow1": "#f9f06b",
+    "yellow2": "#f8e45c",
+    "yellow3": "#f6d32d",
+    "yellow4": "#f5c211",
+    "yellow5": "#e5a50a",
+    "yellow6": "#d18a00",
+
+    "orange2": "#ffa348",
+    "orange3": "#ff7800",
+    "orange4": "#e66100",
+    "orange5": "#c64600",
+
+    "red1": "#f66151",
+    "red2": "#ed333b",
+    "red3": "#e01b24",
+    "red4": "#c01c28",
+    "red5": "#a51d2d",
+
+    "purple1": "#dc8add",
+    "purple2": "#c061cb",
+    "purple3": "#9141ac",
+    "purple4": "#813d9c",
+    "purple5": "#613583",
+
+    "teal1": "#94e4d4",
+    "teal2": "#5fcdc2",
+    "teal3": "#2aa3a2",
+    "teal4": "#1b857f",
+    "teal5": "#126a68",
+
+    "slate1": "#f6f5f4",
+    "slate2": "#dedadd",
+    "slate3": "#c0bfbc",
+    "slate4": "#9a9996",
+    "slate5": "#77767b",
+
+    "darkWindow": "#242424",
+    "darkView": "#1e1e1e",
+    "darkHeaderbar": "#303030",
+    "darkSidebar": "#323232",
+    "darkCard": "#333333",
+    "darkBorder": "#424242",
+    "darkFg": "#ffffff",
+    "darkFgMuted": "#dedede",
+
+    "lightWindow": "#fafafa",
+    "lightView": "#ffffff",
+    "lightHeaderbar": "#ffffff",
+    "lightSidebar": "#ebebeb",
+    "lightCard": "#ffffff",
+    "lightBorder": "#dedadd",
+    "lightFg": "#2e2e2e",
+    "lightFgMuted": "#77767b"
+  },
+  "light": {
+    "palette": {
+      "neutral": "#fafafa",
+      "ink": "#2e2e2e",
+      "primary": "#3584e4",
+      "accent": "#9141ac",
+      "success": "#26a269",
+      "warning": "#e5a50a",
+      "error": "#e01b24",
+      "info": "#1c71d8",
+      "interactive": "#3584e4",
+      "diffAdd": "#33d17a",
+      "diffDelete": "#e01b24"
+    },
+    "overrides": {
+      "syntax-comment": "#77767b",
+      "syntax-keyword": "#813d9c",
+      "syntax-primitive": "#3584e4",
+      "syntax-constant": "#c64600"
+    }
+  },
+  "dark": {
+    "palette": {
+      "neutral": "#242424",
+      "ink": "#ffffff",
+      "primary": "#3584e4",
+      "accent": "#c061cb",
+      "success": "#33d17a",
+      "warning": "#f5c211",
+      "error": "#e01b24",
+      "info": "#62a0ea",
+      "interactive": "#99c1f1",
+      "diffAdd": "#57e389",
+      "diffDelete": "#ed333b"
+    },
+    "overrides": {
+      "syntax-comment": "#9a9996",
+      "syntax-keyword": "#dc8add",
+      "syntax-primitive": "#62a0ea",
+      "syntax-constant": "#ffa348"
+    }
+  },
+  "theme": {
+    "primary": { "dark": "blue3", "light": "blue4" },
+    "secondary": { "dark": "purple2", "light": "purple3" },
+    "accent": { "dark": "blue2", "light": "blue4" },
+
+    "error": { "dark": "red1", "light": "red3" },
+    "warning": { "dark": "yellow3", "light": "yellow5" },
+    "success": { "dark": "green3", "light": "green5" },
+    "info": { "dark": "blue2", "light": "blue4" },
+
+    "text": { "dark": "darkFg", "light": "lightFg" },
+    "textMuted": { "dark": "darkFgMuted", "light": "lightFgMuted" },
+
+    "background": { "dark": "darkWindow", "light": "lightWindow" },
+    "backgroundPanel": { "dark": "darkView", "light": "lightView" },
+    "backgroundElement": { "dark": "darkCard", "light": "lightCard" },
+
+    "border": { "dark": "darkBorder", "light": "lightBorder" },
+    "borderActive": { "dark": "slate5", "light": "slate4" },
+    "borderSubtle": { "dark": "darkBorder", "light": "lightBorder" },
+
+    "diffAdded": { "dark": "green3", "light": "green5" },
+    "diffRemoved": { "dark": "red1", "light": "red3" },
+    "diffContext": { "dark": "slate4", "light": "slate3" },
+    "diffHunkHeader": { "dark": "purple2", "light": "purple3" },
+    "diffHighlightAdded": { "dark": "green2", "light": "green6" },
+    "diffHighlightRemoved": { "dark": "red2", "light": "red4" },
+    "diffAddedBg": { "dark": "#26332b", "light": "#e8f5e9" },
+    "diffRemovedBg": { "dark": "#3a2426", "light": "#fdecea" },
+    "diffContextBg": { "dark": "darkView", "light": "lightView" },
+    "diffLineNumber": { "dark": "slate5", "light": "slate4" },
+    "diffAddedLineNumberBg": { "dark": "#26332b", "light": "#e8f5e9" },
+    "diffRemovedLineNumberBg": { "dark": "#3a2426", "light": "#fdecea" },
+
+    "markdownText": { "dark": "darkFg", "light": "lightFg" },
+    "markdownHeading": { "dark": "blue2", "light": "blue4" },
+    "markdownLink": { "dark": "blue1", "light": "blue5" },
+    "markdownLinkText": { "dark": "teal2", "light": "teal4" },
+    "markdownCode": { "dark": "green3", "light": "green5" },
+    "markdownBlockQuote": { "dark": "slate4", "light": "slate5" },
+    "markdownEmph": { "dark": "orange2", "light": "orange4" },
+    "markdownStrong": { "dark": "yellow3", "light": "yellow6" },
+    "markdownHorizontalRule": { "dark": "darkBorder", "light": "lightBorder" },
+    "markdownListItem": { "dark": "blue2", "light": "blue4" },
+    "markdownListEnumeration": { "dark": "teal2", "light": "teal4" },
+    "markdownImage": { "dark": "blue1", "light": "blue5" },
+    "markdownImageText": { "dark": "teal2", "light": "teal4" },
+    "markdownCodeBlock": { "dark": "darkFg", "light": "lightFg" },
+
+    "syntaxComment": { "dark": "slate5", "light": "slate5" },
+    "syntaxKeyword": { "dark": "purple2", "light": "purple4" },
+    "syntaxFunction": { "dark": "blue2", "light": "blue4" },
+    "syntaxVariable": { "dark": "darkFg", "light": "lightFg" },
+    "syntaxString": { "dark": "green2", "light": "green5" },
+    "syntaxNumber": { "dark": "orange2", "light": "orange4" },
+    "syntaxType": { "dark": "teal2", "light": "teal4" },
+    "syntaxOperator": { "dark": "blue1", "light": "blue5" },
+    "syntaxPunctuation": { "dark": "darkFgMuted", "light": "lightFgMuted" }
+  }
+}
