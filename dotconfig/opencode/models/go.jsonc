@@ -1,0 +1,45 @@
+// OpenCode Go ($10). Trocar: ln -sf models/free.jsonc ~/.config/opencode/opencode.jsonc
+{
+  "model": "opencode-go/deepseek-v4.1-flash",
+  "agents": {
+    "build": {
+      "model": "opencode-go/deepseek-v4.1-flash"
+    },
+    "plan": {
+      "model": "opencode-go/muse-spark-1.3-contributor"
+    },
+    "explore": {
+      "model": "opencode-go/qwen3.8-flash"
+    },
+    "general": {
+      "model": "opencode-go/minimax-m3.1-flash"
+    },
+    "title": {
+      "model": "opencode/beam-free"
+    },
+    "summary": {
+      "model": "opencode-go/muse-spark-1.3-contributor"
+    },
+    "compaction": {
+      "model": "opencode-go/muse-spark-1.3-contributor"
+    },
+    "second-opinion": {
+      "model": "opencode-go/claude-haiku-5-5"
+    },
+    "vision": {
+      "model": "opencode/nemotron-3.5-super-vl-free"
+    },
+    "code-reviewer": {
+      "model": "opencode-go/glm-5.3-flash"
+    },
+    "cavecrew-investigator": {
+      "model": "opencode-go/qwen3.8-flash"
+    },
+    "cavecrew-builder": {
+      "model": "opencode-go/mimo-v2.6-flash"
+    },
+    "cavecrew-reviewer": {
+      "model": "opencode-go/glm-5.3-flash"
+    }
+  }
+}
