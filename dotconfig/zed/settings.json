@@ -25,7 +25,7 @@
   "terminal": {
     "font_size": 18.0,
     "show_count_badge": true,
-    "font_family": "Chivo Mono",
+    "font_family": "JetBrains Mono",
     "font_fallbacks": [
       "Symbols Nerd Font Mono",
     ]
@@ -113,7 +113,7 @@
     }
   },
   "ui_font_family": ".SystemUIFont",
-  "buffer_font_family": "Chivo Mono",
+  "buffer_font_family": "JetBrains Mono",
   "buffer_font_fallbacks": [
     "Android Emoji",
     "Twemoji"
