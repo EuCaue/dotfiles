@@ -1,5 +1,9 @@
 {
   "model": "opencode-go/deepseek-v4.1-flash",
+  "compaction": {
+    "auto": true,
+    "keep": { "tokens": 15000 }
+  },
   "agents": {
     "build": {
       "model": "opencode-go/deepseek-v4.1-flash"
