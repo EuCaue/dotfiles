@@ -1,0 +1,44 @@
+{
+  "model": "opencode/deepseek-v4.1-flash-free",
+  "agents": {
+    "build": {
+      "model": "opencode/deepseek-v4.1-flash-free"
+    },
+    "plan": {
+      "model": "opencode/mimo-v2.6-flash-free"
+    },
+    "explore": {
+      "model": "opencode/beam-free"
+    },
+    "general": {
+      "model": "opencode/nemotron-3-ultra-free"
+    },
+    "title": {
+      "model": "opencode/beam-free"
+    },
+    "summary": {
+      "model": "opencode/mimo-v2.6-flash-free"
+    },
+    "compaction": {
+      "model": "opencode/mimo-v2.6-flash-free"
+    },
+    "second-opinion": {
+      "model": "opencode/nemotron-3-ultra-free"
+    },
+    "vision": {
+      "model": "opencode/nemotron-3.5-super-vl-free"
+    },
+    "code-reviewer": {
+      "model": "opencode/big-pickle"
+    },
+    "cavecrew-investigator": {
+      "model": "opencode/beam-free"
+    },
+    "cavecrew-builder": {
+      "model": "opencode/mimo-v2.6-flash-free"
+    },
+    "cavecrew-reviewer": {
+      "model": "opencode/big-pickle"
+    }
+  }
+}
