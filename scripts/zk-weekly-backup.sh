@@ -1,21 +1,36 @@
 #!/usr/bin/env sh
+set -eu
 
-echo "FROM ZK"
+VAULT="${ZK_NOTEBOOK_DIR:-$HOME/Documents/zk}"
+cd "$VAULT" || exit 1
 
-cd "$ZK_NOTEBOOK_DIR" || exit 1
-echo "INSIDE ZK"
-
-[ -x "$ZK_NOTEBOOK_DIR/scripts/fix-cross-dir-links.sh" ] && "$ZK_NOTEBOOK_DIR/scripts/fix-cross-dir-links.sh"
-[ -x "$ZK_NOTEBOOK_DIR/fix-links.sh" ] && "$ZK_NOTEBOOK_DIR/fix-links.sh"
-
-now="$(date '+%Y-%m-%d %H:%M:%S')"
-msg="[zk] weekly snapshot – $now"
-if [ -n "$1" ]; then
-  msg="$msg - $1"
+if [ -x "$VAULT/scripts/fix-cross-dir-links.sh" ]; then
+  "$VAULT/scripts/fix-cross-dir-links.sh"
 fi
 
-echo "[$now] Starting backup..."
-git add .
+now="$(date '+%Y-%m-%d %H:%M:%S')"
+msg="[zk] weekly snapshot - $now"
+[ -n "${1:-}" ] && msg="$msg - $1"
+
+if [ "${DRY_RUN:-0}" = "1" ]; then
+  git status --short
+  echo "dry-run: no commit, no push"
+  exit 0
+fi
+
+git add -A -- . \
+  ':!.sync_*' \
+  ':!.nextcloudsync.log' \
+  ':!.obsidian/workspace.json' \
+  ':!.obsidian/workspace-mobile.json' \
+  ':!.trash' \
+  ':!.zk/notebook.db'
+
+if git diff --cached --quiet; then
+  echo "[$now] nothing to commit"
+  exit 0
+fi
+
 git commit -m "$msg"
 git push
-echo "[$now] Backup complete."
+echo "[$now] backup complete"

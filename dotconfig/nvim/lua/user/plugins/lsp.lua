@@ -50,7 +50,8 @@ return {
   },
   {
     "mason-org/mason-lspconfig.nvim",
-    opts = {},
+    -- LSP starts OFF; servers are enabled via :LspToggle / <leader>tl
+    opts = { automatic_enable = false },
     event = { "BufReadPre", "BufNewFile", "BufReadPost" },
   },
   {
@@ -60,7 +61,11 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile", "BufReadPost" },
-    keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+    cmd = { "LspToggle" },
+    keys = {
+      { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },
+      { "<leader>tl", "<cmd>LspToggle<cr>", desc = "toggle lsp" },
+    },
     dependencies = {},
     config = function()
       local icons = require("user.core.icons")
@@ -325,8 +330,23 @@ return {
       for server, cfg in pairs(servers) do
         cfg.capabilities = vim.tbl_deep_extend("force", {}, capabilities, cfg.capabilities or {})
         vim.lsp.config(server, cfg)
-        vim.lsp.enable(server)
       end
+
+      local server_names = vim.tbl_keys(servers)
+      vim.g.lsp_enabled = false
+      vim.api.nvim_create_user_command("LspToggle", function()
+        vim.g.lsp_enabled = not vim.g.lsp_enabled
+        vim.lsp.enable(server_names, vim.g.lsp_enabled)
+        if not vim.g.lsp_enabled then
+          -- graceful stop can hang (e.g. lua_ls while indexing), so force it
+          for _, client in ipairs(vim.lsp.get_clients()) do
+            if servers[client.name] then
+              client:stop(true)
+            end
+          end
+        end
+        vim.notify("LSP " .. (vim.g.lsp_enabled and "ON" or "OFF"))
+      end, { desc = "Toggle all LSP servers" })
     end,
   },
 }

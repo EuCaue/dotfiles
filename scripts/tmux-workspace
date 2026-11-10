@@ -1,24 +1,35 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-sessions=(
-  auto-volume
-  caue
-  dotfiles
-  erp-vxcase
-  flexa
-  plataforma-web
-  quick-lofi
-  scratch
-  scrolled
-  work
-  zk
-)
-
 SESSIONS_DIR=$HOME/.config/tmuxp
+DEFAULT=caue
 
-for session in "${sessions[@]}"; do
-  tmux has-session -t "$session" 2>/dev/null || tmuxp load -d "$SESSIONS_DIR/$session.yaml"
-done
+spawn_missing() {
+  local f s
+  for f in "$SESSIONS_DIR"/*.yaml; do
+    [ -e "$f" ] || return 0
+    s=$(basename "$f" .yaml)
+    tmux has-session -t "$s" 2>/dev/null || tmuxp load -d "$f"
+  done
+}
 
-tmux attach -t caue
+case "${1:-}" in
+  --spawn)
+    # load missing sessions, don't attach (used from tmux.conf and zshrc)
+    spawn_missing
+    ;;
+  ""|-h|--help)
+    spawn_missing
+    tmux attach-session -t "$DEFAULT"
+    ;;
+  *)
+    f="$SESSIONS_DIR/$1.yaml"
+    if [ ! -f "$f" ]; then
+      echo "no such session: $1" >&2
+      echo "available: $(for g in "$SESSIONS_DIR"/*.yaml; do basename "$g" .yaml; done | tr '\n' ' ')" >&2
+      exit 1
+    fi
+    tmux has-session -t "$1" 2>/dev/null || tmuxp load -d "$f"
+    tmux attach-session -t "$1"
+    ;;
+esac

@@ -6,6 +6,14 @@ windows:
     panes:
       - zsh
 
+  - window_name: INBOX
+    panes:
+      - nvim INBOX.md
+
+  - window_name: daily
+    panes:
+      - nvim +'/##.*Today' +'nohlsearch' "$(zk-todo open)"
+
   - window_name: zk-2
     panes:
       - git status

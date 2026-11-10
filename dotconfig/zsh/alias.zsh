@@ -15,7 +15,7 @@ alias cl="cd && c"
 # git
 alias g="git"
 alias gg="gitu"
-alias lg="lazygit"
+alias lg="lazygit -sm normal branch"
 
 # better ls
 if command -v eza >/dev/null 2>&1; then

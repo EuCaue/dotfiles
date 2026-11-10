@@ -2,14 +2,24 @@ gui:
   showIcons: true
   nerdFontsVersion: "3"
   mainPanelSplitMode: 'flexible'
-  sidePanelWidth: 0.33
+  sidePanelWidth: 0.3333
+  screenMode: normal
+  expandFocusedSidePanel: true
+  shrinkSidePanelsToContent: true
+  theme:
+    inactiveViewSelectedLineBgColor:
+      - "#666666"
 promptToReturnFromSubprocess: false
+keybinding:
+  universal:
+    quit: '<c-q>'
+    return: ['<esc>', 'q']
 git:
   parseEmoji: true
   autoFetch: false
   diffRenderers:
     - colorArg: always
-      command: delta --dark --paging=never --syntax-theme=base16
+      command: delta --{{colorScheme}} --paging=never --syntax-theme={{if eq .colorScheme "light"}}GitHub{{else}}base16{{end}}
 os:
   edit: nvim {{filename}}
   openLink: xdg-open {{link}}

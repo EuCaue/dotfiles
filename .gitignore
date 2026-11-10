@@ -6,3 +6,4 @@
 **/lazy-lock.json
 **/.zcompdump
 node_modules
+__pycache__

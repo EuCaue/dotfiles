@@ -1,6 +1,6 @@
 # MANDATORY FIRST ACTION
 
-Before your first response in every session: call the `skill` tool to load `caveman` and `humanizer`. Then apply both to every response, every turn. This is not optional. (`ponytail` too, when available and not already active as plugin.)
+Before your first response in every session: call the `skill` tool to load `caveman` and `humanizer` and `ponytail`. Then apply both to every response, every turn. This is not optional. But never write the `ponytaiL:` comments.
 
 # Workflow
 
