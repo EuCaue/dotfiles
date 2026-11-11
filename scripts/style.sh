@@ -148,6 +148,8 @@ if [[ "$MODE" == "dark" ]]; then
   # gsettings set org.gnome.desktop.background picture-uri-dark "file://$BACKGROUND"
   sed -i 's/^opt\.background = "light"$/opt.background = "dark"/' "$HOME/.config/nvim/lua/user/core/options.lua"
   sed -i "s/^palette = 'adwaita_light'\$/palette = 'adwaita_dark'/" "$HOME/dotfiles/dotconfig/starship.toml"
+  cp "$HOME/dotfiles/dotconfig/kitty/themes/adwaita-dark.conf" "$HOME/dotfiles/dotconfig/kitty/theme.conf"
+  pkill -USR1 -x kitty 2>/dev/null || true
   ddcutil --display 1 setvcp 10 "${BRIGHTNESS}"
   notify-send "Dark mode activated"
 else
@@ -159,13 +161,22 @@ else
   # gsettings set org.gnome.desktop.background picture-uri "file://$BACKGROUND"
   sed -i 's/^opt\.background = "dark"$/opt.background = "light"/' "$HOME/.config/nvim/lua/user/core/options.lua"
   sed -i "s/^palette = 'adwaita_dark'\$/palette = 'adwaita_light'/" "$HOME/dotfiles/dotconfig/starship.toml"
+  cp "$HOME/dotfiles/dotconfig/kitty/themes/adwaita-light.conf" "$HOME/dotfiles/dotconfig/kitty/theme.conf"
+  pkill -USR1 -x kitty 2>/dev/null || true
   ddcutil --display 1 setvcp 10 "${BRIGHTNESS}"
   notify-send "Light mode activated"
 fi
 
 if command -v tmux >/dev/null; then
+  # tmux 3.8+ cacheia o tema detectado no start; força o modo atual
+  tmux set-option -g theme "$MODE" 2>/dev/null || true
   tmux set-environment -g FZF_DEFAULT_OPTS "$FZF_DEFAULT_OPTS"
   tmux set-environment -g BAT_THEME "$BAT_THEME"
+
+  tmux list-clients -F '#{client_tty}' 2>/dev/null |
+    while read -r client; do
+      tmux refresh-client -t "$client" -S 2>/dev/null || true
+    done
 
   tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index} #{pane_current_command}' |
     while read -r entry; do
