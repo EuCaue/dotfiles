@@ -34,6 +34,14 @@ if [ -z "$current_mono_font" ]; then
   exit 1
 fi
 
+echo
+echo "=============================================================="
+echo "==> Mono font change: ${current_mono_font} -> ${new_mono_font}"
+echo "=============================================================="
+echo
+
+sudo -v
+
 escaped_new_mono_font="$(printf '%s\n' "$new_mono_font" | sed 's/[&|\/]/\\&/g')"
 escaped_current_mono_font="$(printf '%s\n' "$current_mono_font" | sed 's/[&|\/]/\\&/g')"
 
