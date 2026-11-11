@@ -58,6 +58,7 @@ echo
 echo "==> Apps in .config"
 
 link_dir ghostty
+link_dir kitty
 link_dir nvim
 link_dir tmux
 link_dir yazi
