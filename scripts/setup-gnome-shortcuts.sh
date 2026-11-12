@@ -31,7 +31,7 @@ if [[ -z "$OBSIDIAN" ]]; then
   OBSIDIAN="flatpak run md.obsidian.Obsidian"
 fi
 
-TERMINAL="ghostty"
+TERMINAL="kitty"
 FILE_MANAGER="nautilus -w"
 EDITOR_CMD="$TERMINAL -e nvim"
 TMUX_SESSION="caue"
@@ -96,9 +96,9 @@ SCHEMA="org.gnome.settings-daemon.plugins.media-keys.custom-keybinding"
 CUSTOM_KEYS=(
   "gradia-screenshot:flatpak run be.alexandervanhee.gradia --screenshot=INTERACTIVE:<Shift><Alt>s"
   "open-browser:$BROWSER:<Super>b"
-  "open-daily:ghostty -e $HOME_DIR/dotfiles/scripts/open-daily.sh:<Super>t"
-  "open-inbox:ghostty -e $HOME_DIR/dotfiles/scripts/open-inbox.sh:<Super>i"
-  "zk-todo:ghostty -e $HOME_DIR/dotfiles/scripts/zk-todo:<Super>o"
+  "open-daily:$TERMINAL -e $HOME_DIR/dotfiles/scripts/open-daily.sh:<Super>t"
+  "open-inbox:$TERMINAL -e $HOME_DIR/dotfiles/scripts/open-inbox.sh:<Super>i"
+  "zk-todo:$TERMINAL -e $HOME_DIR/dotfiles/scripts/zk-todo:<Super>o"
   "open-iotas:flatpak run org.gnome.World.Iotas:<Super><Shift>i"
   "open-nautilus:$FILE_MANAGER:<Super>e"
   "open-neovim:$EDITOR_CMD:<Super>n"
